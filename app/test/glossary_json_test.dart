@@ -35,9 +35,14 @@ void main() {
         banned: banned.toSet(),
         synonyms: const {},
       );
-      expect(issues, hasLength(1), reason: 'لم يُقبض على: $word');
-      expect(issues.single.kind, LintKind.ban);
-      expect(issues.single.matched, word);
+      // لفظ متراكب (مثل: المفاعلة داخل المفاعلة الحثية) يجلب أكثر من إصابة —
+      // المهم أن اللفظ المستهدف نفسه ضمن المُقبوضات (قرار ١٥ حرفياً).
+      expect(
+        issues.map((i) => i.matched),
+        contains(word),
+        reason: 'لم يُقبض على: $word',
+      );
+      expect(issues.map((i) => i.kind), everyElement(LintKind.ban));
     }
   });
 
