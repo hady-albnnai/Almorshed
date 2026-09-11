@@ -91,6 +91,14 @@ void main() {
     expect(c3.paragraphs[0].text, contains('E = ½k·XmaX²'));
     expect(pack.questions.where((q) => q.chapter == 'U1C3'), hasLength(2));
 
+    // الفصل الرابع: طرق حل المسألة
+    final c4 = pack.units.first.chapters[3];
+    expect(c4.id, 'U1C4');
+    expect(c4.paragraphs, hasLength(5));
+    expect(c4.paragraphs[0].text, contains('XmaX = vmaX/ω0'));
+    expect(c4.paragraphs[4].text, contains('Ek = ½k·(XmaX² − x²)'));
+    expect(pack.questions.where((q) => q.chapter == 'U1C4'), hasLength(5));
+
     // نظافة لفظية على القاموس الحقيقي 444/30
     expect(await realLoader.lintLoadedPack(), isEmpty);
   });
