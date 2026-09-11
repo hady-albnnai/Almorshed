@@ -83,21 +83,27 @@ void main() {
     });
 
     test('فحص حزمة كاملة: يجد اللفظ الممنوع في السؤال غير المعتمد', () {
-      // نحقن سؤالاً فيه لفظ ممنوع للتأكد أن الفحص يشمل حتى غير المعتمد
+      // نبني الحزمة المتسخة من JSON الملف الخام مباشرة (لا كائنات Dart)
+      // ونحقن سؤالاً فيه لفظ ممنوع — الفحص يشمل حتى غير المعتمد
       // (يُحجب عن الطالب لكن القاموس يعلّمه عند المراجعة).
-      final dirty = ContentPack.fromJson(jsonDecode(jsonEncode({
-        'packId': 'dirty', 'year': 2027, 'edition': 1,
-        'units': pack.units.map((u) => u).toList(),
-        'questions': [
-          {
-            'id': 500, 'unit': 'U1', 'chapter': 'U1C1', 'approved': false,
-            'stem': 'ما دور الزنبرك في الدارة؟',
-            'options': ['أ'], 'correctIndex': 0,
-            'solutionSteps': [], 'followThrough': []
-          }
-        ],
-        'cards': const [],
-      })) as Map<String, dynamic>);
+      final raw =
+          jsonDecode(File(fixturePath).readAsStringSync()) as Map<String, dynamic>;
+      raw['packId'] = 'dirty';
+      raw['cards'] = <dynamic>[];
+      raw['questions'] = <dynamic>[
+        {
+          'id': 500,
+          'unit': 'U1',
+          'chapter': 'U1C1',
+          'approved': false,
+          'stem': 'ما دور الزنبرك في الدارة؟',
+          'options': ['أ'],
+          'correctIndex': 0,
+          'solutionSteps': <String>[],
+          'followThrough': <String>[],
+        }
+      ];
+      final dirty = ContentPack.fromJson(raw);
 
       final violations = TermLinter.lintPack(
         dirty,
