@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -13,6 +14,18 @@ void main() {
   late ContentLoader loader;
 
   setUpAll(() {
+    // rootBundle بالاختبارات يقرأ الأصول المعلنة فقط — نخدم الملفات من القرص
+    // مباشرة (نفس محتوى القرص، بلا تلويث pubspec بملفات الاختبار).
+    ServicesBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
+      'flutter/assets',
+      (message) async {
+        final key = utf8.decode(message!);
+        final file = File('${Directory.current.path}/$key');
+        return ByteData.view(
+            Uint8List.fromList(utf8.encode(file.readAsStringSync())).buffer);
+      },
+    );
+
     // نوجّه pack.json إلى حزمة العينة (الحزمة الكاملة تُشحن من خط المحتوى لاحقاً)
     const root = AssetRoot(
       glossaryPath: 'assets/content/glossary.json',
