@@ -56,8 +56,8 @@ void main() {
             Uint8List.fromList(utf8.encode(fake)).buffer);
       },
     );
-    const badLoader = ContentLoader(
-      root: AssetRoot(
+    final badLoader = ContentLoader(
+      root: const AssetRoot(
         glossaryPath: 'assets/content/glossary.json',
         packPath: 'assets/content/__bad__.json',
       ),
