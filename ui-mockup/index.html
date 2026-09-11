@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المرشد — نموذج الواجهة الأولي v0</title>
+<style>
+:root{
+  --bg:#0b1220; --bg2:#111a2e; --card:#16223a; --card2:#1c2b47;
+  --txt:#e8eef7; --txt2:#9db0c9; --line:#243350;
+  --brand:#2dd4a7; --brand2:#38bdf8; --gold:#fbbf24; --silver:#cbd5e1; --bronze:#d97706;
+  --danger:#f87171; --ok:#34d399;
+}
+*{box-sizing:border-box; margin:0; padding:0; font-family:"Segoe UI",Tahoma,Arial,sans-serif}
+body{background:#05080f; color:var(--txt); display:flex; justify-content:center; padding:18px 8px}
+.phone{width:390px; max-width:100%; height:820px; background:var(--bg); border-radius:34px;
+  border:1px solid #1d2a45; overflow:hidden; position:relative; display:flex; flex-direction:column;
+  box-shadow:0 20px 60px rgba(0,0,0,.6)}
+/* شريط علوي */
+.top{display:flex; align-items:center; justify-content:space-between; padding:14px 18px 10px;
+  background:linear-gradient(180deg,#0d1526,#0b1220); border-bottom:1px solid var(--line)}
+.top .app{font-size:19px; font-weight:800; color:var(--brand)}
+.top .sub{font-size:10px; color:var(--txt2)}
+.top .acct{display:flex; align-items:center; gap:6px; cursor:pointer; background:var(--card);
+  border:1px solid var(--line); padding:6px 10px; border-radius:20px; font-size:12px}
+.top .acct .dot{width:8px; height:8px; border-radius:50%; background:var(--ok)}
+/* شاشات */
+.screens{flex:1; overflow-y:auto; scrollbar-width:thin}
+.screen{display:none; padding:16px 14px 90px; animation:fade .18s}
+.screen.active{display:block}
+@keyframes fade{from{opacity:.4; transform:translateY(4px)}to{opacity:1}}
+h2.sec{font-size:16px; margin:14px 0 8px; color:var(--brand2)}
+.note{font-size:11px; color:var(--txt2); line-height:1.7}
+/* شريط سفلي */
+.nav{position:absolute; bottom:0; right:0; left:0; display:flex; background:#0d1526;
+  border-top:1px solid var(--line); padding:6px 4px 10px}
+.nav button{flex:1; background:none; border:none; color:var(--txt2); font-size:11px; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; gap:3px; padding:6px 0; border-radius:12px}
+.nav button .ic{font-size:20px}
+.nav button.on{color:var(--brand); background:#12233c}
+/* بطاقات عامة */
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:10px}
+.card.click{cursor:pointer; transition:.15s}
+.card.click:hover{background:var(--card2)}
+.row{display:flex; align-items:center; justify-content:space-between; gap:8px}
+.chip{display:inline-block; background:#12233c; color:var(--brand2); border-radius:20px;
+  padding:3px 10px; font-size:11px; border:1px solid var(--line)}
+.badge-ok{display:inline-block; background:rgba(52,211,153,.12); color:var(--ok); border:1px solid rgba(52,211,153,.35);
+  border-radius:20px; padding:4px 12px; font-size:11px}
+.btn{width:100%; padding:13px; border:none; border-radius:13px; background:linear-gradient(90deg,var(--brand),#22b8cf);
+  color:#04222b; font-size:15px; font-weight:800; cursor:pointer; margin-top:10px}
+.btn.ghost{background:var(--card); color:var(--txt2); border:1px solid var(--line); font-weight:600}
+.progress{height:7px; background:#0d1a30; border-radius:6px; overflow:hidden; margin-top:8px}
+.progress i{display:block; height:100%; background:linear-gradient(90deg,var(--brand),var(--brand2)); border-radius:6px}
+/* تفعيل */
+.logo-block{text-align:center; padding:26px 0 10px}
+.logo-block .lm{font-size:26px; font-weight:900; letter-spacing:.5px}
+.logo-block .lm b{color:var(--brand)}
+.logo-block .tag{color:var(--txt2); font-size:10px; letter-spacing:3px; margin-top:4px}
+.input{width:100%; padding:14px; border-radius:13px; border:1px solid var(--line); background:#0d1830;
+  color:var(--txt); font-size:18px; text-align:center; letter-spacing:6px; direction:ltr}
+/* درس: ألسنة */
+.tabs{display:flex; gap:6px; margin:10px 0}
+.tabs button{flex:1; padding:9px 4px; border-radius:10px; border:1px solid var(--line);
+  background:var(--card); color:var(--txt2); font-size:12px; cursor:pointer}
+.tabs button.on{background:#123f38; color:var(--brand); border-color:var(--brand)}
+.formula{background:#0d1830; border:1px solid var(--line); border-radius:12px; padding:12px;
+  text-align:center; font-size:18px; direction:ltr; margin:10px 0; color:#c7f5e8}
+.pane{display:none}
+.pane.on{display:block}
+/* رقائق الوحدات */
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0}
+.chips .u{padding:10px 14px; border-radius:14px; border:1px solid var(--line); background:var(--card);
+  color:var(--txt2); font-size:13px; cursor:pointer; user-select:none}
+.chips .u.on{background:#123f38; color:var(--brand); border-color:var(--brand); font-weight:700}
+/* سؤال */
+.opt{display:block; width:100%; text-align:right; padding:13px; border-radius:12px; border:1px solid var(--line);
+  background:var(--card); color:var(--txt); margin-bottom:8px; cursor:pointer; font-size:14px}
+.opt.sel{border-color:var(--brand2); background:#12304a}
+.opt.right{border-color:var(--ok); background:rgba(52,211,153,.12)}
+.opt.wrong{border-color:var(--danger); background:rgba(248,113,113,.12)}
+.steps{font-size:12.5px; line-height:2; color:var(--txt2)}
+.steps b{color:var(--brand)}
+.hint{display:none; background:#2a2410; border:1px solid #6b5a1e; color:#fde68a; border-radius:12px; padding:10px; font-size:12.5px; margin:8px 0}
+/* متصدرون */
+.lb{display:flex; align-items:center; gap:10px; padding:9px 12px; border-radius:12px; background:var(--card); margin-bottom:7px; font-size:13px}
+.lb .rank{width:26px; text-align:center; font-weight:900}
+.lb.r1 .rank{color:var(--gold)} .lb.r2 .rank{color:var(--silver)} .lb.r3 .rank{color:var(--bronze)}
+.lb .pts{margin-inline-start:auto; color:var(--brand); font-weight:700}
+.prize{background:linear-gradient(135deg,#3a2d0a,#1f1a08); border:1px solid #7a6420; border-radius:14px; padding:12px; font-size:12.5px; line-height:1.9}
+/* تجربة */
+.exp-box{background:#0a1526; border:1px solid var(--line); border-radius:14px; padding:12px; margin:10px 0}
+.exp-anim{height:110px; background:radial-gradient(circle at 50% 60%,#12253f,#081020); border-radius:12px;
+  display:flex; align-items:center; justify-content:center; font-size:44px; overflow:hidden}
+.spring{animation:bounce 1.6s ease-in-out infinite; display:inline-block}
+@keyframes bounce{0%,100%{transform:translateY(26px) scaleY(.92)}50%{transform:translateY(-26px) scaleY(1.08)}}
+.slider-row{display:flex; align-items:center; gap:8px; font-size:12px; color:var(--txt2); margin-top:8px}
+.slider-row input{flex:1; accent-color:var(--brand)}
+/* شارة المراجعة */
+.reviewed{display:flex; align-items:center; gap:8px; background:rgba(45,212,167,.08); border:1px dashed rgba(45,212,167,.4);
+  border-radius:12px; padding:9px 12px; font-size:11.5px; color:var(--txt2); margin-top:12px}
+.reviewed b{color:var(--brand)}
+/* عن المطور */
+.dev{background:#0a1526; border:1px solid var(--line); border-radius:16px; padding:18px; text-align:center; margin-top:10px}
+.dev .banner{width:100%; border-radius:12px; background:linear-gradient(135deg,#0a1424,#101c33); padding:26px 10px; margin-bottom:10px}
+.dev .banner .lm{font-size:24px; font-weight:900}
+.dev .banner .lm b{color:var(--brand)}
+.dev .banner .tag{color:var(--txt2); font-size:9px; letter-spacing:3px; margin-top:5px}
+img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
+.foot-note{text-align:center; font-size:10px; color:var(--txt2); margin-top:14px; line-height:1.8}
+/* شريط أدوات العرض */
+.mock-tools{position:fixed; top:10px; left:10px; z-index:99; display:flex; gap:6px}
+.mock-tools button{background:#16223a; color:#9db0c9; border:1px solid #243350; border-radius:10px; padding:7px 12px; font-size:11px; cursor:pointer}
+</style>
+</head>
+<body>
+<div class="mock-tools">
+  <button onclick="show('s-activate')">شاشة التفعيل</button>
+  <button onclick="show('s-home')">الرئيسية</button>
+  <button onclick="document.body.classList.toggle('light')">☾/☀</button>
+</div>
+
+<div class="phone">
+  <div class="top">
+    <div>
+      <div class="app">المرشد</div>
+      <div class="sub">فيزياء البكالوريا — منهاج دمشق ٢٠٢٦/٢٠٢٧</div>
+    </div>
+    <div class="acct" onclick="show('s-account')">👤 <span>حسابي</span> <span class="dot"></span></div>
+  </div>
+
+  <div class="screens">
+
+  <!-- ═══ التفعيل ═══ -->
+  <div class="screen" id="s-activate">
+    <div class="logo-block">
+      <div class="lm">loraneem<b>-tech</b></div>
+      <div class="tag">CODE · AI · LIMITLESS EVOLUTION</div>
+      <div style="margin-top:26px; font-size:34px">📘</div>
+      <div style="font-size:24px; font-weight:800; margin-top:6px">أهلاً بك في «المرشد»</div>
+      <p class="note" style="margin-top:8px">أدخل كود التفعيل الذي حصلت عليه من مكتبنا<br>لفتح المنهاج الكامل وبنك الأسئلة</p>
+    </div>
+    <input class="input" placeholder="XXXXX-XXXXX" value="K7M2P-9QW4X">
+    <button class="btn" onclick="show('s-home')">تفعيل ✓</button>
+    <button class="btn ghost" onclick="show('s-home')">تجربة المحتوى التجريبي (بدون تفعيل)</button>
+    <p class="note" style="text-align:center; margin-top:12px">الكود يُدخل مرة واحدة — بعدها التطبيق يعمل<br>٣٠ يوماً دون إنترنت</p>
+    <div class="reviewed" style="justify-content:center">✓ المادة العلمية راجعتها: <b>الأستاذ فداء البني</b></div>
+  </div>
+
+  <!-- ═══ الرئيسية ═══ -->
+  <div class="screen active" id="s-home">
+    <div class="card" style="background:linear-gradient(135deg,#123f38,#0e2a3a)">
+      <div class="row"><b>👋 أهلاً، أحمد</b><span class="chip">مفعّل حتى ٢٠٢٧/٠٥/٠١</span></div>
+      <p class="note" style="margin-top:6px">تدرّبت ٣ أيام متتالية — واصل! 🔥</p>
+      <div class="progress"><i style="width:38%"></i></div>
+      <p class="note">أكملت ٣٨٪ من الوحدة الأولى</p>
+    </div>
+    <div class="card click" onclick="show('s-curriculum')"><div class="row"><span>📘 <b>واصل الدرس</b></span><span class="note">الحركة التوافقية البسيطة ←</span></div></div>
+    <div class="card click" onclick="show('s-train')"><div class="row"><span>📝 <b>تدريب سريع</b></span><span class="note">١٠ أسئلة ←</span></div></div>
+    <div class="card click" onclick="show('s-duels')"><div class="row"><span>⚔️ <b>تحديات اليوم</b></span><span class="chip">١٢٤ نقطة</span></div></div>
+    <div class="card"><div class="row"><span>💡 <b>فكرة اليوم</b></span></div>
+      <p class="note" style="margin-top:6px">في الاهتزاز التوافقي البسيط، القوة راجعة ومتناسبة مع الإزاحة: F = −k·x</p></div>
+  </div>
+
+  <!-- ═══ المنهاج ═══ -->
+  <div class="screen" id="s-curriculum">
+    <h2 class="sec">الوحدات الخمس</h2>
+    <div class="card click" onclick="show('s-lesson')">
+      <div class="row"><b>١ · الحركة والتحريك</b><span class="chip">٣٨٪</span></div>
+      <div class="progress"><i style="width:38%"></i></div>
+      <p class="note" style="margin-top:6px">٥ فصول — ص٦ إلى ص٥٣</p>
+    </div>
+    <div class="card click"><div class="row"><b>٢ · الكهرباء والمغناطيسية</b><span class="chip">٠٪</span></div><div class="progress"><i style="width:2%"></i></div></div>
+    <div class="card click"><div class="row"><b>٣ · الأمواج المستقرة</b><span class="chip">٠٪</span></div><div class="progress"><i style="width:2%"></i></div></div>
+    <div class="card click"><div class="row"><b>٤ · الإلكترونيات والجسم الصلب</b><span class="chip">٠٪</span></div><div class="progress"><i style="width:2%"></i></div></div>
+    <div class="card click"><div class="row"><b>٥ · الفيزياء الفلكية</b><span class="chip">٠٪</span></div><div class="progress"><i style="width:2%"></i></div></div>
+  </div>
+
+  <!-- ═══ الدرس (طبقات + تجربة داخلية) ═══ -->
+  <div class="screen" id="s-lesson">
+    <p class="note">الوحدة ١ ← الفصل ١ · <b>الحركة التوافقية البسيطة</b> (ص٦)</p>
+    <div class="tabs">
+      <button class="on" onclick="lpane('a',this)">المنهاج</button>
+      <button onclick="lpane('b',this)">الشرح</button>
+      <button onclick="lpane('c',this)">الملخص</button>
+      <button onclick="lpane('d',this)">أهم الأفكار</button>
+      <button onclick="lpane('e',this)">الأسئلة</button>
+    </div>
+    <div class="pane on" id="lp-a">
+      <div class="card"><p style="font-size:13.5px; line-height:2.1">١-١ <b>الاهتزازات:</b> حركة دورية حول نقطة ثابتة تسمى <b>مركز الاهتزاز</b>…
+        ١-٢ <b>الحركة التوافقية البسيطة:</b> حركة اهتزازية يتغير فيها موضع الجسم مع الزمن بحسب علاقة جيبية،
+        وتكون القوة المؤثرة عليه راجعةً ومتناسبةً مع الإزاحة.</p>
+        <div class="formula">x(t) = X<sub>max</sub> · sin(ω₀t + φ)</div>
+      </div>
+    </div>
+    <div class="pane" id="lp-b">
+      <div class="card"><p style="font-size:13.5px; line-height:2.1">تخيّل نابضاً معلّقاً بسقف، علّقنا فيه كتلة وأزحناها مسافة صغيرة عن مركز اهتزازها
+        ثم تركناها — النابض يسحبها راجعاً، فتتجاوز المركز وتعود… وهكذا تتولّد دورة الاهتزاز.
+        القوة دائماً نحو المركز (لهذا إشارتها سالبة).</p>
+        <div class="formula">F = −k·x</div>
+        <p class="note">k: ثابت صلابة النابض (N/m) · x: الإزاحة عن مركز الاهتزاز (m)</p></div>
+      <div class="exp-box">
+        <div class="row"><b style="font-size:13px">🧪 تجربة تفاعلية: النابض المرن</b><span class="chip">داخل الدرس</span></div>
+        <div class="exp-anim"><span class="spring">⬛〰️</span></div>
+        <div class="slider-row"><span>الكتلة m</span><input type="range" min="1" max="10" value="4"><span>4kg</span></div>
+        <div class="slider-row"><span>الصلابة k</span><input type="range" min="1" max="10" value="6"><span>6N/m</span></div>
+        <p class="note" style="margin-top:6px">لاحظ: زد k ⇒ الاهتزاز أسرع (الدور T أصغر)</p>
+      </div>
+    </div>
+    <div class="pane" id="lp-c"><div class="card"><p style="font-size:13px; line-height:2.2">• الاهتزاز دوري حول مركز الاهتزاز
+      • التوافقي البسيط: علاقة جيبية مع الزمن
+      • القوة راجعة متناسبة مع الإزاحة F = −kx
+      • الدور لا يعتمد على المطال</p></div></div>
+    <div class="pane" id="lp-d"><div class="card" style="border-color:var(--gold)">
+      <p style="font-size:13.5px; line-height:2.3">💡 القوة راجعة دائماً نحو مركز الاهتزاز<br>
+      💡 x = X<sub>max</sub>·sin(ω₀t + φ)<br>
+      💡 T₀ = 2π/ω₀ — لا يتأثر بالمطال</p></div></div>
+    <div class="pane" id="lp-e">
+      <div class="card"><div class="row"><b style="font-size:13px">أسئلة هذا الدرس</b><span class="chip">∞ تتجدد</span></div>
+        <p class="note" style="margin:6px 0">١٠ أسئلة بانتظارك — أشكال متنوعة وسلم تصحيح الوزارة</p>
+        <button class="btn" onclick="show('s-quiz')">ابدأ الأسئلة</button></div>
+    </div>
+    <div class="reviewed">✓ محتوى هذا الدرس راجعته: <b>الأستاذ فداء البني</b> — مرجعاً علمياً معتمداً</div>
+  </div>
+
+  <!-- ═══ التدريب: اختيار الوحدات ═══ -->
+  <div class="screen" id="s-train">
+    <h2 class="sec">تدريب حر</h2>
+    <p class="note">اختر وحدة أو أكثر (الحد الأدنى وحدة واحدة) — الأسئلة تتولّد من البنك المعتمد ولا تنتهي</p>
+    <div class="chips" id="unitChips">
+      <span class="u on" onclick="tg(this)">١ · الحركة والتحريك</span>
+      <span class="u" onclick="tg(this)">٢ · الكهرباء والمغناطيسية</span>
+      <span class="u" onclick="tg(this)">٣ · الأمواج المستقرة</span>
+      <span class="u" onclick="tg(this)">٤ · الإلكترونيات</span>
+      <span class="u" onclick="tg(this)">٥ · الفيزياء الفلكية</span>
+    </div>
+    <div class="card"><div class="row"><b style="font-size:13px">التلميحات</b><span class="chip">مختلط: بعد محاولة فاشلة</span></div></div>
+    <div class="card"><div class="row"><b style="font-size:13px">عدد الأسئلة</b><span class="chip">١٠</span></div>
+      <div class="progress"><i style="width:100%"></i></div></div>
+    <button class="btn" onclick="show('s-quiz')">ابدأ التدريب (١٠ أسئلة)</button>
+    <h2 class="sec">أو</h2>
+    <div class="card click"><div class="row"><span>🕐 <b>نموذج امتحان كامل</b></span><span class="note">٤٠٠ درجة · بتوقيت الوزارة</span></div></div>
+    <div class="card click"><div class="row"><span>❌ <b>أخطائي</b></span><span class="chip">١٤ سؤالاً</span></div></div>
+  </div>
+
+  <!-- ═══ سؤال ═══ -->
+  <div class="screen" id="s-quiz">
+    <div class="row" style="margin-bottom:10px">
+      <span class="chip">السؤال ٣/١٠</span><span class="chip">الحركة والتحريك</span><span class="chip">⏱ ٠١:٢٤</span>
+    </div>
+    <div class="card">
+      <p style="font-size:14.5px; line-height:2">جسم كتلته <b>0.5 kg</b> يهتز توافقياً بسيطاً على نابض ثابته <b>200 N/m</b>.
+      ما مقدار القوة الراجعة عند إزاحته <b>5 cm</b> عن مركز اهتزازه؟</p>
+      <div style="margin-top:12px">
+        <button class="opt" onclick="pick(this,false)">a) 2.5 N</button>
+        <button class="opt" onclick="pick(this,true)">b) 10 N</button>
+        <button class="opt" onclick="pick(this,false)">c) 20 N</button>
+        <button class="opt" onclick="pick(this,false)">d) 40 N</button>
+      </div>
+      <button class="btn ghost" onclick="document.getElementById('hint1').style.display='block'">💡 تلميح</button>
+      <div class="hint" id="hint1">تذكّر: القوة الراجعة F = −k·x — وانتبه لتحويل السنتيمتر إلى متر.</div>
+      <div class="card" style="margin-top:10px; background:#0d1a30">
+        <b style="font-size:12px; color:var(--brand)">سلّم التصحيح (كما في الوزارة):</b>
+        <div class="steps">
+          ١) القانون: <b>F = −k·x</b> <span class="chip">٠٫٥ درجة</span><br>
+          ٢) التحويل: x = 5cm = <b>0.05 m</b> <span class="chip">٠٫٥ درجة</span><br>
+          ٣) التعويض: F = −200 × 0.05 <span class="chip">٠٫٥ درجة</span><br>
+          ٤) الناتج مع الوحدة: <b>F = −10 N</b> <span class="chip">٠٫٥ درجة</span>
+        </div>
+      </div>
+      <button class="btn ghost" style="margin-top:8px" onclick="alert('شكراً — سيصل البلاغ للمراجعة')">🚩 بلّغ عن خطأ</button>
+    </div>
+  </div>
+
+  <!-- ═══ التحديات ═══ -->
+  <div class="screen" id="s-duels">
+    <div class="card" style="background:linear-gradient(135deg,#123f38,#0e2a3a)">
+      <div class="row"><b>⚔️ نقاطي</b><span style="font-size:22px; font-weight:900; color:var(--brand)">١٢٤</span></div>
+      <p class="note" style="margin-top:4px">مركزك في «دوري المرشد»: <b>٨</b> من ٢١٠ متسابقاً · الموسم ينتهي قبل الامتحان بشهر</p>
+    </div>
+    <h2 class="sec">أنماط التحدي</h2>
+    <div class="card click"><div class="row"><span>🏃 <b>تحدي الذات</b></span><span class="chip">أوف لاين دائماً</span></div>
+      <p class="note" style="margin-top:4px">سباق مع رقمك القياسي — ٩/١٠</p></div>
+    <div class="card click"><div class="row"><span>🌐 <b>مبارزة حية</b></span><span class="chip">عبر الإنترنت</span></div>
+      <p class="note" style="margin-top:4px">تحدَّ صديقك فوراً — نفس الأسئلة لحظياً</p></div>
+    <div class="card click"><div class="row"><span>📶 <b>مبارزة محلية</b></span><span class="chip">نقطة اتصال — بلا نت</span></div>
+      <p class="note" style="margin-top:4px">جهازك يفتح Hotspot وصديقك ينضم — نفس الغرفة، صفر إنترنت</p></div>
+    <div class="card click"><div class="row"><span>🔗 <b>تحدٍّ برمز (QR)</b></span><span class="chip">قارن لاحقاً</span></div></div>
+    <h2 class="sec">لوحة المتصدرين — دوري المرشد</h2>
+    <div class="lb r1"><span class="rank">🥇</span><span>م. الحسن — ديرعزور</span><span class="pts">٢١٤٠</span></div>
+    <div class="lb r2"><span class="rank">🥈</span><span>ر. خالد — حلب</span><span class="pts">١٩٦٥</span></div>
+    <div class="lb r3"><span class="rank">🥉</span><span>أ. محمد — حمص</span><span class="pts">١٨٩٠</span></div>
+    <div class="lb"><span class="rank">٨</span><span><b>أنت</b></span><span class="pts">١٢٤</span></div>
+    <div class="prize">🏆 <b>جوائز الموسم:</b><br>🥇 الأول: اشتراك <b>سنتان مجاناً</b><br>🥈 الثاني: اشتراك <b>سنة مجانية</b><br>
+    <span class="note">تُسلَّم الجوائز من مكتبنا بعد التحقق — النقاط تُحتسب من نتائج موقّعة لا يمكن تزويرها</span></div>
+  </div>
+
+  <!-- ═══ الملخصات ═══ -->
+  <div class="screen" id="s-summaries">
+    <h2 class="sec">مراجعة سريعة</h2>
+    <div class="card click"><div class="row"><b>📘 الوحدة ١ · الحركة والتحريك</b><span class="chip">٥ بطاقات</span></div>
+      <p class="note" style="margin-top:5px">التوافقي البسيط · نوّاس الفتل · النوّاس الثقلي · الموائع · النسبية</p></div>
+    <div class="card click"><div class="row"><b>📘 الوحدة ٢ · الكهرباء والمغناطيسية</b><span class="chip">٦ بطاقات</span></div></div>
+    <div class="card click"><div class="row"><b>📘 الوحدات ٣–٥</b><span class="chip">قريباً</span></div></div>
+    <button class="btn ghost">⚡ المراجعة المكثفة (سلايد الأفكار الأهم)</button>
+  </div>
+
+  <!-- ═══ المختبر ═══ -->
+  <div class="screen" id="s-lab">
+    <h2 class="sec">مختبر التجارب — فهرس سريع</h2>
+    <p class="note">التجربة نفسها تجدها أيضاً داخل درسها في المنهاج</p>
+    <div class="card click" onclick="show('s-lesson')"><div class="row"><span>🌀 <b>النابض المرن غير المتخامد</b></span><span class="chip">الوحدة ١</span></div>
+      <p class="note" style="margin-top:4px">تأثير m و k على الدور — منزلقات حية</p></div>
+    <div class="card click"><div class="row"><span>⚖️ <b>نوّاس الفتل</b></span><span class="chip">الوحدة ١</span></div></div>
+    <div class="card click"><div class="row"><span>🌊 <b>الموجة المستقرة العرضية</b></span><span class="chip">الوحدة ٣</span></div></div>
+    <div class="card click"><div class="row"><span>🔌 <b>دارة RLC المتناوبة</b></span><span class="chip">الوحدة ٢</span></div></div>
+    <div class="card click"><div class="row"><span>🔬 <b>الفعل الكهرضوئي</b></span><span class="chip">الوحدة ٤</span></div></div>
+  </div>
+
+  <!-- ═══ حسابي ═══ -->
+  <div class="screen" id="s-account">
+    <h2 class="sec">حسابي</h2>
+    <div class="card">
+      <div class="row"><b>الاشتراك</b><span class="badge-ok">✓ مفعّل</span></div>
+      <p class="note" style="margin-top:8px; font-size:13px">ينتهي في: <b style="color:var(--txt)">٠١ / ٠٥ / ٢٠٢٧</b> (يوم الامتحان)</p>
+      <div class="progress"><i style="width:72%"></i></div>
+      <p class="note">متبقٍ ٢١٢ يوماً — عند اليوم ٢٠٠ سيظهر تنبيه للتجديد</p>
+    </div>
+    <div class="card"><div class="row"><span>الأجهزة المربوطة</span><span class="chip">٢ / ٢</span></div>
+      <p class="note" style="margin-top:5px">تغيّر موبايلك؟ مرّ على مكتبنا وإعادة الربط دقيقة واحدة</p></div>
+    <div class="card"><b style="font-size:13px">الإعدادات</b>
+      <div class="row" style="margin-top:10px"><span style="font-size:13px">الوضع الليلي</span><span class="chip">تلقائي (النظام)</span></div>
+      <div class="row" style="margin-top:8px"><span style="font-size:13px">التلميحات</span><span class="chip">مختلط</span></div>
+    </div>
+    <div class="dev">
+      <div class="banner">
+        <div class="lm">loraneem<b>-tech</b></div>
+        <div class="tag">CODE · AI · LIMITLESS EVOLUTION</div>
+        <div style="margin-top:10px"><img class="logo-slot" src="assets/loraneem-banner.png" alt="loraneem-tech" style="display:none"></div>
+      </div>
+      <div class="reviewed" style="justify-content:center; margin-top:0">✓ المادة العلمية راجعتها: <b>الأستاذ فداء البني</b></div>
+      <p class="note" style="margin-top:12px">تطبيق «المرشد» — فيزياء البكالوريا العلمية<br>منهاج دمشق ٢٠٢٦/٢٠٢٧ · الإصدار 1.0</p>
+      <p class="note">التطوير والتصميم: <b style="color:var(--brand)">loraneem-tech</b><br>للتواصل والدعم: مرّ على مكتبنا</p>
+    </div>
+    <p class="foot-note">المرشد © 2026 — loraneem-tech<br>يعمل بدون إنترنت بعد التفعيل</p>
+  </div>
+
+  </div><!-- /screens -->
+
+  <!-- شريط سفلي -->
+  <div class="nav">
+    <button class="on" onclick="show('s-home',this)"><span class="ic">🏠</span>الرئيسية</button>
+    <button onclick="show('s-curriculum',this)"><span class="ic">📘</span>المنهاج</button>
+    <button onclick="show('s-train',this)"><span class="ic">📝</span>التدريب</button>
+    <button onclick="show('s-duels',this)"><span class="ic">⚔️</span>التحديات</button>
+    <button onclick="show('s-summaries',this)"><span class="ic">📋</span>الملخصات</button>
+  </div>
+</div>
+
+<script>
+function show(id, btn){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));
+  const map={'s-home':0,'s-curriculum':1,'s-lesson':1,'s-train':2,'s-quiz':2,'s-duels':3,'s-summaries':4,'s-lab':4,'s-account':-1,'s-activate':-1};
+  const i=map[id];
+  if(i>=0) document.querySelectorAll('.nav button')[i].classList.add('on');
+  document.querySelector('.screens').scrollTop=0;
+}
+function lpane(k, btn){
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  ['a','b','c','d','e'].forEach(x=>document.getElementById('lp-'+x).classList.remove('on'));
+  document.getElementById('lp-'+k).classList.add('on');
+}
+function tg(el){
+  const chips=document.querySelectorAll('#unitChips .u');
+  if(el.classList.contains('on') && document.querySelectorAll('#unitChips .u.on').length===1){
+    el.style.animation='none'; return; // الحد الأدنى وحدة واحدة
+  }
+  el.classList.toggle('on');
+}
+function pick(el, ok){
+  if(el.classList.contains('sel')||el.classList.contains('right')||el.classList.contains('wrong'))return;
+  el.classList.add('sel');
+  setTimeout(()=>{
+    el.classList.remove('sel');
+    el.classList.add(ok?'right':'wrong');
+    if(!ok){
+      document.getElementById('hint1').style.display='block';
+      setTimeout(()=>{ // نعرض الصحيح كتعليم (follow_through)
+        document.querySelectorAll('.opt').forEach(o=>{if(o.textContent.trim().startsWith('b'))o.classList.add('right')});
+      },400);
+    }
+  },250);
+}
+</script>
+</body>
+</html>
