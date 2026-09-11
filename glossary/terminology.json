@@ -1,0 +1,6887 @@
+{
+ "chapters": [
+  {
+   "key": "U1",
+   "title": "الوحدة الأولى: الحركة والتحريك",
+   "items": []
+  },
+  {
+   "key": "U1C1",
+   "title": "الفصل 1: الحركة التوافقية البسيطة (ص6)",
+   "items": [
+    {
+     "ar": "الحركة التوافقية البسيطة",
+     "en": "Simple Harmonic Motion",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      6,
+      7,
+      8,
+      14,
+      17
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "نابض",
+     "en": "Spring",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      6,
+      7,
+      9,
+      10,
+      11,
+      14
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "قوة الإرجاع",
+     "en": "Restoring Force",
+     "sym": "F",
+     "unit": "N",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      6,
+      9,
+      10,
+      15,
+      18,
+      24
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "المطال",
+     "en": "Amplitude",
+     "sym": "x",
+     "unit": "m",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      6,
+      8,
+      10,
+      11,
+      12,
+      13
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "السعة",
+     "en": "Amplitude / Range",
+     "sym": "X_max",
+     "unit": "m",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      6,
+      8,
+      11,
+      18,
+      20,
+      22
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الدور",
+     "en": "Period",
+     "sym": "T",
+     "unit": "s",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      3,
+      4,
+      6,
+      7,
+      8,
+      10
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التواتر",
+     "en": "Frequency",
+     "sym": "f",
+     "unit": "Hz",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      6,
+      126,
+      132,
+      133,
+      134
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الطاقة الكامنة المرونية",
+     "en": "Elastic Potential Energy",
+     "sym": "Ep",
+     "unit": "J",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      6,
+      14,
+      15,
+      18,
+      24,
+      283
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الطاقة الحركية",
+     "en": "Kinetic Energy",
+     "sym": "E_K",
+     "unit": "J",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      6,
+      14,
+      15,
+      17,
+      18,
+      24
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الطاقة الميكانيكية",
+     "en": "Mechanical Energy",
+     "sym": "E",
+     "unit": "J",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      6,
+      14,
+      24,
+      26,
+      36,
+      37
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الحركة الدائرية المنتظمة",
+     "en": "Uniform Circular Motion",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      6,
+      8,
+      91,
+      125,
+      199,
+      273
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مركز الاهتزاز",
+     "en": "Centre of Oscillation",
+     "sym": "O",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      9,
+      10,
+      12,
+      13,
+      15
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "توابع الحركة",
+     "en": "Functions of the Motion",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      6,
+      11
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الطور",
+     "en": "Phase",
+     "sym": "(ω₀t+φ)",
+     "unit": "rad",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      3,
+      8,
+      11,
+      15,
+      22,
+      113
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الطور الابتدائي",
+     "en": "Initial Phase",
+     "sym": "φ",
+     "unit": "rad",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      8,
+      11,
+      15,
+      22,
+      128,
+      141
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "النبض الخاص",
+     "en": "Angular Frequency (Pulsation)",
+     "sym": "ω",
+     "unit": "rad/s",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      8,
+      11,
+      22,
+      128,
+      143,
+      152
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "السرعة الزاوية",
+     "en": "Angular Velocity",
+     "sym": "ω",
+     "unit": "rad/s",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      7,
+      8,
+      10,
+      22,
+      24,
+      26
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "التابع الزمني",
+     "en": "Time Function",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      8,
+      11,
+      15,
+      16,
+      17,
+      18
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الحركة الجيبية الانسحابية",
+     "en": "Sinusoidal (Simple Harmonic) Motion",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      8,
+      11
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "تمثيل فرينل (كما ورد في ص13)",
+     "en": "Fresnel's Representation",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      8,
+      146
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الاستطالة",
+     "en": "Elongation",
+     "sym": "x",
+     "unit": "m",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9,
+      10,
+      15,
+      18,
+      115,
+      122
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الاستطالة السكونية",
+     "en": "Static Elongation",
+     "sym": "x₀",
+     "unit": "m",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9,
+      15,
+      18
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "ثابت صلابة النابض",
+     "en": "Spring Constant / Stiffness",
+     "sym": "k",
+     "unit": "N/m",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      11,
+      18,
+      270
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "قوة توتر النابض",
+     "en": "Spring Tension Force",
+     "sym": "F_S",
+     "unit": "N",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "قوة الثقل",
+     "en": "Weight",
+     "sym": "w",
+     "unit": "N",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      9,
+      21,
+      29,
+      30,
+      47,
+      90
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "النواس المرن",
+     "en": "Elastic (Spring) Pendulum",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      9,
+      10,
+      11,
+      14,
+      15
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المعادلة التفاضلية",
+     "en": "Differential Equation",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      10,
+      22,
+      30,
+      32,
+      128
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "حالة السكون",
+     "en": "State of Rest",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "حالة الحركة",
+     "en": "State of Motion",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9,
+      30,
+      201,
+      210
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "السرعة الخطية",
+     "en": "Linear Velocity",
+     "sym": "v",
+     "unit": "m/s",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      39,
+      40,
+      265,
+      271,
+      272
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "التسارع",
+     "en": "Acceleration",
+     "sym": "a",
+     "unit": "m/s²",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      3,
+      13,
+      18,
+      21,
+      22,
+      24
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "المسقط",
+     "en": "Projection",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      8,
+      215
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المنحني البياني",
+     "en": "Graph / Curve",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      12,
+      13,
+      65,
+      114,
+      127,
+      156
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U1C2",
+   "title": "الفصل 2: الاهتزازات الجيبية الدورانية – نوّاس الفتل غير المتخامد (ص20)",
+   "items": [
+    {
+     "ar": "نواس الفتل",
+     "en": "Torsional Pendulum",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      20,
+      21,
+      22,
+      23,
+      24
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "سلك الفتل",
+     "en": "Torsion Spring / Wire",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "ثابت فتل السلك",
+     "en": "Torsion Spring Constant",
+     "sym": "K",
+     "unit": "N·m/rad",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      20,
+      24,
+      27,
+      102,
+      271,
+      274
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "مزدوجة الفتل",
+     "en": "Torsion Couple — المزدوجة نفسها Γ_η (الكتاب ص22). ⚠ ملف الأستاذ يخزّن التابع كحرف n لاتيني (U+006E) لا η يوناني — والأرجح أنه أثر طباعة؛ نعتمد η لموافقة الكتاب وقوله",
+     "sym": "Γ_η",
+     "unit": "m·N",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      20,
+      21,
+      97,
+      283
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "عزم مزدوجة الفتل",
+     "en": "Moment of the Torsion Couple — Γ_η/Δ = −K·θ (ص22). التابع الأول = نوع المزدوجة، و/Δ = المحور",
+     "sym": "Γ_η/Δ",
+     "unit": "m·N",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      21
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "مزدوجة الوزن",
+     "en": "Couple of the Weight (about axis Δ)",
+     "sym": "Γ_w/Δ",
+     "unit": "m·N",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مزدوجة ردّ الفعل",
+     "en": "Reaction Couple (about axis Δ)",
+     "sym": "Γ_R/Δ",
+     "unit": "m·N",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المطال الزاوي",
+     "en": "Angular Amplitude",
+     "sym": "θ",
+     "unit": "rad",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      20,
+      22,
+      24,
+      25,
+      26,
+      27
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "السعة الزاوية",
+     "en": "Angular Amplitude",
+     "sym": "θ_max",
+     "unit": "rad",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      20,
+      22,
+      24,
+      31,
+      34,
+      36
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الاهتزازات الجيبية الدورانية",
+     "en": "Sinusoidal Torsional Vibrations",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      4,
+      20,
+      283
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "نواس الفتل غير المتخامد",
+     "en": "Undamped Torsional Pendulum",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      4,
+      20,
+      283
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "عزم القوة",
+     "en": "Moment of a Force (Torque)",
+     "sym": "Γ",
+     "unit": "m·N",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      29,
+      94,
+      103
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "عزم العطالة",
+     "en": "Moment of Inertia",
+     "sym": "I_Δ",
+     "unit": "kg·m²",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      21,
+      23,
+      24,
+      26,
+      27,
+      31
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الدور الخاص",
+     "en": "Natural Period",
+     "sym": "T₀",
+     "unit": "s",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      11,
+      15,
+      18,
+      22,
+      23,
+      24
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الحركة الدورانية",
+     "en": "Rotational Motion",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      20,
+      44,
+      50
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "نابض لولبي",
+     "en": "Spiral (Coil) Spring",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      20
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U1C3",
+   "title": "الفصل 3: الاهتزازات غير التوافقية – النوّاس الثقلي غير المتخامد (ص28)",
+   "items": [
+    {
+     "ar": "النواس الثقلي المركب",
+     "en": "Compound Gravity Pendulum",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      28,
+      31,
+      32,
+      34,
+      37,
+      39
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "النواس الثقلي البسيط",
+     "en": "Simple Gravity Pendulum",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      28,
+      32,
+      36,
+      37,
+      55
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الاهتزازات غير التوافقية",
+     "en": "Anharmonic Oscillations",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      4,
+      28,
+      283
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "النواس الثقلي غير المتخامد",
+     "en": "Non-Damped Gravity Pendulum",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      4,
+      28,
+      283
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "مركز العطالة",
+     "en": "Centre of Inertia",
+     "sym": "C",
+     "unit": "",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      9,
+      10,
+      14,
+      29,
+      30,
+      31
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "طول النواس البسيط المواقت",
+     "en": "Equivalent (Synchronised) Pendulum Length",
+     "sym": "l",
+     "unit": "m",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      271
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "النواس البسيط",
+     "en": "Simple Pendulum",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      28,
+      32,
+      34,
+      271,
+      283
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "السعات الزاوية الصغيرة",
+     "en": "Small Angular Amplitudes",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      28,
+      30,
+      31,
+      32,
+      34,
+      39
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عزم مزدوجة الوزن",
+     "en": "Moment of the Weight Couple — منظومة الأستاذ",
+     "sym": "Γ_ω",
+     "unit": "m·N",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عزم مزدوجة التوتر",
+     "en": "Moment of the Tension Couple",
+     "sym": "Γ_T",
+     "unit": "m·N",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عزم مزدوجة ردّ الفعل",
+     "en": "Moment of the Reaction Couple",
+     "sym": "Γ_R",
+     "unit": "m·N",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U1C4",
+   "title": "الفصل 4: ميكانيك الموائع (ص42)",
+   "items": [
+    {
+     "ar": "ميكانيك الموائع",
+     "en": "Fluid Mechanics",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      4,
+      283
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "المائع المثالي",
+     "en": "Ideal Fluid",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      283
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "السائل المثالي",
+     "en": "Ideal Liquid",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      42,
+      44,
+      46,
+      50,
+      51
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "خط الانسياب",
+     "en": "Flow Line (Streamline)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      42,
+      43,
+      44,
+      47,
+      50,
+      283
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الجريان المنتظم",
+     "en": "Uniform Flow",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      42,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الجريان غير المنتظم",
+     "en": "Non-Uniform Flow",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      42,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "معدل التدفق الكتلي",
+     "en": "Mass Flow Rate",
+     "sym": "Q",
+     "unit": "kg/s",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      45
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "معدل التدفق الحجمي",
+     "en": "Volumetric Flow Rate",
+     "sym": "Q_v",
+     "unit": "m³/s",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      45,
+      52
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "معادلة الاستمرارية",
+     "en": "Continuity Equation",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      42,
+      44,
+      45,
+      50,
+      51,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "معادلة برنولي",
+     "en": "Bernoulli's Equation",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      42,
+      46,
+      47,
+      48,
+      49,
+      50
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "نظرية تورشيللي",
+     "en": "Torricelli's Theorem",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      48,
+      49
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "قوة الرفع",
+     "en": "Lift Force",
+     "sym": "F",
+     "unit": "N",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      42,
+      67,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الضغط",
+     "en": "Pressure",
+     "sym": "P",
+     "unit": "Pa",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      43,
+      46,
+      47,
+      48,
+      49,
+      50
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "اللزوجة",
+     "en": "Viscosity",
+     "sym": "η",
+     "unit": "Pa·s",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      44,
+      50,
+      51,
+      186,
+      191
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الكتلة الحجمية",
+     "en": "Volumic Mass (Density)",
+     "sym": "ρ",
+     "unit": "kg/m³",
+     "tier": "s",
+     "found": false,
+     "pages": [],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "مساحة المقطع",
+     "en": "Cross-Sectional Area",
+     "sym": "S",
+     "unit": "m²",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      45,
+      46,
+      47,
+      48,
+      49,
+      50
+     ],
+     "src": "معادلات الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U1C5",
+   "title": "الفصل 5: النسبية الخاصة (ص54)",
+   "items": [
+    {
+     "ar": "النسبية الخاصة",
+     "en": "Special Relativity",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      4,
+      54,
+      56,
+      61,
+      62,
+      63
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "جملة المقارنة",
+     "en": "Frame of Reference",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      54,
+      55,
+      64,
+      213,
+      214,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "سرعة الضوء في الخلاء",
+     "en": "Speed of Light in Vacuum",
+     "sym": "c",
+     "unit": "m/s",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      54,
+      245,
+      272,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تباطؤ الزمن",
+     "en": "Time Dilation",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      54
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تقلص الأطوال",
+     "en": "Length Contraction",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      54,
+      58
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "ميكانيك نسبي",
+     "en": "Relativistic Mechanics",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      54,
+      60,
+      62,
+      64,
+      66,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "طاقة سكونية",
+     "en": "Rest Energy",
+     "sym": "E₀",
+     "unit": "J",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      54,
+      60,
+      64,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تمدد الزمن",
+     "en": "Time Dilation",
+     "sym": "Δt",
+     "unit": "s",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      54,
+      56,
+      63
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "جمل المقارنة العطالية",
+     "en": "Inertial Frame of Reference",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      55,
+      64
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الكتلة النسبية",
+     "en": "Relativistic Mass",
+     "sym": "m",
+     "unit": "kg",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U2",
+   "title": "الوحدة الثانية: الكهرباء والمغناطيسية",
+   "items": []
+  },
+  {
+   "key": "U2C1",
+   "title": "الفصل 1: المغناطيسية (ص68)",
+   "items": [
+    {
+     "ar": "المغناطيسية",
+     "en": "Magnetism",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      4,
+      67,
+      68,
+      69,
+      70,
+      71
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "مغناطيس نضوي",
+     "en": "Horseshoe Magnet",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      68,
+      69,
+      70,
+      97,
+      110,
+      115
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "حقل مغناطيسي",
+     "en": "Magnetic Field",
+     "sym": "B",
+     "unit": "T",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      67,
+      68,
+      69,
+      70,
+      71
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "شدة الحقل المغناطيسي",
+     "en": "Magnetic Field Strength",
+     "sym": "B",
+     "unit": "T",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      68,
+      70,
+      71,
+      73,
+      74,
+      75
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "نواة حديد",
+     "en": "Iron Core",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      67,
+      68,
+      70,
+      71,
+      97,
+      156
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "عامل النفاذية المغناطيسي",
+     "en": "Magnetic Permeability",
+     "sym": "μ",
+     "unit": "H/m",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      68,
+      71,
+      74,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الحقل المغناطيسي الأرضي",
+     "en": "Earth's Magnetic Field",
+     "sym": "",
+     "unit": "T",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      68,
+      71,
+      72,
+      73,
+      76,
+      77
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الأثر المغناطيسي للتيار الكهربائي",
+     "en": "Magnetic Effect of Electric Current",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      68,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "شدة شعاع السطح",
+     "en": "Surface Vector Magnitude",
+     "sym": "S",
+     "unit": "m²",
+     "tier": "k",
+     "found": false,
+     "pages": [],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التدفق المغناطيسي",
+     "en": "Magnetic Flux",
+     "sym": "Φ",
+     "unit": "Wb",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      68,
+      81,
+      82,
+      84,
+      86,
+      95
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "قوة لورنز",
+     "en": "Lorentz Force",
+     "sym": "F",
+     "unit": "N",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      284
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "الناظم",
+     "en": "Normal (to a surface)",
+     "sym": "n",
+     "unit": "",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      35,
+      81,
+      82,
+      84,
+      96,
+      97
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "القطب الشمالي",
+     "en": "North Pole",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      69,
+      72,
+      78,
+      80,
+      89,
+      107
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القطب الجنوبي",
+     "en": "South Pole",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      69,
+      70,
+      72,
+      78,
+      80,
+      89
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "خطوط الحقل",
+     "en": "Field Lines",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      69,
+      70,
+      81,
+      84,
+      85,
+      96
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "دارة كهربائية مستوية",
+     "en": "Plane Electric Circuit",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      81,
+      82
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "تيار كهربائي",
+     "en": "Electric Current",
+     "sym": "I",
+     "unit": "A",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      4,
+      68,
+      74,
+      75,
+      76,
+      77
+     ],
+     "src": "معادلات الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U2C2",
+   "title": "الفصل 2: فعل الحقل المغناطيسي في التيار الكهربائي (ص88)",
+   "items": [
+    {
+     "ar": "نظرية مكسويل",
+     "en": "Maxwell's Theory",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      88,
+      94,
+      95,
+      100,
+      284
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "مقياس غلفاني",
+     "en": "Galvanometer",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      88,
+      97,
+      98,
+      100,
+      101,
+      107
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "دولاب بارلو",
+     "en": "Barlow's Wheel",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      88,
+      93,
+      103
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "القوة الكهرطيسية",
+     "en": "Electromagnetic Force",
+     "sym": "F",
+     "unit": "N",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      88,
+      91,
+      92,
+      93,
+      94,
+      95
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "المزدوجة الكهرطيسية",
+     "en": "Electromagnetic Couple — ⚠ لا رمز لها في الكتاب (ص88-112 خالية من Γ تماماً)",
+     "sym": "",
+     "unit": "m·N",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      96,
+      97,
+      100,
+      102,
+      274,
+      275
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عزم المزدوجة الكهرطيسية",
+     "en": "Moment of the Electromagnetic Couple — Γ_Δ مؤكَّد بنصّ ملخصات الأستاذ: Γ_Δ=N·I·S·B·sinα = M·B·sinα، وشعاعياً Γ_Δ = M ∧ B، الوحدة m·N. (الكتاب لا يرمز لها، وقرار الأستاذ نافذ)",
+     "sym": "Γ_Δ",
+     "unit": "m·N",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      96,
+      97,
+      100,
+      102,
+      274,
+      275
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "تجربة السكتين الكهرطيسية",
+     "en": "Rails (Barlow setup)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      94,
+      101,
+      102,
+      110,
+      124
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عناصر شعاع القوة",
+     "en": "Elements of a Force Vector",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      90,
+      93,
+      99,
+      100,
+      102
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الحامل",
+     "en": "Line of Action (of a vector)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      21,
+      29,
+      30,
+      33,
+      35,
+      70
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الجهة",
+     "en": "Direction",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      3,
+      12,
+      16,
+      17,
+      30,
+      33
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الشدة",
+     "en": "Magnitude / Intensity",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      18,
+      39,
+      68,
+      69,
+      70,
+      71
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "قاعدة اليد اليمنى",
+     "en": "Right-Hand Rule",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      76,
+      78,
+      79,
+      80,
+      90,
+      93
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U2C3",
+   "title": "الفصل 3: التحريض الكهرطيسي (ص104)",
+   "items": [
+    {
+     "ar": "التحريض الكهرطيسي",
+     "en": "Electromagnetic Induction",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      104,
+      106,
+      111,
+      121,
+      162
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تيار كهربائي متحرّض",
+     "en": "Induced Current",
+     "sym": "i",
+     "unit": "A",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      104,
+      106,
+      110,
+      121,
+      123,
+      124
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "حقل مغناطيسي متحرّض",
+     "en": "Induced Magnetic Field",
+     "sym": "B",
+     "unit": "T",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      104,
+      123,
+      285
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "قوة محركة كهربائية متحرّضة",
+     "en": "Induced EMF",
+     "sym": "ε",
+     "unit": "V",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      104,
+      106,
+      108,
+      109,
+      110,
+      111
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تيارات فوكو",
+     "en": "Foucault (Eddy) Currents",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      104,
+      116,
+      121,
+      122,
+      125,
+      163
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التحريض الذاتي",
+     "en": "Self-Induction",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      104,
+      117,
+      123,
+      285
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "ذاتية الوشيعة",
+     "en": "Self-Inductance of a Coil",
+     "sym": "L",
+     "unit": "H",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      104,
+      118,
+      119,
+      122,
+      129,
+      157
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "طاقة كهرطيسية",
+     "en": "Electromagnetic Energy",
+     "sym": "E_L",
+     "unit": "J",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      104,
+      118,
+      119,
+      122,
+      123,
+      131
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "مولّد",
+     "en": "Generator (Alternator)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      63,
+      68,
+      104,
+      106,
+      107,
+      108
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "محرّك",
+     "en": "Electric Motor",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      5,
+      7,
+      42,
+      47,
+      67,
+      68
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تيار متناوب جيبي",
+     "en": "Sinusoidal Alternating Current",
+     "sym": "",
+     "unit": "A",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      104,
+      106,
+      113,
+      114,
+      121
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "قانون فاراداي",
+     "en": "Faraday's Law",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "قانون لنز",
+     "en": "Lenz's Law",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      107,
+      108,
+      109,
+      115,
+      121
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "وشيعة",
+     "en": "Coil (Solenoid)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      80,
+      84,
+      85,
+      86,
+      104,
+      105
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عدد اللفات",
+     "en": "Number of Turns",
+     "sym": "N",
+     "unit": "",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      77,
+      78,
+      80,
+      84,
+      86,
+      119
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "مقياس الميكرو أمبير",
+     "en": "Microammeter",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      105,
+      106,
+      107,
+      108,
+      110
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مقياس الميلي أمبير",
+     "en": "Milliammeter",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      106,
+      107
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القاطعة",
+     "en": "Switch (Key)",
+     "sym": "K",
+     "unit": "",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      46,
+      49,
+      51,
+      85,
+      107,
+      114
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "دارة مغلقة",
+     "en": "Closed Circuit",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      102,
+      106,
+      108,
+      110,
+      111,
+      118
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الحقل الكهربائي المتحرّض",
+     "en": "Induced Electric Field",
+     "sym": "E",
+     "unit": "V/m",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U2C4",
+   "title": "الفصل 4: الدارات المهتزة والتيارات عالية التواتر (ص126)",
+   "items": [
+    {
+     "ar": "الدارات المهتزة والتيارات عالية التواتر",
+     "en": "Oscillating Circuits and High-Frequency Currents",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      4,
+      126,
+      285
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "الدارة المهتزة",
+     "en": "Oscillating Circuit",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      126,
+      127,
+      128,
+      129,
+      131,
+      132
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التفريغ المهتز",
+     "en": "Oscillatory Discharge",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      126,
+      285
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "دور التفريغ",
+     "en": "Period of Discharge",
+     "sym": "T₀",
+     "unit": "s",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      126,
+      133
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التيارات العالية التواتر",
+     "en": "High-Frequency Currents",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      126,
+      133,
+      134,
+      135,
+      136
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التيارات المنخفضة التواتر",
+     "en": "Low-Frequency Currents",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      126,
+      136,
+      137,
+      285
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "المكثفة",
+     "en": "Capacitor",
+     "sym": "C",
+     "unit": "F",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      127,
+      128,
+      129,
+      130,
+      131,
+      132
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "سعة المكثفة",
+     "en": "Capacitance",
+     "sym": "C",
+     "unit": "F",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      129,
+      136,
+      148,
+      157,
+      158,
+      276
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الطنين الكهربائي",
+     "en": "Electrical Resonance",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      138,
+      151,
+      152,
+      156,
+      285
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "التخامد",
+     "en": "Damping",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      4,
+      11,
+      14,
+      20,
+      28,
+      127
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الاهتزازات الكهربائية",
+     "en": "Electrical Oscillations",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      126,
+      129,
+      132,
+      135,
+      136,
+      137
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الإرسال",
+     "en": "Transmission (Radio)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      12,
+      13,
+      69,
+      74,
+      82,
+      124
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U2C5",
+   "title": "الفصل 5: التيار المتناوب الجيبي (ص138)",
+   "items": [
+    {
+     "ar": "التوتر اللحظي",
+     "en": "Instantaneous Voltage",
+     "sym": "u",
+     "unit": "V",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      138,
+      141,
+      143,
+      144,
+      146,
+      147
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التوتر الأعظمي",
+     "en": "Maximum (Peak) Voltage",
+     "sym": "U_max",
+     "unit": "V",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      138,
+      142,
+      143
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التوتر المنتج",
+     "en": "Effective (RMS) Voltage",
+     "sym": "U_eff",
+     "unit": "V",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      138,
+      142,
+      143,
+      144,
+      145,
+      152
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الشدة اللحظية",
+     "en": "Instantaneous Current",
+     "sym": "i",
+     "unit": "A",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      133,
+      136,
+      137,
+      138,
+      141,
+      143
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الشدة العظمى",
+     "en": "Maximum (Peak) Current",
+     "sym": "I_max",
+     "unit": "A",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      130,
+      138
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الشدة المنتجة",
+     "en": "Effective (RMS) Current",
+     "sym": "I_eff",
+     "unit": "A",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      138,
+      142,
+      143,
+      144,
+      152,
+      153
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الاستطاعة المتوسطة المستهلكة",
+     "en": "Average Consumed Power",
+     "sym": "P_avg",
+     "unit": "W",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      144,
+      146,
+      148,
+      152,
+      157,
+      158
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "فرق الكمون",
+     "en": "Potential Difference (Voltage)",
+     "sym": "U",
+     "unit": "V",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      92,
+      136,
+      137,
+      142,
+      158,
+      211
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "المقاومة الصرفة",
+     "en": "Pure (Ohmic) Resistance",
+     "sym": "R",
+     "unit": "Ω",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      157,
+      277,
+      278
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الممانعة",
+     "en": "Impedance",
+     "sym": "Z",
+     "unit": "Ω",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      134,
+      135,
+      136,
+      146,
+      147,
+      148
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "ردية الوشيعة",
+     "en": "Inductive Reactance",
+     "sym": "X_L",
+     "unit": "Ω",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      134,
+      147,
+      151,
+      152,
+      165,
+      276
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "ممانعة المكثفة (الاتساعية)",
+     "en": "Capacitive Reactance",
+     "sym": "X_C",
+     "unit": "Ω",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      134,
+      149
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "المقاومة الأومية",
+     "en": "Ohmic Resistance",
+     "sym": "r",
+     "unit": "Ω",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      118,
+      123,
+      124,
+      136,
+      145,
+      146
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "التحريضية (معامل التحريض الذاتي)",
+     "en": "Inductance",
+     "sym": "L",
+     "unit": "H",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      4,
+      104,
+      106,
+      110,
+      111,
+      114
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عامل الاستطاعة",
+     "en": "Power Factor",
+     "sym": "cos φ",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      138,
+      144,
+      148,
+      152,
+      156,
+      157
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "إنشاء فرينل",
+     "en": "Fresnel Construction (Phasor Diagram)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      138,
+      150,
+      153,
+      158,
+      159,
+      165
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "على وفاق بالطور",
+     "en": "In Phase",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      158,
+      277
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "تقدم الطور / تأخر الطور",
+     "en": "Phase Lead / Phase Lag",
+     "sym": "φ",
+     "unit": "rad",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "دارة التفريغ",
+     "en": "Discharge Circuit",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U2C6",
+   "title": "الفصل 6: المولدات الكهربائية (ص160)",
+   "items": [
+    {
+     "ar": "المحولة الكهربائية",
+     "en": "Electric Transformer",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      160,
+      162,
+      165
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "نسبة التحويل",
+     "en": "Transformation Ratio",
+     "sym": "μ",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      160,
+      161,
+      164,
+      165
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "مردود النقل",
+     "en": "Transmission Efficiency",
+     "sym": "η",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      160,
+      163
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "كفاءة المحولة",
+     "en": "Transformer Efficiency",
+     "sym": "η",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      160
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الدارة الثانوية",
+     "en": "Secondary Circuit",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      82,
+      162,
+      165,
+      166
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الدارة الأولية",
+     "en": "Primary Winding",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      162,
+      165,
+      166
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الوشيعة الأولية",
+     "en": "Primary Coil",
+     "sym": "N_p",
+     "unit": "لفة",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      161,
+      162,
+      164,
+      166
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الوشيعة الثانوية",
+     "en": "Secondary Coil",
+     "sym": "N_s",
+     "unit": "لفة",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      162
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "خطوط النقل",
+     "en": "Transmission Lines",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      155,
+      156,
+      166,
+      248
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "التيار المتواصل",
+     "en": "Direct Current (DC)",
+     "sym": "",
+     "unit": "A",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      106,
+      107,
+      137,
+      138,
+      142,
+      143
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "التيار المتناوب",
+     "en": "Alternating Current (AC)",
+     "sym": "",
+     "unit": "A",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      4,
+      104,
+      106,
+      113,
+      114,
+      121
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U3",
+   "title": "الوحدة الثالثة: الأمواج المستقرة",
+   "items": []
+  },
+  {
+   "key": "U3C1",
+   "title": "الفصل 1: الأمواج المستقرة العرضية (ص168)",
+   "items": [
+    {
+     "ar": "الأمواج المستقرة",
+     "en": "Standing Waves",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      4,
+      167,
+      168,
+      169,
+      170,
+      171
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "الأمواج المستقرة العرضية",
+     "en": "Transverse Standing Waves",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      168,
+      169,
+      170,
+      171,
+      172
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "بطن اهتزاز",
+     "en": "Antinode (Belly)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      168,
+      176,
+      184,
+      185,
+      188,
+      193
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "عقدة اهتزاز",
+     "en": "Node",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      168,
+      170,
+      172,
+      175,
+      176,
+      183
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "نهاية مقيدة",
+     "en": "Fixed End",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      168,
+      169,
+      170,
+      172,
+      173,
+      174
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "نهاية طليقة",
+     "en": "Free End",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      168,
+      170,
+      176,
+      191,
+      192
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "وتر مهتز",
+     "en": "Vibrating String",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      168,
+      173,
+      177,
+      192
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "حبل مرن",
+     "en": "Elastic Cord",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      168
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التجاوب",
+     "en": "Resonance",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      151,
+      152,
+      155,
+      156,
+      168,
+      174
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التواتر الأساسي",
+     "en": "Fundamental Frequency",
+     "sym": "f₁",
+     "unit": "Hz",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      168,
+      174,
+      175,
+      177,
+      187,
+      191
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "المدروجات",
+     "en": "Harmonics",
+     "sym": "",
+     "unit": "Hz",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      168,
+      173,
+      175,
+      176,
+      177,
+      186
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الكتلة الخطية",
+     "en": "Linear Mass Density",
+     "sym": "μ",
+     "unit": "kg/m",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      178,
+      192,
+      278,
+      279
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "سرعة الانتشار",
+     "en": "Propagation Speed",
+     "sym": "v",
+     "unit": "m/s",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      55,
+      60,
+      61,
+      62,
+      63,
+      64
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "قوة الشد",
+     "en": "Tension Force",
+     "sym": "F_T",
+     "unit": "N",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      174,
+      177,
+      178,
+      183,
+      192,
+      193
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "طول الموجة",
+     "en": "Wavelength",
+     "sym": "λ",
+     "unit": "m",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      62,
+      136,
+      142,
+      143,
+      172,
+      173
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الموجة",
+     "en": "Wave",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      3,
+      9,
+      10,
+      11,
+      17,
+      22
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "اهتزاز عرضي",
+     "en": "Transverse Vibration",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      174,
+      176,
+      177,
+      178,
+      193,
+      195
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الرنانة",
+     "en": "Resonator",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      169,
+      174,
+      177,
+      178,
+      183,
+      184
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U3C2",
+   "title": "الفصل 2: الأمواج المستقرة الطولية (ص182)",
+   "items": [
+    {
+     "ar": "الأمواج المستقرة الطولية",
+     "en": "Longitudinal Standing Waves",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      182,
+      183,
+      185,
+      188
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "انضغاط",
+     "en": "Compression",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      44,
+      47,
+      50,
+      51,
+      182,
+      184
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تخلخل",
+     "en": "Rarefaction",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      182,
+      184,
+      188
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "المزمار",
+     "en": "Pipe (Organ Pipe)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      182,
+      188,
+      189,
+      190,
+      191,
+      193
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "مزمار متشابه الطرفين",
+     "en": "Pipe with Two Identical Ends (Open-Open / Closed-Closed)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      182,
+      189,
+      191,
+      193,
+      195,
+      279
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "مزمار مختلف الطرفين",
+     "en": "Pipe with Two Different Ends (Open-Closed)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      182,
+      189,
+      191
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "سرعة انتشار الصوت",
+     "en": "Speed of Sound",
+     "sym": "v",
+     "unit": "m/s",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      186,
+      187,
+      189,
+      190,
+      193,
+      195
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "درجة الحرارة",
+     "en": "Temperature",
+     "sym": "t / θ",
+     "unit": "°C",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      33,
+      38,
+      163,
+      190,
+      195,
+      198
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "عمود الهواء",
+     "en": "Air Column",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      280
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الصوت الأساسي",
+     "en": "Fundamental Sound (First Harmonic)",
+     "sym": "",
+     "unit": "Hz",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      173,
+      177,
+      186,
+      190,
+      193,
+      195
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U4",
+   "title": "الوحدة الرابعة: الإلكترونيات والجسم الصلب",
+   "items": []
+  },
+  {
+   "key": "U4C1",
+   "title": "الفصل 1: النماذج الذرية والطيوف (ص198)",
+   "items": [
+    {
+     "ar": "النماذج الذرية",
+     "en": "Atomic Models",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      4,
+      198,
+      201
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الطيوف الذرية",
+     "en": "Atomic Spectra",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      198,
+      199,
+      202,
+      204,
+      207,
+      208
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التكميم",
+     "en": "Quantisation",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      198,
+      199,
+      207
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "طاقة التأين",
+     "en": "Ionisation Energy",
+     "sym": "Ei",
+     "unit": "J / eV",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      198,
+      201,
+      285
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "سويات الطاقة",
+     "en": "Energy Levels",
+     "sym": "E",
+     "unit": "J / eV",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      198,
+      201,
+      202,
+      206,
+      208,
+      217
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التحليل الطيفي",
+     "en": "Spectral Analysis",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      198,
+      206,
+      230,
+      250,
+      285
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "طيف مستمر",
+     "en": "Continuous Spectrum",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      198,
+      204
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "طيف متقطع",
+     "en": "Discrete (Line) Spectrum",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      198
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "طيف انبعاث",
+     "en": "Emission Spectrum",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      198
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "طيف امتصاص",
+     "en": "Absorption Spectrum",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الجسم الأسود",
+     "en": "Black Body",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      198
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الذرة",
+     "en": "Atom",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      62,
+      82,
+      83,
+      198,
+      199,
+      200
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "النواة",
+     "en": "Nucleus",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      62,
+      68,
+      70,
+      71,
+      83,
+      97
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المدار",
+     "en": "Orbit",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      62,
+      82,
+      83,
+      198,
+      199,
+      200
+     ],
+     "src": "الكلمات المفتاحية"
+    }
+   ]
+  },
+  {
+   "key": "U4C2",
+   "title": "الفصل 2: انتزاع الإلكترونات وتسريعها (ص210)",
+   "items": [
+    {
+     "ar": "الطبقة",
+     "en": "Shell (Electron Layer)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      21,
+      31,
+      32,
+      35,
+      36,
+      48
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الحالة",
+     "en": "State (Level)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      3,
+      9,
+      17,
+      19,
+      25,
+      29
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "انتزاع الإلكترون",
+     "en": "Electron Extraction",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      210,
+      211,
+      212,
+      216,
+      224
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تسريع الإلكترون",
+     "en": "Electron Acceleration",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      210,
+      213,
+      235,
+      242,
+      244
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "طاقة الارتباط",
+     "en": "Binding Energy",
+     "sym": "E",
+     "unit": "J / eV",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      202,
+      210,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "مفعول الحت",
+     "en": "Sputtering Effect",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      210,
+      212,
+      216
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "المفعول الكهرضوئي",
+     "en": "Photovoltaic (Photoelectric) Effect",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      210
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "المفعول الكهرحراري",
+     "en": "Thermoelectric (Thermionic) Effect",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      210
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "القوة الكهربائية",
+     "en": "Electric Force",
+     "sym": "F",
+     "unit": "N",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      117,
+      199,
+      209,
+      210,
+      211,
+      213
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الاستطاعة الكهربائية",
+     "en": "Electric Power",
+     "sym": "P",
+     "unit": "W",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      115,
+      122,
+      124,
+      162
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "المهبط",
+     "en": "Cathode",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      4,
+      89,
+      127,
+      140,
+      141,
+      144
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المصعد",
+     "en": "Anode",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      219,
+      220,
+      225,
+      226,
+      227,
+      228
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الإلكترون",
+     "en": "Electron",
+     "sym": "e",
+     "unit": "C",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      4,
+      61,
+      62,
+      66,
+      71,
+      82
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "شحنة الإلكترون",
+     "en": "Electron Charge",
+     "sym": "e",
+     "unit": "C",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      91,
+      208,
+      209,
+      229,
+      245
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "كتلة الإلكترون",
+     "en": "Electron Mass",
+     "sym": "m_e",
+     "unit": "kg",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      61,
+      91,
+      208,
+      214,
+      229,
+      239
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الحزمة الإلكترونية",
+     "en": "Beam (Electron Beam)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      89,
+      90,
+      99,
+      225,
+      226,
+      227
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المعادن",
+     "en": "Metals",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      116,
+      125,
+      206,
+      211,
+      213
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U4C3",
+   "title": "الفصل 3: الأشعة المهبطية (ص218)",
+   "items": [
+    {
+     "ar": "الانفراغ الكهربائي",
+     "en": "Electric Discharge",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      202,
+      203,
+      218,
+      220,
+      222,
+      250
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "أنبوب الانفراغ",
+     "en": "Discharge Tube",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      218
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الأشعة المهبطية",
+     "en": "Cathode Rays",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      89,
+      218,
+      220,
+      221,
+      222
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الشاشة المتألقة",
+     "en": "Fluorescent Screen",
+     "sym": "",
+     "unit": "",
+     "tier": "g",
+     "found": true,
+     "pages": [
+      224,
+      226,
+      227,
+      286
+     ],
+     "src": "جدول المصطلحات الرسمي"
+    },
+    {
+     "ar": "التأين",
+     "en": "Ionisation",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      54,
+      55,
+      64,
+      198,
+      201,
+      208
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "فرق الكمون الكافي",
+     "en": "Sufficient Potential Difference",
+     "sym": "",
+     "unit": "V",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      218,
+      222
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U4C4",
+   "title": "الفصل 4: الفعل الكهرحراري (ص224)",
+   "items": [
+    {
+     "ar": "الفعل الكهرحراري",
+     "en": "Thermionic Effect",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      212,
+      216,
+      224,
+      225,
+      226
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "راسم الاهتزاز الإلكتروني",
+     "en": "Electronic Oscilloscope (CRO)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      140,
+      224,
+      226,
+      227,
+      228,
+      229
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "شبكة وهنلت",
+     "en": "Wehnelt Cylinder (Grid)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      224,
+      226,
+      227
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الجملة الحارفة",
+     "en": "Deflection System",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      224,
+      226,
+      227,
+      228
+     ],
+     "src": "الكلمات المفتاحية"
+    }
+   ]
+  },
+  {
+   "key": "U4C5",
+   "title": "الفصل 5: نظرية الكم والفعل الكهرضوئي (ص230)",
+   "items": [
+    {
+     "ar": "نظرية الكم",
+     "en": "Quantum Theory",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      199,
+      230,
+      231,
+      239,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "نظرية أينشتاين",
+     "en": "Einstein's Theory",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      230,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الفعل الكهرضوئي",
+     "en": "Photoelectric Effect",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      212,
+      216,
+      230,
+      232,
+      233
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الخلية الكهرضوئية",
+     "en": "Photovoltaic Cell",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      230,
+      234,
+      237,
+      239,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الفوتون",
+     "en": "Photon",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      199,
+      207,
+      209,
+      217,
+      228,
+      230
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "ثابت بلانك",
+     "en": "Planck's Constant",
+     "sym": "h",
+     "unit": "J·s",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      199,
+      200,
+      231,
+      239,
+      245
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "التواتر العتبة",
+     "en": "Threshold Frequency — مؤكَّد: الرمز f_s (ص238: f بحجم 12 + تابع s بحجم 8)",
+     "sym": "f_s",
+     "unit": "Hz",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      233,
+      234,
+      237,
+      238,
+      239
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عمل الانتزاع",
+     "en": "Work Function",
+     "sym": "W_s",
+     "unit": "J",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      211,
+      233
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "طول موجة العتبة",
+     "en": "Threshold Wavelength",
+     "sym": "λ_s",
+     "unit": "m",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      233,
+      237,
+      238,
+      280
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "طاقة العتبة",
+     "en": "Threshold Energy (= عمل الانتزاع)",
+     "sym": "E_s",
+     "unit": "J",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U4C6",
+   "title": "الفصل 6: الأشعة السينية (ص240)",
+   "items": [
+    {
+     "ar": "الأشعة السينية",
+     "en": "X-Rays",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      180,
+      221,
+      222,
+      240,
+      241
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "طبيعة الأشعة السينية",
+     "en": "Nature of X-Rays",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      240,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "امتصاص الأشعة السينية",
+     "en": "X-Ray Absorption",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      240,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "نفاذ الأشعة السينية",
+     "en": "X-Ray Penetration",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      240,
+      243,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "التصوير الشعاعي",
+     "en": "Radiography",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      240
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "أنبوب توليد الأشعة السينية",
+     "en": "X-Ray Tube",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      242
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "هدف من معدن ثقيل",
+     "en": "Heavy Metal Target",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      240,
+      241
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U4C7",
+   "title": "الفصل 7: أشعة الليزر (ص246)",
+   "items": [
+    {
+     "ar": "أشعة الليزر",
+     "en": "Laser Radiation",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      246,
+      249,
+      251,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الليزر",
+     "en": "Laser",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      246,
+      247,
+      248,
+      249,
+      250
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الإصدار المحثوث",
+     "en": "Stimulated Emission",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      246,
+      248,
+      249,
+      252,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الإصدار التلقائي",
+     "en": "Spontaneous Emission",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      246,
+      248,
+      251,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الوسط الفعال",
+     "en": "Active Medium",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      246,
+      249,
+      250,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تضخيم الضوء",
+     "en": "Light Amplification",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      246
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "التجويف الرنان",
+     "en": "Resonant Cavity",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "U5",
+   "title": "الوحدة الخامسة: الفيزياء الفلكية",
+   "items": []
+  },
+  {
+   "key": "U5C1",
+   "title": "الفصل 1: الفيزياء الفلكية (ص254)",
+   "items": [
+    {
+     "ar": "الفيزياء الفلكية",
+     "en": "Astrophysics",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      4,
+      253,
+      254,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "جرم سماوي",
+     "en": "Astronomical Object",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      254,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الكوكب",
+     "en": "Planet",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      254,
+      261,
+      265,
+      268,
+      281,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "النجم",
+     "en": "Star",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      230,
+      254,
+      256,
+      257,
+      259,
+      261
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "المجرة",
+     "en": "Galaxy",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      44,
+      46,
+      50,
+      51,
+      85,
+      254
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "طيوف النجوم",
+     "en": "Spectra of Stars",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      254,
+      286
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الانزياح الموجي",
+     "en": "Wave Displacement (Redshift)",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      254,
+      287
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "تمدد الكون",
+     "en": "Expansion of the Universe",
+     "sym": "",
+     "unit": "",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      254,
+      265,
+      287
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "سرعة الإفلات",
+     "en": "Escape Velocity",
+     "sym": "v",
+     "unit": "m/s",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      254,
+      262,
+      281,
+      287
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "نصف قطر شفارتزشيلد",
+     "en": "Schwarzschild Radius",
+     "sym": "Rs",
+     "unit": "m",
+     "tier": "k",
+     "found": true,
+     "pages": [
+      254,
+      263,
+      287
+     ],
+     "src": "الكلمات المفتاحية"
+    },
+    {
+     "ar": "الثقب الأسود",
+     "en": "Black Hole",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      263,
+      264,
+      265,
+      266,
+      267
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القبة السماوية",
+     "en": "Celestial Sphere",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      255,
+      267,
+      268
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "إشعاع هوكنغ",
+     "en": "Hawking Radiation",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      267
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "ثابت الجذب العام",
+     "en": "Gravitational Constant",
+     "sym": "G",
+     "unit": "N·m²/kg²",
+     "tier": "s",
+     "found": false,
+     "pages": [],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الكتلة الشمسية",
+     "en": "Solar Mass",
+     "sym": "",
+     "unit": "kg",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "SYM",
+   "title": "القسم 0: الرموز والثوابت والوحدات",
+   "items": [
+    {
+     "ar": "الكتلة",
+     "en": "Mass",
+     "sym": "m",
+     "unit": "kg",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      8,
+      9,
+      11,
+      14,
+      15,
+      17
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الزمن",
+     "en": "Time",
+     "sym": "t",
+     "unit": "s",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      8,
+      10,
+      11,
+      12,
+      13,
+      15
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "المسافة",
+     "en": "Distance",
+     "sym": "d / x",
+     "unit": "m",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      9,
+      17,
+      45,
+      47,
+      51,
+      53
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الطول",
+     "en": "Length",
+     "sym": "L / ℓ",
+     "unit": "m",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      4,
+      14,
+      18,
+      22,
+      23,
+      24
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "نصف القطر",
+     "en": "Radius",
+     "sym": "r / R",
+     "unit": "m",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      8,
+      26,
+      32,
+      77,
+      78,
+      79
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "المساحة",
+     "en": "Area",
+     "sym": "S / A",
+     "unit": "m²",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      19,
+      44,
+      45,
+      46,
+      47,
+      48
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الحجم",
+     "en": "Volume",
+     "sym": "V",
+     "unit": "m³",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      19,
+      43,
+      44,
+      45,
+      46,
+      47
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الزاوية",
+     "en": "Angle",
+     "sym": "θ / α",
+     "unit": "rad",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      7,
+      8,
+      10,
+      20,
+      21,
+      22
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "السرعة",
+     "en": "Speed / Velocity",
+     "sym": "v",
+     "unit": "m/s",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      3,
+      7,
+      8,
+      9,
+      10,
+      12
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "التسارع الزاوي",
+     "en": "Angular Acceleration",
+     "sym": "α",
+     "unit": "rad/s²",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      21,
+      22,
+      24,
+      27,
+      30,
+      271
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "السرعة الزاوية الثابتة",
+     "en": "Constant Angular Velocity",
+     "sym": "ω",
+     "unit": "rad/s",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      7,
+      8,
+      10,
+      276
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "النبض",
+     "en": "Angular Frequency (Pulsation)",
+     "sym": "ω",
+     "unit": "rad·s⁻¹",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      8,
+      11,
+      15,
+      22,
+      24,
+      31
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "العمل",
+     "en": "Work",
+     "sym": "W",
+     "unit": "J",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      3,
+      6,
+      7,
+      20,
+      21,
+      25
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الاستطاعة",
+     "en": "Power",
+     "sym": "P",
+     "unit": "W",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      115,
+      122,
+      124,
+      138,
+      143,
+      144
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "المردود",
+     "en": "Efficiency",
+     "sym": "η",
+     "unit": "%",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      160,
+      163,
+      166,
+      276
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "المقاومة الكهربائية",
+     "en": "Electrical Resistance",
+     "sym": "R",
+     "unit": "Ω",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      162
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الناقلية",
+     "en": "Conductance",
+     "sym": "G",
+     "unit": "S",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      91,
+      92,
+      93,
+      99,
+      100,
+      110
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الحقل الكهربائي",
+     "en": "Electric Field",
+     "sym": "E",
+     "unit": "V/m",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      101,
+      142,
+      146,
+      179,
+      180,
+      199
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الشحنة الكهربائية",
+     "en": "Electric Charge",
+     "sym": "q",
+     "unit": "C",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      88,
+      101,
+      128,
+      132,
+      213,
+      225
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الكمون الكهربائي",
+     "en": "Electric Potential",
+     "sym": "V",
+     "unit": "V",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      242
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "تسارع الجاذبية الأرضية",
+     "en": "Gravitational Acceleration",
+     "sym": "g",
+     "unit": "m/s² (تُعتمد 10)",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      33,
+      34,
+      55,
+      262,
+      266
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "النفاذية المغناطيسية للخلاء",
+     "en": "Permeability of Free Space",
+     "sym": "μ₀",
+     "unit": "T·m/A (= 4π×10⁻⁷)",
+     "tier": "s",
+     "found": false,
+     "pages": [],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "المتر",
+     "en": "Metre",
+     "sym": "m",
+     "unit": "وحدة أساسية",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      11,
+      48,
+      98,
+      99,
+      142,
+      178
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الكيلوغرام",
+     "en": "Kilogram",
+     "sym": "kg",
+     "unit": "وحدة أساسية",
+     "tier": "s",
+     "found": false,
+     "pages": [],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الثانية",
+     "en": "Second",
+     "sym": "s",
+     "unit": "وحدة أساسية",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      1,
+      4,
+      9,
+      10,
+      13,
+      14
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الأمبير",
+     "en": "Ampere",
+     "sym": "A",
+     "unit": "وحدة أساسية",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      105,
+      106,
+      107,
+      108,
+      110,
+      114
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الفولط",
+     "en": "Volt",
+     "sym": "V",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      140,
+      141,
+      142,
+      144
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الأوم",
+     "en": "Ohm",
+     "sym": "Ω",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      21,
+      47,
+      49,
+      84,
+      86,
+      98
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الفاراد",
+     "en": "Farad",
+     "sym": "F",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      129
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الهنري",
+     "en": "Henry",
+     "sym": "H",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      118,
+      122,
+      129
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الويبر",
+     "en": "Weber",
+     "sym": "Wb",
+     "unit": "Wb",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      118
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "التسلا",
+     "en": "Tesla",
+     "sym": "T",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      71,
+      72,
+      76,
+      82,
+      107,
+      114
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الهرتز",
+     "en": "Hertz",
+     "sym": "Hz",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      178,
+      232
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "النيوتن",
+     "en": "Newton",
+     "sym": "N",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      9,
+      33,
+      178,
+      213,
+      262
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الجول",
+     "en": "Joule",
+     "sym": "J",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      116,
+      119,
+      131,
+      147,
+      156,
+      160
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الواط",
+     "en": "Watt",
+     "sym": "W",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      240
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الكولون",
+     "en": "Coulomb",
+     "sym": "C",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": false,
+     "pages": [],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الراديان",
+     "en": "Radian",
+     "sym": "rad",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      11,
+      34,
+      192
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الدرجة المئوية",
+     "en": "Degree Celsius",
+     "sym": "°C",
+     "unit": "وحدة مشتقة",
+     "tier": "s",
+     "found": false,
+     "pages": [],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "السنتيمتر",
+     "en": "Centimetre",
+     "sym": "cm",
+     "unit": "10⁻² m",
+     "tier": "s",
+     "found": false,
+     "pages": [],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الغرام",
+     "en": "Gram",
+     "sym": "g",
+     "unit": "10⁻³ kg",
+     "tier": "s",
+     "found": true,
+     "pages": [
+      190,
+      250
+     ],
+     "src": "معادلات الكتاب"
+    },
+    {
+     "ar": "الإلكترون فولط",
+     "en": "Electronvolt",
+     "sym": "eV",
+     "unit": "1.6×10⁻¹⁹ J",
+     "tier": "s",
+     "found": false,
+     "pages": [],
+     "src": "معادلات الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "GEN",
+   "title": "القسم 6: مصطلحات عامة وعملية شائعة في الكتاب",
+   "items": [
+    {
+     "ar": "التجربة",
+     "en": "Experiment",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      19,
+      21,
+      22,
+      23,
+      33,
+      34
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "نشاط",
+     "en": "Activity",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      8,
+      9,
+      15,
+      29,
+      33
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "خطوات التجربة",
+     "en": "Experimental Steps",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      21,
+      22,
+      23,
+      44,
+      69,
+      70
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المواد اللازمة",
+     "en": "Required Materials",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      21,
+      22,
+      69,
+      70,
+      72,
+      89
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "النتائج",
+     "en": "Results",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      55,
+      69,
+      74,
+      75,
+      77,
+      89
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "أستنتج",
+     "en": "I Conclude",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      8,
+      11,
+      12,
+      13,
+      17
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "ألاحظ",
+     "en": "I Observe",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9,
+      24,
+      28,
+      32,
+      34,
+      35
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "أستنتاج",
+     "en": "Conclusion",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      3,
+      10,
+      11,
+      31,
+      32,
+      35
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مسألة",
+     "en": "Problem (Exercise)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      4,
+      17,
+      18,
+      26,
+      27,
+      39
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المطلوب",
+     "en": "Required (to find)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      15,
+      17,
+      18,
+      26,
+      27,
+      39
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مستوى شاقولي",
+     "en": "Vertical Plane",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مستوى أفقي",
+     "en": "Horizontal Plane",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      36,
+      39,
+      46,
+      49
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "محور الدوران",
+     "en": "Axis of Rotation — يرمز له الكتاب بـ Δ (مثل Γ_η/Δ، Γ_w/Δ، Γ_R/Δ)",
+     "sym": "Δ",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      21,
+      24,
+      25,
+      29,
+      30,
+      31
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مجموع العزوم",
+     "en": "Sum of Moments — العلاقة الأساسية في التحريك الدوراني عند الأستاذ: ΣΓ = I_Δ·α",
+     "sym": "ΣΓ",
+     "unit": "m·N",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عزم مزدوجة القوة",
+     "en": "Moment of a Force Couple",
+     "sym": "Γ_F",
+     "unit": "m·N",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "حركة مستقيمة منتظمة",
+     "en": "Uniform Rectilinear Motion",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      55,
+      215,
+      281
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "حركة اهتزازية",
+     "en": "Oscillatory Motion",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      15,
+      30,
+      142
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "حركة دورانية",
+     "en": "Rotational Motion",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      20,
+      44,
+      50
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "جملة",
+     "en": "System",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      19,
+      23,
+      24,
+      26,
+      27,
+      39
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "جملة مهتزة",
+     "en": "Oscillating System",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      27
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "موضع التوازن",
+     "en": "Equilibrium Position",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      18,
+      27,
+      28,
+      29,
+      30,
+      31
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "وضع التوازن",
+     "en": "Equilibrium Position",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      14,
+      18,
+      21,
+      22,
+      26,
+      27
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "حالة التوازن",
+     "en": "State of Equilibrium",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      19
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "محصلة القوى",
+     "en": "Resultant of Forces",
+     "sym": "ΣF",
+     "unit": "N",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      10,
+      92,
+      210,
+      270
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القوى المؤثرة",
+     "en": "Acting Forces",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9,
+      21,
+      29,
+      199,
+      210
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القوى الخارجية",
+     "en": "External Forces",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9,
+      10,
+      21,
+      29,
+      32,
+      35
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مهمل الكتلة",
+     "en": "Massless (Negligible Mass)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9,
+      15,
+      17,
+      18,
+      32,
+      39
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عديم الفتل",
+     "en": "Torsion-Free",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      96,
+      97,
+      102,
+      274,
+      275,
+      276
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "متجانس",
+     "en": "Homogeneous / Uniform",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      20,
+      22,
+      24,
+      26,
+      27,
+      31
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "متناظر",
+     "en": "Symmetrical",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      10,
+      20,
+      28
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "يتناسب طرداً مع",
+     "en": "Directly Proportional",
+     "sym": "~",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      11,
+      21,
+      24,
+      84,
+      190,
+      251
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "يتناسب عكساً مع",
+     "en": "Inversely Proportional",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      11,
+      24
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القيمة المطلقة",
+     "en": "Absolute Value",
+     "sym": "| |",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      91,
+      122,
+      202,
+      235
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القيمة الجبرية",
+     "en": "Algebraic Value",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      123,
+      274,
+      275,
+      276
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القيمة العظمى",
+     "en": "Maximum Value",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      12,
+      13,
+      108,
+      131,
+      137,
+      141
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القيمة الصغرى",
+     "en": "Minimum Value",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "التغيّر",
+     "en": "Change / Variation",
+     "sym": "Δ",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      3,
+      8,
+      10,
+      12,
+      13,
+      16
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "معدوم",
+     "en": "Zero (Nil)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      12,
+      13,
+      15,
+      21,
+      64,
+      65
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "ينعدم",
+     "en": "Vanishes / Becomes Zero",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      101,
+      106,
+      121
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "ثابت",
+     "en": "Constant",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      13
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "متغيّر",
+     "en": "Variable",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      8,
+      13,
+      101,
+      116,
+      117,
+      118
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "العلاقة",
+     "en": "Relation / Equation",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      6,
+      8,
+      10,
+      11,
+      15,
+      17
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عبارة",
+     "en": "Expression / Formula",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      85,
+      88,
+      89,
+      92,
+      97,
+      101
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "بدلالة",
+     "en": "In Terms Of",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      3,
+      8,
+      12,
+      13,
+      17,
+      30
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "نعوّض",
+     "en": "We Substitute",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      14,
+      30,
+      31,
+      32,
+      35,
+      48
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الجذر التربيعي",
+     "en": "Square Root",
+     "sym": "√",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      11,
+      24,
+      34,
+      177,
+      178,
+      190
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الجيب (جيا)",
+     "en": "Sine",
+     "sym": "sin",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      4,
+      8,
+      10,
+      11,
+      15,
+      16
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "جيب التمام",
+     "en": "Cosine",
+     "sym": "cos",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "اللوغاريتم",
+     "en": "Logarithm",
+     "sym": "log",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الأس",
+     "en": "Exponent / Power",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الأساس",
+     "en": "Base",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      21,
+      30,
+      32,
+      35,
+      43,
+      67
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الرسم البياني",
+     "en": "Graph",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      16,
+      18,
+      25,
+      26,
+      34,
+      130
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المحور الأفقي",
+     "en": "Horizontal Axis",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      31,
+      32,
+      37,
+      39,
+      40,
+      271
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المحور الشاقولي",
+     "en": "Vertical Axis",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9,
+      10,
+      76,
+      125
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الشكل المجاور",
+     "en": "Adjacent Figure",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      8,
+      16,
+      17,
+      19,
+      25
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الشكل",
+     "en": "Figure / Diagram",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      3,
+      7,
+      8,
+      9,
+      10,
+      11
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "أسلاك توصيل",
+     "en": "Connecting Wires",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      114,
+      128,
+      169,
+      219,
+      220
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "على التسلسل",
+     "en": "In Series",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      107,
+      114,
+      118,
+      123,
+      127,
+      128
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "على التفرّع",
+     "en": "In Parallel",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      144,
+      153,
+      158,
+      159,
+      165,
+      166
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مصباح كهربائي",
+     "en": "Electric Lamp",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      106,
+      114,
+      165,
+      204
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مولد التيار المتواصل",
+     "en": "DC Generator",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      106,
+      137
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مولد التيار المتناوب",
+     "en": "AC Generator",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      104,
+      106,
+      113,
+      122,
+      141,
+      285
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "إبرة مغناطيسية",
+     "en": "Magnetic Needle",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      69,
+      70,
+      71,
+      72,
+      73,
+      76
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "حقل مغناطيسي منتظم",
+     "en": "Uniform Field",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      68,
+      69,
+      84,
+      90,
+      93,
+      94
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "منطقة يسودها حقل",
+     "en": "Field Region",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      69,
+      88,
+      95,
+      100,
+      101,
+      103
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "سرعة ابتدائية",
+     "en": "Initial Velocity",
+     "sym": "v₀",
+     "unit": "m/s",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      17,
+      21,
+      22,
+      26,
+      27
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "لحظة",
+     "en": "Instant",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      8,
+      10,
+      11,
+      12,
+      13,
+      15
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مدة",
+     "en": "Duration",
+     "sym": "Δt",
+     "unit": "s",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      28,
+      34,
+      37,
+      45,
+      46,
+      47
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "اتجاه",
+     "en": "Direction",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      17,
+      18,
+      36,
+      44,
+      56
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "منحى",
+     "en": "Orientation / Direction",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      12,
+      13,
+      26,
+      50,
+      58,
+      65
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "يعامد",
+     "en": "Is Perpendicular To",
+     "sym": "⊥",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      35,
+      80,
+      90,
+      99,
+      103,
+      272
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "يوازي",
+     "en": "Is Parallel To",
+     "sym": "∥",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      76,
+      90,
+      97,
+      102,
+      132,
+      240
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "يعاكس",
+     "en": "Opposes",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      21,
+      24,
+      152
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "يتفق بالطور",
+     "en": "In Phase",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "تفكير ناقد",
+     "en": "Critical Thinking",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      19,
+      27,
+      41,
+      53,
+      66,
+      87
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "اختبر نفسك",
+     "en": "Test Yourself",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مشروع",
+     "en": "Project",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      268,
+      269
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "أهداف",
+     "en": "Objectives",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      6,
+      20,
+      28,
+      42,
+      54,
+      68
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الكلمات المفتاحية",
+     "en": "Key Words",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      6,
+      20,
+      28,
+      42,
+      54,
+      68
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المصطلحات الإنكليزية",
+     "en": "English Terminology",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      283
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "شعاع السرعة",
+     "en": "Velocity Vector",
+     "sym": "v⃗",
+     "unit": "m/s",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      44,
+      65,
+      89,
+      90,
+      99,
+      272
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "العطالة",
+     "en": "Inertia",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      9,
+      10,
+      14,
+      21,
+      23,
+      24
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "النوسة",
+     "en": "(One) Oscillation / Swing",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      22,
+      23,
+      27,
+      33,
+      34,
+      39
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "مستوي النوسان",
+     "en": "Plane of Oscillation",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      34
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الهزازة",
+     "en": "Vibrator / Oscillator",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      11,
+      16,
+      17,
+      18,
+      169,
+      173
+     ],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "SYN",
+   "title": "القسم 7-أ: مرادفات مسموحة في الشرح — ولا تُستعمل في الأسئلة",
+   "items": [
+    {
+     "ar": "التردد",
+     "en": "Frequency — المرجوح؛ المصطلح الرسمي: التواتر (أُجيز استعماله)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      142,
+      198
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الجهد",
+     "en": "Voltage — المرجوح؛ المصطلح الرسمي: التوتر / فرق الكمون (أُجيز استعماله)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    }
+   ]
+  },
+  {
+   "key": "BAN",
+   "title": "القسم 7-ب: مصطلحات ممنوعة",
+   "items": [
+    {
+     "ar": "الفيزياء الطبية",
+     "en": "Medical Physics — NOT in this book",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      240
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المفاعلة",
+     "en": "Reactance (Egyptian) — Syrian: ردية الوشيعة X_L / الممانعة Z",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المفاعلة الحثية",
+     "en": "Inductive Reactance (Egyptian) — Syrian: ردية الوشيعة",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المفاعلة السعوية",
+     "en": "Capacitive Reactance (Egyptian) — Syrian: الاتساعية X_C",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المعاقة",
+     "en": "Impedance (foreign) — Syrian: الممانعة Z",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الشدة الفعالة",
+     "en": "RMS Current (Egyptian) — Syrian: الشدة المنتجة I_eff",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "التوتر الفعال",
+     "en": "RMS Voltage (Egyptian) — Syrian: التوتر المنتج U_eff",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "معامل القدرة",
+     "en": "Power Factor (Egyptian) — Syrian: عامل استطاعة الدارة",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الكهرومغناطيسية",
+     "en": "Electromagnetic (foreign form) — Syrian: الكهرطيسية",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      67
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الغاز المخلخل",
+     "en": "Rarefied Gas (Egyptian) — absent from the Syrian book & exams",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الزمن المضاعف",
+     "en": "Dilated Time (Egyptian) — Syrian book says: تمدد الزمن",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "شبه موصل",
+     "en": "Semiconductor — not in this book (use الجسم الصلب)",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "نصف ناقل",
+     "en": "Semiconductor — not in this book",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      250
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الترانزستور",
+     "en": "Transistor — not in this book",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المقحل",
+     "en": "Transistor (Syrian term) — not in this book",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المحاثة",
+     "en": "Inductance (Egyptian) — book says ذاتية الوشيعة",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الابتدائية (بمعنى ملفّ المحوّلة)",
+     "en": "‘Primary’ as a transformer winding — WRONG here: in this book الابتدائية means ‘initial’ (الطور الابتدائي / السرعة الابتدائية). The book's transformer term is الأولية / الوشيعة الأولية.",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      7,
+      8,
+      11,
+      15,
+      17,
+      21
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "معامل التحريض الذاتي",
+     "en": "Self-Inductance (Egyptian) — book says ذاتية الوشيعة",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الفيض المغناطيسي",
+     "en": "Magnetic Flux (Egyptian) — book says التدفق المغناطيسي",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الذبذبة",
+     "en": "Oscillation (Egyptian) — book says اهتزاز",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "التيار المستمر",
+     "en": "DC (Egyptian) — book says التيار المتواصل",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      98,
+      140,
+      141,
+      161
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "المجال",
+     "en": "Field (Egyptian) — book says الحقل",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      3,
+      34,
+      202,
+      224,
+      244,
+      250
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الزنبرك",
+     "en": "Spring (Egyptian) — book says نابض",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "السرعة المتجهة",
+     "en": "Velocity vector — book says شعاع السرعة",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "عزم القصور",
+     "en": "Moment of Inertia (Egyptian) — book says عزم العطالة",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الموجة الموقوفة",
+     "en": "Standing Wave (Egyptian) — book says الموجة المستقرة",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "أشعة إكس",
+     "en": "X-Rays (loan translation) — book says الأشعة السينية",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "القصور الذاتي",
+     "en": "Inertia — قرار الأستاذ: العطالة فقط",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      36
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "الكثافة",
+     "en": "Density — قرار الأستاذ: الصواب الكتلة الحجمية",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": true,
+     "pages": [
+      32,
+      43,
+      50,
+      92,
+      190,
+      195
+     ],
+     "src": "نص الكتاب"
+    },
+    {
+     "ar": "التأثير الكهروضوئي",
+     "en": "Photoelectric Effect (Egyptian) — book says الفعل الكهرضوئي",
+     "sym": "",
+     "unit": "",
+     "tier": "v",
+     "found": false,
+     "pages": [],
+     "src": "نص الكتاب"
+    }
+   ]
+  }
+ ],
+ "questions": [
+  {
+   "q": "ما الرمز المعتمد لثابت فتل السلك: C أم K أم غيرهما؟",
+   "evidence": "دليل من النص: ص21 «سلك فتل فولاذي ثابت فتله k» — أي أن الكتاب استعمل k. الرجاء التثبيت."
+  },
+  {
+   "q": "ما الفرق بين «المطال» و«السعة» في الكتاب؟",
+   "evidence": "الكتاب يستعمل الاثنين في الكلمات المفتاحية للفصل الأول (ص6)، وص11: «قوة إرجاع… تتناسب طرداً مع المطال x». الرجاء تحرير الفرق أو توحيده."
+  },
+  {
+   "q": "ما الرمز المعتمد لعزم العطالة؟",
+   "evidence": "دليل من النص: ص22 «TI عزم عطالة الساق حول محور الدوران (السلك)» — الرمز I. الرجاء التأكيد."
+  },
+  {
+   "q": "ما الرمز المعتمد للتدفق المغناطيسي؟",
+   "evidence": "يظهر الرمز Φ في نص ص83. الرجاء التأكيد."
+  },
+  {
+   "q": "الفاصلة العشرية المعتمدة في الكتاب: , أم . ؟",
+   "evidence": "تظهر الأعداد في المسائل بصيغة 2.5 و 0.40 و 20.0 — الرجاء تأكيد ما يجب اعتماده في التطبيق."
+  },
+  {
+   "q": "ما قيمة تسارع الجاذبية الأرضية g المعتمدة في المسائل؟",
+   "evidence": "يذكر الكتاب «تسارع الجاذبية الأرضية g» (ص35)؛ وفي المسائل تظهر قيم مقرّبة. الرجاء التثبيت على 9.8 أم 10."
+  },
+  {
+   "q": "هل «الدور» تعني الزمن الدوري أم الطور؟",
+   "evidence": "جدول المصطلحات ص284 يترجم «الدور» بـ Phase، بينما «الطور» واردة في النص بمعنى Phase أيضاً — يبدو خطأً مطبعياً في الجدول الرسمي. الرجاء التحكيم."
+  },
+  {
+   "q": "ترجمة «النسبية الخاصة» ظهرت في الجدول الرسمي Conjugate Pairs",
+   "evidence": "يبدو أن سطراً من كتاب الكيمياء تسرّب إلى الجدول (ص285). الرجاء إقرار التصحيح: Special Relativity."
+  },
+  {
+   "q": "«المحلوات الكهربائية» في الجدول الرسمي (ص286)",
+   "evidence": "الصحيح على الأغلب «المحوّلات الكهربائية» Electric Transformer. الرجاء التأكيد."
+  },
+  {
+   "q": "تهجئة اسم العالم في قانون فاراداي",
+   "evidence": "النص ص109 يكتب «قانون فارداي» بالألف، بينما الشائع «فاراداي». الرجاء التثبيت على واحدة."
+  },
+  {
+   "q": "تهجئة «تمثيل فرينل»",
+   "evidence": "النص ص13 يكتب «تمثيل فرينل». الرجاء التأكيد."
+  },
+  {
+   "q": "هل يستخدم الكتاب «شبه موصل / نصف ناقل / ترانزستور»؟",
+   "evidence": "لا يظهر أي منها في نص الكتاب المستخرج (288 صفحة). الرجاء تأكيد عدم إدخالها في التطبيق."
+  },
+  {
+   "q": "هل «القوة الكهربائية» في الكتاب تعني Electric Power أم Electric Force؟",
+   "evidence": "الجدول الرسمي ص287 يعطي Electric Power. الرجاء التأكيد."
+  },
+  {
+   "q": "ما المقابل المعتمد لـ Transformer في الفصل 6 من الوحدة الثانية؟",
+   "evidence": "النص يستعمل «المحوّلة»، والجدول الرسمي «المحلوات». الرجاء التثبيت على واحد."
+  },
+  {
+   "q": "هل يجوز استخدام «التردد» بدل «التواتر» و«الجهد» بدل «التوتر»؟",
+   "evidence": "الرجاء تأكيد حظر المصطلحات المصرية نهائياً في التطبيق."
+  },
+  {
+   "q": "هل «القصور الذاتي» مقبول أم «العطالة» فقط؟",
+   "evidence": "النص ص37 يذكر الاثنين: «بفعل ما يسمى القصور الذاتي (أو العطالة)». الرجاء التثبيت."
+  }
+ ]
+}
