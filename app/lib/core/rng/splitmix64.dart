@@ -14,8 +14,9 @@ class SplitMix64 {
     return _mix(_state);
   }
 
-  /// الدالة الخالصة mix64 — تُستعمل لاشتقاق بذور الخيارات والحالات الفرعية.
-  static int mix64(int seed) => _mix(seed);
+  /// الدالة الخالصة mix64 — مطابقة للمرجع: تُضيف الغاما قبل الخلط
+  /// (mix64(x) ≡ «next من حالة x» — نفس تعريف docs/12 §٢.٢ حرفياً).
+  static int mix64(int seed) => _mix((seed + _gamma) & _mask);
 
   static const int _mask = 0xFFFFFFFFFFFFFFFF;
   static const int _gamma = 0x9E3779B97F4A7C15;
