@@ -74,7 +74,7 @@ void main() {
     expect(c1.paragraphs[4].text, contains('T0 = 2π·√(m/k)'));
 
     // بوابة الأستاذ: لا سؤال مؤلَّف يُفتح قبل مصادقته (قرار ٢٤)
-    expect(pack.questions, hasLength(38));
+    expect(pack.questions, hasLength(40));
     expect(pack.approvedQuestions, isEmpty);
 
     // الفصل الثاني: التوابع الزمنية الثلاثة
@@ -151,6 +151,13 @@ void main() {
     expect(c23.paragraphs, hasLength(3));
     expect(c23.paragraphs[2].text, contains('عقدة للحقل E وبطن للحقل B'));
     expect(pack.questions.where((q) => q.chapter == 'U2C3'), hasLength(3));
+
+    // U2C4: الطولية — عقد وبطون الاهتزاز والضغط
+    final c24 = pack.units[1].chapters[3];
+    expect(c24.id, 'U2C4');
+    expect(c24.paragraphs, hasLength(2));
+    expect(c24.paragraphs[1].text, contains('عقداً للضغط'));
+    expect(pack.questions.where((q) => q.chapter == 'U2C4'), hasLength(2));
 
     // نظافة لفظية على القاموس الحقيقي 444/30
     expect(await realLoader.lintLoadedPack(), isEmpty);
