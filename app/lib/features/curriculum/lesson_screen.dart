@@ -101,24 +101,32 @@ class _LessonScreenState extends State<LessonScreen> {
                   child: Padding(
                     padding: const EdgeInsets.all(16),
                     child: Row(
+                      // ⚠️ Expanded إلزامي: ثيم الأزرار بعرض ∞ كحد أدنى
+                      // (تمدد بالأعمدة) — داخل Row بلا Expanded = قيود لانهائية
                       children: [
-                        if (_idx > 0)
-                          OutlinedButton(
-                            onPressed: () => setState(() => _idx--),
-                            child: const Text('→ السابق'),
+                        if (_idx > 0) ...[
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: () => setState(() => _idx--),
+                              child: const Text('→ السابق'),
+                            ),
                           ),
-                        const Spacer(),
-                        FilledButton(
-                          onPressed: () => setState(() {
-                            if (_idx == _total - 1) {
-                              _finished = true;
-                            } else {
-                              _idx++;
-                            }
-                          }),
-                          child: Text(_idx == _total - 1
-                              ? 'انتهى الدرس ✓'
-                              : 'التالي ←'),
+                          const SizedBox(width: 10),
+                        ],
+                        Expanded(
+                          flex: _idx > 0 ? 2 : 1,
+                          child: FilledButton(
+                            onPressed: () => setState(() {
+                              if (_idx == _total - 1) {
+                                _finished = true;
+                              } else {
+                                _idx++;
+                              }
+                            }),
+                            child: Text(_idx == _total - 1
+                                ? 'انتهى الدرس ✓'
+                                : 'التالي ←'),
+                          ),
                         ),
                       ],
                     ),
