@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  # نطق الفقرات «اسمعني» — يُخفى الزر عند غياب المحرك العربي (قرار F3.2)
+  flutter_tts: ^4.0.0
 
 dev_dependencies:
   flutter_test:

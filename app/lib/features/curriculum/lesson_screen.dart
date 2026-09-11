@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/tts/flutter_tts_speaker.dart';
+import '../../core/tts/speaker.dart';
 import '../../core/util/arabic_number.dart';
 
 /// شاشة القراءة — فقرة واحدة لكل شاشة (قرار نمط القراءة · F3.2):
-/// «التالي» + «📌 خلاصة الفقرة» + فهرس حر قابل للطي + «انتهى الدرس».
-/// TTS «اسمعني»: يُضاف مع حزمة flutter_tts (إخفاء عند غياب المحرك العربي) — متبقٍّ لإغلاق F3.2.
+/// «التالي» + «📌 خلاصة الفقرة» + TTS «اسمعني» + فهرس حر قابل للطي + «انتهى الدرس».
 class LessonScreen extends StatefulWidget {
-  const LessonScreen({super.key, required this.chapter});
+  const LessonScreen({super.key, required this.chapter, this.speaker});
 
   final Chapter chapter;
+
+  /// حقن اختياري للنطق (اختبارات)؛ الافتراضي FlutterTtsSpeaker حقيقي.
+  final Speaker? speaker;
 
   @override
   State<LessonScreen> createState() => _LessonScreenState();
@@ -20,6 +24,56 @@ class _LessonScreenState extends State<LessonScreen> {
   int _idx = 0;
   bool _finished = false;
   bool _indexOpen = false;
+  Speaker? _speaker; // لا زر «اسمعني» قبل إثبات محرك عربي (قرار F3.2)
+  bool _speaking = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initSpeaker();
+  }
+
+  Future<void> _initSpeaker() async {
+    final s = widget.speaker ?? FlutterTtsSpeaker();
+    try {
+      if (await s.hasArabicEngine()) {
+        if (!mounted) return;
+        setState(() => _speaker = s);
+      }
+    } catch (_) {
+      // أي فشل منصة/محرك = يبقى الزر مخفياً بهدوء (قرار F3.2 الصريح).
+    }
+  }
+
+  Future<void> _toggleSpeak() async {
+    final s = _speaker;
+    if (s == null) return;
+    if (_speaking) {
+      await s.stop();
+      if (mounted) setState(() => _speaking = false);
+      return;
+    }
+    setState(() => _speaking = true);
+    try {
+      await s.speak(_paragraph.text);
+    } catch (_) {
+      // فشل نطق عابر — نُسقط الحالة ويبقى الزر لإعادة المحاولة.
+    } finally {
+      if (mounted) setState(() => _speaking = false);
+    }
+  }
+
+  void _stopSpeaking() {
+    if (!_speaking) return;
+    _speaker?.stop();
+    if (mounted) setState(() => _speaking = false);
+  }
+
+  @override
+  void dispose() {
+    _speaker?.stop();
+    super.dispose();
+  }
 
   Chapter get _chapter => widget.chapter;
   int get _total => _chapter.paragraphs.length;
@@ -41,6 +95,13 @@ class _LessonScreenState extends State<LessonScreen> {
           overflow: TextOverflow.ellipsis,
         ),
         actions: [
+          if (!_finished && _speaker != null)
+            IconButton(
+              tooltip: _speaking ? 'إيقاف النطق' : 'اسمعني — نطق الفقرة',
+              onPressed: _toggleSpeak,
+              icon: Icon(
+                  _speaking ? Icons.stop_outlined : Icons.volume_up_outlined),
+            ),
           if (!_finished)
             IconButton(
               tooltip: 'الفهرس — تنقّل حر',
@@ -56,7 +117,10 @@ class _LessonScreenState extends State<LessonScreen> {
                 if (_indexOpen) _IndexPanel(
                   chapter: _chapter,
                   current: _idx,
-                  onPick: (i) => setState(() { _idx = i; _indexOpen = false; }),
+                  onPick: (i) {
+                    _stopSpeaking(); // تغيير الفقرة يوقف النطق الجاري
+                    setState(() { _idx = i; _indexOpen = false; });
+                  },
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
@@ -107,7 +171,10 @@ class _LessonScreenState extends State<LessonScreen> {
                         if (_idx > 0) ...[
                           Expanded(
                             child: OutlinedButton(
-                              onPressed: () => setState(() => _idx--),
+                              onPressed: () {
+                                _stopSpeaking();
+                                setState(() => _idx--);
+                              },
                               child: const Text('→ السابق'),
                             ),
                           ),
@@ -116,13 +183,16 @@ class _LessonScreenState extends State<LessonScreen> {
                         Expanded(
                           flex: _idx > 0 ? 2 : 1,
                           child: FilledButton(
-                            onPressed: () => setState(() {
-                              if (_idx == _total - 1) {
-                                _finished = true;
-                              } else {
-                                _idx++;
-                              }
-                            }),
+                            onPressed: () {
+                              _stopSpeaking();
+                              setState(() {
+                                if (_idx == _total - 1) {
+                                  _finished = true;
+                                } else {
+                                  _idx++;
+                                }
+                              });
+                            },
                             child: Text(_idx == _total - 1
                                 ? 'انتهى الدرس ✓'
                                 : 'التالي ←'),

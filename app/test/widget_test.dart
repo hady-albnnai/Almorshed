@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:fizya_clash/core/content/models.dart';
+import 'package:fizya_clash/core/tts/speaker.dart';
+import 'package:fizya_clash/features/curriculum/lesson_screen.dart';
 import 'package:fizya_clash/main.dart';
 
 /// حزمة اختبار مصغّرة: وحدة بفصل من فقرتين + وحدة فارغة.
@@ -102,4 +104,62 @@ void main() {
     expect(find.text('أنهيت الفصل!'), findsOneWidget);
     expect(find.text('+١٠ نقطة لدوري فيزيا كلاش ✓'), findsOneWidget);
   });
+
+  testWidgets('اسمعني: يظهر مع محرك عربي وينطق الفقرة', (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+    final speaker = _FakeSpeaker(available: true);
+    final chapter = _fakePack().units.first.chapters.first;
+
+    await tester.pumpWidget(MaterialApp(
+      home: Directionality(
+        textDirection: TextDirection.rtl,
+        child: LessonScreen(chapter: chapter, speaker: speaker),
+      ),
+    ));
+    await tester.pumpAndSettle(); // إتاحة المحرك غير متزامنة
+
+    expect(find.byIcon(Icons.volume_up_outlined), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.volume_up_outlined));
+    await tester.pumpAndSettle();
+    expect(speaker.spoken, ['نص الفقرة الأولى كاملاً للقراءة.']);
+  });
+
+  testWidgets('اسمعني: يختفي كلياً بلا محرك عربي (قرار F3.2)', (tester) async {
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+    final chapter = _fakePack().units.first.chapters.first;
+
+    await tester.pumpWidget(MaterialApp(
+      home: Directionality(
+        textDirection: TextDirection.rtl,
+        child:
+            LessonScreen(chapter: chapter, speaker: _FakeSpeaker(available: false)),
+      ),
+    ));
+    await tester.pumpAndSettle();
+
+    expect(find.byIcon(Icons.volume_up_outlined), findsNothing);
+    // والفهرس باقٍ — الاختفاء خاص بزر النطق فقط
+    expect(find.byIcon(Icons.menu_book_outlined), findsOneWidget);
+  });
+}
+
+/// زائف النطق — يسجل ما طُلب نطقه (نمط الحقن نفسه).
+class _FakeSpeaker implements Speaker {
+  _FakeSpeaker({required this.available});
+
+  final bool available;
+  final List<String> spoken = [];
+
+  @override
+  Future<bool> hasArabicEngine() async => available;
+
+  @override
+  Future<void> speak(String text) async => spoken.add(text);
+
+  @override
+  Future<void> stop() async {}
 }
