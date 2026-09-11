@@ -148,6 +148,15 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
 .crl b{color:var(--brand2); flex-shrink:0}
 .crl .ans{color:var(--txt); text-align:left; font-weight:600; transition:filter .3s}
 .crl .ans.hid{filter:blur(5px); user-select:none}
+/* المختبر — المحاكاة الحية */
+.canvasbox{background:#0d1a30; border:1px solid var(--line); border-radius:14px; padding:8px; margin-bottom:10px}
+.canvasbox canvas{width:100%; display:block; border-radius:8px}
+.legend{font-size:10.5px; color:var(--txt2); text-align:center; margin-top:5px}
+.slider-row{display:flex; align-items:center; gap:10px; margin:10px 0; font-size:13px}
+.slider-row span{width:64px; color:var(--txt2); flex-shrink:0}
+.slider-row b{width:86px; text-align:left; font-size:12.5px; color:var(--gold)}
+.slider-row input[type=range]{flex:1; accent-color:var(--brand); height:26px}
+.mini-btn{background:var(--card2); border:1px solid var(--line); color:var(--txt); border-radius:10px; padding:9px 14px; font-size:12px; font-weight:700; cursor:pointer}
 </style>
 </head>
 <body>
@@ -611,14 +620,63 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
 
   <!-- ═══ المختبر ═══ -->
   <div class="screen" id="s-lab">
-    <h2 class="sec">مختبر التجارب — فهرس سريع</h2>
-    <p class="note">التجربة نفسها تجدها أيضاً داخل درسها في المنهاج</p>
-    <div class="card click" onclick="show('s-lesson')"><div class="row"><span>🌀 <b>النابض المرن غير المتخامد</b></span><span class="chip">الوحدة ١</span></div>
-      <p class="note" style="margin-top:4px">تأثير m و k على الدور — منزلقات حية</p></div>
-    <div class="card click"><div class="row"><span>⚖️ <b>نوّاس الفتل</b></span><span class="chip">الوحدة ١</span></div></div>
-    <div class="card click"><div class="row"><span>🌊 <b>الموجة المستقرة العرضية</b></span><span class="chip">الوحدة ٣</span></div></div>
-    <div class="card click"><div class="row"><span>🔌 <b>دارة RLC المتناوبة</b></span><span class="chip">الوحدة ٢</span></div></div>
-    <div class="card click"><div class="row"><span>🔬 <b>الفعل الكهرضوئي</b></span><span class="chip">الوحدة ٤</span></div></div>
+    <h2 class="sec">مختبر التجارب</h2>
+    <p class="note">كل تجربة تجدها أيضاً داخل درسها في المنهاج — هذا فهرسها السريع</p>
+    <div class="card" style="background:linear-gradient(135deg,#123f38,#0e2a3a)">
+      <div class="row"><b>🧪 التجربة في ٣ خطوات</b><span class="chip">توقّع ← جرّب ← لاحظ</span></div>
+      <p class="note" style="margin-top:6px">١) 🤔 توقّع ما سيحدث قبل أن تلمس شيئاً · ٢) 👆 جرّب بالمنزلقات واسحب العناصر بيدك · ٣) 👀 لاحظ الأسهم والمنحنى ثم اشرح ما رأيت</p>
+      <p class="note">الأسهم والأشرطة تُظهر ما لا يُرى في المختبر الحقيقي: السرعة والقوة والطاقة لحظة بلحظة</p>
+    </div>
+    <div class="card click" onclick="show('s-exp')">
+      <div class="row"><span>🌀 <b>النابض المرن غير المتخامد</b></span><span class="chip">الوحدة ١ · الفصل ١</span></div>
+      <p class="note" style="margin-top:4px">تأثير m و k على الدور — منزلقات حية + اسحب الكتلة بيدك + منحنى x(t)</p>
+      <div class="row" style="margin-top:7px"><span class="chip">📖 داخل الدرس</span><span class="chip">🎯 تحدٍّ: T = ٢ث</span><span class="chip">+١٠ نقاط</span></div>
+    </div>
+    <div class="card click" onclick="labSoon('نوّاس الفتل')"><div class="row"><span>⚖️ <b>نوّاس الفتل غير المتخامد</b></span><span class="chip">الوحدة ١ · الفصل ٢</span></div>
+      <p class="note" style="margin-top:4px">تأثير الطول L والتسارع g على الدور</p></div>
+    <div class="card click" onclick="labSoon('النوّاس الثقلي')"><div class="row"><span>🪀 <b>النوّاس الثقلي غير المتخامد</b></span><span class="chip">الوحدة ١ · الفصل ٣</span></div></div>
+    <div class="card click" onclick="labSoon('الموجة المستقرة العرضية')"><div class="row"><span>🌊 <b>الموجة المستقرة العرضية</b></span><span class="chip">الوحدة ٣</span></div>
+      <p class="note" style="margin-top:4px">العقدة والبطن — تأثير الشد والتردد</p></div>
+    <div class="card click" onclick="labSoon('دارة RLC')"><div class="row"><span>🔌 <b>دارة RLC المتناوبة</b></span><span class="chip">الوحدة ٢ · الفصل ٤</span></div>
+      <p class="note" style="margin-top:4px">الرنين — خطوط التيار تتحرك في الدارة (إظهار الخفي)</p></div>
+    <div class="card click" onclick="labSoon('الفعل الكهرضوئي')"><div class="row"><span>🔬 <b>الفعل الكهرضوئي</b></span><span class="chip">الوحدة ٤</span></div>
+      <p class="note" style="margin-top:4px">الفوتونات تضرب المهبط — تأثير التواتر وشدة الإضاءة</p></div>
+    <p class="note">💡 المحاكاة ليست بديلاً عن التجربة العملية — هي أداة فهم: تربط سحب يدك بالمعادلة التي تتغير أمامك</p>
+  </div>
+
+  <!-- ═══ شاشة المحاكاة الحية ═══ -->
+  <div class="screen" id="s-exp">
+    <div class="row"><p class="note">الوحدة ١ ← الفصل ١ ← <b>تجربة النابض</b></p><button class="idx-btn" onclick="show('s-lesson')">📖 الدرس</button></div>
+    <div class="card" id="poe" style="border-color:var(--brand2)">
+      <b style="font-size:13.5px">🤔 توقّع أولاً</b>
+      <p class="note" style="margin-top:4px">إذا ضاعفنا الكتلة m، فماذا يحدث لدور الاهتزاز T؟</p>
+      <div class="grader" style="margin-top:8px">
+        <button class="g1" onclick="poeAns(this,false)">يقصر ⬇</button>
+        <button class="g2" onclick="poeAns(this,true)">يطول ⬆</button>
+        <button class="g3" onclick="poeAns(this,false)">لا يتغير</button>
+      </div>
+      <p class="note" id="poefb" style="margin-top:8px"></p>
+    </div>
+    <div class="canvasbox">
+      <canvas id="simCv" width="600" height="340"></canvas>
+      <div class="legend">اسحب الكتلة بيدك لتغيير المطال · 🟢 v السرعة · 🟡 F القوة الراجعة · الأشرطة: طاقة حركية/وضعية</div>
+    </div>
+    <div class="canvasbox" style="padding:6px 10px">
+      <canvas id="xtCv" width="600" height="110"></canvas>
+      <p class="note" style="text-align:center; margin-top:3px">x(t) — يُرسم حياً أثناء الاهتزاز</p>
+    </div>
+    <div class="card">
+      <div class="slider-row"><span>صلادة k</span><input type="range" id="kIn" min="20" max="100" value="50" step="5"><b id="kVal"></b></div>
+      <div class="slider-row"><span>كتلة m</span><input type="range" id="mIn" min="0.5" max="3" value="1" step="0.25"><b id="mVal"></b></div>
+      <div class="fml" style="text-align:center">T = 2π√(m/k) = <span id="tVal"></span> ث <span style="color:var(--txt2); font-size:12px">· f = <span id="fVal"></span> هرتز</span></div>
+      <div class="row" style="margin-top:10px">
+        <button class="mini-btn" id="ppBtn" onclick="simPause(this)">⏸ إيقاف</button>
+        <button class="mini-btn" onclick="simReset()">⟲ إعادة</button>
+        <span class="chip" id="simGoal">🎯 اجعل T = ٢٫٠٠ ث تماماً <b id="goalOk"></b></span>
+      </div>
+    </div>
+    <p class="pts-toast" id="epts">🎉 حققت التحدي — +١٠ نقاط ✓</p>
+    <p class="note">التجربة نفسها داخل الدرس (فهرس الدرس ← التجربة) — تعمل أوف لاين وكل عنصر يستجيب فوراً للمس</p>
   </div>
 
   <!-- ═══ حسابي ═══ -->
@@ -666,7 +724,7 @@ function show(id, btn){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));
-  const map={'s-home':0,'s-curriculum':1,'s-lesson':1,'s-train':2,'s-quiz':2,'s-duels':3,'s-summaries':4,'s-cards':4,'s-cram':4,'s-lab':4,'s-account':-1,'s-activate':-1};
+  const map={'s-home':0,'s-curriculum':1,'s-lesson':1,'s-train':2,'s-quiz':2,'s-duels':3,'s-summaries':4,'s-cards':4,'s-cram':4,'s-lab':4,'s-exp':4,'s-account':-1,'s-activate':-1};
   const i=map[id];
   if(i>=0) document.querySelectorAll('.nav button')[i].classList.add('on');
   document.querySelector('.screens').scrollTop=0;
@@ -759,6 +817,118 @@ function cramBlur(){
   document.querySelectorAll('#cramrows .ans').forEach(a=>a.classList.toggle('hid',!hid));
   document.getElementById('crambtn').textContent=hid?'🙈 اختبرني — أخفِ الجوانب':'👁 اكشف الجوانب';
 }
+/* ═══ المحاكاة الحية — النابض المرن (توقّع ← جرّب ← لاحظ) ═══ */
+const toAr=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[+d]).replace('.','٫');
+const sim={m:1, k:50, A:60, px:60, t:0, run:true, hit:false};
+const simCv=document.getElementById('simCv'), sctx=simCv.getContext('2d');
+const xtCv=document.getElementById('xtCv'), xctx=xtCv.getContext('2d');
+let xtBuf=[], lastTs=0, drag=false;
+const simT=()=>2*Math.PI*Math.sqrt(sim.m/sim.k);
+function updRead(){
+  const T=simT();
+  document.getElementById('tVal').textContent=toAr(T.toFixed(2));
+  document.getElementById('fVal').textContent=toAr((1/T).toFixed(2));
+  document.getElementById('kVal').textContent=toAr(sim.k)+' ن/م';
+  document.getElementById('mVal').textContent=toAr(sim.m.toFixed(2))+' كغ';
+  if(!sim.hit && Math.abs(T-2)<=0.05){
+    sim.hit=true; document.getElementById('goalOk').textContent='✓';
+    const tp=document.getElementById('epts'); tp.classList.add('on');
+    setTimeout(()=>tp.classList.remove('on'),1400);
+  }
+}
+function poeAns(btn, ok){
+  document.getElementById('poefb').innerHTML= ok
+   ? '✓ صح! <b>T ∝ √m</b> — مضاعفة الكتلة تطيل الدور ×√٢ فقط (ليست ×٢). لاحظ بنفسك: حرّك منزلق m وشاهد القيمة والمنحنى'
+   : '✏️ انظر الصيغة: <b>T = 2π√(m/k)</b> — الكتلة داخل الجذر ⇒ مضاعفتها تطيل الدور ×√٢. جرّبها الآن على المنزلق ولاحظ المنحنى';
+  btn.parentElement.querySelectorAll('button').forEach(b=>b.style.opacity=.4);
+  btn.style.opacity=1;
+}
+function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+function arrow(c,x1,y1,x2,y2,col){
+  c.strokeStyle=col; c.fillStyle=col; c.lineWidth=3;
+  c.beginPath(); c.moveTo(x1,y1); c.lineTo(x2,y2); c.stroke();
+  const a=Math.atan2(y2-y1,x2-x1);
+  c.beginPath(); c.moveTo(x2,y2);
+  c.lineTo(x2-9*Math.cos(a-0.45), y2-9*Math.sin(a-0.45));
+  c.lineTo(x2-9*Math.cos(a+0.45), y2-9*Math.sin(a+0.45));
+  c.closePath(); c.fill();
+}
+function ebar(c,x,y,w,lab,val,col){
+  c.fillStyle='#16223a'; c.fillRect(x,y,w,12);
+  c.fillStyle=col; c.fillRect(x,y,w*Math.min(Math.max(val,0),1),12);
+  c.fillStyle='#9db0c9'; c.font='700 10px sans-serif'; c.textAlign='left'; c.fillText(lab,x,y-4); c.textAlign='center';
+}
+function drawSim(x){
+  const eqX=300, cy=185, mw=66, mh=54, cx=eqX-x;
+  sctx.clearRect(0,0,600,340);
+  sctx.fillStyle='#243350'; sctx.fillRect(556,70,8,230);
+  for(let i=0;i<9;i++){ sctx.beginPath(); sctx.moveTo(556,80+i*26); sctx.lineTo(547,92+i*26); sctx.strokeStyle='#243350'; sctx.lineWidth=2; sctx.stroke(); }
+  sctx.setLineDash([6,7]); sctx.strokeStyle='#38bdf855';
+  sctx.beginPath(); sctx.moveTo(eqX,58); sctx.lineTo(eqX,302); sctx.stroke(); sctx.setLineDash([]);
+  sctx.fillStyle='#38bdf888'; sctx.font='700 10px sans-serif'; sctx.textAlign='center'; sctx.fillText('موضع التوازن',eqX,50);
+  const x0=cx+mw/2, coils=11, seg=(556-x0)/coils;
+  sctx.strokeStyle='#9db0c9'; sctx.lineWidth=2.5; sctx.beginPath(); sctx.moveTo(x0,cy);
+  for(let i=1;i<coils;i++) sctx.lineTo(x0+seg*i, cy+(i%2? -11:11));
+  sctx.lineTo(556,cy); sctx.stroke();
+  sctx.fillStyle='#2dd4a7'; rr(sctx,cx-mw/2,cy-mh/2,mw,mh,10); sctx.fill();
+  sctx.fillStyle='#06281f'; sctx.font='800 14px sans-serif'; sctx.textAlign='center';
+  sctx.fillText(toAr(sim.m.toFixed(2))+' كغ', cx, cy+5);
+  const u=(x/sim.A)*(x/sim.A);
+  ebar(sctx,18,30,92,'حركية',1-u,'#2dd4a7');
+  ebar(sctx,18,64,92,'وضعية',u,'#38bdf8');
+  const w=2*Math.PI/simT();
+  const v=Math.cos(w*sim.t)*sim.A*w/260, f=-x/sim.A;
+  arrow(sctx,cx,cy-34,cx+v*46,cy-34,'#38bdf8');
+  sctx.fillStyle='#38bdf8'; sctx.font='700 12px sans-serif'; sctx.fillText('v',cx+v*46+(v<0?-14:14),cy-30);
+  arrow(sctx,cx,cy-56,cx+f*42,cy-56,'#fbbf24');
+  sctx.fillStyle='#fbbf24'; sctx.fillText('F',cx+f*42+(f<0?-14:14),cy-52);
+}
+function drawXt(){
+  xctx.fillStyle='#0d1a30'; xctx.fillRect(0,0,600,110);
+  xctx.strokeStyle='#243350'; xctx.beginPath(); xctx.moveTo(0,55); xctx.lineTo(600,55); xctx.stroke();
+  xctx.strokeStyle='#2dd4a7'; xctx.lineWidth=2; xctx.beginPath();
+  xtBuf.forEach((v,i)=>{ const px=600-(xtBuf.length-i)*2.5, py=55-v*43;
+    i? xctx.lineTo(px,py) : xctx.moveTo(px,py); });
+  xctx.stroke();
+  xctx.fillStyle='#9db0c9'; xctx.font='700 10px sans-serif'; xctx.textAlign='left';
+  xctx.fillText('+A',6,14); xctx.fillText('−A',6,106);
+}
+function simPause(b){ sim.run=!sim.run; b.textContent=sim.run?'⏸ إيقاف':'▶ تشغيل'; }
+function simReset(){ sim.t=0; xtBuf=[]; }
+simCv.addEventListener('pointerdown',e=>{
+  const r=simCv.getBoundingClientRect();
+  const gx=(e.clientX-r.left)*600/r.width, gy=(e.clientY-r.top)*340/r.height;
+  if(Math.abs(gx-(300-sim.px))<60 && Math.abs(gy-185)<50){
+    drag=true; sim.run=false; document.getElementById('ppBtn').textContent='▶ تشغيل';
+  }
+});
+simCv.addEventListener('pointermove',e=>{
+  if(!drag)return;
+  const r=simCv.getBoundingClientRect();
+  const gx=(e.clientX-r.left)*600/r.width;
+  sim.px=Math.max(-sim.A,Math.min(sim.A,300-gx));
+  sim.t=Math.asin(Math.max(-1,Math.min(1,sim.px/sim.A)))/(2*Math.PI/simT());
+});
+addEventListener('pointerup',()=>{
+  if(!drag)return; drag=false; sim.run=true;
+  document.getElementById('ppBtn').textContent='⏸ إيقاف';
+});
+document.getElementById('kIn').addEventListener('input',e=>{ sim.k=+e.target.value; updRead(); });
+document.getElementById('mIn').addEventListener('input',e=>{ sim.m=+e.target.value; updRead(); });
+updRead();
+function loop(ts){
+  const dt=Math.min((ts-lastTs)/1000,0.05); lastTs=ts;
+  if(document.getElementById('s-exp').classList.contains('active')){
+    if(sim.run && !drag) sim.t+=dt;
+    const x=sim.A*Math.sin(2*Math.PI*sim.t/simT());
+    sim.px=x;
+    if(sim.run && !drag){ xtBuf.push(x/sim.A); if(xtBuf.length>238) xtBuf.shift(); }
+    drawSim(x); drawXt();
+  }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+function labSoon(n){ alert('عرض نموذجي: تجربة «'+n+'» ستُبنى بنفس منهجية التفاعل — توقّع ← منزلقات حية ← أسهم تُظهر الخفي ← منحنى حي ← تحدٍّ صغير. هذا النموذج يعرض تجربة النابض كاملة فقط.'); }
 function toggleGrp(g){
   const sub=g.nextElementSibling; if(!sub||!sub.classList.contains('subgrp'))return;
   sub.style.display = sub.style.display==='block' ? 'none':'block';
