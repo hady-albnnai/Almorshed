@@ -1,0 +1,95 @@
+# ═══════════════════════════════════════════════════════════════════
+# CI/CD — التطوير بلا بيئة محلية (قرار ٥٤ — docs/14 §١٧)
+# كل دفع: تحليل ساكن + ٣٧ اختباراً + بناء APK يُنزَّل من صفحة Actions.
+# المالك يفحص المحطات بتنزيل الـAPK من المتصفح — بلا Flutter على جهازه.
+# ملاحظة: فحص dart format مقصود حذفه — بوابة الصحة هنا analyze+test حصراً.
+# ═══════════════════════════════════════════════════════════════════
+name: CI
+
+on:
+  push:
+    branches: [arena/01a08df0-almorshed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# دفعة جديدة تلغي التشغيلة الجارية — لا دقائق هدر مكدسة (رفق بسقف 2000/شهر)
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: تحليل + اختبارات
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: نسخة Flutter
+        run: flutter --version
+
+      - name: الحزم
+        working-directory: app
+        run: flutter pub get
+
+      - name: تحليل ساكن
+        working-directory: app
+        run: flutter analyze
+
+      - name: الاختبارات (37)
+        working-directory: app
+        run: flutter test
+
+  apk:
+    name: بناء APK للفحص
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('app/android/**/*.gradle*', 'app/android/**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: الحزم
+        working-directory: app
+        run: flutter pub get
+
+      - name: بناء APK (debug للفحص — توقيع الإطلاق لاحقاً في F8)
+        working-directory: app
+        run: flutter build apk --debug
+
+      - name: رفع الـAPK منتجاً قابلاً للتنزيل
+        uses: actions/upload-artifact@v4
+        with:
+          name: fizya-clash-debug-${{ github.run_number }}
+          path: app/build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 7 # رفق بحد التخزين المجاني 500MB — الفحص بأسبوع كافٍ
+          if-no-files-found: error
