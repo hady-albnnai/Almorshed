@@ -55,6 +55,32 @@ void main() {
     expect(violations, isEmpty);
   });
 
+  test('الحزمة الحقيقية (التأليف): U1C1 النواسات — سليمة ونظيفة لفظياً ومحجوبة عن الأستاذ', () async {
+    const realRoot = AssetRoot(
+      glossaryPath: 'assets/content/glossary.json',
+      packPath: 'assets/content/pack.json',
+    );
+    final realLoader = ContentLoader(root: realRoot);
+    final pack = await realLoader.loadPack();
+
+    expect(pack.units.first.id, 'U1');
+    expect(pack.units.first.title, 'الوحدة الأولى: النواسات');
+    final c1 = pack.units.first.chapters.first;
+    expect(c1.id, 'U1C1');
+    expect(c1.title, 'الاهتزازات التوافقية البسيطة: النواس المرن غير المتخامد');
+    expect(c1.paragraphs, hasLength(6));
+    // الرموز حرفياً من الكتاب (قرار ١٤)
+    expect(c1.paragraphs[1].text, contains('F = -kx'));
+    expect(c1.paragraphs[4].text, contains('T0 = 2π·√(m/k)'));
+
+    // بوابة الأستاذ: لا سؤال مؤلَّف يُفتح قبل مصادقته (قرار ٢٤)
+    expect(pack.questions, hasLength(4));
+    expect(pack.approvedQuestions, isEmpty);
+
+    // نظافة لفظية على القاموس الحقيقي 444/30
+    expect(await realLoader.lintLoadedPack(), isEmpty);
+  });
+
   test('فحص السلامة يرفض حزمة فاسدة (سؤال بفصل غير معروف)', () async {
     ServicesBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
       'flutter/assets',
