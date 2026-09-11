@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
-import 'core/theme/app_colors.dart';
+import 'core/content/content_loader.dart';
+import 'core/content/models.dart';
 import 'core/theme/app_theme.dart';
+import 'features/curriculum/curriculum_screen.dart';
 
 void main() => runApp(const FizyaClashApp());
 
 /// فيزيا كلاش — Clash of Physics
-/// F0.2: هيكل البناء الأولي — الهوية مطبقة (docs/13) والشاشات الفعلية تبدأ في M3
-/// وفق النموذج المرجعي ui-mockup/index.html.
+/// المهمة الحالية F3.2: شاشات المنهاج الحية (المواصفة البصرية: ui-mockup).
 class FizyaClashApp extends StatefulWidget {
-  const FizyaClashApp({super.key});
+  const FizyaClashApp({super.key, this.packLoader});
+
+  /// حقن للاختبارات؛ الافتراضي يحمّل حزمة assets الحقيقية.
+  final Future<ContentPack> Function()? packLoader;
 
   @override
   State<FizyaClashApp> createState() => _FizyaClashAppState();
@@ -18,9 +22,13 @@ class FizyaClashApp extends StatefulWidget {
 class _FizyaClashAppState extends State<FizyaClashApp> {
   ThemeMode _mode = ThemeMode.dark; // docs/13: الداكن أولاً
 
+  late final Future<ContentPack> _packFuture =
+      (widget.packLoader ?? _defaultLoadPack)();
+
+  static Future<ContentPack> _defaultLoadPack() => ContentLoader().loadPack();
+
   void _toggleTheme() => setState(() {
-        _mode =
-            _mode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+        _mode = _mode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
       });
 
   @override
@@ -35,60 +43,55 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
         textDirection: TextDirection.rtl, // التطبيق عربي بالكامل
         child: child ?? const SizedBox.shrink(),
       ),
-      home: _BuildPlaceholder(onToggleTheme: _toggleTheme),
+      home: FutureBuilder<ContentPack>(
+        future: _packFuture,
+        builder: (context, snap) {
+          if (snap.connectionState != ConnectionState.done) {
+            return const _Splash();
+          }
+          if (snap.hasError || !snap.hasData) {
+            return _ErrorView(error: snap.error);
+          }
+          return CurriculumScreen(
+            pack: snap.data!,
+            onToggleTheme: _toggleTheme,
+          );
+        },
+      ),
     );
   }
 }
 
-/// شاشة التحقق من أول بناء — تُستبدل بشاشات M3 عند بدئها.
-class _BuildPlaceholder extends StatelessWidget {
-  const _BuildPlaceholder({required this.onToggleTheme});
+class _Splash extends StatelessWidget {
+  const _Splash();
 
-  final VoidCallback onToggleTheme;
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(body: Center(child: CircularProgressIndicator()));
+  }
+}
+
+class _ErrorView extends StatelessWidget {
+  const _ErrorView({this.error});
+
+  final Object? error;
 
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('فيزيا كلاش', style: txt.titleLarge),
-            Text('Clash of Physics · منهاج الثالث الثانوي العلمي',
-                style: txt.bodyMedium),
-          ],
-        ),
-        actions: [
-          IconButton(
-            tooltip: 'تبديل الوضع الفاتح/الداكن',
-            onPressed: onToggleTheme,
-            icon: const Icon(Icons.brightness_6_outlined),
-          ),
-        ],
-      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.science_outlined,
-                  size: 72, color: AppColors.brandDark),
+              const Icon(Icons.cloud_off_outlined, size: 56),
               const SizedBox(height: 12),
-              Text('أول بناء ناجح ✓', style: txt.titleLarge),
+              Text('تعذر تحميل المحتوى', style: txt.titleLarge),
               const SizedBox(height: 8),
-              Text(
-                'F0.2 — الهيكل يعمل والهوية مطبقة.\n'
-                'الشاشات الفعلية تبدأ في M3 (المنهاج أولاً) بمطابقة النموذج المرجعي.',
-                textAlign: TextAlign.center,
-                style: txt.bodyMedium,
-              ),
-              const SizedBox(height: 20),
-              FilledButton(
-                onPressed: onToggleTheme,
-                child: const Text('جرّب الوضع الفاتح/الداكن'),
-              ),
+              Text('$error',
+                  textAlign: TextAlign.center, style: txt.bodyMedium),
             ],
           ),
         ),
