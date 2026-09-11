@@ -19,7 +19,7 @@ void main() {
     ServicesBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
       'flutter/assets',
       (message) async {
-        final key = utf8.decode(message!);
+        final key = utf8.decode(message!.buffer.asUint8List());
         final file = File('${Directory.current.path}/$key');
         return ByteData.view(
             Uint8List.fromList(utf8.encode(file.readAsStringSync())).buffer);
