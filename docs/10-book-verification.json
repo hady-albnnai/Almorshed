@@ -1,0 +1,63 @@
+{
+ "date": "2026-09-11",
+ "source_file": "sources/book-2026-2027.pdf (owner's copy, on main)",
+ "pages": 288,
+ "pagination_note": "printed page = pdf index mostly; torsion lesson content on printed p21 (archive copy: p22)",
+ "decode_map_owner_copy": {
+  "C/MMCenturyOldGreek": "Γ",
+  "U/MMCenturyOldGreek(+Bold)": "Φ",
+  "f/MMCenturyOldGreekItalic(+BoldItalic)": "ε",
+  "n/MMCenturyOldGreek(+Italic)": "μ",
+  "r/MMCenturyOldGreek": "π",
+  "T/MMExtra(sub<=9)": "Δ(axis)",
+  "h,i,~,{,a/MMCenturyOldGreekItalic": "η,θ,ω,φ,α",
+  "#/MMBinary": "×"
+ },
+ "key_equations_ink_verified": {
+  "p21": [
+   "Γ_η/Δ = −k·θ (×2)",
+   "+Γ_η/Δ = I_Δ·α"
+  ],
+  "p74": [
+   "μ₀ = 4π×10⁻⁷ T·m/A",
+   "B = 4π×10⁻⁷·k·I/l"
+  ],
+  "p77": [
+   "B = 2×10⁻⁷·I/r"
+  ],
+  "p80": [
+   "n = N/l"
+  ],
+  "p109": [
+   "ε = −dΦ/dt (bold)"
+  ]
+ },
+ "P_subscripts_ac_chapter_p136_167": {
+  "P_avg": 13,
+  "P_avg1": 2,
+  "P_avg2": 2,
+  "P_avgc": 1,
+  "P_A": 4,
+  "P_p": 2,
+  "P_s": 2,
+  "P_E": 1,
+  "P_M": 1,
+  "P_evg": 0
+ },
+ "global_symbol_counts_owner_copy": {
+  "ω": 151,
+  "θ": 142,
+  "φ": 96,
+  "Δ_sub": 42,
+  "μ": 40,
+  "α": 36,
+  "ε": 33,
+  "Φ": 30,
+  "Γ": 13,
+  "η": 8
+ },
+ "side_findings": [
+  "book uses k (relative permeability factor) in formulas; official keyword table says μ — small unification question for the teacher",
+  "η size-12 on p163 = transformer efficiency (already in glossary as كفاءة المحولة η)"
+ ]
+}
