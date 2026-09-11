@@ -7,7 +7,7 @@ import 'dart:math' as math;
 ///
 /// أزرارنا الثلاثة ← Grades: 😅 ما عرفتها=1 (again) · 😔 بصعوبة=2 (hard) ·
 /// 😎 أعرفها=3 (good) — استبعاد easy=4 عمداً (قرار ٤٢).
-library;
+
 
 /// حالة الذاكرة لبطاقة واحدة (نموذج DSR).
 class CardMemory {
