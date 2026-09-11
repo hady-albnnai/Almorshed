@@ -249,6 +249,74 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
     <div class="reviewed">✓ محتوى هذا الدرس راجعته: <b>الأستاذ فداء البني</b> — مرجعاً علمياً معتمداً</div>
   </div>
 
+  <!-- ═══ نموذج امتحان كامل (توقيت الوزارة) ═══ -->
+  <div class="screen" id="s-exam">
+    <div class="row" style="margin-bottom:8px">
+      <span class="chip">نموذج بكالوريا — ٤٠٠ درجة</span>
+      <span class="chip" id="examTimer" style="background:#2a1a10; color:#fbbf24; border-color:#7a5a1e">⏱ ١٨٠:٠٠</span>
+    </div>
+    <div class="steps-bar"><span class="st on">س١ اختياري ٤٠</span><span class="st">س٢ ٤٠</span><span class="st">س٣ ٥٠</span><span class="st">س٤ ٣٠</span><span class="st">س٥ مسائل ٢٤٠</span></div>
+    <div class="card">
+      <div class="row"><b style="font-size:12px; color:var(--txt2)">السؤال الأول (٤٠ درجة) — إجباري</b><span class="chip">الوحدة ١</span></div>
+      <p style="font-size:14px; line-height:2; margin-top:8px">المنحنى المجاور يمثل الحركة التوافقية البسيطة لجسم، اقرأ منه:</p>
+      <div class="formula">x(cm) ∿ ~~  Xmax = 10 ، T₀ = 0.4s</div>
+      <p style="font-size:13.5px; line-height:2">أ) اكتب معادلة الموضع بالدالة الجيبية.<br>ب) احسب السرعة القصوى.</p>
+      <div class="note" style="margin-top:6px">📋 أسئلة منقولة عن بناء الوزارة ٢٠٢٦ — كل سؤال في مكانه ووزنه</div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn ghost" style="width:auto; padding:10px 16px; margin:0">← السابق</button>
+        <button class="btn" style="width:auto; padding:10px 16px; margin:0" onclick="show('s-examresult')">التالي →</button>
+      </div>
+    </div>
+    <p class="note" style="text-align:center">التقديم يعمل أوف لاين — التوقيت يحفظ موضعك إن أغلقت التطبيق</p>
+  </div>
+
+  <!-- ═══ نتيجة النموذج ═══ -->
+  <div class="screen" id="s-examresult">
+    <div class="logo-block" style="padding-top:20px">
+      <div style="font-size:40px">📊</div>
+      <div style="font-size:22px; font-weight:800">نتيجتك: <span style="color:var(--brand)">٣٤٢ / ٤٠٠</span></div>
+      <p class="note">مقارنة بالسلّم الوزاري الرسمي — درجة بدقة نصفي درجة</p>
+    </div>
+    <div class="card"><b style="font-size:13px">تفصيل الأسئلة</b>
+      <div class="steps" style="margin-top:8px">
+        س١: ٣٥/٤٠ · س٢: ٣٥/٤٠ · س٣: ٤٥/٥٠ · س٤: ٢٧/٣٠<br>
+        س٥ (المسائل): <b>٢٠٠/٢٤٠</b> — الفقد كله أخطاء حسابية، طريقتك صحيحة ✓
+      </div>
+      <div class="progress" style="margin-top:8px"><i style="width:85.5%"></i></div>
+    </div>
+    <div class="card"><b style="font-size:13px">🔎 تشخيص المحرك</b>
+      <p class="note" style="margin-top:6px">ضعفك الوحيد: تحويل الوحدات في مسألة الموائع — أضفنا ٣ أسئلة عليها لدفعتك القادمة</p></div>
+    <button class="btn ghost" onclick="show('s-train')">تدريب موجّه على نقاط الضعف</button>
+    <button class="btn ghost" onclick="show('s-home')">الرئيسية</button>
+  </div>
+
+  <!-- ═══ أخطائي ═══ -->
+  <div class="screen" id="s-mistakes">
+    <h2 class="sec">أخطائي <span class="chip">١٤ سؤالاً</span></h2>
+    <p class="note">أرشيف كل سؤال أخطأت فيه — المراجعة الذكية قبل الامتحان</p>
+    <div class="card click" onclick="show('s-quiz')"><div class="row"><b style="font-size:13px">قوة راجعة على نابض</b><span class="chip">×٣ أخطأت</span></div>
+      <p class="note" style="margin-top:4px">الوحدة ١ · آخر خطأ: أمس — السبب: عدم تحويل cm إلى m</p></div>
+    <div class="card click"><div class="row"><b style="font-size:13px">التواتر العتبة f<sub>s</sub></b><span class="chip">×٢</span></div>
+      <p class="note" style="margin-top:4px">الوحدة ٤ · آخر خطأ: قبل ٣ أيام</p></div>
+    <div class="card click"><div class="row"><b style="font-size:13px">قانون فاراداي للتدفق</b><span class="chip">×١</span></div>
+      <p class="note" style="margin-top:4px">الوحدة ٢ · أتقنته في آخر محاولتين — يُخفى قريباً تلقائياً</p></div>
+    <button class="btn">ابدأ مراجعة الأخطاء (١٤)</button>
+    <p class="note" style="text-align:center; margin-top:8px">السؤال الذي تجيب عنه صح مرتين متتاليتين يخرج من الأرشيف تلقائياً</p>
+  </div>
+
+  <!-- ═══ نهاية دفعة التدريب + ولّد المزيد ═══ -->
+  <div class="screen" id="s-batchend">
+    <div class="logo-block" style="padding-top:40px">
+      <div style="font-size:48px">🎯</div>
+      <div style="font-size:22px; font-weight:800">٨ / ١٠ صحيحة</div>
+      <p class="note">دفعة اليوم انتهت — لكن البنك لا ينتهي أبداً</p>
+    </div>
+    <button class="btn" onclick="show('s-quiz')">🔄 ولّد المزيد (١٠ أسئلة جديدة)</button>
+    <button class="btn ghost" onclick="show('s-mistakes')">راجع أخطاء هذه الدفعة (٢)</button>
+    <button class="btn ghost" onclick="show('s-duels')">حوّلها لتحدٍّ لصديقك ⚔️</button>
+    <p class="note" style="text-align:center; margin-top:10px">الأسئلة الجديدة تولّد بأرقام مختلفة ونفس بنية الوزارة — تعمل أوف لاين من المخزون</p>
+  </div>
+
   <!-- ═══ نهاية الدرس ═══ -->
   <div class="screen" id="s-lessonend">
     <div class="logo-block" style="padding-top:50px">
@@ -278,8 +346,8 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
       <div class="progress"><i style="width:100%"></i></div></div>
     <button class="btn" onclick="show('s-quiz')">ابدأ التدريب (١٠ أسئلة)</button>
     <h2 class="sec">أو</h2>
-    <div class="card click"><div class="row"><span>🕐 <b>نموذج امتحان كامل</b></span><span class="note">٤٠٠ درجة · بتوقيت الوزارة</span></div></div>
-    <div class="card click"><div class="row"><span>❌ <b>أخطائي</b></span><span class="chip">١٤ سؤالاً</span></div></div>
+    <div class="card click" onclick="show('s-exam')"><div class="row"><span>🕐 <b>نموذج امتحان كامل</b></span><span class="note">٤٠٠ درجة · بتوقيت الوزارة</span></div></div>
+    <div class="card click" onclick="show('s-mistakes')"><div class="row"><span>❌ <b>أخطائي</b></span><span class="chip">١٤ سؤالاً</span></div></div>
   </div>
 
   <!-- ═══ سؤال ═══ -->
@@ -308,6 +376,7 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
         </div>
       </div>
       <button class="btn ghost" style="margin-top:8px" onclick="alert('شكراً — سيصل البلاغ للمراجعة')">🚩 بلّغ عن خطأ</button>
+      <button class="btn ghost" style="margin-top:8px" onclick="batchEnd()">إنهاء الدفعة (١٠/١٠) ←</button>
     </div>
   </div>
 
@@ -412,6 +481,7 @@ function lpane(k, btn){
   ['a','b','c','d','e'].forEach(x=>document.getElementById('lp-'+x).classList.remove('on'));
   document.getElementById('lp-'+k).classList.add('on');
 }
+function batchEnd(){ show('s-batchend'); }
 function stepNext(){ alert('الانتقال للفقرة ٢: معادلة الموضع x(t) = Xmax·sin(ω₀t + φ) — بالعرض الحقيقي تتبدل البطاقة بانزلاق سلس'); }
 function toggleIdx(){ document.getElementById('idxPanel').classList.toggle('open'); }
 function toggleGrp(g){
