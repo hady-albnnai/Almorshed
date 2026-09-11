@@ -39,14 +39,14 @@
 | **Drift (SQLite)** قاعدة الحقيقة المحلية | دليل 2026 «Maintenance-First»: «ابدأ بـ Drift»؛ Isar حمرُ صيانة، Hive للإعدادات فقط [1](https://luci-studio.com/blog/the-flutter-local-database-landscape-in-2026-a-maintenance-first-guide-fe6d267c/) [2](https://www.fluttersolution.com/2026/08/flutter-interview-prep-22-offline-first.html) |
 | نمط **اكتب محلياً ← زامن لاحقاً** + طابور عمليات + WorkManager | دليل Offline-First الشامل 2026 [3](https://flutterstudio.dev/blog/offline-first-flutter-drift.html) |
 | **Supabase**: Postgres + Auth + **Realtime Broadcast/Presence** + Edge Functions | Broadcast ‏<50ms للـgame state حصراً؛ Presence للتتبع؛ قنوات خاصة إلزامية بإذن RLS على `realtime.messages` [4](https://supabase.com/docs/guides/realtime/authorization) [5](https://www.agilesoftlabs.com/blog/2026/05/supabase-realtime-in-production-what) |
-| **ed25519_edwards** (Dart خالص) لتوقيع الجهاز والفحص المحلي للكود | متوافق Dart 3، كل المنصات [6](https://fluttergems.dev/packages/ed25519_edwards/) |
+| **cryptography** (Dart — Ed25519) لتوقيع الجهاز والفحص المحلي؛ ed25519_edwards احتياط (متجمّدة 0.3.1 — 2021) ومتجهات F1.3 الذهبية تضمن تكافؤ التوقيعات [6](https://fluttergems.dev/packages/ed25519_edwards/) |
 | Dart int الأصلي = 64 بت على الجوال (بتّي مطابق لمرجع BigInt) | يخدم محرك docs/12 الحتمي — تؤكده متجهات golden في F1.3 |
 
 **ممنوعات معمارية:** قراءة UI من الشبكة مباشرة (القراءة من Drift دائماً) · `Math.random`/`Random()` في أي مسار لعبة · مفاتيح service_role في التطبيق · قنوات Realtime عامة في الإنتاج.
 
 ## ٢. الحزم المعتمدة (pubspec عند F0.2 — تُثبَّت أحدث نسخة متوافقة)
 
-`supabase_flutter` · `flutter_riverpod` · `drift` + `drift_dev` + `build_runner` + `sqlcipher_flutter_libs` (تشفير القاعدة) · `ed25519_edwards` · `crypto` (SHA-256) · `workmanager` (مزامنة خلفية) · `connectivity_plus` · `flutter_secure_storage` (مفاتيح الجهاز) · `mobile_scanner` (QR) · `nearby_connections` (يُتحقق من صحته ومستوى صيانته عند F5.4 — خطة بديلة: Hotspot يدوي قرار ٢٥) · `flutter_math_fork` (معادلات — **بوتقة اختبار S1–S4** قبل الاعتماد) · `shared_preferences` · `http`.
+`supabase_flutter` · `flutter_riverpod` · `drift` + `drift_dev` + `build_runner` + `sqlcipher_flutter_libs` (تشفير القاعدة) · `cryptography` (Ed25519 — صيانة نشطة) · `crypto` (SHA-256) · `workmanager` (مزامنة خلفية) · `connectivity_plus` · `flutter_secure_storage` (مفاتيح الجهاز) · `mobile_scanner` (QR) · `nearby_connections` (يُتحقق من صحته ومستوى صيانته عند F5.4 — خطة بديلة: Hotspot يدوي قرار ٢٥) · `flutter_math_fork` (معادلات — **بوتقة اختبار S1–S4** قبل الاعتماد) · `shared_preferences` · `http`.
 
 ## ٣. هيكل المستودع المستهدف (يُبنى تدريجياً في نفس repo «Almorshed»)
 
@@ -132,19 +132,19 @@ Almorshed/
 - [ ] **F4.2** الترحيلات §٥ كاملة + RLS على كل جدول (اختبار anon/authenticated سالب وإيجابي)
 - [ ] **F4.3** Auth: دخول مجهول عند التفعيل + ربط profile/device (بصمة الجهاز)
 - [ ] **F4.4** `license_activate` + سجل licenses من أداة المكتب (F6.1) + إلغاء/تجديد
-- [ ] **F4.5** محرك المزامنة: طابور العمليات → `verify_xp_events` (فحص seq/hashtree/توقيع الجهاز المسجل) → إيداع الدوري؛ مزامنة خلفية WorkManager + عند الاتصال
+- [ ] **F4.5** محرك المزامنة: طابور العمليات → `verify_xp_events` (فحص seq/hashtree/توقيع الجهاز المسجل) → إيداع الدوري؛ المشغّل **الأساسي أمامي** (فتح التطبيق/عودة الاتصال — OEMs شاومي/هواوي/OPPO تقتل الخلفية [§١٥-أ]) + WorkManager جهد إضافي فقط
 - [ ] **F4.6** `league_rollup` الأسبوعي (تجميعات ~٣٠ بمستوى متقارب) + شاشة دوري فيزيا كلاش (بنفسجي docs/13) + موسم ينتهي قبل الامتحان بشهر
 
 ### M5 — التحديات الحية
 - [ ] **F5.1** `duel_finish` السيرفر-المرجعي: إعادة توليد الجلسة من البذرة وتصحيح الإجابات دونه — أي تعارض يرفض النتيجة
 - [ ] **F5.2** قنوات خاصة `duel:{id}`: Presence (لوبي) + Broadcast (إجابات <50ms) + `duel_access` RLS
 - [ ] **F5.3** تدفق المبارزة الكامل بالواجهات (إنشاء→لوبي→لعب بشريطي تقدم وسلسلة ×٢/×٣→نتيجة+ثأر+مشاركة) — مطابقة النموذج وقرار ٤١
-- [ ] **F5.4** النقلية المحلية: nearby_connections (تحقق صيانة عند المهمة؛ fallback Hotspot قرار ٢٥) + تحدي QR بالبذرة — مبدّل النقلية التلقائي
+- [ ] **F5.4** النقلية المحلية: nearby_connections ببوابة فحص GMS (هواوي HMS بلا GMS ⇒ البديل فوراً)؛ fallback Hotspot قرار ٢٥ + تحدي QR بالبذرة — مبدّل النقلية التلقائي
 - [ ] **F5.5** اختبار عادل: نفس البذرة على جهازين فعليين ⇒ نفس الأسئلة والنتائج عبر النقليات الثلاث
 
 ### M6 — الأدوات الإدارية
 - [ ] **F6.1** أداة المكتب (ويب محلية/CLI): إصدار أكواد موقّعة + طباعة + إلغاء — POS قرار ٣٥
-- [ ] **F6.2** لوحة الأستاذ: مراجعة المحتوى (حفظ تلقائي/استئناف/فلترة/زر واتساب قرار ١٩) مرتبطة بخط F2
+- [ ] **F6.2** لوحة الأستاذ: مراجعة المحتوى (حفظ تلقائي/استئناف/فلترة/زر واتساب قرار ١٩) مرتبطة بخط F2 — منصتها: ويب مستضاف مع OTP بريد للأستاذ (تُحدَّد نهائياً عند بدء F6.2)
 - [ ] **F6.3** الشهادات: `cert_issue` نهاية موسم (🥇سنتان/🥈سنة + المرونة قرار ٤٠ + شهادة موقعة بشعار loraneem-tech)
 - [ ] **F6.4** صفحة «عن التطبيق» النهائية (شارة الأستاذ + المطور + الإصدار) — عند توفر الشعار يُستبدل النصي
 
@@ -156,8 +156,9 @@ Almorshed/
 
 ### M8 — الإطلاق
 - [ ] **F8.1** حزمة `com.loraneemtech.fizyaclash` + أيقونة/شعار نهائي + لقطات + سياسة خصوصية (اسم المتجر: فيزيا كلاش — Clash of Physics)
-- [ ] **F8.2** تجريبي مغلق (طلاب مختارون) ← إصلاحات ← إنتاج (Play أو توزيع مكتب مباشر حسب قرار صاحب المشروع حينها)
+- [ ] **F8.2** تجريبي مغلق (طلاب مختارون) ← إصلاحات ← إنتاج — **التوزيع المباشر APK من المكتب هو القناة الأساسية** (Play Console مقيد لسوريا حتى فبراير 2026 [§١٥-ج]) وPlay فرصة عند انفتاحه
 - [ ] **F8.3** خطة تشغيل: نسخ احتياطي Supabase + مراقبة logs + قناة دعم (مكتبكم)
+- [ ] **F8.4** تحديث ذاتي للـAPK (**قبل التجريبي المغلق**): مقارنة النسخة بجدول `app_versions` ← تنزيل ← تثبيت — لأن التوزيع المباشر بلا متجر
 
 ### M9 — ما بعد v1 (مؤجل بقرار، لا يفتح قبل F8.3)
 - [ ] **F9.1** معايرة FSRS الشخصية (~1000 مراجعة) · **F9.2** تجميد السلسلة كعملة · **F9.3** أرشيف «أبطال المواسم» · **F9.4** OCR امتحانات 2013–2017
@@ -178,6 +179,9 @@ Almorshed/
 | تعارض مزامنة | LWW + معاملات Drift + سجل تعارضات للفحص |
 | استعادة بيئة Git (حدث مرتين) | وصفة §١٠ الملحق + فحص ls-remote بعد كل دفع |
 | اعتماد على CDN للخطوط | ممنوع — الخطوط داخل assets (docs/13) |
+| OEM يقتل المزامنة الخلفية (MIUI/هواوي) | المشغّل الأمامي أساس (F4.5) + إرشاد استثناء المستخدم |
+| توقف مشروع Supabase المجاني (خمول ٧ أيام) | ping مجدول أو Pro ‏$25 — قرار ميزانية عند F4.1 |
+| ed25519_edwards متجمّدة | الحزمة `cryptography` النشطة أساس + متجهات تكافؤ F1.3 |
 
 ## ٩. حوكمة التغيير
 أي تعديل على هذه الخطة (إضافة مهمة/تغيير ترتيب/تقنية جديدة) = **قرار جديد برقم في 01-PLAN** مع بحثه إن كانت ميزة — ثم ينعكس هنا في §٦ و§١١ فوراً.
@@ -215,6 +219,25 @@ Almorshed/
 - **أُنجز حتى الآن:** التخطيط الكامل (قرارات ١–٤٨) + النموذج المرجعي ٢٣ شاشة + docs/12 + docs/13 + هذه الخطة. لم يبدأ أي بناء فعلي.
 - **التالي:** F0.1 (بناء مصفوفة التتبع التفصيلية) ثم F0.2.
 - **معوّقات:** شعار loraneem-tech (بانتظار رفع صاحب المشروع — لا يسدّ M0–M3).
+- **تدقيق تنفيذي مكتمل:** 2026-09-11 — النتائج والتعديلات في §١٥ (قرار ٤٩).
 
 ## ١٤. المعوّقات (سجل حي — يُمسح عند الحل)
 - (لا شيء حالياً)
+
+---
+
+## ١٥. التدقيق التنفيذي المعمّق (2026-09-11 — قرار ٤٩)
+
+> تدقيق ما قبل البناء طلب صاحب المشروع: «افحص خطتنا بعد بحث عميق عن أي مشكلة تنفيذية» — كل بند: المشكلة ← الدليل ← المعالجة (المهام المعدلة أعلاه تعكسها).
+
+| # | المشكلة التنفيذية | الدليل | المعالجة |
+|---|---|---|---|
+| أ | **أجهزة السوق تقتل المزامنة الخلفية**: شاومي/هواوي/OPPO (غالبية طلابنا) تؤخر WorkManager ساعات أو توقفه كلياً — «Production Android ≠ Google Android» | [Beyond Doze — OEM Realities 2026](https://proandroiddev.com/beyond-doze-building-reliable-background-execution-on-modern-android-including-oem-realities-5fa0a6e05672) + [SO — Chinese ROMs](https://stackoverflow.com/questions/59906497/work-manager-on-chinese-roms-like-xiaomi-and-oppo-when-under-battery-optimizati) | F4.5: المشغّل الأمامي أساس (فتح التطبيق/عودة الاتصال) — WorkManager إضافي فقط + إرشاد استثناء بطارية اختياري |
+| ب | **Nearby يحتاج GMS**: هواوي HMS بلا خدمات غوغل لا تشغّله؛ وحتى أجهزة GMS تعطّلت بتحديثات Play Services | [SO — Huawei no GMS](https://stackoverflow.com/questions/64970650/error-compiling-my-application-flutter-application-on-a-huawei-p40-lite-without) + [SO — nearby breakage](https://stackoverflow.com/questions/77120208/flutter-nearby-connections) | F5.4: بوابة فحص GMS قبل التفعيل — عدم التوفر ⇒ Hotspot/QR (قرار ٢٥) مباشرة |
+| ج | **Play Console ما زال مقيداً لسوريا**: فشل تسجيل مطور (الدفع + غياب سوريا من قائمة الدول) حتى فبراير 2026 — رغم عودة Play Store تدريجياً منذ يناير 2026 بعد رفع العقوبات (أغسطس 2025) | [unblocksyria — Play Console](https://unblocksyria.com/en/services/google-play-console) + [Daily Sabah — عودة الخدمات](https://www.dailysabah.com/business/tech/google-services-start-resuming-in-syria-after-years-long-ban) + [ClefinCode — رفع العقوبات](https://clefincode.com/blog/global-digital-vibes/en/from-isolation-to-integration-sanctions-lifting-on-syria-the-global-rise-of-syrian-expertiseandmarketpotential) | F8.2: التوزيع المباشر APK قناة أساسية (يتكامل مع POS المكتب أصلاً) + **F8.4 جديدة**: تحديث ذاتي داخل التطبيق + مراقبة انفتاح Console |
+| د | **مشروع Supabase المجاني يتوقف** بعد ٧ أيام خمول قاعدة حتى ضغط Resume يدوياً — إجازة صيفية صامتة = دوري معطّل | [Layerbase — pause policy](https://layerbase.com/blog/sleep-vs-pause-vs-archive) + [ITPath — keep-alive options](https://www.itpathsolutions.com/supabase-free-tier-limits) | F4.1: ping مجدول (Edge Function مجدولة) أو ترقية Pro ‏$25/شهر — قرار ميزانية لصاحب المشروع عند بدء M4 |
+| هـ | **حزمة ed25519_edwards متجمّدة** (آخر إصدار 0.3.1 — سبتمبر 2021) خطر صيانة على ميزة أمنية حاكمة | [pub.dev — السجل](https://pub.dev/packages/ed25519_edwards/versions) | الأساسية صارت `cryptography` النشطة؛ الاحتياطية تبقى؛ F1.3 يوسّع المتجهات لتشمل تكافؤ التواقيع بين الحزمتين |
+| و | **جهازان لكل كود + LWW**: مراجعات بطاقات متزامنة من الجهازين قد تفقد إحداها (آخر كتابة يغلب) | تحليل داخلي — نمط معروف بالأوف لاين أولاً [flutterstudio](https://flutterstudio.dev/blog/offline-first-flutter-drift.html) | v1 مقبولة (الغالبية جهاز واحد)؛ v1.1: سجل مراجعات append-only يُعاد حساب FSRS منه — مرشحة في M9 |
+| ز | **تنبيهات السلسلة غائبة عن الخطة** (حلقة الاحتفاظ الأقوى عند Duolingo) | تحليل تغطية المهام | مقترحة v1.1: إشعارات محلية (flutter_local_notifications + AlarmManager تقريبي — بلا FCM لضمان الأوف لاين) — تُعتمد بقرار جديد حينها |
+
+**الخلاصة:** لا مشكلة تُلغي الخطة — ٤ تعديلات مهمة (F4.5، F5.4، F8.2، F8.4) + قرارا ميزانية مؤجلان (Supabase Pro، تنبيهات السلسلة). الخطة جاهزة للتنفيذ.
