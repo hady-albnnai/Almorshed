@@ -109,6 +109,17 @@ h2.sec{font-size:16px; margin:14px 0 8px; color:var(--brand2)}
 img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
 .foot-note{text-align:center; font-size:10px; color:var(--txt2); margin-top:14px; line-height:1.8}
 /* شريط أدوات العرض */
+.steps-bar{display:flex; gap:4px; margin-bottom:10px}
+.steps-bar .st{flex:1; text-align:center; font-size:10px; color:var(--txt2); background:var(--card); border:1px solid var(--line); border-radius:8px; padding:6px 2px}
+.steps-bar .st.on{background:#123f38; color:var(--brand); border-color:var(--brand); font-weight:700}
+.idx-btn{background:var(--card); border:1px solid var(--line); color:var(--brand2); border-radius:10px; padding:6px 12px; font-size:12px; cursor:pointer}
+.index-panel{display:none; background:#0d1830; border:1px solid var(--line); border-radius:14px; padding:12px; margin:8px 0 12px}
+.index-panel.open{display:block}
+.index-panel .grp{padding:9px 10px; border-radius:10px; background:var(--card); margin:6px 0; font-size:12.5px; cursor:pointer}
+.index-panel .subgrp{padding:4px 12px}
+.index-panel .it{padding:8px 10px; font-size:12.5px; color:var(--txt2); border-radius:8px; cursor:pointer; margin:3px 0}
+.index-panel .it.on{color:var(--brand); background:rgba(45,212,167,.08)}
+.readcard{border-color:#1d4b57}
 .mock-tools{position:fixed; top:10px; left:10px; z-index:99; display:flex; gap:6px}
 .mock-tools button{background:#16223a; color:#9db0c9; border:1px solid #243350; border-radius:10px; padding:7px 12px; font-size:11px; cursor:pointer}
 </style>
@@ -178,7 +189,19 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
 
   <!-- ═══ الدرس (طبقات + تجربة داخلية) ═══ -->
   <div class="screen" id="s-lesson">
-    <p class="note">الوحدة ١ ← الفصل ١ · <b>الحركة التوافقية البسيطة</b> (ص٦)</p>
+    <div class="row"><p class="note">الوحدة ١ ← الفصل ١ · <b>الحركة التوافقية البسيطة</b> (ص٦)</p><button class="idx-btn" onclick="toggleIdx()">☰ الفهرس</button></div>
+    <div class="index-panel" id="idxPanel">
+      <b style="font-size:13px; color:var(--brand2)">فهرس الوحدة الأولى</b>
+      <div class="grp" onclick="toggleGrp(this)">▾ الفصل ١ · الحركة التوافقية البسيطة <span class="chip">ص٦</span></div>
+      <div class="subgrp">
+        <div class="it on">١-١ الاهتزاز والتوافقي البسيط</div>
+        <div class="it">١-٢ الطاقة في الاهتزاز</div>
+      </div>
+      <div class="grp" onclick="toggleGrp(this)">▸ الفصل ٢ · نوّاس الفتل <span class="chip">ص٢٠</span></div>
+      <div class="grp" onclick="toggleGrp(this)">▸ الفصل ٣ · النوّاس الثقلي <span class="chip">ص٢٨</span></div>
+      <div class="grp" onclick="toggleGrp(this)">▸ الفصل ٤ · ميكانيك الموائع <span class="chip">ص٤٢</span></div>
+      <div class="grp" onclick="toggleGrp(this)">▸ الفصل ٥ · النسبية الخاصة <span class="chip">ص٥٤</span></div>
+    </div>
     <div class="tabs">
       <button class="on" onclick="lpane('a',this)">المنهاج</button>
       <button onclick="lpane('b',this)">الشرح</button>
@@ -194,17 +217,20 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
       </div>
     </div>
     <div class="pane" id="lp-b">
-      <div class="card"><p style="font-size:13.5px; line-height:2.1">تخيّل نابضاً معلّقاً بسقف، علّقنا فيه كتلة وأزحناها مسافة صغيرة عن مركز اهتزازها
-        ثم تركناها — النابض يسحبها راجعاً، فتتجاوز المركز وتعود… وهكذا تتولّد دورة الاهتزاز.
-        القوة دائماً نحو المركز (لهذا إشارتها سالبة).</p>
+      <div class="steps-bar"><span class="st on">١ القوة الراجعة</span><span class="st">٢ معادلة الموضع</span><span class="st">٣ الدور والتردد</span><span class="st">٤ الطاقة</span></div>
+      <div class="card readcard">
+        <p style="font-size:14px; line-height:2.2">تخيّل نابضاً معلّقاً بسقف، علّقنا فيه كتلة وأزحناها مسافة صغيرة عن مركز اهتزازها ثم تركناها —
+        النابض يسحبها راجعاً نحو المركز، فتتجاوزه وتعود… وهكذا تتولّد دورة الاهتزاز.</p>
         <div class="formula">F = −k·x</div>
-        <p class="note">k: ثابت صلابة النابض (N/m) · x: الإزاحة عن مركز الاهتزاز (m)</p></div>
-      <div class="exp-box">
-        <div class="row"><b style="font-size:13px">🧪 تجربة تفاعلية: النابض المرن</b><span class="chip">داخل الدرس</span></div>
-        <div class="exp-anim"><span class="spring">⬛〰️</span></div>
-        <div class="slider-row"><span>الكتلة m</span><input type="range" min="1" max="10" value="4"><span>4kg</span></div>
-        <div class="slider-row"><span>الصلابة k</span><input type="range" min="1" max="10" value="6"><span>6N/m</span></div>
-        <p class="note" style="margin-top:6px">لاحظ: زد k ⇒ الاهتزاز أسرع (الدور T أصغر)</p>
+        <div class="card" style="background:#0e2236; border-color:#1d4b57; padding:10px">
+          <b style="color:var(--brand); font-size:12px">📌 خلاصة الفقرة:</b>
+          <p class="note" style="margin-top:4px">القوة دائماً نحو مركز الاهتزاز — لهذا إشارتها سالبة. وكلما زادت الإزاحة زادت القوة.</p>
+        </div>
+        <div class="row" style="margin-top:10px">
+          <button class="btn ghost" style="width:auto; padding:9px 14px; margin:0">🔊 اسمعني</button>
+          <span class="note">الفقرة ١ من ٤</span>
+        </div>
+        <button class="btn" onclick="stepNext()">التالي ←</button>
       </div>
     </div>
     <div class="pane" id="lp-c"><div class="card"><p style="font-size:13px; line-height:2.2">• الاهتزاز دوري حول مركز الاهتزاز
@@ -221,6 +247,19 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
         <button class="btn" onclick="show('s-quiz')">ابدأ الأسئلة</button></div>
     </div>
     <div class="reviewed">✓ محتوى هذا الدرس راجعته: <b>الأستاذ فداء البني</b> — مرجعاً علمياً معتمداً</div>
+  </div>
+
+  <!-- ═══ نهاية الدرس ═══ -->
+  <div class="screen" id="s-lessonend">
+    <div class="logo-block" style="padding-top:50px">
+      <div style="font-size:52px">🎉</div>
+      <div style="font-size:22px; font-weight:800; margin-top:8px">انتهى الدرس!</div>
+      <p class="note" style="margin-top:6px">قرأت ٤ فقرات · ٦ دقائق · خلاصة الفقرات محفوظة في الملخصات</p>
+    </div>
+    <button class="btn" onclick="show('s-lesson')">← الدرس التالي: الطاقة في الاهتزاز</button>
+    <button class="btn ghost" onclick="show('s-quiz')">أسئلة هذا الدرس (١٠)</button>
+    <button class="btn ghost" onclick="show('s-curriculum')">العودة لفهرس الوحدة</button>
+    <div class="reviewed">✓ راجعته: <b>الأستاذ فداء البني</b></div>
   </div>
 
   <!-- ═══ التدريب: اختيار الوحدات ═══ -->
@@ -372,6 +411,13 @@ function lpane(k, btn){
   btn.classList.add('on');
   ['a','b','c','d','e'].forEach(x=>document.getElementById('lp-'+x).classList.remove('on'));
   document.getElementById('lp-'+k).classList.add('on');
+}
+function stepNext(){ alert('الانتقال للفقرة ٢: معادلة الموضع x(t) = Xmax·sin(ω₀t + φ) — بالعرض الحقيقي تتبدل البطاقة بانزلاق سلس'); }
+function toggleIdx(){ document.getElementById('idxPanel').classList.toggle('open'); }
+function toggleGrp(g){
+  const sub=g.nextElementSibling; if(!sub||!sub.classList.contains('subgrp'))return;
+  sub.style.display = sub.style.display==='block' ? 'none':'block';
+  g.textContent = g.textContent.startsWith('▸') ? g.textContent.replace('▸','▾') : g.textContent.replace('▾','▸');
 }
 function tg(el){
   const chips=document.querySelectorAll('#unitChips .u');
