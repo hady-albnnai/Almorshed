@@ -1,0 +1,23 @@
+name: fizya_clash
+description: "فيزيا كلاش — Clash of Physics · منهاج الثالث الثانوي العلمي · loraneem-tech"
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+# قرار ٥١: الحزم تُضاف تدريجياً مع مهام الاستخدام (M3/M4) — أماناً لأول بناء.
+# هذا الملف مقصود أن يكون الحد الأدنى الذي يضمن نجاح أول APK على جهاز صاحب المشروع.
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  # خطا Cairo وTajawal يُعلَنان هنا في F0.3 بعد وضع ملفاتهما (app/BUILD.md §الخطوط)
