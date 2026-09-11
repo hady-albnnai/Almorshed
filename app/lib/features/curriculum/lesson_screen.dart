@@ -162,21 +162,27 @@ class _IndexPanel extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             for (var i = 0; i < chapter.paragraphs.length; i++)
-              ListTile(
-                dense: true,
-                leading: i == current
-                    ? const Icon(Icons.check_circle_outline, size: 18)
-                    : const Icon(Icons.radio_button_unchecked, size: 18),
-                title: Text(
-                  'الفقرة ${ArabicNumber.from(i + 1)} — '
-                  '${_short(chapter.paragraphs[i].summary)}',
-                  style: txt.bodyMedium?.copyWith(
-                    fontWeight: i == current ? FontWeight.w800 : null,
+              // ⚠️ Material شفاف إلزامي: الحاوية الأم ColoredBox (لون السطح)،
+              // وListTile يرسم الخلفية/الحبر على أقرب Material أب — بدونه
+              // الضربات تنرسم تحت الصندوق = استثناء إطار «may be invisible».
+              Material(
+                type: MaterialType.transparency,
+                child: ListTile(
+                  dense: true,
+                  leading: i == current
+                      ? const Icon(Icons.check_circle_outline, size: 18)
+                      : const Icon(Icons.radio_button_unchecked, size: 18),
+                  title: Text(
+                    'الفقرة ${ArabicNumber.from(i + 1)} — '
+                    '${_short(chapter.paragraphs[i].summary)}',
+                    style: txt.bodyMedium?.copyWith(
+                      fontWeight: i == current ? FontWeight.w800 : null,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+                  onTap: () => onPick(i),
                 ),
-                onTap: () => onPick(i),
               ),
             const Divider(height: 1),
           ],
