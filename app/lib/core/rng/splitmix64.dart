@@ -24,8 +24,8 @@ class SplitMix64 {
 
   static int _mix(int s) {
     var z = s;
-    z = ((z ^ (z.ushr(30))) * _m1) & _mask;
-    z = ((z ^ (z.ushr(27))) * _m2) & _mask;
-    return (z ^ (z.ushr(31))) & _mask;
+    z = ((z ^ (z >>> 30)) * _m1) & _mask;
+    z = ((z ^ (z >>> 27)) * _m2) & _mask;
+    return (z ^ (z >>> 31)) & _mask;
   }
 }
