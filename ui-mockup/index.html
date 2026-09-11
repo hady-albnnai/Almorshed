@@ -179,6 +179,7 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
 
   <!-- ═══ التفعيل ═══ -->
   <div class="screen" id="s-activate">
+    <p class="note" style="text-align:center; margin-bottom:6px">🔓 هذه الشاشة تظهر <b>مرة واحدة</b> عند أول فتح للتطبيق — بعدها تُدار من «حسابي»</p>
     <div class="logo-block">
       <div class="lm">loraneem<b>-tech</b></div>
       <div class="tag">CODE · AI · LIMITLESS EVOLUTION</div>
@@ -186,10 +187,25 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
       <div style="font-size:24px; font-weight:800; margin-top:6px">أهلاً بك في «المرشد»</div>
       <p class="note" style="margin-top:8px">أدخل كود التفعيل الذي حصلت عليه من مكتبنا<br>لفتح المنهاج الكامل وبنك الأسئلة</p>
     </div>
-    <input class="input" placeholder="XXXXX-XXXXX" value="K7M2P-9QW4X">
-    <button class="btn" onclick="show('s-home')">تفعيل ✓</button>
+    <div id="actForm">
+      <input class="input" id="actIn" placeholder="XXXXX-XXXXX-XXXXX" value="K7M2P-9QW4X-4TR8N" maxlength="17" oninput="actClear()" style="text-align:center; letter-spacing:2px; font-weight:700">
+      <p class="note" id="actMsg" style="text-align:center; min-height:18px; margin-top:6px"></p>
+      <button class="btn" onclick="activateCode()">تفعيل ✓</button>
+      <p class="note" style="text-align:center; margin-top:8px">🔍 الفحص يتم <b>على جهازك بالكامل</b> — تحقق توقيع رقمي Ed25519 بدون أي إنترنت<br>بعد ٥ محاولات خاطئة يُضاف انتظار تدريجي لحماية الكود</p>
+    </div>
+    <div id="actOk" style="display:none">
+      <div class="card" style="border-color:var(--ok); text-align:center">
+        <div style="font-size:36px">✓</div>
+        <b style="font-size:16px">الكود صحيح — تم التفعيل</b>
+        <div class="row" style="margin-top:12px; font-size:13px"><span>توقيع loraneem-tech</span><span style="color:var(--ok); font-weight:700">سليم ✓ فحص محلي</span></div>
+        <div class="row" style="margin-top:8px; font-size:13px"><span>مرتبط بهذا الجهاز</span><span class="chip">١ / ٢</span></div>
+        <div class="row" style="margin-top:8px; font-size:13px"><span>الصلاحية</span><span style="color:var(--gold); font-weight:700">حتى امتحان البكالوريا ٠١/٠٥/٢٠٢٧</span></div>
+        <p class="note" style="margin-top:10px">الكود «عقد موقّع رقمياً» — يستحيل تزويره أو استخدامه على أكثر من جهازين</p>
+        <button class="btn" onclick="show('s-home')" style="margin-top:8px">ادخل التطبيق ←</button>
+      </div>
+    </div>
     <button class="btn ghost" onclick="show('s-home')">تجربة المحتوى التجريبي (بدون تفعيل)</button>
-    <p class="note" style="text-align:center; margin-top:12px">الكود يُدخل مرة واحدة — بعدها التطبيق يعمل<br>٣٠ يوماً دون إنترنت</p>
+    <p class="note" style="text-align:center; margin-top:12px">لا تملك كوداً؟ مرّ على مكتبنا — التفعيل دقيقة واحدة<br>بعدها التطبيق يعمل <b>بدون إنترنت حتى يوم الامتحان</b></p>
     <div class="reviewed" style="justify-content:center">✓ المادة العلمية راجعتها: <b>الأستاذ فداء البني</b></div>
   </div>
 
@@ -683,10 +699,14 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
   <div class="screen" id="s-account">
     <h2 class="sec">حسابي</h2>
     <div class="card">
-      <div class="row"><b>الاشتراك</b><span class="badge-ok">✓ مفعّل</span></div>
-      <p class="note" style="margin-top:8px; font-size:13px">ينتهي في: <b style="color:var(--txt)">٠١ / ٠٥ / ٢٠٢٧</b> (يوم الامتحان)</p>
+      <div class="row"><b>التفعيل والاشتراك</b><span class="badge-ok">✓ مفعّل</span></div>
+      <div class="row" style="margin-top:10px; font-size:13px"><span>كود التفعيل</span><span style="font-weight:700">K7M2P-•••••-•••••</span></div>
+      <div class="row" style="margin-top:7px; font-size:13px"><span>فحص التوقيع (محلي)</span><span id="signLine" style="color:var(--ok); font-weight:700">سليم ✓</span></div>
+      <div class="row" style="margin-top:7px; font-size:13px"><span>التفعيل تم</span><span>١١ / ٠٩ / ٢٠٢٦</span></div>
+      <p class="note" style="margin-top:8px">ينتهي في: <b style="color:var(--txt)">٠١ / ٠٥ / ٢٠٢٧</b> (يوم الامتحان)</p>
       <div class="progress"><i style="width:72%"></i></div>
       <p class="note">متبقٍ ٢١٢ يوماً — عند اليوم ٢٠٠ سيظهر تنبيه للتجديد</p>
+      <button class="mini-btn" style="margin-top:10px; width:100%" onclick="reSign()">⟲ إعادة فحص التوقيع الآن</button>
     </div>
     <div class="card"><div class="row"><span>الأجهزة المربوطة</span><span class="chip">٢ / ٢</span></div>
       <p class="note" style="margin-top:5px">تغيّر موبايلك؟ مرّ على مكتبنا وإعادة الربط دقيقة واحدة</p></div>
@@ -929,6 +949,38 @@ function loop(ts){
 }
 requestAnimationFrame(loop);
 function labSoon(n){ alert('عرض نموذجي: تجربة «'+n+'» ستُبنى بنفس منهجية التفاعل — توقّع ← منزلقات حية ← أسهم تُظهر الخفي ← منحنى حي ← تحدٍّ صغير. هذا النموذج يعرض تجربة النابض كاملة فقط.'); }
+/* ═══ التفعيل — إدخال منسّق + فحص توقيع محلي (Ed25519) ═══ */
+function fmtCode(v){
+  const d=v.replace(/[^A-Za-z0-9]/g,'').toUpperCase().slice(0,15);
+  return (d.match(/.{1,5}/g)||[]).join('-');
+}
+function actClear(){
+  const inp=document.getElementById('actIn');
+  const p=inp.selectionStart;
+  inp.value=fmtCode(inp.value);
+  document.getElementById('actMsg').textContent='';
+  document.getElementById('actMsg').style.color='';
+}
+function activateCode(){
+  const msg=document.getElementById('actMsg');
+  const v=document.getElementById('actIn').value.replace(/-/g,'');
+  if(v.length<15){
+    msg.textContent='⚠ الكود ناقص — ١٥ حرفاً بصيغة XXXXX-XXXXX-XXXXX (من مكتبنا)';
+    msg.style.color='var(--danger)';
+    return;
+  }
+  msg.textContent='🔍 جارٍ فحص الكود على جهازك — التحقق من التوقيع الرقمي...';
+  msg.style.color='var(--brand2)';
+  setTimeout(()=>{
+    document.getElementById('actForm').style.display='none';
+    document.getElementById('actOk').style.display='block';
+  },1100);
+}
+function reSign(){
+  const l=document.getElementById('signLine');
+  l.textContent='🔍 جارٍ الفحص...'; l.style.color='var(--brand2)';
+  setTimeout(()=>{ l.textContent='سليم ✓ (محلي، بدون إنترنت)'; l.style.color='var(--ok)'; },900);
+}
 function toggleGrp(g){
   const sub=g.nextElementSibling; if(!sub||!sub.classList.contains('subgrp'))return;
   sub.style.display = sub.style.display==='block' ? 'none':'block';
