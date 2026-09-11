@@ -120,6 +120,12 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
 .index-panel .it{padding:8px 10px; font-size:12.5px; color:var(--txt2); border-radius:8px; cursor:pointer; margin:3px 0}
 .index-panel .it.on{color:var(--brand); background:rgba(45,212,167,.08)}
 .readcard{border-color:#1d4b57}
+.versus{display:flex; align-items:center; gap:6px; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px}
+.versus .pl{flex:1; text-align:center; font-size:11px}
+.versus .av{width:38px; height:38px; border-radius:50%; margin:0 auto 4px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:16px}
+.versus .vs{font-weight:900; color:var(--gold); font-size:13px}
+.versus .pbar{height:6px; background:#0d1a30; border-radius:5px; margin:5px 0 3px; overflow:hidden}
+.versus .pbar i{display:block; height:100%; background:linear-gradient(90deg,var(--brand),var(--brand2)); transition:width .5s}
 .mock-tools{position:fixed; top:10px; left:10px; z-index:99; display:flex; gap:6px}
 .mock-tools button{background:#16223a; color:#9db0c9; border:1px solid #243350; border-radius:10px; padding:7px 12px; font-size:11px; cursor:pointer}
 </style>
@@ -317,6 +323,81 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
     <p class="note" style="text-align:center; margin-top:10px">الأسئلة الجديدة تولّد بأرقام مختلفة ونفس بنية الوزارة — تعمل أوف لاين من المخزون</p>
   </div>
 
+  <!-- ═══ إنشاء مبارزة ═══ -->
+  <div class="screen" id="s-duel-create">
+    <h2 class="sec">مبارزة جديدة</h2>
+    <div class="card">
+      <b style="font-size:13px">ناقل الاتصال — يُختار تلقائياً</b>
+      <div class="row" style="margin-top:8px; padding:9px; border-radius:10px; background:#0e2236; border:1px solid #1d4b57">
+        <span style="font-size:13px">🌐 إنترنت متاح</span>
+        <span class="chip" style="color:var(--ok); border-color:var(--ok)">Supabase Realtime ✓</span>
+      </div>
+      <p class="note" style="margin-top:6px">لا نت؟ يتحول تلقائياً: اتصال محلي P2P (أجهزة متجاورة) ← نقطة اتصال ← رمز QR — نفس الأسئلة بكل الأوضاع</p>
+    </div>
+    <p class="note" style="margin:8px 0 4px">اختر وحدات المبارزة:</p>
+    <div class="chips">
+      <span class="u on" onclick="tg(this)">١ · الحركة والتحريك</span>
+      <span class="u" onclick="tg(this)">٢ · الكهرباء والمغناطيسية</span>
+    </div>
+    <div class="card"><div class="row"><span style="font-size:13px">الأسئلة</span><span class="chip">١٠ · ١٠ دقائق</span></div></div>
+    <button class="btn" onclick="show('s-duel-lobby')">إنشاء المبارزة ⚔️</button>
+  </div>
+
+  <!-- ═══ غرفة انتظار الخصم ═══ -->
+  <div class="screen" id="s-duel-lobby">
+    <div class="logo-block" style="padding-top:60px">
+      <div style="font-size:44px">⚔️</div>
+      <div style="font-size:20px; font-weight:800; margin-top:6px">بانتظار الخصم…</div>
+      <div class="formula" style="direction:ltr; font-size:22px; letter-spacing:4px">K7M2P-9QW4X</div>
+      <p class="note">أرسل الرمز لصديقك (واتساب/QR) — يظهر فور دخوله</p>
+      <div style="margin-top:18px; font-size:13px; color:var(--txt2)">🟢 متصل — يتم توليد الأسئلة من البذرة…</div>
+    </div>
+    <button class="btn" onclick="show('s-duel-play')">دخل الخصم! ابدأ ⚔️</button>
+    <button class="btn ghost">إلغاء</button>
+  </div>
+
+  <!-- ═══ شاشة اللعب الحي ═══ -->
+  <div class="screen" id="s-duel-play">
+    <div class="versus">
+      <div class="pl"><div class="av" style="background:#1d4b57">أ</div><b>أنت</b><div class="pbar"><i id="myBar" style="width:40%"></i></div><span id="myPts">40</span></div>
+      <div class="vs">VS</div>
+      <div class="pl"><div class="av" style="background:#4b1d3f">م</div><b>محمد</b><div class="pbar"><i id="opBar" style="width:30%"></i></div><span id="opPts">30</span></div>
+    </div>
+    <div class="row" style="margin:10px 0">
+      <span class="chip">السؤال ٣/١٠</span><span class="chip">⏱ 00:42</span><span class="chip" id="streak" style="color:var(--gold); border-color:var(--gold)">🔥 سلسلة ×2</span>
+    </div>
+    <div class="card">
+      <p style="font-size:14px; line-height:2">كم يصبح دور الاهتزاز إذا تضاعفت ثابتة الصلابة k؟</p>
+      <div style="margin-top:10px">
+        <button class="opt" onclick="duelPick(this,true)">يتنصف</button>
+        <button class="opt" onclick="duelPick(this,false)">يتضاعف</button>
+        <button class="opt" onclick="duelPick(this,false)">لا يتغير</button>
+        <button class="opt" onclick="duelPick(this,false)">يتضاعف أربعة أضعاف</button>
+      </div>
+      <p class="note" style="margin-top:8px" id="duelHint">محمد أجاب عن هذا السؤال ✅ — سلسلته ×٣ 🔥</p>
+    </div>
+  </div>
+
+  <!-- ═══ النتيجة المتشابكة ═══ -->
+  <div class="screen" id="s-duel-result">
+    <div class="logo-block" style="padding-top:30px">
+      <div style="font-size:52px">🏆</div>
+      <div style="font-size:24px; font-weight:900; color:var(--brand)">فزت! 🎉</div>
+    </div>
+    <div class="card" style="text-align:center">
+      <div class="row" style="justify-content:center; gap:26px">
+        <div><div style="font-size:30px; font-weight:900; color:var(--brand)">٨٠</div><b>أنت</b><p class="note">٧/١٠ · ٥:٤٢</p></div>
+        <div style="font-size:18px; color:var(--txt2)">—</div>
+        <div><div style="font-size:30px; font-weight:900; color:var(--danger)">٦٠</div><b>محمد</b><p class="note">٦/١٠ · ٥:٥٨</p></div>
+      </div>
+      <p class="note" style="margin-top:10px">+٤٥ نقطة لدوري المرشد — رفعت لمركز ٧ 📈</p>
+      <p class="note">السلسلة: ٣ انتصارات متتالية 🔥</p>
+    </div>
+    <button class="btn" onclick="show('s-duel-create')">مبارزة الثأر 😤</button>
+    <button class="btn ghost" onclick="alert('بطاقة النتيجة — جاهزة للمشاركة كصورة')">مشاركة النتيجة 📣</button>
+    <button class="btn ghost" onclick="show('s-duels')">لوحة التحديات</button>
+  </div>
+
   <!-- ═══ نهاية الدرس ═══ -->
   <div class="screen" id="s-lessonend">
     <div class="logo-block" style="padding-top:50px">
@@ -389,7 +470,7 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
     <h2 class="sec">أنماط التحدي</h2>
     <div class="card click"><div class="row"><span>🏃 <b>تحدي الذات</b></span><span class="chip">أوف لاين دائماً</span></div>
       <p class="note" style="margin-top:4px">سباق مع رقمك القياسي — ٩/١٠</p></div>
-    <div class="card click"><div class="row"><span>🌐 <b>مبارزة حية</b></span><span class="chip">عبر الإنترنت</span></div>
+    <div class="card click" onclick="show('s-duel-create')"><div class="row"><span>🌐 <b>مبارزة حية</b></span><span class="chip">عبر الإنترنت</span></div>
       <p class="note" style="margin-top:4px">تحدَّ صديقك فوراً — نفس الأسئلة لحظياً</p></div>
     <div class="card click"><div class="row"><span>📶 <b>مبارزة محلية</b></span><span class="chip">نقطة اتصال — بلا نت</span></div>
       <p class="note" style="margin-top:4px">جهازك يفتح Hotspot وصديقك ينضم — نفس الغرفة، صفر إنترنت</p></div>
@@ -482,6 +563,18 @@ function lpane(k, btn){
   document.getElementById('lp-'+k).classList.add('on');
 }
 function batchEnd(){ show('s-batchend'); }
+let streakN=2;
+function duelPick(el, ok){
+  if(el.classList.contains('right')||el.classList.contains('wrong'))return;
+  el.classList.add(ok?'right':'wrong');
+  if(ok){
+    streakN=Math.min(streakN+1,3);
+    const mp=document.getElementById('myPts'); mp.textContent=+mp.textContent+20*streakN;
+    document.getElementById('myBar').style.width=Math.min(+document.getElementById('myBar').style.width.replace('%','')*1.5,100)+'%';
+    document.getElementById('streak').textContent='🔥 سلسلة ×'+streakN;
+  } else { streakN=0; document.getElementById('streak').textContent='السلسلة انكسرت'; }
+  setTimeout(()=>show('s-duel-result'),700);
+}
 function stepNext(){ alert('الانتقال للفقرة ٢: معادلة الموضع x(t) = Xmax·sin(ω₀t + φ) — بالعرض الحقيقي تتبدل البطاقة بانزلاق سلس'); }
 function toggleIdx(){ document.getElementById('idxPanel').classList.toggle('open'); }
 function toggleGrp(g){
