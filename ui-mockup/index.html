@@ -128,6 +128,26 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
 .versus .pbar i{display:block; height:100%; background:linear-gradient(90deg,var(--brand),var(--brand2)); transition:width .5s}
 .mock-tools{position:fixed; top:10px; left:10px; z-index:99; display:flex; gap:6px}
 .mock-tools button{background:#16223a; color:#9db0c9; border:1px solid #243350; border-radius:10px; padding:7px 12px; font-size:11px; cursor:pointer}
+/* بطاقات المراجعة — كشف واسترجاع */
+.flash{background:linear-gradient(160deg,var(--card2),var(--card)); border:1px solid var(--line); border-radius:16px; min-height:215px; padding:24px 18px; margin:12px 0; cursor:pointer; position:relative; text-align:center; display:flex; align-items:center; justify-content:center}
+.flash .qtag{position:absolute; top:10px; right:12px; font-size:10px; color:#06281f; background:var(--brand2); border-radius:20px; padding:3px 11px; font-weight:800}
+.flash .qtag.an{background:var(--brand)}
+.flash .qtxt{font-size:16.5px; font-weight:700; line-height:1.85; margin:12px 0 6px}
+.flash .tap{color:var(--txt2); font-size:11px}
+.flash .fml{background:#0d1a30; border:1px solid var(--line); border-radius:10px; padding:9px 12px; font-size:16px; color:var(--gold); font-weight:700; margin:10px auto 6px; max-width:92%}
+.grader{display:flex; gap:8px; margin-top:10px}
+.grader button{flex:1; padding:12px 4px; border-radius:12px; border:1px solid var(--line); background:var(--card); color:var(--txt); font-weight:700; font-size:12px; cursor:pointer}
+.grader .g1{border-color:#7f3a3a; color:var(--danger)}
+.grader .g2{border-color:#8a6d2f; color:var(--gold)}
+.grader .g3{border-color:#2f7a5a; color:var(--ok)}
+.pts-toast{position:fixed; top:13%; left:50%; transform:translateX(-50%); background:var(--brand); color:#06281f; font-weight:900; border-radius:20px; padding:8px 18px; opacity:0; transition:opacity .3s; z-index:60; pointer-events:none; white-space:nowrap}
+.pts-toast.on{opacity:1}
+/* المراجعة المكثفة */
+.crl{display:flex; justify-content:space-between; align-items:flex-start; gap:10px; padding:9px 0; border-bottom:1px dashed var(--line); font-size:12.5px}
+.crl:last-child{border-bottom:none}
+.crl b{color:var(--brand2); flex-shrink:0}
+.crl .ans{color:var(--txt); text-align:left; font-weight:600; transition:filter .3s}
+.crl .ans.hid{filter:blur(5px); user-select:none}
 </style>
 </head>
 <body>
@@ -174,6 +194,8 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
     </div>
     <div class="card click" onclick="show('s-curriculum')"><div class="row"><span>📘 <b>واصل الدرس</b></span><span class="note">الحركة التوافقية البسيطة ←</span></div></div>
     <div class="card click" onclick="show('s-train')"><div class="row"><span>📝 <b>تدريب سريع</b></span><span class="note">١٠ أسئلة ←</span></div></div>
+    <div class="card click" onclick="show('s-cards')"><div class="row"><span>🎯 <b>بطاقات اليوم</b></span><span class="chip">١٨ مستحقة</span></div>
+      <p class="note" style="margin-top:5px">مراجعة متباعدة ٥ دقائق — <b style="color:var(--gold)">+١٥ نقطة</b> ←</p></div>
     <div class="card click" onclick="show('s-duels')"><div class="row"><span>⚔️ <b>تحديات اليوم</b></span><span class="chip">١٢٤ نقطة</span></div></div>
     <div class="card"><div class="row"><span>💡 <b>فكرة اليوم</b></span></div>
       <p class="note" style="margin-top:6px">في الاهتزاز التوافقي البسيط، القوة راجعة ومتناسبة مع الإزاحة: F = −k·x</p></div>
@@ -498,12 +520,93 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
 
   <!-- ═══ الملخصات ═══ -->
   <div class="screen" id="s-summaries">
-    <h2 class="sec">مراجعة سريعة</h2>
-    <div class="card click"><div class="row"><b>📘 الوحدة ١ · الحركة والتحريك</b><span class="chip">٥ بطاقات</span></div>
-      <p class="note" style="margin-top:5px">التوافقي البسيط · نوّاس الفتل · النوّاس الثقلي · الموائع · النسبية</p></div>
-    <div class="card click"><div class="row"><b>📘 الوحدة ٢ · الكهرباء والمغناطيسية</b><span class="chip">٦ بطاقات</span></div></div>
-    <div class="card click"><div class="row"><b>📘 الوحدات ٣–٥</b><span class="chip">قريباً</span></div></div>
-    <button class="btn ghost">⚡ المراجعة المكثفة (سلايد الأفكار الأهم)</button>
+    <h2 class="sec">الملخصات — بطاقات المراجعة</h2>
+    <p class="note">بطاقات مشتقة من ملخصات الأستاذ فداء البني ✓ مراجعة بشرية — تعمل بدون إنترنت</p>
+
+    <div class="card" style="background:linear-gradient(135deg,#123f38,#0e2a3a)">
+      <div class="row"><b>🎯 طابور اليوم</b><span class="chip">١٨ بطاقة</span></div>
+      <div class="progress"><i style="width:17%"></i></div>
+      <p class="note" style="margin-top:5px">١٢ مستحقة اليوم (تكرار متباعد: ١ · ٣ · ٧ · ١٤ يوماً) · ٦ بطاقات جديدة</p>
+      <button class="btn pri" onclick="show('s-cards')" style="margin-top:10px">ابدأ المراجعة (+١٥ نقطة عند الإتمام)</button>
+    </div>
+
+    <div class="card click" onclick="show('s-cards')"><div class="row"><b>📘 الوحدة ١ · الحركة والتحريك</b><span class="chip">٤٢ بطاقة</span></div>
+      <div class="progress"><i style="width:64%"></i></div>
+      <p class="note" style="margin-top:5px">٢٧ مستحفظة · ٩ قيد التعلّم · ٦ جديدة — التوافقي · الفتل · الثقلي · الموائع · النسبية</p></div>
+    <div class="card click" onclick="show('s-cards')"><div class="row"><b>📘 الوحدة ٢ · الكهرباء والمغناطيسية</b><span class="chip">٤٨ بطاقة</span></div>
+      <div class="progress"><i style="width:8%"></i></div>
+      <p class="note" style="margin-top:5px">٤ مستحفظة · ٤٤ جديدة</p></div>
+    <div class="card"><div class="row"><b>📘 الوحدات ٣–٥</b><span class="chip">قريباً</span></div></div>
+
+    <div class="card click" onclick="show('s-cards')"><div class="row"><span>🎯 <b>بطاقات من أخطائي</b></span><span class="chip">١٤ بطاقة</span></div>
+      <p class="note" style="margin-top:5px">تُولَّد تلقائياً من أسئلة التدريب التي أخطأت فيها — تُضاف لطابورك</p></div>
+
+    <div class="card click" onclick="show('s-cram')"><div class="row"><span>⚡ <b>المراجعة المكثفة</b></span><span class="chip">سلايد الأفكار الأهم</span></div>
+      <p class="note" style="margin-top:5px">كل فصل في صفحة واحدة: القوانين + الشروط + الأخطاء الشائعة — ليلة الامتحان 🌙</p></div>
+
+    <p class="note">💡 البطاقة تعرض السؤال — تسترجع الجواب من ذاكرتك ثم تكشفه وتقيّم نفسك. هكذا يثبت المعلوم أضعاف القراءة السلبية (أبحاث الاسترجاع النشط)</p>
+  </div>
+
+  <!-- ═══ بطاقة مراجعة (كشف واسترجاع + تقييم ذاتي) ═══ -->
+  <div class="screen" id="s-cards">
+    <div id="cflow">
+      <div class="row"><p class="note" id="cchap">الوحدة ١ ← الفصل ١ · التوافقي البسيط</p><span class="chip" id="ccount">٣ / ١٨</span></div>
+      <div class="progress"><i id="cprog" style="width:17%"></i></div>
+      <div class="flash" id="flashq" onclick="cardFlip()">
+        <span class="qtag" id="cside">سؤال</span>
+        <div>
+          <p class="qtxt" id="cq">ما الشرط على القوة لكي يكون الاهتزاز توافقياً بسيطاً؟</p>
+          <p class="tap" id="chint">👆 المس البطاقة لكشف الجواب</p>
+        </div>
+      </div>
+      <div id="grader" style="display:none">
+        <p class="note" style="text-align:center; margin-bottom:2px">كيف كانت استرجاعتك؟ (التقييم يحدد موعد الإعادة)</p>
+        <div class="grader">
+          <button class="g1" onclick="gradeCard(0)">😅 ما عرفتها</button>
+          <button class="g2" onclick="gradeCard(1)">😔 بصعوبة</button>
+          <button class="g3" onclick="gradeCard(2)">😎 أعرفها</button>
+        </div>
+      </div>
+      <p class="note" id="cnext" style="text-align:center; margin-top:10px"></p>
+      <p class="pts-toast" id="cpts">+١ نقطة ✓</p>
+    </div>
+    <div id="cdone" style="display:none">
+      <div class="card" style="text-align:center; padding:26px 16px">
+        <div style="font-size:44px">🎉</div>
+        <b style="font-size:17px">أنهيت طابور اليوم!</b>
+        <p class="note" style="margin-top:8px">١٨ بطاقة · استرجاع نشط ١٤ صحيحاً · ٤ ستعاد غداً</p>
+        <div class="progress"><i style="width:100%"></i></div>
+        <p class="note" style="margin-top:8px; color:var(--gold); font-weight:700">+١٥ نقطة لدوري المرشد ✓</p>
+        <p class="note">جُدوِلت ٤ بطاقات للغد و١٢ بعد ٣ أيام — حسب منحنى النسيان</p>
+        <button class="btn pri" onclick="show('s-summaries')" style="margin-top:12px">رجوع للملخصات</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ المراجعة المكثفة (سلايد الأفكار الأهم) ═══ -->
+  <div class="screen" id="s-cram">
+    <div class="card" style="background:linear-gradient(135deg,#3a1a0e,#0e2a3a)">
+      <div class="row"><b>⚡ سلايد الأفكار الأهم</b><span class="chip">🌙 ليلة الامتحان</span></div>
+      <p class="note" style="margin-top:5px">امتحان البكالوريا: ٢١٢ يوماً — كل فصل في صفحة واحدة</p>
+    </div>
+    <div class="tabs">
+      <button class="on" onclick="cramCh(0,this)">١ حركة</button>
+      <button onclick="cramCh(1,this)">٢ كهرومغناطيسية</button>
+      <button onclick="cramCh(2,this)">٤ إلكترونيات</button>
+    </div>
+    <div class="card" id="cramcard">
+      <b style="color:var(--brand2)" id="cramt">الفصل ١ · الحركة التوافقية البسيطة</b>
+      <div style="margin-top:6px" id="cramrows">
+        <div class="crl"><b>القوة الراجعة</b><span class="ans">متناسبة مع الإزاحة ومعاكسة لها</span></div>
+        <div class="crl"><b>معادلة القوة</b><span class="ans">F = −k·x</span></div>
+        <div class="crl"><b>الدور</b><span class="ans">T = 2π√(m/k)</span></div>
+        <div class="crl"><b>الطاقة الكلية</b><span class="ans">E = ½·k·X²max ثابتة — تبادل حركية/وضعية</span></div>
+        <div class="crl"><b>الشرط</b><span class="ans">اهتزاز صغير بدون تخامد</span></div>
+        <div class="crl"><b>خطأ شائع ⚠</b><span class="ans">إهمال الإشارة السالبة في F = −k·x</span></div>
+      </div>
+    </div>
+    <button class="btn ghost" id="crambtn" onclick="cramBlur()">🙈 اختبرني — أخفِ الجوانب</button>
+    <p class="note" style="margin-top:10px">الرموز مطابقة للكتاب حرفياً (قرار ١٤) — وميض بصري سريع يفعّل الاسترجاع قبل القراءة</p>
   </div>
 
   <!-- ═══ المختبر ═══ -->
@@ -563,7 +666,7 @@ function show(id, btn){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));
-  const map={'s-home':0,'s-curriculum':1,'s-lesson':1,'s-train':2,'s-quiz':2,'s-duels':3,'s-summaries':4,'s-lab':4,'s-account':-1,'s-activate':-1};
+  const map={'s-home':0,'s-curriculum':1,'s-lesson':1,'s-train':2,'s-quiz':2,'s-duels':3,'s-summaries':4,'s-cards':4,'s-cram':4,'s-lab':4,'s-account':-1,'s-activate':-1};
   const i=map[id];
   if(i>=0) document.querySelectorAll('.nav button')[i].classList.add('on');
   document.querySelector('.screens').scrollTop=0;
@@ -589,6 +692,73 @@ function duelPick(el, ok){
 }
 function stepNext(){ alert('الانتقال للفقرة ٢: معادلة الموضع x(t) = Xmax·sin(ω₀t + φ) — بالعرض الحقيقي تتبدل البطاقة بانزلاق سلس'); }
 function toggleIdx(){ document.getElementById('idxPanel').classList.toggle('open'); }
+/* ═══ بطاقات المراجعة — كشف واسترجاع + تقييم ذاتي (تكرار متباعد) ═══ */
+const CARDS=[
+ {ch:'الوحدة ١ ← الفصل ١ · التوافقي البسيط', q:'ما الشرط على القوة لكي يكون الاهتزاز توافقياً بسيطاً؟', a:'قوة راجعة متناسبة مع الإزاحة ومعاكسة لها دائماً', f:'F = −k·x', r:'ص١٤ — ملخص الأستاذ'},
+ {ch:'الوحدة ١ ← الفصل ٤ · ميكانيك الموائع', q:'ما شروط المائع المثالي في ميكانيك الموائع؟', a:'مائع غير لزج، غير قابل للانضغاط، وحركته مستقرة (انتظامية الجريان)', f:'v₁·S₁ = v₂·S₂ (الاستمرارية)', r:'ص٤٦ — ملخص الأستاذ'},
+ {ch:'الوحدة ١ ← الفصل ٥ · النسبية الخاصة', q:'ما نص مبدأ النسبية في النسبية الخاصة؟', a:'قوانين الفيزياء واحدة في جميع المجاميع المرجعية المتحركة حركة تقدمية منتظمة', f:'c = 299792458 m/s ثابتة في كل المجاميع', r:'ص٥٨ — ملخص الأستاذ'},
+];
+let cIdx=0, flipped=false;
+function renderCard(){
+  const c=CARDS[cIdx];
+  document.getElementById('cchap').textContent=c.ch;
+  document.getElementById('ccount').textContent=['١','٢','٣'][cIdx]+' / ١٨';
+  document.getElementById('cprog').style.width=(17+33*cIdx)+'%';
+  document.getElementById('cq').textContent=c.q;
+  document.getElementById('cside').textContent='سؤال';
+  document.getElementById('cside').classList.remove('an');
+  document.getElementById('chint').style.display='block';
+  document.getElementById('cnext').textContent='';
+  flipped=false; document.getElementById('grader').style.display='none';
+}
+function cardFlip(){
+  if(flipped)return; flipped=true;
+  const c=CARDS[cIdx];
+  document.getElementById('cq').innerHTML=c.a+
+   '<div class="fml">'+c.f+'</div><p class="note" style="margin-top:6px">'+c.r+'</p>';
+  document.getElementById('cside').textContent='الجواب';
+  document.getElementById('cside').classList.add('an');
+  document.getElementById('chint').style.display='none';
+  document.getElementById('grader').style.display='block';
+}
+function gradeCard(g){
+  const iv=['نعيدها اليوم ضمن الطابور 😅','نعيدها بعد يومين (تكرار متباعد)','نعيدها بعد أسبوع — أحسنت! 😎'][g];
+  const n=document.getElementById('cnext'); n.textContent=iv;
+  const t=document.getElementById('cpts'); t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),900);
+  if(cIdx<CARDS.length-1){ cIdx++; setTimeout(renderCard,800); }
+  else setTimeout(()=>{ document.getElementById('cflow').style.display='none';
+    document.getElementById('cdone').style.display='block'; },800);
+}
+/* ═══ المراجعة المكثفة ═══ */
+const CRAM=[
+ {t:'الفصل ١ · الحركة التوافقية البسيطة', rows:[
+  ['القوة الراجعة','متناسبة مع الإزاحة ومعاكسة لها'],['معادلة القوة','F = −k·x'],
+  ['الدور','T = 2π√(m/k)'],['الطاقة الكلية','E = ½·k·X²max ثابتة — تبادل حركية/وضعية'],
+  ['الشرط','اهتزاز صغير بدون تخامد'],['خطأ شائع ⚠','إهمال الإشارة السالبة في F = −k·x']]},
+ {t:'الفصل ٣ · التحريض الكهرطيسي', rows:[
+  ['ظاهرة التحريض','نشوء قوة محركة كهربائية بتغير التدفق المغناطيسي'],
+  ['قاعدة فاراداي','e = −dΦ/dt'],['قانون لنز','التيار المحرَّض يعاكس سبب نشوئه'],
+  ['الوحدة','الويبر Wb للتدفق — الفولت للقوة المحركة'],['خطأ شائع ⚠','نسيان إشارة النقيض في فاراداي']]},
+ {t:'الفصل ١ · أنصاف النواقل والديود', rows:[
+  ['التشويب','إضافة شوائب مانحة أو قابلة للإلكترون'],
+  ['الديود المثالي','يوصّل في الاستقامة الأمامية فقط'],['الاستقامة','موجة موجبة تمر — سالبة تُقطع'],
+  ['خطأ شائع ⚠','خلط الاتجاه الأمامي والخلفي للديود']]},
+];
+function cramCh(i, btn){
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const c=CRAM[i];
+  document.getElementById('cramt').textContent=c.t;
+  document.getElementById('cramrows').innerHTML=c.rows.map(r=>
+    '<div class="crl"><b>'+r[0]+'</b><span class="ans">'+r[1]+'</span></div>').join('');
+  document.getElementById('crambtn').textContent='🙈 اختبرني — أخفِ الجوانب';
+}
+function cramBlur(){
+  const hid=document.querySelectorAll('#cramrows .ans.hid').length>0;
+  document.querySelectorAll('#cramrows .ans').forEach(a=>a.classList.toggle('hid',!hid));
+  document.getElementById('crambtn').textContent=hid?'🙈 اختبرني — أخفِ الجوانب':'👁 اكشف الجوانب';
+}
 function toggleGrp(g){
   const sub=g.nextElementSibling; if(!sub||!sub.classList.contains('subgrp'))return;
   sub.style.display = sub.style.display==='block' ? 'none':'block';
