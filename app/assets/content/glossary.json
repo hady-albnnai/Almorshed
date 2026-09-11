@@ -1,0 +1,3594 @@
+{
+ "glossary_version": "2026-09-11",
+ "source": "glossary/terms_data.py",
+ "terms": [
+  {
+   "ar": "الحركة التوافقية البسيطة",
+   "en": "Simple Harmonic Motion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "نابض",
+   "en": "Spring",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "قوة الإرجاع",
+   "en": "Restoring Force",
+   "symbol": "F",
+   "unit": "N",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "المطال",
+   "en": "Amplitude",
+   "symbol": "x",
+   "unit": "m",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "السعة",
+   "en": "Amplitude / Range",
+   "symbol": "X_max",
+   "unit": "m",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "الدور",
+   "en": "Period",
+   "symbol": "T",
+   "unit": "s",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "التواتر",
+   "en": "Frequency",
+   "symbol": "f",
+   "unit": "Hz",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "الطاقة الكامنة المرونية",
+   "en": "Elastic Potential Energy",
+   "symbol": "Ep",
+   "unit": "J",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "الطاقة الحركية",
+   "en": "Kinetic Energy",
+   "symbol": "E_K",
+   "unit": "J",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "الطاقة الميكانيكية",
+   "en": "Mechanical Energy",
+   "symbol": "E",
+   "unit": "J",
+   "chapter": "U1C1",
+   "status": "k"
+  },
+  {
+   "ar": "الحركة الدائرية المنتظمة",
+   "en": "Uniform Circular Motion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "مركز الاهتزاز",
+   "en": "Centre of Oscillation",
+   "symbol": "O",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "توابع الحركة",
+   "en": "Functions of the Motion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "الطور",
+   "en": "Phase",
+   "symbol": "(ω₀t+φ)",
+   "unit": "rad",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "الطور الابتدائي",
+   "en": "Initial Phase",
+   "symbol": "φ",
+   "unit": "rad",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "النبض الخاص",
+   "en": "Angular Frequency (Pulsation)",
+   "symbol": "ω",
+   "unit": "rad/s",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "السرعة الزاوية",
+   "en": "Angular Velocity",
+   "symbol": "ω",
+   "unit": "rad/s",
+   "chapter": "U1C1",
+   "status": "s"
+  },
+  {
+   "ar": "التابع الزمني",
+   "en": "Time Function",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "الحركة الجيبية الانسحابية",
+   "en": "Sinusoidal (Simple Harmonic) Motion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "تمثيل فرينل (كما ورد في ص13)",
+   "en": "Fresnel's Representation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "الاستطالة",
+   "en": "Elongation",
+   "symbol": "x",
+   "unit": "m",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "الاستطالة السكونية",
+   "en": "Static Elongation",
+   "symbol": "x₀",
+   "unit": "m",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "ثابت صلابة النابض",
+   "en": "Spring Constant / Stiffness",
+   "symbol": "k",
+   "unit": "N/m",
+   "chapter": "U1C1",
+   "status": "s"
+  },
+  {
+   "ar": "قوة توتر النابض",
+   "en": "Spring Tension Force",
+   "symbol": "F_S",
+   "unit": "N",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "قوة الثقل",
+   "en": "Weight",
+   "symbol": "w",
+   "unit": "N",
+   "chapter": "U1C1",
+   "status": "s"
+  },
+  {
+   "ar": "النواس المرن",
+   "en": "Elastic (Spring) Pendulum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "المعادلة التفاضلية",
+   "en": "Differential Equation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "حالة السكون",
+   "en": "State of Rest",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "حالة الحركة",
+   "en": "State of Motion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "السرعة الخطية",
+   "en": "Linear Velocity",
+   "symbol": "v",
+   "unit": "m/s",
+   "chapter": "U1C1",
+   "status": "s"
+  },
+  {
+   "ar": "التسارع",
+   "en": "Acceleration",
+   "symbol": "a",
+   "unit": "m/s²",
+   "chapter": "U1C1",
+   "status": "s"
+  },
+  {
+   "ar": "المسقط",
+   "en": "Projection",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "المنحني البياني",
+   "en": "Graph / Curve",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C1",
+   "status": "v"
+  },
+  {
+   "ar": "نواس الفتل",
+   "en": "Torsional Pendulum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C2",
+   "status": "k"
+  },
+  {
+   "ar": "سلك الفتل",
+   "en": "Torsion Spring / Wire",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C2",
+   "status": "k"
+  },
+  {
+   "ar": "ثابت فتل السلك",
+   "en": "Torsion Spring Constant",
+   "symbol": "K",
+   "unit": "N·m/rad",
+   "chapter": "U1C2",
+   "status": "k"
+  },
+  {
+   "ar": "مزدوجة الفتل",
+   "en": "Torsion Couple — المزدوجة نفسها Γ_η (الكتاب ص22). ⚠ ملف الأستاذ يخزّن التابع كحرف n لاتيني (U+006E) لا η يوناني — والأرجح أنه أثر طباعة؛ نعتمد η لموافقة الكتاب وقوله",
+   "symbol": "Γ_η",
+   "unit": "m·N",
+   "chapter": "U1C2",
+   "status": "k"
+  },
+  {
+   "ar": "عزم مزدوجة الفتل",
+   "en": "Moment of the Torsion Couple — Γ_η/Δ = −K·θ (ص22). التابع الأول = نوع المزدوجة، و/Δ = المحور",
+   "symbol": "Γ_η/Δ",
+   "unit": "m·N",
+   "chapter": "U1C2",
+   "status": "k"
+  },
+  {
+   "ar": "مزدوجة الوزن",
+   "en": "Couple of the Weight (about axis Δ)",
+   "symbol": "Γ_w/Δ",
+   "unit": "m·N",
+   "chapter": "U1C2",
+   "status": "v"
+  },
+  {
+   "ar": "مزدوجة ردّ الفعل",
+   "en": "Reaction Couple (about axis Δ)",
+   "symbol": "Γ_R/Δ",
+   "unit": "m·N",
+   "chapter": "U1C2",
+   "status": "v"
+  },
+  {
+   "ar": "المطال الزاوي",
+   "en": "Angular Amplitude",
+   "symbol": "θ",
+   "unit": "rad",
+   "chapter": "U1C2",
+   "status": "k"
+  },
+  {
+   "ar": "السعة الزاوية",
+   "en": "Angular Amplitude",
+   "symbol": "θ_max",
+   "unit": "rad",
+   "chapter": "U1C2",
+   "status": "k"
+  },
+  {
+   "ar": "الاهتزازات الجيبية الدورانية",
+   "en": "Sinusoidal Torsional Vibrations",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C2",
+   "status": "g"
+  },
+  {
+   "ar": "نواس الفتل غير المتخامد",
+   "en": "Undamped Torsional Pendulum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C2",
+   "status": "g"
+  },
+  {
+   "ar": "عزم القوة",
+   "en": "Moment of a Force (Torque)",
+   "symbol": "Γ",
+   "unit": "m·N",
+   "chapter": "U1C2",
+   "status": "s"
+  },
+  {
+   "ar": "عزم العطالة",
+   "en": "Moment of Inertia",
+   "symbol": "I_Δ",
+   "unit": "kg·m²",
+   "chapter": "U1C2",
+   "status": "s"
+  },
+  {
+   "ar": "الدور الخاص",
+   "en": "Natural Period",
+   "symbol": "T₀",
+   "unit": "s",
+   "chapter": "U1C2",
+   "status": "v"
+  },
+  {
+   "ar": "الحركة الدورانية",
+   "en": "Rotational Motion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C2",
+   "status": "v"
+  },
+  {
+   "ar": "نابض لولبي",
+   "en": "Spiral (Coil) Spring",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C2",
+   "status": "v"
+  },
+  {
+   "ar": "النواس الثقلي المركب",
+   "en": "Compound Gravity Pendulum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C3",
+   "status": "k"
+  },
+  {
+   "ar": "النواس الثقلي البسيط",
+   "en": "Simple Gravity Pendulum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C3",
+   "status": "k"
+  },
+  {
+   "ar": "الاهتزازات غير التوافقية",
+   "en": "Anharmonic Oscillations",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C3",
+   "status": "g"
+  },
+  {
+   "ar": "النواس الثقلي غير المتخامد",
+   "en": "Non-Damped Gravity Pendulum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C3",
+   "status": "g"
+  },
+  {
+   "ar": "مركز العطالة",
+   "en": "Centre of Inertia",
+   "symbol": "C",
+   "unit": "",
+   "chapter": "U1C3",
+   "status": "s"
+  },
+  {
+   "ar": "طول النواس البسيط المواقت",
+   "en": "Equivalent (Synchronised) Pendulum Length",
+   "symbol": "l",
+   "unit": "m",
+   "chapter": "U1C3",
+   "status": "v"
+  },
+  {
+   "ar": "النواس البسيط",
+   "en": "Simple Pendulum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C3",
+   "status": "g"
+  },
+  {
+   "ar": "السعات الزاوية الصغيرة",
+   "en": "Small Angular Amplitudes",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C3",
+   "status": "v"
+  },
+  {
+   "ar": "ميكانيك الموائع",
+   "en": "Fluid Mechanics",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C4",
+   "status": "g"
+  },
+  {
+   "ar": "المائع المثالي",
+   "en": "Ideal Fluid",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "السائل المثالي",
+   "en": "Ideal Liquid",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "خط الانسياب",
+   "en": "Flow Line (Streamline)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "الجريان المنتظم",
+   "en": "Uniform Flow",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "الجريان غير المنتظم",
+   "en": "Non-Uniform Flow",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "معدل التدفق الكتلي",
+   "en": "Mass Flow Rate",
+   "symbol": "Q",
+   "unit": "kg/s",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "معدل التدفق الحجمي",
+   "en": "Volumetric Flow Rate",
+   "symbol": "Q_v",
+   "unit": "m³/s",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "معادلة الاستمرارية",
+   "en": "Continuity Equation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "معادلة برنولي",
+   "en": "Bernoulli's Equation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "نظرية تورشيللي",
+   "en": "Torricelli's Theorem",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "قوة الرفع",
+   "en": "Lift Force",
+   "symbol": "F",
+   "unit": "N",
+   "chapter": "U1C4",
+   "status": "k"
+  },
+  {
+   "ar": "الضغط",
+   "en": "Pressure",
+   "symbol": "P",
+   "unit": "Pa",
+   "chapter": "U1C4",
+   "status": "s"
+  },
+  {
+   "ar": "اللزوجة",
+   "en": "Viscosity",
+   "symbol": "η",
+   "unit": "Pa·s",
+   "chapter": "U1C4",
+   "status": "v"
+  },
+  {
+   "ar": "الكتلة الحجمية",
+   "en": "Volumic Mass (Density)",
+   "symbol": "ρ",
+   "unit": "kg/m³",
+   "chapter": "U1C4",
+   "status": "s"
+  },
+  {
+   "ar": "مساحة المقطع",
+   "en": "Cross-Sectional Area",
+   "symbol": "S",
+   "unit": "m²",
+   "chapter": "U1C4",
+   "status": "s"
+  },
+  {
+   "ar": "النسبية الخاصة",
+   "en": "Special Relativity",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C5",
+   "status": "g"
+  },
+  {
+   "ar": "جملة المقارنة",
+   "en": "Frame of Reference",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C5",
+   "status": "k"
+  },
+  {
+   "ar": "سرعة الضوء في الخلاء",
+   "en": "Speed of Light in Vacuum",
+   "symbol": "c",
+   "unit": "m/s",
+   "chapter": "U1C5",
+   "status": "k"
+  },
+  {
+   "ar": "تباطؤ الزمن",
+   "en": "Time Dilation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C5",
+   "status": "k"
+  },
+  {
+   "ar": "تقلص الأطوال",
+   "en": "Length Contraction",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C5",
+   "status": "k"
+  },
+  {
+   "ar": "ميكانيك نسبي",
+   "en": "Relativistic Mechanics",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C5",
+   "status": "k"
+  },
+  {
+   "ar": "طاقة سكونية",
+   "en": "Rest Energy",
+   "symbol": "E₀",
+   "unit": "J",
+   "chapter": "U1C5",
+   "status": "k"
+  },
+  {
+   "ar": "تمدد الزمن",
+   "en": "Time Dilation",
+   "symbol": "Δt",
+   "unit": "s",
+   "chapter": "U1C5",
+   "status": "v"
+  },
+  {
+   "ar": "جمل المقارنة العطالية",
+   "en": "Inertial Frame of Reference",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U1C5",
+   "status": "v"
+  },
+  {
+   "ar": "الكتلة النسبية",
+   "en": "Relativistic Mass",
+   "symbol": "m",
+   "unit": "kg",
+   "chapter": "U1C5",
+   "status": "v"
+  },
+  {
+   "ar": "المغناطيسية",
+   "en": "Magnetism",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C1",
+   "status": "g"
+  },
+  {
+   "ar": "مغناطيس نضوي",
+   "en": "Horseshoe Magnet",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C1",
+   "status": "k"
+  },
+  {
+   "ar": "حقل مغناطيسي",
+   "en": "Magnetic Field",
+   "symbol": "B",
+   "unit": "T",
+   "chapter": "U2C1",
+   "status": "k"
+  },
+  {
+   "ar": "شدة الحقل المغناطيسي",
+   "en": "Magnetic Field Strength",
+   "symbol": "B",
+   "unit": "T",
+   "chapter": "U2C1",
+   "status": "k"
+  },
+  {
+   "ar": "نواة حديد",
+   "en": "Iron Core",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C1",
+   "status": "k"
+  },
+  {
+   "ar": "عامل النفاذية المغناطيسي",
+   "en": "Magnetic Permeability",
+   "symbol": "μ",
+   "unit": "H/m",
+   "chapter": "U2C1",
+   "status": "k"
+  },
+  {
+   "ar": "الحقل المغناطيسي الأرضي",
+   "en": "Earth's Magnetic Field",
+   "symbol": "",
+   "unit": "T",
+   "chapter": "U2C1",
+   "status": "k"
+  },
+  {
+   "ar": "الأثر المغناطيسي للتيار الكهربائي",
+   "en": "Magnetic Effect of Electric Current",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C1",
+   "status": "k"
+  },
+  {
+   "ar": "شدة شعاع السطح",
+   "en": "Surface Vector Magnitude",
+   "symbol": "S",
+   "unit": "m²",
+   "chapter": "U2C1",
+   "status": "k"
+  },
+  {
+   "ar": "التدفق المغناطيسي",
+   "en": "Magnetic Flux",
+   "symbol": "Φ",
+   "unit": "Wb",
+   "chapter": "U2C1",
+   "status": "k"
+  },
+  {
+   "ar": "قوة لورنز",
+   "en": "Lorentz Force",
+   "symbol": "F",
+   "unit": "N",
+   "chapter": "U2C1",
+   "status": "g"
+  },
+  {
+   "ar": "الناظم",
+   "en": "Normal (to a surface)",
+   "symbol": "n",
+   "unit": "",
+   "chapter": "U2C1",
+   "status": "s"
+  },
+  {
+   "ar": "القطب الشمالي",
+   "en": "North Pole",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C1",
+   "status": "v"
+  },
+  {
+   "ar": "القطب الجنوبي",
+   "en": "South Pole",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C1",
+   "status": "v"
+  },
+  {
+   "ar": "خطوط الحقل",
+   "en": "Field Lines",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C1",
+   "status": "v"
+  },
+  {
+   "ar": "دارة كهربائية مستوية",
+   "en": "Plane Electric Circuit",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C1",
+   "status": "v"
+  },
+  {
+   "ar": "تيار كهربائي",
+   "en": "Electric Current",
+   "symbol": "I",
+   "unit": "A",
+   "chapter": "U2C1",
+   "status": "s"
+  },
+  {
+   "ar": "نظرية مكسويل",
+   "en": "Maxwell's Theory",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C2",
+   "status": "k"
+  },
+  {
+   "ar": "مقياس غلفاني",
+   "en": "Galvanometer",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C2",
+   "status": "k"
+  },
+  {
+   "ar": "دولاب بارلو",
+   "en": "Barlow's Wheel",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C2",
+   "status": "k"
+  },
+  {
+   "ar": "القوة الكهرطيسية",
+   "en": "Electromagnetic Force",
+   "symbol": "F",
+   "unit": "N",
+   "chapter": "U2C2",
+   "status": "s"
+  },
+  {
+   "ar": "المزدوجة الكهرطيسية",
+   "en": "Electromagnetic Couple — ⚠ لا رمز لها في الكتاب (ص88-112 خالية من Γ تماماً)",
+   "symbol": "",
+   "unit": "m·N",
+   "chapter": "U2C2",
+   "status": "v"
+  },
+  {
+   "ar": "عزم المزدوجة الكهرطيسية",
+   "en": "Moment of the Electromagnetic Couple — Γ_Δ مؤكَّد بنصّ ملخصات الأستاذ: Γ_Δ=N·I·S·B·sinα = M·B·sinα، وشعاعياً Γ_Δ = M ∧ B، الوحدة m·N. (الكتاب لا يرمز لها، وقرار الأستاذ نافذ)",
+   "symbol": "Γ_Δ",
+   "unit": "m·N",
+   "chapter": "U2C2",
+   "status": "v"
+  },
+  {
+   "ar": "تجربة السكتين الكهرطيسية",
+   "en": "Rails (Barlow setup)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C2",
+   "status": "v"
+  },
+  {
+   "ar": "عناصر شعاع القوة",
+   "en": "Elements of a Force Vector",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C2",
+   "status": "v"
+  },
+  {
+   "ar": "الحامل",
+   "en": "Line of Action (of a vector)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C2",
+   "status": "v"
+  },
+  {
+   "ar": "الجهة",
+   "en": "Direction",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C2",
+   "status": "v"
+  },
+  {
+   "ar": "الشدة",
+   "en": "Magnitude / Intensity",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C2",
+   "status": "v"
+  },
+  {
+   "ar": "قاعدة اليد اليمنى",
+   "en": "Right-Hand Rule",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C2",
+   "status": "v"
+  },
+  {
+   "ar": "التحريض الكهرطيسي",
+   "en": "Electromagnetic Induction",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "تيار كهربائي متحرّض",
+   "en": "Induced Current",
+   "symbol": "i",
+   "unit": "A",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "حقل مغناطيسي متحرّض",
+   "en": "Induced Magnetic Field",
+   "symbol": "B",
+   "unit": "T",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "قوة محركة كهربائية متحرّضة",
+   "en": "Induced EMF",
+   "symbol": "ε",
+   "unit": "V",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "تيارات فوكو",
+   "en": "Foucault (Eddy) Currents",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "التحريض الذاتي",
+   "en": "Self-Induction",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "ذاتية الوشيعة",
+   "en": "Self-Inductance of a Coil",
+   "symbol": "L",
+   "unit": "H",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "طاقة كهرطيسية",
+   "en": "Electromagnetic Energy",
+   "symbol": "E_L",
+   "unit": "J",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "مولّد",
+   "en": "Generator (Alternator)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "محرّك",
+   "en": "Electric Motor",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "تيار متناوب جيبي",
+   "en": "Sinusoidal Alternating Current",
+   "symbol": "",
+   "unit": "A",
+   "chapter": "U2C3",
+   "status": "k"
+  },
+  {
+   "ar": "قانون فاراداي",
+   "en": "Faraday's Law",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "v"
+  },
+  {
+   "ar": "قانون لنز",
+   "en": "Lenz's Law",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "v"
+  },
+  {
+   "ar": "وشيعة",
+   "en": "Coil (Solenoid)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "v"
+  },
+  {
+   "ar": "عدد اللفات",
+   "en": "Number of Turns",
+   "symbol": "N",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "s"
+  },
+  {
+   "ar": "مقياس الميكرو أمبير",
+   "en": "Microammeter",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "v"
+  },
+  {
+   "ar": "مقياس الميلي أمبير",
+   "en": "Milliammeter",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "v"
+  },
+  {
+   "ar": "القاطعة",
+   "en": "Switch (Key)",
+   "symbol": "K",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "s"
+  },
+  {
+   "ar": "دارة مغلقة",
+   "en": "Closed Circuit",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C3",
+   "status": "v"
+  },
+  {
+   "ar": "الحقل الكهربائي المتحرّض",
+   "en": "Induced Electric Field",
+   "symbol": "E",
+   "unit": "V/m",
+   "chapter": "U2C3",
+   "status": "v"
+  },
+  {
+   "ar": "الدارات المهتزة والتيارات عالية التواتر",
+   "en": "Oscillating Circuits and High-Frequency Currents",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C4",
+   "status": "g"
+  },
+  {
+   "ar": "الدارة المهتزة",
+   "en": "Oscillating Circuit",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C4",
+   "status": "k"
+  },
+  {
+   "ar": "التفريغ المهتز",
+   "en": "Oscillatory Discharge",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C4",
+   "status": "k"
+  },
+  {
+   "ar": "دور التفريغ",
+   "en": "Period of Discharge",
+   "symbol": "T₀",
+   "unit": "s",
+   "chapter": "U2C4",
+   "status": "k"
+  },
+  {
+   "ar": "التيارات العالية التواتر",
+   "en": "High-Frequency Currents",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C4",
+   "status": "k"
+  },
+  {
+   "ar": "التيارات المنخفضة التواتر",
+   "en": "Low-Frequency Currents",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C4",
+   "status": "k"
+  },
+  {
+   "ar": "المكثفة",
+   "en": "Capacitor",
+   "symbol": "C",
+   "unit": "F",
+   "chapter": "U2C4",
+   "status": "s"
+  },
+  {
+   "ar": "سعة المكثفة",
+   "en": "Capacitance",
+   "symbol": "C",
+   "unit": "F",
+   "chapter": "U2C4",
+   "status": "s"
+  },
+  {
+   "ar": "الطنين الكهربائي",
+   "en": "Electrical Resonance",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C4",
+   "status": "g"
+  },
+  {
+   "ar": "التخامد",
+   "en": "Damping",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C4",
+   "status": "v"
+  },
+  {
+   "ar": "الاهتزازات الكهربائية",
+   "en": "Electrical Oscillations",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C4",
+   "status": "v"
+  },
+  {
+   "ar": "الإرسال",
+   "en": "Transmission (Radio)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C4",
+   "status": "v"
+  },
+  {
+   "ar": "التوتر اللحظي",
+   "en": "Instantaneous Voltage",
+   "symbol": "u",
+   "unit": "V",
+   "chapter": "U2C5",
+   "status": "k"
+  },
+  {
+   "ar": "التوتر الأعظمي",
+   "en": "Maximum (Peak) Voltage",
+   "symbol": "U_max",
+   "unit": "V",
+   "chapter": "U2C5",
+   "status": "k"
+  },
+  {
+   "ar": "التوتر المنتج",
+   "en": "Effective (RMS) Voltage",
+   "symbol": "U_eff",
+   "unit": "V",
+   "chapter": "U2C5",
+   "status": "k"
+  },
+  {
+   "ar": "الشدة اللحظية",
+   "en": "Instantaneous Current",
+   "symbol": "i",
+   "unit": "A",
+   "chapter": "U2C5",
+   "status": "k"
+  },
+  {
+   "ar": "الشدة العظمى",
+   "en": "Maximum (Peak) Current",
+   "symbol": "I_max",
+   "unit": "A",
+   "chapter": "U2C5",
+   "status": "k"
+  },
+  {
+   "ar": "الشدة المنتجة",
+   "en": "Effective (RMS) Current",
+   "symbol": "I_eff",
+   "unit": "A",
+   "chapter": "U2C5",
+   "status": "k"
+  },
+  {
+   "ar": "الاستطاعة المتوسطة المستهلكة",
+   "en": "Average Consumed Power",
+   "symbol": "P_avg",
+   "unit": "W",
+   "chapter": "U2C5",
+   "status": "k"
+  },
+  {
+   "ar": "فرق الكمون",
+   "en": "Potential Difference (Voltage)",
+   "symbol": "U",
+   "unit": "V",
+   "chapter": "U2C5",
+   "status": "s"
+  },
+  {
+   "ar": "المقاومة الصرفة",
+   "en": "Pure (Ohmic) Resistance",
+   "symbol": "R",
+   "unit": "Ω",
+   "chapter": "U2C5",
+   "status": "v"
+  },
+  {
+   "ar": "الممانعة",
+   "en": "Impedance",
+   "symbol": "Z",
+   "unit": "Ω",
+   "chapter": "U2C5",
+   "status": "s"
+  },
+  {
+   "ar": "ردية الوشيعة",
+   "en": "Inductive Reactance",
+   "symbol": "X_L",
+   "unit": "Ω",
+   "chapter": "U2C5",
+   "status": "s"
+  },
+  {
+   "ar": "ممانعة المكثفة (الاتساعية)",
+   "en": "Capacitive Reactance",
+   "symbol": "X_C",
+   "unit": "Ω",
+   "chapter": "U2C5",
+   "status": "s"
+  },
+  {
+   "ar": "المقاومة الأومية",
+   "en": "Ohmic Resistance",
+   "symbol": "r",
+   "unit": "Ω",
+   "chapter": "U2C5",
+   "status": "s"
+  },
+  {
+   "ar": "التحريضية (معامل التحريض الذاتي)",
+   "en": "Inductance",
+   "symbol": "L",
+   "unit": "H",
+   "chapter": "U2C5",
+   "status": "v"
+  },
+  {
+   "ar": "عامل الاستطاعة",
+   "en": "Power Factor",
+   "symbol": "cos φ",
+   "unit": "",
+   "chapter": "U2C5",
+   "status": "v"
+  },
+  {
+   "ar": "إنشاء فرينل",
+   "en": "Fresnel Construction (Phasor Diagram)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C5",
+   "status": "v"
+  },
+  {
+   "ar": "على وفاق بالطور",
+   "en": "In Phase",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C5",
+   "status": "v"
+  },
+  {
+   "ar": "تقدم الطور / تأخر الطور",
+   "en": "Phase Lead / Phase Lag",
+   "symbol": "φ",
+   "unit": "rad",
+   "chapter": "U2C5",
+   "status": "v"
+  },
+  {
+   "ar": "دارة التفريغ",
+   "en": "Discharge Circuit",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C5",
+   "status": "v"
+  },
+  {
+   "ar": "المحولة الكهربائية",
+   "en": "Electric Transformer",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C6",
+   "status": "g"
+  },
+  {
+   "ar": "نسبة التحويل",
+   "en": "Transformation Ratio",
+   "symbol": "μ",
+   "unit": "",
+   "chapter": "U2C6",
+   "status": "k"
+  },
+  {
+   "ar": "مردود النقل",
+   "en": "Transmission Efficiency",
+   "symbol": "η",
+   "unit": "",
+   "chapter": "U2C6",
+   "status": "k"
+  },
+  {
+   "ar": "كفاءة المحولة",
+   "en": "Transformer Efficiency",
+   "symbol": "η",
+   "unit": "",
+   "chapter": "U2C6",
+   "status": "k"
+  },
+  {
+   "ar": "الدارة الثانوية",
+   "en": "Secondary Circuit",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C6",
+   "status": "v"
+  },
+  {
+   "ar": "الدارة الأولية",
+   "en": "Primary Winding",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C6",
+   "status": "v"
+  },
+  {
+   "ar": "الوشيعة الأولية",
+   "en": "Primary Coil",
+   "symbol": "N_p",
+   "unit": "لفة",
+   "chapter": "U2C6",
+   "status": "k"
+  },
+  {
+   "ar": "الوشيعة الثانوية",
+   "en": "Secondary Coil",
+   "symbol": "N_s",
+   "unit": "لفة",
+   "chapter": "U2C6",
+   "status": "k"
+  },
+  {
+   "ar": "خطوط النقل",
+   "en": "Transmission Lines",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U2C6",
+   "status": "v"
+  },
+  {
+   "ar": "التيار المتواصل",
+   "en": "Direct Current (DC)",
+   "symbol": "",
+   "unit": "A",
+   "chapter": "U2C6",
+   "status": "v"
+  },
+  {
+   "ar": "التيار المتناوب",
+   "en": "Alternating Current (AC)",
+   "symbol": "",
+   "unit": "A",
+   "chapter": "U2C6",
+   "status": "v"
+  },
+  {
+   "ar": "الأمواج المستقرة",
+   "en": "Standing Waves",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "g"
+  },
+  {
+   "ar": "الأمواج المستقرة العرضية",
+   "en": "Transverse Standing Waves",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "بطن اهتزاز",
+   "en": "Antinode (Belly)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "عقدة اهتزاز",
+   "en": "Node",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "نهاية مقيدة",
+   "en": "Fixed End",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "نهاية طليقة",
+   "en": "Free End",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "وتر مهتز",
+   "en": "Vibrating String",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "حبل مرن",
+   "en": "Elastic Cord",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "التجاوب",
+   "en": "Resonance",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "التواتر الأساسي",
+   "en": "Fundamental Frequency",
+   "symbol": "f₁",
+   "unit": "Hz",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "المدروجات",
+   "en": "Harmonics",
+   "symbol": "",
+   "unit": "Hz",
+   "chapter": "U3C1",
+   "status": "k"
+  },
+  {
+   "ar": "الكتلة الخطية",
+   "en": "Linear Mass Density",
+   "symbol": "μ",
+   "unit": "kg/m",
+   "chapter": "U3C1",
+   "status": "s"
+  },
+  {
+   "ar": "سرعة الانتشار",
+   "en": "Propagation Speed",
+   "symbol": "v",
+   "unit": "m/s",
+   "chapter": "U3C1",
+   "status": "s"
+  },
+  {
+   "ar": "قوة الشد",
+   "en": "Tension Force",
+   "symbol": "F_T",
+   "unit": "N",
+   "chapter": "U3C1",
+   "status": "s"
+  },
+  {
+   "ar": "طول الموجة",
+   "en": "Wavelength",
+   "symbol": "λ",
+   "unit": "m",
+   "chapter": "U3C1",
+   "status": "s"
+  },
+  {
+   "ar": "الموجة",
+   "en": "Wave",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "v"
+  },
+  {
+   "ar": "اهتزاز عرضي",
+   "en": "Transverse Vibration",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "v"
+  },
+  {
+   "ar": "الرنانة",
+   "en": "Resonator",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C1",
+   "status": "v"
+  },
+  {
+   "ar": "الأمواج المستقرة الطولية",
+   "en": "Longitudinal Standing Waves",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C2",
+   "status": "k"
+  },
+  {
+   "ar": "انضغاط",
+   "en": "Compression",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C2",
+   "status": "k"
+  },
+  {
+   "ar": "تخلخل",
+   "en": "Rarefaction",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C2",
+   "status": "k"
+  },
+  {
+   "ar": "المزمار",
+   "en": "Pipe (Organ Pipe)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C2",
+   "status": "k"
+  },
+  {
+   "ar": "مزمار متشابه الطرفين",
+   "en": "Pipe with Two Identical Ends (Open-Open / Closed-Closed)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C2",
+   "status": "k"
+  },
+  {
+   "ar": "مزمار مختلف الطرفين",
+   "en": "Pipe with Two Different Ends (Open-Closed)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C2",
+   "status": "k"
+  },
+  {
+   "ar": "سرعة انتشار الصوت",
+   "en": "Speed of Sound",
+   "symbol": "v",
+   "unit": "m/s",
+   "chapter": "U3C2",
+   "status": "s"
+  },
+  {
+   "ar": "درجة الحرارة",
+   "en": "Temperature",
+   "symbol": "t / θ",
+   "unit": "°C",
+   "chapter": "U3C2",
+   "status": "s"
+  },
+  {
+   "ar": "عمود الهواء",
+   "en": "Air Column",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U3C2",
+   "status": "v"
+  },
+  {
+   "ar": "الصوت الأساسي",
+   "en": "Fundamental Sound (First Harmonic)",
+   "symbol": "",
+   "unit": "Hz",
+   "chapter": "U3C2",
+   "status": "v"
+  },
+  {
+   "ar": "النماذج الذرية",
+   "en": "Atomic Models",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "v"
+  },
+  {
+   "ar": "الطيوف الذرية",
+   "en": "Atomic Spectra",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "k"
+  },
+  {
+   "ar": "التكميم",
+   "en": "Quantisation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "k"
+  },
+  {
+   "ar": "طاقة التأين",
+   "en": "Ionisation Energy",
+   "symbol": "Ei",
+   "unit": "J / eV",
+   "chapter": "U4C1",
+   "status": "k"
+  },
+  {
+   "ar": "سويات الطاقة",
+   "en": "Energy Levels",
+   "symbol": "E",
+   "unit": "J / eV",
+   "chapter": "U4C1",
+   "status": "k"
+  },
+  {
+   "ar": "التحليل الطيفي",
+   "en": "Spectral Analysis",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "k"
+  },
+  {
+   "ar": "طيف مستمر",
+   "en": "Continuous Spectrum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "k"
+  },
+  {
+   "ar": "طيف متقطع",
+   "en": "Discrete (Line) Spectrum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "k"
+  },
+  {
+   "ar": "طيف انبعاث",
+   "en": "Emission Spectrum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "v"
+  },
+  {
+   "ar": "طيف امتصاص",
+   "en": "Absorption Spectrum",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "v"
+  },
+  {
+   "ar": "الجسم الأسود",
+   "en": "Black Body",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "v"
+  },
+  {
+   "ar": "الذرة",
+   "en": "Atom",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "v"
+  },
+  {
+   "ar": "النواة",
+   "en": "Nucleus",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "v"
+  },
+  {
+   "ar": "المدار",
+   "en": "Orbit",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C1",
+   "status": "k"
+  },
+  {
+   "ar": "الطبقة",
+   "en": "Shell (Electron Layer)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "k"
+  },
+  {
+   "ar": "الحالة",
+   "en": "State (Level)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "k"
+  },
+  {
+   "ar": "انتزاع الإلكترون",
+   "en": "Electron Extraction",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "k"
+  },
+  {
+   "ar": "تسريع الإلكترون",
+   "en": "Electron Acceleration",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "k"
+  },
+  {
+   "ar": "طاقة الارتباط",
+   "en": "Binding Energy",
+   "symbol": "E",
+   "unit": "J / eV",
+   "chapter": "U4C2",
+   "status": "k"
+  },
+  {
+   "ar": "مفعول الحت",
+   "en": "Sputtering Effect",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "k"
+  },
+  {
+   "ar": "المفعول الكهرضوئي",
+   "en": "Photovoltaic (Photoelectric) Effect",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "k"
+  },
+  {
+   "ar": "المفعول الكهرحراري",
+   "en": "Thermoelectric (Thermionic) Effect",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "k"
+  },
+  {
+   "ar": "الفعل الكهرحراري",
+   "en": "Thermionic Effect",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C4",
+   "status": "k"
+  },
+  {
+   "ar": "القوة الكهربائية",
+   "en": "Electric Force",
+   "symbol": "F",
+   "unit": "N",
+   "chapter": "U4C2",
+   "status": "k"
+  },
+  {
+   "ar": "الاستطاعة الكهربائية",
+   "en": "Electric Power",
+   "symbol": "P",
+   "unit": "W",
+   "chapter": "U4C2",
+   "status": "g"
+  },
+  {
+   "ar": "المهبط",
+   "en": "Cathode",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "v"
+  },
+  {
+   "ar": "المصعد",
+   "en": "Anode",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "v"
+  },
+  {
+   "ar": "الإلكترون",
+   "en": "Electron",
+   "symbol": "e",
+   "unit": "C",
+   "chapter": "U4C2",
+   "status": "s"
+  },
+  {
+   "ar": "شحنة الإلكترون",
+   "en": "Electron Charge",
+   "symbol": "e",
+   "unit": "C",
+   "chapter": "U4C2",
+   "status": "s"
+  },
+  {
+   "ar": "كتلة الإلكترون",
+   "en": "Electron Mass",
+   "symbol": "m_e",
+   "unit": "kg",
+   "chapter": "U4C2",
+   "status": "s"
+  },
+  {
+   "ar": "الحزمة الإلكترونية",
+   "en": "Beam (Electron Beam)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "v"
+  },
+  {
+   "ar": "المعادن",
+   "en": "Metals",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C2",
+   "status": "v"
+  },
+  {
+   "ar": "الانفراغ الكهربائي",
+   "en": "Electric Discharge",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C3",
+   "status": "k"
+  },
+  {
+   "ar": "أنبوب الانفراغ",
+   "en": "Discharge Tube",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C3",
+   "status": "k"
+  },
+  {
+   "ar": "الأشعة المهبطية",
+   "en": "Cathode Rays",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C3",
+   "status": "k"
+  },
+  {
+   "ar": "الشاشة المتألقة",
+   "en": "Fluorescent Screen",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C3",
+   "status": "g"
+  },
+  {
+   "ar": "راسم الاهتزاز الإلكتروني",
+   "en": "Electronic Oscilloscope (CRO)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C4",
+   "status": "k"
+  },
+  {
+   "ar": "شبكة وهنلت",
+   "en": "Wehnelt Cylinder (Grid)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C4",
+   "status": "k"
+  },
+  {
+   "ar": "الجملة الحارفة",
+   "en": "Deflection System",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C4",
+   "status": "k"
+  },
+  {
+   "ar": "التأين",
+   "en": "Ionisation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C3",
+   "status": "v"
+  },
+  {
+   "ar": "فرق الكمون الكافي",
+   "en": "Sufficient Potential Difference",
+   "symbol": "",
+   "unit": "V",
+   "chapter": "U4C3",
+   "status": "v"
+  },
+  {
+   "ar": "نظرية الكم",
+   "en": "Quantum Theory",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C5",
+   "status": "k"
+  },
+  {
+   "ar": "نظرية أينشتاين",
+   "en": "Einstein's Theory",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C5",
+   "status": "k"
+  },
+  {
+   "ar": "الفعل الكهرضوئي",
+   "en": "Photoelectric Effect",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C5",
+   "status": "k"
+  },
+  {
+   "ar": "الخلية الكهرضوئية",
+   "en": "Photovoltaic Cell",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C5",
+   "status": "k"
+  },
+  {
+   "ar": "الفوتون",
+   "en": "Photon",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C5",
+   "status": "v"
+  },
+  {
+   "ar": "ثابت بلانك",
+   "en": "Planck's Constant",
+   "symbol": "h",
+   "unit": "J·s",
+   "chapter": "U4C5",
+   "status": "s"
+  },
+  {
+   "ar": "التواتر العتبة",
+   "en": "Threshold Frequency — مؤكَّد: الرمز f_s (ص238: f بحجم 12 + تابع s بحجم 8)",
+   "symbol": "f_s",
+   "unit": "Hz",
+   "chapter": "U4C5",
+   "status": "v"
+  },
+  {
+   "ar": "عمل الانتزاع",
+   "en": "Work Function",
+   "symbol": "W_s",
+   "unit": "J",
+   "chapter": "U4C5",
+   "status": "v"
+  },
+  {
+   "ar": "الأشعة السينية",
+   "en": "X-Rays",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C6",
+   "status": "k"
+  },
+  {
+   "ar": "طبيعة الأشعة السينية",
+   "en": "Nature of X-Rays",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C6",
+   "status": "k"
+  },
+  {
+   "ar": "امتصاص الأشعة السينية",
+   "en": "X-Ray Absorption",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C6",
+   "status": "k"
+  },
+  {
+   "ar": "نفاذ الأشعة السينية",
+   "en": "X-Ray Penetration",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C6",
+   "status": "k"
+  },
+  {
+   "ar": "التصوير الشعاعي",
+   "en": "Radiography",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C6",
+   "status": "v"
+  },
+  {
+   "ar": "أنبوب توليد الأشعة السينية",
+   "en": "X-Ray Tube",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C6",
+   "status": "v"
+  },
+  {
+   "ar": "هدف من معدن ثقيل",
+   "en": "Heavy Metal Target",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C6",
+   "status": "v"
+  },
+  {
+   "ar": "أشعة الليزر",
+   "en": "Laser Radiation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C7",
+   "status": "k"
+  },
+  {
+   "ar": "الليزر",
+   "en": "Laser",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C7",
+   "status": "k"
+  },
+  {
+   "ar": "الإصدار المحثوث",
+   "en": "Stimulated Emission",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C7",
+   "status": "k"
+  },
+  {
+   "ar": "الإصدار التلقائي",
+   "en": "Spontaneous Emission",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C7",
+   "status": "k"
+  },
+  {
+   "ar": "الوسط الفعال",
+   "en": "Active Medium",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C7",
+   "status": "k"
+  },
+  {
+   "ar": "تضخيم الضوء",
+   "en": "Light Amplification",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C7",
+   "status": "v"
+  },
+  {
+   "ar": "التجويف الرنان",
+   "en": "Resonant Cavity",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U4C7",
+   "status": "v"
+  },
+  {
+   "ar": "الفيزياء الفلكية",
+   "en": "Astrophysics",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "جرم سماوي",
+   "en": "Astronomical Object",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "الكوكب",
+   "en": "Planet",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "النجم",
+   "en": "Star",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "المجرة",
+   "en": "Galaxy",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "طيوف النجوم",
+   "en": "Spectra of Stars",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "الانزياح الموجي",
+   "en": "Wave Displacement (Redshift)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "تمدد الكون",
+   "en": "Expansion of the Universe",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "سرعة الإفلات",
+   "en": "Escape Velocity",
+   "symbol": "v",
+   "unit": "m/s",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "نصف قطر شفارتزشيلد",
+   "en": "Schwarzschild Radius",
+   "symbol": "Rs",
+   "unit": "m",
+   "chapter": "U5C1",
+   "status": "k"
+  },
+  {
+   "ar": "الثقب الأسود",
+   "en": "Black Hole",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "v"
+  },
+  {
+   "ar": "القبة السماوية",
+   "en": "Celestial Sphere",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "v"
+  },
+  {
+   "ar": "إشعاع هوكنغ",
+   "en": "Hawking Radiation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "U5C1",
+   "status": "v"
+  },
+  {
+   "ar": "ثابت الجذب العام",
+   "en": "Gravitational Constant",
+   "symbol": "G",
+   "unit": "N·m²/kg²",
+   "chapter": "U5C1",
+   "status": "s"
+  },
+  {
+   "ar": "الكتلة الشمسية",
+   "en": "Solar Mass",
+   "symbol": "",
+   "unit": "kg",
+   "chapter": "U5C1",
+   "status": "v"
+  },
+  {
+   "ar": "الكتلة",
+   "en": "Mass",
+   "symbol": "m",
+   "unit": "kg",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الزمن",
+   "en": "Time",
+   "symbol": "t",
+   "unit": "s",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "المسافة",
+   "en": "Distance",
+   "symbol": "d / x",
+   "unit": "m",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الطول",
+   "en": "Length",
+   "symbol": "L / ℓ",
+   "unit": "m",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "نصف القطر",
+   "en": "Radius",
+   "symbol": "r / R",
+   "unit": "m",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "المساحة",
+   "en": "Area",
+   "symbol": "S / A",
+   "unit": "m²",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الحجم",
+   "en": "Volume",
+   "symbol": "V",
+   "unit": "m³",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الزاوية",
+   "en": "Angle",
+   "symbol": "θ / α",
+   "unit": "rad",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "السرعة",
+   "en": "Speed / Velocity",
+   "symbol": "v",
+   "unit": "m/s",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "التسارع الزاوي",
+   "en": "Angular Acceleration",
+   "symbol": "α",
+   "unit": "rad/s²",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "السرعة الزاوية الثابتة",
+   "en": "Constant Angular Velocity",
+   "symbol": "ω",
+   "unit": "rad/s",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "النبض",
+   "en": "Angular Frequency (Pulsation)",
+   "symbol": "ω",
+   "unit": "rad·s⁻¹",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "العمل",
+   "en": "Work",
+   "symbol": "W",
+   "unit": "J",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الاستطاعة",
+   "en": "Power",
+   "symbol": "P",
+   "unit": "W",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "المردود",
+   "en": "Efficiency",
+   "symbol": "η",
+   "unit": "%",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "المقاومة الكهربائية",
+   "en": "Electrical Resistance",
+   "symbol": "R",
+   "unit": "Ω",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الناقلية",
+   "en": "Conductance",
+   "symbol": "G",
+   "unit": "S",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الحقل الكهربائي",
+   "en": "Electric Field",
+   "symbol": "E",
+   "unit": "V/m",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الشحنة الكهربائية",
+   "en": "Electric Charge",
+   "symbol": "q",
+   "unit": "C",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الكمون الكهربائي",
+   "en": "Electric Potential",
+   "symbol": "V",
+   "unit": "V",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "تسارع الجاذبية الأرضية",
+   "en": "Gravitational Acceleration",
+   "symbol": "g",
+   "unit": "m/s² (تُعتمد 10)",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "النفاذية المغناطيسية للخلاء",
+   "en": "Permeability of Free Space",
+   "symbol": "μ₀",
+   "unit": "T·m/A (= 4π×10⁻⁷)",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "المتر",
+   "en": "Metre",
+   "symbol": "m",
+   "unit": "وحدة أساسية",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الكيلوغرام",
+   "en": "Kilogram",
+   "symbol": "kg",
+   "unit": "وحدة أساسية",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الثانية",
+   "en": "Second",
+   "symbol": "s",
+   "unit": "وحدة أساسية",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الأمبير",
+   "en": "Ampere",
+   "symbol": "A",
+   "unit": "وحدة أساسية",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الفولط",
+   "en": "Volt",
+   "symbol": "V",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الأوم",
+   "en": "Ohm",
+   "symbol": "Ω",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الفاراد",
+   "en": "Farad",
+   "symbol": "F",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الهنري",
+   "en": "Henry",
+   "symbol": "H",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الويبر",
+   "en": "Weber",
+   "symbol": "Wb",
+   "unit": "Wb",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "التسلا",
+   "en": "Tesla",
+   "symbol": "T",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الهرتز",
+   "en": "Hertz",
+   "symbol": "Hz",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "النيوتن",
+   "en": "Newton",
+   "symbol": "N",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الجول",
+   "en": "Joule",
+   "symbol": "J",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الواط",
+   "en": "Watt",
+   "symbol": "W",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الكولون",
+   "en": "Coulomb",
+   "symbol": "C",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الراديان",
+   "en": "Radian",
+   "symbol": "rad",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الدرجة المئوية",
+   "en": "Degree Celsius",
+   "symbol": "°C",
+   "unit": "وحدة مشتقة",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "السنتيمتر",
+   "en": "Centimetre",
+   "symbol": "cm",
+   "unit": "10⁻² m",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الغرام",
+   "en": "Gram",
+   "symbol": "g",
+   "unit": "10⁻³ kg",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "الإلكترون فولط",
+   "en": "Electronvolt",
+   "symbol": "eV",
+   "unit": "1.6×10⁻¹⁹ J",
+   "chapter": "SYM",
+   "status": "s"
+  },
+  {
+   "ar": "التجربة",
+   "en": "Experiment",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "نشاط",
+   "en": "Activity",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "خطوات التجربة",
+   "en": "Experimental Steps",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "المواد اللازمة",
+   "en": "Required Materials",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "النتائج",
+   "en": "Results",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "أستنتج",
+   "en": "I Conclude",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "ألاحظ",
+   "en": "I Observe",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "أستنتاج",
+   "en": "Conclusion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مسألة",
+   "en": "Problem (Exercise)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "المطلوب",
+   "en": "Required (to find)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مستوى شاقولي",
+   "en": "Vertical Plane",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مستوى أفقي",
+   "en": "Horizontal Plane",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "محور الدوران",
+   "en": "Axis of Rotation — يرمز له الكتاب بـ Δ (مثل Γ_η/Δ، Γ_w/Δ، Γ_R/Δ)",
+   "symbol": "Δ",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مجموع العزوم",
+   "en": "Sum of Moments — العلاقة الأساسية في التحريك الدوراني عند الأستاذ: ΣΓ = I_Δ·α",
+   "symbol": "ΣΓ",
+   "unit": "m·N",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "عزم مزدوجة الوزن",
+   "en": "Moment of the Weight Couple — منظومة الأستاذ",
+   "symbol": "Γ_ω",
+   "unit": "m·N",
+   "chapter": "U1C3",
+   "status": "v"
+  },
+  {
+   "ar": "عزم مزدوجة التوتر",
+   "en": "Moment of the Tension Couple",
+   "symbol": "Γ_T",
+   "unit": "m·N",
+   "chapter": "U1C3",
+   "status": "v"
+  },
+  {
+   "ar": "عزم مزدوجة ردّ الفعل",
+   "en": "Moment of the Reaction Couple",
+   "symbol": "Γ_R",
+   "unit": "m·N",
+   "chapter": "U1C3",
+   "status": "v"
+  },
+  {
+   "ar": "عزم مزدوجة القوة",
+   "en": "Moment of a Force Couple",
+   "symbol": "Γ_F",
+   "unit": "m·N",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "طول موجة العتبة",
+   "en": "Threshold Wavelength",
+   "symbol": "λ_s",
+   "unit": "m",
+   "chapter": "U4C5",
+   "status": "v"
+  },
+  {
+   "ar": "طاقة العتبة",
+   "en": "Threshold Energy (= عمل الانتزاع)",
+   "symbol": "E_s",
+   "unit": "J",
+   "chapter": "U4C5",
+   "status": "v"
+  },
+  {
+   "ar": "حركة مستقيمة منتظمة",
+   "en": "Uniform Rectilinear Motion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "حركة اهتزازية",
+   "en": "Oscillatory Motion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "حركة دورانية",
+   "en": "Rotational Motion",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "جملة",
+   "en": "System",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "جملة مهتزة",
+   "en": "Oscillating System",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "موضع التوازن",
+   "en": "Equilibrium Position",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "وضع التوازن",
+   "en": "Equilibrium Position",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "حالة التوازن",
+   "en": "State of Equilibrium",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "محصلة القوى",
+   "en": "Resultant of Forces",
+   "symbol": "ΣF",
+   "unit": "N",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "القوى المؤثرة",
+   "en": "Acting Forces",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "القوى الخارجية",
+   "en": "External Forces",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مهمل الكتلة",
+   "en": "Massless (Negligible Mass)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "عديم الفتل",
+   "en": "Torsion-Free",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "متجانس",
+   "en": "Homogeneous / Uniform",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "متناظر",
+   "en": "Symmetrical",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "يتناسب طرداً مع",
+   "en": "Directly Proportional",
+   "symbol": "~",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "يتناسب عكساً مع",
+   "en": "Inversely Proportional",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "القيمة المطلقة",
+   "en": "Absolute Value",
+   "symbol": "| |",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "القيمة الجبرية",
+   "en": "Algebraic Value",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "القيمة العظمى",
+   "en": "Maximum Value",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "القيمة الصغرى",
+   "en": "Minimum Value",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "التغيّر",
+   "en": "Change / Variation",
+   "symbol": "Δ",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "معدوم",
+   "en": "Zero (Nil)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "ينعدم",
+   "en": "Vanishes / Becomes Zero",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "ثابت",
+   "en": "Constant",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "متغيّر",
+   "en": "Variable",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "العلاقة",
+   "en": "Relation / Equation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "عبارة",
+   "en": "Expression / Formula",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "بدلالة",
+   "en": "In Terms Of",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "نعوّض",
+   "en": "We Substitute",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الجذر التربيعي",
+   "en": "Square Root",
+   "symbol": "√",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الجيب (جيا)",
+   "en": "Sine",
+   "symbol": "sin",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "جيب التمام",
+   "en": "Cosine",
+   "symbol": "cos",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "اللوغاريتم",
+   "en": "Logarithm",
+   "symbol": "log",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الأس",
+   "en": "Exponent / Power",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الأساس",
+   "en": "Base",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الرسم البياني",
+   "en": "Graph",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "المحور الأفقي",
+   "en": "Horizontal Axis",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "المحور الشاقولي",
+   "en": "Vertical Axis",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الشكل المجاور",
+   "en": "Adjacent Figure",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الشكل",
+   "en": "Figure / Diagram",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "أسلاك توصيل",
+   "en": "Connecting Wires",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "على التسلسل",
+   "en": "In Series",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "على التفرّع",
+   "en": "In Parallel",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مصباح كهربائي",
+   "en": "Electric Lamp",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مولد التيار المتواصل",
+   "en": "DC Generator",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مولد التيار المتناوب",
+   "en": "AC Generator",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "إبرة مغناطيسية",
+   "en": "Magnetic Needle",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "حقل مغناطيسي منتظم",
+   "en": "Uniform Field",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "منطقة يسودها حقل",
+   "en": "Field Region",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "سرعة ابتدائية",
+   "en": "Initial Velocity",
+   "symbol": "v₀",
+   "unit": "m/s",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "لحظة",
+   "en": "Instant",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مدة",
+   "en": "Duration",
+   "symbol": "Δt",
+   "unit": "s",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "اتجاه",
+   "en": "Direction",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "منحى",
+   "en": "Orientation / Direction",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "يعامد",
+   "en": "Is Perpendicular To",
+   "symbol": "⊥",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "يوازي",
+   "en": "Is Parallel To",
+   "symbol": "∥",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "يعاكس",
+   "en": "Opposes",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "يتفق بالطور",
+   "en": "In Phase",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "تفكير ناقد",
+   "en": "Critical Thinking",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "اختبر نفسك",
+   "en": "Test Yourself",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مشروع",
+   "en": "Project",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "أهداف",
+   "en": "Objectives",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الكلمات المفتاحية",
+   "en": "Key Words",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "المصطلحات الإنكليزية",
+   "en": "English Terminology",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الفيزياء الطبية",
+   "en": "Medical Physics — NOT in this book",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "المفاعلة",
+   "en": "Reactance (Egyptian) — Syrian: ردية الوشيعة X_L / الممانعة Z",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "المفاعلة الحثية",
+   "en": "Inductive Reactance (Egyptian) — Syrian: ردية الوشيعة",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "المفاعلة السعوية",
+   "en": "Capacitive Reactance (Egyptian) — Syrian: الاتساعية X_C",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "المعاقة",
+   "en": "Impedance (foreign) — Syrian: الممانعة Z",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الشدة الفعالة",
+   "en": "RMS Current (Egyptian) — Syrian: الشدة المنتجة I_eff",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "التوتر الفعال",
+   "en": "RMS Voltage (Egyptian) — Syrian: التوتر المنتج U_eff",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "معامل القدرة",
+   "en": "Power Factor (Egyptian) — Syrian: عامل استطاعة الدارة",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الكهرومغناطيسية",
+   "en": "Electromagnetic (foreign form) — Syrian: الكهرطيسية",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الغاز المخلخل",
+   "en": "Rarefied Gas (Egyptian) — absent from the Syrian book & exams",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الزمن المضاعف",
+   "en": "Dilated Time (Egyptian) — Syrian book says: تمدد الزمن",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "التردد",
+   "en": "Frequency — المرجوح؛ المصطلح الرسمي: التواتر (أُجيز استعماله)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "SYN",
+   "status": "v"
+  },
+  {
+   "ar": "الجهد",
+   "en": "Voltage — المرجوح؛ المصطلح الرسمي: التوتر / فرق الكمون (أُجيز استعماله)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "SYN",
+   "status": "v"
+  },
+  {
+   "ar": "شبه موصل",
+   "en": "Semiconductor — not in this book (use الجسم الصلب)",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "نصف ناقل",
+   "en": "Semiconductor — not in this book",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الترانزستور",
+   "en": "Transistor — not in this book",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "المقحل",
+   "en": "Transistor (Syrian term) — not in this book",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "المحاثة",
+   "en": "Inductance (Egyptian) — book says ذاتية الوشيعة",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الابتدائية (بمعنى ملفّ المحوّلة)",
+   "en": "‘Primary’ as a transformer winding — WRONG here: in this book الابتدائية means ‘initial’ (الطور الابتدائي / السرعة الابتدائية). The book's transformer term is الأولية / الوشيعة الأولية.",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "معامل التحريض الذاتي",
+   "en": "Self-Inductance (Egyptian) — book says ذاتية الوشيعة",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الفيض المغناطيسي",
+   "en": "Magnetic Flux (Egyptian) — book says التدفق المغناطيسي",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الذبذبة",
+   "en": "Oscillation (Egyptian) — book says اهتزاز",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "التيار المستمر",
+   "en": "DC (Egyptian) — book says التيار المتواصل",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "المجال",
+   "en": "Field (Egyptian) — book says الحقل",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الزنبرك",
+   "en": "Spring (Egyptian) — book says نابض",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "السرعة المتجهة",
+   "en": "Velocity vector — book says شعاع السرعة",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "شعاع السرعة",
+   "en": "Velocity Vector",
+   "symbol": "v⃗",
+   "unit": "m/s",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "العطالة",
+   "en": "Inertia",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "النوسة",
+   "en": "(One) Oscillation / Swing",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "مستوي النوسان",
+   "en": "Plane of Oscillation",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "الهزازة",
+   "en": "Vibrator / Oscillator",
+   "symbol": "",
+   "unit": "",
+   "chapter": "GEN",
+   "status": "v"
+  },
+  {
+   "ar": "عزم القصور",
+   "en": "Moment of Inertia (Egyptian) — book says عزم العطالة",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الموجة الموقوفة",
+   "en": "Standing Wave (Egyptian) — book says الموجة المستقرة",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "أشعة إكس",
+   "en": "X-Rays (loan translation) — book says الأشعة السينية",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "القصور الذاتي",
+   "en": "Inertia — قرار الأستاذ: العطالة فقط",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "الكثافة",
+   "en": "Density — قرار الأستاذ: الصواب الكتلة الحجمية",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  },
+  {
+   "ar": "التأثير الكهروضوئي",
+   "en": "Photoelectric Effect (Egyptian) — book says الفعل الكهرضوئي",
+   "symbol": "",
+   "unit": "",
+   "chapter": "BAN",
+   "status": "v"
+  }
+ ],
+ "banned": [
+  "الفيزياء الطبية",
+  "المفاعلة",
+  "المفاعلة الحثية",
+  "المفاعلة السعوية",
+  "المعاقة",
+  "الشدة الفعالة",
+  "التوتر الفعال",
+  "معامل القدرة",
+  "الكهرومغناطيسية",
+  "الغاز المخلخل",
+  "الزمن المضاعف",
+  "شبه موصل",
+  "نصف ناقل",
+  "الترانزستور",
+  "المقحل",
+  "المحاثة",
+  "الابتدائية (بمعنى ملفّ المحوّلة)",
+  "معامل التحريض الذاتي",
+  "الفيض المغناطيسي",
+  "الذبذبة",
+  "التيار المستمر",
+  "المجال",
+  "الزنبرك",
+  "السرعة المتجهة",
+  "عزم القصور",
+  "الموجة الموقوفة",
+  "أشعة إكس",
+  "القصور الذاتي",
+  "الكثافة",
+  "التأثير الكهروضوئي"
+ ],
+ "synonyms": {
+  "التردد": "التواتر",
+  "الجهد": "التوتر / فرق الكمون"
+ }
+}
