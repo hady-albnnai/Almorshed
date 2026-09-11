@@ -147,29 +147,32 @@ class _IndexPanel extends StatelessWidget {
     final txt = Theme.of(context).textTheme;
     return Container(
       width: double.infinity,
+      constraints: const BoxConstraints(maxHeight: 240), // لا فيض أبداً
       color: Theme.of(context).colorScheme.surface,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          for (var i = 0; i < chapter.paragraphs.length; i++)
-            ListTile(
-              dense: true,
-              leading: i == current
-                  ? const Icon(Icons.check_circle_outline, size: 18)
-                  : const Icon(Icons.radio_button_unchecked, size: 18),
-              title: Text(
-                'الفقرة ${ArabicNumber.from(i + 1)} — '
-                '${_short(chapter.paragraphs[i].summary)}',
-                style: txt.bodyMedium?.copyWith(
-                  fontWeight: i == current ? FontWeight.w800 : null,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            for (var i = 0; i < chapter.paragraphs.length; i++)
+              ListTile(
+                dense: true,
+                leading: i == current
+                    ? const Icon(Icons.check_circle_outline, size: 18)
+                    : const Icon(Icons.radio_button_unchecked, size: 18),
+                title: Text(
+                  'الفقرة ${ArabicNumber.from(i + 1)} — '
+                  '${_short(chapter.paragraphs[i].summary)}',
+                  style: txt.bodyMedium?.copyWith(
+                    fontWeight: i == current ? FontWeight.w800 : null,
+                  ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                onTap: () => onPick(i),
               ),
-              onTap: () => onPick(i),
-            ),
-          const Divider(height: 1),
-        ],
+            const Divider(height: 1),
+          ],
+        ),
       ),
     );
   }

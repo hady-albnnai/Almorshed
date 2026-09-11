@@ -47,6 +47,10 @@ ContentPack _fakePack() => ContentPack.fromJsonString(jsonEncode({
 
 void main() {
   Future<void> pumpApp(WidgetTester tester) async {
+    // سطح اختبار بمقاس هاتف فعلي — يمنع مشاكل off-screen بالمسار الكامل
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
     await tester.pumpWidget(
         FizyaClashApp(packLoader: () async => _fakePack()));
     await tester.pumpAndSettle();
