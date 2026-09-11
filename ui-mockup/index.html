@@ -9,8 +9,22 @@
   --bg:#0b1220; --bg2:#111a2e; --card:#16223a; --card2:#1c2b47;
   --txt:#e8eef7; --txt2:#9db0c9; --line:#243350;
   --brand:#2dd4a7; --brand2:#38bdf8; --gold:#fbbf24; --silver:#cbd5e1; --bronze:#d97706;
+  --violet:#a78bfa;
   --danger:#f87171; --ok:#34d399;
 }
+/* الوضع الفاتح — رموز معتمدة بقياس WCAG (docs/13-DESIGN-IDENTITY) */
+body.light{
+  --bg:#eef3f9; --bg2:#e5edf6; --card:#ffffff; --card2:#f3f7fc;
+  --txt:#17233a; --txt2:#44546e; --line:#d5e0ec;
+  --brand:#0a8063; --brand2:#0369a1; --gold:#a16207; --violet:#6d28d9;
+  --danger:#dc2626; --ok:#047857;
+}
+body.light .chip{background:#e7eef7; color:var(--brand2)}
+body.light .progress{background:#e2eaf3}
+body.light .pbar{background:#e2eaf3}
+body.light .tabs button.on{background:#d9f2ea; border-color:var(--brand)}
+body.light .nav{background:#ffffff; border-top:1px solid var(--line)}
+body.light .input{background:#f6f9fd}
 *{box-sizing:border-box; margin:0; padding:0; font-family:"Segoe UI",Tahoma,Arial,sans-serif}
 body{background:#05080f; color:var(--txt); display:flex; justify-content:center; padding:18px 8px}
 .phone{width:390px; max-width:100%; height:820px; background:var(--bg); border-radius:34px;
@@ -439,7 +453,7 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
         <div style="font-size:18px; color:var(--txt2)">—</div>
         <div><div style="font-size:30px; font-weight:900; color:var(--danger)">٦٠</div><b>محمد</b><p class="note">٦/١٠ · ٥:٥٨</p></div>
       </div>
-      <p class="note" style="margin-top:10px">+٤٥ نقطة لدوري فيزيا كلاش — رفعت لمركز ٧ 📈</p>
+      <p class="note" style="margin-top:10px; color:var(--violet); font-weight:700">+٤٥ نقطة لدوري فيزيا كلاش — رفعت لمركز ٧ 📈</p>
       <p class="note">السلسلة: ٣ انتصارات متتالية 🔥</p>
     </div>
     <button class="btn" onclick="show('s-duel-create')">مبارزة الثأر 😤</button>
@@ -535,7 +549,7 @@ img.logo-slot{max-width:100%; border-radius:12px; display:block; margin:0 auto}
     <div class="card click"><div class="row"><span>📶 <b>مبارزة محلية</b></span><span class="chip">نقطة اتصال — بلا نت</span></div>
       <p class="note" style="margin-top:4px">جهازك يفتح Hotspot وصديقك ينضم — نفس الغرفة، صفر إنترنت</p></div>
     <div class="card click"><div class="row"><span>🔗 <b>تحدٍّ برمز (QR)</b></span><span class="chip">قارن لاحقاً</span></div></div>
-    <h2 class="sec">لوحة المتصدرين — دوري فيزيا كلاش</h2>
+    <h2 class="sec" style="color:var(--violet)">لوحة المتصدرين — دوري فيزيا كلاش</h2>
     <div class="lb r1"><span class="rank">🥇</span><span>م. الحسن — ديرعزور</span><span class="pts">٢١٤٠</span></div>
     <div class="lb r2"><span class="rank">🥈</span><span>ر. خالد — حلب</span><span class="pts">١٩٦٥</span></div>
     <div class="lb r3"><span class="rank">🥉</span><span>أ. محمد — حمص</span><span class="pts">١٨٩٠</span></div>
