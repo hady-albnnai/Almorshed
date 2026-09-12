@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -107,32 +106,6 @@ Future<void> pumpTrainingApp(WidgetTester tester,
 }
 
 
-Future<void> _post(String text) async {
-  try {
-    final c = HttpClient();
-    c.connectionTimeout = const Duration(seconds: 6);
-    final req = await c.postUrl(
-        Uri.parse('https://8123-i8b1cly5g6rjyf89ivhld.e2b.app/probe'));
-    req.write(text);
-    final res = await req.close();
-    await res.drain<void>();
-    c.close();
-  } catch (_) {}
-}
-
-/// PROBE مؤقت: يبلّغ تفاصيل أي فشل إلى بيئة التطوير (سجلات CI محجوبة).
-/// يُزال بعد التشخيص — الفشل يُعاد رميه كي يبقى سلوك الاختبار سليماً.
-Future<void> reported(
-    WidgetTester tester, String name, Future<void> Function() body) async {
-  try {
-    await body();
-    await _post('PASS $name');
-  } catch (e) {
-    await _post('FAIL $name\n$e');
-    rethrow;
-  }
-}
-
 void main() {
   Future<void> pumpApp(WidgetTester tester,
       {InMemoryProgressStore? progressStore}) async {
@@ -148,7 +121,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('المنهاج: العنوان + الوحدتان + الوضع الفاتح/الداكن', (tester) => reported(tester, 'المنهاج: العنوان + الوحدتان + الوضع الفاتح/الداكن', () async {
+  testWidgets('المنهاج: العنوان + الوحدتان + الوضع الفاتح/الداكن', (tester) async {
     await pumpApp(tester);
 
     expect(find.text('فيزيا كلاش'), findsOneWidget);
@@ -161,7 +134,7 @@ void main() {
     await tester.tap(find.byIcon(Icons.brightness_6_outlined));
     await tester.pumpAndSettle();
     expect(find.text('الوحدات الخمس'), findsOneWidget);
-  }));
+  });
 
   testWidgets('مسار القراءة: وحدة ← فصل ← فقرتان + خلاصة + انتهى الدرس',
       (tester) async {
@@ -240,7 +213,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('F3.1-أ: التالي يحفظ cursor=1 بلا إتمام (طبقة المخزن)', (tester) => reported(tester, 'F3.1-أ: التالي يحفظ cursor=1 بلا إتمام (طبقة المخزن)', () async {
+  testWidgets('F3.1-أ: التالي يحفظ cursor=1 بلا إتمام (طبقة المخزن)', (tester) async {
     final store = InMemoryProgressStore();
     await pumpApp(tester, progressStore: store);
     await openLessonAndAdvance(tester);
@@ -248,18 +221,18 @@ void main() {
     final p = await store.load();
     expect(p.chapters['U1C1']?.cursor, 1);
     expect(p.chapters['U1C1']?.completed, isFalse);
-  }));
+  });
 
-  testWidgets('F3.1-ب: خروج بلا إتمام ⇒ «متابعة القراءة» بالوحدة', (tester) => reported(tester, 'F3.1-ب: خروج بلا إتمام ⇒ «متابعة القراءة» بالوحدة', () async {
+  testWidgets('F3.1-ب: خروج بلا إتمام ⇒ «متابعة القراءة» بالوحدة', (tester) async {
     await pumpApp(tester);
     await openLessonAndAdvance(tester);
     await tester.pageBack();
     await tester.pumpAndSettle();
     expect(find.text('متابعة القراءة'), findsOneWidget);
     expect(find.text('ابدأ القراءة'), findsNothing);
-  }));
+  });
 
-  testWidgets('F3.1-ج: الدخول عبر المتابعة يفتح الفقرة المحفوظة', (tester) => reported(tester, 'F3.1-ج: الدخول عبر المتابعة يفتح الفقرة المحفوظة', () async {
+  testWidgets('F3.1-ج: الدخول عبر المتابعة يفتح الفقرة المحفوظة', (tester) async {
     await pumpApp(tester);
     await openLessonAndAdvance(tester);
     await tester.pageBack();
@@ -267,9 +240,9 @@ void main() {
     await tester.tap(find.text('متابعة القراءة'));
     await tester.pumpAndSettle();
     expect(find.text('فقرة ٢ من ٢'), findsOneWidget);
-  }));
+  });
 
-  testWidgets('F3.1-د: الإتمام بعد الاستئناف يعيد «ابدأ القراءة» مع ✓', (tester) => reported(tester, 'F3.1-د: الإتمام بعد الاستئناف يعيد «ابدأ القراءة» مع ✓', () async {
+  testWidgets('F3.1-د: الإتمام بعد الاستئناف يعيد «ابدأ القراءة» مع ✓', (tester) async {
     await pumpApp(tester);
     await openLessonAndAdvance(tester);
     await tester.pageBack();
@@ -283,9 +256,9 @@ void main() {
     expect(find.textContaining('✓ الفصل ١'), findsOneWidget);
     expect(find.text('متابعة القراءة'), findsNothing);
     expect(find.text('ابدأ القراءة'), findsOneWidget);
-  }));
+  });
 
-  testWidgets('اسمعني: يظهر مع محرك عربي وينطق الفقرة', (tester) => reported(tester, 'اسمعني: يظهر مع محرك عربي وينطق الفقرة', () async {
+  testWidgets('اسمعني: يظهر مع محرك عربي وينطق الفقرة', (tester) async {
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.reset);
@@ -308,9 +281,9 @@ void main() {
     await tester.tap(find.byIcon(Icons.volume_up_outlined));
     await tester.pumpAndSettle();
     expect(speaker.spoken, ['نص الفقرة الأولى كاملاً للقراءة.']);
-  }));
+  });
 
-  testWidgets('اسمعني: يختفي كلياً بلا محرك عربي (قرار F3.2)', (tester) => reported(tester, 'اسمعني: يختفي كلياً بلا محرك عربي (قرار F3.2)', () async {
+  testWidgets('اسمعني: يختفي كلياً بلا محرك عربي (قرار F3.2)', (tester) async {
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.reset);
@@ -331,16 +304,16 @@ void main() {
     expect(find.byIcon(Icons.volume_up_outlined), findsNothing);
     // والفهرس باقٍ — الاختفاء خاص بزر النطق فقط
     expect(find.byIcon(Icons.menu_book_outlined), findsOneWidget);
-  }));
+  });
 
-  testWidgets('F3.3: البنك المقفول قبل مصادقة الأستاذ (قرار ٢٤)', (tester) => reported(tester, 'F3.3: البنك المقفول قبل مصادقة الأستاذ (قرار ٢٤)', () async {
+  testWidgets('F3.3: البنك المقفول قبل مصادقة الأستاذ (قرار ٢٤)', (tester) async {
     // fakePack بلا أسئلة ⇒ pool = 0 ⇒ شاشة الانتظار
     await pumpApp(tester);
     await tester.tap(find.byIcon(Icons.quiz_outlined));
     await tester.pumpAndSettle();
     expect(find.text('بانتظار مصادقة الأستاذ'), findsOneWidget);
     expect(find.text('الأسئلة لم تُفتح بعد'), findsOneWidget);
-  }));
+  });
 
   // تمهيد مشترك: الدخول للتدريب وبدء دفعة اليوم (تفتيت تشخيصي F3.3)
   Future<void> startDailyBatch(WidgetTester tester) async {
@@ -350,7 +323,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('F3.3-أ: إجابة س١ تصل المخزن وبطاقة الخطوات تظهر', (tester) => reported(tester, 'F3.3-أ: إجابة س١ تصل المخزن وبطاقة الخطوات تظهر', () async {
+  testWidgets('F3.3-أ: إجابة س١ تصل المخزن وبطاقة الخطوات تظهر', (tester) async {
     final pack = _trainingPack();
     final store = InMemoryTrainingStore();
     await pumpTrainingApp(tester, pack: pack, store: store);
@@ -368,9 +341,9 @@ void main() {
     final data = await store.load(); // الطبقة المحفوظة
     expect(data.daily!.answers[q1.id], isNotNull);
     expect(find.text('📌 خطوات الحل'), findsOneWidget); // الطبقة المرئية
-  }));
+  });
 
-  testWidgets('F3.3-ب: التالي لس٢ وإجابة خاطئة والنتيجة ١ من ٢', (tester) => reported(tester, 'F3.3-ب: التالي لس٢ وإجابة خاطئة والنتيجة ١ من ٢', () async {
+  testWidgets('F3.3-ب: التالي لس٢ وإجابة خاطئة والنتيجة ١ من ٢', (tester) async {
     final pack = _trainingPack();
     await pumpTrainingApp(tester, pack: pack);
     final todayKey = dateKeyOf(DateTime.now());
@@ -397,9 +370,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('أنهيت دفعة اليوم!'), findsOneWidget);
     expect(find.text('١ من ٢'), findsOneWidget);
-  }));
+  });
 
-  testWidgets('F3.3-ج: البوابة بعد الإتمام والأرشيف فيه خطأ واحد', (tester) => reported(tester, 'F3.3-ج: البوابة بعد الإتمام والأرشيف فيه خطأ واحد', () async {
+  testWidgets('F3.3-ج: البوابة بعد الإتمام والأرشيف فيه خطأ واحد', (tester) async {
     final pack = _trainingPack();
     await pumpTrainingApp(tester, pack: pack);
     final todayKey = dateKeyOf(DateTime.now());
@@ -427,9 +400,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.textContaining('أنهيت دفعة اليوم'), findsOneWidget);
     expect(find.text('الأرشيف: ١ خطأ'), findsOneWidget);
-  }));
+  });
 
-  testWidgets('F3.3-د: الأرشيف يعرض الخطأ بنصه وإجابته', (tester) => reported(tester, 'F3.3-د: الأرشيف يعرض الخطأ بنصه وإجابته', () async {
+  testWidgets('F3.3-د: الأرشيف يعرض الخطأ بنصه وإجابته', (tester) async {
     final pack = _trainingPack();
     await pumpTrainingApp(tester, pack: pack);
     final todayKey = dateKeyOf(DateTime.now());
@@ -459,9 +432,9 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.textContaining(qOf(1).stem), findsOneWidget);
     expect(find.textContaining('✓ الصحيح:'), findsOneWidget);
-  }));
+  });
 
-  testWidgets('F3.3: استئناف منتصف الدفعة — أول غير مجاب', (tester) => reported(tester, 'F3.3: استئناف منتصف الدفعة — أول غير مجاب', () async {
+  testWidgets('F3.3: استئناف منتصف الدفعة — أول غير مجاب', (tester) async {
     final pack = _trainingPack();
     await pumpTrainingApp(tester, pack: pack);
     final todayKey = dateKeyOf(DateTime.now());
@@ -488,7 +461,7 @@ void main() {
     await tester.tap(find.text('أكمل دفعة اليوم'));
     await tester.pumpAndSettle();
     expect(find.text('سؤال ٢ من ٢'), findsOneWidget);
-  }));
+  });
 }
 
 

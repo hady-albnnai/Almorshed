@@ -34,6 +34,11 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
   late final Map<int, Question> _questions;
   late final DailyBatch? _batch;
 
+  /// فهرس التصفح الصريح — لا قفز تلقائي قبل عرض التصحيح (بق موثق F3.3:
+  /// «أول غير مجاب» كان ينتقل للسؤال التالي فور الإجابة فتختفي
+  /// بطاقة الخطوات وزر التالي — انكشف ببلصة فحص المالك ٥٦/٦١).
+  int _current = 0;
+
   @override
   void initState() {
     super.initState();
@@ -45,13 +50,14 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
       dateKey: _state.dateKey,
       deviceId: widget.deviceId,
     );
+    _current = _firstUnanswered();
   }
 
   int get _total => _state.order.length;
   int get _answered => _state.answeredCount;
 
-  /// أول سؤال غير مجاب — موضع الاستئناف.
-  int get _currentIndex {
+  /// أول سؤال غير مجاب — موضع الاستئناف عند فتح الجلسة حصراً.
+  int _firstUnanswered() {
     for (var i = 0; i < _total; i++) {
       if (!_state.answers.containsKey(_state.order[i])) return i;
     }
@@ -157,7 +163,7 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
     }
 
     // شاشة السؤال
-    final i = _currentIndex;
+    final i = _current;
     final q = _questionAt(i);
     final order = _optionOrderOf(_state.order[i]);
     if (q == null || order == null) {
@@ -235,7 +241,7 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
                     if (i + 1 >= _total) {
                       _finish();
                     } else {
-                      setState(() {}); // الانتقال يتلو من _currentIndex
+                      setState(() => _current = i + 1); // تصفح صريح
                     }
                   },
                   child: Text(i + 1 >= _total ? 'النتيجة' : 'التالي ←'),

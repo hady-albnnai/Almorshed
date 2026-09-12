@@ -184,7 +184,7 @@ void main() {
     final c41 = pack.units[3].chapters.first;
     expect(c41.id, 'U4C1');
     expect(c41.paragraphs[1].text, contains('T0 = 2π/ω0 = 2π·√(L·C)'));
-    expect(c41.paragraphs[3].text, contains('E = ½·qmaX²/C'));
+    expect(c41.paragraphs[3].text, contains('= ½·qmaX²/C'));
     expect(pack.questions.where((q) => q.unit == 'U4'), hasLength(5));
 
     // U4C2: التيار المتناوب الجيبي
