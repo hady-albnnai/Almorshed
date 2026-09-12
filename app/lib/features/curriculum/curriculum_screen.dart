@@ -119,6 +119,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
           for (var i = 0; i < widget.pack.units.length; i++)
             _UnitCard(
               index: i,
+              xpRecorder: widget.xpRecorder,
               unit: widget.pack.units[i],
               completedIds: _progress.completedIds,
               progressStore: widget.progressStore,
@@ -137,6 +138,7 @@ class _UnitCard extends StatelessWidget {
     required this.completedIds,
     required this.progressStore,
     required this.onReturned,
+    required this.xpRecorder,
   });
 
   final int index;
@@ -144,6 +146,8 @@ class _UnitCard extends StatelessWidget {
   final Set<String> completedIds;
   final ProgressStore progressStore;
   final VoidCallback onReturned;
+  final XpRecorder? xpRecorder;
+
 
   @override
   Widget build(BuildContext context) {
@@ -167,7 +171,7 @@ class _UnitCard extends StatelessWidget {
                       builder: (_) => UnitScreen(
                             unit: unit,
                             progressStore: progressStore,
-              xpRecorder: widget.xpRecorder,
+                            xpRecorder: xpRecorder,
                           )),
                 )
                 .then((_) => onReturned())

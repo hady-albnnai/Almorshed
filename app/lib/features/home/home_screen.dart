@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
-import '../../core/license/license_core.dart';
 import '../../core/license/license_store.dart';
 import '../../core/progress/progress_store.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/training/batch_builder.dart';
+import '../../core/training/cards_service.dart';
 import '../../core/training/training_store.dart';
 import '../../core/util/arabic_number.dart';
 import '../../core/xp/streak_service.dart';

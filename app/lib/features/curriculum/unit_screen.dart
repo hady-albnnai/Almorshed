@@ -57,6 +57,7 @@ class _UnitScreenState extends State<UnitScreen> {
                 for (var i = 0; i < widget.unit.chapters.length; i++)
                   _ChapterCard(
                     index: i,
+                    xpRecorder: widget.xpRecorder,
                     chapter: widget.unit.chapters[i],
                     completed: done.contains(widget.unit.chapters[i].id),
                     progress: _progress.chapters[widget.unit.chapters[i].id],
@@ -77,6 +78,7 @@ class _ChapterCard extends StatelessWidget {
     required this.progress,
     required this.progressStore,
     required this.onReturned,
+    required this.xpRecorder,
   });
 
   final int index;
@@ -85,6 +87,8 @@ class _ChapterCard extends StatelessWidget {
   final ChapterProgress? progress;
   final ProgressStore progressStore;
   final VoidCallback onReturned;
+  final XpRecorder? xpRecorder;
+
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +119,7 @@ class _ChapterCard extends StatelessWidget {
                             builder: (_) => LessonScreen(
                                   chapter: chapter,
                                   progressStore: progressStore,
-                                  xpRecorder: widget.xpRecorder,
+                                  xpRecorder: xpRecorder,
                                 )),
                       )
                       .then((_) => onReturned()),
