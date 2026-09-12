@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/lab/spring_sim.dart';
 import '../../core/training/training_store.dart';
 import 'spring_lab_screen.dart';
 
