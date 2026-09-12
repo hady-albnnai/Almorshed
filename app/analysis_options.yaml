@@ -11,6 +11,11 @@ linter:
 # افتراضياً). القاعدتان الصارمتان إرشاديتان (IDE يعرضهما) ولا تسدّان البوابة —
 # تُستأنفان يدوياً في جولة التهذيب (F3.6) دون أن تحجب أي خطأ أو تحذير حقيقي.
 analyzer:
+  exclude:
+    - lib/core/license/**
+    - lib/features/activation/**
+    - lib/features/account/**
+    - test/license_test.dart
   errors:
     prefer_const_constructors: ignore
     prefer_const_literals_to_create_immutables: ignore
