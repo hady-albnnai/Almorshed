@@ -41,7 +41,7 @@ void main() {
         'prevHash': 'GENESIS',
       };
       final expected = crypto.sha256
-          .convert(utf8.encode('GENESIS' + jsonEncode(core)))
+          .convert(utf8.encode('GENESIS${jsonEncode(core)}'))
           .toString();
       expect(e.hash, expected);
     });
@@ -99,7 +99,7 @@ void main() {
 
     test('٢) حذف حدث أوسط ⇒ فجوة تسلسل ⇒ رفض', () async {
       final store = InMemoryXpEventStore();
-      final l = await threeEvents(store);
+      await threeEvents(store); // الإنشاء كافٍ — التحقق بخدمة fresh
       final raw = await store.loadEvents();
       raw.removeAt(1); // حذف الثاني — الثالث يحمل seq=3
       await store.saveEvents(raw);
@@ -112,7 +112,7 @@ void main() {
 
     test('٣) توقيع مزيف بمفتاح آخر ⇒ رفض', () async {
       final store = InMemoryXpEventStore();
-      final l = await threeEvents(store);
+      await threeEvents(store); // الإنشاء كافٍ — التحقق بخدمة fresh
       // مهاجم بمفتاحه يوقّع حدثاً — لكن السلسلة بمفتاح الجهاز
       final attacker = XpSigner.fromSeed(
           Uint8List.fromList(List<int>.generate(32, (i) => 200 - i)));

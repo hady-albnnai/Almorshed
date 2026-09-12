@@ -71,7 +71,7 @@ class XpSigner {
       }
       await vault.writeSeed(seed);
     }
-    return fromSeed(seed);
+    return XpSigner.fromSeed(seed); // داخل static: بادئة الصنف إلزامية
   }
 
   /// حتمي من بذرة معلومة — للاختبارات والمتجهات الذهبية.
