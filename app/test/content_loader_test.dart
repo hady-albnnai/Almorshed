@@ -173,7 +173,7 @@ void main() {
     expect(c31.id, 'U3C1');
     expect(c31.paragraphs[1].text, contains('Q = ρ·Q\''));
     final c33 = pack.units[2].chapters[2];
-    expect(c33.paragraphs[2].text, contains('P + ½ρ·v² + ρ·g·z = ثابت'));
+    expect(c33.paragraphs[1].text, contains('P + ½ρ·v² + ρ·g·z = ثابت'));
     final c34 = pack.units[2].chapters[3];
     expect(c34.paragraphs[1].text, contains('v2 = √(2·g·h)'));
     expect(pack.questions.where((q) => q.unit == 'U3'), hasLength(8));

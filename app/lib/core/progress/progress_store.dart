@@ -36,8 +36,10 @@ class ReadProgress {
 
   factory ReadProgress.fromJson(Map<String, dynamic> json) => ReadProgress(
         chapters: {
-          for (final e
-              in ((json['chapters'] as Map<String, dynamic>?) ?? const {}))
+          // ⚠️ النوع صريح إلزامي: const {} بلا نوع يستنتَج Set في الدارت
+          // فيصير اتحاد الأنواع Object ويكسر الترجمة (علّة موثقة F3.1)
+          for (final e in ((json['chapters'] as Map<String, dynamic>?) ??
+              const <String, dynamic>{}))
             e.key: ChapterProgress.fromJson(e.value as Map<String, dynamic>),
         },
       );
