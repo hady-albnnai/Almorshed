@@ -76,6 +76,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
         dateKey: todayKey, order: batch.session.questionIds);
     await widget.trainingStore.save(
         TrainingData(daily: state, mistakes: _data.mistakes));
+    if (!mounted) return; // فجوة غير متزامنة قبل استخدام context
     await _openSession(state);
   }
 

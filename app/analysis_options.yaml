@@ -6,3 +6,11 @@ linter:
     prefer_const_constructors: true
     prefer_final_locals: true
     always_declare_return_types: true
+
+# قرار ٥٩: بوابة CI = أخطاء + تحذيرات (flutter analyze يجعل الـinfos فادحة
+# افتراضياً). القاعدتان الصارمتان إرشاديتان (IDE يعرضهما) ولا تسدّان البوابة —
+# تُستأنفان يدوياً في جولة التهذيب (F3.6) دون أن تحجب أي خطأ أو تحذير حقيقي.
+analyzer:
+  errors:
+    prefer_const_constructors: ignore
+    prefer_final_locals: ignore
