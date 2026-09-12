@@ -4,6 +4,7 @@ import '../../core/content/models.dart';
 import '../../core/progress/progress_store.dart';
 import '../../core/training/training_store.dart';
 import '../../core/util/arabic_number.dart';
+import '../lab/lab_screen.dart';
 import '../training/training_screen.dart';
 import 'unit_screen.dart';
 
@@ -56,6 +57,16 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
           ],
         ),
         actions: [
+          IconButton(
+            tooltip: 'المختبر — التجارب التفاعلية',
+            onPressed: () async {
+              await Navigator.of(context).push(MaterialPageRoute<void>(
+                builder: (_) => LabScreen(trainingStore: widget.trainingStore),
+              ));
+              _reload(); // نمط F3.1: تحديث عند العودة
+            },
+            icon: const Icon(Icons.science_outlined),
+          ),
           IconButton(
             tooltip: 'التدريب — دفعة اليوم وأخطائي',
             onPressed: () async {

@@ -191,6 +191,7 @@ class TrainingData {
     this.mistakes = const [],
     this.cardStates = const {},
     this.cardDay,
+    this.labChallengeDoneDateKey,
   });
 
   /// حالة دفعة اليوم (null ⇒ لا دفعة محفوظة).
@@ -205,6 +206,9 @@ class TrainingData {
   /// F3.4 — طابور البطاقات لليوم (null ⇒ لم يُبنَ بعد).
   final CardDayState? cardDay;
 
+  /// F3.5 — يوم إنجاز تحدي المختبر «اجعل T=٢ث» (+١٠ بسقف يومي — docs/12 §٦).
+  final String? labChallengeDoneDateKey;
+
   Map<String, dynamic> toJson() => {
         'daily': daily?.toJson(),
         'mistakes': [for (final m in mistakes) m.toJson()],
@@ -212,6 +216,8 @@ class TrainingData {
           for (final e in cardStates.entries) '${e.key}': e.value.toJson(),
         },
         'cardDay': cardDay?.toJson(),
+        if (labChallengeDoneDateKey != null)
+          'labChallengeDoneDateKey': labChallengeDoneDateKey,
       };
 
   factory TrainingData.fromJson(Map<String, dynamic> json) => TrainingData(
@@ -235,6 +241,8 @@ class TrainingData {
         cardDay: json['cardDay'] == null
             ? null
             : CardDayState.fromJson(json['cardDay'] as Map<String, dynamic>),
+        labChallengeDoneDateKey:
+            json['labChallengeDoneDateKey'] as String?,
       );
 }
 

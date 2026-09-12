@@ -525,6 +525,88 @@ void main() {
     expect(data.cardDay!.finished, isTrue);
   });
 
+  testWidgets('F3.5: POE كامل — توقع ثم محاكاة ثم قياس وشرح', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack);
+    await tester.tap(find.byIcon(Icons.science_outlined)); // المختبر
+    await tester.pumpAndSettle();
+
+    // البوابة: النابض جاهز والبقية قيد الإعداد
+    expect(find.text('النابض التوافقي'), findsOneWidget);
+    await tester.tap(find.text('النابض التوافقي'));
+    await tester.pumpAndSettle();
+
+    // مرحلة التوقع إلزامية أولاً
+    expect(find.text('توقع قبل التجريب'), findsOneWidget);
+    expect(find.text('تشغيل ▶'), findsNothing);
+    await tester.tap(find.text('يطول الدور T'));
+    await tester.pumpAndSettle();
+
+    // ظهرت المحاكاة — شغّل
+    expect(find.text('تشغيل ▶'), findsOneWidget);
+    await tester.tap(find.text('تشغيل ▶'));
+    // ⚠️ pumpAndSettle ممنوعة مع تيكر يعمل (لا يهدأ أبداً) — نبضات صريحة
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 4)); // دورات كافية للقياس
+    await tester.pump();
+    expect(find.textContaining('T المقيس'), findsOneWidget);
+
+    // الشرح ظهر بعد القياس (ربط POE)
+    expect(find.text('اشرح'), findsOneWidget);
+  });
+
+  testWidgets('F3.5: التحدي T=٢ث — الوصول بالأزرار ± والتسجيل مرة باليوم',
+      (tester) async {
+    final pack = _trainingPack();
+    final store = InMemoryTrainingStore();
+    await pumpTrainingApp(tester, pack: pack, store: store);
+    await tester.tap(find.byIcon(Icons.science_outlined));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('النابض التوافقي'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('يقصر الدور T')); // أي توقع يمر
+    await tester.pumpAndSettle();
+
+    // الافتراضي m=1.0, k=10 ⇒ T≈1.9869 داخل النافذة أصلاً!
+    expect(find.textContaining('تحقّق'), findsOneWidget);
+    await tester.tap(find.text('سجّل التحدي (+١٠)'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('سُجّل اليوم'), findsOneWidget);
+
+    // الحالة محفوظة — إعادة فتح المختبر لا تعيد التسجيل
+    final data = await store.load();
+    expect(data.labChallengeDoneDateKey,
+        dateKeyOf(DateTime.now()));
+
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.science_outlined));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('النابض التوافقي'));
+    await tester.pumpAndSettle();
+    expect(find.text('سجّل التحدي (+١٠)'), findsNothing);
+    expect(find.textContaining('سُجّل اليوم'), findsOneWidget);
+  });
+
+  testWidgets('F3.5: خروج النافذة عند تغيير m — الفحص حي', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack);
+    await tester.tap(find.byIcon(Icons.science_outlined));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('النابض التوافقي'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('لا يتغير T'));
+    await tester.pumpAndSettle();
+
+    // داخل النافذة افتراضياً — زر m إيجابي مرتين: m=1.2 ⇒ T≈2.176 خارج
+    await tester.tap(find.byIcon(Icons.add_circle_outline).first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.add_circle_outline).first);
+    await tester.pumpAndSettle();
+    expect(find.textContaining('تحقّق'), findsNothing);
+    expect(find.textContaining('اضبط m وk'), findsOneWidget);
+  });
+
   testWidgets('F3.4: استئناف منتصف المراجعة — التالية لا المكررة', (tester) async {
     final pack = _trainingPack();
     await pumpTrainingApp(tester, pack: pack);
