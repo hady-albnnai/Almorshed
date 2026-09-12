@@ -135,9 +135,15 @@ create policy "weekly_select_own" on public.weekly_totals
     where d.id = weekly_totals.device_id and d.profile_id = auth.uid()
   ));
 
--- الدوري: المفعّلون يقرؤون الترتيب (بلا هويات — أرقام ونيوكليوس فقط)
-create policy "standings_select_auth" on public.league_standings
-  for select to authenticated using (true);
+-- الدوري: المفعّلون حصراً (جهاز بترخيص غير مسحوب) — المجهول مرفوض
+-- (المجهول يحمل دور authenticated — قراءة عامة له كانت ستفتح الترتيب
+--  لغير المفعّلين؛ المشددة أدناه بعد تفعيل Anonymous 2026-09-12)
+create policy "standings_select_licensed" on public.league_standings
+  for select to authenticated using (exists (
+    select 1 from public.devices d
+    join public.licenses l on l.device_id = d.id and l.revoked = false
+    where d.profile_id = auth.uid()
+  ));
 
 -- المراسي: service_role فقط (لا سياسة للعميل أصلاً)
 
