@@ -67,7 +67,7 @@ class LicenseData {
     }
     final rawToken = json['token'] as String?;
     return LicenseData(
-      mode: mode ?? LicenseMode.none,
+      mode: mode, // المحلي غير-nullable أولاً — لا حاجة لأي ??
       token: rawToken == null ? null : LicenseToken.tryDecode(rawToken),
       activatedAtMs: (json['activated_at'] as num?)?.toInt(),
       lastWallMs: (json['last_wall'] as num?)?.toInt() ?? 0,

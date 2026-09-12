@@ -117,7 +117,8 @@ class LicenseCheck {
   const LicenseCheck(this.verdict, {this.payload});
   final LicenseVerdict verdict;
   final LicensePayload? payload;
-  bool get ok => verdict == valid || verdict == demo;
+  bool get ok =>
+      verdict == LicenseVerdict.valid || verdict == LicenseVerdict.demo;
 }
 
 /// الفحص المحلي الظاهر (قرار ٣٨): فك ← توقيع ← بنية ← أجهزة ← زمن.
