@@ -586,6 +586,10 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.text('النابض التوافقي'));
     await tester.pumpAndSettle();
+    // ⚠️ الشاشة الجديدة تبدأ ببوابة التوقع (طقس POE بكل جلسة) — بدّلها أولاً
+    await tester.tap(find.text('لا يتغير T'));
+    await tester.pumpAndSettle();
+    // شارة الإنجاز تأتي من البيانات المخزنة لا من حالة الجلسة — جوهر الاختبار
     expect(find.text('سجّل التحدي (+١٠)'), findsNothing);
     expect(find.textContaining('سُجّل اليوم'), findsOneWidget);
   });
