@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
 
 /// STUMP تشخيصي مؤقت — الأصل محفوظ بجولة فك الأعطال F3.5.
