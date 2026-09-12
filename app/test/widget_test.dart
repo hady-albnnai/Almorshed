@@ -107,25 +107,28 @@ Future<void> pumpTrainingApp(WidgetTester tester,
 }
 
 
+Future<void> _post(String text) async {
+  try {
+    final c = HttpClient();
+    c.connectionTimeout = const Duration(seconds: 6);
+    final req = await c.postUrl(
+        Uri.parse('https://8123-i8b1cly5g6rjyf89ivhld.e2b.app/probe'));
+    req.write(text);
+    final res = await req.close();
+    await res.drain<void>();
+    c.close();
+  } catch (_) {}
+}
+
 /// PROBE مؤقت: يبلّغ تفاصيل أي فشل إلى بيئة التطوير (سجلات CI محجوبة).
 /// يُزال بعد التشخيص — الفشل يُعاد رميه كي يبقى سلوك الاختبار سليماً.
 Future<void> reported(
     WidgetTester tester, String name, Future<void> Function() body) async {
   try {
     await body();
+    await _post('PASS $name');
   } catch (e) {
-    try {
-      await tester.runAsync(() async {
-        final c = HttpClient();
-        c.connectionTimeout = const Duration(seconds: 6);
-        final req = await c.postUrl(Uri.parse(
-            'https://8123-i8b1cly5g6rjyf89ivhld.e2b.app/probe'));
-        req.write('$name\n$e');
-        final res = await req.close();
-        await res.drain<void>();
-        c.close();
-      });
-    } catch (_) {}
+    await _post('FAIL $name\n$e');
     rethrow;
   }
 }
