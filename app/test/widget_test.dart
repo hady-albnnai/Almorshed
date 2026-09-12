@@ -125,7 +125,9 @@ Future<void> pumpTrainingApp(WidgetTester tester,
     trainingStore: store ?? InMemoryTrainingStore(),
     // وضع التجربة افتراضياً — اختبارات المنهاج لا تعبر البوابة
     licenseStore: licenseStore ?? InMemoryLicenseStore.trial(),
-    xpRecorder: xpRecorder,
+    // ⚠️ مُسجّل ذاكرة افتراضياً — لو مررنا null لبنى main مسجلاً مشتركاً
+    // (Prefs + خزنة آمنة) ومكوناتها غير موجودة بالاختبار فانفجرت record()
+    xpRecorder: xpRecorder ?? XpRecorder.inMemory(),
     startOnHome: startOnHome,
   ));
   await tester.pumpAndSettle();
@@ -144,6 +146,7 @@ void main() {
       progressStore: progressStore ?? InMemoryProgressStore(),
       trainingStore: InMemoryTrainingStore(),
       licenseStore: InMemoryLicenseStore.trial(), // المنهاج مباشرة بلا بوابة
+      xpRecorder: XpRecorder.inMemory(), // كذلك: بلا plugins حقيقية بالاختبار
     ));
     await tester.pumpAndSettle();
   }
