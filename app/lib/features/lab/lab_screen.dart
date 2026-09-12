@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../core/training/training_store.dart';
-import 'spring_lab_screen.dart';
 
 /// STUMP تشخيصي مؤقت — الأصل محفوظ بجولة فك الأعطال F3.5.
 class LabScreen extends StatefulWidget {
