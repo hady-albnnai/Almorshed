@@ -542,12 +542,16 @@ void main() {
     await tester.tap(find.text('يطول الدور T'));
     await tester.pumpAndSettle();
 
-    // ظهرت المحاكاة — شغّل
+    // اسحب الكتلة أولاً — بدون سحب تبقى عند سكون x=0 ولا يتذبذب شيء
+    await tester.drag(find.byKey(const Key('spring-canvas')),
+        const Offset(40, 0));
+    await tester.pumpAndSettle();
+    // شغّل — pumpAndSettle ممنوعة مع تيكر يعمل (لا يهدأ أبداً)
     expect(find.text('تشغيل ▶'), findsOneWidget);
     await tester.tap(find.text('تشغيل ▶'));
-    // ⚠️ pumpAndSettle ممنوعة مع تيكر يعمل (لا يهدأ أبداً) — نبضات صريحة
     await tester.pump();
-    await tester.pump(const Duration(seconds: 4)); // دورات كافية للقياس
+    // ٦ ثوانٍ: T≈1.99 ⇒ عبوران صاعدان على الأقل ⇒ دورتان مقيستان
+    await tester.pump(const Duration(seconds: 6));
     await tester.pump();
     expect(find.textContaining('T المقيس'), findsOneWidget);
 
@@ -578,9 +582,7 @@ void main() {
     expect(data.labChallengeDoneDateKey,
         dateKeyOf(DateTime.now()));
 
-    await tester.pageBack();
-    await tester.pumpAndSettle();
-    await tester.tap(find.byIcon(Icons.science_outlined));
+    await tester.pageBack(); // عودنا لبوابة المختبر (لا للمنهاج!)
     await tester.pumpAndSettle();
     await tester.tap(find.text('النابض التوافقي'));
     await tester.pumpAndSettle();

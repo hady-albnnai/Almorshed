@@ -218,6 +218,7 @@ class _SpringLabScreenState extends State<SpringLabScreen>
             const SizedBox(height: 10),
             // الرسم الحي — السحب يحدد الشرط الابتدائي
             GestureDetector(
+              key: const Key('spring-canvas'),
               onHorizontalDragUpdate: (d) =>
                   _running ? null : _dragTo(d.localPosition.dx / 260 - 1),
               onTapUp: (d) =>
@@ -418,10 +419,10 @@ class _SpringPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final wallX = 28.0;
+    const wallX = 28.0;
     final centerY = size.height / 2;
     final restLen = size.width - 120.0; // طول السكون للنابض
-    final blockW = 46.0;
+    const blockW = 46.0;
     // الإزاحة الفيزيائية (±xMax م) ← بكسلات (±70 بكسل)
     final px = (x / xMax) * 70.0;
     final blockX = wallX + restLen + px;

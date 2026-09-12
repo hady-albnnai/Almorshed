@@ -8,7 +8,7 @@ import 'package:fizya_clash/core/lab/spring_sim.dart';
 void main() {
   group('الدور النظري T = 2π√(m/k)', () {
     test('قيم معلومة', () {
-      final p2 = math.pi * math.pi;
+      const p2 = math.pi * math.pi;
       expect(periodOf(1, p2), closeTo(2.0, 1e-12));
       expect(periodOf(4, p2), closeTo(4.0, 1e-12));
       expect(periodOf(1, 4 * p2), closeTo(1.0, 1e-12));
@@ -17,25 +17,26 @@ void main() {
   });
 
   group('فحص التحدي «اجعل T = ٢ث» — نافذة ±0.05', () {
-    test('داخل النافذة ✓ وخارجها ✗ (بما فيها الحدود)', () {
-      final p2 = math.pi * math.pi;
+    test('داخل النافذة ✓ وخارجها ✗ — بهوامش آمنة من حافة التقريب', () {
+      // ⚠️ الحدود الدقيقة (1.95/2.05) تنزلق بالفلوات: 0.05000000000004 > 0.05
+      // ⇒ هوامش 0.001 داخل/خارج النافذة بعيدة عن أي خطأ تقريب (~1e-16)
+      const fourPi2 = 4.0 * math.pi * math.pi; // k = 4π²/T² عند m = 1
+      const p2 = math.pi * math.pi;
       expect(challengeT2Ok(1, p2), isTrue); // T = 2.000
       expect(challengeT2Ok(2, 20), isTrue); // T ≈ 1.9869
-      // k = 4π²/T² (من T = 2π√(m/k) مع m = 1)
-      const fourPi2 = 4.0 * math.pi * math.pi;
-      expect(challengeT2Ok(1, 2.435), isFalse); // T ≈ 4.03 — بعيدة كل البعد
-      expect(challengeT2Ok(1, fourPi2 / (2.05 * 2.05)), isTrue); // T = 2.05 حد
-      expect(challengeT2Ok(1, fourPi2 / (2.06 * 2.06)), isFalse); // T = 2.06
-      expect(challengeT2Ok(1, fourPi2 / (1.95 * 1.95)), isTrue); // T = 1.95 حد
-      expect(challengeT2Ok(1, fourPi2 / (1.94 * 1.94)), isFalse); // T = 1.94
+      expect(challengeT2Ok(1, 2.435), isFalse); // T ≈ 4.03 بعيدة
+      expect(challengeT2Ok(1, fourPi2 / (2.049 * 2.049)), isTrue);
+      expect(challengeT2Ok(1, fourPi2 / (1.951 * 1.951)), isTrue);
+      expect(challengeT2Ok(1, fourPi2 / (2.051 * 2.051)), isFalse);
+      expect(challengeT2Ok(1, fourPi2 / (1.949 * 1.949)), isFalse);
     });
   });
 
   group('RK4 — الدقة والحتمية', () {
     test('يطابق الحل التحليلي x(t)=x0·cos(ωt) بعد ١٠ ثوانٍ بدقة < ١٠⁻⁶', () {
       const x0 = 0.5;
-      final m = 1.0;
-      final k = 9.0; // ω = 3
+      const m = 1.0;
+      const k = 9.0; // ω = 3
       final omega = math.sqrt(k / m);
       var s = SpringState.released(x0);
       final steps = (10.0 / simDt).round();
