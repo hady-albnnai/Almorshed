@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:fizya_clash/core/sync/sync_engine.dart';
 import 'package:fizya_clash/core/sync/sync_store.dart';
-import 'package:fizya_clash/core/xp/xp_event.dart';
 import 'package:fizya_clash/core/xp/xp_ledger.dart';
 import 'package:fizya_clash/core/xp/xp_store.dart';
 import 'package:fizya_clash/core/xp/xp_signer.dart';
