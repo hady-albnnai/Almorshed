@@ -10,7 +10,10 @@ class LabScreen extends StatefulWidget {
   /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
   final XpRecorder? xpRecorder;
 
-  const LabScreen({super.key, required this.trainingStore    this.xpRecorder, // F3.8
+  const LabScreen({
+    super.key,
+    required this.trainingStore,
+    this.xpRecorder, // F3.8
   });
 
   final TrainingStore trainingStore;

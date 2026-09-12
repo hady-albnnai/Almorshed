@@ -81,7 +81,10 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
             tooltip: 'المختبر — التجارب التفاعلية',
             onPressed: () async {
               await Navigator.of(context).push(MaterialPageRoute<void>(
-                builder: (_) => LabScreen(trainingStore: widget.trainingStore),
+                builder: (_) => LabScreen(
+                      trainingStore: widget.trainingStore,
+                      xpRecorder: widget.xpRecorder,
+                    ),
               ));
               _reload(); // نمط F3.1: تحديث عند العودة
             },
@@ -94,7 +97,6 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
                 builder: (_) => TrainingScreen(
                   pack: widget.pack,
                   trainingStore: widget.trainingStore,
-              xpRecorder: widget.xpRecorder,
               xpRecorder: widget.xpRecorder,
                 ),
               ));
