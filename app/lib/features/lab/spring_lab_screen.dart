@@ -151,7 +151,7 @@ class _SpringLabScreenState extends State<SpringLabScreen>
         children: [
           if (_stage == 0) _buildPredict(txt),
           if (_stage >= 1) ...[
-            _buildSim(txt, gold),
+            _buildSim(txt, gold, theory),
             const SizedBox(height: 12),
             _buildChallenge(txt, gold, theory, challengeNow),
             if (measured != null) ...[
@@ -199,7 +199,7 @@ class _SpringLabScreenState extends State<SpringLabScreen>
   }
 
   // ── مرحلة ٢: لاحظ (Observe) — المحاكاة الحية ──
-  Widget _buildSim(TextTheme txt, Color gold) {
+  Widget _buildSim(TextTheme txt, Color gold, double theory) {
     final measured = _meter.averagePeriod;
     return Card(
       child: Padding(
