@@ -1,20 +1,42 @@
 import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
+import '../../core/progress/progress_store.dart';
 import '../../core/util/arabic_number.dart';
 import 'unit_screen.dart';
 
 /// شاشة المنهاج — الوحدات الخمس (F3.2 · مطابقة النموذج المرجعي).
-/// التقدم الحقيقي يُوصَل في F3.1 (Drift) — الآن ٠٪ بصدق.
-class CurriculumScreen extends StatelessWidget {
+/// F3.1: النسبة الحقيقية من مخزن التقدم، وتُحدَّث عند العودة من الدروس.
+class CurriculumScreen extends StatefulWidget {
   const CurriculumScreen({
     super.key,
     required this.pack,
     required this.onToggleTheme,
+    required this.progressStore,
   });
 
   final ContentPack pack;
   final VoidCallback onToggleTheme;
+  final ProgressStore progressStore;
+
+  @override
+  State<CurriculumScreen> createState() => _CurriculumScreenState();
+}
+
+class _CurriculumScreenState extends State<CurriculumScreen> {
+  ReadProgress _progress = const ReadProgress();
+
+  @override
+  void initState() {
+    super.initState();
+    _reload();
+  }
+
+  Future<void> _reload() async {
+    final p = await widget.progressStore.load();
+    if (!mounted) return;
+    setState(() => _progress = p);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +54,7 @@ class CurriculumScreen extends StatelessWidget {
         actions: [
           IconButton(
             tooltip: 'تبديل الوضع الفاتح/الداكن',
-            onPressed: onToggleTheme,
+            onPressed: widget.onToggleTheme,
             icon: const Icon(Icons.brightness_6_outlined),
           ),
         ],
@@ -42,8 +64,14 @@ class CurriculumScreen extends StatelessWidget {
         children: [
           Text('الوحدات الخمس', style: txt.titleLarge),
           const SizedBox(height: 6),
-          for (var i = 0; i < pack.units.length; i++)
-            _UnitCard(index: i, unit: pack.units[i]),
+          for (var i = 0; i < widget.pack.units.length; i++)
+            _UnitCard(
+              index: i,
+              unit: widget.pack.units[i],
+              completedIds: _progress.completedIds,
+              progressStore: widget.progressStore,
+              onReturned: _reload, // تحديث النسبة بعد العودة من الدروس
+            ),
         ],
       ),
     );
@@ -51,15 +79,25 @@ class CurriculumScreen extends StatelessWidget {
 }
 
 class _UnitCard extends StatelessWidget {
-  const _UnitCard({required this.index, required this.unit});
+  const _UnitCard({
+    required this.index,
+    required this.unit,
+    required this.completedIds,
+    required this.progressStore,
+    required this.onReturned,
+  });
 
   final int index;
   final Unit unit;
+  final Set<String> completedIds;
+  final ProgressStore progressStore;
+  final VoidCallback onReturned;
 
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
     final hasChapters = unit.chapters.isNotEmpty;
+    final percent = unitPercent(unit, completedIds);
     final note = hasChapters
         ? '${ArabicNumber.from(unit.chapters.length)} فصل — '
             'ص${ArabicNumber.from(unit.chapters.first.page)} '
@@ -71,10 +109,15 @@ class _UnitCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
         onTap: hasChapters
-            ? () => Navigator.of(context).push(
+            ? () => Navigator.of(context)
+                .push(
                   MaterialPageRoute<void>(
-                      builder: (_) => UnitScreen(unit: unit)),
+                      builder: (_) => UnitScreen(
+                            unit: unit,
+                            progressStore: progressStore,
+                          )),
                 )
+                .then((_) => onReturned())
             : null,
         child: Padding(
           padding: const EdgeInsets.all(14),
@@ -90,18 +133,18 @@ class _UnitCard extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text('٠٪',
+                  Text('${ArabicNumber.from(percent)}٪',
                       style: txt.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w700,
                       )),
                 ],
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
                 child: LinearProgressIndicator(
-                  value: 0,
+                  value: percent / 100,
                   minHeight: 7,
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                  borderRadius: const BorderRadius.all(Radius.circular(6)),
                 ),
               ),
               Text(note, style: txt.bodyMedium),

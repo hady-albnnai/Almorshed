@@ -2,18 +2,27 @@ import 'package:flutter/material.dart';
 
 import 'core/content/content_loader.dart';
 import 'core/content/models.dart';
+import 'core/progress/progress_store.dart';
+import 'core/progress/shared_prefs_store.dart';
 import 'core/theme/app_theme.dart';
 import 'features/curriculum/curriculum_screen.dart';
 
 void main() => runApp(const FizyaClashApp());
 
 /// فيزيا كلاش — Clash of Physics
-/// المهمة الحالية F3.2: شاشات المنهاج الحية (المواصفة البصرية: ui-mockup).
+/// المهمة الحالية F3.1: التقدم الحقيقي المحفوظ.
 class FizyaClashApp extends StatefulWidget {
-  const FizyaClashApp({super.key, this.packLoader});
+  const FizyaClashApp({
+    super.key,
+    this.packLoader,
+    this.progressStore,
+  });
 
   /// حقن للاختبارات؛ الافتراضي يحمّل حزمة assets الحقيقية.
   final Future<ContentPack> Function()? packLoader;
+
+  /// حقن مخزن التقدم؛ الافتراضي shared_preferences (قرار ٥٧).
+  final ProgressStore? progressStore;
 
   @override
   State<FizyaClashApp> createState() => _FizyaClashAppState();
@@ -55,6 +64,8 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
           return CurriculumScreen(
             pack: snap.data!,
             onToggleTheme: _toggleTheme,
+            progressStore:
+                widget.progressStore ?? SharedPrefsProgressStore(),
           );
         },
       ),

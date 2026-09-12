@@ -1,28 +1,62 @@
 import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
+import '../../core/progress/progress_store.dart';
 import '../../core/util/arabic_number.dart';
 import 'lesson_screen.dart';
 
 /// شاشة الوحدة — فصولها (F3.2 · قرارات ٢، ٣٧).
-class UnitScreen extends StatelessWidget {
-  const UnitScreen({super.key, required this.unit});
+/// F3.1: علامة ✓ للفصول المكتملة، وتحديث عند العودة من الدرس.
+class UnitScreen extends StatefulWidget {
+  const UnitScreen({
+    super.key,
+    required this.unit,
+    required this.progressStore,
+  });
 
   final Unit unit;
+  final ProgressStore progressStore;
+
+  @override
+  State<UnitScreen> createState() => _UnitScreenState();
+}
+
+class _UnitScreenState extends State<UnitScreen> {
+  ReadProgress _progress = const ReadProgress();
+
+  @override
+  void initState() {
+    super.initState();
+    _reload();
+  }
+
+  Future<void> _reload() async {
+    final p = await widget.progressStore.load();
+    if (!mounted) return;
+    setState(() => _progress = p);
+  }
 
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
+    final done = _progress.completedIds;
     return Scaffold(
-      appBar: AppBar(title: Text(unit.title)),
-      body: unit.chapters.isEmpty
+      appBar: AppBar(title: Text(widget.unit.title)),
+      body: widget.unit.chapters.isEmpty
           ? Center(
-              child: Text('لا فصول بعد — قيد الإعداد', style: txt.bodyMedium))
+              child:
+                  Text('لا فصول بعد — قيد الإعداد', style: txt.bodyMedium))
           : ListView(
               padding: const EdgeInsets.all(14),
               children: [
-                for (var i = 0; i < unit.chapters.length; i++)
-                  _ChapterCard(index: i, chapter: unit.chapters[i]),
+                for (var i = 0; i < widget.unit.chapters.length; i++)
+                  _ChapterCard(
+                    index: i,
+                    chapter: widget.unit.chapters[i],
+                    completed: done.contains(widget.unit.chapters[i].id),
+                    progressStore: widget.progressStore,
+                    onReturned: _reload,
+                  ),
               ],
             ),
     );
@@ -30,10 +64,19 @@ class UnitScreen extends StatelessWidget {
 }
 
 class _ChapterCard extends StatelessWidget {
-  const _ChapterCard({required this.index, required this.chapter});
+  const _ChapterCard({
+    required this.index,
+    required this.chapter,
+    required this.completed,
+    required this.progressStore,
+    required this.onReturned,
+  });
 
   final int index;
   final Chapter chapter;
+  final bool completed;
+  final ProgressStore progressStore;
+  final VoidCallback onReturned;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +89,7 @@ class _ChapterCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
+              '${completed ? '✓ ' : ''}'
               'الفصل ${ArabicNumber.from(index + 1)}: ${chapter.title} · '
               'ص${ArabicNumber.from(chapter.page)}',
               style: txt.titleMedium,
@@ -57,10 +101,15 @@ class _ChapterCard extends StatelessWidget {
             FilledButton(
               onPressed: chapter.paragraphs.isEmpty
                   ? null
-                  : () => Navigator.of(context).push(
+                  : () => Navigator.of(context)
+                      .push(
                         MaterialPageRoute<void>(
-                            builder: (_) => LessonScreen(chapter: chapter)),
-                      ),
+                            builder: (_) => LessonScreen(
+                                  chapter: chapter,
+                                  progressStore: progressStore,
+                                )),
+                      )
+                      .then((_) => onReturned()),
               child: const Text('ابدأ القراءة'),
             ),
           ],

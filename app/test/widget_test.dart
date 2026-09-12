@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:fizya_clash/core/content/models.dart';
+import 'package:fizya_clash/core/progress/progress_store.dart';
 import 'package:fizya_clash/core/tts/speaker.dart';
 import 'package:fizya_clash/features/curriculum/lesson_screen.dart';
 import 'package:fizya_clash/main.dart';
@@ -48,13 +49,16 @@ ContentPack _fakePack() => ContentPack.fromJsonString(jsonEncode({
     }));
 
 void main() {
-  Future<void> pumpApp(WidgetTester tester) async {
+  Future<void> pumpApp(WidgetTester tester,
+      {InMemoryProgressStore? progressStore}) async {
     // سطح اختبار بمقاس هاتف فعلي — يمنع مشاكل off-screen بالمسار الكامل
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.reset);
-    await tester.pumpWidget(
-        FizyaClashApp(packLoader: () async => _fakePack()));
+    await tester.pumpWidget(FizyaClashApp(
+      packLoader: () async => _fakePack(),
+      progressStore: progressStore ?? InMemoryProgressStore(),
+    ));
     await tester.pumpAndSettle();
   }
 
@@ -103,6 +107,41 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('أنهيت الفصل!'), findsOneWidget);
     expect(find.text('+١٠ نقطة لدوري فيزيا كلاش ✓'), findsOneWidget);
+
+    // F3.1: العودة للوحدة — الفصل المكتمل يحمل علامة ✓
+    await tester.tap(find.text('رجوع للوحدة'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('✓ الفصل ١'), findsOneWidget);
+  });
+
+  testWidgets('F3.1: النسبة تبدأ صفراً وتكتمل ١٠٠٪ بعد إتمام الفصل',
+      (tester) async {
+    final store = InMemoryProgressStore();
+    await pumpApp(tester, progressStore: store);
+
+    // قبل القراءة: ٠٪
+    expect(find.text('٠٪'), findsWidgets);
+
+    // مسار كامل حتى الإتمام
+    await tester.tap(find.text('١ · الحركة والتحريك'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('ابدأ القراءة'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('التالي ←'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('انتهى الدرس ✓'));
+    await tester.pumpAndSettle();
+
+    // المخزن حفظ الإتمام فعلاً
+    final p = await store.load();
+    expect(p.completedIds, contains('U1'));
+
+    // العودة للمنهاج — الوحدة الأولى ١٠٠٪
+    await tester.tap(find.text('رجوع للوحدة'));
+    await tester.pumpAndSettle();
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(find.text('١٠٠٪'), findsOneWidget);
   });
 
   testWidgets('اسمعني: يظهر مع محرك عربي وينطق الفقرة', (tester) async {
@@ -115,10 +154,14 @@ void main() {
     await tester.pumpWidget(MaterialApp(
       home: Directionality(
         textDirection: TextDirection.rtl,
-        child: LessonScreen(chapter: chapter, speaker: speaker),
+        child: LessonScreen(
+          chapter: chapter,
+          progressStore: InMemoryProgressStore(),
+          speaker: speaker,
+        ),
       ),
     ));
-    await tester.pumpAndSettle(); // إتاحة المحرك غير متزامنة
+    await tester.pumpAndSettle();
 
     expect(find.byIcon(Icons.volume_up_outlined), findsOneWidget);
     await tester.tap(find.byIcon(Icons.volume_up_outlined));
@@ -136,7 +179,10 @@ void main() {
       home: Directionality(
         textDirection: TextDirection.rtl,
         child:
-            LessonScreen(chapter: chapter, speaker: _FakeSpeaker(available: false)),
+            LessonScreen(
+              chapter: chapter,
+              progressStore: InMemoryProgressStore(),
+              speaker: _FakeSpeaker(available: false)),
       ),
     ));
     await tester.pumpAndSettle();

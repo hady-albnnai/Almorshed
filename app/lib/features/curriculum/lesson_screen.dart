@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
+import '../../core/progress/progress_store.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/tts/flutter_tts_speaker.dart';
 import '../../core/tts/speaker.dart';
@@ -9,9 +10,15 @@ import '../../core/util/arabic_number.dart';
 /// شاشة القراءة — فقرة واحدة لكل شاشة (قرار نمط القراءة · F3.2):
 /// «التالي» + «📌 خلاصة الفقرة» + TTS «اسمعني» + فهرس حر قابل للطي + «انتهى الدرس».
 class LessonScreen extends StatefulWidget {
-  const LessonScreen({super.key, required this.chapter, this.speaker});
+  const LessonScreen({
+    super.key,
+    required this.chapter,
+    required this.progressStore,
+    this.speaker,
+  });
 
   final Chapter chapter;
+  final ProgressStore progressStore;
 
   /// حقن اختياري للنطق (اختبارات)؛ الافتراضي FlutterTtsSpeaker حقيقي.
   final Speaker? speaker;
@@ -83,6 +90,15 @@ class _LessonScreenState extends State<LessonScreen> {
       Theme.of(c).brightness == Brightness.dark
           ? AppColors.goldDark
           : AppColors.goldLight;
+
+  /// F3.1: تسجيل إتمام الفصل في مخزن التقدم (مع الحفاظ على موضع القارئ).
+  Future<void> _markCompleted() async {
+    final p = await widget.progressStore.load();
+    final chapters = {...p.chapters};
+    chapters[widget.chapter.id] =
+        ChapterProgress(cursor: _idx, completed: true);
+    await widget.progressStore.save(ReadProgress(chapters: chapters));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -187,6 +203,7 @@ class _LessonScreenState extends State<LessonScreen> {
                               _stopSpeaking();
                               setState(() {
                                 if (_idx == _total - 1) {
+                                  _markCompleted(); // F3.1: تقدم حقيقي
                                   _finished = true;
                                 } else {
                                   _idx++;
