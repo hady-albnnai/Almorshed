@@ -24,7 +24,7 @@ void main() {
       expect(q, [1, 2, 3, 4, 5, 6]);
     });
 
-    test('السقف ٢٠ حصراً والمستحقة قبل الجديدة', () {
+    test('المستحقة أولاً ثم ٦ جديدة — السقف أقصى لا حد أدنى (تصحيح بلصة المالك)', () {
       final cards = [for (var i = 1; i <= 30; i++) _card(i)];
       final states = {
         // مستحقة أمس وأخرى مستحقة اليوم — والثالثة مستقبلية تُستبعد
@@ -51,10 +51,26 @@ void main() {
             dueDateKey: '2026-09-13'),
       };
       final q = buildCardQueue(cards: cards, states: states, dateKey: _today);
-      expect(q, hasLength(20));
-      expect(q.take(2), [25, 27]); // المستحقة: الأقدم استحقاقاً أولاً
+      // ٢ مستحقة + ٦ جديدة = ٨ (السقف ٢٠ أقصى — لا حشو اصطناعي)
+      expect(q, [25, 27, 1, 2, 3, 4, 5, 6]);
       expect(q.contains(29), isFalse);
-      expect(q.skip(2).take(6), [1, 2, 3, 4, 5, 6]); // ثم الجديدة الست
+    });
+
+    test('السقف ٢٠ يُقطع فعلاً حين تتجاوز المستحقة إياه', () {
+      final cards = [for (var i = 1; i <= 30; i++) _card(i)];
+      final states = {
+        for (var id = 1; id <= 22; id++)
+          id: CardStateData(
+              cardId: id,
+              difficulty: 5,
+              stability: 3,
+              reviews: 1,
+              lapses: 0,
+              dueDateKey: '2026-09-11'),
+      };
+      final q = buildCardQueue(cards: cards, states: states, dateKey: _today);
+      expect(q, hasLength(20)); // 22 مستحقة — القص عند السقف
+      expect(q.last, 20);
     });
 
     test('الحتمية: نفس المدخلات ⇒ نفس الطابور', () {
@@ -138,9 +154,16 @@ void main() {
         startCardDay(frozen, cards: cards, todayKey: _today),
         same(frozen),
       );
-      // غداً: الست المجمدة استحقاقها بعد ٣ أيام — الطابور يجلب الجديد التالي
+      // الاستخدام الحقيقي: تُراجع الست كلها (أعرفها ⇒ استحقاق بعد ٣ أيام)
+      var data = frozen;
+      for (final id in frozen.cardDay!.queue) {
+        data = applyCardReview(data,
+            cardId: id, grade: Grade.good, todayKey: _today);
+      }
+      // غداً: الست المراجعة غير مستحقة بعد ⇒ الجديد التالي ٧ و٨
+      // (البطاقات الجديدة غير المراجعة تظل جديدة — توقيع بلصة المالك)
       final tomorrow =
-          startCardDay(frozen, cards: cards, todayKey: '2026-09-13');
+          startCardDay(data, cards: cards, todayKey: '2026-09-13');
       expect(tomorrow.cardDay!.queue, [7, 8]);
     });
 
