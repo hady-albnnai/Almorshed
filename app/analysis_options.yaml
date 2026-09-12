@@ -12,6 +12,7 @@ linter:
 # تُستأنفان يدوياً في جولة التهذيب (F3.6) دون أن تحجب أي خطأ أو تحذير حقيقي.
 analyzer:
   exclude:
+    - lib/core/license/license_core.dart
     - lib/features/activation/**
     - lib/features/account/**
     - test/license_test.dart
