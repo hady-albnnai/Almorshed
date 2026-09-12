@@ -20,6 +20,17 @@ String dateKeyOf(DateTime now) =>
     '${now.month.toString().padLeft(2, '0')}-'
     '${now.day.toString().padLeft(2, '0')}';
 
+/// رقم اليوم المحلي → مفتاح اليوم (عكس dayNumberOf).
+String dateKeyFromDayNumber(int dayNumber) {
+  final d =
+      DateTime.utc(1970).add(Duration(days: dayNumber));
+  return dateKeyOf(d);
+}
+
+/// مفتاح اليوم بعد إزاحة أيام (موجبة = المستقبل).
+String dateKeyAfter(String dateKey, int days) =>
+    dateKeyFromDayNumber(dayNumberOf(dateKey) + days);
+
 /// تحليل مفتاح اليوم إلى رقم اليوم المحلي (أيام منذ الإيبخ).
 /// ⚠️ DateTime.utc إلزامي — DateTime العادي محلي فتنزيح الأيام بالمناطق
 /// UTC+3 وتُكسر حتمية البذرة بين الأجهزة (docs/12: أيام الإيبخ = UTC).

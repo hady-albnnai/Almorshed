@@ -88,7 +88,23 @@ ContentPack _trainingPack() => ContentPack.fromJsonString(jsonEncode({
           'followThrough': []
         }
       ],
-      'cards': []
+      'cards': [
+        {
+          'id': 801,
+          'unit': 'U1',
+          'chapter': 'U1C1',
+          'front': 'ما قانون هوك؟',
+          'back': 'القوة تتناسب مع التمدد',
+          'formula': 'F = −k·x'
+        },
+        {
+          'id': 802,
+          'unit': 'U1',
+          'chapter': 'U1C1',
+          'front': 'وحدة ثابت النابض k؟',
+          'back': 'نيوتن لكل متر N/m'
+        }
+      ]
     }));
 
 /// مضخة بحزمة مخصصة — لاختبارات التدريب (F3.3).
@@ -432,6 +448,97 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.textContaining(qOf(1).stem), findsOneWidget);
     expect(find.textContaining('✓ الصحيح:'), findsOneWidget);
+  });
+
+  testWidgets('F3.4: بوابة البطاقات — الطابور والبدء والتجميد', (tester) async {
+    final pack = _trainingPack();
+    final store = InMemoryTrainingStore();
+    await pumpTrainingApp(tester, pack: pack, store: store);
+
+    // من بوابة التدريب إلى البطاقات
+    await tester.tap(find.text('مراجعة البطاقات'));
+    await tester.pumpAndSettle();
+
+    // الطابور الاستباقي: بطاقتان جديدتان
+    expect(find.textContaining('طابور اليوم: ٢'), findsOneWidget);
+    expect(find.text('٠ مراجعة + ٢ جديدة'), findsOneWidget);
+
+    // البدء يجمّد الطابور ويفتح جلسة المراجعة
+    await tester.tap(find.text('ابدأ مراجعة البطاقات'));
+    await tester.pumpAndSettle();
+    expect(find.text('ما قانون هوك؟'), findsOneWidget); // 801 أولاً
+
+    // الخروج — البوابة تعرض «أكمل» بتقدم ٠
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(find.text('أكمل المراجعة'), findsOneWidget);
+    expect(find.textContaining('تقدّمك: ٠'), findsOneWidget);
+  });
+
+  testWidgets('F3.4: دورة كاملة — كشف ثم تقييم ثم إتمام +١٥', (tester) async {
+    final pack = _trainingPack();
+    final store = InMemoryTrainingStore();
+    await pumpTrainingApp(tester, pack: pack, store: store);
+    await tester.tap(find.text('مراجعة البطاقات'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('ابدأ مراجعة البطاقات'));
+    await tester.pumpAndSettle();
+
+    // الوجه أولاً — لا تقييم قبل الكشف
+    expect(find.text('اضغط لكشف الجواب'), findsOneWidget);
+    expect(find.text('😎 أعرفها'), findsNothing);
+
+    // الكشف: الظهر والقانون الذهبي والأزرار الثلاثة
+    await tester.tap(find.text('ما قانون هوك؟'));
+    await tester.pumpAndSettle();
+    expect(find.text('القوة تتناسب مع التمدد'), findsOneWidget);
+    expect(find.text('F = −k·x'), findsOneWidget);
+    expect(find.text('😅 ما عرفتها'), findsOneWidget);
+    expect(find.text('😔 بصعوبة'), findsOneWidget);
+    expect(find.text('😎 أعرفها'), findsOneWidget);
+
+    // التقييم ينتقل للبطاقة الثانية
+    await tester.tap(find.text('😎 أعرفها'));
+    await tester.pumpAndSettle();
+    expect(find.text('وحدة ثابت النابض k؟'), findsOneWidget);
+
+    // كشف وتقييم ثانٍ → شاشة الإتمام +١٥
+    await tester.tap(find.text('وحدة ثابت النابض k؟'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('😔 بصعوبة'));
+    await tester.pumpAndSettle();
+    expect(find.text('أنهيت بطاقات اليوم!'), findsOneWidget);
+    expect(find.text('+١٥ نقطة لدوري فيزيا كلاش ✓'), findsOneWidget);
+
+    // العودة — البوابة تعرض الإنجاز
+    await tester.tap(find.text('رجوع للبطاقات'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('أنهيت بطاقات اليوم'), findsOneWidget);
+
+    // والحالات محفوظة بالمخزن (FSRS فعلياً)
+    final data = await store.load();
+    expect(data.cardStates, hasLength(2));
+    expect(data.cardDay!.finished, isTrue);
+  });
+
+  testWidgets('F3.4: استئناف منتصف المراجعة — التالية لا المكررة', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack);
+    await tester.tap(find.text('مراجعة البطاقات'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('ابدأ مراجعة البطاقات'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('ما قانون هوك؟')); // كشف
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('😎 أعرفها')); // الأولى تمت
+    await tester.pumpAndSettle();
+    await tester.pageBack(); // خروج منتصف المراجعة
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('أكمل المراجعة'));
+    await tester.pumpAndSettle();
+    // الثانية مباشرة — لا عودة للأولى
+    expect(find.text('وحدة ثابت النابض k؟'), findsOneWidget);
   });
 
   testWidgets('F3.3: استئناف منتصف الدفعة — أول غير مجاب', (tester) async {

@@ -4,6 +4,7 @@ import '../../core/content/models.dart';
 import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
 import '../../core/util/arabic_number.dart';
+import 'cards_screen.dart';
 import 'batch_session_screen.dart';
 import 'mistakes_screen.dart';
 
@@ -167,6 +168,27 @@ class _TrainingScreenState extends State<TrainingScreen> {
                         ],
                       ],
                     ),
+                  ),
+                ),
+                const SizedBox(height: 18),
+                Text('بطاقات اليوم', style: txt.titleLarge),
+                const SizedBox(height: 8),
+                Card(
+                  child: ListTile(
+                    leading: const Icon(Icons.style_outlined),
+                    title: const Text('مراجعة البطاقات'),
+                    subtitle: const Text(
+                        'طابور FSRS — سقف ٢٠ يومياً + ٦ جديدة'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => CardsScreen(
+                          pack: widget.pack,
+                          trainingStore: widget.trainingStore,
+                        ),
+                      ));
+                      _reload();
+                    },
                   ),
                 ),
                 const SizedBox(height: 18),
