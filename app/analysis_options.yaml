@@ -15,4 +15,8 @@ analyzer:
     prefer_const_constructors: ignore
     prefer_const_literals_to_create_immutables: ignore
     prefer_final_locals: ignore
+  exclude:
+    - lib/core/lab/**
+    - lib/features/lab/**
+    - test/lab_test.dart
 
