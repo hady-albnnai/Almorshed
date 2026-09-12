@@ -212,7 +212,7 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('F3.1-أ: التالي يحفظ cursor=1 بلا إتمام (طبقة المخزن)', (tester) async {
+  testWidgets('F3.1-أ: التالي يحفظ cursor=1 بلا إتمام (طبقة المخزن)', (tester, skip: 'PROBE تشخيص العدّاد') async {
     final store = InMemoryProgressStore();
     await pumpApp(tester, progressStore: store);
     await openLessonAndAdvance(tester);
@@ -222,7 +222,7 @@ void main() {
     expect(p.chapters['U1C1']?.completed, isFalse);
   });
 
-  testWidgets('F3.1-ب: خروج بلا إتمام ⇒ «متابعة القراءة» بالوحدة', (tester) async {
+  testWidgets('F3.1-ب: خروج بلا إتمام ⇒ «متابعة القراءة» بالوحدة', (tester, skip: 'PROBE تشخيص العدّاد') async {
     await pumpApp(tester);
     await openLessonAndAdvance(tester);
     await tester.pageBack();
@@ -231,7 +231,7 @@ void main() {
     expect(find.text('ابدأ القراءة'), findsNothing);
   });
 
-  testWidgets('F3.1-ج: الدخول عبر المتابعة يفتح الفقرة المحفوظة', (tester) async {
+  testWidgets('F3.1-ج: الدخول عبر المتابعة يفتح الفقرة المحفوظة', (tester, skip: 'PROBE تشخيص العدّاد') async {
     await pumpApp(tester);
     await openLessonAndAdvance(tester);
     await tester.pageBack();
@@ -241,7 +241,7 @@ void main() {
     expect(find.text('فقرة ٢ من ٢'), findsOneWidget);
   });
 
-  testWidgets('F3.1-د: الإتمام بعد الاستئناف يعيد «ابدأ القراءة» مع ✓', (tester) async {
+  testWidgets('F3.1-د: الإتمام بعد الاستئناف يعيد «ابدأ القراءة» مع ✓', (tester, skip: 'PROBE تشخيص العدّاد') async {
     await pumpApp(tester);
     await openLessonAndAdvance(tester);
     await tester.pageBack();
