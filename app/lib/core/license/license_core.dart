@@ -128,15 +128,16 @@ LicenseCheck checkLicense(
 }) {
   final publicKey = key ?? licensePublicKey;
   Uint8List payloadBytes;
+  Uint8List sigBytes;
   try {
     payloadBytes = token.payloadBytes;
-    token.sigBytes; // فك التوقيع ضمن المحاولة نفسها
+    sigBytes = token.sigBytes; // فك التوقيع ضمن المحاولة نفسها
   } catch (_) {
     return const LicenseCheck(LicenseVerdict.malformed);
   }
   bool ok;
   try {
-    ok = ed.verify(publicKey, payloadBytes, token.sigBytes);
+    ok = ed.verify(publicKey, payloadBytes, sigBytes);
   } catch (_) {
     return const LicenseCheck(LicenseVerdict.malformed);
   }
