@@ -18,6 +18,10 @@ dependencies:
   shared_preferences: ^2.2.0
   # فحص التوقيع المحلي للترخيص Ed25519 (F3.6 — docs/11 §٥: RFC 8032)
   ed25519_edwards: ^0.3.2
+  # توقيع أحداث دفتر XP (F3.7 — docs/12 §٤.۲)
+  crypto: ^3.0.0
+  # خزنة بذرة مفتاح الجهاز (F3.7 — الترقية لـKeystore مع F4.4)
+  flutter_secure_storage: ^9.2.2
 
 dev_dependencies:
   flutter_test:

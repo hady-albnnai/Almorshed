@@ -19,7 +19,8 @@ android {
         applicationId = "com.loraneemtech.fizya_clash"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        // F3.7: flutter_secure_storage v9 يشترط API 23+ (أندرويد 6+)
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
