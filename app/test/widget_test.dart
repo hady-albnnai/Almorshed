@@ -202,30 +202,52 @@ void main() {
     expect(find.text('١٠٠٪'), findsOneWidget);
   });
 
-  testWidgets('F3.1: الاستئناف من موضع القارئ — متابعة القراءة', (tester) async {
-    await pumpApp(tester);
-
-    // فتح الفصل والتقدم للفقرة الثانية ثم الخروج بلا إتمام
+  // تمهيد مشترك: فتح الفصل والتقدم للفقرة ٢ بلا إتمام (تفتيت تشخيصي F3.1)
+  Future<void> _openLessonAndAdvance(WidgetTester tester) async {
     await tester.tap(find.text('١ · الحركة والتحريك'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('ابدأ القراءة'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('التالي ←'));
     await tester.pumpAndSettle();
-    expect(find.text('فقرة ٢ من ٢'), findsOneWidget);
-    await tester.pageBack(); // خروج من الدرس بلا إتمام
-    await tester.pumpAndSettle();
+  }
 
-    // الوحدة تعرض «متابعة القراءة» بدل «ابدأ القراءة»
+  testWidgets('F3.1-أ: التالي يحفظ cursor=1 بلا إتمام (طبقة المخزن)', (tester) async {
+    final store = InMemoryProgressStore();
+    await pumpApp(tester, progressStore: store);
+    await _openLessonAndAdvance(tester);
+    expect(find.text('فقرة ٢ من ٢'), findsOneWidget);
+    final p = await store.load();
+    expect(p.chapters['U1C1']?.cursor, 1);
+    expect(p.chapters['U1C1']?.completed, isFalse);
+  });
+
+  testWidgets('F3.1-ب: خروج بلا إتمام ⇒ «متابعة القراءة» بالوحدة', (tester) async {
+    await pumpApp(tester);
+    await _openLessonAndAdvance(tester);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
     expect(find.text('متابعة القراءة'), findsOneWidget);
     expect(find.text('ابدأ القراءة'), findsNothing);
+  });
 
-    // الدخول عبر المتابعة — نستأنف من الفقرة الثانية لا من الصفر
+  testWidgets('F3.1-ج: الدخول عبر المتابعة يفتح الفقرة المحفوظة', (tester) async {
+    await pumpApp(tester);
+    await _openLessonAndAdvance(tester);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
     await tester.tap(find.text('متابعة القراءة'));
     await tester.pumpAndSettle();
     expect(find.text('فقرة ٢ من ٢'), findsOneWidget);
+  });
 
-    // الإتمام يعيد الزر إلى «ابدأ القراءة» مع علامة ✓
+  testWidgets('F3.1-د: الإتمام بعد الاستئناف يعيد «ابدأ القراءة» مع ✓', (tester) async {
+    await pumpApp(tester);
+    await _openLessonAndAdvance(tester);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('متابعة القراءة'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('انتهى الدرس ✓'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('رجوع للوحدة'));
@@ -292,10 +314,37 @@ void main() {
     expect(find.text('الأسئلة لم تُفتح بعد'), findsOneWidget);
   });
 
-  testWidgets('F3.3: دورة دفعة كاملة — تصحيح فوري ونتيجة وأرشيف', (tester) async {
+  // تمهيد مشترك: الدخول للتدريب وبدء دفعة اليوم (تفتيت تشخيصي F3.3)
+  Future<void> _startDailyBatch(WidgetTester tester) async {
+    await tester.tap(find.byIcon(Icons.quiz_outlined));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('ابدأ دفعة اليوم'));
+    await tester.pumpAndSettle();
+  }
+
+  testWidgets('F3.3-أ: إجابة س١ تصل المخزن وبطاقة الخطوات تظهر', (tester) async {
     final pack = _trainingPack();
     final store = InMemoryTrainingStore();
     await pumpTrainingApp(tester, pack: pack, store: store);
+    final todayKey = dateKeyOf(DateTime.now());
+    final batch = buildDailyBatch(pack, dateKey: todayKey)!;
+    final q1 = pack.questions
+        .firstWhere((q) => q.id == batch.session.questionIds[0]);
+    final order1 = batch.session.optionOrders[q1.id]!;
+    final correct1 = q1.options[order1[displayCorrectIndex(q1, order1)]];
+
+    await _startDailyBatch(tester);
+    await tester.tap(find.ancestor(
+        of: find.text(correct1), matching: find.byType(ListTile)));
+    await tester.pumpAndSettle();
+    final data = await store.load(); // الطبقة المحفوظة
+    expect(data.daily!.answers[q1.id], isNotNull);
+    expect(find.text('📌 خطوات الحل'), findsOneWidget); // الطبقة المرئية
+  });
+
+  testWidgets('F3.3-ب: التالي لس٢ وإجابة خاطئة والنتيجة ١ من ٢', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack);
     final todayKey = dateKeyOf(DateTime.now());
     final batch = buildDailyBatch(pack, dateKey: todayKey)!;
     Question qOf(int i) =>
@@ -306,26 +355,12 @@ void main() {
     String wrongText(int i) =>
         qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
 
-    // الدخول وبدء الدفعة
-    await tester.tap(find.byIcon(Icons.quiz_outlined));
-    await tester.pumpAndSettle();
-    await tester.tap(find.text('ابدأ دفعة اليوم'));
-    await tester.pumpAndSettle();
-    expect(find.text('سؤال ١ من ٢'), findsOneWidget);
-
-    // السؤال الأول: إجابة صحيحة → خطوات الحل تظهر (النقر عبر بلاطة الخيار)
+    await _startDailyBatch(tester);
     await tester.tap(find.ancestor(
         of: find.text(correctText(0)), matching: find.byType(ListTile)));
     await tester.pumpAndSettle();
-    // إثبات الطبقة المحفوظة: الإجابة وصلت المخزن فعلاً (تشخيص طبقتين)
-    final data = await store.load();
-    expect(data.daily!.answers[qOf(0).id], isNotNull);
-    await tester.pump(); // إطار إضافي بعد الحفظ
-    expect(find.text('📌 خطوات الحل'), findsOneWidget);
     await tester.tap(find.text('التالي ←'));
     await tester.pumpAndSettle();
-
-    // السؤال الثاني: إجابة خاطئة ثم النتيجة
     expect(find.text('سؤال ٢ من ٢'), findsOneWidget);
     await tester.tap(find.ancestor(
         of: find.text(wrongText(1)), matching: find.byType(ListTile)));
@@ -334,14 +369,64 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('أنهيت دفعة اليوم!'), findsOneWidget);
     expect(find.text('١ من ٢'), findsOneWidget);
+  });
 
-    // العودة للبوابة: منجزة بالنتيجة + خطأ واحد بالأرشيف
+  testWidgets('F3.3-ج: البوابة بعد الإتمام والأرشيف فيه خطأ واحد', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack);
+    final todayKey = dateKeyOf(DateTime.now());
+    final batch = buildDailyBatch(pack, dateKey: todayKey)!;
+    Question qOf(int i) =>
+        pack.questions.firstWhere((q) => q.id == batch.session.questionIds[i]);
+    List<int> orderOf(int i) => batch.session.optionOrders[qOf(i).id]!;
+    String correctText(int i) =>
+        qOf(i).options[orderOf(i)[displayCorrectIndex(qOf(i), orderOf(i))]];
+    String wrongText(int i) =>
+        qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
+
+    await _startDailyBatch(tester);
+    await tester.tap(find.ancestor(
+        of: find.text(correctText(0)), matching: find.byType(ListTile)));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('التالي ←'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.ancestor(
+        of: find.text(wrongText(1)), matching: find.byType(ListTile)));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('النتيجة'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('رجوع للتدريب'));
     await tester.pumpAndSettle();
     expect(find.textContaining('أنهيت دفعة اليوم'), findsOneWidget);
     expect(find.text('الأرشيف: ١ خطأ'), findsOneWidget);
+  });
 
-    // فتح الأرشيف: السؤال الخاطئ بنصه وإجابته
+  testWidgets('F3.3-د: الأرشيف يعرض الخطأ بنصه وإجابته', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack);
+    final todayKey = dateKeyOf(DateTime.now());
+    final batch = buildDailyBatch(pack, dateKey: todayKey)!;
+    Question qOf(int i) =>
+        pack.questions.firstWhere((q) => q.id == batch.session.questionIds[i]);
+    List<int> orderOf(int i) => batch.session.optionOrders[qOf(i).id]!;
+    String correctText(int i) =>
+        qOf(i).options[orderOf(i)[displayCorrectIndex(qOf(i), orderOf(i))]];
+    String wrongText(int i) =>
+        qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
+
+    await _startDailyBatch(tester);
+    await tester.tap(find.ancestor(
+        of: find.text(correctText(0)), matching: find.byType(ListTile)));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('التالي ←'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.ancestor(
+        of: find.text(wrongText(1)), matching: find.byType(ListTile)));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('النتيجة'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('رجوع للتدريب'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('الأرشيف: ١ خطأ'));
     await tester.pumpAndSettle();
     expect(find.textContaining(qOf(1).stem), findsOneWidget);
