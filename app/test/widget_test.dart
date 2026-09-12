@@ -455,7 +455,9 @@ void main() {
     final store = InMemoryTrainingStore();
     await pumpTrainingApp(tester, pack: pack, store: store);
 
-    // من بوابة التدريب إلى البطاقات
+    // الدخول لشاشة التدريب أولاً ثم إلى البطاقات
+    await tester.tap(find.byIcon(Icons.quiz_outlined));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('مراجعة البطاقات'));
     await tester.pumpAndSettle();
 
@@ -479,6 +481,8 @@ void main() {
     final pack = _trainingPack();
     final store = InMemoryTrainingStore();
     await pumpTrainingApp(tester, pack: pack, store: store);
+    await tester.tap(find.byIcon(Icons.quiz_outlined));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('مراجعة البطاقات'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('ابدأ مراجعة البطاقات'));
@@ -524,6 +528,8 @@ void main() {
   testWidgets('F3.4: استئناف منتصف المراجعة — التالية لا المكررة', (tester) async {
     final pack = _trainingPack();
     await pumpTrainingApp(tester, pack: pack);
+    await tester.tap(find.byIcon(Icons.quiz_outlined));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('مراجعة البطاقات'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('ابدأ مراجعة البطاقات'));
