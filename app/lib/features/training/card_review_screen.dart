@@ -65,9 +65,10 @@ class _CardReviewScreenState extends State<CardReviewScreen> {
     );
     await widget.trainingStore.save(updated);
     // F3.8: بطاقة مراجعة +١ (بلا سقف) — وإتمام الطابور +١٥ مرة/يوم
-    await widget.xpRecorder?.record('cardReview');
+    // (ثوابت الأنواع من xp_ledger — لا نصوص حرفية تفقد الاستيراد)
+    await widget.xpRecorder?.record(xpCardReview.id);
     if (!wasFinished && updated.cardDay!.finished) {
-      await widget.xpRecorder?.record('queueDone');
+      await widget.xpRecorder?.record(xpQueueDone.id);
     }
     if (!mounted) return;
     setState(() {
