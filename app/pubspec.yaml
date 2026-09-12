@@ -16,6 +16,8 @@ dependencies:
   flutter_tts: ^4.0.0
   # تقدم القراءة المحفوظ (F3.1 — قرار ٥٧: KV يكفي؛ Drift لدفتر XP في F7)
   shared_preferences: ^2.2.0
+  # فحص التوقيع المحلي للترخيص Ed25519 (F3.6 — docs/11 §٥: RFC 8032)
+  ed25519_edwards: ^0.3.2
 
 dev_dependencies:
   flutter_test:

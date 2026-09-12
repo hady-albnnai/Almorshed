@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
 import '../../core/progress/progress_store.dart';
+import '../../core/license/license_store.dart';
 import '../../core/training/training_store.dart';
 import '../../core/util/arabic_number.dart';
+import '../account/account_screen.dart';
 import '../lab/lab_screen.dart';
 import '../training/training_screen.dart';
 import 'unit_screen.dart';
@@ -17,12 +19,15 @@ class CurriculumScreen extends StatefulWidget {
     required this.onToggleTheme,
     required this.progressStore,
     required this.trainingStore,
+      required this.licenseStore,
   });
 
   final ContentPack pack;
   final VoidCallback onToggleTheme;
   final ProgressStore progressStore;
   final TrainingStore trainingStore;
+
+  final LicenseStore licenseStore;
 
   @override
   State<CurriculumScreen> createState() => _CurriculumScreenState();
@@ -57,6 +62,16 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
           ],
         ),
         actions: [
+          IconButton(
+            tooltip: 'حسابي — التفعيل والاشتراك',
+            onPressed: () async {
+              await Navigator.of(context).push(MaterialPageRoute<void>(
+                builder: (_) => AccountScreen(licenseStore: widget.licenseStore),
+              ));
+              _reload(); // تحديث حالة التفعيل عند العودة
+            },
+            icon: const Icon(Icons.person_outline),
+          ),
           IconButton(
             tooltip: 'المختبر — التجارب التفاعلية',
             onPressed: () async {

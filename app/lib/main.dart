@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'core/license/license_store.dart';
 import 'core/content/content_loader.dart';
 import 'core/content/models.dart';
 import 'core/progress/progress_store.dart';
@@ -7,6 +8,7 @@ import 'core/progress/shared_prefs_store.dart';
 import 'core/theme/app_theme.dart';
 import 'core/training/shared_prefs_training_store.dart';
 import 'core/training/training_store.dart';
+import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
 
 void main() => runApp(const FizyaClashApp());
@@ -19,6 +21,7 @@ class FizyaClashApp extends StatefulWidget {
     this.packLoader,
     this.progressStore,
     this.trainingStore,
+    this.licenseStore,
   });
 
   /// حقن للاختبارات؛ الافتراضي يحمّل حزمة assets الحقيقية.
@@ -30,6 +33,9 @@ class FizyaClashApp extends StatefulWidget {
   /// حقن مخزن التدريب (F3.3)؛ الافتراضي shared_preferences.
   final TrainingStore? trainingStore;
 
+  /// حقن مخزن الترخيص (F3.6)؛ الافتراضي shared_preferences.
+  final LicenseStore? licenseStore;
+
   @override
   State<FizyaClashApp> createState() => _FizyaClashAppState();
 }
@@ -39,6 +45,15 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
 
   late final Future<ContentPack> _packFuture =
       (widget.packLoader ?? _defaultLoadPack)();
+
+  LicenseStore get _license =>
+      widget.licenseStore ?? SharedPrefsLicenseStore();
+
+  late Future<LicenseData> _licenseFuture = _license.load();
+
+  void _reloadLicense() => setState(() {
+        _licenseFuture = _license.load();
+      });
 
   static Future<ContentPack> _defaultLoadPack() => ContentLoader().loadPack();
 
@@ -67,13 +82,31 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
           if (snap.hasError || !snap.hasData) {
             return _ErrorView(error: snap.error);
           }
-          return CurriculumScreen(
-            pack: snap.data!,
-            onToggleTheme: _toggleTheme,
-            progressStore:
-                widget.progressStore ?? SharedPrefsProgressStore(),
-            trainingStore:
-                widget.trainingStore ?? SharedPrefsTrainingStore(),
+          return FutureBuilder<LicenseData>(
+            future: _licenseFuture,
+            builder: (context, licSnap) {
+              if (licSnap.connectionState != ConnectionState.done) {
+                return const _Splash();
+              }
+              final license =
+                  licSnap.data ?? const LicenseData();
+              if (license.mode == LicenseMode.none) {
+                // F3.6: بوابة أول فتح — تظهر مرة واحدة ثم من «حسابي»
+                return ActivationGate(
+                  licenseStore: _license,
+                  onModeSet: _reloadLicense,
+                );
+              }
+              return CurriculumScreen(
+                pack: snap.data!,
+                onToggleTheme: _toggleTheme,
+                progressStore:
+                    widget.progressStore ?? SharedPrefsProgressStore(),
+                trainingStore:
+                    widget.trainingStore ?? SharedPrefsTrainingStore(),
+                licenseStore: _license,
+              );
+            },
           );
         },
       ),

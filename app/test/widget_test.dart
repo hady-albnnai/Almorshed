@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:fizya_clash/core/content/models.dart';
+import 'package:fizya_clash/core/license/license_store.dart';
 import 'package:fizya_clash/core/progress/progress_store.dart';
 import 'package:fizya_clash/core/training/batch_builder.dart';
 import 'package:fizya_clash/core/training/training_store.dart';
@@ -109,7 +110,9 @@ ContentPack _trainingPack() => ContentPack.fromJsonString(jsonEncode({
 
 /// مضخة بحزمة مخصصة — لاختبارات التدريب (F3.3).
 Future<void> pumpTrainingApp(WidgetTester tester,
-    {required ContentPack pack, InMemoryTrainingStore? store}) async {
+    {required ContentPack pack,
+    InMemoryTrainingStore? store,
+    InMemoryLicenseStore? licenseStore}) async {
   tester.view.physicalSize = const Size(1080, 2400);
   tester.view.devicePixelRatio = 1.0;
   addTearDown(tester.view.reset);
@@ -117,6 +120,8 @@ Future<void> pumpTrainingApp(WidgetTester tester,
     packLoader: () async => pack,
     progressStore: InMemoryProgressStore(),
     trainingStore: store ?? InMemoryTrainingStore(),
+    // وضع التجربة افتراضياً — اختبارات المنهاج لا تعبر البوابة
+    licenseStore: licenseStore ?? InMemoryLicenseStore.trial(),
   ));
   await tester.pumpAndSettle();
 }
@@ -133,6 +138,7 @@ void main() {
       packLoader: () async => _fakePack(),
       progressStore: progressStore ?? InMemoryProgressStore(),
       trainingStore: InMemoryTrainingStore(),
+      licenseStore: InMemoryLicenseStore.trial(), // المنهاج مباشرة بلا بوابة
     ));
     await tester.pumpAndSettle();
   }
@@ -523,6 +529,84 @@ void main() {
     final data = await store.load();
     expect(data.cardStates, hasLength(2));
     expect(data.cardDay!.finished, isTrue);
+  });
+
+  testWidgets('F3.6: بوابة أول فتح — التجربة تدخل والبوابة لا تعود',
+      (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack,
+        licenseStore: InMemoryLicenseStore()); // وضع none ⇒ البوابة
+    expect(find.text('أهلاً بك في «فيزيا كلاش»'), findsOneWidget);
+    expect(find.byIcon(Icons.person_outline), findsNothing);
+
+    await tester.tap(find.text('تجربة المحتوى التجريبي (بدون تفعيل)'));
+    await tester.pumpAndSettle();
+    // دخلت المنهاج — والبوابة اختفت
+    expect(find.text('أهلاً بك في «فيزيا كلاش»'), findsNothing);
+    expect(find.byIcon(Icons.person_outline), findsOneWidget);
+
+    // إعادة فتح كاملة (بناء جديد): الوضع محفوظ — لا بوابة مجدداً
+    await pumpTrainingApp(tester, pack: pack,
+        licenseStore: InMemoryLicenseStore.trial());
+    expect(find.text('أهلاً بك في «فيزيا كلاش»'), findsNothing);
+  });
+
+  testWidgets('F3.6: تنسيق الكود الحي ٥-٥-٥ كالنموذج', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack,
+        licenseStore: InMemoryLicenseStore());
+    await tester.enterText(
+        find.byType(TextField), 'k7m2p9qw4x4tr8n');
+    await tester.pumpAndSettle();
+    expect(find.text('K7M2P-9QW4X-4TR8N'), findsOneWidget);
+  });
+
+  testWidgets('F3.6: كود ناقص يُرفض + ٥ محاولات ثم انتظار تدريجي',
+      (tester) async {
+    final pack = _trainingPack();
+    final license = InMemoryLicenseStore();
+    await pumpTrainingApp(tester, pack: pack, licenseStore: license);
+    const incomplete = 'K7M2P-9QW4'; // أقل من ١٥
+    await tester.enterText(find.byType(TextField), incomplete);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('تفعيل ✓'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('الكود ناقص'), findsOneWidget);
+
+    const full = 'K7M2P-9QW4X-4TR8N'; // شكله سليم — ولا توكن بعد (F4.4)
+    for (var i = 0; i < 5; i++) {
+      await tester.enterText(find.byType(TextField), full);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('تفعيل ✓'));
+      await tester.pumpAndSettle();
+    }
+    expect(find.textContaining('غير معروف بعد'), findsOneWidget);
+
+    // المحاولة السادسة: قفل ٥ دقائق (بعد الخامسة يبدأ الانتظار)
+    await tester.enterText(find.byType(TextField), full);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('تفعيل ✓'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('محاولات كثيرة'), findsOneWidget);
+
+    // العدّاد محفوظ فعلاً بالمخزن
+    final data = await license.load();
+    expect(data.failures, 5);
+  });
+
+  testWidgets('F3.6: حسابي — شارة التجربة وإعادة الفحص بلا توكن',
+      (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack);
+    await tester.tap(find.byIcon(Icons.person_outline));
+    await tester.pumpAndSettle();
+    expect(find.text('حسابي'), findsOneWidget);
+    expect(find.text('وضع تجريبي'), findsOneWidget);
+    expect(find.textContaining('أنت بوضع التجربة'), findsOneWidget);
+
+    await tester.tap(find.text('⟲ إعادة فحص التوقيع الآن'));
+    await tester.pumpAndSettle();
+    expect(find.text('لا توقيع محفوظ — أنت بوضع التجربة'), findsOneWidget);
   });
 
   testWidgets('F3.5: POE كامل — توقع ثم محاكاة ثم قياس وشرح', (tester) async {
