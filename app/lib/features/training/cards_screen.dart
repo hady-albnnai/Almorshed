@@ -125,23 +125,23 @@ class _CardsScreenState extends State<CardsScreen> {
 
   Widget _buildDaySection(String todayKey, TextTheme txt) {
     final frozen = _data.cardDay;
-    final isToday = frozen != null && frozen.dateKey == todayKey;
 
-    if (isToday && frozen.finished) {
-      return Column(
-        children: [
-          const Icon(Icons.emoji_events_outlined, size: 42),
-          const SizedBox(height: 10),
-          Text('✓ أنهيت بطاقات اليوم! +١٥ نقطة',
-              style: txt.titleMedium, textAlign: TextAlign.center),
-          const SizedBox(height: 6),
-          Text('المراجعة القادمة غداً حسب جدول FSRS',
-              style: txt.bodyMedium, textAlign: TextAlign.center),
-        ],
-      );
-    }
-
-    if (isToday && !frozen.finished) {
+    // ⚠️ فحص null مباشر — دارت لا تروّج عبر متغير وسيط (isToday كان
+    // يكسر الترويج فيصير frozen.finished خطأ تصريف — علّة F3.4)
+    if (frozen != null && frozen.dateKey == todayKey) {
+      if (frozen.finished) {
+        return Column(
+          children: [
+            const Icon(Icons.emoji_events_outlined, size: 42),
+            const SizedBox(height: 10),
+            Text('✓ أنهيت بطاقات اليوم! +١٥ نقطة',
+                style: txt.titleMedium, textAlign: TextAlign.center),
+            const SizedBox(height: 6),
+            Text('المراجعة القادمة غداً حسب جدول FSRS',
+                style: txt.bodyMedium, textAlign: TextAlign.center),
+          ],
+        );
+      }
       return Column(
         children: [
           Text(
