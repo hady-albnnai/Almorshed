@@ -475,6 +475,6 @@ class _SpringPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _SpringPainter old) =>
-      old.x != x || old.running != running;
+  bool shouldRepaint(covariant _SpringPainter oldDelegate) =>
+      oldDelegate.x != x || oldDelegate.running != running;
 }
