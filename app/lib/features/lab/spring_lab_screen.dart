@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart' show Ticker;
 
 import '../../core/lab/spring_sim.dart';
 import '../../core/theme/app_colors.dart';
@@ -42,7 +43,6 @@ class _SpringLabScreenState extends State<SpringLabScreen>
   // منهجية POE.
   int _stage = 0; // 0=توقع 1=لاحظ 2=اشرح(متاح دائماً بعد أول قياس)
   int? _prediction; // فهرس التوقع المختار
-  bool _explanationSeen = false;
 
   TrainingData _data = const TrainingData();
   bool _challengeDoneToday = false;
