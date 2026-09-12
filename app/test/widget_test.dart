@@ -203,7 +203,7 @@ void main() {
   });
 
   // تمهيد مشترك: فتح الفصل والتقدم للفقرة ٢ بلا إتمام (تفتيت تشخيصي F3.1)
-  Future<void> _openLessonAndAdvance(WidgetTester tester) async {
+  Future<void> openLessonAndAdvance(WidgetTester tester) async {
     await tester.tap(find.text('١ · الحركة والتحريك'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('ابدأ القراءة'));
@@ -215,7 +215,7 @@ void main() {
   testWidgets('F3.1-أ: التالي يحفظ cursor=1 بلا إتمام (طبقة المخزن)', (tester) async {
     final store = InMemoryProgressStore();
     await pumpApp(tester, progressStore: store);
-    await _openLessonAndAdvance(tester);
+    await openLessonAndAdvance(tester);
     expect(find.text('فقرة ٢ من ٢'), findsOneWidget);
     final p = await store.load();
     expect(p.chapters['U1C1']?.cursor, 1);
@@ -224,7 +224,7 @@ void main() {
 
   testWidgets('F3.1-ب: خروج بلا إتمام ⇒ «متابعة القراءة» بالوحدة', (tester) async {
     await pumpApp(tester);
-    await _openLessonAndAdvance(tester);
+    await openLessonAndAdvance(tester);
     await tester.pageBack();
     await tester.pumpAndSettle();
     expect(find.text('متابعة القراءة'), findsOneWidget);
@@ -233,7 +233,7 @@ void main() {
 
   testWidgets('F3.1-ج: الدخول عبر المتابعة يفتح الفقرة المحفوظة', (tester) async {
     await pumpApp(tester);
-    await _openLessonAndAdvance(tester);
+    await openLessonAndAdvance(tester);
     await tester.pageBack();
     await tester.pumpAndSettle();
     await tester.tap(find.text('متابعة القراءة'));
@@ -243,7 +243,7 @@ void main() {
 
   testWidgets('F3.1-د: الإتمام بعد الاستئناف يعيد «ابدأ القراءة» مع ✓', (tester) async {
     await pumpApp(tester);
-    await _openLessonAndAdvance(tester);
+    await openLessonAndAdvance(tester);
     await tester.pageBack();
     await tester.pumpAndSettle();
     await tester.tap(find.text('متابعة القراءة'));
@@ -315,7 +315,7 @@ void main() {
   });
 
   // تمهيد مشترك: الدخول للتدريب وبدء دفعة اليوم (تفتيت تشخيصي F3.3)
-  Future<void> _startDailyBatch(WidgetTester tester) async {
+  Future<void> startDailyBatch(WidgetTester tester) async {
     await tester.tap(find.byIcon(Icons.quiz_outlined));
     await tester.pumpAndSettle();
     await tester.tap(find.text('ابدأ دفعة اليوم'));
@@ -333,7 +333,7 @@ void main() {
     final order1 = batch.session.optionOrders[q1.id]!;
     final correct1 = q1.options[order1[displayCorrectIndex(q1, order1)]];
 
-    await _startDailyBatch(tester);
+    await startDailyBatch(tester);
     await tester.tap(find.ancestor(
         of: find.text(correct1), matching: find.byType(ListTile)));
     await tester.pumpAndSettle();
@@ -355,7 +355,7 @@ void main() {
     String wrongText(int i) =>
         qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
 
-    await _startDailyBatch(tester);
+    await startDailyBatch(tester);
     await tester.tap(find.ancestor(
         of: find.text(correctText(0)), matching: find.byType(ListTile)));
     await tester.pumpAndSettle();
@@ -384,7 +384,7 @@ void main() {
     String wrongText(int i) =>
         qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
 
-    await _startDailyBatch(tester);
+    await startDailyBatch(tester);
     await tester.tap(find.ancestor(
         of: find.text(correctText(0)), matching: find.byType(ListTile)));
     await tester.pumpAndSettle();
@@ -414,7 +414,7 @@ void main() {
     String wrongText(int i) =>
         qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
 
-    await _startDailyBatch(tester);
+    await startDailyBatch(tester);
     await tester.tap(find.ancestor(
         of: find.text(correctText(0)), matching: find.byType(ListTile)));
     await tester.pumpAndSettle();
