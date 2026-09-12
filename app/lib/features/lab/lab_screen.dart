@@ -48,16 +48,9 @@ class _LabScreenState extends State<LabScreen> {
                     subtitle: const Text(
                         'محاكاة RK4 حتماً · منهجية توقع/لاحظ/اشرح · تحدي T=٢ث'),
                     trailing: const Icon(Icons.chevron_left),
-                    onTap: () async {
-                      // ⚠️ الترقية لا تُضمن داخل async closure — ! صريح
-                      final d = data!;
-                      await Navigator.of(context).push(MaterialPageRoute<void>(
-                        builder: (_) => SpringLabScreen(
-                          trainingStore: widget.trainingStore,
-                          initialData: d,
-                        ),
-                      ));
-                      _load(); // تحديث حالة التحدي عند العودة
+                    onTap: () {
+                      // BISECT: مرجع النوع يحفظ الاستيراد بلا أي منطق
+                      debugPrint('$SpringLabScreen');
                     },
                   ),
                 ),
