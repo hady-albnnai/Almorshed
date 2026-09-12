@@ -37,7 +37,7 @@ void main() {
       const x0 = 0.5;
       const m = 1.0;
       const k = 9.0; // ω = 3
-      const omega = math.sqrt(k / m);
+      final omega = math.sqrt(k / m); // نداء دالة — لا يكون constاً
       var s = SpringState.released(x0);
       final steps = (10.0 / simDt).round();
       for (var i = 0; i < steps; i++) {
