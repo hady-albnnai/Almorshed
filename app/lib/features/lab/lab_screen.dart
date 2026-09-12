@@ -48,10 +48,40 @@ class _LabScreenState extends State<LabScreen> {
                     subtitle: const Text(
                         'محاكاة RK4 حتماً · منهجية توقع/لاحظ/اشرح · تحدي T=٢ث'),
                     trailing: const Icon(Icons.chevron_left),
-                    onTap: () {}, // BISECT: الإغلاق الحقيقي خارجاً مؤقتاً
+                    onTap: () async {
+                      // ⚠️ الترقية لا تُضمن داخل async closure — ! صريح
+                      final d = data!;
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => SpringLabScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: d,
+                        ),
+                      ));
+                      _load(); // تحديث حالة التحدي عند العودة
+                    },
                   ),
                 ),
+                for (final name in const [
+                  'السقوط الحر — الفيزياء',
+                  'الدائرة المهتزة L–C',
+                  'الموجات على حبل',
+                  'مرشح الترشيح الهندسي',
+                  'انكسار الضوء',
+                ])
+                  Card(
+                    child: ListTile(
+                      leading: const Icon(Icons.lock_outline),
+                      title: Text(name),
+                      subtitle: const Text('قيد الإعداد — بنفس القالب'),
+                    ),
+                  ),
                 const SizedBox(height: 8),
+                Text(
+                  'كل التجارب تعمل محلياً بلا شبكة — خطوة تكامل ١/٢٤٠ ث '
+                  'ونفس السحب ⇒ نفس المسار على كل الأجهزة',
+                  style: txt.bodySmall,
+                  textAlign: TextAlign.center,
+                ),
               ],
             ),
     );
