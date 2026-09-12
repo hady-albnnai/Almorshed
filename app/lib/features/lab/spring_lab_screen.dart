@@ -122,7 +122,8 @@ class _SpringLabScreenState extends State<SpringLabScreen>
 
   void _dragTo(double normalized) {
     // سحب المستخدم ⇒ الشروط الابتدائية (مطال + بداية ساكنة)
-    final clamped = normalized.clamp(-1.0, 1.0);
+    // ⚠️ double.clamp يرجع num — .toDouble() إلزامي قبل العمر double
+    final clamped = normalized.clamp(-1.0, 1.0).toDouble();
     _ticker.stop();
     setState(() {
       _running = false;
