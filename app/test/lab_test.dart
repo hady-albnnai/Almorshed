@@ -38,7 +38,7 @@ void main() {
       final m = 1.0;
       final k = 9.0; // ω = 3
       final omega = math.sqrt(k / m);
-      var s = const SpringState.released(x0);
+      var s = SpringState.released(x0);
       final steps = (10.0 / simDt).round();
       for (var i = 0; i < steps; i++) {
         s = rk4Step(s, m, k);
@@ -50,8 +50,8 @@ void main() {
     });
 
     test('حتمية بتّاً: نفس المدخلات ⇒ نفس المخرجات تماماً (1000 خطوة)', () {
-      var a = const SpringState.released(0.4);
-      var b = const SpringState.released(0.4);
+      var a = SpringState.released(0.4);
+      var b = SpringState.released(0.4);
       for (var i = 0; i < 1000; i++) {
         a = rk4Step(a, 2.0, 32.0);
         b = rk4Step(b, 2.0, 32.0);
@@ -61,7 +61,7 @@ void main() {
     });
 
     test('مصونية الطاقة: السعة لا تنفجر مع الزمن (استقرار طويل)', () {
-      var s = const SpringState.released(0.5);
+      var s = SpringState.released(0.5);
       var maxAbs = 0.0;
       for (var i = 0; i < 240 * 60; i++) {
         // دقيقة كاملة

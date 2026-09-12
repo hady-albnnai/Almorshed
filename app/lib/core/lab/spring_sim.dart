@@ -16,7 +16,8 @@ class SpringState {
 
   /// الشروط الابتدائية من سحب المستخدم: يُترك من إزاحة x0 بسرعة معدومة
   /// (بداية من أقصى إزاحة ⇒ x(t) = x0·cos(ωt)).
-  static const SpringState released(double x0) => SpringState(x0, 0.0);
+  /// ⚠️ دالة ساكنة عادية — static const على الدوال خطأ تصريف بالدارت.
+  static SpringState released(double x0) => SpringState(x0, 0.0);
 }
 
 /// الدور النظري T = 2π√(m/k) — الثواني.
