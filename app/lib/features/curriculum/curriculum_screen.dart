@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
 import '../../core/progress/progress_store.dart';
+import '../../core/training/training_store.dart';
 import '../../core/util/arabic_number.dart';
+import '../training/training_screen.dart';
 import 'unit_screen.dart';
 
 /// شاشة المنهاج — الوحدات الخمس (F3.2 · مطابقة النموذج المرجعي).
@@ -13,11 +15,13 @@ class CurriculumScreen extends StatefulWidget {
     required this.pack,
     required this.onToggleTheme,
     required this.progressStore,
+    required this.trainingStore,
   });
 
   final ContentPack pack;
   final VoidCallback onToggleTheme;
   final ProgressStore progressStore;
+  final TrainingStore trainingStore;
 
   @override
   State<CurriculumScreen> createState() => _CurriculumScreenState();
@@ -52,6 +56,19 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
           ],
         ),
         actions: [
+          IconButton(
+            tooltip: 'التدريب — دفعة اليوم وأخطائي',
+            onPressed: () async {
+              await Navigator.of(context).push(MaterialPageRoute<void>(
+                builder: (_) => TrainingScreen(
+                  pack: widget.pack,
+                  trainingStore: widget.trainingStore,
+                ),
+              ));
+              _reload(); // نمط F3.1: تحديث عند العودة
+            },
+            icon: const Icon(Icons.quiz_outlined),
+          ),
           IconButton(
             tooltip: 'تبديل الوضع الفاتح/الداكن',
             onPressed: widget.onToggleTheme,

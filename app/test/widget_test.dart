@@ -5,6 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:fizya_clash/core/content/models.dart';
 import 'package:fizya_clash/core/progress/progress_store.dart';
+import 'package:fizya_clash/core/training/batch_builder.dart';
+import 'package:fizya_clash/core/training/training_store.dart';
 import 'package:fizya_clash/core/tts/speaker.dart';
 import 'package:fizya_clash/features/curriculum/lesson_screen.dart';
 import 'package:fizya_clash/main.dart';
@@ -48,6 +50,61 @@ ContentPack _fakePack() => ContentPack.fromJsonString(jsonEncode({
       'cards': []
     }));
 
+/// حزمة تدريب صغيرة: سؤالان معتمدان بفصل واحد — لدورة الدفعة الكاملة.
+ContentPack _trainingPack() => ContentPack.fromJsonString(jsonEncode({
+      'packId': 'train-pack',
+      'year': 2027,
+      'edition': 1,
+      'units': [
+        {
+          'id': 'U1',
+          'title': 'وحدة التدريب',
+          'chapters': [
+            {'id': 'U1C1', 'title': 'فصل التدريب', 'page': 1, 'paragraphs': []}
+          ]
+        }
+      ],
+      'questions': [
+        {
+          'id': 901,
+          'unit': 'U1',
+          'chapter': 'U1C1',
+          'approved': true,
+          'stem': 'سؤال ٩٠١: ما وحدة قياس القوة؟',
+          'options': ['النيوتن N', 'الجول J', 'الواط W', 'الباسكال Pa'],
+          'correctIndex': 0,
+          'solutionSteps': ['القوة قياسها النيوتن حسب النظام الدولي.'],
+          'followThrough': []
+        },
+        {
+          'id': 902,
+          'unit': 'U1',
+          'chapter': 'U1C1',
+          'approved': true,
+          'stem': 'سؤال ٩٠٢: وحدة قياس الشغل؟',
+          'options': ['النيوتن N', 'الباسكال Pa', 'الجول J', 'الواط W'],
+          'correctIndex': 2,
+          'solutionSteps': ['الشغل = قوة × إزاحة ⇒ نيوتن·متر = جول.'],
+          'followThrough': []
+        }
+      ],
+      'cards': []
+    }));
+
+/// مضخة بحزمة مخصصة — لاختبارات التدريب (F3.3).
+Future<void> pumpTrainingApp(WidgetTester tester,
+    {required ContentPack pack, InMemoryTrainingStore? store}) async {
+  tester.view.physicalSize = const Size(1080, 2400);
+  tester.view.devicePixelRatio = 1.0;
+  addTearDown(tester.view.reset);
+  await tester.pumpWidget(FizyaClashApp(
+    packLoader: () async => pack,
+    progressStore: InMemoryProgressStore(),
+    trainingStore: store ?? InMemoryTrainingStore(),
+  ));
+  await tester.pumpAndSettle();
+}
+
 void main() {
   Future<void> pumpApp(WidgetTester tester,
       {InMemoryProgressStore? progressStore}) async {
@@ -58,6 +115,7 @@ void main() {
     await tester.pumpWidget(FizyaClashApp(
       packLoader: () async => _fakePack(),
       progressStore: progressStore ?? InMemoryProgressStore(),
+      trainingStore: InMemoryTrainingStore(),
     ));
     await tester.pumpAndSettle();
   }
@@ -224,7 +282,95 @@ void main() {
     // والفهرس باقٍ — الاختفاء خاص بزر النطق فقط
     expect(find.byIcon(Icons.menu_book_outlined), findsOneWidget);
   });
+
+  testWidgets('F3.3: البنك المقفول قبل مصادقة الأستاذ (قرار ٢٤)', (tester) async {
+    // fakePack بلا أسئلة ⇒ pool = 0 ⇒ شاشة الانتظار
+    await pumpApp(tester);
+    await tester.tap(find.byIcon(Icons.quiz_outlined));
+    await tester.pumpAndSettle();
+    expect(find.text('بانتظار مصادقة الأستاذ'), findsOneWidget);
+    expect(find.text('الأسئلة لم تُفتح بعد'), findsOneWidget);
+  });
+
+  testWidgets('F3.3: دورة دفعة كاملة — تصحيح فوري ونتيجة وأرشيف', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack);
+    final todayKey = dateKeyOf(DateTime.now());
+    final batch = buildDailyBatch(pack, dateKey: todayKey)!;
+    Question qOf(int i) =>
+        pack.questions.firstWhere((q) => q.id == batch.session.questionIds[i]);
+    List<int> orderOf(int i) => batch.session.optionOrders[qOf(i).id]!;
+    String correctText(int i) =>
+        qOf(i).options[orderOf(i)[displayCorrectIndex(qOf(i), orderOf(i))]];
+    String wrongText(int i) =>
+        qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
+
+    // الدخول وبدء الدفعة
+    await tester.tap(find.byIcon(Icons.quiz_outlined));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('ابدأ دفعة اليوم'));
+    await tester.pumpAndSettle();
+    expect(find.text('سؤال ١ من ٢'), findsOneWidget);
+
+    // السؤال الأول: إجابة صحيحة → خطوات الحل تظهر
+    await tester.tap(find.text(correctText(0)));
+    await tester.pumpAndSettle();
+    expect(find.text('📌 خطوات الحل'), findsOneWidget);
+    await tester.tap(find.text('التالي ←'));
+    await tester.pumpAndSettle();
+
+    // السؤال الثاني: إجابة خاطئة ثم النتيجة
+    expect(find.text('سؤال ٢ من ٢'), findsOneWidget);
+    await tester.tap(find.text(wrongText(1)));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('النتيجة'));
+    await tester.pumpAndSettle();
+    expect(find.text('أنهيت دفعة اليوم!'), findsOneWidget);
+    expect(find.text('١ من ٢'), findsOneWidget);
+
+    // العودة للبوابة: منجزة بالنتيجة + خطأ واحد بالأرشيف
+    await tester.tap(find.text('رجوع للتدريب'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('أنهيت دفعة اليوم'), findsOneWidget);
+    expect(find.text('الأرشيف: ١ خطأ'), findsOneWidget);
+
+    // فتح الأرشيف: السؤال الخاطئ بنصه وإجابته
+    await tester.tap(find.text('الأرشيف: ١ خطأ'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining(qOf(1).stem), findsOneWidget);
+    expect(find.textContaining('✓ الصحيح:'), findsOneWidget);
+  });
+
+  testWidgets('F3.3: استئناف منتصف الدفعة — أول غير مجاب', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack);
+    final todayKey = dateKeyOf(DateTime.now());
+    final batch = buildDailyBatch(pack, dateKey: todayKey)!;
+    final q1 = pack.questions
+        .firstWhere((q) => q.id == batch.session.questionIds[0]);
+    final order1 = batch.session.optionOrders[q1.id]!;
+    final correct1 = q1.options[order1[displayCorrectIndex(q1, order1)]];
+
+    await tester.tap(find.byIcon(Icons.quiz_outlined));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('ابدأ دفعة اليوم'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(correct1)); // إجابة السؤال الأول فقط
+    await tester.pumpAndSettle();
+    await tester.pageBack(); // خروج بلا إتمام
+    await tester.pumpAndSettle();
+
+    // البوابة تعرض «أكمل» مع التقدم
+    expect(find.text('أكمل دفعة اليوم'), findsOneWidget);
+    expect(find.textContaining('تقدّمك اليوم: ١'), findsOneWidget);
+
+    // الاستئناف يفتح أول غير مجاب — السؤال الثاني لا الأول
+    await tester.tap(find.text('أكمل دفعة اليوم'));
+    await tester.pumpAndSettle();
+    expect(find.text('سؤال ٢ من ٢'), findsOneWidget);
+  });
 }
+
 
 /// زائف النطق — يسجل ما طُلب نطقه (نمط الحقن نفسه).
 class _FakeSpeaker implements Speaker {

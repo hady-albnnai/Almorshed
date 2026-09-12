@@ -5,6 +5,8 @@ import 'core/content/models.dart';
 import 'core/progress/progress_store.dart';
 import 'core/progress/shared_prefs_store.dart';
 import 'core/theme/app_theme.dart';
+import 'core/training/shared_prefs_training_store.dart';
+import 'core/training/training_store.dart';
 import 'features/curriculum/curriculum_screen.dart';
 
 void main() => runApp(const FizyaClashApp());
@@ -16,6 +18,7 @@ class FizyaClashApp extends StatefulWidget {
     super.key,
     this.packLoader,
     this.progressStore,
+    this.trainingStore,
   });
 
   /// حقن للاختبارات؛ الافتراضي يحمّل حزمة assets الحقيقية.
@@ -23,6 +26,9 @@ class FizyaClashApp extends StatefulWidget {
 
   /// حقن مخزن التقدم؛ الافتراضي shared_preferences (قرار ٥٧).
   final ProgressStore? progressStore;
+
+  /// حقن مخزن التدريب (F3.3)؛ الافتراضي shared_preferences.
+  final TrainingStore? trainingStore;
 
   @override
   State<FizyaClashApp> createState() => _FizyaClashAppState();
@@ -66,6 +72,8 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
             onToggleTheme: _toggleTheme,
             progressStore:
                 widget.progressStore ?? SharedPrefsProgressStore(),
+            trainingStore:
+                widget.trainingStore ?? SharedPrefsTrainingStore(),
           );
         },
       ),
