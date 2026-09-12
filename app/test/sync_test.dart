@@ -26,7 +26,7 @@ void main() {
     return l;
   }
 
-  final pubkeyB64 = 'ZmFrZXB1YmtleQ=='; // أي نص — الزيف لا يفحصه
+  const pubkeyB64 = 'ZmFrZXB1YmtleQ=='; // أي نص — الزيف لا يفحصه
 
   group('الرفع التدريجي', () {
     test('أول مزامنة: كل الأحداث تُرفع ويُعتمد آخرها ومرساة الزمن تُثبَّت',
@@ -193,11 +193,9 @@ class FakeApi implements XpSyncApi {
   final SyncResponse Function(SyncRequest r) handler;
   final void Function()? onCall;
   final void Function(SyncRequest r)? onRequest;
-  int calls = 0;
 
   @override
   Future<SyncResponse> verify(SyncRequest request) async {
-    calls++;
     onCall?.call();
     onRequest?.call(request);
     return handler(request);

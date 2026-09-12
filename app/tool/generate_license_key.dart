@@ -6,6 +6,7 @@
 library;
 
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -20,13 +21,13 @@ void main() {
   final privateKey = ed.newKeyFromSeed(seed);
   final publicKey = ed.public(privateKey);
 
-  print('══════════════════════════════════════════════════════');
-  print('PRIVATE SEED (base64) — Supabase Edge Function secret حصراً:');
-  print(base64Encode(seed));
-  print('──────────────────────────────────────────────────────');
-  print('PUBLIC KEY (base64) — يُرسل للمطوّر ليوضع بlicense_core.dart:');
-  print(base64Encode(publicKey.bytes));
-  print('══════════════════════════════════════════════════════');
-  print('⚠️ احفظ البذرة بمكان آمن واحد فقط (مدير أسرار Supabase) —');
-  print('   ضياعها = إعادة إصدار كل التراخيص بمفتاح جديد.');
+  stdout.writeln('══════════════════════════════════════════════════════');
+  stdout.writeln('PRIVATE SEED (base64) — Supabase Edge Function secret حصراً:');
+  stdout.writeln(base64Encode(seed));
+  stdout.writeln('──────────────────────────────────────────────────────');
+  stdout.writeln('PUBLIC KEY (base64) — يُرسل للمطوّر ليوضع بlicense_core.dart:');
+  stdout.writeln(base64Encode(publicKey.bytes));
+  stdout.writeln('══════════════════════════════════════════════════════');
+  stdout.writeln('⚠️ احفظ البذرة بمكان آمن واحد فقط (مدير أسرار Supabase) —');
+  stdout.writeln('   ضياعها = إعادة إصدار كل التراخيص بمفتاح جديد.');
 }
