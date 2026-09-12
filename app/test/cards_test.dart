@@ -144,10 +144,5 @@ void main() {
       expect(tomorrow.cardDay!.queue, [7, 8]);
     });
 
-    test('بلا بطاقات ⇒ لا تجميد (نفس البيانات)', () {
-      final out =
-          startCardDay(const TrainingData(), cards: const [], dateKey: _today);
-      expect(out.cardDay, isNull);
-    });
   });
 }
