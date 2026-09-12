@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../core/training/training_store.dart';
 import 'spring_lab_screen.dart';
 
 /// F3.5 — بوابة المختبر: تجربة النابض التوافقي جاهزة (قرار ٤٣)،
@@ -15,24 +14,9 @@ class LabScreen extends StatefulWidget {
 }
 
 class _LabScreenState extends State<LabScreen> {
-  TrainingData? _data;
-
-  @override
-  void initState() {
-    super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    final d = await widget.trainingStore.load();
-    if (!mounted) return;
-    setState(() => _data = d);
-  }
-
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
-    final data = _data;
 
     return Scaffold(
       appBar: AppBar(title: const Text('المختبر')),
