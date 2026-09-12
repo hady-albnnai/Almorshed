@@ -129,10 +129,66 @@ void main() {
   });
 
   group('تجميد اليوم (نمط مهام اليوم)', () {
-    test('أول نداء يجمد والثاني يترك كما هو ويوم جديد يعيد البناء [موقف مؤقتاً]', () {
-      // BISECT-8: استدعاءا startCardDay خارجاً — تشخيص انهيار المحلل المشتبه
-      expect(true, isTrue);
+    test('أول نداء يجمد والثاني يترك كما هو ويوم جديد يعيد البناء', () {
+      final cards = [for (var i = 1; i <= 8; i++) _card(i)];
+      final frozen =
+          startCardDay(const TrainingData(), cards: cards, todayKey: _today);
+      expect(frozen.cardDay!.queue, [1, 2, 3, 4, 5, 6]);
+      expect(
+        startCardDay(frozen, cards: cards, todayKey: _today),
+        same(frozen),
+      );
+      // غداً: الست المجمدة استحقاقها بعد ٣ أيام — الطابور يجلب الجديد التالي
+      final tomorrow =
+          startCardDay(frozen, cards: cards, todayKey: '2026-09-13');
+      expect(tomorrow.cardDay!.queue, [7, 8]);
     });
 
+    test('بلا بطاقات ⇒ لا تجميد (نفس البيانات)', () {
+      final out = startCardDay(const TrainingData(),
+          cards: const [], todayKey: _today);
+      expect(out.cardDay, isNull);
+    });
+  });
+
+  group('التخزين والتوافق الخلفي', () {
+    test('CardStateData وCardDayState — roundtrip', () {
+      const s = CardStateData(
+          cardId: 9,
+          difficulty: 6.5,
+          stability: 12.25,
+          reviews: 3,
+          lapses: 1,
+          dueDateKey: '2026-12-01');
+      final s2 = CardStateData.fromJson(s.toJson());
+      expect(s2.cardId, 9);
+      expect(s2.stability, 12.25);
+      expect(s2.dueDateKey, '2026-12-01');
+      const day = CardDayState(
+          dateKey: _today, queue: [1, 2, 3], doneCount: 2, finished: true);
+      final day2 = CardDayState.fromJson(day.toJson());
+      expect(day2.queue, [1, 2, 3]);
+      expect(day2.doneCount, 2);
+      expect(day2.finished, isTrue);
+    });
+
+    test('بيانات قديمة بلا حقول البطاقات ⇒ افتراضات فارغة (توافق خلفي)', () {
+      const legacy = TrainingData(
+        daily: DailyBatchState(dateKey: _today, order: [101]),
+      );
+      final back = TrainingData.fromJson(legacy.toJson());
+      expect(back.cardStates, isEmpty);
+      expect(back.cardDay, isNull);
+      expect(back.daily!.order, [101]);
+    });
+
+    test('todayCardQueue: المجمد إن كان لليوم وإلا استباقي', () {
+      final cards = [for (var i = 1; i <= 4; i++) _card(i)];
+      const frozen = TrainingData(
+          cardDay: CardDayState(dateKey: _today, queue: [30, 31], doneCount: 1));
+      expect(todayCardQueue(frozen, cards, _today), [30, 31]);
+      expect(
+          todayCardQueue(const TrainingData(), cards, _today), [1, 2, 3, 4]);
+    });
   });
 }

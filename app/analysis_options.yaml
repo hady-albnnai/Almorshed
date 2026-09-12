@@ -15,7 +15,4 @@ analyzer:
     prefer_const_constructors: ignore
     prefer_const_literals_to_create_immutables: ignore
     prefer_final_locals: ignore
-  # BISECT تشخيصي مؤقت: عزل ملفات F3.4 لتحديد ملف الاحمرار بالدفعات
-  exclude:
-    - lib/features/training/cards_screen.dart
-    - lib/features/training/card_review_screen.dart
+
