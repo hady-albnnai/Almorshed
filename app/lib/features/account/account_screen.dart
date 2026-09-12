@@ -109,8 +109,6 @@ class _AccountScreenState extends State<AccountScreen> {
                   const SizedBox(height: 10),
                   if (licensed && payload != null) ...[
                     _row(txt, 'كود التفعيل', maskCodeId(payload.codeId)),
-                    _row(txt, 'فحص التوقيع (محلي)',
-                        _signLine.isEmpty ? '—' : _signLine),
                     if (data.activatedAtMs != null)
                       _row(txt, 'التفعيل تم', _fmtDate(data.activatedAtMs!)),
                     const SizedBox(height: 8),
@@ -130,6 +128,18 @@ class _AccountScreenState extends State<AccountScreen> {
                     onPressed: _recheck,
                     child: const Text('⟲ إعادة فحص التوقيع الآن'),
                   ),
+                  // ⚠️ ردّة الفحص تُعرض هنا حصراً — كانت داخل فرع «مفعّل»
+                  // فزر التجربة يردّ في الفراغ (بق عرض أصلحه لصقة المالك ٩)
+                  if (_signLine.isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Text(
+                        _signLine,
+                        style: txt.bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                 ],
               ),
             ),
