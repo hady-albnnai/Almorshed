@@ -111,6 +111,20 @@ class _LessonScreenState extends State<LessonScreen> {
     await widget.progressStore.save(ReadProgress(chapters: chapters));
   }
 
+  /// F3.1 جزء ثانٍ: حفظ موضع القارئ عند كل تقدّم/تراجع — بلا المساس
+  /// بحالة الإتمام (بقّ موثق: كانت مفقودة كلياً وكشفها فشل اختبار
+  /// «متابعة القراءة» — كان cursor يُكتب عند الإتمام حصراً).
+  Future<void> _saveCursor() async {
+    final p = await widget.progressStore.load();
+    final chapters = {...p.chapters};
+    final prev = chapters[widget.chapter.id];
+    chapters[widget.chapter.id] = ChapterProgress(
+      cursor: _idx,
+      completed: prev?.completed ?? false,
+    );
+    await widget.progressStore.save(ReadProgress(chapters: chapters));
+  }
+
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
@@ -201,6 +215,7 @@ class _LessonScreenState extends State<LessonScreen> {
                               onPressed: () {
                                 _stopSpeaking();
                                 setState(() => _idx--);
+                                _saveCursor(); // موضع القارئ عند التراجع
                               },
                               child: const Text('→ السابق'),
                             ),
@@ -218,6 +233,7 @@ class _LessonScreenState extends State<LessonScreen> {
                                   _finished = true;
                                 } else {
                                   _idx++;
+                                  _saveCursor(); // موضع القارئ عند كل تقدّم
                                 }
                               });
                             },

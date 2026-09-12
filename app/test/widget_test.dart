@@ -192,7 +192,7 @@ void main() {
 
     // المخزن حفظ الإتمام فعلاً
     final p = await store.load();
-    expect(p.completedIds, contains('U1'));
+    expect(p.completedIds, contains('U1C1'));
 
     // العودة للمنهاج — الوحدة الأولى ١٠٠٪
     await tester.tap(find.text('رجوع للوحدة'));
@@ -294,7 +294,8 @@ void main() {
 
   testWidgets('F3.3: دورة دفعة كاملة — تصحيح فوري ونتيجة وأرشيف', (tester) async {
     final pack = _trainingPack();
-    await pumpTrainingApp(tester, pack: pack);
+    final store = InMemoryTrainingStore();
+    await pumpTrainingApp(tester, pack: pack, store: store);
     final todayKey = dateKeyOf(DateTime.now());
     final batch = buildDailyBatch(pack, dateKey: todayKey)!;
     Question qOf(int i) =>
@@ -312,16 +313,22 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('سؤال ١ من ٢'), findsOneWidget);
 
-    // السؤال الأول: إجابة صحيحة → خطوات الحل تظهر
-    await tester.tap(find.text(correctText(0)));
+    // السؤال الأول: إجابة صحيحة → خطوات الحل تظهر (النقر عبر بلاطة الخيار)
+    await tester.tap(find.ancestor(
+        of: find.text(correctText(0)), matching: find.byType(ListTile)));
     await tester.pumpAndSettle();
+    // إثبات الطبقة المحفوظة: الإجابة وصلت المخزن فعلاً (تشخيص طبقتين)
+    final data = await store.load();
+    expect(data.daily!.answers[qOf(0).id], isNotNull);
+    await tester.pump(); // إطار إضافي بعد الحفظ
     expect(find.text('📌 خطوات الحل'), findsOneWidget);
     await tester.tap(find.text('التالي ←'));
     await tester.pumpAndSettle();
 
     // السؤال الثاني: إجابة خاطئة ثم النتيجة
     expect(find.text('سؤال ٢ من ٢'), findsOneWidget);
-    await tester.tap(find.text(wrongText(1)));
+    await tester.tap(find.ancestor(
+        of: find.text(wrongText(1)), matching: find.byType(ListTile)));
     await tester.pumpAndSettle();
     await tester.tap(find.text('النتيجة'));
     await tester.pumpAndSettle();
