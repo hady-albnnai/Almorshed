@@ -234,3 +234,36 @@ $$;
 -- select cron.schedule('league_rollup', '5 21 * * 0',
 --   $$select public.league_rollup_week();$$);
 -- (إلغاؤه اليدوي: select cron.unschedule('league_rollup');)
+
+-- ═══ 6) التحصين الحرج: دوال Definer لـ service_role حصراً ═══
+-- بدون هذا: أي عميل anon/authenticated يستطيع استدعاء الدوال مباشرة
+-- عبر PostgREST RPC (EXECUTE للـPUBLIC افتراضياً!) فيتجاوز التحقق
+-- التشفيري كلياً (verify_commit بلا فحص توقيع) أو يستهلك أكواداً
+-- أو يشيّخ أحداثاً مصطنعة (league_rollup خارج أسبوعها). يُمنع.
+revoke execute on function
+  public.record_activation(text,uuid,text,text,text,text,timestamptz,timestamptz,bigint)
+  from public, anon, authenticated;
+grant execute on function
+  public.record_activation(text,uuid,text,text,text,text,timestamptz,timestamptz,bigint)
+  to service_role;
+
+revoke execute on function
+  public.device_state_for_verify(text)
+  from public, anon, authenticated;
+grant execute on function
+  public.device_state_for_verify(text)
+  to service_role;
+
+revoke execute on function
+  public.verify_commit(uuid,jsonb,int,text,bigint)
+  from public, anon, authenticated;
+grant execute on function
+  public.verify_commit(uuid,jsonb,int,text,bigint)
+  to service_role;
+
+revoke execute on function
+  public.league_rollup_week()
+  from public, anon, authenticated;
+grant execute on function
+  public.league_rollup_week()
+  to service_role;

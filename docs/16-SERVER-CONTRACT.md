@@ -24,6 +24,8 @@
 مباشرة — كل الكتابة عبر هذه الدوال بصلاحية `service_role` التي لا تخرج من
 بيئة الدوال أبداً (docs/11 §١٢.١).
 
+**التحصين الحرج (§٠-ب)**: دوال القاعدة الأربع `SECURITY DEFINER` منفّذة افتراضياً من `PUBLIC` — **سُحب EXECUTE من public/anon/authenticated ومُنح لـservice_role حصراً** (ذيل 0002 §6). البديل كان: أي زائر يستدعي verify_commit مباشرة من PostgREST ويودّع أحداثاً بلا أي تحقق تشفيري — الثغرة أُغلقت قبل التطبيق. تحققها: استعلام §٥.٦.
+
 ---
 
 ## ١. الأسرار ومتغيرات البيئة
@@ -228,6 +230,19 @@ insert دفعة الأحداث ⇒ مرساة زمن upsert. الرفض لا ي�
 - **يدوي**: SQL Editor: `select public.league_rollup_week();`
 - الرد: `{ "week": 202637, "devices": 41 }`.
 
+### ٥.٦ التحقق من التحصين (بعد تطبيق 0002)
+```sql
+select p.proname as "الدالة", r.rolname as "الدور",
+       has_function_privilege(r.rolname, p.oid, 'EXECUTE') as "ينفذ"
+from pg_proc p
+join pg_namespace n on n.oid = p.pronamespace
+cross join pg_roles r
+where n.nspname = 'public'
+  and r.rolname in ('anon','authenticated','service_role')
+order by p.proname, r.rolname;
+```
+المطلوب 12 صفاً: service_role = t للأربعة · anon وauthenticated = f للأربعة.
+
 ### ٥.٥ القراءة من العميل
 شاشة الدوري (بنفسجي docs/13 — تُبنى لاحقاً) تقرأ
 `league_standings` بسياسة `standings_select_auth` (أرقام وترتيب حصراً —
@@ -333,3 +348,4 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 |---|---|---|
 | 2026-09-12 | الإنشاء الأول: 0002 + الدوال الثلاث + هذا العقد | لا شيء — العميل لم يتصل بعد |
 | 2026-09-12 | قاعدة `device_key_hash` فارغة حتى Keystore (ثابت EMIT_DEVICE_HASH) | فحص العميل الحالي يرفض غير الفارغ — توثيق متبادل |
+| 2026-09-12 | **تحصين**: revoke EXECUTE من public/anon/authenticated + grant لـservice_role على الدوال الأربع (ثغرة استدعاء مباشر من PostgREST) | لا شيء — الدوال ليست للعميل أصلاً |
