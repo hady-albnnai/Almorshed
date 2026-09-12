@@ -37,7 +37,7 @@ void main() {
       const x0 = 0.5;
       const m = 1.0;
       const k = 9.0; // ω = 3
-      final omega = math.sqrt(k / m);
+      const omega = math.sqrt(k / m);
       var s = SpringState.released(x0);
       final steps = (10.0 / simDt).round();
       for (var i = 0; i < steps; i++) {
@@ -77,7 +77,7 @@ void main() {
       final meter = PeriodMeter();
       const period = 1.5;
       const x0 = 0.4;
-      final omega = 2 * math.pi / period;
+      const omega = 2 * math.pi / period;
       final steps = (5.0 / simDt).round();
       for (var i = 0; i <= steps; i++) {
         final t = i * simDt;
