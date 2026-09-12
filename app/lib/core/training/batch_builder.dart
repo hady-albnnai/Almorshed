@@ -37,8 +37,9 @@ int dailySeed({required int deviceId, required String dateKey}) =>
 /// بناء دفعة اليوم من البنك المعتمد حصراً.
 /// يرجع null إذا لا أسئلة معتمدة (شاشة الانتظار — قرار ٢٤).
 /// الحتمية: نفس (dateKey, deviceId, بنك) ⇒ نفس الترتيب كلياً.
-DailyBatch? buildDailyBatch({
-  required ContentPack pack,
+/// (الحزمة معامل موضعي أول — بقية المعاملات مسماة.)
+DailyBatch? buildDailyBatch(
+  ContentPack pack, {
   required String dateKey,
   int deviceId = 0,
   int count = 10,

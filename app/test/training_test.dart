@@ -23,11 +23,11 @@ ContentPack _packWith(List<Question> qs) => ContentPack(
       packId: 't',
       year: 2027,
       edition: 1,
-      units: [
+      units: const [
         Unit(id: 'U1', title: 'وحدة', chapters: [
-          Chapter(id: 'A', title: 'فصل أ', page: 1, paragraphs: const []),
-          Chapter(id: 'B', title: 'فصل ب', page: 2, paragraphs: const []),
-          Chapter(id: 'C', title: 'فصل ج', page: 3, paragraphs: const []),
+          Chapter(id: 'A', title: 'فصل أ', page: 1, paragraphs: []),
+          Chapter(id: 'B', title: 'فصل ب', page: 2, paragraphs: []),
+          Chapter(id: 'C', title: 'فصل ج', page: 3, paragraphs: []),
         ]),
       ],
       questions: qs,

@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:fizya_clash/core/content/content_loader.dart';
@@ -16,7 +15,8 @@ void main() {
   setUpAll(() {
     // rootBundle بالاختبارات يقرأ الأصول المعلنة فقط — نخدم الملفات من القرص
     // مباشرة (نفس محتوى القرص، بلا تلويث pubspec بملفات الاختبار).
-    ServicesBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMessageHandler(
       'flutter/assets',
       (message) async {
         final key = utf8.decode(message!.buffer.asUint8List());
@@ -221,7 +221,8 @@ void main() {
   });
 
   test('فحص السلامة يرفض حزمة فاسدة (سؤال بفصل غير معروف)', () async {
-    ServicesBinding.instance.defaultBinaryMessenger.setMockMessageHandler(
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMessageHandler(
       'flutter/assets',
       (data) async {
         const fake = '''

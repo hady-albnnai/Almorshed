@@ -34,15 +34,17 @@ class ReadProgress {
         },
       };
 
-  factory ReadProgress.fromJson(Map<String, dynamic> json) => ReadProgress(
-        chapters: {
-          // ⚠️ النوع صريح إلزامي: const {} بلا نوع يستنتَج Set في الدارت
-          // فيصير اتحاد الأنواع Object ويكسر الترجمة (علّة موثقة F3.1)
-          for (final e in ((json['chapters'] as Map<String, dynamic>?) ??
-              const <String, dynamic>{}))
-            e.key: ChapterProgress.fromJson(e.value as Map<String, dynamic>),
-        },
-      );
+  factory ReadProgress.fromJson(Map<String, dynamic> json) {
+    final raw =
+        json['chapters'] as Map<String, dynamic>? ?? const <String, dynamic>{};
+    return ReadProgress(chapters: {
+      // ⚠️ درسان موثقان: (١) النوع الصريح إلزامي — const {} بلا نوع يستنتَج
+      // Set فيكسر الترجمة. (٢) for-in لا يمرّ على Map مباشرة — .entries
+      // إلزامي (علّتان F3.1 — انكشفتا بتحليل المالك الحقيقي).
+      for (final e in raw.entries)
+        e.key: ChapterProgress.fromJson(e.value as Map<String, dynamic>),
+    });
+  }
 }
 
 /// نسبة إنجاز الوحدة ٠–١٠٠ — دالة خالصة قابلة للاختبار (F3.1).
