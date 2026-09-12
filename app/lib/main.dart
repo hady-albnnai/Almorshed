@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/license/license_store.dart';
+import 'core/xp/streak_service.dart';
 import 'core/content/content_loader.dart';
 import 'core/content/models.dart';
 import 'core/progress/progress_store.dart';
@@ -10,6 +11,7 @@ import 'core/training/shared_prefs_training_store.dart';
 import 'core/training/training_store.dart';
 import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
+import 'features/home/home_screen.dart';
 
 void main() => runApp(const FizyaClashApp());
 
@@ -22,6 +24,8 @@ class FizyaClashApp extends StatefulWidget {
     this.progressStore,
     this.trainingStore,
     this.licenseStore,
+    this.xpRecorder,
+    this.startOnHome = false, // الإنتاج: الرئيسية أولاً — الاختبارات: المنهاج مباشرة
   });
 
   /// حقن للاختبارات؛ الافتراضي يحمّل حزمة assets الحقيقية.
@@ -36,6 +40,12 @@ class FizyaClashApp extends StatefulWidget {
   /// حقن مخزن الترخيص (F3.6)؛ الافتراضي shared_preferences.
   final LicenseStore? licenseStore;
 
+  /// حقن مُسجّل XP (F3.8)؛ الافتراضي مشترك (Prefs + خزنة آمنة).
+  final XpRecorder? xpRecorder;
+
+  /// F3.8: الرئيسية شاشة الانطلاق بعد البوابة.
+  final bool startOnHome;
+
   @override
   State<FizyaClashApp> createState() => _FizyaClashAppState();
 }
@@ -48,6 +58,10 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
 
   LicenseStore get _license =>
       widget.licenseStore ?? SharedPrefsLicenseStore();
+
+  XpRecorder? _sharedRecorder;
+  XpRecorder get _xpRecorder =>
+      widget.xpRecorder ?? (_sharedRecorder ??= XpRecorder.shared());
 
   late Future<LicenseData> _licenseFuture = _license.load();
 
@@ -97,6 +111,19 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
                   onModeSet: _reloadLicense,
                 );
               }
+              // F3.8: الرئيسية شاشة الانطلاق — والمنهاج منها
+              if (widget.startOnHome) {
+                return HomeScreen(
+                  pack: snap.data!,
+                  progressStore:
+                      widget.progressStore ?? SharedPrefsProgressStore(),
+                  trainingStore:
+                      widget.trainingStore ?? SharedPrefsTrainingStore(),
+                  licenseStore: _license,
+                  xpRecorder: _xpRecorder,
+                  onToggleTheme: _toggleTheme,
+                );
+              }
               return CurriculumScreen(
                 pack: snap.data!,
                 onToggleTheme: _toggleTheme,
@@ -105,6 +132,7 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
                 trainingStore:
                     widget.trainingStore ?? SharedPrefsTrainingStore(),
                 licenseStore: _license,
+                xpRecorder: _xpRecorder,
               );
             },
           );

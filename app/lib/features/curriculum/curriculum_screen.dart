@@ -7,12 +7,16 @@ import '../../core/training/training_store.dart';
 import '../../core/util/arabic_number.dart';
 import '../account/account_screen.dart';
 import '../lab/lab_screen.dart';
+import '../../core/xp/streak_service.dart';
 import '../training/training_screen.dart';
 import 'unit_screen.dart';
 
 /// شاشة المنهاج — الوحدات الخمس (F3.2 · مطابقة النموذج المرجعي).
 /// F3.1: النسبة الحقيقية من مخزن التقدم، وتُحدَّث عند العودة من الدروس.
 class CurriculumScreen extends StatefulWidget {
+  /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
+  final XpRecorder? xpRecorder;
+
   const CurriculumScreen({
     super.key,
     required this.pack,
@@ -20,6 +24,7 @@ class CurriculumScreen extends StatefulWidget {
     required this.progressStore,
     required this.trainingStore,
       required this.licenseStore,
+      this.xpRecorder, // F3.8
   });
 
   final ContentPack pack;
@@ -89,6 +94,8 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
                 builder: (_) => TrainingScreen(
                   pack: widget.pack,
                   trainingStore: widget.trainingStore,
+              xpRecorder: widget.xpRecorder,
+              xpRecorder: widget.xpRecorder,
                 ),
               ));
               _reload(); // نمط F3.1: تحديث عند العودة
@@ -158,6 +165,7 @@ class _UnitCard extends StatelessWidget {
                       builder: (_) => UnitScreen(
                             unit: unit,
                             progressStore: progressStore,
+              xpRecorder: widget.xpRecorder,
                           )),
                 )
                 .then((_) => onReturned())

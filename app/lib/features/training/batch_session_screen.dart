@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/content/models.dart';
 import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
+import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
 
 /// F3.3 — جلسة دفعة اليوم: سؤال/خيارات + تصحيح فوري بخطوات الحل + النتيجة.
@@ -15,6 +16,7 @@ class BatchSessionScreen extends StatefulWidget {
     required this.trainingStore,
     required this.data,
     this.deviceId = 0,
+    this.xpRecorder, // F3.8
   });
 
   final ContentPack pack;
@@ -23,6 +25,9 @@ class BatchSessionScreen extends StatefulWidget {
   /// بيانات التدريب الكاملة (daily + أرشيف) — البوابة تمررها بعد التحميل.
   final TrainingData data;
   final int deviceId;
+
+  /// F3.8 — اختياري: إتمام دفعة اليوم +١٥.
+  final XpRecorder? xpRecorder;
 
   @override
   State<BatchSessionScreen> createState() => _BatchSessionScreenState();
@@ -104,6 +109,8 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
       mistakes,
     );
     await widget.trainingStore.save(data);
+    // F3.8: إتمام دفعة التدريب +١٥ مرة/يوم (موثقة بدفتر XP)
+    await widget.xpRecorder?.record('batchDone');
     if (!mounted) return;
     setState(() => _result =
         (finished: finished, mistakesCount: mistakes.length));

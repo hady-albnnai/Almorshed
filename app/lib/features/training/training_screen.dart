@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../core/content/models.dart';
 import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
+import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
 import 'cards_screen.dart';
 import 'batch_session_screen.dart';
@@ -11,11 +12,15 @@ import 'mistakes_screen.dart';
 /// F3.3 — بوابة التدريب: دفعة اليوم (بذرة يومية حتمية) + أرشيف أخطائي.
 /// البنك المعتمد حصراً (قرار ٢٤): قبل مصادقة الأستاذ تظهر شاشة الانتظار.
 class TrainingScreen extends StatefulWidget {
+  /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
+  final XpRecorder? xpRecorder;
+
   const TrainingScreen({
     super.key,
     required this.pack,
     required this.trainingStore,
     this.deviceId = 0,
+      this.xpRecorder, // F3.8
   });
 
   final ContentPack pack;
@@ -57,6 +62,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
       builder: (_) => BatchSessionScreen(
         pack: widget.pack,
         trainingStore: widget.trainingStore,
+          xpRecorder: widget.xpRecorder,
         // الحالة الفعلية + الأرشيف الحالي — لا حالة قديمة أبداً
         data: TrainingData(daily: state, mistakes: _data.mistakes),
         deviceId: widget.deviceId,
@@ -185,6 +191,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
                         builder: (_) => CardsScreen(
                           pack: widget.pack,
                           trainingStore: widget.trainingStore,
+          xpRecorder: widget.xpRecorder,
                         ),
                       ));
                       _reload();

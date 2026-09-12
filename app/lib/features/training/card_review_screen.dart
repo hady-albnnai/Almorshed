@@ -6,6 +6,8 @@ import '../../core/theme/app_colors.dart';
 import '../../core/training/batch_builder.dart';
 import '../../core/training/cards_service.dart';
 import '../../core/training/training_store.dart';
+import '../../core/xp/streak_service.dart';
+import '../../core/xp/xp_ledger.dart';
 import '../../core/util/arabic_number.dart';
 
 /// F3.4 — جلسة مراجعة البطاقات: كشف/استرجاع + ٣ أزرار تقييم (قرار ٤٢)
@@ -16,11 +18,15 @@ class CardReviewScreen extends StatefulWidget {
     required this.pack,
     required this.trainingStore,
     required this.data,
+    this.xpRecorder, // F3.8
   });
 
   final ContentPack pack;
   final TrainingStore trainingStore;
   final TrainingData data;
+
+  /// F3.8 — اختياري: تسجيل تقييمات البطاقات وإتمام الطابور.
+  final XpRecorder? xpRecorder;
 
   @override
   State<CardReviewScreen> createState() => _CardReviewScreenState();
@@ -50,6 +56,7 @@ class _CardReviewScreenState extends State<CardReviewScreen> {
     if (_revealed == false) return; // لا تقييم قبل الكشف
     final cardId = _day.queue[_current];
     final todayKey = dateKeyOf(DateTime.now());
+    final wasFinished = _day.finished;
     final updated = applyCardReview(
       _data,
       cardId: cardId,
@@ -57,6 +64,11 @@ class _CardReviewScreenState extends State<CardReviewScreen> {
       todayKey: todayKey,
     );
     await widget.trainingStore.save(updated);
+    // F3.8: بطاقة مراجعة +١ (بلا سقف) — وإتمام الطابور +١٥ مرة/يوم
+    await widget.xpRecorder?.record('cardReview');
+    if (!wasFinished && updated.cardDay!.finished) {
+      await widget.xpRecorder?.record('queueDone');
+    }
     if (!mounted) return;
     setState(() {
       _data = updated;

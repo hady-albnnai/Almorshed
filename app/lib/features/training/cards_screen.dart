@@ -4,16 +4,21 @@ import '../../core/content/models.dart';
 import '../../core/training/batch_builder.dart';
 import '../../core/training/cards_service.dart';
 import '../../core/training/training_store.dart';
+import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
 import 'card_review_screen.dart';
 
 /// F3.4 — بوابة البطاقات: طابور اليوم (سقف ٢٠ + ٦ جديدة) بجدول FSRS.
 /// الطابور يُجمَّد عند أول بدء — عدالة «مهام اليوم» (نمط التدريب).
 class CardsScreen extends StatefulWidget {
+  /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
+  final XpRecorder? xpRecorder;
+
   const CardsScreen({
     super.key,
     required this.pack,
     required this.trainingStore,
+      this.xpRecorder, // F3.8
   });
 
   final ContentPack pack;
@@ -47,6 +52,7 @@ class _CardsScreenState extends State<CardsScreen> {
       builder: (_) => CardReviewScreen(
         pack: widget.pack,
         trainingStore: widget.trainingStore,
+        xpRecorder: widget.xpRecorder,
         data: TrainingData(
           daily: _data.daily,
           mistakes: _data.mistakes,

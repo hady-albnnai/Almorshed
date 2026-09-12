@@ -5,6 +5,7 @@ import '../../core/lab/spring_sim.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
+import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
 
 /// F3.5 — تجربة النابض التوافقي بمنهجية PhET/POE كاملة (قرار ٤٣):
@@ -15,10 +16,14 @@ class SpringLabScreen extends StatefulWidget {
     super.key,
     required this.trainingStore,
     required this.initialData,
+    this.xpRecorder, // F3.8
   });
 
   final TrainingStore trainingStore;
   final TrainingData initialData;
+
+  /// F3.8 — اختياري: تحدي T=٢ث +١٠.
+  final XpRecorder? xpRecorder;
 
   @override
   State<SpringLabScreen> createState() => _SpringLabScreenState();
@@ -113,6 +118,8 @@ class _SpringLabScreenState extends State<SpringLabScreen>
       labChallengeDoneDateKey: today,
     );
     await widget.trainingStore.save(updated);
+    // F3.8: تحدي المختبر موثق بدفتر XP (+١٠ مرة/يوم)
+    await widget.xpRecorder?.record('labChallenge');
     if (!mounted) return;
     setState(() {
       _data = updated;

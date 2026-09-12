@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
 import '../../core/training/training_store.dart';
+import '../../core/xp/streak_service.dart';
 import 'spring_lab_screen.dart';
 
 /// F3.5 — بوابة المختبر: تجربة النابض التوافقي جاهزة (قرار ٤٣)،
 /// وبقية التجارب الخمس تُبنى بنفس القالب (POE + محاكاة حتمية).
 class LabScreen extends StatefulWidget {
-  const LabScreen({super.key, required this.trainingStore});
+  /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
+  final XpRecorder? xpRecorder;
+
+  const LabScreen({super.key, required this.trainingStore    this.xpRecorder, // F3.8
+  });
 
   final TrainingStore trainingStore;
 
@@ -54,6 +59,7 @@ class _LabScreenState extends State<LabScreen> {
                         builder: (_) => SpringLabScreen(
                           trainingStore: widget.trainingStore,
                           initialData: data,
+                          xpRecorder: widget.xpRecorder,
                         ),
                       ));
                       _load(); // تحديث حالة التحدي عند العودة

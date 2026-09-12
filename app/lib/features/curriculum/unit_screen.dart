@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
 import '../../core/progress/progress_store.dart';
+import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
 import 'lesson_screen.dart';
 
 /// شاشة الوحدة — فصولها (F3.2 · قرارات ٢، ٣٧).
 /// F3.1: علامة ✓ للفصول المكتملة، وتحديث عند العودة من الدرس.
 class UnitScreen extends StatefulWidget {
+  /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
+  final XpRecorder? xpRecorder;
+
   const UnitScreen({
     super.key,
     required this.unit,
     required this.progressStore,
+      this.xpRecorder, // F3.8
   });
 
   final Unit unit;
@@ -110,6 +115,7 @@ class _ChapterCard extends StatelessWidget {
                             builder: (_) => LessonScreen(
                                   chapter: chapter,
                                   progressStore: progressStore,
+                                  xpRecorder: widget.xpRecorder,
                                 )),
                       )
                       .then((_) => onReturned()),

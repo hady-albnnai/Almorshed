@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
 import '../../core/progress/progress_store.dart';
+import '../../core/xp/streak_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/tts/flutter_tts_speaker.dart';
 import '../../core/tts/speaker.dart';
@@ -15,6 +16,7 @@ class LessonScreen extends StatefulWidget {
     required this.chapter,
     required this.progressStore,
     this.speaker,
+    this.xpRecorder, // F3.8: تسجيل درس جديد بدفتر XP
   });
 
   final Chapter chapter;
@@ -22,6 +24,9 @@ class LessonScreen extends StatefulWidget {
 
   /// حقن اختياري للنطق (اختبارات)؛ الافتراضي FlutterTtsSpeaker حقيقي.
   final Speaker? speaker;
+
+  /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
+  final XpRecorder? xpRecorder;
 
   @override
   State<LessonScreen> createState() => _LessonScreenState();
@@ -109,6 +114,8 @@ class _LessonScreenState extends State<LessonScreen> {
     chapters[widget.chapter.id] =
         ChapterProgress(cursor: _idx, completed: true);
     await widget.progressStore.save(ReadProgress(chapters: chapters));
+    // F3.8: «درس جديد» +١٠ — السقف اليومي بالخدمة يمنع التكرار
+    await widget.xpRecorder?.record('lessonNew');
   }
 
   /// F3.1 جزء ثانٍ: حفظ موضع القارئ عند كل تقدّم/تراجع — بلا المساس

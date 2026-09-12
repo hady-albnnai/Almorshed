@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:fizya_clash/core/content/models.dart';
 import 'package:fizya_clash/core/license/license_store.dart';
+import 'package:fizya_clash/core/xp/streak_service.dart';
 import 'package:fizya_clash/core/progress/progress_store.dart';
 import 'package:fizya_clash/core/training/batch_builder.dart';
 import 'package:fizya_clash/core/training/training_store.dart';
@@ -112,7 +113,9 @@ ContentPack _trainingPack() => ContentPack.fromJsonString(jsonEncode({
 Future<void> pumpTrainingApp(WidgetTester tester,
     {required ContentPack pack,
     InMemoryTrainingStore? store,
-    InMemoryLicenseStore? licenseStore}) async {
+    InMemoryLicenseStore? licenseStore,
+    XpRecorder? xpRecorder,
+    bool startOnHome = false}) async {
   tester.view.physicalSize = const Size(1080, 2400);
   tester.view.devicePixelRatio = 1.0;
   addTearDown(tester.view.reset);
@@ -122,6 +125,8 @@ Future<void> pumpTrainingApp(WidgetTester tester,
     trainingStore: store ?? InMemoryTrainingStore(),
     // وضع التجربة افتراضياً — اختبارات المنهاج لا تعبر البوابة
     licenseStore: licenseStore ?? InMemoryLicenseStore.trial(),
+    xpRecorder: xpRecorder,
+    startOnHome: startOnHome,
   ));
   await tester.pumpAndSettle();
 }
@@ -607,6 +612,56 @@ void main() {
     await tester.tap(find.text('⟲ إعادة فحص التوقيع الآن'));
     await tester.pumpAndSettle();
     expect(find.text('لا توقيع محفوظ — أنت بوضع التجربة'), findsOneWidget);
+  });
+
+  testWidgets('F3.8: الرئيسية — ترحيب وسلسلة وصفرية وفكرة اليوم',
+      (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack,
+        xpRecorder: XpRecorder.inMemory(), startOnHome: true);
+    // عناصر النموذج s-home كلها
+    expect(find.textContaining('أهلاً بك'), findsOneWidget);
+    expect(find.textContaining('أول نشاط اليوم يشعل السلسلة'), findsOneWidget);
+    expect(find.text('واصل الدرس'), findsOneWidget);
+    expect(find.text('تدريب سريع'), findsOneWidget);
+    expect(find.text('بطاقات اليوم'), findsOneWidget);
+    expect(find.textContaining('قريباً — دوري فيزيا كلاش'), findsOneWidget);
+    expect(find.text('💡 فكرة اليوم'), findsOneWidget);
+    // فكرة اليوم حتماً من مفتاح اليوم الدراسي
+    expect(find.text(factForDay(studyDateKeyOf(DateTime.now()))),
+        findsOneWidget);
+    // بطاقتا الحزمة التجريبية مستحقتان
+    expect(find.textContaining('مستحقة'), findsOneWidget);
+  });
+
+  testWidgets('F3.8: دورة البطاقات تسجّل النقاط — تقييمان وطابور وسلسلة',
+      (tester) async {
+    final pack = _trainingPack();
+    final store = InMemoryTrainingStore();
+    final rec = XpRecorder.inMemory();
+    await pumpTrainingApp(tester, pack: pack, store: store, xpRecorder: rec);
+    await tester.tap(find.byIcon(Icons.quiz_outlined));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('مراجعة البطاقات'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('ابدأ مراجعة البطاقات'));
+    await tester.pumpAndSettle();
+    // بطاقتان: كشف ثم تقييم لكل منهما
+    for (var c = 0; c < 2; c++) {
+      await tester.tap(find.text('اضغط لكشف الجواب'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('😎 أعرفها'));
+      await tester.pumpAndSettle();
+    }
+    expect(find.textContaining('أنهيت بطاقات اليوم'), findsOneWidget);
+    final events = await rec.ledger.events();
+    expect(events.where((e) => e.type == 'cardReview').length, 2);
+    expect(events.any((e) => e.type == 'queueDone'), isTrue);
+    // أول نشاط باليوم أشعل السلسلة تلقائياً (الجسر F3.7→F3.8)
+    expect(events.any((e) => e.type == 'streakDay'), isTrue);
+    // ١+١+١٥+١٠ = ٢٧ موثقة بسلسلة سليمة
+    expect(await rec.ledger.totalXp(), 27);
+    expect((await rec.ledger.verifyAll()).ok, isTrue);
   });
 
   testWidgets('F3.5: POE كامل — توقع ثم محاكاة ثم قياس وشرح', (tester) async {
