@@ -21,10 +21,12 @@ String dateKeyOf(DateTime now) =>
     '${now.day.toString().padLeft(2, '0')}';
 
 /// تحليل مفتاح اليوم إلى رقم اليوم المحلي (أيام منذ الإيبخ).
+/// ⚠️ DateTime.utc إلزامي — DateTime العادي محلي فتنزيح الأيام بالمناطق
+/// UTC+3 وتُكسر حتمية البذرة بين الأجهزة (docs/12: أيام الإيبخ = UTC).
 int dayNumberOf(String dateKey) {
   final parts = dateKey.split('-');
-  final d = DateTime(int.parse(parts[0]), int.parse(parts[1]),
-      int.parse(parts[2]));
+  final d =
+      DateTime.utc(int.parse(parts[0]), int.parse(parts[1]), int.parse(parts[2]));
   return d.millisecondsSinceEpoch ~/ 86400000;
 }
 
