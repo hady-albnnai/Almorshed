@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/content/models.dart';
 import 'package:fizya_clash/core/fsrs/fsrs5.dart';
-import 'package:fizya_clash/core/training/batch_builder.dart';
 import 'package:fizya_clash/core/training/cards_service.dart';
 import 'package:fizya_clash/core/training/training_store.dart';
 
