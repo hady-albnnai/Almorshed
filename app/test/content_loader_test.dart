@@ -74,7 +74,7 @@ void main() {
     expect(c1.paragraphs[4].text, contains('T0 = 2π·√(m/k)'));
 
     // بوابة الأستاذ: لا سؤال مؤلَّف يُفتح قبل مصادقته (قرار ٢٤)
-    expect(pack.questions, hasLength(64));
+    expect(pack.questions, hasLength(71));
     expect(pack.approvedQuestions, isEmpty);
 
     // الفصل الثاني: التوابع الزمنية الثلاثة
@@ -202,6 +202,19 @@ void main() {
     expect(c44.paragraphs[3].text, contains('شبه ناقلة'));
     expect(pack.questions.where((q) => q.chapter == 'U4C3'), hasLength(2));
     expect(pack.questions.where((q) => q.chapter == 'U4C4'), hasLength(3));
+
+    // الوحدة الخامسة (الأخيرة): المغناطيسية والنسبية — اكتمال المنهاج
+    expect(pack.units[4].title, 'الوحدة الخامسة: المغناطيسية والنسبية الخاصة');
+    final c51 = pack.units[4].chapters[0];
+    expect(c51.id, 'U5C1');
+    expect(c51.paragraphs[2].text, contains('Φ = N·S·B·cos(α)'));
+    final c52 = pack.units[4].chapters[1];
+    expect(c52.paragraphs[1].text, contains('F = q·v·B·sin(θ)'));
+    final c53 = pack.units[4].chapters[2];
+    expect(c53.id, 'U5C3');
+    expect(c53.paragraphs[1].text, contains('t/t0 = 1/√(1−v²/c²)'));
+    expect(c53.paragraphs[3].text, contains('E0 = m0·c²'));
+    expect(pack.questions.where((q) => q.unit == 'U5'), hasLength(7));
 
     // نظافة لفظية على القاموس الحقيقي 444/30
     expect(await realLoader.lintLoadedPack(), isEmpty);
