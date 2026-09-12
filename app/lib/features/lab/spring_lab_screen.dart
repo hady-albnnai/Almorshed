@@ -219,6 +219,8 @@ class _SpringLabScreenState extends State<SpringLabScreen>
             // الرسم الحي — السحب يحدد الشرط الابتدائي
             GestureDetector(
               key: const Key('spring-canvas'),
+              // ⚠️ CustomPaint بلا child غير قابل للمس — opaque إلزامي للسحب
+              behavior: HitTestBehavior.opaque,
               onHorizontalDragUpdate: (d) =>
                   _running ? null : _dragTo(d.localPosition.dx / 260 - 1),
               onTapUp: (d) =>
