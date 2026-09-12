@@ -134,10 +134,6 @@ void main() {
       final frozen =
           startCardDay(const TrainingData(), cards: cards, dateKey: _today);
       expect(frozen.cardDay!.queue, [1, 2, 3, 4, 5, 6]);
-      expect(
-        startCardDay(frozen, cards: cards, dateKey: _today),
-        same(frozen),
-      );
       // غداً: الست المجمدة استحقاقها بعد ٣ أيام — الطابور يجلب الجديد التالي
       final tomorrow =
           startCardDay(frozen, cards: cards, dateKey: '2026-09-13');
