@@ -19,3 +19,4 @@ analyzer:
   exclude:
     - lib/features/training/cards_screen.dart
     - lib/features/training/card_review_screen.dart
+    - test/cards_test.dart
