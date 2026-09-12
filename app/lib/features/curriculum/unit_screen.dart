@@ -54,6 +54,7 @@ class _UnitScreenState extends State<UnitScreen> {
                     index: i,
                     chapter: widget.unit.chapters[i],
                     completed: done.contains(widget.unit.chapters[i].id),
+                    progress: _progress.chapters[widget.unit.chapters[i].id],
                     progressStore: widget.progressStore,
                     onReturned: _reload,
                   ),
@@ -68,6 +69,7 @@ class _ChapterCard extends StatelessWidget {
     required this.index,
     required this.chapter,
     required this.completed,
+    required this.progress,
     required this.progressStore,
     required this.onReturned,
   });
@@ -75,6 +77,7 @@ class _ChapterCard extends StatelessWidget {
   final int index;
   final Chapter chapter;
   final bool completed;
+  final ChapterProgress? progress;
   final ProgressStore progressStore;
   final VoidCallback onReturned;
 
@@ -110,7 +113,10 @@ class _ChapterCard extends StatelessWidget {
                                 )),
                       )
                       .then((_) => onReturned()),
-              child: const Text('ابدأ القراءة'),
+              // F3.1: متابعة إن لم يكتمل وله موضع محفوظ — وإلا «ابدأ القراءة»
+              child: Text(!completed && (progress?.cursor ?? 0) > 0
+                  ? 'متابعة القراءة'
+                  : 'ابدأ القراءة'),
             ),
           ],
         ),

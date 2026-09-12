@@ -38,6 +38,17 @@ class _LessonScreenState extends State<LessonScreen> {
   void initState() {
     super.initState();
     _initSpeaker();
+    _restoreCursor(); // F3.1 جزء ثانٍ: استئناف من موضع القارئ المحفوظ
+  }
+
+  /// إن للفصل موضع محفوظ وغير مكتمل — نبدأ منه لا من الصفر.
+  Future<void> _restoreCursor() async {
+    final p = await widget.progressStore.load();
+    final cp = p.chapters[widget.chapter.id];
+    if (cp == null || cp.completed) return;
+    if (!mounted) return;
+    final target = cp.cursor.clamp(0, _chapter.paragraphs.length - 1);
+    if (target > 0) setState(() => _idx = target);
   }
 
   Future<void> _initSpeaker() async {

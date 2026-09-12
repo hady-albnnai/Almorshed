@@ -144,6 +144,39 @@ void main() {
     expect(find.text('١٠٠٪'), findsOneWidget);
   });
 
+  testWidgets('F3.1: الاستئناف من موضع القارئ — متابعة القراءة', (tester) async {
+    await pumpApp(tester);
+
+    // فتح الفصل والتقدم للفقرة الثانية ثم الخروج بلا إتمام
+    await tester.tap(find.text('١ · الحركة والتحريك'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('ابدأ القراءة'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('التالي ←'));
+    await tester.pumpAndSettle();
+    expect(find.text('فقرة ٢ من ٢'), findsOneWidget);
+    await tester.pageBack(); // خروج من الدرس بلا إتمام
+    await tester.pumpAndSettle();
+
+    // الوحدة تعرض «متابعة القراءة» بدل «ابدأ القراءة»
+    expect(find.text('متابعة القراءة'), findsOneWidget);
+    expect(find.text('ابدأ القراءة'), findsNothing);
+
+    // الدخول عبر المتابعة — نستأنف من الفقرة الثانية لا من الصفر
+    await tester.tap(find.text('متابعة القراءة'));
+    await tester.pumpAndSettle();
+    expect(find.text('فقرة ٢ من ٢'), findsOneWidget);
+
+    // الإتمام يعيد الزر إلى «ابدأ القراءة» مع علامة ✓
+    await tester.tap(find.text('انتهى الدرس ✓'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('رجوع للوحدة'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('✓ الفصل ١'), findsOneWidget);
+    expect(find.text('متابعة القراءة'), findsNothing);
+    expect(find.text('ابدأ القراءة'), findsOneWidget);
+  });
+
   testWidgets('اسمعني: يظهر مع محرك عربي وينطق الفقرة', (tester) async {
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 1.0;
