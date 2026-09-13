@@ -1,14 +1,8 @@
-// M5 — DuelApi: تجسس HTTP محلي حقيقي (ملف خالص بلا testWidgets) —
-// الترويسات (bearer+apikey بمفتاح النقلية)، الأجسام، وبثّ DuelRow/Verdict.
-// نمط الإنشاء: كل اختبار ينشئ تجسسه الخاص بمعالج تمرر مباشرة للمشيّد —
-// حقل نهائي بلا إسناد لاحق (درس جولة M5: الحقل غير النهائي يوقظ
-// prefer_final_fields، والنهائي مع إسناد لاحق يكسر التصريف).
+// ج٤٠ب — أدنى ملف نظيف: كل استيراد ورمز مستخدم
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fizya_clash/core/supabase/duel_api.dart';
-import 'package:fizya_clash/core/supabase/supabase_transport.dart';
 
 class _Hit {
   _Hit(this.method, this.path, this.query, this.headers, this.body);
@@ -55,13 +49,8 @@ class _Spy {
   Future<void> stop() => server.close(force: true);
 }
 
-const String _anon = 'eyJhbGciOiJIUzI1NiJ9.eyJyZWYiOiJ0ZXN0In0.kk';
-const String _uuidHost = '11111111-1111-1111-1111-111111111111';
-const String _uuidGuest = '22222222-2222-2222-2222-222222222222';
-const String _duelUuid = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
-
 void main() {
-  test('ج٤٠ — أدنى هيكل', () async {
+  test('ج٤٠ب — نظيف تماماً', () async {
     final spy = _Spy((m, p, q, b) => const <String, dynamic>{});
     final base = await spy.start();
     expect(base, isNotEmpty);
