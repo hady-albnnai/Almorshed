@@ -66,7 +66,7 @@ void main() {
       await tester.tap(find.text('فهمت ✓').first);
       await tester.pumpAndSettle();
     }
-    expect(find.textContaining('+١٠'), findsOneWidget); // سناك المكافأة
+    expect(find.textContaining(r'\+١٠'), findsOneWidget); // سناك المكافأة (+ مُهرَّبة — textContaining يفسر النص regex)
     expect(find.textContaining('راجعت ٥ من ٥'), findsOneWidget);
 
     final events = await recorder.ledger.events();
@@ -85,7 +85,7 @@ void main() {
     await tester.pumpAndSettle();
     final events2 = await recorder.ledger.events();
     expect(events2.where((e) => e.type == 'mistakesFive').length, 1);
-  }, skip: true);
+  });
 
   testWidgets('مراجَع اليوم يظهر «رُوجع اليوم ✓» بلا زر', (tester) async {
     final store = _storeWith(2, reviewedTodayIdx: [0]);
