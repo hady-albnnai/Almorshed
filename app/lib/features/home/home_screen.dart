@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../core/supabase/league_api.dart';
+import '../../core/sync/sync_manager.dart';
+import '../league/league_screen.dart';
+
 import '../../core/content/models.dart';
 import '../../core/license/license_store.dart';
 import '../../core/progress/progress_store.dart';
@@ -26,6 +30,8 @@ class HomeScreen extends StatefulWidget {
     required this.licenseStore,
     required this.xpRecorder,
     required this.onToggleTheme,
+    this.syncManager,
+    this.fetchLeague,
   });
 
   final ContentPack pack;
@@ -35,11 +41,18 @@ class HomeScreen extends StatefulWidget {
   final XpRecorder xpRecorder;
   final VoidCallback onToggleTheme;
 
+  /// F4.5 — مُشغّل المزامنة (null بالاختبارات = لا مؤشر ولا جولات).
+  final SyncManager? syncManager;
+
+  /// F4.6 — واجهة الدوري (null = بلا بطاقة الدوري).
+  final Future<LeagueView> Function()? fetchLeague;
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with WidgetsBindingObserver {
   bool _loading = true;
   LicenseData? _license;
   ReadProgress? _progress;
@@ -51,7 +64,25 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _load();
+    // أول جولة مزامنة بعد بناء الإطار (بعدها: كل عودة للمقدمة/للرئيسية)
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.syncManager?.runNow();
+    });
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      widget.syncManager?.runNow();
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   Future<void> _load() async {
@@ -87,7 +118,10 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void _openHome() => _load();
+  void _openHome() {
+    _load();
+    widget.syncManager?.runNow(); // جلسة أنجزت أحداث XP — زامن فوراً
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +197,39 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            const SizedBox(height: 4),
+            // ── مؤشر المزامنة (F4.5) — يظهر فقط مع مُشغّل مرّر ──
+            if (widget.syncManager != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: ValueListenableBuilder<SyncPhase>(
+                  valueListenable: widget.syncManager!.phase,
+                  builder: (_, phase, __) {
+                    final (label, color) = switch (phase) {
+                      SyncPhase.syncing => (
+                          'جارٍ المزامنة…',
+                          Colors.blue.shade300
+                        ),
+                      SyncPhase.synced => ('مُتزامن ✓', Colors.green.shade400),
+                      SyncPhase.rejected => (
+                          'بانتظار إعادة محاولة',
+                          Colors.orange.shade300
+                        ),
+                      SyncPhase.offline => (
+                          'دون اتصال — ستُزامن تلقائياً',
+                          txt2
+                        ),
+                      SyncPhase.idle => ('', txt2),
+                    };
+                    if (label.isEmpty) return const SizedBox.shrink();
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 2),
+                      child: Text(label,
+                          style: txt.bodySmall?.copyWith(color: color)),
+                    );
+                  },
+                ),
+              ),
             const SizedBox(height: 12),
             // ── واصل الدرس ──
             Card(
@@ -267,6 +334,27 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: _openCurriculum,
               child: const Text('المنهاج الكامل — الوحدات الخمس 📚'),
             ),
+            const SizedBox(height: 10),
+            // ── دوري فيزيا كلاش 🏆 (F4.6 — بنفسجي docs/13) ──
+            if (widget.fetchLeague != null)
+              Card(
+                child: ListTile(
+                  leading: const Text('🏆', style: TextStyle(fontSize: 22)),
+                  title: Text('دوري فيزيا كلاش',
+                      style: txt.titleMedium?.copyWith(
+                          color: Theme.of(context).brightness ==
+                                  Brightness.dark
+                              ? AppColors.violetDark
+                              : AppColors.violetLight)),
+                  subtitle: const Text('مجموعتك هذا الأسبوع ←'),
+                  trailing: const Icon(Icons.chevron_left),
+                  onTap: () async {
+                    await Navigator.of(context).push(MaterialPageRoute<void>(
+                      builder: (_) => LeagueScreen(fetch: widget.fetchLeague!),
+                    ));
+                  },
+                ),
+              ),
           ],
         ),
       ),

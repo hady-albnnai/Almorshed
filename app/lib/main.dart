@@ -11,6 +11,13 @@ import 'core/training/shared_prefs_training_store.dart';
 import 'core/training/training_store.dart';
 import 'core/supabase/activation_api.dart';
 import 'core/supabase/anonymous_auth.dart';
+import 'core/supabase/http_xp_sync_api.dart';
+import 'core/supabase/league_api.dart';
+import 'core/supabase/supabase_transport.dart';
+import 'core/sync/sync_engine.dart';
+import 'core/sync/sync_manager.dart';
+import 'core/sync/sync_store.dart';
+import 'core/supabase/anonymous_auth.dart';
 import 'core/supabase/supabase_transport.dart';
 import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
@@ -80,6 +87,26 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
                 transport: t, store: SharedPrefsSessionStore()));
       }();
   String? _pubkeyB64;
+
+  // F4.5/F4.6 — الشبكة المشتركة: نقلية واحدة وجلسة واحدة للكل
+  late final SupabaseTransport _net = SupabaseTransport();
+  late final AnonymousAuth _netAuth = AnonymousAuth(
+      transport: _net, store: SharedPrefsSessionStore());
+
+  /// مُشغّل المزامنة — يُبنى محركه عند أول جولة (المفتاح العام وقتها محمّل).
+  late final SyncManager _sync = SyncManager(engineFactory: () async {
+    final pk = _pubkeyB64;
+    if (pk == null) throw StateError('المفتاح العام غير محمّل بعد');
+    return SyncEngine(
+      api: HttpXpSyncApi(transport: _net, auth: _netAuth),
+      stateStore: SharedPrefsSyncStateStore(),
+      loadEvents: _xpRecorder.ledger.events,
+      devicePubkeyB64: pk,
+    );
+  });
+
+  /// واجهة الدوري (قراءة RLS للمفعّلين حصراً).
+  late final LeagueApi _leagueApi = LeagueApi(transport: _net, auth: _netAuth);
 
   late Future<LicenseData> _licenseFuture = _license.load();
 
@@ -155,6 +182,8 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
                   licenseStore: _license,
                   xpRecorder: _xpRecorder,
                   onToggleTheme: _toggleTheme,
+                  syncManager: _sync,
+                  fetchLeague: () => _leagueApi.fetch(_pubkeyB64 ?? ''),
                 );
               }
               return CurriculumScreen(

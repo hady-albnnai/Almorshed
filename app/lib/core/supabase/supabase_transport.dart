@@ -72,6 +72,9 @@ class SupabaseTransport {
         _timeout = timeout;
 
   final String _base;
+
+  /// للقراءات REST المبنية فوق نفس القاعدة (الدوري F4.6).
+  String get baseUrl => _base;
   final String _anonKey;
   final Duration _timeout;
   final HttpClient _client = HttpClient();
@@ -101,6 +104,22 @@ class SupabaseTransport {
       throw TransportException(response.statusCode, msg, body: json);
     }
     return json;
+  }
+
+  /// قراءة REST (PostgREST — F4.6: قراءات RLS للدوري والأجهزة).
+  /// يعيد List/Map حسب المسار — المتصل يصبّها بنوعه.
+  Future<dynamic> getJson(
+    String url,
+    Map<String, String> headers,
+  ) async {
+    final request = await _client.getUrl(Uri.parse(url)).timeout(_timeout);
+    headers.forEach(request.headers.set);
+    final response = await request.close().timeout(_timeout);
+    final text = await response.transform(utf8.decoder).join();
+    if (response.statusCode >= 400) {
+      throw TransportException(response.statusCode, text);
+    }
+    return jsonDecode(text);
   }
 
   /// الدخول المجهول (GoTrue): بريد فارغ = تسجيل مجهول — العقد §١.
