@@ -425,7 +425,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 4 | مضاد التعداد القسري (مستخدم + IP) | `0004_activation_throttle.sql` | ✅ مُطبَّق (تحقق: جدول+RLS t+0 سياسات+3 فهارس) |
 | 5 | دالة تفعيل الكود | `functions/license_activate/index.ts` | ✅ منشورة (دخان المالك: {} ⇒ AUTH_REQUIRED بالضبط) |
 | 6 | دالة النبض والتجديد | `functions/heartbeat/index.ts` | ✅ منشورة (تأكيد المالك — كلو تمام) |
-| 7 | دالة تحقق XP | `functions/verify_xp_events/index.ts` | ⏳ مع 5 |
+| 7 | دالة تحقق XP | `functions/verify_xp_events/index.ts` | ✅ منشورة (تأكيد المالك — تم) |
 | 8 | سر التوقيع `SIGNING_SEED_B64` | أداة المالك (السطر الخاص حصراً) | ⏳ بيد المالك — لا يمر بمحادثة |
 | 9 | pg_cron: تفعيل الإضافة + فك تعليق الجدولة | ذيل 0002 | ⏳ بعد 5-7 |
 | 10 | اختبار الدخان | curl §٧ | ⏳ بعد 8 |
