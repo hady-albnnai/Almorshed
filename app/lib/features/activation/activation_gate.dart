@@ -157,9 +157,8 @@ class _ActivationGateState extends State<ActivationGate> {
       _data = updated;
       _busy = false;
       _message = msg;
-      _messageColor = msg.contains('نجح') == false && counts
-          ? Colors.red.shade300
-          : Colors.orange.shade200;
+      _messageColor =
+          counts ? Colors.red.shade300 : Colors.orange.shade200;
     });
   }
 
