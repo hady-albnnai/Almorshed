@@ -37,6 +37,10 @@ void main() {
       priv,
     );
     var modeSet = false;
+    // مقاس هاتف فعلي — البوابة ListView طويلة والزر تحت الطية على 800x600
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
     final store = InMemoryLicenseStore();
 
     await tester.pumpWidget(MaterialApp(
@@ -69,6 +73,10 @@ void main() {
   });
 
   testWidgets('F4.4: فشل منطقي يعدّ العداد وشبكي لا يعدّه', (tester) async {
+    // مقاس هاتف فعلي — البوابة ListView طويلة والزر تحت الطية على 800x600
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
     final store = InMemoryLicenseStore();
     await tester.pumpWidget(MaterialApp(
         home: ActivationGate(
