@@ -126,6 +126,8 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    final txt2 = dark ? AppColors.darkTxt2 : AppColors.lightTxt2;
     final gold = Theme.of(context).brightness == Brightness.dark
         ? AppColors.goldDark
         : AppColors.goldLight;
