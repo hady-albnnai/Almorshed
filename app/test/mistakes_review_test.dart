@@ -47,7 +47,7 @@ Future<void> _pump(WidgetTester tester,
 }
 
 void main() {
-  Future<void> _driveFive(WidgetTester tester, TrainingStore store,
+  Future<void> driveFive(WidgetTester tester, TrainingStore store,
       ContentPack pack, XpRecorder recorder) async {
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 1.0;
@@ -64,7 +64,7 @@ void main() {
 
   testWidgets('أ-التقدم والسناك', (tester) async {
     final store = _storeWith(6);
-    await _driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
+    await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
         XpRecorder.inMemory());
     expect(find.textContaining('راجعت ٥ من ٥'), findsOneWidget);
     expect(find.textContaining(r'\+١٠'), findsOneWidget);
@@ -73,7 +73,7 @@ void main() {
   testWidgets('ب-الدفتر: حدث واحد بـ١٠ نقاط', (tester) async {
     final store = _storeWith(6);
     final recorder = XpRecorder.inMemory();
-    await _driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
+    await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
         recorder);
     final events = await recorder.ledger.events();
     final five = events.where((e) => e.type == 'mistakesFive').toList();
@@ -85,7 +85,7 @@ void main() {
     final store = _storeWith(6);
     final recorder = XpRecorder.inMemory();
     final pack = _packOf([500, 501, 502, 503, 504, 505]);
-    await _driveFive(tester, store, pack, recorder);
+    await driveFive(tester, store, pack, recorder);
     final after = (await store.load()).mistakes;
     expect(after.first.questionId, 504);
     expect(after.last.questionId, 505);
