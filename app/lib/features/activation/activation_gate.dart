@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../core/license/license_core.dart';
 import '../../core/license/license_store.dart';
@@ -212,7 +213,17 @@ class _ActivationGateState extends State<ActivationGate> {
             TextField(
               controller: _codeController,
               textAlign: TextAlign.center,
+              // تحصين الإدخال (دفاع أول): حروف Crockford والشرطة حصراً —
+              // أي محرف آخر يُرفض قبل أن يلمس الحالة إطلاقاً. والمنسق
+              // الحي (formatLicenseCode) دفاع ثانٍ والخادم دفاع ثالث.
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9-]')),
+                LengthLimitingTextInputFormatter(17),
+              ],
               maxLength: 17,
+              autocorrect: false,
+              enableSuggestions: false,
+              smartDashesType: SmartDashesType.disabled,
               style: const TextStyle(
                   letterSpacing: 2, fontWeight: FontWeight.w700),
               decoration: const InputDecoration(

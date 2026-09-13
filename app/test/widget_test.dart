@@ -603,6 +603,17 @@ void main() {
     expect(find.text('K7M2P-9QW4X-4TR8N'), findsOneWidget);
   });
 
+  testWidgets('F4.4-تحصين: محارف الحقن تُنقّى فورياً من الحقل', (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack,
+        licenseStore: InMemoryLicenseStore());
+    await tester.enterText(
+        find.byType(TextField), "k7m2'; DROP TABLE xp_events;--9");
+    await tester.pumpAndSettle();
+    // بقي المسموح حصراً [A-Z0-9] وسقف ١٥ بصيغة ٥-٥-٥ — لا أثر لغيره
+    expect(find.text('K7M2D-ROPTA-BLEXP'), findsOneWidget);
+  });
+
   testWidgets('F3.6: كود ناقص يُرفض + ٥ محاولات ثم انتظار تدريجي',
       (tester) async {
     final pack = _trainingPack();

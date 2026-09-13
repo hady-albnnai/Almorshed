@@ -60,6 +60,27 @@ Deno.serve(async (req) => {
     // الملف الشخصي (upsert — أول تفعيل يولده)
     await admin.from('profiles').upsert({ id: uid });
 
+    // ── ٢-أ) مضاد التعداد القسري: 5 فاشلات/١٥ دقيقة لكل مستخدم (0004) ──
+    const { count: recentFails } = await admin
+      .from('activation_attempts')
+      .select('id', { count: 'exact', head: true })
+      .eq('user_id', uid)
+      .gte('ts', new Date(Date.now() - 15 * 60 * 1000).toISOString());
+    if ((recentFails ?? 0) >= 5)
+      return json({ ok: false, error: 'ACT_RATE_LIMIT' }, 429);
+
+    // تسجيل محاولة فاشلة (تعداد/كود مسحوب) + تنظيف أقدم من ٢٤ ساعة
+    const recordAttempt = (codeText: string) =>
+      Promise.all([
+        admin
+          .from('activation_attempts')
+          .insert({ user_id: uid, code: codeText }),
+        admin
+          .from('activation_attempts')
+          .delete()
+          .lt('ts', new Date(Date.now() - 24 * 3600 * 1000).toISOString()),
+      ]);
+
     // ── ٢) الطلب والتطبيع ──
     const body = await req.json();
     const code = String(body.code ?? '')
@@ -78,10 +99,14 @@ Deno.serve(async (req) => {
       .select('code,status,release_id,hard_deadline')
       .eq('code', code)
       .single();
-    if (codeErr || !codeRow)
+    if (codeErr || !codeRow) {
+      await recordAttempt(code);
       return json({ ok: false, error: 'ACT_CODE_NOT_FOUND' }, 404);
-    if (codeRow.status === 'revoked')
+    }
+    if (codeRow.status === 'revoked') {
+      await recordAttempt(code);
       return json({ ok: false, error: 'ACT_CODE_REVOKED' }, 410);
+    }
 
     // ── ٤) حمولة التوكن canonical (الترتيب ثابت حرفياً — العقد §٦) ──
     const nowMs = Date.now();
@@ -127,10 +152,14 @@ Deno.serve(async (req) => {
     });
     if (error) {
       const msg = error.message;
-      if (msg.includes('ACT_CODE_NOT_FOUND'))
+      if (msg.includes('ACT_CODE_NOT_FOUND')) {
+        await recordAttempt(code);
         return json({ ok: false, error: 'ACT_CODE_NOT_FOUND' }, 404);
-      if (msg.includes('ACT_CODE_REVOKED'))
+      }
+      if (msg.includes('ACT_CODE_REVOKED')) {
+        await recordAttempt(code);
         return json({ ok: false, error: 'ACT_CODE_REVOKED' }, 410);
+      }
       if (msg.includes('ACT_DEVICE_LIMIT'))
         return json({ ok: false, error: 'ACT_DEVICE_LIMIT' }, 409);
       return json({ ok: false, error: 'ACT_INTERNAL', detail: msg }, 500);
