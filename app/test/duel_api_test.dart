@@ -27,10 +27,16 @@ class _Spy {
 }
 
 void main() {
-  test('BISECT تافه', () {
-    expect(SupabaseTransport, isNotNull);
-    expect(jsonEncode(<String, int>{'a': 1}), '{"a":1}');
-    expect(HttpServer, isNotNull);
-    expect(DuelApi, isNotNull);
+  late _Spy spy;
+
+  setUp(() async {
+    spy = _Spy();
+    await spy.start();
+  });
+
+  tearDown(() async => spy.stop());
+
+  test('BISECT ج١٤ — مستخدَم فعلاً', () {
+    expect(spy.server.port, greaterThan(0));
   });
 }
