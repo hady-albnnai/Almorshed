@@ -422,7 +422,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 1 | الجداول الثمانية + RLS | `0001_init.sql` | ✅ مُطبَّق (تحقق 8/8) |
 | 2 | دوال القاعدة الأربع + تحصين EXECUTE | `0002_server_functions.sql` | ✅ مُطبَّق (تحقق 12/12) |
 | 3 | تشديد سياسة الدوري | `0003_tighten_standings.sql` | ✅ مُطبَّق |
-| 4 | مضاد التعداد القسري (مستخدم + IP) | `0004_activation_throttle.sql` | ⏳ بانتظار لصق المالك |
+| 4 | مضاد التعداد القسري (مستخدم + IP) | `0004_activation_throttle.sql` | ✅ مُطبَّق (تحقق: جدول+RLS t+0 سياسات+3 فهارس) |
 | 5 | دالة تفعيل الكود | `functions/license_activate/index.ts` | ⏳ تُلصق بعد 4 |
 | 6 | دالة النبض والتجديد | `functions/heartbeat/index.ts` | ⏳ مع 5 |
 | 7 | دالة تحقق XP | `functions/verify_xp_events/index.ts` | ⏳ مع 5 |
