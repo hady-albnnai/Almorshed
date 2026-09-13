@@ -180,7 +180,7 @@ class DuelApi {
       _authHeaders(accessToken),
     ) as List<dynamic>;
     if (rows.isEmpty) {
-      throw TransportException(404, 'NO_DUEL');
+      throw const TransportException(404, 'NO_DUEL');
     }
     return DuelRow.fromJson(rows.first as Map<String, dynamic>);
   }

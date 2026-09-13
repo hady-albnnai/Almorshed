@@ -12,14 +12,15 @@ void main() {
   late HttpServer server;
   late Uri baseUri;
   final received = <Map<String, dynamic>>[];
-  // مخزّن أحادي (البثّ الأساسي يفقد الأحداث بلا مستمع لحظتها)
-  final joinReplies = StreamController<WebSocket>();
+  // مخزّن أحادي (البثّ الأساسي يفقد الأحداث بلا مستمع لحظتها) — لكل اختبار
+  late StreamController<WebSocket> joinReplies;
 
   Future<void> pumpEventLoop() =>
       Future<void>.delayed(const Duration(milliseconds: 50));
 
   setUp(() async {
     received.clear();
+    joinReplies = StreamController<WebSocket>();
     server = await HttpServer.bind('127.0.0.1', 0);
     server.listen((req) async {
       final ws = await WebSocketTransformer.upgrade(req);

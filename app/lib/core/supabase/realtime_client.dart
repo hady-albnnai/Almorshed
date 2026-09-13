@@ -280,8 +280,10 @@ class SupabaseRealtime {
 
   void _onDead() {
     if (_disposed) return;
+    final bool wasOpen = _socket != null; // onDone+onError قد يصلان معاً
     _heartbeat?.cancel();
     _socket = null;
+    if (!wasOpen) return; // ثانية من قناة ميتة أصلاً — لا مجدولة مزدوجة
     _socketStatus.add(false);
     for (final ch in _channels) {
       if (ch._joinCompleter != null) ch._resetForRejoin();
