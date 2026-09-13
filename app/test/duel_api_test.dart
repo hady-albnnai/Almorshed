@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fizya_clash/core/supabase/duel_api.dart';
+import 'package:fizya_clash/core/supabase/supabase_transport.dart';
 
 class _Hit {
   _Hit(this.method, this.path, this.query, this.headers, this.body);
@@ -49,12 +51,24 @@ class _Spy {
   Future<void> stop() => server.close(force: true);
 }
 
+const String _anon = 'eyJhbGciOiJIUzI1NiJ9.eyJyZWYiOiJ0ZXN0In0.kk';
+const String _uuidHost = '11111111-1111-1111-1111-111111111111';
+
 void main() {
-  test('ج٤٠ب — نظيف تماماً', () async {
-    final spy = _Spy((m, p, q, b) => const <String, dynamic>{});
+  test('myDeviceId: قراءة RLS بمفتاحي النقلية — uuid مستخرج', () async {
+    final spy = _Spy((m, p, q, b) => <String, dynamic>{
+          ':payload': <String, dynamic>[<String, dynamic>{'id': _uuidHost}],
+        });
     final base = await spy.start();
-    expect(base, isNotEmpty);
-    expect(spy.hits, isEmpty);
+    final api = DuelApi(SupabaseTransport(baseUrl: base, anonKey: _anon));
+    final id = await api.myDeviceId(accessToken: 'tok', pubkeyB64: 'PK9=');
+    expect(id, _uuidHost);
+    final h = spy.hits.single;
+    expect(h.path, '/rest/v1/devices');
+    expect(h.query.contains('pubkey_b64=eq.PK9%3D') ||
+        h.query.contains('pubkey_b64=eq.PK9='), isTrue);
+    expect(h.headers['authorization'], 'Bearer tok');
+    expect(h.headers['apikey'], _anon); // مفتاح النقلية لا الثابت — درس الدوري
     await spy.stop();
   });
 }
