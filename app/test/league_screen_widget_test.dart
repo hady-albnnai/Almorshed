@@ -5,7 +5,7 @@ import 'package:fizya_clash/core/supabase/league_api.dart';
 import 'package:fizya_clash/features/league/league_screen.dart';
 
 void main() {
-  LeagueView _view() => const LeagueView(isoWeek: 202637, groupNo: 1, rows: [
+  LeagueView makeView() => const LeagueView(isoWeek: 202637, groupNo: 1, rows: [
         LeagueRow(rank: 1, xp: 300, isMe: false),
         LeagueRow(rank: 2, xp: 220, isMe: true),
         LeagueRow(rank: 3, xp: 190, isMe: false),
@@ -21,13 +21,13 @@ void main() {
 
   testWidgets('العرض الكامل: رأس المجموعة + أنت 🎯 مميز + الميداليات',
       (tester) async {
-    await pumpView(tester, () async => _view());
+    await pumpView(tester, () async => makeView());
     expect(find.textContaining('مجموعتك رقم'), findsOneWidget);
     expect(find.text('أنت 🎯'), findsOneWidget);
     expect(find.text('المركز ١'), findsOneWidget);
     expect(find.text('المركز ٣'), findsOneWidget);
     expect(find.textContaining('٣٠٠ نقطة'), findsOneWidget);
-    expect(find.textContaining('المجموعات'), findsOneWidget); // ذيل الشرح
+    expect(find.textContaining('مجموعات ~'), findsOneWidget); // ذيل الشرح
   });
 
   testWidgets('لا ترتيب بعد ⇒ رسالة البداية', (tester) async {
@@ -40,7 +40,7 @@ void main() {
     var fail = true;
     await pumpView(tester, () async {
       if (fail) throw Exception('down');
-      return _view();
+      return makeView();
     });
     expect(find.textContaining('تعذر جلب الترتيب'), findsOneWidget);
     fail = false;

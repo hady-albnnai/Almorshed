@@ -43,7 +43,7 @@ class LeagueApi {
     Future<dynamic> get(String path, String query) => transport.getJson(
           '${transport.baseUrl}$path?$query',
           <String, String>{
-            'apikey': SupabaseConfig.anonKey,
+            'apikey': transport.anonKey,
             'Authorization': 'Bearer ${session.accessToken}',
             'Accept': 'application/json',
           },

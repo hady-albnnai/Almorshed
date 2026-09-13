@@ -75,6 +75,7 @@ class SupabaseTransport {
 
   /// للقراءات REST المبنية فوق نفس القاعدة (الدوري F4.6).
   String get baseUrl => _base;
+  String get anonKey => _anonKey;
   final String _anonKey;
   final Duration _timeout;
   final HttpClient _client = HttpClient();

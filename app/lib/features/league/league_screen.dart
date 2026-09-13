@@ -52,7 +52,7 @@ class _LeagueScreenState extends State<LeagueScreen> {
         1 => '🥇',
         2 => '🥈',
         3 => '🥉',
-        _ => '${ArabicNumber.from(rank)}',
+        _ => ArabicNumber.from(rank),
       };
 
   @override
