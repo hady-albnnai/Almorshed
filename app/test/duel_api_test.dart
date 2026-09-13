@@ -1,4 +1,4 @@
-// BISECT ج١١ — بلا أي try/catch
+// BISECT — هيكل أدنى بنفس الاستيرادات
 import 'dart:convert';
 import 'dart:io';
 
@@ -6,6 +6,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/supabase/duel_api.dart';
 import 'package:fizya_clash/core/supabase/supabase_transport.dart';
 
+
+//BISECT ج١٢ — الكلاس وحده مضاف فوق ج٤ الأخضر
 class _Spy {
   late final HttpServer server;
 
@@ -30,20 +32,10 @@ class _Spy {
 }
 
 void main() {
-  late _Spy spy;
-  const anon = 'test-anon';
-
-  setUp(() async {
-    spy = _Spy();
-    await spy.start();
-  });
-
-  tearDown(() async => spy.stop());
-
-  test('BISECT ج١١', () async {
-    final transport = SupabaseTransport(
-        baseUrl: 'http://127.0.0.1:${spy.server.port}', anonKey: anon);
-    final api = DuelApi(transport);
-    expect(api, isNotNull);
+  test('BISECT تافه', () {
+    expect(SupabaseTransport, isNotNull);
+    expect(jsonEncode(<String, int>{'a': 1}), '{"a":1}');
+    expect(HttpServer, isNotNull);
+    expect(DuelApi, isNotNull);
   });
 }
