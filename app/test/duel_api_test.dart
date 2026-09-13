@@ -192,10 +192,13 @@ void main() {
 //////          .having((e) => e.message, 'message', 'BAD_ANSWER')),
 //////    );
 //////  });
-  test('ج٣٣ — حارس الثوابت', () {
+  test('ج٣٦ — حارس القراءات', () {
     expect(anon, isNotEmpty);
     expect(uuidHost, isNotEmpty);
     expect(uuidGuest, isNotEmpty);
     expect(duelUuid, isNotEmpty);
+    expect(spy, isNotNull);
+    expect(transport, isNotNull);
+    expect(api, isNotNull);
   });
 }
