@@ -53,13 +53,12 @@ class _Spy {
 
 void main() {
   late _Spy spy;
-  late SupabaseTransport transport;
-  late DuelApi api;
-  const anon =
-      'eyJhbGciOiJIUzI1NiJ9.eyJyZWYiOiJ0ZXN0In0.kk';
-  const uuidHost = '11111111-1111-1111-1111-111111111111';
-  const uuidGuest = '22222222-2222-2222-2222-222222222222';
-  const duelUuid = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
+  // late SupabaseTransport transport; //BISECT ج٢٩ غير مستخدمة الآن
+  // late DuelApi api; //BISECT ج٢٩
+  // const anon = 'x'; //BISECT ج٢٩
+  // const uuidHost = 'x'; //BISECT ج٢٩
+  // const uuidGuest = 'x'; //BISECT ج٢٩
+  // const duelUuid = 'x'; //BISECT ج٢٩
 
   setUp(() {
     //BISECT ج٢٧ — جسم التهيئة معلّق
