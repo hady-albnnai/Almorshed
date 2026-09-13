@@ -15,11 +15,11 @@ import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
 String deviceKeyHashFor(Uint8List pubkeyBytes) =>
     sha256.convert(pubkeyBytes).toString();
 
-/// المفتاح العام للتحقق المحلي — ⚠️ placeholder مؤقت (F3.6) ويُستبدل بمفتاح
-/// الإنتاج الحقيقي عند F4.4 (يولَّد عند المالك ويُضمَّن 32 بايتاً حصراً).
-/// مفتاح عام ليس سراً أبداً — ضبطه هنا مشروع بلا خطر.
-final ed.PublicKey licensePublicKey =
-    ed.PublicKey(Uint8List.fromList(List<int>.filled(32, 0x42)));
+/// المفتاح العام للتحقق المحلي — مفتاح الإنتاج الحقيقي (F4.4 2026-09-13):
+/// وُلّد عند المالك (tool/generate_license_key.dart) وحُفظ بالبذرة الخاصة
+/// بأسرار Supabase. مفتاح عام ليس سراً أبداً — ضبطه هنا مشروع بلا خطر.
+final ed.PublicKey licensePublicKey = ed.PublicKey(base64Decode(
+    'a4Fzh3MYmy1yw60q3Ve0/6AOZVIoLfjvl3G1n5GMQz8='));
 
 /// موعد امتحان البكالوريا 2027 — الحد الأقصى الصلب لأي إيجار (docs/11 §٥).
 /// 2027-05-01T00:00:00Z
