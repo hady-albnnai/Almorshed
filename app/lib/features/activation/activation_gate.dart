@@ -7,7 +7,7 @@ import '../../core/supabase/activation_api.dart';
 import '../../core/theme/app_colors.dart';
 import 'package:crypto/crypto.dart';
 import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
-import 'dart:convert' show utf8;
+import 'dart:convert' show base64, utf8;
 
 /// F3.6 — بوابة أول فتح (قرار ٣٨/٤٤ — مطابقة النموذج s-activate):
 /// «تظهر مرة واحدة عند أول فتح — بعدها تُدار من حسابي».
@@ -91,7 +91,9 @@ class _ActivationGateState extends State<ActivationGate> {
         if (!mounted) return;
         if (r.ok && r.token != null) {
           final check = checkLicense(r.token!,
-              nowMs: r.serverTimeMs, key: widget.licenseKey);
+              nowMs: r.serverTimeMs,
+              key: widget.licenseKey,
+              devicePubkeyBytes: base64Decode(widget.devicePubkeyB64));
           if (check.ok) {
             await widget.licenseStore.save(_data.copyWith(
               mode: LicenseMode.licensed,

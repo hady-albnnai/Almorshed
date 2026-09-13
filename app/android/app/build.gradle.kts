@@ -28,9 +28,16 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
+            // TODO (المالك): ملف توقيع إنتاج خاص قبل المتجر — debug الآن للتجريب.
             signingConfig = signingConfigs.getByName("debug")
+            // F4.4-تحصين (MASVS-CODE/RESILIENCE): تقليص وتعمية — يجب
+            // اختبار أول بناء إصدار يدوياً (M7) قبل التوزيع.
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 }

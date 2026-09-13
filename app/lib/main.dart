@@ -166,6 +166,7 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
                     widget.trainingStore ?? SharedPrefsTrainingStore(),
                 licenseStore: _license,
                 xpRecorder: _xpRecorder,
+                devicePubkeyB64: _pubkeyB64 ?? '',
               );
             },
           );

@@ -85,10 +85,18 @@ Deno.serve(async (req) => {
           if (seedB64) {
             const seed = Uint8Array.from(atob(seedB64), (c) => c.charCodeAt(0));
             const kp = nacl.sign.keyPair.fromSeed(seed);
-            // canonical حرفياً كالعقد §٦ — device_key_hash فارغ حتى Keystore
+            // canonical حرفياً كالعقد §٦ — الربط مفعّل: sha256(بايتات المفتاح)
+            const rawPub = Uint8Array.from(atob(device.pubkey_b64 as string), (c) =>
+              c.charCodeAt(0),
+            );
+            const deviceHash = [
+              ...new Uint8Array(await crypto.subtle.digest('SHA-256', rawPub)),
+            ]
+              .map((b) => b.toString(16).padStart(2, '0'))
+              .join('');
             const canonical = JSON.stringify({
               code_id: lic.code,
-              device_key_hash: '',
+              device_key_hash: deviceHash,
               release_id: lic.release_id,
               expires_at: newExpires,
               hard_deadline: hardMs,

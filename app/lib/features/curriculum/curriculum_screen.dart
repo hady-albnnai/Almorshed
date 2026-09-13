@@ -17,6 +17,9 @@ class CurriculumScreen extends StatefulWidget {
   /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
   final XpRecorder? xpRecorder;
 
+  /// مفتاح الجهاز العام — يُمرَّر لـ«حسابي» لربط الفحص (F4.4-تحصين).
+  final String devicePubkeyB64;
+
   const CurriculumScreen({
     super.key,
     required this.pack,
@@ -25,6 +28,7 @@ class CurriculumScreen extends StatefulWidget {
     required this.trainingStore,
       required this.licenseStore,
       this.xpRecorder, // F3.8
+      this.devicePubkeyB64 = '', // F4.4-تحصين
   });
 
   final ContentPack pack;
@@ -71,7 +75,9 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
             tooltip: 'حسابي — التفعيل والاشتراك',
             onPressed: () async {
               await Navigator.of(context).push(MaterialPageRoute<void>(
-                builder: (_) => AccountScreen(licenseStore: widget.licenseStore),
+                builder: (_) => AccountScreen(
+                      licenseStore: widget.licenseStore,
+                      devicePubkeyB64: widget.devicePubkeyB64),
               ));
               _reload(); // تحديث حالة التفعيل عند العودة
             },

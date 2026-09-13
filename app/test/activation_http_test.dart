@@ -9,6 +9,7 @@ import 'dart:typed_data';
 
 import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
 import 'package:flutter/material.dart';
+import 'package:crypto/crypto.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/license/license_core.dart';
 import 'package:fizya_clash/core/license/license_store.dart';
@@ -69,6 +70,43 @@ XpEvent _event() => XpEvent(
     );
 
 void main() {
+  // F4.4-تحصين: ربط التوكن بالجهاز — توقيع حقيقي بمفتاح اختبار ثم فحص
+  test('ربط الجهاز: هاش مطابق ⇒ valid وغير مطابق/فارغ ⇒ wrongDevice', () {
+    final priv = ed.newKeyFromSeed(
+        Uint8List.fromList(List<int>.generate(32, (i) => i + 1)));
+    final pub = ed.public(priv);
+    final pubBytes = base64Decode('QUJDREVGR0g='); // ABCDEFGH
+    final goodHash = sha256.convert(pubBytes).toString();
+    LicenseToken issue(String deviceHash) => LicenseToken.issue(
+          LicensePayload(
+            codeId: 'K7M2P9QW4X4TR8N',
+            deviceKeyHash: deviceHash,
+            releaseId: '2027-v1',
+            expiresAtMs: _now + 86400000,
+            hardDeadlineMs: 1835904000000,
+            flags: <String>{'full'},
+          ),
+          priv,
+        );
+
+    // مطابق ⇒ valid
+    final ok = checkLicense(issue(goodHash),
+        nowMs: _now, key: pub, devicePubkeyBytes: pubBytes);
+    expect(ok.verdict, LicenseVerdict.valid);
+    // الدالة المساعدة = مصدر الحقيقة المشترك مع الخادم (متجه العقد §٦)
+    expect(deviceKeyHashFor(Uint8List.fromList(
+            List<int>.generate(32, (i) => i + 1))),
+        'ae216c2ef5247a3782c135efa279a3e4cdc61094270f5d2be58c6204b7a612c9');
+    // غير مطابق ⇒ wrongDevice
+    final wrong = checkLicense(issue('de' * 32),
+        nowMs: _now, key: pub, devicePubkeyBytes: pubBytes);
+    expect(wrong.verdict, LicenseVerdict.wrongDevice);
+    // فارغ بمفتاح ممرَّر ⇒ wrongDevice (الربط إلزامي بعد التحصين)
+    final empty = checkLicense(issue(''),
+        nowMs: _now, key: pub, devicePubkeyBytes: pubBytes);
+    expect(empty.verdict, LicenseVerdict.wrongDevice);
+  });
+
   test('F4.3: تسجيل مجهول — الجسم والرؤوس بالعقد + الكاش يمنع الطلب الثاني',
       () async {
     final spy = _SpyServer((path, headers, body) {
@@ -302,7 +340,8 @@ void main() {
     final token = LicenseToken.issue(
       const LicensePayload(
         codeId: 'K7M2P9QW4X4TR8N',
-        deviceKeyHash: '',
+        // ربط الجهاز: sha256('ABCDEFGH') — متجه العقد §٦
+        deviceKeyHash: '9ac2197d9258257b1ae8463e4214e4cd0a578bc1517f2415928b91be4283fc48',
         releaseId: '2027-v1',
         expiresAtMs: _now + 86400000,
         hardDeadlineMs: 1835904000000,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'dart:convert' show base64;
+
 import '../../core/license/license_core.dart';
 import '../../core/license/license_store.dart';
 import '../../core/theme/app_colors.dart';
@@ -8,9 +10,13 @@ import '../../core/util/arabic_number.dart';
 /// F3.6 — «حسابي»: إدارة الاشتراك من هنا (قرار ٤٤ — مطابقة s-account):
 /// شارة الحالة + إعادة فحص التوقيع المحلي الظاهرة + الانتهاء + لورانيم.
 class AccountScreen extends StatefulWidget {
-  const AccountScreen({super.key, required this.licenseStore});
+  const AccountScreen({super.key, required this.licenseStore,
+      this.devicePubkeyB64 = ''});
 
   final LicenseStore licenseStore;
+
+  /// مفتاح الجهاز العام — لربط الفحص المحلي (F4.4-تحصين). فارغ = فحص أعمى.
+  final String devicePubkeyB64;
 
   @override
   State<AccountScreen> createState() => _AccountScreenState();
@@ -42,8 +48,15 @@ class _AccountScreenState extends State<AccountScreen> {
       setState(() => _signLine = 'لا توقيع محفوظ — أنت بوضع التجربة');
       return;
     }
-    final now = DateTime.now().millisecondsSinceEpoch;
-    final check = checkLicense(token, nowMs: now);
+    // L4-أرضية رتيبة: الساعة لا تعود خلف آخر زمن معروف (من السيرفر)
+    final wall = data?.lastWallMs ?? 0;
+    final now = wall > DateTime.now().millisecondsSinceEpoch
+        ? wall
+        : DateTime.now().millisecondsSinceEpoch;
+    final check = checkLicense(token, nowMs: now,
+        devicePubkeyBytes: widget.devicePubkeyB64.isEmpty
+            ? null
+            : base64Decode(widget.devicePubkeyB64));
     setState(() {
       _signLine = check.ok
           ? 'سليم ✓ (محلي، بدون إنترنت)'
@@ -76,7 +89,11 @@ class _AccountScreenState extends State<AccountScreen> {
     final licensed = data.mode == LicenseMode.licensed && data.token != null;
     final payload = data.token == null
         ? null
-        : _safePayload(data.token!, DateTime.now().millisecondsSinceEpoch);
+        : _safePayload(
+            data.token!,
+            (data.lastWallMs > DateTime.now().millisecondsSinceEpoch)
+                ? data.lastWallMs
+                : DateTime.now().millisecondsSinceEpoch);
 
     return Scaffold(
       appBar: AppBar(title: const Text('حسابي')),

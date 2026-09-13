@@ -6,7 +6,14 @@ library;
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:crypto/crypto.dart';
 import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
+
+/// هاش ربط الجهاز — sha256(بايتات المفتاح العام) hex صغير (F4.4-تحصين:
+/// التوكن لا يُصدر إلا لجهازه — المنقول يُرفض wrongDevice. المتجه الذهبي
+/// بالعقد §٦: raw[1..32] ⇒ ae216c2e...12c9).
+String deviceKeyHashFor(Uint8List pubkeyBytes) =>
+    sha256.convert(pubkeyBytes).toString();
 
 /// المفتاح العام للتحقق المحلي — ⚠️ placeholder مؤقت (F3.6) ويُستبدل بمفتاح
 /// الإنتاج الحقيقي عند F4.4 (يولَّد عند المالك ويُضمَّن 32 بايتاً حصراً).
@@ -126,6 +133,7 @@ LicenseCheck checkLicense(
   LicenseToken token, {
   required int nowMs,
   ed.PublicKey? key,
+  Uint8List? devicePubkeyBytes,
 }) {
   final publicKey = key ?? licensePublicKey;
   Uint8List payloadBytes;
@@ -151,9 +159,15 @@ LicenseCheck checkLicense(
   } catch (_) {
     return const LicenseCheck(LicenseVerdict.malformed);
   }
-  // ربط الجهاز — يُفعَّل كلياً مع Keystore في F4.4؛ الآن hash فارغ دائماً
-  // وأي قيمة غير فارغة تعني توكناً لجهاز آخر (docs/11 §٥).
-  if (payload.deviceKeyHash.isNotEmpty) {
+  // ربط الجهاز — مفعّل بالكامل منذ تحصين F4.4 (الخادم يوقّع
+  // sha256(المفتاح العام) والعميل يعيد حسابها ضد مفتاحه):
+  // بمفتاح ممرَّر: أي عدم تطابق (بما فيها hash فارغ) ⇒ wrongDevice.
+  // بلا مفتاح (اختبارات/فحص أعمى): أي hash غير فارغ ⇒ توكن جهاز آخر.
+  if (devicePubkeyBytes != null) {
+    if (payload.deviceKeyHash != deviceKeyHashFor(devicePubkeyBytes)) {
+      return LicenseCheck(LicenseVerdict.wrongDevice, payload: payload);
+    }
+  } else if (payload.deviceKeyHash.isNotEmpty) {
     return LicenseCheck(LicenseVerdict.wrongDevice, payload: payload);
   }
   if (nowMs > payload.hardDeadlineMs) {

@@ -14,28 +14,23 @@ const CORS = {
 };
 
 const encoder = new TextEncoder();
-const hexToBytes = (hex: string): Uint8Array => {
-  const out = new Uint8Array(hex.length / 2);
-  for (let i = 0; i < out.length; i++) {
-    out[i] = parseInt(hex.slice(i * 2, i * 2 + 2), 16);
-  }
-  return out;
-};
-const sha256Hex = async (s: string): Promise<string> =>
-  [...new Uint8Array(await crypto.subtle.digest('SHA-256', encoder.encode(s)))]
-    .map((b) => b.toString(16).padStart(2, '0'))
-    .join('');
 
-// ⚠️ ثابت التوافق: حتى ترقية العميل لفحص Keystore (F4.4-عميل) يُبَعث
-// device_key_hash فارغاً — فحص العميل الحالي يرفض أي قيمة غير فارغة
-// (wrongDevice). الرفع لاحقاً = تحويل هذا الثابت إلى true حصراً.
-const EMIT_DEVICE_HASH = false;
+// ⚠️ ربط الجهاز مفعّل (F4.4-تحصين 2026-09-13): hash = sha256(بايتات
+// المفتاح العام 32ب) hex صغير — والعميل يعيد حسابها ضد مفتاحه ويطابق.
+// المتجه الذهبي بالعقد §٦. تعطيله يتطلب قراراً موثقاً بسجل التغييرات.
+const EMIT_DEVICE_HASH = true;
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
     status,
     headers: { ...CORS, 'Content-Type': 'application/json' },
   });
+
+// هاش hex صغير لبايتات خام (لا سلاسل وسيطة — utf8 يفسد البايتات >127)
+const sha256BytesHex = async (data: Uint8Array): Promise<string> =>
+  [...new Uint8Array(await crypto.subtle.digest('SHA-256', data))]
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
 
 // حروف الكود المسموحة: أرقام + حروف بلا I/L/O/U (Crockford — قرار ٣٤)
 const CODE_RE = /^[0-9A-HJ-KM-NP-TV-Z]{15}$/;
@@ -60,13 +55,25 @@ Deno.serve(async (req) => {
     // الملف الشخصي (upsert — أول تفعيل يولده)
     await admin.from('profiles').upsert({ id: uid });
 
-    // ── ٢-أ) مضاد التعداد القسري: 5 فاشلات/١٥ دقيقة لكل مستخدم (0004) ──
-    const { count: recentFails } = await admin
-      .from('activation_attempts')
-      .select('id', { count: 'exact', head: true })
-      .eq('user_id', uid)
-      .gte('ts', new Date(Date.now() - 15 * 60 * 1000).toISOString());
-    if ((recentFails ?? 0) >= 5)
+    // ── ٢-أ) مضاد التعداد القسري (0004): طبقتان — مستخدم وIP ──
+    const ip =
+      (req.headers.get('x-forwarded-for') ?? '').split(',')[0].trim() || '';
+    const since15 = new Date(Date.now() - 15 * 60 * 1000).toISOString();
+    const [{ count: userFails }, { count: ipFails }] = await Promise.all([
+      admin
+        .from('activation_attempts')
+        .select('id', { count: 'exact', head: true })
+        .eq('user_id', uid)
+        .gte('ts', since15),
+      ip
+        ? admin
+            .from('activation_attempts')
+            .select('id', { count: 'exact', head: true })
+            .eq('ip', ip)
+            .gte('ts', since15)
+        : Promise.resolve({ count: 0 }),
+    ]);
+    if ((userFails ?? 0) >= 5 || (ipFails ?? 0) >= 30)
       return json({ ok: false, error: 'ACT_RATE_LIMIT' }, 429);
 
     // تسجيل محاولة فاشلة (تعداد/كود مسحوب) + تنظيف أقدم من ٢٤ ساعة
@@ -74,7 +81,7 @@ Deno.serve(async (req) => {
       Promise.all([
         admin
           .from('activation_attempts')
-          .insert({ user_id: uid, code: codeText }),
+          .insert({ user_id: uid, code: codeText, ip }),
         admin
           .from('activation_attempts')
           .delete()
@@ -112,11 +119,9 @@ Deno.serve(async (req) => {
     const nowMs = Date.now();
     const hardMs = new Date(codeRow.hard_deadline).getTime();
     const expiresMs = Math.min(nowMs + THIRTY_DAYS_MS, hardMs);
-    const deviceHash = EMIT_DEVICE_HASH
-      ? await sha256Hex(
-          String.fromCharCode(...Uint8Array.from(atob(pubkeyB64), (c) => c.charCodeAt(0))),
-        )
-      : '';
+    // بايتات خام حصراً — atob ثم digest مباشرة (لا سلسلة وسيطة يفسدها utf8)
+    const rawPub = Uint8Array.from(atob(pubkeyB64), (c) => c.charCodeAt(0));
+    const deviceHash = EMIT_DEVICE_HASH ? await sha256BytesHex(rawPub) : '';
     const flags = ['full'];
     const canonical = JSON.stringify({
       code_id: code,
