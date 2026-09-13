@@ -366,13 +366,13 @@ void main() {
         devicesUsed: 1,
       )),
     )));
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     await tester.enterText(
         find.byType(TextField), 'K7M2P-9QW4X-4TR8N');
     await tester.pump();
     await tester.tap(find.text('تفعيل ✓'));
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(modeSet, true);
     final saved = await store.load();
@@ -392,11 +392,11 @@ void main() {
       activationApi: _StaticActivationApi(const ActivationAttempt(
           ok: false, errorAr: 'الكود غير معروف', countsAsAttempt: true)),
     )));
-    await tester.pump();
+    await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextField), 'K7M2P-9QW4X-4TR8N');
     await tester.pump();
     await tester.tap(find.text('تفعيل ✓'));
-    await tester.pump();
+    await tester.pumpAndSettle();
     expect((await store.load()).failures, 1);
 
     await tester.pumpWidget(MaterialApp(
@@ -407,11 +407,11 @@ void main() {
       activationApi: _StaticActivationApi(const ActivationAttempt(
           ok: false, errorAr: 'انقطع الاتصال', countsAsAttempt: false)),
     )));
-    await tester.pump();
+    await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextField), 'K7M2P-9QW4X-4TR8N');
     await tester.pump();
     await tester.tap(find.text('تفعيل ✓'));
-    await tester.pump();
+    await tester.pumpAndSettle();
     expect((await store.load()).failures, 1); // لم يزد — عادل
   });
 }
