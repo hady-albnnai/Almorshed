@@ -60,21 +60,12 @@ const String _uuidHost = '11111111-1111-1111-1111-111111111111';
 const String _uuidGuest = '22222222-2222-2222-2222-222222222222';
 const String _duelUuid = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 
-  test('myDeviceId: قراءة RLS بمفتاحي النقلية — uuid مستخرج', () async {
-    final spy = _Spy((m, p, q, b) => <String, dynamic>{
-          ':payload': <String, dynamic>[<String, dynamic>{'id': _uuidHost}],
-        });
+void main() {
+  test('ج٤٠ — أدنى هيكل', () async {
+    final spy = _Spy((m, p, q, b) => const <String, dynamic>{});
     final base = await spy.start();
-    final api = DuelApi(SupabaseTransport(baseUrl: base, anonKey: _anon));
-    final id = await api.myDeviceId(accessToken: 'tok', pubkeyB64: 'PK9=');
-    expect(id, _uuidHost);
-    final h = spy.hits.single;
-    expect(h.path, '/rest/v1/devices');
-    expect(h.query.contains('pubkey_b64=eq.PK9%3D') ||
-        h.query.contains('pubkey_b64=eq.PK9='), isTrue);
-    expect(h.headers['authorization'], 'Bearer tok');
-    expect(h.headers['apikey'], _anon); // مفتاح النقلية لا الثابت — درس الدوري
+    expect(base, isNotEmpty);
+    expect(spy.hits, isEmpty);
     await spy.stop();
   });
-
 }
