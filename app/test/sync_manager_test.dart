@@ -41,7 +41,7 @@ SyncManager _manager(_FakeApi api,
 
 void main() {
   test('الحالات: idle → syncing → synced مع أحداث معلّقة', () async {
-    final api = _FakeApi((r) => const SyncResponse(
+    final api = _FakeApi((r) async => const SyncResponse(
         accepted: true, syncedUpTo: 2, serverTimeMs: 5));
     final store = InMemorySyncStateStore();
     final m = _manager(api, store: store);
@@ -78,7 +78,7 @@ void main() {
   });
 
   test('رفض منطقي ⇒ rejected (لا انقطاع)', () async {
-    final api = _FakeApi((r) =>
+    final api = _FakeApi((r) async =>
         const SyncResponse(accepted: false, reason: 'SEQ_GAP', syncedUpTo: 0));
     final m = _manager(api);
     await m.runNow();

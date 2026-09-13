@@ -11,7 +11,7 @@ void main() {
         LeagueRow(rank: 3, xp: 190, isMe: false),
       ], myRank: 2);
 
-  Future<void> _pump(WidgetTester tester, Future<LeagueView> Function() fetch) async {
+  Future<void> pumpView(WidgetTester tester, Future<LeagueView> Function() fetch) async {
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.reset);
@@ -21,7 +21,7 @@ void main() {
 
   testWidgets('العرض الكامل: رأس المجموعة + أنت 🎯 مميز + الميداليات',
       (tester) async {
-    await _pump(tester, () async => _view());
+    await pumpView(tester, () async => _view());
     expect(find.textContaining('مجموعتك رقم'), findsOneWidget);
     expect(find.text('أنت 🎯'), findsOneWidget);
     expect(find.text('المركز ١'), findsOneWidget);
@@ -31,14 +31,14 @@ void main() {
   });
 
   testWidgets('لا ترتيب بعد ⇒ رسالة البداية', (tester) async {
-    await _pump(tester,
+    await pumpView(tester,
         () async => const LeagueView(isoWeek: 0, groupNo: 0, rows: []));
     expect(find.textContaining('أول إقفال للأسبوع'), findsOneWidget);
   });
 
   testWidgets('فشل الشبكة ⇒ رسالة لطيفة + زر إعادة يعمل', (tester) async {
     var fail = true;
-    await _pump(tester, () async {
+    await pumpView(tester, () async {
       if (fail) throw Exception('down');
       return _view();
     });
