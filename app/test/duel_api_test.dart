@@ -17,39 +17,39 @@ class _Hit {
   final Map<String, dynamic> body;
 }
 
-class _Spy {
-  _Spy(this._handler);
-  Map<String, dynamic> Function(
-          String method, String path, String query, Map<String, dynamic> body)
-      _handler;
-  late final HttpServer server;
-  final List<_Hit> hits = [];
-
-  Future<String> start() async {
-    server = await HttpServer.bind('127.0.0.1', 0);
-    server.listen((req) async {
-      final raw = await utf8.decoder.bind(req).join();
-      final body = <String, dynamic>{};
-      try {
-        final d = jsonDecode(raw);
-        if (d is Map<String, dynamic>) body.addAll(d);
-      } catch (_) {}
-      hits.add(_Hit(req.method, req.uri.path, req.uri.query, {
-        'authorization': req.headers.value('authorization') ?? '',
-        'apikey': req.headers.value('apikey') ?? '',
-        'prefer': req.headers.value('prefer') ?? '',
-      }, body));
-      final resp = _handler(req.method, req.uri.path, req.uri.query, body);
-      req.response.statusCode = (resp[':status'] as int?) ?? 200;
-      req.response.headers.contentType = ContentType.json;
-      req.response.write(jsonEncode(resp[':payload'] ?? resp));
-      await req.response.close();
-    });
-    return 'http://127.0.0.1:${server.port}';
-  }
-
-  Future<void> stop() => server.close(force: true);
-}
+//SPYOFF class _Spy {
+//SPYOFF   _Spy(this._handler);
+//SPYOFF   Map<String, dynamic> Function(
+//SPYOFF           String method, String path, String query, Map<String, dynamic> body)
+//SPYOFF       _handler;
+//SPYOFF   late final HttpServer server;
+//SPYOFF   final List<_Hit> hits = [];
+//SPYOFF 
+//SPYOFF   Future<String> start() async {
+//SPYOFF     server = await HttpServer.bind('127.0.0.1', 0);
+//SPYOFF     server.listen((req) async {
+//SPYOFF       final raw = await utf8.decoder.bind(req).join();
+//SPYOFF       final body = <String, dynamic>{};
+//SPYOFF       try {
+//SPYOFF         final d = jsonDecode(raw);
+//SPYOFF         if (d is Map<String, dynamic>) body.addAll(d);
+//SPYOFF       } catch (_) {}
+//SPYOFF       hits.add(_Hit(req.method, req.uri.path, req.uri.query, {
+//SPYOFF         'authorization': req.headers.value('authorization') ?? '',
+//SPYOFF         'apikey': req.headers.value('apikey') ?? '',
+//SPYOFF         'prefer': req.headers.value('prefer') ?? '',
+//SPYOFF       }, body));
+//SPYOFF       final resp = _handler(req.method, req.uri.path, req.uri.query, body);
+//SPYOFF       req.response.statusCode = (resp[':status'] as int?) ?? 200;
+//SPYOFF       req.response.headers.contentType = ContentType.json;
+//SPYOFF       req.response.write(jsonEncode(resp[':payload'] ?? resp));
+//SPYOFF       await req.response.close();
+//SPYOFF     });
+//SPYOFF     return 'http://127.0.0.1:${server.port}';
+//SPYOFF   }
+//SPYOFF 
+//SPYOFF   Future<void> stop() => server.close(force: true);
+//SPYOFF }
 
 //BISECT ج١٨ — بلا main إطلاقاً
 // void main() {
