@@ -62,37 +62,79 @@ void main() {
     }
   }
 
-  testWidgets('أ-التقدم والسناك', (tester) async {
+  testWidgets('أ1-التقدم يصل خمسة', (tester) async {
     final store = _storeWith(6);
     await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
         XpRecorder.inMemory());
     expect(find.textContaining('راجعت ٥ من ٥'), findsOneWidget);
+  });
+
+  testWidgets('أ2-سناك المكافأة يظهر', (tester) async {
+    final store = _storeWith(6);
+    await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
+        XpRecorder.inMemory());
     expect(find.textContaining(r'\+١٠'), findsOneWidget);
   });
 
-  testWidgets('ب-الدفتر: حدث واحد بـ١٠ نقاط', (tester) async {
+  testWidgets('ب1-الدفتر فيه أي حدث؟', (tester) async {
+    final store = _storeWith(6);
+    final recorder = XpRecorder.inMemory();
+    await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
+        recorder);
+    final events = await recorder.ledger.events();
+    expect(events.isNotEmpty, true, reason: 'events=${events.map((e) => e.type).toList()}');
+  });
+
+  testWidgets('ب2-حدث mistakesFive واحد فقط', (tester) async {
+    final store = _storeWith(6);
+    final recorder = XpRecorder.inMemory();
+    await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
+        recorder);
+    final events = await recorder.ledger.events();
+    expect(
+        events.where((e) => e.type == 'mistakesFive').length, 1,
+        reason: 'types=${events.map((e) => e.type).toList()}');
+  });
+
+  testWidgets('ب3-نقاط الحدث عشرة', (tester) async {
     final store = _storeWith(6);
     final recorder = XpRecorder.inMemory();
     await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
         recorder);
     final events = await recorder.ledger.events();
     final five = events.where((e) => e.type == 'mistakesFive').toList();
-    expect(five.length, 1);
-    expect(five.single.payload['points'], 10);
+    expect(five.single.payload['points'], 10,
+        reason: 'payload=${five.map((e) => e.payload).toList()}');
   });
 
-  testWidgets('ج-الدوران بالأرشيف + لا مكافأة سادسة', (tester) async {
+  testWidgets('ج1-آخر مُراجَع يتصدر', (tester) async {
+    final store = _storeWith(6);
+    await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
+        XpRecorder.inMemory());
+    final after = (await store.load()).mistakes;
+    expect(after.first.questionId, 504,
+        reason: 'order=${after.map((m) => m.questionId).toList()}');
+  });
+
+  testWidgets('ج2-غير المراجَع يهبط لآخر القائمة', (tester) async {
+    final store = _storeWith(6);
+    await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
+        XpRecorder.inMemory());
+    final after = (await store.load()).mistakes;
+    expect(after.last.questionId, 505,
+        reason: 'order=${after.map((m) => m.questionId).toList()}');
+  });
+
+  testWidgets('ج3-لا مكافأة سادسة', (tester) async {
     final store = _storeWith(6);
     final recorder = XpRecorder.inMemory();
-    final pack = _packOf([500, 501, 502, 503, 504, 505]);
-    await driveFive(tester, store, pack, recorder);
-    final after = (await store.load()).mistakes;
-    expect(after.first.questionId, 504);
-    expect(after.last.questionId, 505);
+    await driveFive(tester, store, _packOf([500, 501, 502, 503, 504, 505]),
+        recorder);
     await tester.tap(find.text('فهمت ✓').first);
     await tester.pumpAndSettle();
     final events2 = await recorder.ledger.events();
-    expect(events2.where((e) => e.type == 'mistakesFive').length, 1);
+    expect(events2.where((e) => e.type == 'mistakesFive').length, 1,
+        reason: 'types=${events2.map((e) => e.type).toList()}');
   });
 
   testWidgets('مراجَع اليوم يظهر «رُوجع اليوم ✓» بلا زر', (tester) async {
