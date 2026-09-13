@@ -1,12 +1,12 @@
-# ═══════════════════════════════════════════════════════════════════
-# أول تفعيل حقيقي بحياة المشروع — آلي بالكامل (لا نسخ يدوي للتوكن)
-# يشغل: powershell -ExecutionPolicy Bypass -File tool\first_activation.ps1
+﻿# ═══════════════════════════════════════════════════════════════════
+# First real activation - fully automated (no manual token copying).
+# Run: powershell -ExecutionPolicy Bypass -File tool\first_activation.ps1
+# NOTE: saved as UTF-8 with BOM (PowerShell 5.1 requirement).
 # ═══════════════════════════════════════════════════════════════════
 $anon = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhka2RnZXRtenRhcHVtY3hmbG9wIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyMzI5MDAsImV4cCI6MjEwNDgwODkwMH0.5FUZhGgtIDQrVomevvCfDV3scuIu-xUGGoqGjS0ZISI"
 $base = "https://xdkdgetmztapumcxflop.supabase.co"
-$code = "P53QN-H80Q0-W4EKQ"
 
-Write-Host "== 1) takhdh token majhool..." -ForegroundColor Cyan
+Write-Host "== 1) anonymous signup..."
 try {
     $r = Invoke-RestMethod -Uri "$base/auth/v1/signup" -Method Post `
         -ContentType "application/json" -Headers @{ apikey = $anon } `
@@ -19,7 +19,7 @@ $t = $r.access_token
 if (-not $t) { Write-Host "FAIL: no access_token" -ForegroundColor Red; exit 1 }
 Write-Host "   token OK" -ForegroundColor Green
 
-Write-Host "== 2) taf'il al-code $code ..." -ForegroundColor Cyan
+Write-Host "== 2) activating test code..."
 try {
     $resp = Invoke-RestMethod -Uri "$base/functions/v1/license_activate" `
         -Method Post -ContentType "application/json" `
@@ -30,5 +30,5 @@ try {
     exit 1
 }
 
-Write-Host "══════════ الرد الكامل — الصقه في الشات ══════════" -ForegroundColor Green
+Write-Host "====== FULL RESPONSE - paste this in chat ======" -ForegroundColor Green
 $resp | ConvertTo-Json -Depth 5
