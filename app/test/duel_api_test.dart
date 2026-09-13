@@ -13,13 +13,7 @@ class _Spy {
 
   Future<String> start() async {
     server = await HttpServer.bind('127.0.0.1', 0);
-    server.listen((req) async {
-      await utf8.decoder.bind(req).join(); //BISECT بلا decode
-      req.response.statusCode = 200;
-      req.response.headers.contentType = ContentType.json;
-      req.response.write('{}');
-      await req.response.close();
-    });
+    //BISECT ج١٥ — بلا listen إطلاقاً
     return 'http://127.0.0.1:${server.port}';
   }
 
