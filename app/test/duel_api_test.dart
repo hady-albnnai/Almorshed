@@ -10,7 +10,8 @@ import 'package:fizya_clash/core/supabase/supabase_transport.dart';
 
 class _Spy {
   _Spy(this._handler);
-  Map<String, dynamic> Function(
+
+  final Map<String, dynamic> Function(
           String method, String path, String query, Map<String, dynamic> body)
       _handler;
   late final HttpServer server;
