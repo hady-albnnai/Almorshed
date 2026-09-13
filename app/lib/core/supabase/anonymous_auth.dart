@@ -68,6 +68,17 @@ class AnonymousAuth {
       }
     }
     final fresh = await transport.signUpAnonymously();
+    // جلسة وليدة قريبة من الانتهاء أصلاً (انحراف ساعة سيرفر/هامش صفر)؟
+    // تُجدد فوراً — لا نسلّم المتصل جلسة يرفضها هامش الأمان (L4).
+    if (!fresh.usableAt(now)) {
+      try {
+        final renewed = await transport.refreshSession(fresh.refreshToken);
+        await _persist(renewed);
+        return renewed;
+      } catch (_) {
+        // تعذر التجديد — نسلّم الوليدة كما هي (أفضل من لا شيء)
+      }
+    }
     await _persist(fresh);
     return fresh;
   }
