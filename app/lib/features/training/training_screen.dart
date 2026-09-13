@@ -212,6 +212,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
                         builder: (_) => MistakesScreen(
                           pack: widget.pack,
                           trainingStore: widget.trainingStore,
+                          xpRecorder: widget.xpRecorder,
                         ),
                       ));
                       _reload();
