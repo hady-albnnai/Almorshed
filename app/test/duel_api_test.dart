@@ -25,29 +25,29 @@ class _Spy {
   late final HttpServer server;
   final List<_Hit> hits = [];
 
-  Future<String> start() async {
-    server = await HttpServer.bind('127.0.0.1', 0);
-    server.listen((req) async {
-      final raw = await utf8.decoder.bind(req).join();
-      final body = <String, dynamic>{};
-      try {
-        final d = jsonDecode(raw);
-        if (d is Map<String, dynamic>) body.addAll(d);
-      } catch (_) {}
-      hits.add(_Hit(req.method, req.uri.path, req.uri.query, {
-        'authorization': req.headers.value('authorization') ?? '',
-        'apikey': req.headers.value('apikey') ?? '',
-        'prefer': req.headers.value('prefer') ?? '',
-      }, body));
-      final resp = _handler(req.method, req.uri.path, req.uri.query, body);
-      req.response.statusCode = (resp[':status'] as int?) ?? 200;
-      req.response.headers.contentType = ContentType.json;
-      req.response.write(jsonEncode(resp[':payload'] ?? resp));
-      await req.response.close();
-    });
-    return 'http://127.0.0.1:${server.port}';
-  }
-
+//  Future<String> start() async {
+//    server = await HttpServer.bind('127.0.0.1', 0);
+//    server.listen((req) async {
+//      final raw = await utf8.decoder.bind(req).join();
+//      final body = <String, dynamic>{};
+//      try {
+//        final d = jsonDecode(raw);
+//        if (d is Map<String, dynamic>) body.addAll(d);
+//      } catch (_) {}
+//      hits.add(_Hit(req.method, req.uri.path, req.uri.query, {
+//        'authorization': req.headers.value('authorization') ?? '',
+//        'apikey': req.headers.value('apikey') ?? '',
+//        'prefer': req.headers.value('prefer') ?? '',
+//      }, body));
+//      final resp = _handler(req.method, req.uri.path, req.uri.query, body);
+//      req.response.statusCode = (resp[':status'] as int?) ?? 200;
+//      req.response.headers.contentType = ContentType.json;
+//      req.response.write(jsonEncode(resp[':payload'] ?? resp));
+//      await req.response.close();
+//    });
+//    return 'http://127.0.0.1:${server.port}';
+//  }
+//
   Future<void> stop() => server.close(force: true);
 }
 
