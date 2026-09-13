@@ -2,20 +2,34 @@ import 'package:flutter/material.dart';
 
 import '../../core/license/license_core.dart';
 import '../../core/license/license_store.dart';
+import '../../core/supabase/activation_api.dart';
 import '../../core/theme/app_colors.dart';
+import 'package:crypto/crypto.dart';
+import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
+import 'dart:convert' show utf8;
 
 /// F3.6 — بوابة أول فتح (قرار ٣٨/٤٤ — مطابقة النموذج s-activate):
 /// «تظهر مرة واحدة عند أول فتح — بعدها تُدار من حسابي».
 /// الفحص المحلي Ed25519 ظاهر + انتظار تدريجي بعد ٥ محاولات + مدخل تجريبي.
+/// F4.4: بتمرير activationApi يصير التفعيل حقيقياً على الخادم؛ بلا تمرير
+/// (الاختبارات) يبقى المسار المحلي «قيد التجهيز» كما كان.
 class ActivationGate extends StatefulWidget {
   const ActivationGate({
     super.key,
     required this.licenseStore,
     required this.onModeSet,
+    this.activationApi,
+    this.devicePubkeyB64 = '',
+    this.licenseKey,
   });
 
   final LicenseStore licenseStore;
   final VoidCallback onModeSet;
+  final ActivationApi? activationApi;
+  final String devicePubkeyB64;
+
+  /// مفتاح فحص بديل للاختبارات (الإنتاج: المفتاح المضمّن license_core).
+  final ed.PublicKey? licenseKey;
 
   @override
   State<ActivationGate> createState() => _ActivationGateState();
@@ -66,6 +80,43 @@ class _ActivationGateState extends State<ActivationGate> {
           Colors.red.shade300);
       return;
     }
+    // F4.4 — المسار الحقيقي: الخادم يوقّع الإيجار والفحص المحلي يعيد التحقق
+    if (widget.activationApi != null && widget.devicePubkeyB64.isNotEmpty) {
+      setState(() => _busy = true);
+      _say('جارٍ التحقق من الكود على خادم لورانيم...', Colors.blue.shade200);
+      try {
+        final r = await widget.activationApi!.activate(
+            digits, widget.devicePubkeyB64, _deviceFp());
+        if (!mounted) return;
+        if (r.ok && r.token != null) {
+          final check = checkLicense(r.token!,
+              nowMs: r.serverTimeMs, key: widget.licenseKey);
+          if (check.ok) {
+            await widget.licenseStore.save(_data.copyWith(
+              mode: LicenseMode.licensed,
+              token: r.token,
+              activatedAtMs: r.serverTimeMs,
+              lastWallMs: r.serverTimeMs, // مرساة زمن السيرفر (L4)
+              failures: 0,
+              lockUntilMs: 0,
+            ));
+            if (!mounted) return;
+            widget.onModeSet(); // يفكك البوابة — بلا setState بعدها
+            return;
+          }
+          await _recordFailure(false,
+              'التوقيع الرقمي لم يجتز الفحص المحلي — أعد المحاولة');
+          return;
+        }
+        await _recordFailure(r.countsAsAttempt, r.errorAr);
+        return;
+      } catch (_) {
+        if (!mounted) return;
+        await _recordFailure(
+            false, 'تعذر الوصول للخادم — تحقق من اتصال الإنترنت');
+        return;
+      }
+    }
     setState(() => _busy = true);
     _say('جارٍ فحص الكود على جهازك — التحقق من التوقيع الرقمي...',
         Colors.blue.shade200);
@@ -88,6 +139,35 @@ class _ActivationGateState extends State<ActivationGate> {
       _messageColor = Colors.orange.shade200;
     });
   }
+
+  /// تسجيل فشل تفعيل — يُحسب ضد قفل الانتظار حصراً إن كان خطأ كود
+  /// (انقطاع الشبكة/عطل الخادم لا يعاقَب — عدالة القفل docs/11 §٩).
+  Future<void> _recordFailure(bool counts, String msg) async {
+    final now = DateTime.now().millisecondsSinceEpoch;
+    final failures = counts ? _data.failures + 1 : _data.failures;
+    final lockMinutes = counts ? lockoutMinutesFor(failures) : 0;
+    final updated = _data.copyWith(
+      failures: failures,
+      lockUntilMs: counts ? now + lockMinutes * 60000 : 0,
+      lastWallMs: now,
+    );
+    await widget.licenseStore.save(updated);
+    if (!mounted) return;
+    setState(() {
+      _data = updated;
+      _busy = false;
+      _message = msg;
+      _messageColor = msg.contains('نجح') == false && counts
+          ? Colors.red.shade300
+          : Colors.orange.shade200;
+    });
+  }
+
+  /// بصمة الجهاز المرسلة — مشتقة من المفتاح العام (ثابتة بلا حزم خارجية؛
+  /// الانحراف عن AndroidId موثّق بالعقد §٩ — حزم device_info محجوبة).
+  String _deviceFp() =>
+      sha256.convert(utf8.encode(widget.devicePubkeyB64)).toString()
+          .substring(0, 16);
 
   Future<void> _enterTrial() async {
     final now = DateTime.now().millisecondsSinceEpoch;

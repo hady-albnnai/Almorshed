@@ -9,6 +9,9 @@ import 'core/progress/shared_prefs_store.dart';
 import 'core/theme/app_theme.dart';
 import 'core/training/shared_prefs_training_store.dart';
 import 'core/training/training_store.dart';
+import 'core/supabase/activation_api.dart';
+import 'core/supabase/anonymous_auth.dart';
+import 'core/supabase/supabase_transport.dart';
 import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
 import 'features/home/home_screen.dart';
@@ -25,6 +28,7 @@ class FizyaClashApp extends StatefulWidget {
     this.trainingStore,
     this.licenseStore,
     this.xpRecorder,
+    this.activationApiOverride,
     this.startOnHome = false, // الإنتاج: الرئيسية أولاً — الاختبارات: المنهاج مباشرة
   });
 
@@ -36,6 +40,9 @@ class FizyaClashApp extends StatefulWidget {
 
   /// حقن مخزن التدريب (F3.3)؛ الافتراضي shared_preferences.
   final TrainingStore? trainingStore;
+
+  /// حقن واجهة التفعيل (F4.4) — للاختبارات حصراً؛ الافتراضي: الخادم الحقيقي.
+  final ActivationApi? activationApiOverride;
 
   /// حقن مخزن الترخيص (F3.6)؛ الافتراضي shared_preferences.
   final LicenseStore? licenseStore;
@@ -63,7 +70,30 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
   XpRecorder get _xpRecorder =>
       widget.xpRecorder ?? (_sharedRecorder ??= XpRecorder.shared());
 
+  // F4.4 — نقلية الخادم الحقيقية (بناء بلا IO — آمن بالاختبارات)
+  late final ActivationApi _activationApi = widget.activationApiOverride ??
+      () {
+        final t = SupabaseTransport();
+        return ActivationApi(
+            transport: t,
+            auth: AnonymousAuth(
+                transport: t, store: SharedPrefsSessionStore()));
+      }();
+  String? _pubkeyB64;
+
   late Future<LicenseData> _licenseFuture = _license.load();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPubkey();
+  }
+
+  Future<void> _loadPubkey() async {
+    final k = await _xpRecorder.publicKeyB64();
+    if (!mounted) return;
+    setState(() => _pubkeyB64 = k);
+  }
 
   void _reloadLicense() => setState(() {
         _licenseFuture = _license.load();
@@ -106,9 +136,12 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
                   licSnap.data ?? const LicenseData();
               if (license.mode == LicenseMode.none) {
                 // F3.6: بوابة أول فتح — تظهر مرة واحدة ثم من «حسابي»
+                if (_pubkeyB64 == null) return const _Splash();
                 return ActivationGate(
                   licenseStore: _license,
                   onModeSet: _reloadLicense,
+                  activationApi: _activationApi,
+                  devicePubkeyB64: _pubkeyB64!,
                 );
               }
               // F3.8: الرئيسية شاشة الانطلاق — والمنهاج منها

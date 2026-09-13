@@ -1,0 +1,109 @@
+// ═════════════════════════════════════════════════════════════════════
+// F4.4 عميل — استدعاء license_activate وترجمة الأخطاء للعربية،
+// مع تمييز «خطأ كود يُحسب ضد قفل الانتظار» من «عطل شبكة/خادم لا يُحسب»
+// (عدالة قفل docs/11 §٩: يُعاقَب تخمين الأكواد لا انقطاع النت).
+// ═════════════════════════════════════════════════════════════════════
+import '../license/license_core.dart';
+import 'anonymous_auth.dart';
+import 'supabase_transport.dart';
+
+class ActivationAttempt {
+  const ActivationAttempt({
+    required this.ok,
+    this.token,
+    this.serverTimeMs = 0,
+    this.expiresAtMs = 0,
+    this.hardDeadlineMs = 0,
+    this.devicesUsed = 0,
+    this.errorAr = '',
+    this.countsAsAttempt = false,
+  });
+
+  final bool ok;
+  final LicenseToken? token;
+  final int serverTimeMs;
+  final int expiresAtMs;
+  final int hardDeadlineMs;
+  final int devicesUsed;
+  final String errorAr;
+  final bool countsAsAttempt;
+}
+
+class ActivationApi {
+  ActivationApi({required this.transport, required this.auth});
+
+  final SupabaseTransport transport;
+  final AnonymousAuth auth;
+
+  /// أكواد منطقية من الخادم (العقد §٢.٤) — تُحسب محاولات فاشلة.
+  static const Map<String, String> _codeErrors = <String, String>{
+    'ACT_CODE_NOT_FOUND': 'الكود غير معروف — تأكد منه من بطاقة المكتب',
+    'ACT_CODE_REVOKED': 'هذا الكود ملغى — راجع مكتب لورانيم',
+    'ACT_DEVICE_LIMIT': 'الكود مستهلك على جهازين — الحد الأقصى (قرار ٢٨)',
+    'CODE_FORMAT': 'صيغة الكود غير سليمة — ١٥ حرفاً بصيغة XXXXX-XXXXX-XXXXX',
+    'PUBKEY_FORMAT': 'مشكلة بمفتاح الجهاز — أعد تثبيت التطبيق',
+    'FP_FORMAT': 'مشكلة ببصمة الجهاز — أعد المحاولة',
+  };
+
+  Future<ActivationAttempt> activate(
+    String code,
+    String pubkeyB64,
+    String deviceFp,
+  ) async {
+    var session = await auth.session();
+    for (var attempt = 0; attempt < 2; attempt++) {
+      try {
+        final r = await transport.callFunction(
+          'license_activate',
+          <String, dynamic>{
+            'code': code,
+            'device_pubkey_b64': pubkeyB64,
+            'device_fp': deviceFp,
+          },
+          accessToken: session.accessToken,
+        );
+        final tokenJson =
+            (r['token'] as Map<String, dynamic>?) ?? const {};
+        final payload = tokenJson['payload'];
+        final sig = tokenJson['sig'];
+        if (payload is! String || sig is! String) {
+          return const ActivationAttempt(
+              ok: false, errorAr: 'رد خادم غير مكتمل', countsAsAttempt: false);
+        }
+        return ActivationAttempt(
+          ok: true,
+          token: LicenseToken(payloadB64: payload, sigB64: sig),
+          serverTimeMs: (r['server_time_ms'] as num?)?.toInt() ?? 0,
+          expiresAtMs: (r['expires_at'] as num?)?.toInt() ?? 0,
+          hardDeadlineMs: (r['hard_deadline'] as num?)?.toInt() ?? 0,
+          devicesUsed: (r['devices_used'] as num?)?.toInt() ?? 0,
+        );
+      } on TransportException catch (e) {
+        // جلسة انتهت أثناء الطريق؟ تجديد إجباري ومحاولة ثانية وحيدة
+        if (e.status == 401 && attempt == 0) {
+          session = await auth.session(forceNew: true);
+          continue;
+        }
+        final ar = _codeErrors[e.message];
+        if (ar != null) {
+          return ActivationAttempt(
+              ok: false, errorAr: ar, countsAsAttempt: true);
+        }
+        return ActivationAttempt(
+          ok: false,
+          errorAr: e.status >= 500 || e.status == 0
+              ? 'الخادم مشغول حالياً — أعد المحاولة بعد قليل'
+              : 'تعذر التفعيل (رمز ${e.status})',
+          countsAsAttempt: false,
+        );
+      } catch (_) {
+        return const ActivationAttempt(
+            ok: false,
+            errorAr: 'تعذر الوصول للخادم — تحقق من اتصال الإنترنت',
+            countsAsAttempt: false);
+      }
+    }
+    return const ActivationAttempt(
+        ok: false, errorAr: 'تعذر التفعيل', countsAsAttempt: false);
+  }
+}

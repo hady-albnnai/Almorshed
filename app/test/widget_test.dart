@@ -5,6 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:fizya_clash/core/content/models.dart';
 import 'package:fizya_clash/core/license/license_store.dart';
+import 'package:fizya_clash/core/supabase/activation_api.dart';
+import 'package:fizya_clash/core/supabase/anonymous_auth.dart';
+import 'package:fizya_clash/core/supabase/supabase_transport.dart';
 import 'package:fizya_clash/core/xp/streak_service.dart';
 import 'package:fizya_clash/core/progress/progress_store.dart';
 import 'package:fizya_clash/core/training/batch_builder.dart';
@@ -109,6 +112,35 @@ ContentPack _trainingPack() => ContentPack.fromJsonString(jsonEncode({
       ]
     }));
 
+/// زيف تفعيل افتراضي — سلوك «قيد التجهيز» القديم حرفياً (fix4:
+/// حقن الاختبار حتمي كامل — لا شبكة حقيقية في الاختبارات أبداً).
+class _PendingActivationApi extends ActivationApi {
+  _PendingActivationApi()
+      : super(
+          transport: SupabaseTransport(baseUrl: 'http://127.0.0.1:1'),
+          auth: AnonymousAuth(
+              transport: SupabaseTransport(baseUrl: 'http://127.0.0.1:1'),
+              store: _NoSessionStore()),
+        );
+  @override
+  Future<ActivationAttempt> activate(
+      String code, String pubkeyB64, String deviceFp) async =>
+      const ActivationAttempt(
+          ok: false,
+          errorAr: 'الكود غير معروف بعد — خادم التفعيل قيد التجهيز. '
+              'جرّب المحتوى التجريبي الآن',
+          countsAsAttempt: true);
+}
+
+class _NoSessionStore implements SessionStore {
+  @override
+  Future<String?> read() async => null;
+  @override
+  Future<void> write(String json) async {}
+  @override
+  Future<void> clear() async {}
+}
+
 /// مضخة بحزمة مخصصة — لاختبارات التدريب (F3.3).
 Future<void> pumpTrainingApp(WidgetTester tester,
     {required ContentPack pack,
@@ -128,6 +160,7 @@ Future<void> pumpTrainingApp(WidgetTester tester,
     // ⚠️ مُسجّل ذاكرة افتراضياً — لو مررنا null لبنى main مسجلاً مشتركاً
     // (Prefs + خزنة آمنة) ومكوناتها غير موجودة بالاختبار فانفجرت record()
     xpRecorder: xpRecorder ?? XpRecorder.inMemory(),
+    activationApiOverride: _PendingActivationApi(),
     startOnHome: startOnHome,
   ));
   await tester.pumpAndSettle();
@@ -147,6 +180,7 @@ void main() {
       trainingStore: InMemoryTrainingStore(),
       licenseStore: InMemoryLicenseStore.trial(), // المنهاج مباشرة بلا بوابة
       xpRecorder: XpRecorder.inMemory(), // كذلك: بلا plugins حقيقية بالاختبار
+      activationApiOverride: _PendingActivationApi(),
     ));
     await tester.pumpAndSettle();
   }

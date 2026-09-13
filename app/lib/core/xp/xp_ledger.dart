@@ -90,6 +90,11 @@ class XpLedgerService {
   Future<List<XpEvent>> _ensureEvents() async =>
       _events ??= await _store.loadEvents();
 
+  /// المفتاح العام للجهاز base64 — يُرسل مع التفعيل والمزامنة (F4.4:
+  /// «الكود يرتبط بمفتاح الجهاز» docs/11 §٦ — نفس مفتاح توقيع XP حصراً).
+  Future<String> publicKeyB64() async =>
+      base64Encode((await _ensureSigner()).publicKey);
+
   /// الأحداث المحملة (بعد أول عملية) — للعرض والفحص.
   Future<List<XpEvent>> events() => _ensureEvents();
 
