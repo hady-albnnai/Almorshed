@@ -64,7 +64,7 @@ void main() {
     // التطبيع: صغير/بلا مسرة/أخطاء O I L
     expect(RoomCode.decode('k7m2p9qw4x'), v);
     // التطبيع O⇒0 وI/L⇒1 — يقارن رمزين مكافئين (الاستبدال يغيّر v لا يقابله)
-    expect(RoomCode.decode('K7M2P-OQWIX'), RoomCode.decode('K7M2P-0QW11'));
+    expect(RoomCode.decode('K7M2P-OQWIX'), RoomCode.decode('K7M2P-0QW1X'));
     expect(() => RoomCode.decode('K7M2P-9QW4'), throwsFormatException);
     expect(() => RoomCode.decode('K7M2P-9QW4UI'), throwsFormatException); // U غريبة
   });

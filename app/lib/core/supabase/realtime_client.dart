@@ -289,7 +289,8 @@ class SupabaseRealtime {
       if (ch._joinCompleter != null) ch._resetForRejoin();
     }
     _tries++;
-    final delay = Duration(seconds: (1 << (_tries - 1)).clamp(1, 16));
+    final delay = Duration(
+        seconds: (1 << (_tries - 1)).clamp(1, 16).toInt()); // clamp يعيد num
     Timer(delay, _open);
   }
 
