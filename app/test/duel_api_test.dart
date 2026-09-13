@@ -56,7 +56,7 @@ const String _uuidHost = '11111111-1111-1111-1111-111111111111';
 
 void main() {
   test('myDeviceId: قراءة RLS بمفتاحي النقلية — uuid مستخرج', () async {
-    final spy = _Spy((m, p, q, b) => <String, dynamic>{':payload': ['x']});
+    final spy = _Spy((m, p, q, b) => <String, dynamic>{':payload': [<String, dynamic>{'id': 'x'}]});
     final base = await spy.start();
     final api = DuelApi(SupabaseTransport(baseUrl: base, anonKey: _anon));
     final id = await api.myDeviceId(accessToken: 'tok', pubkeyB64: 'PK9=');
