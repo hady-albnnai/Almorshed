@@ -40,149 +40,150 @@ typedef WsFactory = Future<WsChannel> Function(Uri uri);
 
 Future<WsChannel> ioWsFactory(Uri uri) => IoWsChannel.connect(uri);
 
-/// حالة قناة المبارزة.
-enum DuelChannelStatus { joining, joined, closed, error }
-
-/// قناة مبارزة واحدة (topic مثل duel:{uuid}) — بث + حضور.
-class DuelChannel {
-  DuelChannel._(
-    this._client,
-    this.topic,
-    {required String? presenceKey})
-      : _presenceKey = presenceKey ?? '' {
-    _client._channels.add(this);
-  }
-
-  final SupabaseRealtime _client;
-  final String topic;
-  final String _presenceKey;
-
-  final _status = StreamController<DuelChannelStatus>.broadcast();
-  final _broadcasts = StreamController<Map<String, dynamic>>.broadcast();
-  final _presenceJoins = StreamController<Map<String, dynamic>>.broadcast();
-  final _presenceLeaves = StreamController<Map<String, dynamic>>.broadcast();
-
-  String? _joinRef;
-  Completer<bool>? _joinCompleter;
-  bool _joinedOnce = false;
-
-  Stream<DuelChannelStatus> get status => _status.stream;
-  Stream<Map<String, dynamic>> get broadcasts => _broadcasts.stream;
-  Stream<Map<String, dynamic>> get presenceJoins => _presenceJoins.stream;
-  Stream<Map<String, dynamic>> get presenceLeaves => _presenceLeaves.stream;
-
-  /// الانضمام — يكتمل true عند phx_reply ok (مهلة 10 ثوانٍ ⇒ false).
-  Future<bool> join() async {
-    if (_joinCompleter != null) return _joinCompleter!.future;
-    final c = Completer<bool>();
-    _joinCompleter = c;
-    _status.add(DuelChannelStatus.joining);
-    final ref = _client._nextRef();
-    _joinRef = ref;
-    _client._send(<String, dynamic>{
-      'topic': 'realtime:$topic',
-      'event': 'phx_join',
-      'payload': <String, dynamic>{
-        'config': <String, dynamic>{
-          'broadcast': <String, dynamic>{'ack': false, 'self': false},
-          'presence': <String, dynamic>{'key': _presenceKey},
-        },
-        'access_token': _client._accessToken,
-      },
-      'ref': ref,
-      'join_ref': ref,
-    });
-    Timer(const Duration(seconds: 10), () {
-      if (!c.isCompleted) {
-        _status.add(DuelChannelStatus.error);
-        c.complete(false);
-      }
-    });
-    return c.future;
-  }
-
-  /// بث حدث على القناة (لا انتظار إقرار — ack:false بالتصميم).
-  bool sendBroadcast(String event, Map<String, dynamic> payload) {
-    final ref = _client._nextRef();
-    return _client._send(<String, dynamic>{
-      'topic': 'realtime:$topic',
-      'event': 'broadcast',
-      'payload': <String, dynamic>{
-        'type': 'broadcast',
-        'event': event,
-        'payload': payload,
-      },
-      'ref': ref,
-      'join_ref': _joinRef ?? ref,
-    });
-  }
-
-  /// تحديث توكن القناة (تجديد الوليدة المجهولة أثناء اللعب).
-  void updateToken() {
-    if (_joinRef == null) return;
-    final ref = _client._nextRef();
-    _client._send(<String, dynamic>{
-      'topic': 'realtime:$topic',
-      'event': 'access_token',
-      'payload': <String, dynamic>{'access_token': _client._accessToken},
-      'ref': ref,
-      'join_ref': _joinRef,
-    });
-  }
-
-  void _handleReply(Map<String, dynamic> msg) {
-    if (msg['ref'] != _joinRef) return;
-    final status = (msg['payload'] as Map<String, dynamic>?)?['status'];
-    if (status == 'ok') {
-      _joinedOnce = true;
-      _status.add(DuelChannelStatus.joined);
-      _joinCompleter?.complete(true);
-    } else {
-      _status.add(DuelChannelStatus.error);
-      if (_joinCompleter != null && !_joinCompleter!.isCompleted) {
-        _joinCompleter!.complete(false);
-      }
-    }
-  }
-
-  void _handle(Map<String, dynamic> msg) {
-    final event = msg['event'] as String?;
-    final payload = (msg['payload'] as Map<String, dynamic>?) ?? const {};
-    if (event == 'phx_reply') return _handleReply(msg);
-    if (event == 'broadcast') {
-      _broadcasts.add(<String, dynamic>{
-        'event': payload['event'],
-        'payload': (payload['payload'] as Map<String, dynamic>?) ?? const {},
-      });
-    } else if (event == 'presence_state') {
-      _presenceJoins.add(payload);
-    } else if (event == 'presence_diff') {
-      _presenceJoins.add((payload['joins'] as Map<String, dynamic>?) ?? const {});
-      _presenceLeaves.add(
-          (payload['leaves'] as Map<String, dynamic>?) ?? const {});
-    } else if (event == 'phx_close' || event == 'phx_error') {
-      _status.add(DuelChannelStatus.closed);
-      if (_joinCompleter != null && !_joinCompleter!.isCompleted) {
-        _joinCompleter!.complete(false);
-      }
-    }
-  }
-
-  void _resetForRejoin() {
-    _joinedOnce = false;
-    _joinRef = null;
-    _joinCompleter = null;
-    _status.add(DuelChannelStatus.closed);
-  }
-
-  void _dispose() {
-    _status.add(DuelChannelStatus.closed);
-    _status.close();
-    _broadcasts.close();
-    _presenceJoins.close();
-    _presenceLeaves.close();
-  }
-}
+//BISECT /// حالة قناة المبارزة.
+//BISECT enum DuelChannelStatus { joining, joined, closed, error }
+//BISECT 
+//BISECT /// قناة مبارزة واحدة (topic مثل duel:{uuid}) — بث + حضور.
+//BISECT class DuelChannel {
+//BISECT   DuelChannel._(
+//BISECT     this._client,
+//BISECT     this.topic,
+//BISECT     {required String? presenceKey})
+//BISECT       : _presenceKey = presenceKey ?? '' {
+//BISECT     _client._channels.add(this);
+//BISECT   }
+//BISECT 
+//BISECT   final SupabaseRealtime _client;
+//BISECT   final String topic;
+//BISECT   final String _presenceKey;
+//BISECT 
+//BISECT   final _status = StreamController<DuelChannelStatus>.broadcast();
+//BISECT   final _broadcasts = StreamController<Map<String, dynamic>>.broadcast();
+//BISECT   final _presenceJoins = StreamController<Map<String, dynamic>>.broadcast();
+//BISECT   final _presenceLeaves = StreamController<Map<String, dynamic>>.broadcast();
+//BISECT 
+//BISECT   String? _joinRef;
+//BISECT   Completer<bool>? _joinCompleter;
+//BISECT   bool _joinedOnce = false;
+//BISECT 
+//BISECT   Stream<DuelChannelStatus> get status => _status.stream;
+//BISECT   Stream<Map<String, dynamic>> get broadcasts => _broadcasts.stream;
+//BISECT   Stream<Map<String, dynamic>> get presenceJoins => _presenceJoins.stream;
+//BISECT   Stream<Map<String, dynamic>> get presenceLeaves => _presenceLeaves.stream;
+//BISECT 
+//BISECT   /// الانضمام — يكتمل true عند phx_reply ok (مهلة 10 ثوانٍ ⇒ false).
+//BISECT   Future<bool> join() async {
+//BISECT     if (_joinCompleter != null) return _joinCompleter!.future;
+//BISECT     final c = Completer<bool>();
+//BISECT     _joinCompleter = c;
+//BISECT     _status.add(DuelChannelStatus.joining);
+//BISECT     final ref = _client._nextRef();
+//BISECT     _joinRef = ref;
+//BISECT     _client._send(<String, dynamic>{
+//BISECT       'topic': 'realtime:$topic',
+//BISECT       'event': 'phx_join',
+//BISECT       'payload': <String, dynamic>{
+//BISECT         'config': <String, dynamic>{
+//BISECT           'broadcast': <String, dynamic>{'ack': false, 'self': false},
+//BISECT           'presence': <String, dynamic>{'key': _presenceKey},
+//BISECT         },
+//BISECT         'access_token': _client._accessToken,
+//BISECT       },
+//BISECT       'ref': ref,
+//BISECT       'join_ref': ref,
+//BISECT     });
+//BISECT     Timer(const Duration(seconds: 10), () {
+//BISECT       if (!c.isCompleted) {
+//BISECT         _status.add(DuelChannelStatus.error);
+//BISECT         c.complete(false);
+//BISECT       }
+//BISECT     });
+//BISECT     return c.future;
+//BISECT   }
+//BISECT 
+//BISECT   /// بث حدث على القناة (لا انتظار إقرار — ack:false بالتصميم).
+//BISECT   bool sendBroadcast(String event, Map<String, dynamic> payload) {
+//BISECT     final ref = _client._nextRef();
+//BISECT     return _client._send(<String, dynamic>{
+//BISECT       'topic': 'realtime:$topic',
+//BISECT       'event': 'broadcast',
+//BISECT       'payload': <String, dynamic>{
+//BISECT         'type': 'broadcast',
+//BISECT         'event': event,
+//BISECT         'payload': payload,
+//BISECT       },
+//BISECT       'ref': ref,
+//BISECT       'join_ref': _joinRef ?? ref,
+//BISECT     });
+//BISECT   }
+//BISECT 
+//BISECT   /// تحديث توكن القناة (تجديد الوليدة المجهولة أثناء اللعب).
+//BISECT   void updateToken() {
+//BISECT     if (_joinRef == null) return;
+//BISECT     final ref = _client._nextRef();
+//BISECT     _client._send(<String, dynamic>{
+//BISECT       'topic': 'realtime:$topic',
+//BISECT       'event': 'access_token',
+//BISECT       'payload': <String, dynamic>{'access_token': _client._accessToken},
+//BISECT       'ref': ref,
+//BISECT       'join_ref': _joinRef,
+//BISECT     });
+//BISECT   }
+//BISECT 
+//BISECT   void _handleReply(Map<String, dynamic> msg) {
+//BISECT     if (msg['ref'] != _joinRef) return;
+//BISECT     final status = (msg['payload'] as Map<String, dynamic>?)?['status'];
+//BISECT     if (status == 'ok') {
+//BISECT       _joinedOnce = true;
+//BISECT       _status.add(DuelChannelStatus.joined);
+//BISECT       _joinCompleter?.complete(true);
+//BISECT     } else {
+//BISECT       _status.add(DuelChannelStatus.error);
+//BISECT       if (_joinCompleter != null && !_joinCompleter!.isCompleted) {
+//BISECT         _joinCompleter!.complete(false);
+//BISECT       }
+//BISECT     }
+//BISECT   }
+//BISECT 
+//BISECT   void _handle(Map<String, dynamic> msg) {
+//BISECT     final event = msg['event'] as String?;
+//BISECT     final payload = (msg['payload'] as Map<String, dynamic>?) ?? const {};
+//BISECT     if (event == 'phx_reply') return _handleReply(msg);
+//BISECT     if (event == 'broadcast') {
+//BISECT       _broadcasts.add(<String, dynamic>{
+//BISECT         'event': payload['event'],
+//BISECT         'payload': (payload['payload'] as Map<String, dynamic>?) ?? const {},
+//BISECT       });
+//BISECT     } else if (event == 'presence_state') {
+//BISECT       _presenceJoins.add(payload);
+//BISECT     } else if (event == 'presence_diff') {
+//BISECT       _presenceJoins.add((payload['joins'] as Map<String, dynamic>?) ?? const {});
+//BISECT       _presenceLeaves.add(
+//BISECT           (payload['leaves'] as Map<String, dynamic>?) ?? const {});
+//BISECT     } else if (event == 'phx_close' || event == 'phx_error') {
+//BISECT       _status.add(DuelChannelStatus.closed);
+//BISECT       if (_joinCompleter != null && !_joinCompleter!.isCompleted) {
+//BISECT         _joinCompleter!.complete(false);
+//BISECT       }
+//BISECT     }
+//BISECT   }
+//BISECT 
+//BISECT   void _resetForRejoin() {
+//BISECT     _joinedOnce = false;
+//BISECT     _joinRef = null;
+//BISECT     _joinCompleter = null;
+//BISECT     _status.add(DuelChannelStatus.closed);
+//BISECT   }
+//BISECT 
+//BISECT   void _dispose() {
+//BISECT     _status.add(DuelChannelStatus.closed);
+//BISECT     _status.close();
+//BISECT     _broadcasts.close();
+//BISECT     _presenceJoins.close();
+//BISECT     _presenceLeaves.close();
+//BISECT   }
+//BISECT }
+//BISECT 
 
 /// عميل Realtime خفيف: اتصال واحد + نبض + إعادة اتصال بتراجع + قنوات.
 class SupabaseRealtime {
@@ -205,7 +206,7 @@ class SupabaseRealtime {
   bool _disposed = false;
   String _accessToken = '';
 
-  final List<DuelChannel> _channels = [];
+  //BISECT final List<DuelChannel> _channels = [];
   final _socketStatus = StreamController<bool>.broadcast(); // مفتوح؟
 
   /// مفتوح الآن؟ (مفيد لمؤشر الاتصال بالواجهة)
@@ -215,14 +216,9 @@ class SupabaseRealtime {
       .replaceFirst('https://', 'wss://')
       .replaceFirst('http://', 'ws://');
 
-  DuelChannel channel(String topic, {String? presenceKey}) =>
-      DuelChannel._(this, topic, presenceKey: presenceKey);
-
   Future<void> updateToken(String jwt) async {
     _accessToken = jwt;
-    for (final ch in _channels) {
-      ch.updateToken();
-    }
+    //BISECT قنوات معطلة بهذه الجولة
   }
 
   /// فتح الاتصال — يعيد المحاولة بتراجع 1→2→4…بسقف 16 ثانية.
@@ -254,13 +250,6 @@ class SupabaseRealtime {
           'ref': _nextRef(),
         });
       });
-      // إعادة انضمام القنوات بعد الفتح
-      for (final ch in _channels) {
-        if (ch._joinedOnce || ch._joinCompleter != null) {
-          ch._resetForRejoin();
-          ch.join();
-        }
-      }
     } catch (_) {
       _onDead();
     }
@@ -273,9 +262,6 @@ class SupabaseRealtime {
     } catch (_) {
       return;
     }
-    for (final ch in _channels) {
-      if (msg['topic'] == 'realtime:${ch.topic}') ch._handle(msg);
-    }
   }
 
   void _onDead() {
@@ -285,9 +271,6 @@ class SupabaseRealtime {
     _socket = null;
     if (!wasOpen) return; // ثانية من قناة ميتة أصلاً — لا مجدولة مزدوجة
     _socketStatus.add(false);
-    for (final ch in _channels) {
-      if (ch._joinCompleter != null) ch._resetForRejoin();
-    }
     _tries++;
     final delay = Duration(
         seconds: (1 << (_tries - 1)).clamp(1, 16).toInt()); // clamp يعيد num
@@ -311,10 +294,6 @@ class SupabaseRealtime {
     _disposed = true;
     _heartbeat?.cancel();
     _socketStatus.add(false);
-    for (final ch in _channels) {
-      ch._dispose();
-    }
-    _channels.clear();
     await _socket?.close();
     _socket = null;
     await _socketStatus.close();
