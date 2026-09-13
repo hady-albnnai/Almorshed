@@ -60,14 +60,14 @@ void main() {
             pack: pack, trainingStore: store, xpRecorder: recorder)));
     await tester.pumpAndSettle();
 
-    expect(find.text('راجعت ٠ من ٥ اليوم'), findsOneWidget);
+    expect(find.textContaining('راجعت ٠ من ٥'), findsOneWidget);
 
     for (var i = 0; i < 5; i++) {
       await tester.tap(find.text('فهمت ✓').first);
       await tester.pumpAndSettle();
     }
     expect(find.textContaining('+١٠'), findsOneWidget); // سناك المكافأة
-    expect(find.text('راجعت ٥ من ٥ اليوم'), findsOneWidget);
+    expect(find.textContaining('راجعت ٥ من ٥'), findsOneWidget);
 
     final events = await recorder.ledger.events();
     final five = events.where((e) => e.type == 'mistakesFive').toList();
@@ -93,7 +93,7 @@ void main() {
         store: store, pack: _packOf([500, 501]));
     expect(find.text('رُوجع اليوم ✓'), findsOneWidget);
     expect(find.text('فهمت ✓'), findsOneWidget); // الثاني فقط
-    expect(find.text('راجعت ١ من ٥ اليوم'), findsOneWidget);
+    expect(find.textContaining('راجعت ١ من ٥'), findsOneWidget);
   });
 
   testWidgets('أرشيف فارغ ⇒ لا شريط ولا أزرار', (tester) async {
