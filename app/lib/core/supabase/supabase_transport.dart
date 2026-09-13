@@ -138,15 +138,21 @@ class SupabaseTransport {
     final user = (r['user'] as Map<String, dynamic>?) ?? const {};
     final access = r['access_token'];
     final refresh = r['refresh_token'];
-    final expiresIn = (r['expires_in'] as num?)?.toInt() ?? 3600;
     if (access is! String || refresh is! String) {
       throw const TransportException(0, 'رد مصادقة غير متوقع');
     }
+    // زمن الانتهاء الرسمي من GoTrue (expires_at — ثوانٍ unix) حصراً؛
+    // الاشتقاق المحلي fallback حصراً (توقيت الساعة المحلية قد ينحرف — L4)
+    final official = (r['expires_at'] as num?)?.toInt();
+    final expiresAtMs = official != null
+        ? official * 1000
+        : DateTime.now().millisecondsSinceEpoch +
+            ((r['expires_in'] as num?)?.toInt() ?? 3600) * 1000;
     return AuthSession(
       userId: (user['id'] as String?) ?? '',
       accessToken: access,
       refreshToken: refresh,
-      expiresAtMs: DateTime.now().millisecondsSinceEpoch + expiresIn * 1000,
+      expiresAtMs: expiresAtMs,
     );
   }
 }

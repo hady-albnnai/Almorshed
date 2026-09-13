@@ -114,6 +114,7 @@ void main() {
         'access_token': 'a1',
         'refresh_token': 'r1',
         'expires_in': 3600,
+        'expires_at': _now ~/ 1000 + 3600, // الرسمي — محسوب من _now المحقون
         'user': <String, dynamic>{'id': 'u-1'},
       };
     });
@@ -141,16 +142,18 @@ void main() {
         return <String, dynamic>{
           'access_token': 'old',
           'refresh_token': 'rot1',
-          'expires_in': 10, // يهبط تحت هامش الدقيقة ⇒ غير صالح
+          'expires_at': _now ~/ 1000 + 10, // تحت هامش الدقيقة ⇒ غير صالحة
           'user': <String, dynamic>{'id': 'u-1'},
         };
       }
-      expect(path, '/auth/v1/token?grant_type=refresh_token');
+      // uri.path لا يتضمن query — الفحص على المسار وحده (لصقة 16)
+      expect(path, '/auth/v1/token');
       expect(body['refresh_token'], 'rot1');
       return <String, dynamic>{
         'access_token': 'new',
         'refresh_token': 'rot2',
         'expires_in': 3600,
+        'expires_at': _now ~/ 1000 + 3600,
         'user': <String, dynamic>{'id': 'u-1'},
       };
     });
@@ -176,6 +179,7 @@ void main() {
           'access_token': 'a1',
           'refresh_token': 'r1',
           'expires_in': 3600,
+          'expires_at': _now ~/ 1000 + 3600,
           'user': <String, dynamic>{'id': 'u-1'},
         };
       }
@@ -222,6 +226,7 @@ void main() {
           'access_token': 'a1',
           'refresh_token': 'r1',
           'expires_in': 3600,
+          'expires_at': _now ~/ 1000 + 3600,
           'user': <String, dynamic>{'id': 'u-1'},
         };
       }
@@ -259,6 +264,7 @@ void main() {
           'access_token': 'a1',
           'refresh_token': 'r1',
           'expires_in': 3600,
+          'expires_at': _now ~/ 1000 + 3600,
           'user': <String, dynamic>{'id': 'u-1'},
         };
       }
@@ -299,6 +305,7 @@ void main() {
           'access_token': 'a1',
           'refresh_token': 'r1',
           'expires_in': 3600,
+          'expires_at': _now ~/ 1000 + 3600,
           'user': <String, dynamic>{'id': 'u-1'},
         };
       }
