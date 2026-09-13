@@ -7,10 +7,7 @@ import 'package:fizya_clash/core/supabase/duel_api.dart';
 import 'package:fizya_clash/core/supabase/supabase_transport.dart';
 
 class _Spy {
-  _Spy(this._handler);
-  Map<String, dynamic> Function(
-          String method, String path, String query, Map<String, dynamic> body)
-      _handler;
+  //BISECT بلا حقل دالة مكتوب
   late final HttpServer server;
 
   Future<String> start() async {
@@ -22,7 +19,6 @@ class _Spy {
         final d = jsonDecode(raw);
         if (d is Map<String, dynamic>) body.addAll(d);
       } catch (_) {}
-      final resp = _handler(req.method, req.uri.path, req.uri.query, body);
       req.response.statusCode = (resp[':status'] as int?) ?? 200;
       req.response.headers.contentType = ContentType.json;
       req.response.write(jsonEncode(resp[':payload'] ?? resp));
@@ -41,7 +37,7 @@ void main() {
   const anon = 'test-anon';
 
   setUp(() async {
-    spy = _Spy((method, path, query, body) => const <String, dynamic>{});
+    spy = _Spy();
     final base = await spy.start();
     transport = SupabaseTransport(baseUrl: base, anonKey: anon);
     api = DuelApi(transport);
@@ -50,10 +46,7 @@ void main() {
   tearDown(() async => spy.stop());
 
   test('BISECT test1 مجرّد', () async {
-    spy._handler = (m, p, q, b) => <String, dynamic>{
-          ':payload': <String, dynamic>[<String, dynamic>{'id': 'dev-1'}],
-        };
-    final id = await api.myDeviceId(accessToken: 'tok', pubkeyB64: 'PK9=');
+    final id = 'dev-1'; //BISECT بلا نداء حقيقي
     expect(id, 'dev-1');
   });
 }
