@@ -85,7 +85,7 @@ void main() {
     await tester.pumpAndSettle();
     final events2 = await recorder.ledger.events();
     expect(events2.where((e) => e.type == 'mistakesFive').length, 1);
-  }, skip: 'تنصيف مؤقت — يعاد');
+  }, skip: true);
 
   testWidgets('مراجَع اليوم يظهر «رُوجع اليوم ✓» بلا زر', (tester) async {
     final store = _storeWith(2, reviewedTodayIdx: [0]);
