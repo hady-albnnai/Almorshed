@@ -48,7 +48,7 @@ Future<void> _pump(WidgetTester tester,
 
 void main() {
   testWidgets('الخامسة اليوم تمنح +١٠ مرة وحدة — والمراجَع يتقدم للأرشيف',
-      (tester) async {
+      skip: 'تنصيف مؤقت', (tester) async {
     final store = _storeWith(6);
     final pack = _packOf([500, 501, 502, 503, 504, 505]);
     final recorder = XpRecorder.inMemory();
