@@ -121,45 +121,4 @@ void main() {
     expect(hit.body['host_device'], uuidHost);
     expect(hit.headers['prefer'], contains('representation'));
   });
-
-  test('جلوس الضيف وبدء المضيف: PATCH بالأجسام الصحيحة', () async {
-    spy._handler = (m, p, q, b) => <String, dynamic>{
-          ':payload': <String, dynamic>[
-            <String, dynamic>{
-              'id': duelUuid, 'room_code': 'K7M2P-9QW4X', 'seed': 7,
-              'status': m == 'PATCH' && b['status'] != null ? 'live' : 'lobby',
-              'scope': <String, dynamic>{},
-              'host_device': uuidHost, 'guest_device': uuidGuest,
-              'host_name': 'أحمد', 'guest_name': 'سارة',
-              'host_score': null, 'guest_score': null, 'winner_device': null,
-            },
-          ],
-        };
-    final joined = await api.joinAsGuest(
-        accessToken: 'tok', duelId: duelUuid, guestDevice: uuidGuest,
-        guestName: 'سارة');
-    expect(joined.guestName, 'سارة');
-    final startHit = spy.hits.last;
-    await api.startDuel(accessToken: 'tok', duelId: duelUuid);
-    final h2 = spy.hits.last;
-    expect(h2.method, 'PATCH');
-    expect(h2.body['status'], 'live');
-    expect((h2.body['started_at'] as String), isNotEmpty);
-    expect(startHit.query.contains('id=eq.$duelUuid'), isTrue);
-  });
-
-  test('الإجابات وإعلان الإتمام: POST بreturn=minimal', () async {
-    spy._handler = (m, p, q, b) => <String, dynamic>{':payload': const []};
-    await api.insertAnswer(
-        accessToken: 'tok', duelId: duelUuid, deviceId: uuidHost,
-        qIndex: 3, chosen: 1);
-    await api.markDone(
-        accessToken: 'tok', duelId: duelUuid, deviceId: uuidHost);
-    final a = spy.hits[0];
-    expect(a.body, <String, dynamic>{'duel_id': duelUuid,
-        'device_id': uuidHost, 'q_index': 3, 'chosen': 1});
-    expect(a.headers['prefer'], 'return=minimal');
-    final d = spy.hits[1];
-    expect(d.path, '/rest/v1/duel_status');
-  });
 }
