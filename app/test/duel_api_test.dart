@@ -14,12 +14,7 @@ class _Spy {
   Future<String> start() async {
     server = await HttpServer.bind('127.0.0.1', 0);
     server.listen((req) async {
-      final raw = await utf8.decoder.bind(req).join();
-      Map<String, dynamic> body = const <String, dynamic>{};
-      if (raw.isNotEmpty) {
-        final decoded = jsonDecode(raw);
-        if (decoded is Map<String, dynamic>) body = decoded;
-      }
+      await utf8.decoder.bind(req).join(); //BISECT بلا decode
       req.response.statusCode = 200;
       req.response.headers.contentType = ContentType.json;
       req.response.write('{}');
