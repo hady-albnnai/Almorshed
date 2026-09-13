@@ -14,22 +14,18 @@ class _Spy {
           String method, String path, String query, Map<String, dynamic> body)
       _handler;
   late final HttpServer server;
-  final List<_Hit> hits = [];
+  final List<String> paths = <String>[];
 
   Future<String> start() async {
     server = await HttpServer.bind('127.0.0.1', 0);
     server.listen((req) async {
       final raw = await utf8.decoder.bind(req).join();
-      final body = <String, dynamic>{};
+      Map<String, dynamic> body = const {};
       try {
         final d = jsonDecode(raw);
-        if (d is Map<String, dynamic>) body.addAll(d);
+        if (d is Map<String, dynamic>) body = d;
       } catch (_) {}
-      hits.add(_Hit(req.method, req.uri.path, req.uri.query, {
-        'authorization': req.headers.value('authorization') ?? '',
-        'apikey': req.headers.value('apikey') ?? '',
-        'prefer': req.headers.value('prefer') ?? '',
-      }, body));
+      paths.add(req.uri.path);
       final resp = _handler(req.method, req.uri.path, req.uri.query, body);
       req.response.statusCode = (resp[':status'] as int?) ?? 200;
       req.response.headers.contentType = ContentType.json;
