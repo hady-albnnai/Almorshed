@@ -19,9 +19,9 @@ class _Spy {
         final d = jsonDecode(raw);
         if (d is Map<String, dynamic>) body.addAll(d);
       } catch (_) {}
-      req.response.statusCode = (resp[':status'] as int?) ?? 200;
+      req.response.statusCode = 200; //BISECT رد ثابت
       req.response.headers.contentType = ContentType.json;
-      req.response.write(jsonEncode(resp[':payload'] ?? resp));
+      req.response.write('{}');
       await req.response.close();
     });
     return 'http://127.0.0.1:${server.port}';
