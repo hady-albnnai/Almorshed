@@ -41,9 +41,9 @@ const CAPPED: Record<string, number> = {
 };
 const UNLIMITED: Record<string, number> = {
   cardReview: 1,
-  duelWin: 45,
-  duelLoss: 15,
 };
+// duelWin/duelLoss: النقاط مثبتة + duelId إلزامي — والدعوى الخادمية
+// (صف المبارزة/الفائز/٤٨ ساعة/بلا ادعاء مكرر) داخل verify_commit ذرياً (0005).
 // manual: نقاط مخصصة ١..١٠٠٠ + سبب إلزامي
 
 const json = (body: unknown, status = 200) =>
@@ -142,6 +142,16 @@ Deno.serve(async (req) => {
         if (points !== UNLIMITED[type])
           return json({ accepted: false,
             reason: `POINTS_MISMATCH:${type}`,
+            synced_up_to: lastSeq - 1 }, 422);
+      } else if (type === 'duelWin' || type === 'duelLoss') {
+        if (points !== (type === 'duelWin' ? 45 : 15))
+          return json({ accepted: false,
+            reason: `POINTS_MISMATCH:${type}`,
+            synced_up_to: lastSeq - 1 }, 422);
+        const duelId = ev.payload?.duelId;
+        if (typeof duelId !== 'string' ||
+            !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(duelId))
+          return json({ accepted: false, reason: 'DUEL_ID_FORMAT',
             synced_up_to: lastSeq - 1 }, 422);
       } else if (type === 'manual') {
         if (!Number.isInteger(points) || points < 1 || points > 1000)

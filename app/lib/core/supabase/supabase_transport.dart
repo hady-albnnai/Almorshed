@@ -107,6 +107,32 @@ class SupabaseTransport {
     return json;
   }
 
+  /// POST خام — يعيد List أو Map حسب الرد (PostgREST return=representation).
+  Future<dynamic> postJsonRaw(
+    String url,
+    Map<String, dynamic> body,
+    Map<String, String> headers,
+  ) async {
+    final request = await _client.postUrl(Uri.parse(url)).timeout(_timeout);
+    request.headers.set(HttpHeaders.contentTypeHeader, 'application/json');
+    headers.forEach(request.headers.set);
+    request.add(utf8.encode(jsonEncode(body)));
+    final response = await request.close().timeout(_timeout);
+    final text = await response.transform(utf8.decoder).join();
+    if (response.statusCode >= 400) {
+      Map<String, dynamic> err = const <String, dynamic>{};
+      try {
+        final d = jsonDecode(text);
+        if (d is Map<String, dynamic>) err = d;
+      } catch (_) {}
+      throw TransportException(
+          response.statusCode,
+          (err['error'] ?? err['msg'] ?? err['message'] ?? text).toString(),
+          body: err);
+    }
+    return jsonDecode(text);
+  }
+
   /// قراءة REST (PostgREST — F4.6: قراءات RLS للدوري والأجهزة).
   /// يعيد List/Map حسب المسار — المتصل يصبّها بنوعه.
   Future<dynamic> getJson(
@@ -120,6 +146,25 @@ class SupabaseTransport {
     if (response.statusCode >= 400) {
       throw TransportException(response.statusCode, text);
     }
+    return jsonDecode(text);
+  }
+
+  /// ترقيع REST (PostgREST — المبارزات M5: جلوس الضيف/بدء المضيف).
+  Future<dynamic> patchJson(
+    String url,
+    Map<String, dynamic> body,
+    Map<String, String> headers,
+  ) async {
+    final request = await _client.patchUrl(Uri.parse(url)).timeout(_timeout);
+    request.headers.set(HttpHeaders.contentTypeHeader, 'application/json');
+    headers.forEach(request.headers.set);
+    request.add(utf8.encode(jsonEncode(body)));
+    final response = await request.close().timeout(_timeout);
+    final text = await response.transform(utf8.decoder).join();
+    if (response.statusCode >= 400) {
+      throw TransportException(response.statusCode, text);
+    }
+    if (text.isEmpty) return const <String, dynamic>{};
     return jsonDecode(text);
   }
 

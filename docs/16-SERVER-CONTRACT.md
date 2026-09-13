@@ -429,6 +429,9 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 8 | سر التوقيع `SIGNING_SEED_B64` + المفتاح العام بالعميل | أداة المالك | ✅ البذرة بأسرار المنصة (على مستوى المشروع) + العامة `a4Fzh3MYmy1yw60q3Ve0/6AOZVIoLfjvl3G1n5GMQz8=` مضمّنة بlicense_core (de4c50a) |
 | 9 | pg_cron: تفعيل الإضافة + فك تعليق الجدولة | ذيل 0002 | ✅ مُجدوَل (تحقق المالك: league_rollup | 5 21 * * 0 — صف واحد بcron.job) |
 | 10 | اختبار الدخان | curl §٧ | ✅ **تفعيل حقيقي كامل** (2026-09-13): signup مجهول → license_activate بكود حقيقي → ok:true+activated_now:true — **والتوكن مُتحقق منه محلياً بمستقل RFC 8032**: التوقيع سليم بمفتاح المالك + ربط الجهاز = المتجه الذهبي + 30ي + سقف 2027-05-01 + flags[full] — الحلقة التشفيرية مغلقة من الطرفين |
+| 11 | جداول المبارزات (duels/duel_answers/duel_status/content_questions) + RLS + زناد الحارس + سياسات القناة الخاصة + verify_commit بدعوى المبارزة | `0005_duels.sql` | ⬜ بانتظار تطبيق المالك — التحقق المقترح: 3 جداول duel* بRLS مفعلة + الفهارس + صفّا السياسة على realtime.messages |
+| 12 | دالة حكم المبارزة (server-referential) | `functions/duel_finish/index.ts` + `functions/_shared/duel_session.ts` | ⬜ بانتظار النشر — المنفذ مطابق بتّياً (متجهات §٩-١٠) |
+| 13 | بنك المبارزات — المعتمد حصراً (قرار ٢٤) | `docs/supabase/content_index.sql` مولَّد من `tools/gen_content_index.py` | ⬜ يُولَّد ويُطبَّق **بعد اعتماد الأستاذ للأسئلة** (اليوم: 0 صف معتمد) |
 
 طريقة 5-7 (بلا CLI): اللوحة ← **Edge Functions** ← Create a new function
 ← «I have function code that I want to deploy» — الاسم مطابق للمجلد،
@@ -546,3 +549,64 @@ traversal غير مطروح (لا ملفات بأسماء مدخلة)؛ والف
 | 2026-09-13 | **منصة**: allowBackup=false + dataExtractionRules (رفض سحابي/نقل) + usesCleartextTraffic=false + R8/minify/shrink للإصدار + proguard-rules | بناء الإصدار الأول يُدخّن يدوياً بM7 |
 | 2026-09-13 | **أرضية ساعة رتيبة** ب«حسابي» (max(now, lastWall)) + تدقيق شامل §٨-د بمصفوفة التهديدات | لا شيء — فحص أصرم |
 | 2026-09-13 | **جلسة**: اعتماد expires_at الرسمي من GoTrue (لا اشتقاق الساعة المحلية) + تجديد فوري للوليدة القريبة من الانتهاء (لصقتا 16/17 — أخضر 34654ff 144/144) | عميل أدق زمنياً — لا تغيير عقد |
+
+---
+
+## ٩. المبارزات الحية — duel_finish + القنوات الخاصة (M5 / F5.1+F5.2)
+
+> أُضيف 2026-09-13 — التطبيق على المالك بعناصر اللائحة 11-13 أعلاه.
+
+### ٦.٠ البذرة والنطاق (تحديث قاعدة §٦-legal)
+- `seed = (scopeTag << 50) | roomCode` — roomCode = ٥٠ بت Crockford-32 (١٠ محارف `K7M2P-9QW4X`).
+- **scopeTag = 13 بت حصراً** (`& 0x1FFF` من أول بايتي sha256(نص النطاق)) — لا 14 كما بالمسودة:
+  `bigint` بpostgres **موقّع** والبذرة يجب أن تبقى `< 2^63`. قرار تقني نهائي.
+- نص النطاق القياسي: `duel-v1|{units مرتبة بفواصل}|count={n}|mode={m}|pack={packTag}` —
+  مطابق بين Dart (`duel_engine.dart`) وTS (`duel_session.ts`).
+- **التحقق الثلاثي مثبت**: متجهات ذهبية واحدة للجميع — `tools/duel_session_vectors_check.ts`
+  (تشغيله: `node --experimental-strip-types tools/duel_session_vectors_check.ts`) —
+  mix64/تيار/بناء الجلسة/عملة كسر التعادل/scopeTag كلها بتّياً متطابقة Dart↔TS↔Python.
+
+### ٦.١ الجداول (0005)
+| جدول | الغرض | الحماية |
+|---|---|---|
+| `content_questions` | بنك المبارزة: id/unit/chapter/chapter_index/correct_index/options_n — **معرفات بلا نصوص** (قرار ٥٥) | RLS بلا سياسات — service_role يقرأ حصراً |
+| `duels` | المبارزة: room_code/seed/scope/status(lobby·live·done·void)/طرفان/نقاط/فائز/claim_seq | RLS: قراءة اللوبي لأي موثق + المشارك دائماً؛ إدراج للمضيف حصراً؛ **زناد `duels_guard`**: العميل لا يلمس الحكم (status/scores/winner/claims/seed) ولا طابع البدء منفرداً — المضيف وحده يبدأ من لوبي فيه الضيف |
+| `duel_answers` | إجابات الحقيقة المخزنة (pk: duel+device+q_index) | RLS: مشارك حي يكتب إجابته حصراً |
+| `duel_status` | إعلان «أنهيتُ» | RLS: مشارك حي يكتب حصراً |
+
+### ٦.٢ `duel_finish` — الحكم الخادمي
+- نداء: `POST /functions/v1/duel_finish` بترويسات GoTrue — الجسم `{duel_id}`.
+- التسلسل: هوية ⇒ المبارزة من القاعدة ⇒ مشارك؟ ⇒ (idempotent لو done) ⇒ اتساق
+  scopeTag داخل البذرة (SCOPE_MISMATCH) ⇒ البنك من content_questions (CONTENT_MISSING) ⇒
+  **إعادة توليد الجلسة من البذرة** ⇒ فحص كل إجابة مخزنة (BAD_ANSWER يرفض الكل) ⇒
+  اكتمال الطرفين (إعلان/إجابات كاملة/مهلة count×20ث+60ث) ⇒ التصحيح:
+  صحيح = ١٠٠×مضاعف (٣ متتالية ×٢، ٦ ×٣) ⇒ الحسم: نقاط ← صحيحات ← عملة streamC
+  (أول قيمة `SplitMix64(seed⊕0xC0FFEE)`؛ زوجي ⇒ المضيف — مطابق للعميل حرفياً).
+- الإقفال الذري: تحديث من `status='live'` حصراً؛ نداء متزامن يعيد النتيجة المخزنة.
+- الردود: `200 {ok:true, host_score, guest_score, winner_device, tie_break, corrects[], my_device}` ·
+  `200 {ok:true, already:true, …}` · `409 NOT_LIVE|NOT_DONE_YET|WAITING_OPPONENT|COMMIT_RACE` ·
+  `422 SCOPE_MISMATCH|CONTENT_MISSING|BAD_ANSWER|DUEL_ID_FORMAT` · `403 NOT_PARTICIPANT` · `404 NO_DUEL`.
+
+### ٦.٣ دعوى XP المبارزة — ذرية مع الإيداع (0005 داخل verify_commit)
+- `duelWin` (45): يقبل حصراً لو `duels.status='done'` ∧ `winner_device=الجهاز` ∧
+  `winner_claim_seq IS NULL` ∧ `ended_at > now()-48h` — وإلا `VZ_DUEL` ⇒ رفض الدفعة كلها.
+- `duelLoss` (15): الطرف الآخر بنفس الشروط — سحب الجهاز (single forfeit) لا يمنح +15 لأحد.
+- `verify_xp_events` (TS) يفرض `payload.duelId` بصيغة uuid لالنوعين — والدعوى نفسها
+  داخل معاملة `verify_commit` (لا نافذة تسرب بين القبول والإيداع).
+
+### ٦.٤ القناة الخاصة `duel:{uuid}` (F5.2)
+- بروتوكول Phoenix vsn=1.0.0 على `wss://{ref}.supabase.co/realtime/v1/websocket?apikey=…&vsn=1.0.0` —
+  مظروف `{topic='realtime:'+name, event, payload, ref, join_ref}`؛ نبض ≤25ث على topic `phoenix`؛
+  الانضمام الخاص يحمل `access_token` داخل payload الانضمام، والتجديد بحدث `access_token`.
+- الانضمام بـ`private:true` ⇒ تفعيل RLS على `realtime.messages` بسياستي
+  `duel_channel_read/write`: `extension in ('broadcast','presence') ∧ duel_participant_of_topic()`
+  — سماع وبث للمشاركين حصراً (التزامن المزيف مرفوض خادمياً).
+- أحداث البث المعتمدة (عرض حصراً — الحقيقة بالجداول): `start {startAtMs}` ·
+  `ans {i, c, streak, score, by}` · `done {by}`. الحضور بمفتاح device uuid.
+
+### ٦.٥ نشر المالك (ترتيب اللائحة 11→12→13)
+1. تطبيق `0005_duels.sql` من SQL Editor (إن شاء Realtime غير مفعّل: فعّله ثم أعد قسم السياسات).
+2. نشر `duel_finish` (نمط اللائحة 5-7) — لا تنسَ `_shared` يُلحق آلياً بالنشر من اللوحة؟
+   **لا**: النشر من اللوحة يرفع ملفاً واحداً ⇒ الصق `duel_session.ts` داخل
+   `duel_finish/index.ts` أعلى الدالة عند النشر اليدوي (أو استخدم `supabase functions deploy duel_finish` بCLI فيلحق _shared آلياً).
+3. بعد اعتماد الأستاذ: `python3 tools/gen_content_index.py` ثم تطبيق الناتج.
