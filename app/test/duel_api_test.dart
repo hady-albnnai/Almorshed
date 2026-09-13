@@ -39,7 +39,9 @@ class _Spy {
 }
 
 void main() {
-  test('BISECT تافه', () {
+  test('E2d — _Spy مستخدمة بلا أي unused', () {
+    final spy = _Spy((method, path, query, body) => <String, dynamic>{});
+    expect(spy.paths, isEmpty);
     expect(SupabaseTransport, isNotNull);
     expect(jsonEncode(<String, int>{'a': 1}), '{"a":1}');
     expect(HttpServer, isNotNull);
