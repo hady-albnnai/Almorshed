@@ -3,6 +3,7 @@
 /// يرفض ١٠٠٪ (تعديل payload، حذف حدث، توقيع مزيف — docs/12 §٨-4).
 library;
 
+import 'dart:convert';
 import 'dart:typed_data';
 
 import '../../core/xp/xp_event.dart';
