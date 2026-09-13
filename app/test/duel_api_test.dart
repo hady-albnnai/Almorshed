@@ -61,11 +61,8 @@ void main() {
   const uuidGuest = '22222222-2222-2222-2222-222222222222';
   const duelUuid = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 
-  setUp(() async {
-    spy = _Spy((method, path, query, body) => const <String, dynamic>{});
-    final base = await spy.start();
-    transport = SupabaseTransport(baseUrl: base, anonKey: anon);
-    api = DuelApi(transport);
+  setUp(() {
+    //BISECT ج٢٧ — جسم التهيئة معلّق
   });
 
   tearDown(() async => spy.stop());
