@@ -27,7 +27,7 @@ TrainingStore _storeWith(int n, {List<int>? reviewedTodayIdx}) {
 
 ContentPack _packOf(List<int> ids) => ContentPack.fromJsonString('''
 {"packId":"t","year":2027,"edition":1,"units":[],
- "questions":[${ids.map((id) => '{"id":$id,"unit":"U1","chapter":"U1C1","front":"س$id","back":"ج$id","options":["أ","ب","ج","د"],"correct":1,"level":1}').join(",")}]}
+ "questions":[${ids.map((id) => '{"id":$id,"unit":"U1","chapter":"U1C1","stem":"س$id","options":["أ","ب","ج","د"],"correctIndex":1}').join(",")}]}
 ''');
 
 Future<void> _pump(WidgetTester tester,
