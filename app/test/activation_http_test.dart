@@ -14,6 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/license/license_core.dart';
 import 'package:fizya_clash/core/license/license_store.dart';
 import 'package:fizya_clash/core/supabase/activation_api.dart';
+import 'package:fizya_clash/features/activation/activation_gate.dart';
 import 'package:fizya_clash/core/supabase/anonymous_auth.dart';
 import 'package:fizya_clash/core/supabase/http_xp_sync_api.dart';
 import 'package:fizya_clash/core/supabase/supabase_transport.dart';
@@ -26,7 +27,7 @@ const _now = 1790000000000;
 class _SpyServer {
   _SpyServer(this._handler);
 
-  final Future<Map<String, dynamic>> Function(
+  final Map<String, dynamic> Function(
           String path, Map<String, String> headers, Map<String, dynamic> body)
       _handler;
 
@@ -47,7 +48,7 @@ class _SpyServer {
         'apikey': req.headers.value('apikey') ?? '',
       };
       paths.add(req.uri.path);
-      final resp = await _handler(req.uri.path, headers, body);
+      final resp = _handler(req.uri.path, headers, body);
       req.response.statusCode = (resp[':status'] as int?) ?? 200;
       req.response.headers.contentType = ContentType.json;
       req.response.write(jsonEncode(resp[':payload'] ?? resp));

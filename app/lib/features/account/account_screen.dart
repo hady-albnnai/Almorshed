@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'dart:convert' show base64;
+import 'dart:convert' show base64Decode;
 
 import '../../core/license/license_core.dart';
 import '../../core/license/license_store.dart';

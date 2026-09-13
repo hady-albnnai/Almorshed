@@ -82,6 +82,9 @@ class XpRecorder {
 
   final XpLedgerService ledger;
 
+  /// المفتاح العام للجهاز base64 — يُرسل مع التفعيل والمزامنة (F4.4).
+  Future<String> publicKeyB64() => ledger.publicKeyB64();
+
   Future<bool> record(
     String typeId, {
     Map<String, dynamic>? extra,

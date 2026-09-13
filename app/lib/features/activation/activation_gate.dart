@@ -7,7 +7,7 @@ import '../../core/supabase/activation_api.dart';
 import '../../core/theme/app_colors.dart';
 import 'package:crypto/crypto.dart';
 import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
-import 'dart:convert' show base64, utf8;
+import 'dart:convert' show base64Decode, utf8;
 
 /// F3.6 — بوابة أول فتح (قرار ٣٨/٤٤ — مطابقة النموذج s-activate):
 /// «تظهر مرة واحدة عند أول فتح — بعدها تُدار من حسابي».
