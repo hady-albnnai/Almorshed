@@ -191,8 +191,8 @@ class SupabaseRealtime {
     required this.baseUrl,
     required this.anonKey,
     this.heartbeatInterval = const Duration(seconds: 20),
-    WsFactory wsFactory = ioWsFactory,
-  }) : _wsFactory = wsFactory;
+    WsFactory? wsFactory, //BISECT بلا قيمة افتراضية — tear-off ربما غير ثابت هنا
+  }) : _wsFactory = wsFactory ?? ioWsFactory;
 
   final String baseUrl; // مثل https://xdk….supabase.co
   final String anonKey;
@@ -274,7 +274,10 @@ class SupabaseRealtime {
     _tries++;
     final delay = Duration(
         seconds: (1 << (_tries - 1)).clamp(1, 16).toInt()); // clamp يعيد num
-    Timer(delay, _open);
+    Timer(delay, () {
+      //BISECT استدعاء صريح بدل tear-off
+      _open();
+    });
   }
 
   int _nextRef() => ++_ref;
