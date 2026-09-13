@@ -1,20 +1,17 @@
 // ═════════════════════════════════════════════════════════════════════
-// F4.3/F4.4/F4.5 عميل — نقلية Supabase ضد خادم تجسس محلي حقيقي:
-// أشكال الطلبات (مسار/رؤوس/جسم) + كاش الجلسة والتجديد + ترجمة الأخطاء
-// + عقد verify_xp_events (رفض 422 = ردّ لا انقطاع). صفر شبكة خارجية.
+// نقلية Supabase ضد خادم تجسس محلي حقيقي — ملف خالص بلا testWidgets
+// (الربط الاختباري يخطف HTTP ويجيبه 400 زائفاً — لصقة 15: الفصل إلزامي).
+// أشكال الطلبات + كاش الجلسة والتجديد + ترجمة الأخطاء + عقد verify.
 // ═════════════════════════════════════════════════════════════════════
 import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 
-import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
-import 'package:flutter/material.dart';
 import 'package:crypto/crypto.dart';
+import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/license/license_core.dart';
-import 'package:fizya_clash/core/license/license_store.dart';
 import 'package:fizya_clash/core/supabase/activation_api.dart';
-import 'package:fizya_clash/features/activation/activation_gate.dart';
 import 'package:fizya_clash/core/supabase/anonymous_auth.dart';
 import 'package:fizya_clash/core/supabase/http_xp_sync_api.dart';
 import 'package:fizya_clash/core/supabase/supabase_transport.dart';
@@ -71,7 +68,6 @@ XpEvent _event() => XpEvent(
     );
 
 void main() {
-  // F4.4-تحصين: ربط التوكن بالجهاز — توقيع حقيقي بمفتاح اختبار ثم فحص
   test('ربط الجهاز: هاش مطابق ⇒ valid وغير مطابق/فارغ ⇒ wrongDevice', () {
     final priv = ed.newKeyFromSeed(
         Uint8List.fromList(List<int>.generate(32, (i) => i + 1)));
@@ -332,104 +328,4 @@ void main() {
     }
   });
 
-  testWidgets('F4.4: البوابة بالمسار الحقيقي — توكن سليم ⇒ مرخّص + مخزن محفوظ',
-      (tester) async {
-    // زوج مفاتيح اختبار — البوابة تفحص به (حقن كامل)
-    final priv = ed.newKeyFromSeed(
-        Uint8List.fromList(List<int>.generate(32, (i) => i + 1)));
-    final pub = ed.public(priv);
-    final token = LicenseToken.issue(
-      const LicensePayload(
-        codeId: 'K7M2P9QW4X4TR8N',
-        // ربط الجهاز: sha256('ABCDEFGH') — متجه العقد §٦
-        deviceKeyHash: '9ac2197d9258257b1ae8463e4214e4cd0a578bc1517f2415928b91be4283fc48',
-        releaseId: '2027-v1',
-        expiresAtMs: _now + 86400000,
-        hardDeadlineMs: 1835904000000,
-        flags: <String>{'full'},
-      ),
-      priv,
-    );
-    var modeSet = false;
-    final store = InMemoryLicenseStore();
-
-    await tester.pumpWidget(MaterialApp(
-        home: ActivationGate(
-      licenseStore: store,
-      onModeSet: () => modeSet = true,
-      devicePubkeyB64: 'QUJDREVGR0g=',
-      licenseKey: pub,
-      activationApi: _StaticActivationApi(ActivationAttempt(
-        ok: true,
-        token: token,
-        serverTimeMs: _now,
-        devicesUsed: 1,
-      )),
-    )));
-    await tester.pumpAndSettle();
-
-    await tester.enterText(
-        find.byType(TextField), 'K7M2P-9QW4X-4TR8N');
-    await tester.pump();
-    await tester.tap(find.text('تفعيل ✓'));
-    await tester.pumpAndSettle();
-
-    expect(modeSet, true);
-    final saved = await store.load();
-    expect(saved.mode, LicenseMode.licensed);
-    expect(saved.token?.payloadB64, token.payloadB64);
-    expect(saved.lastWallMs, _now); // مرساة السيرفر
-    expect(saved.failures, 0);
-  });
-
-  testWidgets('F4.4: فشل منطقي يعدّ العداد وشبكي لا يعدّه', (tester) async {
-    final store = InMemoryLicenseStore();
-    await tester.pumpWidget(MaterialApp(
-        home: ActivationGate(
-      licenseStore: store,
-      onModeSet: () {},
-      devicePubkeyB64: 'QUJDREVGR0g=',
-      activationApi: _StaticActivationApi(const ActivationAttempt(
-          ok: false, errorAr: 'الكود غير معروف', countsAsAttempt: true)),
-    )));
-    await tester.pumpAndSettle();
-    await tester.enterText(find.byType(TextField), 'K7M2P-9QW4X-4TR8N');
-    await tester.pump();
-    await tester.tap(find.text('تفعيل ✓'));
-    await tester.pumpAndSettle();
-    expect((await store.load()).failures, 1);
-
-    await tester.pumpWidget(MaterialApp(
-        home: ActivationGate(
-      licenseStore: store,
-      onModeSet: () {},
-      devicePubkeyB64: 'QUJDREVGR0g=',
-      activationApi: _StaticActivationApi(const ActivationAttempt(
-          ok: false, errorAr: 'انقطع الاتصال', countsAsAttempt: false)),
-    )));
-    await tester.pumpAndSettle();
-    await tester.enterText(find.byType(TextField), 'K7M2P-9QW4X-4TR8N');
-    await tester.pump();
-    await tester.tap(find.text('تفعيل ✓'));
-    await tester.pumpAndSettle();
-    expect((await store.load()).failures, 1); // لم يزد — عادل
-  });
-}
-
-/// زيف ثابت الرد — مسار البوابة بلا شبكة إطلاقاً.
-class _StaticActivationApi extends ActivationApi {
-  _StaticActivationApi(this._result)
-      : super(
-          transport: SupabaseTransport(baseUrl: 'http://127.0.0.1:1'),
-          auth: AnonymousAuth(
-              transport: SupabaseTransport(baseUrl: 'http://127.0.0.1:1'),
-              store: InMemorySessionStore()),
-        );
-
-  final ActivationAttempt _result;
-
-  @override
-  Future<ActivationAttempt> activate(
-          String code, String pubkeyB64, String deviceFp) async =>
-      _result;
 }
