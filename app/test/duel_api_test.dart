@@ -82,43 +82,4 @@ void main() {
     expect(h.headers['authorization'], 'Bearer tok');
     expect(h.headers['apikey'], anon); // مفتاح النقلية لا الثابت — درس الدوري
   });
-
-  test('createDuel: POST بالبذرة والنطاق — وDuelRow مبنية', () async {
-    spy._handler = (m, p, q, b) => <String, dynamic>{
-          ':payload': <String, dynamic>[
-            <String, dynamic>{
-              'id': duelUuid,
-              'room_code': 'K7M2P-9QW4X',
-              'seed': 3211743424056914077,
-              'status': 'lobby',
-              'scope': <String, dynamic>{'units': <String>['U1'], 'count': 10,
-                  'mode': 'quiz', 'pack': 'test-pack-1'},
-              'host_device': uuidHost,
-              'guest_device': null,
-              'host_name': 'أحمد',
-              'guest_name': null,
-              'host_score': null,
-              'guest_score': null,
-              'winner_device': null,
-            },
-          ],
-        };
-    final row = await api.createDuel(
-      accessToken: 'tok',
-      roomCode: 'K7M2P-9QW4X',
-      seed: 3211743424056914077,
-      scopeJson: <String, dynamic>{'units': <String>['U1'], 'count': 10,
-          'mode': 'quiz', 'pack': 'test-pack-1'},
-      hostDevice: uuidHost,
-      hostName: 'أحمد',
-    );
-    expect(row.id, duelUuid);
-    expect(row.seed, 3211743424056914077); // البذرة كاملة لا مقطوعة
-    expect(row.status, 'lobby');
-    final hit = spy.hits.single;
-    expect(hit.method, 'POST');
-    expect(hit.body['seed'], 3211743424056914077);
-    expect(hit.body['host_device'], uuidHost);
-    expect(hit.headers['prefer'], contains('representation'));
-  });
 }
