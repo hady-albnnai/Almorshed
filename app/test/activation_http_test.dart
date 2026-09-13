@@ -8,6 +8,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/license/license_core.dart';
 import 'package:fizya_clash/core/license/license_store.dart';
@@ -18,7 +19,7 @@ import 'package:fizya_clash/core/supabase/supabase_transport.dart';
 import 'package:fizya_clash/core/sync/sync_engine.dart';
 import 'package:fizya_clash/core/xp/xp_event.dart';
 
-final _now = 1790000000000;
+const _now = 1790000000000;
 
 /// خادم تجسس: يسجّل (مسار، بروتوكول مصادقة، جسم) ويردّ بحسب السيناريو.
 class _SpyServer {
@@ -299,7 +300,7 @@ void main() {
         Uint8List.fromList(List<int>.generate(32, (i) => i + 1)));
     final pub = ed.public(priv);
     final token = LicenseToken.issue(
-      LicensePayload(
+      const LicensePayload(
         codeId: 'K7M2P9QW4X4TR8N',
         deviceKeyHash: '',
         releaseId: '2027-v1',
@@ -312,7 +313,8 @@ void main() {
     var modeSet = false;
     final store = InMemoryLicenseStore();
 
-    await tester.pumpWidget(ActivationGate(
+    await tester.pumpWidget(MaterialApp(
+        home: ActivationGate(
       licenseStore: store,
       onModeSet: () => modeSet = true,
       devicePubkeyB64: 'QUJDREVGR0g=',
@@ -323,7 +325,7 @@ void main() {
         serverTimeMs: _now,
         devicesUsed: 1,
       )),
-    ));
+    )));
     await tester.pump();
 
     await tester.enterText(
@@ -342,13 +344,14 @@ void main() {
 
   testWidgets('F4.4: فشل منطقي يعدّ العداد وشبكي لا يعدّه', (tester) async {
     final store = InMemoryLicenseStore();
-    await tester.pumpWidget(ActivationGate(
+    await tester.pumpWidget(MaterialApp(
+        home: ActivationGate(
       licenseStore: store,
       onModeSet: () {},
       devicePubkeyB64: 'QUJDREVGR0g=',
       activationApi: _StaticActivationApi(const ActivationAttempt(
           ok: false, errorAr: 'الكود غير معروف', countsAsAttempt: true)),
-    ));
+    )));
     await tester.pump();
     await tester.enterText(find.byType(TextField), 'K7M2P-9QW4X-4TR8N');
     await tester.pump();
@@ -356,13 +359,14 @@ void main() {
     await tester.pump();
     expect((await store.load()).failures, 1);
 
-    await tester.pumpWidget(ActivationGate(
+    await tester.pumpWidget(MaterialApp(
+        home: ActivationGate(
       licenseStore: store,
       onModeSet: () {},
       devicePubkeyB64: 'QUJDREVGR0g=',
       activationApi: _StaticActivationApi(const ActivationAttempt(
           ok: false, errorAr: 'انقطع الاتصال', countsAsAttempt: false)),
-    ));
+    )));
     await tester.pump();
     await tester.enterText(find.byType(TextField), 'K7M2P-9QW4X-4TR8N');
     await tester.pump();
