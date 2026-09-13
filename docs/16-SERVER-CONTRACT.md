@@ -423,7 +423,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 2 | دوال القاعدة الأربع + تحصين EXECUTE | `0002_server_functions.sql` | ✅ مُطبَّق (تحقق 12/12) |
 | 3 | تشديد سياسة الدوري | `0003_tighten_standings.sql` | ✅ مُطبَّق |
 | 4 | مضاد التعداد القسري (مستخدم + IP) | `0004_activation_throttle.sql` | ✅ مُطبَّق (تحقق: جدول+RLS t+0 سياسات+3 فهارس) |
-| 5 | دالة تفعيل الكود | `functions/license_activate/index.ts` | ⏳ تُلصق بعد 4 |
+| 5 | دالة تفعيل الكود | `functions/license_activate/index.ts` | ✅ منشورة (دخان المالك: {} ⇒ AUTH_REQUIRED بالضبط) |
 | 6 | دالة النبض والتجديد | `functions/heartbeat/index.ts` | ⏳ مع 5 |
 | 7 | دالة تحقق XP | `functions/verify_xp_events/index.ts` | ⏳ مع 5 |
 | 8 | سر التوقيع `SIGNING_SEED_B64` | أداة المالك (السطر الخاص حصراً) | ⏳ بيد المالك — لا يمر بمحادثة |
