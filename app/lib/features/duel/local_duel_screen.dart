@@ -1,9 +1,9 @@
 // ═══════════════════════════════════════════════════════════════════════
-// duel_screen.dart — واجهات المبارزة الحية (F5.3).
-// شاشة واحدة تقود آلة الحالات DuelFlow وتعرض الوجه المطابق لكل طور:
-// إعداد (إنشاء/انضمام) ← لوبي (رمز الغرفة) ← لعب (قضبان تقدم + سلسلة حيّة)
-// ← نتيجة (حكم خادمي + ثأر + مشاركة). الحكم خادمي حصراً (docs/16 §٦).
-// كل الأرقام عربية-هندية، والألوان من core/theme حصراً (قرار ٤٧).
+// local_duel_screen.dart — واجهة المبارزة المحلية «بلا نت» (F5.4).
+// نفس بنية شاشة المبارزة الحية لكن على النقلية المحلية (TCP نقطة اتصال/
+// شبكة مشتركة): إعداد (إنشاء=مضيف / انضمام=ضيف بعنوان+رمز) ← لوبي (رمز +
+// عنوان المضيف) ← لعب (قضبان + سلسلة) ← نتيجة (حكم محلي حتمي بلا XP).
+// بلا سيرفر وبلا GMS — يعمل على أي جهاز. الأرقام عربية، الألوان core/theme.
 // ═══════════════════════════════════════════════════════════════════════
 import 'dart:async';
 
@@ -13,31 +13,33 @@ import 'package:flutter/services.dart';
 import '../../core/content/models.dart';
 import '../../core/duel/duel_engine.dart';
 import '../../core/duel/duel_flow.dart';
+import '../../core/duel/local_duel_flow.dart';
+import '../../core/duel/local_link.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/util/arabic_number.dart';
 
-/// مصنع تدفق مبارزة — يحضّره main.dart (جلسة + جهاز + نقلية) عند الطلب.
-typedef DuelFlowFactory = Future<DuelFlow> Function();
+/// مصنع تدفق مبارزة محلية — يحضّره main.dart بلا سيرفر.
+typedef LocalDuelFlowFactory = LocalDuelFlow Function();
 
 /// حروف الخيارات المعروضة — مطابقة أعراف الواجهة.
 const List<String> _letters = ['أ', 'ب', 'ج', 'د', 'هـ', 'و'];
 
-class DuelScreen extends StatefulWidget {
-  const DuelScreen({
+class LocalDuelScreen extends StatefulWidget {
+  const LocalDuelScreen({
     super.key,
     required this.pack,
     required this.flowFactory,
   });
 
   final ContentPack pack;
-  final DuelFlowFactory flowFactory;
+  final LocalDuelFlowFactory flowFactory;
 
   @override
-  State<DuelScreen> createState() => _DuelScreenState();
+  State<LocalDuelScreen> createState() => _LocalDuelScreenState();
 }
 
-class _DuelScreenState extends State<DuelScreen> {
-  DuelFlow? _flow;
+class _LocalDuelScreenState extends State<LocalDuelScreen> {
+  LocalDuelFlow? _flow;
   StreamSubscription<DuelSnapshot>? _sub;
   DuelSnapshot? _snap;
 
@@ -48,13 +50,21 @@ class _DuelScreenState extends State<DuelScreen> {
   // ── نموذج الإعداد ──
   final Set<String> _units = <String>{};
   final TextEditingController _codeCtrl = TextEditingController();
+  final TextEditingController _ipCtrl = TextEditingController();
   bool _busy = false;
   String _setupError = '';
+  String? _hostIpHint; // عنوان المضيف المكتشف تلقائياً
 
   @override
   void initState() {
     super.initState();
     _units.addAll(widget.pack.units.map((u) => u.id));
+    unawaited(_detectIp());
+  }
+
+  Future<void> _detectIp() async {
+    final ip = await detectHostIp();
+    if (mounted) setState(() => _hostIpHint = ip);
   }
 
   @override
@@ -62,6 +72,7 @@ class _DuelScreenState extends State<DuelScreen> {
     _sub?.cancel();
     unawaited(_flow?.dispose());
     _codeCtrl.dispose();
+    _ipCtrl.dispose();
     super.dispose();
   }
 
@@ -70,8 +81,8 @@ class _DuelScreenState extends State<DuelScreen> {
     setState(() => _snap = s);
   }
 
-  Future<DuelFlow> _openFlow() async {
-    final f = await widget.flowFactory();
+  LocalDuelFlow _openFlow() {
+    final f = widget.flowFactory();
     _sub = f.stream.listen(_onSnap);
     return f;
   }
@@ -86,7 +97,7 @@ class _DuelScreenState extends State<DuelScreen> {
     if (f != null) await f.dispose();
   }
 
-  Future<void> _onCreate() async {
+  Future<void> _onHost() async {
     if (_units.isEmpty) {
       setState(() => _setupError = 'اختر وحدة واحدة على الأقل');
       return;
@@ -96,15 +107,14 @@ class _DuelScreenState extends State<DuelScreen> {
       _setupError = '';
     });
     try {
-      final flow = await _openFlow();
+      final flow = _openFlow();
       _flow = flow;
       final units = _units.toList()..sort();
-      await flow.create(units: units, packTag: widget.pack.packId);
+      await flow.host(units: units, packTag: widget.pack.packId);
     } catch (_) {
-      // خطأ غير متوقع (انقطاع شبكة…) — ارمِ التدفق وعُد لنموذج الإعداد
       await _backToSetup();
       if (mounted) {
-        setState(() => _setupError = 'تعذر إنشاء المبارزة — تأكد من اتصالك');
+        setState(() => _setupError = 'تعذر فتح نقطة الاتصال — فعّلها ثم أعد المحاولة');
       }
     } finally {
       if (mounted) setState(() => _busy = false);
@@ -113,8 +123,13 @@ class _DuelScreenState extends State<DuelScreen> {
 
   Future<void> _onJoin() async {
     final code = _codeCtrl.text.trim();
+    final ip = _ipCtrl.text.trim();
+    if (ip.isEmpty) {
+      setState(() => _setupError = 'أدخل عنوان المضيف (مثل 192.168.43.1)');
+      return;
+    }
     if (code.isEmpty) {
-      setState(() => _setupError = 'أدخل رمز الغرفة');
+      setState(() => _setupError = 'أدخل الرمز المكوّن من ٦ محارف');
       return;
     }
     setState(() {
@@ -122,14 +137,17 @@ class _DuelScreenState extends State<DuelScreen> {
       _setupError = '';
     });
     try {
-      final flow = await _openFlow();
+      final flow = _openFlow();
       _flow = flow;
-      await flow.joinByCode(code);
+      await flow.join(
+        hostIp: ip,
+        port: TcpDuelTransport.defaultPort,
+        code: code,
+      );
     } catch (_) {
-      // خطأ غير متوقع (انقطاع شبكة…) — ارمِ التدفق وعُد لنموذج الإعداد
       await _backToSetup();
       if (mounted) {
-        setState(() => _setupError = 'تعذر الانضمام — تحقق من الرمز واتصالك');
+        setState(() => _setupError = 'تعذر الاتصال — تحقق من العنوان والرمز');
       }
     } finally {
       if (mounted) setState(() => _busy = false);
@@ -139,7 +157,7 @@ class _DuelScreenState extends State<DuelScreen> {
   Future<void> _answer(int i, int k) async {
     final s = _snap;
     if (s == null || s.phase != DuelPhase.live) return;
-    if (i != s.currentIndex) return; // نقرة قديمة من سؤال سبق الإجابة عنه
+    if (i != s.currentIndex) return; // نقرة قديمة
     await _flow?.submitAnswer(k);
   }
 
@@ -175,18 +193,19 @@ class _DuelScreenState extends State<DuelScreen> {
     };
   }
 
-  // ═════════════ الإعداد: إنشاء / انضمام ═════════════
+  // ═════════════ الإعداد: إنشاء (مضيف) / انضمام (ضيف) ═════════════
   Widget _buildSetup() {
     final txt = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(title: const Text('تحديات اليوم ⚔️')),
+      appBar: AppBar(title: const Text('مبارزة محلية — بلا نت 📡')),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          Text('مبارزة جديدة', style: txt.titleLarge),
+          Text('أنشئ المبارزة (مضيف)', style: txt.titleLarge),
           const SizedBox(height: 4),
           Text(
-            'اختر وحدات المبارزة — تولّد الأسئلة من بذرة واحدة لك ولخصمك',
+            'فعّل نقطة الاتصال على جهازك، واختر الوحدات — تُولّد الأسئلة '
+            'من بذرة واحدة لك ولصديقك بلا إنترنت وبلا سيرفر.',
             style: txt.bodyMedium,
           ),
           const SizedBox(height: 12),
@@ -214,13 +233,13 @@ class _DuelScreenState extends State<DuelScreen> {
               padding: const EdgeInsets.all(12),
               child: Row(
                 children: [
-                  const Text('🎯', style: TextStyle(fontSize: 20)),
+                  const Text('📡', style: TextStyle(fontSize: 20)),
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
                       '${ArabicNumber.from(DuelConstants.count)} أسئلة · '
                       '${ArabicNumber.from(DuelConstants.questionSeconds)} ثانية '
-                      'لكل سؤال · الحكم خادمي',
+                      'لكل سؤال · الحكم محلي على جهاز المضيف · بلا نقاط XP',
                       style: txt.bodyMedium,
                     ),
                   ),
@@ -230,7 +249,7 @@ class _DuelScreenState extends State<DuelScreen> {
           ),
           const SizedBox(height: 6),
           FilledButton(
-            onPressed: _busy ? null : _onCreate,
+            onPressed: _busy ? null : _onHost,
             child: const Text('إنشاء المبارزة ⚔️'),
           ),
           const SizedBox(height: 22),
@@ -243,20 +262,37 @@ class _DuelScreenState extends State<DuelScreen> {
             const Expanded(child: Divider()),
           ]),
           const SizedBox(height: 14),
-          Text('انضم برمز الغرفة', style: txt.titleMedium),
+          Text('انضم لمبارزة (ضيف)', style: txt.titleMedium),
           const SizedBox(height: 8),
+          TextField(
+            controller: _ipCtrl,
+            textDirection: TextDirection.ltr,
+            textAlign: TextAlign.center,
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp(r'[0-9.]')),
+              LengthLimitingTextInputFormatter(15),
+            ],
+            decoration: InputDecoration(
+              hintText: _hostIpHint ?? '192.168.43.1',
+              hintTextDirection: TextDirection.ltr,
+              labelText: 'عنوان المضيف (من نقطة اتصاله)',
+            ),
+          ),
+          const SizedBox(height: 10),
           TextField(
             controller: _codeCtrl,
             textDirection: TextDirection.ltr,
             textAlign: TextAlign.center,
             textCapitalization: TextCapitalization.characters,
             inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9\-]')),
-              LengthLimitingTextInputFormatter(11),
+              FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+              LengthLimitingTextInputFormatter(6),
             ],
             decoration: const InputDecoration(
-              hintText: 'K7M2P-9QW4X',
+              hintText: 'K7M2PX',
               hintTextDirection: TextDirection.ltr,
+              labelText: 'الرمز (٦ محارف)',
             ),
             onSubmitted: (_) => _onJoin(),
           ),
@@ -294,7 +330,7 @@ class _DuelScreenState extends State<DuelScreen> {
             const CircularProgressIndicator(),
             const SizedBox(height: 16),
             Text(
-              s.isHost ? 'جارٍ إنشاء المبارزة…' : 'جارٍ الانضمام…',
+              s.isHost ? 'جارٍ فتح الاستماع…' : 'جارٍ الاتصال بالمضيف…',
               style: txt.titleMedium,
             ),
           ],
@@ -314,7 +350,7 @@ class _DuelScreenState extends State<DuelScreen> {
         child: Column(
           children: [
             const Spacer(),
-            const Text('⚔️', style: TextStyle(fontSize: 52)),
+            const Text('📡', style: TextStyle(fontSize: 52)),
             const SizedBox(height: 8),
             Text(
               isHost ? 'بانتظار الخصم…' : 'بانتظار بدء المضيف…',
@@ -335,21 +371,32 @@ class _DuelScreenState extends State<DuelScreen> {
             const SizedBox(height: 6),
             Text(
               isHost
-                  ? 'أرسل الرمز لصديقك — يظهر فور دخوله'
+                  ? 'أرسل العنوان والرمز لصديقك — يظهر فور دخوله'
                   : 'سينطلق السؤال الأول فور بدء المضيف',
               style: txt.bodyMedium,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 10),
-            if (isHost && s.roomCode != null)
-              OutlinedButton.icon(
-                onPressed: () => _copy(s.roomCode!, 'نُسخ رمز الغرفة'),
-                icon: const Icon(Icons.copy),
-                label: const Text('نسخ الرمز'),
+            if (isHost) ...[
+              const SizedBox(height: 8),
+              Text(
+                'عنوانك في نقطة الاتصال: ${_hostIpHint ?? '192.168.43.1'}',
+                textDirection: TextDirection.ltr,
+                style: txt.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
               ),
+              const SizedBox(height: 10),
+              if (s.roomCode != null)
+                OutlinedButton.icon(
+                  onPressed: () => _copy(
+                    '${_hostIpHint ?? '192.168.43.1'} · ${s.roomCode!}',
+                    'نُسخ العنوان والرمز',
+                  ),
+                  icon: const Icon(Icons.copy),
+                  label: const Text('نسخ العنوان والرمز'),
+                ),
+            ],
             const SizedBox(height: 6),
             Text(
-              '🟢 متصل — الأسئلة تتولّد من البذرة المشتركة',
+              '🟢 متصل محلياً — الأسئلة تتولّد من البذرة المشتركة',
               style: txt.bodyMedium,
               textAlign: TextAlign.center,
             ),
@@ -384,7 +431,7 @@ class _DuelScreenState extends State<DuelScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('مبارزة حية ⚔️'),
+        title: const Text('مبارزة محلية ⚔️'),
         actions: [
           IconButton(
             tooltip: 'إنهاء',
@@ -467,7 +514,7 @@ class _DuelScreenState extends State<DuelScreen> {
                       padding: const EdgeInsets.all(20),
                       child: Center(
                         child: Text(
-                          'بانتظار الحكم الخادمي…',
+                          'جارٍ التزامن مع الخصم…',
                           style: txt.titleMedium,
                         ),
                       ),
@@ -546,8 +593,7 @@ class _DuelScreenState extends State<DuelScreen> {
     final myScore = iAmHost ? v.hostScore : v.guestScore;
     final oppScore = iAmHost ? v.guestScore : v.hostScore;
     final won = s.iWon;
-    // `v.corrects` مفتاح الحكم (الصحيح بالعرض لكل موضع) لا عدد صحيحاتي —
-    // عدد صحيحاتي = مطابقة إجاباتي للمفتاح.
+    // `v.corrects` مفتاح الحكم لا عدد صحيحاتي — أحسب صحيحاتي بالمطابقة.
     var myCorrects = 0;
     final key = v.corrects;
     final mine = s.myAnswers;
@@ -555,7 +601,6 @@ class _DuelScreenState extends State<DuelScreen> {
       if (mine[i] != null && mine[i] == key[i]) myCorrects++;
     }
     final oppName = s.opponentName ?? 'الخصم';
-    final xp = won ? 45 : 15;
 
     return Scaffold(
       appBar: AppBar(title: const Text('نتيجة المبارزة ⚔️')),
@@ -610,9 +655,9 @@ class _DuelScreenState extends State<DuelScreen> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    '+${ArabicNumber.from(xp)} نقطة في رصيدك',
+                    'مبارزة تدريب محلية — بلا نقاط XP',
                     style: txt.titleMedium?.copyWith(
-                      color: _gold(context),
+                      color: _brand(context),
                       fontWeight: FontWeight.w800,
                     ),
                   ),
@@ -628,7 +673,7 @@ class _DuelScreenState extends State<DuelScreen> {
           const SizedBox(height: 8),
           OutlinedButton.icon(
             onPressed: () => _copy(
-              '⚔️ مبارزة فيزيا كلاش — ${won ? 'فزت' : 'خسرت'} '
+              '⚔️ مبارزة فيزيا كلاش المحلية — ${won ? 'فزت' : 'خسرت'} '
               '(${ArabicNumber.from(myScore)} مقابل ${ArabicNumber.from(oppScore)})',
               'نُسخت النتيجة — شاركها مع صديقك',
             ),
@@ -694,7 +739,7 @@ class _DuelScreenState extends State<DuelScreen> {
     return [for (final oi in order) q.options[oi]];
   }
 
-  // ── ألوان موحّدة (وضع داكن/فاتح — docs/13) ──
+  // ── ألوان موحّدة (وضع داكن/فاتح) ──
   Color _brand(BuildContext c) => Theme.of(c).brightness == Brightness.dark
       ? AppColors.brandDark
       : AppColors.brandLight;
@@ -793,7 +838,8 @@ class _PlayerBar extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        Text(name, style: txt.bodyMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
+        Text(name,
+            style: txt.bodyMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
         const SizedBox(height: 4),
         ClipRRect(
           borderRadius: BorderRadius.circular(4),
@@ -856,7 +902,9 @@ class _OptionTile extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 12),
-              Expanded(child: Text(text, style: Theme.of(context).textTheme.bodyLarge)),
+              Expanded(
+                  child:
+                      Text(text, style: Theme.of(context).textTheme.bodyLarge)),
             ],
           ),
         ),

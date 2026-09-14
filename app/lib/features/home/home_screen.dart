@@ -16,6 +16,7 @@ import '../../core/xp/streak_service.dart';
 import '../curriculum/curriculum_screen.dart';
 import '../curriculum/lesson_screen.dart';
 import '../duel/duel_screen.dart';
+import '../duel/local_duel_screen.dart';
 import '../training/cards_screen.dart';
 import '../training/training_screen.dart';
 
@@ -34,6 +35,7 @@ class HomeScreen extends StatefulWidget {
     this.syncManager,
     this.fetchLeague,
     this.openDuel,
+    this.openLocalDuel,
   });
 
   final ContentPack pack;
@@ -51,6 +53,9 @@ class HomeScreen extends StatefulWidget {
 
   /// F5.3 — مصنع تدفق المبارزة (null = بطاقة التحديات معطلة كما كانت).
   final DuelFlowFactory? openDuel;
+
+  /// F5.4 — مصنع المبارزة المحلية بلا نت (null = البطاقة معطلة).
+  final LocalDuelFlowFactory? openLocalDuel;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -326,6 +331,25 @@ class _HomeScreenState extends State<HomeScreen>
                           builder: (_) => DuelScreen(
                             pack: widget.pack,
                             flowFactory: widget.openDuel!,
+                          ),
+                        )),
+              ),
+            ),
+            // ── مبارزة محلية بلا نت (F5.4 — نقطة اتصال/شبكة مشتركة) ──
+            Card(
+              child: ListTile(
+                leading: const Text('📡', style: TextStyle(fontSize: 22)),
+                title: const Text('مبارزة محلية — بلا نت'),
+                subtitle: const Text(
+                    'تحدَّ صديقك عبر نقطة الاتصال — بلا إنترنت وبلا سيرفر'),
+                enabled: widget.openLocalDuel != null,
+                onTap: widget.openLocalDuel == null
+                    ? null
+                    : () => Navigator.of(context)
+                        .push(MaterialPageRoute<void>(
+                          builder: (_) => LocalDuelScreen(
+                            pack: widget.pack,
+                            flowFactory: widget.openLocalDuel!,
                           ),
                         )),
               ),

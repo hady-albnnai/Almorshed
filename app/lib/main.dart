@@ -21,6 +21,8 @@ import 'core/supabase/duel_api.dart';
 import 'core/supabase/realtime_client.dart';
 import 'core/duel/duel_engine.dart';
 import 'core/duel/duel_flow.dart';
+import 'core/duel/local_duel_flow.dart';
+import 'core/duel/local_link.dart';
 import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
 import 'features/home/home_screen.dart';
@@ -139,6 +141,44 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
     );
   }
 
+  /// فتح تدفق مبارزة محلية (F5.4) — بلا سيرفر وبلا GMS، يعمل على أي جهاز.
+  LocalDuelFlow _openLocalDuelFlow(ContentPack pack) => LocalDuelFlow(
+        transport: TcpDuelTransport(),
+        deviceId: _localDeviceId(),
+        myName: _localName(),
+        buildSession: (seed, scope) =>
+            buildDuelSession(pack, seed: seed, scope: scope),
+      );
+
+  /// معرّف جهاز محلي مستقر من المفتاح العام (بلا شبكة ولا سيرفر).
+  String _localDeviceId() {
+    final pk = _pubkeyB64;
+    if (pk == null || pk.isEmpty) {
+      return 'dev-${DateTime.now().microsecondsSinceEpoch.toRadixString(16)}';
+    }
+    var h = 0;
+    for (final u in pk.codeUnits) {
+      h = (h * 31 + u) & 0x7FFFFFFF;
+    }
+    return 'dev-${h.toRadixString(16)}';
+  }
+
+  /// اسم عرض محلي قصير مستقر (مقبض ٤ محارف Crockford من المفتاح العام).
+  String _localName() {
+    final pk = _pubkeyB64;
+    if (pk == null || pk.isEmpty) return 'اللاعب';
+    var h = 0;
+    for (final u in pk.codeUnits) {
+      h = (h * 31 + u) & 0x3FFFFFFF;
+    }
+    final buf = StringBuffer();
+    for (var i = 0; i < 4; i++) {
+      buf.write(RoomCode.alphabet[h & 31]);
+      h >>= 5;
+    }
+    return 'لاعب ${buf.toString()}';
+  }
+
   late Future<LicenseData> _licenseFuture = _license.load();
 
   @override
@@ -216,6 +256,7 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
                   syncManager: _sync,
                   fetchLeague: () => _leagueApi.fetch(_pubkeyB64 ?? ''),
                   openDuel: () => _openDuelFlow(snap.data!),
+                  openLocalDuel: () => _openLocalDuelFlow(snap.data!),
                 );
               }
               return CurriculumScreen(
