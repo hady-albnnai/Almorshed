@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
+import 'core/license/heartbeat_client.dart';
 import 'core/license/license_store.dart';
 import 'core/xp/streak_service.dart';
 import 'core/content/content_loader.dart';
@@ -40,7 +43,8 @@ class FizyaClashApp extends StatefulWidget {
     this.licenseStore,
     this.xpRecorder,
     this.activationApiOverride,
-    this.startOnHome = false, // الإنتاج: الرئيسية أولاً — الاختبارات: المنهاج مباشرة
+    this.startOnHome =
+        false, // الإنتاج: الرئيسية أولاً — الاختبارات: المنهاج مباشرة
   });
 
   /// حقن للاختبارات؛ الافتراضي يحمّل حزمة assets الحقيقية.
@@ -74,40 +78,44 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
   late final Future<ContentPack> _packFuture =
       (widget.packLoader ?? _defaultLoadPack)();
 
-  LicenseStore get _license =>
-      widget.licenseStore ?? SharedPrefsLicenseStore();
+  LicenseStore get _license => widget.licenseStore ?? SharedPrefsLicenseStore();
 
   XpRecorder? _sharedRecorder;
   XpRecorder get _xpRecorder =>
       widget.xpRecorder ?? (_sharedRecorder ??= XpRecorder.shared());
 
   // F4.4 — نقلية الخادم الحقيقية (بناء بلا IO — آمن بالاختبارات)
-  late final ActivationApi _activationApi = widget.activationApiOverride ??
+  late final ActivationApi _activationApi =
+      widget.activationApiOverride ??
       () {
         final t = SupabaseTransport();
         return ActivationApi(
-            transport: t,
-            auth: AnonymousAuth(
-                transport: t, store: SharedPrefsSessionStore()));
+          transport: t,
+          auth: AnonymousAuth(transport: t, store: SharedPrefsSessionStore()),
+        );
       }();
   String? _pubkeyB64;
 
   // F4.5/F4.6 — الشبكة المشتركة: نقلية واحدة وجلسة واحدة للكل
   late final SupabaseTransport _net = SupabaseTransport();
   late final AnonymousAuth _netAuth = AnonymousAuth(
-      transport: _net, store: SharedPrefsSessionStore());
+    transport: _net,
+    store: SharedPrefsSessionStore(),
+  );
 
   /// مُشغّل المزامنة — يُبنى محركه عند أول جولة (المفتاح العام وقتها محمّل).
-  late final SyncManager _sync = SyncManager(engineFactory: () async {
-    final pk = _pubkeyB64;
-    if (pk == null) throw StateError('المفتاح العام غير محمّل بعد');
-    return SyncEngine(
-      api: HttpXpSyncApi(transport: _net, auth: _netAuth),
-      stateStore: SharedPrefsSyncStateStore(),
-      loadEvents: _xpRecorder.ledger.events,
-      devicePubkeyB64: pk,
-    );
-  });
+  late final SyncManager _sync = SyncManager(
+    engineFactory: () async {
+      final pk = _pubkeyB64;
+      if (pk == null) throw StateError('المفتاح العام غير محمّل بعد');
+      return SyncEngine(
+        api: HttpXpSyncApi(transport: _net, auth: _netAuth),
+        stateStore: SharedPrefsSyncStateStore(),
+        loadEvents: _xpRecorder.ledger.events,
+        devicePubkeyB64: pk,
+      );
+    },
+  );
 
   /// واجهة الدوري (قراءة RLS للمفعّلين حصراً).
   late final LeagueApi _leagueApi = LeagueApi(transport: _net, auth: _netAuth);
@@ -118,7 +126,8 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
   /// فتح تدفق مبارزة — جلسة صالحة + معرّف الجهاز + ناقل حي + حكم XP.
   Future<DuelFlow> _openDuelFlow(ContentPack pack) async {
     final session = await _netAuth.session();
-    final deviceId = await _duelApi.myDeviceId(
+    final deviceId =
+        await _duelApi.myDeviceId(
           accessToken: session.accessToken,
           pubkeyB64: _pubkeyB64 ?? '',
         ) ??
@@ -143,12 +152,12 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
 
   /// فتح تدفق مبارزة محلية (F5.4) — بلا سيرفر وبلا GMS، يعمل على أي جهاز.
   LocalDuelFlow _openLocalDuelFlow(ContentPack pack) => LocalDuelFlow(
-        transport: TcpDuelTransport(),
-        deviceId: _localDeviceId(),
-        myName: _localName(),
-        buildSession: (seed, scope) =>
-            buildDuelSession(pack, seed: seed, scope: scope),
-      );
+    transport: TcpDuelTransport(),
+    deviceId: _localDeviceId(),
+    myName: _localName(),
+    buildSession: (seed, scope) =>
+        buildDuelSession(pack, seed: seed, scope: scope),
+  );
 
   /// معرّف جهاز محلي مستقر من المفتاح العام (بلا شبكة ولا سيرفر).
   String _localDeviceId() {
@@ -191,17 +200,36 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
     final k = await _xpRecorder.publicKeyB64();
     if (!mounted) return;
     setState(() => _pubkeyB64 = k);
+    // F7.4: نبض الترخيص عند الانطلاق — صامت، لا يحجب شيئاً، يرفع أرضية
+    // الساعة من السيرفر ويجدّد التوكن بآخر ٧ أيام (docs/11 §٥ + L4).
+    // (الاختبارات تحقن activationApiOverride ⇒ لا شبكة حقيقية ⇒ لا نبض.)
+    if (widget.activationApiOverride == null && k.isNotEmpty) {
+      _heartbeat ??= HeartbeatClient(
+        transport: _net,
+        auth: _netAuth,
+        store: _license,
+        devicePubkeyB64: k,
+      );
+      unawaited(
+        _heartbeat!.beat().then((o) {
+          if (o.renewed || o.clockSuspected) _reloadLicense();
+        }),
+      );
+    }
   }
 
+  /// نبض الترخيص (F7.4) — يُبنى بعد تحميل المفتاح العام.
+  HeartbeatClient? _heartbeat;
+
   void _reloadLicense() => setState(() {
-        _licenseFuture = _license.load();
-      });
+    _licenseFuture = _license.load();
+  });
 
   static Future<ContentPack> _defaultLoadPack() => ContentLoader().loadPack();
 
   void _toggleTheme() => setState(() {
-        _mode = _mode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
-      });
+    _mode = _mode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -230,8 +258,7 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
               if (licSnap.connectionState != ConnectionState.done) {
                 return const _Splash();
               }
-              final license =
-                  licSnap.data ?? const LicenseData();
+              final license = licSnap.data ?? const LicenseData();
               if (license.mode == LicenseMode.none) {
                 // F3.6: بوابة أول فتح — تظهر مرة واحدة ثم من «حسابي»
                 if (_pubkeyB64 == null) return const _Splash();
@@ -306,8 +333,11 @@ class _ErrorView extends StatelessWidget {
               const SizedBox(height: 12),
               Text('تعذر تحميل المحتوى', style: txt.titleLarge),
               const SizedBox(height: 8),
-              Text('$error',
-                  textAlign: TextAlign.center, style: txt.bodyMedium),
+              Text(
+                '$error',
+                textAlign: TextAlign.center,
+                style: txt.bodyMedium,
+              ),
             ],
           ),
         ),
