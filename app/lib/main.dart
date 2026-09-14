@@ -46,7 +46,7 @@ class FizyaClashApp extends StatefulWidget {
     this.xpRecorder,
     this.activationApiOverride,
     this.startOnHome =
-        false, // الإنتاج: الرئيسية أولاً — الاختبارات: المنهاج مباشرة
+        true, // الإنتاج: الرئيسية أولاً (F3.8) — الاختبارات تمرّر false صراحة
   });
 
   /// حقن للاختبارات؛ الافتراضي يحمّل حزمة assets الحقيقية.

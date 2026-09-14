@@ -181,6 +181,7 @@ void main() {
       licenseStore: InMemoryLicenseStore.trial(), // المنهاج مباشرة بلا بوابة
       xpRecorder: XpRecorder.inMemory(), // كذلك: بلا plugins حقيقية بالاختبار
       activationApiOverride: _PendingActivationApi(),
+      startOnHome: false, // اختبارات المنهاج تبدأ منه مباشرة
     ));
     await tester.pumpAndSettle();
   }
