@@ -6,21 +6,50 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/duel/duel_engine.dart';
 import 'package:fizya_clash/core/content/models.dart';
 
-ContentPack _pack() => ContentPack.fromJsonString('''
-{"packId":"test-pack","year":2027,"edition":1,
- "units":[
-  {"id":"U1","title":"و1","chapters":[{"id":"U1C1","title":"ف1","page":1,"paragraphs":[]},{"id":"U1C2","title":"ف2","page":2,"paragraphs":[]}]},
-  {"id":"U2","title":"و2","chapters":[{"id":"U2C1","title":"ف3","page":3,"paragraphs":[]},{"id":"U2C2","title":"ف4","page":4,"paragraphs":[]}]},
-  {"id":"U3","title":"و3","chapters":[{"id":"U3C1","title":"ف5","page":5,"paragraphs":[]}]}],
- "questions":[
-${List.generate(15, (i) {
-  final ch = ['U1C1','U1C2','U2C1','U2C2','U3C1'][i % 5];
-  final unit = ch.substring(0, 2);
-  return '{"id":${i + 1},"unit":"$unit","chapter":"$ch","approved":true,'
-      '"stem":"س${i + 1}","options":["أ","ب","ج","د"],"correctIndex":${i % 4}}';
-}).join(',\n')}],
- "cards":[]}
-''');
+DuelScope _scope() =>
+    const DuelScope(units: ['U1', 'U2', 'U3'], packTag: 'test-pack-1');
+
+ContentPack _pack() {
+  const chapters = ['U1C1', 'U1C2', 'U2C1', 'U2C2', 'U3C1'];
+  final unitOf = <String, String>{
+    for (final c in chapters) c: c.substring(0, 2),
+  };
+  final byChapter = <String, List<Chapter>>{};
+  for (final c in chapters) {
+    byChapter.putIfAbsent(unitOf[c]!, () => []).add(Chapter(
+          id: c,
+          title: 'فصل $c',
+          page: chapters.indexOf(c) + 1,
+          paragraphs: const [],
+        ));
+  }
+  final units = [
+    for (final u in byChapter.keys)
+      Unit(id: u, title: 'وحدة $u', chapters: byChapter[u]!),
+  ];
+  final questions = [
+    for (var i = 0; i < 15; i++)
+      Question(
+        id: i + 1,
+        unit: unitOf[chapters[i % 5]]!,
+        chapter: chapters[i % 5],
+        approved: true,
+        stem: 'س${i + 1}',
+        options: const ['أ', 'ب', 'ج', 'د'],
+        correctIndex: i % 4,
+        solutionSteps: const [],
+        followThrough: const [],
+      ),
+  ];
+  return ContentPack(
+    packId: 'test-pack',
+    year: 2027,
+    edition: 1,
+    units: units,
+    questions: questions,
+    cards: const [],
+  );
+}
 
 void main() {
   test('H-A — _pack حصراً', () {
