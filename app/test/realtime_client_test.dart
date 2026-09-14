@@ -1,7 +1,6 @@
 // M5 — اختبارات عميل Realtime الأدنى (F5.2) — بروتوكول Phoenix vsn=1.0.0.
 // خادم WS مزيف محلي (dart:io حصراً — بلا testWidgets ولا شبكة خارجية):
 // يتحقق من مظروف الانضمام/الرد، البث الوارد والصادر، والنبض الدوري.
-import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 

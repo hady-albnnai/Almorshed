@@ -296,8 +296,8 @@ class DuelFlow {
   DuelFlow({
     required DuelGateway gateway,
     required DuelWireLike Function() wireFactory,
-    required String deviceId,
-    required String accessToken,
+    required this.deviceId,
+    required this.accessToken,
     required DuelSession Function(int seed, DuelScope scope) buildSession,
     this.questionSeconds = DuelConstants.questionSeconds,
     this.xpSink,
@@ -305,8 +305,6 @@ class DuelFlow {
     Duration Function(int attempt)? retryDelay,
   })  : _gateway = gateway,
         _wireFactory = wireFactory,
-        deviceId = deviceId,
-        accessToken = accessToken,
         _buildSession = buildSession,
         _nowMs = nowMs ?? (() => DateTime.now().millisecondsSinceEpoch),
         _retryDelay = retryDelay ??

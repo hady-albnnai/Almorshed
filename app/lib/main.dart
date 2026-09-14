@@ -23,7 +23,6 @@ import 'core/duel/duel_engine.dart';
 import 'core/duel/duel_flow.dart';
 import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
-import 'features/duel/duel_screen.dart';
 import 'features/home/home_screen.dart';
 
 void main() => runApp(const FizyaClashApp());

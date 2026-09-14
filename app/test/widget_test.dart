@@ -673,7 +673,7 @@ void main() {
     expect(find.text('واصل الدرس'), findsOneWidget);
     expect(find.text('تدريب سريع'), findsOneWidget);
     expect(find.text('بطاقات اليوم'), findsOneWidget);
-    expect(find.textContaining('قريباً — دوري فيزيا كلاش'), findsOneWidget);
+    expect(find.textContaining('مبارزة مباشرة مع صديق'), findsOneWidget);
     expect(find.text('💡 فكرة اليوم'), findsOneWidget);
     // فكرة اليوم حتماً من مفتاح اليوم الدراسي
     expect(find.text(factForDay(studyDateKeyOf(DateTime.now()))),
