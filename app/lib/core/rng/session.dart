@@ -54,7 +54,9 @@ abstract final class SessionStreams {
 List<int> fisherYates(List<int> input, SplitMix64 rng) {
   final list = List<int>.of(input);
   for (var i = list.length - 1; i > 0; i--) {
-    final j = rng.next() % (i + 1);
+    // toUnsigned: next() موقّع بDart، و% الإقليدي على الموقّع يخالف المرجع
+    // اللاإشاري كلما كان (2^64 mod m ≠ 0) — درس M5 المثبت بجهاز المالك.
+    final j = rng.next().toUnsigned(64) % (i + 1);
     final tmp = list[i];
     list[i] = list[j];
     list[j] = tmp;
