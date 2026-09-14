@@ -432,6 +432,8 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 11 | جداول المبارزات (duels/duel_answers/duel_status/content_questions) + RLS + زناد الحارس + سياسات القناة الخاصة + verify_commit بدعوى المبارزة | `0005_duels.sql` | ⬜ بانتظار تطبيق المالك — التحقق المقترح: 3 جداول duel* بRLS مفعلة + الفهارس + صفّا السياسة على realtime.messages |
 | 12 | دالة حكم المبارزة (server-referential) | `functions/duel_finish/index.ts` + `functions/_shared/duel_session.ts` | ⬜ بانتظار النشر — المنفذ مطابق بتّياً (متجهات §٩-١٠) |
 | 13 | بنك المبارزات — المعتمد حصراً (قرار ٢٤) | `docs/supabase/content_index.sql` مولَّد من `tools/gen_content_index.py` | ⬜ يُولَّد ويُطبَّق **بعد اعتماد الأستاذ للأسئلة** (اليوم: 0 صف معتمد) |
+| 14 | سجل تدقيق أداة المكتب (RLS سلبية) | `0006_office_audit.sql` | ⬜ بانتظار تطبيق المالك |
+| 15 | أداة المكتب `office_codes` (توليد/إلغاء/جرد) | `functions/office_codes/index.ts` — الحماية بسر `OFFICE_KEY` (ترويسة `x-office-key`) | ⬜ بانتظار النشر — `supabase secrets set OFFICE_KEY=…` ثم `functions deploy office_codes --no-verify-jwt` |
 
 طريقة 5-7 (بلا CLI): اللوحة ← **Edge Functions** ← Create a new function
 ← «I have function code that I want to deploy» — الاسم مطابق للمجلد،
@@ -610,3 +612,37 @@ traversal غير مطروح (لا ملفات بأسماء مدخلة)؛ والف
    **لا**: النشر من اللوحة يرفع ملفاً واحداً ⇒ الصق `duel_session.ts` داخل
    `duel_finish/index.ts` أعلى الدالة عند النشر اليدوي (أو استخدم `supabase functions deploy duel_finish` بCLI فيلحق _shared آلياً).
 3. بعد اعتماد الأستاذ: `python3 tools/gen_content_index.py` ثم تطبيق الناتج.
+
+---
+
+## ٩. `office_codes` — أداة المكتب (F6.1 · POS قرار ٣٤)
+
+### ٩.١ الغرض
+الخدمة الوحيدة المخوّلة بكتابة `activation_codes`: توليد كود لحظي عند البيع
+وجهاً لوجه (لا دفعات مسبقة)، وإلغاء كود، وجرد. كل فعل يُسجَّل في
+`office_audit` (أثر التدقيق للـplaybook قرار ٣٢).
+
+### ٩.٢ الحماية
+- ترويسة `x-office-key` يجب أن تطابق سر `OFFICE_KEY` (يضعه المالك) — **بلا JWT**:
+  المكتب ليس «مستخدم تطبيق». الغياب ⇒ `NOT_CONFIGURED` 500، عدم التطابق ⇒ `FORBIDDEN` 403.
+- الداخل يقرأ/يكتب بـ`SERVICE_ROLE_KEY` حصراً؛ الجداول الإدارية RLS سلبية.
+
+### ٩.٣ الاستدعاء (POST واحد بثلاثة أفعال)
+```jsonc
+// توليد count كود (١..١٠٠) — يُعيدها مشكّلة ٥-٥-٥
+{ "action": "generate", "count": 3, "distributor": "مكتب لورانيم",
+  "release_id": "2027-v1", "hard_deadline": "2027-05-01T00:00:00Z" }
+// إلغاء كود
+{ "action": "revoke", "code": "K7M2P-9QW4X-ABCDE" }
+// جرد (اختياري status = issued|activated|revoked) — مع devices_used لكل كود
+{ "action": "list", "status": "issued" }
+```
+
+### ٩.٤ شكل الكود (العقد القانوني)
+١٥ محرفاً Crockford بلا I/L/O/U — مطابق `CODE_RE` (§٢) و`formatLicenseCode`
+بالعميل، ويُعرض ٥-٥-٥. (القرار ٣٤ كتب «١٠ محارف» سهواً قديماً — البنية
+والعميل ثابتان على ١٥.) التوليد بـ`crypto.getRandomValues` عند الطلب حصراً.
+
+### ٩.٥ الأخطاء
+`FORBIDDEN 403` · `CODE_FORMAT 422` · `CODE_NOT_FOUND 404` · `GEN_PARTIAL 500`
+(تعارض نادر بعد ٨ محاولات لكل كود) · `BAD_ACTION 422` · `NOT_CONFIGURED 500`.
