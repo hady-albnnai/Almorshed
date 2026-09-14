@@ -13,7 +13,7 @@ import '../../core/util/arabic_number.dart';
 import 'review_widgets.dart';
 
 /// رقم المكتب لاستقبال الملاحظات — بصيغة دولية بلا + (يضبطه المالك).
-const String kOfficeWhatsApp = '963000000000';
+const String kOfficeWhatsApp = '963938862469';
 
 class ReviewNotesScreen extends StatefulWidget {
   const ReviewNotesScreen({super.key, required this.pack, required this.notes});
