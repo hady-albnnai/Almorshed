@@ -4,6 +4,8 @@
 // أي تغيير يكسرها = انحراف حتمية بين العميل والخادم = نتيجة مرفوضة.
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/duel/duel_engine.dart';
+import 'package:fizya_clash/core/rng/session.dart';
+import 'package:fizya_clash/core/rng/splitmix64.dart';
 import 'package:fizya_clash/core/content/models.dart';
 
 DuelScope _scope() =>
@@ -51,7 +53,49 @@ ContentPack _pack() {
   );
 }
 
+
+SessionSpec _specForDiag(int seed) {
+  final pack = _pack();
+  final chapterIndex = <String, int>{};
+  for (final u in pack.units) {
+    for (final c in u.chapters) {
+      chapterIndex.putIfAbsent(c.id, () => chapterIndex.length);
+    }
+  }
+  return SessionSpec(
+    seed: seed,
+    count: 10,
+    bankIds: pack.questions.map((q) => q.id).toList(),
+    chapterOf: {for (final q in pack.questions) q.id: chapterIndex[q.chapter] ?? 0},
+    optionsOf: {
+      for (final q in pack.questions)
+        q.id: List<int>.generate(q.options.length, (i) => i),
+    },
+  );
+}
+
 void main() {
+  test('تشخيص — يطبع قيم السلسلة', () {
+    // ignore: avoid_print
+    print('DIAG decode9=${RoomCode.decode('K7M2P-9QW4X')}');
+    // ignore: avoid_print
+    print('DIAG encodeG=${RoomCode.encode(676889741750429)}');
+    final seed = makeSeed(tag: 2852, roomCode: 676889741750429);
+    // ignore: avoid_print
+    print('DIAG seed=$seed');
+    // ignore: avoid_print
+    print('DIAG tag=${scopeTagOf(_scope())}');
+    final spec = _specForDiag(seed);
+    // ignore: avoid_print
+    print('DIAG shuffled=${fisherYates(spec.bankIds, SplitMix64(SessionStreams.streamA(spec.seed)))}');
+    final sess = buildDuelSession(_pack(), seed: seed, scope: _scope());
+    // ignore: avoid_print
+    print('DIAG ids=${sess.built.questionIds}');
+    // ignore: avoid_print
+    print('DIAG corrects=${sess.correctDisplay}');
+    expect(true, isTrue);
+  });
+
   test('Crockford: الرمز المرجعي K7M2P-9QW4X ذهاباً وإياباً', () {
     const code = 'K7M2P-9QW4X';
     final v = RoomCode.decode(code);
@@ -59,8 +103,9 @@ void main() {
     expect(RoomCode.encode(v), code);
     // التطبيع: صغير/بلا مسرة/أخطاء O I L
     expect(RoomCode.decode('k7m2p9qw4x'), v);
-    expect(RoomCode.decode('K7M2P-OQW4X'), v); // O ⇒ 0
-    expect(RoomCode.decode('K7M2P-9QWIX'), v); // I ⇒ 1
+    // التطبيع O⇒0 وI⇒1 — تكافؤ صحيح: كل رمز بنظيره المطبَّع (درس: O≡0QW4X لا 9QW4X)
+    expect(RoomCode.decode('K7M2P-OQW4X'), RoomCode.decode('K7M2P-0QW4X'));
+    expect(RoomCode.decode('K7M2P-9QWIX'), RoomCode.decode('K7M2P-9QW11'));
     expect(() => RoomCode.decode('K7M2P-9QW4'), throwsFormatException);
     expect(() => RoomCode.decode('K7M2P-9QW4UI'), throwsFormatException); // U غريبة
   });
