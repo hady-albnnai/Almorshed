@@ -103,7 +103,7 @@ Deno.serve(async (req) => {
     // ── ٣) الكود من القاعدة (قراءة مسبقة للسقف الصلب والإصدار) ──
     const { data: codeRow, error: codeErr } = await admin
       .from('activation_codes')
-      .select('code,status,release_id,hard_deadline')
+      .select('code,status,release_id,hard_deadline,review')
       .eq('code', code)
       .single();
     if (codeErr || !codeRow) {
@@ -122,7 +122,8 @@ Deno.serve(async (req) => {
     // بايتات خام حصراً — atob ثم digest مباشرة (لا سلسلة وسيطة يفسدها utf8)
     const rawPub = Uint8Array.from(atob(pubkeyB64), (c) => c.charCodeAt(0));
     const deviceHash = EMIT_DEVICE_HASH ? await sha256BytesHex(rawPub) : '';
-    const flags = ['full'];
+    // 0008: كود مراجعة ⇒ 'teacher' ضمن الأعلام الموقّعة (قرار ٥٥)
+    const flags = codeRow.review === true ? ['full', 'teacher'] : ['full'];
     const canonical = JSON.stringify({
       code_id: code,
       device_key_hash: deviceHash,
@@ -181,6 +182,7 @@ Deno.serve(async (req) => {
       code_id: code,
       devices_used: data.licenses_count,
       activated_now: data.activated_now,
+      flags: [...flags].sort(),
     });
   } catch (e) {
     return json({ ok: false, error: 'INTERNAL', detail: String(e) }, 500);

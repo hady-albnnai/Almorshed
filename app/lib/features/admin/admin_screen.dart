@@ -128,6 +128,30 @@ class _AdminScreenState extends State<AdminScreen> {
     });
   }
 
+  /// قرار ٥٥: كود واحد موسوم «مراجعة» — على جهاز الأستاذ تفتح ٥ نقرات
+  /// وضع المراجعة بدل لوحة الإدارة. يُرسل له بواتساب مع التطبيق.
+  Future<void> _generateReview() async {
+    final sure = await _confirm(
+      'كود مراجعة للأستاذ؟',
+      'كود تفعيل عادي (٣٠ يوماً، جهاز واحد) لكنه يفتح وضع المراجعة على '
+          'جهازه بخمس نقرات على الترحيب. لا يُعطى لطالب.',
+    );
+    if (sure != true || !mounted) return;
+    setState(() => _busy = true);
+    try {
+      final codes = await _api.generate(_key, count: 1, review: true);
+      if (!mounted) return;
+      await _showCodes(codes);
+    } on OfficeApiException catch (e) {
+      if (mounted) _toast('فشل التوليد: ${e.message}');
+    } catch (_) {
+      if (mounted) _toast('تعذر الاتصال');
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+    await _refresh();
+  }
+
   Future<void> _generate() async {
     final count = await _askCount();
     if (count == null || !mounted) return;
@@ -410,9 +434,8 @@ class _AdminScreenState extends State<AdminScreen> {
             child: SwitchListTile(
               title: const Text('وضع المراجعة (للأستاذ)'),
               subtitle: const Text(
-                'يفتح كل المحتوى غير المعتمد بشارة «قيد المراجعة» + دفتر '
-                'ملاحظات + إيقاف المزامنة. يسري بعد إعادة تشغيل التطبيق. '
-                'فعّله على جهاز الأستاذ فقط.',
+                'لهذا الجهاز فقط (لتجربتك). الأستاذ يحصل عليه بـ«كود مراجعة» '
+                'أدناه ثم ٥ نقرات على الترحيب. يسري بعد إعادة التشغيل.',
               ),
               secondary: const Icon(Icons.rate_review_outlined),
               value: _reviewOn,
@@ -434,6 +457,12 @@ class _AdminScreenState extends State<AdminScreen> {
             onPressed: _busy ? null : _generate,
             icon: const Icon(Icons.qr_code),
             label: const Text('توليد أكواد للبيع 🎫'),
+          ),
+          const SizedBox(height: 8),
+          OutlinedButton.icon(
+            onPressed: _busy ? null : _generateReview,
+            icon: const Icon(Icons.rate_review_outlined),
+            label: const Text('كود مراجعة للأستاذ 📝'),
           ),
           const SizedBox(height: 14),
           // ── فلترة ──

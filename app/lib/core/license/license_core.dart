@@ -18,8 +18,9 @@ String deviceKeyHashFor(Uint8List pubkeyBytes) =>
 /// المفتاح العام للتحقق المحلي — مفتاح الإنتاج الحقيقي (F4.4 2026-09-13):
 /// وُلّد عند المالك (tool/generate_license_key.dart) وحُفظ بالبذرة الخاصة
 /// بأسرار Supabase. مفتاح عام ليس سراً أبداً — ضبطه هنا مشروع بلا خطر.
-final ed.PublicKey licensePublicKey = ed.PublicKey(base64Decode(
-    'a4Fzh3MYmy1yw60q3Ve0/6AOZVIoLfjvl3G1n5GMQz8='));
+final ed.PublicKey licensePublicKey = ed.PublicKey(
+  base64Decode('a4Fzh3MYmy1yw60q3Ve0/6AOZVIoLfjvl3G1n5GMQz8='),
+);
 
 /// موعد امتحان البكالوريا 2027 — الحد الأقصى الصلب لأي إيجار (docs/11 §٥).
 /// 2027-05-01T00:00:00Z
@@ -43,29 +44,31 @@ class LicensePayload {
   final int hardDeadlineMs; // امتحان الفيزياء 2027 — سقف صلب
   final Set<String> flags; // demo / full / teacher ...
 
+  /// كود مراجعة (0008 — قرار ٥٥): التوكن الموقّع يحمل 'teacher'.
+  bool get isTeacher => flags.contains('teacher');
+
   String get canonicalJson => jsonEncode(<String, dynamic>{
-        'code_id': codeId,
-        'device_key_hash': deviceKeyHash,
-        'release_id': releaseId,
-        'expires_at': expiresAtMs,
-        'hard_deadline': hardDeadlineMs,
-        'flags': flags.toList()..sort(),
-      });
+    'code_id': codeId,
+    'device_key_hash': deviceKeyHash,
+    'release_id': releaseId,
+    'expires_at': expiresAtMs,
+    'hard_deadline': hardDeadlineMs,
+    'flags': flags.toList()..sort(),
+  });
 
   Uint8List get canonicalBytes =>
       Uint8List.fromList(utf8.encode(canonicalJson));
 
   static LicensePayload fromJson(Map<String, dynamic> json) => LicensePayload(
-        codeId: json['code_id'] as String,
-        deviceKeyHash: json['device_key_hash'] as String? ?? '',
-        releaseId: json['release_id'] as String? ?? '',
-        expiresAtMs: (json['expires_at'] as num).toInt(),
-        hardDeadlineMs: (json['hard_deadline'] as num).toInt(),
-        flags:
-            ((json['flags'] as List<dynamic>?) ?? const <dynamic>[])
-                .map((e) => e.toString())
-                .toSet(),
-      );
+    codeId: json['code_id'] as String,
+    deviceKeyHash: json['device_key_hash'] as String? ?? '',
+    releaseId: json['release_id'] as String? ?? '',
+    expiresAtMs: (json['expires_at'] as num).toInt(),
+    hardDeadlineMs: (json['hard_deadline'] as num).toInt(),
+    flags: ((json['flags'] as List<dynamic>?) ?? const <dynamic>[])
+        .map((e) => e.toString())
+        .toSet(),
+  );
 }
 
 /// التوكن المادي: حمولة قاعدية-64 + توقيع 64 بايت قاعدية-64.
@@ -78,10 +81,8 @@ class LicenseToken {
   Uint8List get payloadBytes => base64Decode(payloadB64);
   Uint8List get sigBytes => base64Decode(sigB64);
 
-  String encode() => jsonEncode(<String, dynamic>{
-        'payload': payloadB64,
-        'sig': sigB64,
-      });
+  String encode() =>
+      jsonEncode(<String, dynamic>{'payload': payloadB64, 'sig': sigB64});
 
   /// فك تسامحي — أي فساد يرجع null ولا يكسر التطبيق أبداً.
   static LicenseToken? tryDecode(String raw) {
@@ -98,8 +99,7 @@ class LicenseToken {
 
   /// توقيع حمولة جاهزة — أداة إصدار (للاختبارات والأداة المحلية الآن،
   /// ولسيرفر التفعيل F4.4 لاحقاً).
-  static LicenseToken issue(
-      LicensePayload payload, ed.PrivateKey serverKey) {
+  static LicenseToken issue(LicensePayload payload, ed.PrivateKey serverKey) {
     final bytes = payload.canonicalBytes;
     final sig = ed.sign(serverKey, bytes);
     return LicenseToken(
@@ -155,7 +155,8 @@ LicenseCheck checkLicense(
   final LicensePayload payload;
   try {
     payload = LicensePayload.fromJson(
-        jsonDecode(utf8.decode(payloadBytes)) as Map<String, dynamic>);
+      jsonDecode(utf8.decode(payloadBytes)) as Map<String, dynamic>,
+    );
   } catch (_) {
     return const LicenseCheck(LicenseVerdict.malformed);
   }
@@ -187,8 +188,7 @@ bool clockRollbackSuspected({
   required int lastWallMs,
   required int nowMs,
   int toleranceMs = 5 * 60 * 1000,
-}) =>
-    nowMs < lastWallMs - toleranceMs;
+}) => nowMs < lastWallMs - toleranceMs;
 
 /// الانتظار التدريجي لحماية الكود (قرار ٣٨/النموذج): أول ٥ محاولات حرة
 /// ثم يبدأ الانتظار — ٥ و10 و20 و40 دقيقة بسقف ساعة (نمط «حد التخمين»).
@@ -205,7 +205,9 @@ String formatLicenseCode(String raw) {
   final capped = filtered.length > 15 ? filtered.substring(0, 15) : filtered;
   final groups = <String>[];
   for (var i = 0; i < capped.length; i += 5) {
-    groups.add(capped.substring(i, i + 5 < capped.length ? i + 5 : capped.length));
+    groups.add(
+      capped.substring(i, i + 5 < capped.length ? i + 5 : capped.length),
+    );
   }
   return groups.join('-');
 }

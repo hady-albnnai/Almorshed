@@ -28,6 +28,21 @@ class LicenseData {
   final int failures; // محاولات تفعيل خاطئة (backoff)
   final int lockUntilMs;
 
+  /// هل رخصة هذا الجهاز من كود مراجعة؟ (يقرأ العلم من الحمولة — بلا
+  /// تحقق توقيع هنا؛ التحقق الكامل يجري في بوابة التفعيل. أسوأ أثر لتزوير
+  /// محلي = فتح شاشة ملاحظات لا تكتب للسيرفر ⇒ لا قيمة له.)
+  bool get isTeacher {
+    final t = token;
+    if (t == null) return false;
+    try {
+      final json = utf8.decode(t.payloadBytes);
+      return LicensePayload.fromJson(jsonDecode(json) as Map<String, dynamic>)
+          .isTeacher;
+    } catch (_) {
+      return false;
+    }
+  }
+
   LicenseData copyWith({
     LicenseMode? mode,
     LicenseToken? token,
@@ -35,24 +50,23 @@ class LicenseData {
     int? lastWallMs,
     int? failures,
     int? lockUntilMs,
-  }) =>
-      LicenseData(
-        mode: mode ?? this.mode,
-        token: token ?? this.token,
-        activatedAtMs: activatedAtMs ?? this.activatedAtMs,
-        lastWallMs: lastWallMs ?? this.lastWallMs,
-        failures: failures ?? this.failures,
-        lockUntilMs: lockUntilMs ?? this.lockUntilMs,
-      );
+  }) => LicenseData(
+    mode: mode ?? this.mode,
+    token: token ?? this.token,
+    activatedAtMs: activatedAtMs ?? this.activatedAtMs,
+    lastWallMs: lastWallMs ?? this.lastWallMs,
+    failures: failures ?? this.failures,
+    lockUntilMs: lockUntilMs ?? this.lockUntilMs,
+  );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'mode': mode.name,
-        'token': token?.encode(),
-        'activated_at': activatedAtMs,
-        'last_wall': lastWallMs,
-        'failures': failures,
-        'lock_until': lockUntilMs,
-      };
+    'mode': mode.name,
+    'token': token?.encode(),
+    'activated_at': activatedAtMs,
+    'last_wall': lastWallMs,
+    'failures': failures,
+    'lock_until': lockUntilMs,
+  };
 
   factory LicenseData.fromJson(Map<String, dynamic> json) {
     // byName أساسية بالدارت (تُلقي لو غير معروف — نأسف بأمان)
@@ -87,7 +101,7 @@ class InMemoryLicenseStore implements LicenseStore {
 
   /// وضع تجربة جاهز — لاختبارات الواجهة التي لا تخص البوابة.
   InMemoryLicenseStore.trial()
-      : _data = const LicenseData(mode: LicenseMode.trial);
+    : _data = const LicenseData(mode: LicenseMode.trial);
 
   LicenseData _data;
 

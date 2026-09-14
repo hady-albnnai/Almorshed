@@ -66,6 +66,8 @@ Deno.serve(async (req) => {
       const distributor = String(body.distributor ?? 'مكتب لورانيم').slice(0, 64);
       const release_id = String(body.release_id ?? DEFAULT_RELEASE).slice(0, 32);
       const hard_deadline = String(body.hard_deadline ?? DEFAULT_HARD);
+      // 0008: كود مراجعة للأستاذ — التوكن يحمل 'teacher' (قرار ٥٥)
+      const review = body.review === true;
 
       const issued: string[] = [];
       for (let attempt = 0; attempt < count * 8 && issued.length < count; attempt++) {
@@ -78,6 +80,7 @@ Deno.serve(async (req) => {
             distributor,
             release_id,
             hard_deadline,
+            review,
           });
         if (!error) issued.push(code);
         // عند تعارض نادر نعيد المحاولة — وإلا نكمل
@@ -92,9 +95,9 @@ Deno.serve(async (req) => {
         action: 'generate',
         codes: issued,
         distributor,
-        note: `release=${release_id}`,
+        note: `release=${release_id}${review ? ' review' : ''}`,
       });
-      return json({ ok: true, count: issued.length, codes: issued.map(group5) });
+      return json({ ok: true, count: issued.length, codes: issued.map(group5), review });
     }
 
     // ── ٣) revoke ── (إلغاء كود أو اشتراك: الرخص كلها تُسحب أيضاً —
@@ -124,7 +127,7 @@ Deno.serve(async (req) => {
       const status = String(body.status ?? '');
       let q = admin
         .from('activation_codes')
-        .select('code,status,distributor,release_id,hard_deadline,created_at,activated_at,activated_by')
+        .select('code,status,distributor,release_id,hard_deadline,created_at,activated_at,activated_by,review')
         .order('created_at', { ascending: false })
         .limit(200);
       if (status && ['issued', 'activated', 'revoked'].includes(status)) {
@@ -150,6 +153,7 @@ Deno.serve(async (req) => {
           code: group5(c.code),
           status: c.status,
           distributor: c.distributor,
+          review: c.review === true,
           release_id: c.release_id,
           hard_deadline: c.hard_deadline,
           created_at: c.created_at,

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../core/supabase/league_api.dart';
@@ -19,6 +21,7 @@ import '../duel/duel_screen.dart';
 import '../duel/local_duel_screen.dart';
 import '../admin/admin_screen.dart';
 import '../review/review_notes_screen.dart';
+import '../../core/review/review_mode.dart';
 import '../review/review_widgets.dart';
 import '../training/cards_screen.dart';
 import '../training/training_screen.dart';
@@ -152,9 +155,56 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     if (_adminTaps >= 5) {
       _adminTaps = 0;
       _lastAdminTap = null;
+      // قرار ٥٥: على جهاز بكود مراجعة، الخمس نقرات = مفتاح وضع المراجعة
+      // (لا لوحة إدارة ولا مفتاح مكتب على جهاز الأستاذ إطلاقاً).
+      if (_license?.isTeacher == true) {
+        unawaited(_toggleReviewMode());
+        return;
+      }
       Navigator.of(context)
           .push(MaterialPageRoute<void>(builder: (_) => const AdminScreen()));
     }
+  }
+
+  Future<void> _toggleReviewMode() async {
+    final store = ReviewModeStore();
+    final on = await store.isEnabled();
+    if (!mounted) return;
+    final go = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(on ? 'إطفاء وضع المراجعة؟' : 'تشغيل وضع المراجعة؟'),
+        content: Text(
+          on
+              ? 'سيعود التطبيق كما يراه الطالب. ملاحظاتك المحفوظة لا تُمسح.'
+              : 'سيظهر كل المحتوى — حتى غير المعتمد — بشارة «قيد المراجعة»، '
+                    'مع زر ✏️ لتسجيل ملاحظة على أي سؤال أو بطاقة أو فقرة. '
+                    'يسري بعد إغلاق التطبيق وفتحه.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('إلغاء'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: Text(on ? 'إطفاء' : 'تشغيل'),
+          ),
+        ],
+      ),
+    );
+    if (go != true) return;
+    await store.setEnabled(!on);
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          on
+              ? 'أُطفئ وضع المراجعة — أغلق التطبيق وافتحه'
+              : 'شُغّل وضع المراجعة — أغلق التطبيق وافتحه',
+        ),
+      ),
+    );
   }
 
   @override

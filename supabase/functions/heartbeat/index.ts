@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
       if (needsRenew) {
         const { data: codeRow } = await admin
           .from('activation_codes')
-          .select('status,release_id,hard_deadline')
+          .select('status,release_id,hard_deadline,review')
           .eq('code', lic.code)
           .single();
         const hardMs = new Date(codeRow?.hard_deadline ?? 0).getTime();
@@ -100,7 +100,7 @@ Deno.serve(async (req) => {
               release_id: lic.release_id,
               expires_at: newExpires,
               hard_deadline: hardMs,
-              flags: ['full'].sort(),
+              flags: (codeRow?.review === true ? ['full', 'teacher'] : ['full']).sort(),
             });
             const sig = nacl.sign.detached(encoder.encode(canonical), kp.secretKey);
             tokenOut = {

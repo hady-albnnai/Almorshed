@@ -1,5 +1,9 @@
 // F2.4 + وضع المراجعة — اختبارات المنطق الخالص (بلا واجهة/تخزين).
+import 'dart:convert';
+
 import 'package:fizya_clash/core/content/models.dart';
+import 'package:fizya_clash/core/license/license_core.dart';
+import 'package:fizya_clash/core/license/license_store.dart';
 import 'package:fizya_clash/core/review/review_mode.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -40,6 +44,7 @@ ContentPack _pack() => ContentPack.fromJson(<String, dynamic>{
 });
 
 void main() {
+  mainTeacherFlag();
   group('F2.4 تجميد المعدَّل (الوضع العادي)', () {
     test('approvedQuestions يحجب غير المعتمد وبلا علم', () {
       final p = _pack();
@@ -145,6 +150,43 @@ void main() {
       final r = formatReviewReport(const [], now: DateTime(2026, 9, 20));
       expect(r.split('\n').length, 2);
       expect(r, isNot(contains('✅')));
+    });
+  });
+}
+
+// ── قرار ٥٥: كود المراجعة ⇒ علم 'teacher' في التوكن الموقّع ──
+LicenseData _licWithFlags(List<String> flags) {
+  final payload = jsonEncode({
+    'code_id': 'X',
+    'device_key_hash': '',
+    'release_id': 'r',
+    'expires_at': 1,
+    'hard_deadline': 2,
+    'flags': flags,
+  });
+  return LicenseData(
+    mode: LicenseMode.licensed,
+    token: LicenseToken(
+      payloadB64: base64Encode(utf8.encode(payload)),
+      sigB64: 'AA==',
+    ),
+  );
+}
+
+void mainTeacherFlag() {
+  group('كود المراجعة (0008)', () {
+    test('توكن بعلم teacher ⇒ isTeacher', () {
+      expect(_licWithFlags(['full', 'teacher']).isTeacher, isTrue);
+      expect(_licWithFlags(['full']).isTeacher, isFalse);
+    });
+    test('بلا توكن أو حمولة تالفة ⇒ false بلا انفجار', () {
+      expect(const LicenseData().isTeacher, isFalse);
+      expect(
+        const LicenseData(
+          token: LicenseToken(payloadB64: '!!', sigB64: ''),
+        ).isTeacher,
+        isFalse,
+      );
     });
   });
 }
