@@ -111,7 +111,8 @@ void main() {
     });
     final r2 = gradeDuelSide(s, pattern);
     expect(r2.corrects, 8);
-    expect(r2.score, 800);
+    // المتتاليات: [0,1,2]=400 · [4,5,6]=400 · [8,9]=200 ⇒ 1000
+    expect(r2.score, 1000);
     // بلا إجابات ⇒ صفر
     expect(gradeDuelSide(s, List<int?>.filled(10, null)).score, 0);
   });
