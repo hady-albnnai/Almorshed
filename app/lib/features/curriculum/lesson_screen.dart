@@ -7,6 +7,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/tts/flutter_tts_speaker.dart';
 import '../../core/tts/speaker.dart';
 import '../../core/util/arabic_number.dart';
+import '../review/review_widgets.dart';
 
 /// شاشة القراءة — فقرة واحدة لكل شاشة (قرار نمط القراءة · F3.2):
 /// «التالي» + «📌 خلاصة الفقرة» + TTS «اسمعني» + فهرس حر قابل للطي + «انتهى الدرس».
@@ -102,17 +103,18 @@ class _LessonScreenState extends State<LessonScreen> {
   int get _total => _chapter.paragraphs.length;
   Paragraph get _paragraph => _chapter.paragraphs[_idx];
 
-  Color _gold(BuildContext c) =>
-      Theme.of(c).brightness == Brightness.dark
-          ? AppColors.goldDark
-          : AppColors.goldLight;
+  Color _gold(BuildContext c) => Theme.of(c).brightness == Brightness.dark
+      ? AppColors.goldDark
+      : AppColors.goldLight;
 
   /// F3.1: تسجيل إتمام الفصل في مخزن التقدم (مع الحفاظ على موضع القارئ).
   Future<void> _markCompleted() async {
     final p = await widget.progressStore.load();
     final chapters = {...p.chapters};
-    chapters[widget.chapter.id] =
-        ChapterProgress(cursor: _idx, completed: true);
+    chapters[widget.chapter.id] = ChapterProgress(
+      cursor: _idx,
+      completed: true,
+    );
     await widget.progressStore.save(ReadProgress(chapters: chapters));
     // F3.8: «درس جديد» +١٠ — السقف اليومي بالخدمة يمنع التكرار
     await widget.xpRecorder?.record('lessonNew');
@@ -143,12 +145,19 @@ class _LessonScreenState extends State<LessonScreen> {
           overflow: TextOverflow.ellipsis,
         ),
         actions: [
+          if (!_finished)
+            ReviewNoteButton(
+              kind: 'p',
+              itemId: _paragraph.id,
+              preview: _paragraph.text,
+            ),
           if (!_finished && _speaker != null)
             IconButton(
               tooltip: _speaking ? 'إيقاف النطق' : 'اسمعني — نطق الفقرة',
               onPressed: _toggleSpeak,
               icon: Icon(
-                  _speaking ? Icons.stop_outlined : Icons.volume_up_outlined),
+                _speaking ? Icons.stop_outlined : Icons.volume_up_outlined,
+              ),
             ),
           if (!_finished)
             IconButton(
@@ -159,17 +168,26 @@ class _LessonScreenState extends State<LessonScreen> {
         ],
       ),
       body: _finished
-          ? _EndView(onReplay: () => setState(() { _finished = false; _idx = 0; }))
+          ? _EndView(
+              onReplay: () => setState(() {
+                _finished = false;
+                _idx = 0;
+              }),
+            )
           : Column(
               children: [
-                if (_indexOpen) _IndexPanel(
-                  chapter: _chapter,
-                  current: _idx,
-                  onPick: (i) {
-                    _stopSpeaking(); // تغيير الفقرة يوقف النطق الجاري
-                    setState(() { _idx = i; _indexOpen = false; });
-                  },
-                ),
+                if (_indexOpen)
+                  _IndexPanel(
+                    chapter: _chapter,
+                    current: _idx,
+                    onPick: (i) {
+                      _stopSpeaking(); // تغيير الفقرة يوقف النطق الجاري
+                      setState(() {
+                        _idx = i;
+                        _indexOpen = false;
+                      });
+                    },
+                  ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
                   child: Align(
@@ -191,18 +209,21 @@ class _LessonScreenState extends State<LessonScreen> {
                   margin: const EdgeInsets.symmetric(horizontal: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
-                    side: BorderSide(color: _gold(context).withValues(alpha: .45)),
+                    side: BorderSide(
+                      color: _gold(context).withValues(alpha: .45),
+                    ),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('📌 خلاصة الفقرة',
-                            style: txt.titleMedium?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondary)),
+                        Text(
+                          '📌 خلاصة الفقرة',
+                          style: txt.titleMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        ),
                         const SizedBox(height: 4),
                         Text(_paragraph.summary, style: txt.bodyMedium),
                       ],
@@ -244,9 +265,9 @@ class _LessonScreenState extends State<LessonScreen> {
                                 }
                               });
                             },
-                            child: Text(_idx == _total - 1
-                                ? 'انتهى الدرس ✓'
-                                : 'التالي ←'),
+                            child: Text(
+                              _idx == _total - 1 ? 'انتهى الدرس ✓' : 'التالي ←',
+                            ),
                           ),
                         ),
                       ],
@@ -330,27 +351,35 @@ class _EndView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.celebration_outlined, size: 64, color: AppColors.brandDark),
+            const Icon(
+              Icons.celebration_outlined,
+              size: 64,
+              color: AppColors.brandDark,
+            ),
             const SizedBox(height: 12),
             Text('أنهيت الفصل!', style: txt.titleLarge),
             const SizedBox(height: 6),
-            Text('+١٠ نقطة لدوري فيزيا كلاش ✓',
-                style: txt.titleMedium?.copyWith(color: _gold(context))),
+            Text(
+              '+١٠ نقطة لدوري فيزيا كلاش ✓',
+              style: txt.titleMedium?.copyWith(color: _gold(context)),
+            ),
             const SizedBox(height: 20),
             FilledButton(
               onPressed: () => Navigator.of(context).pop(),
               child: const Text('رجوع للوحدة'),
             ),
             const SizedBox(height: 8),
-            OutlinedButton(onPressed: onReplay, child: const Text('أعد القراءة')),
+            OutlinedButton(
+              onPressed: onReplay,
+              child: const Text('أعد القراءة'),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Color _gold(BuildContext c) =>
-      Theme.of(c).brightness == Brightness.dark
-          ? AppColors.goldDark
-          : AppColors.goldLight;
+  Color _gold(BuildContext c) => Theme.of(c).brightness == Brightness.dark
+      ? AppColors.goldDark
+      : AppColors.goldLight;
 }

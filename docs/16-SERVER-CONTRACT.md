@@ -445,7 +445,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 15 | أداة المكتب `office_codes` (توليد/إلغاء/جرد) | `functions/office_codes/index.ts` — الحماية بسر `OFFICE_KEY` (ترويسة `x-office-key`) | ✅ منشورة (دخان المالك 2026-09-14: generate → كودان حقيقيان) |
 | 16 | توسعة أداة المكتب: `stats` (عداد+لائحة) + إلغاء اشتراك كامل (سحب الرخص) | `functions/office_codes/index.ts` (2026-09-14) | ✅ أُعيد نشرها (تأكيد المالك 2026-09-14) + التطبيق نظيف (analyze + test) |
 | 17 | **تدقيق الحقن** — قيود شكل/حجم على كل عمود يكتبه العميل (duels/xp_events/devices/profiles/activation_codes) | `0007_input_hardening.sql` (idempotent؛ قسم duels يتخطّى نفسه قبل 0005) | ✅ مُطبَّق (تحقق المالك 2026-09-14: **8/8** قيود على profiles/devices/activation_codes/xp_events — قيود duels الخمسة تُضاف بإعادة 0007 بعد 0005) |
-| 18 | تشديد `verify_xp_events`: `EVENT_SHAPE` (نوع/أرقام/حمولة ≤ 2KB) + `reason ≤ 200` | `functions/verify_xp_events/index.ts` (2026-09-14) | ⬜ إعادة نشر |
+| 18 | تشديد `verify_xp_events`: `EVENT_SHAPE` (نوع/أرقام/حمولة ≤ 2KB) + `reason ≤ 200` | `functions/verify_xp_events/index.ts` (2026-09-14) | ✅ أُعيد نشرها (دخان المالك: accepted=true، synced_up_to=0) |
 | 19 | تشديد `duel_finish`: `SCOPE_SHAPE` (units U1..U5 ≤ 5، count 1..50) | `functions/duel_finish/index.ts` | ⬜ يُنشر مع المسار ب |
 
 طريقة 5-7 (بلا CLI): اللوحة ← **Edge Functions** ← Create a new function

@@ -5,6 +5,7 @@ import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
+import '../review/review_widgets.dart';
 
 /// F3.3 — جلسة دفعة اليوم: سؤال/خيارات + تصحيح فوري بخطوات الحل + النتيجة.
 /// الحتمية: الجلسة تعيد بناء الخلط من dateKey المحفوظ — أي فتح يعرض نفسه.
@@ -76,8 +77,9 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
     if (_state.answers.containsKey(qid)) return;
     setState(() => _state = _state.withAnswer(qid, displayIndex));
     // حفظ فوري مع الأرشيف كما هو — الاستئناف يعمل ولا يمسح أخطائي
-    await widget.trainingStore
-        .save(TrainingData(daily: _state, mistakes: _initial.mistakes));
+    await widget.trainingStore.save(
+      TrainingData(daily: _state, mistakes: _initial.mistakes),
+    );
   }
 
   Future<void> _finish() async {
@@ -95,12 +97,14 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
       if (chosen == correct) {
         score++;
       } else if (chosen != null) {
-        mistakes.add(MistakeRecord(
-          questionId: q.id,
-          chosenIndex: chosen,
-          correctIndex: correct,
-          atMs: now + i, // ترتيب زمني حتمي داخل الدفعة
-        ));
+        mistakes.add(
+          MistakeRecord(
+            questionId: q.id,
+            chosenIndex: chosen,
+            correctIndex: correct,
+            atMs: now + i, // ترتيب زمني حتمي داخل الدفعة
+          ),
+        );
       }
     }
     final finished = _state.finish(score);
@@ -112,8 +116,9 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
     // F3.8: إتمام دفعة التدريب +١٥ مرة/يوم (موثقة بدفتر XP)
     await widget.xpRecorder?.record('batchDone');
     if (!mounted) return;
-    setState(() => _result =
-        (finished: finished, mistakesCount: mistakes.length));
+    setState(
+      () => _result = (finished: finished, mistakesCount: mistakes.length),
+    );
   }
 
   ({DailyBatchState finished, int mistakesCount})? _result;
@@ -125,7 +130,8 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
       return Scaffold(
         appBar: AppBar(),
         body: const Center(
-            child: Text('لا بنك معتمد — أعد الفتح من بوابة التدريب')),
+          child: Text('لا بنك معتمد — أعد الفتح من بوابة التدريب'),
+        ),
       );
     }
 
@@ -136,8 +142,8 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
       final msg = ratio == 1
           ? 'ما شاء الله — كامل صحيح!'
           : ratio >= 0.7
-              ? 'قوي! راجع أخطاءك في الأرشيف'
-              : 'لا بأس — أرشيف أخطائي يحفظ لك المرات القادمة';
+          ? 'قوي! راجع أخطاءك في الأرشيف'
+          : 'لا بأس — أرشيف أخطائي يحفظ لك المرات القادمة';
       return Scaffold(
         appBar: AppBar(title: const Text('نتيجة الدفعة')),
         body: Center(
@@ -155,8 +161,11 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
               const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Text(msg, style: txt.bodyLarge,
-                    textAlign: TextAlign.center),
+                child: Text(
+                  msg,
+                  style: txt.bodyLarge,
+                  textAlign: TextAlign.center,
+                ),
               ),
               const SizedBox(height: 24),
               FilledButton(
@@ -187,15 +196,21 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            'سؤال ${ArabicNumber.from(i + 1)} من ${ArabicNumber.from(_total)}'),
+          'سؤال ${ArabicNumber.from(i + 1)} من ${ArabicNumber.from(_total)}',
+        ),
+        actions: [
+          ReviewNoteButton(kind: 'q', itemId: '${q.id}', preview: q.stem),
+        ],
       ),
       body: Column(
         children: [
+          const ReviewBanner(),
           LinearProgressIndicator(value: _answered / _total),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [
+                PendingBadge(questionId: q.id),
                 Text(q.stem, style: txt.titleMedium),
                 const SizedBox(height: 14),
                 for (var k = 0; k < order.length; k++)
@@ -205,10 +220,10 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
                     state: !answered
                         ? _OptionState.idle
                         : (k == correct
-                            ? _OptionState.correct
-                            : (k == chosen
-                                ? _OptionState.wrong
-                                : _OptionState.dimmed)),
+                              ? _OptionState.correct
+                              : (k == chosen
+                                    ? _OptionState.wrong
+                                    : _OptionState.dimmed)),
                     onTap: answered ? null : () => _choose(q.id, k),
                   ),
                 if (answered && q.solutionSteps.isNotEmpty) ...[
@@ -228,8 +243,9 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
                             Padding(
                               padding: const EdgeInsets.symmetric(vertical: 2),
                               child: Text(
-                                  '${ArabicNumber.from(s + 1)}. ${q.solutionSteps[s]}',
-                                  style: txt.bodyMedium),
+                                '${ArabicNumber.from(s + 1)}. ${q.solutionSteps[s]}',
+                                style: txt.bodyMedium,
+                              ),
                             ),
                         ],
                       ),

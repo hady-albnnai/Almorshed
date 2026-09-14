@@ -9,6 +9,7 @@ import 'core/content/content_loader.dart';
 import 'core/content/models.dart';
 import 'core/progress/progress_store.dart';
 import 'core/progress/shared_prefs_store.dart';
+import 'core/review/review_mode.dart';
 import 'core/theme/app_theme.dart';
 import 'core/training/shared_prefs_training_store.dart';
 import 'core/training/training_store.dart';
@@ -29,6 +30,7 @@ import 'core/duel/local_link.dart';
 import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
 import 'features/home/home_screen.dart';
+import 'features/review/review_widgets.dart';
 
 void main() => runApp(const FizyaClashApp());
 
@@ -75,8 +77,24 @@ class FizyaClashApp extends StatefulWidget {
 class _FizyaClashAppState extends State<FizyaClashApp> {
   ThemeMode _mode = ThemeMode.dark; // docs/13: الداكن أولاً
 
-  late final Future<ContentPack> _packFuture =
-      (widget.packLoader ?? _defaultLoadPack)();
+  late final Future<ContentPack> _packFuture = _loadPackForMode();
+
+  // ── وضع المراجعة (F2.4 + F6.2 المبسّط — جهاز الأستاذ فقط) ──
+  bool _reviewMode = false;
+  Set<int> _unapprovedIds = const {};
+  final ReviewNotesStore _reviewNotes = ReviewNotesStore();
+
+  /// الحزمة كما يراها هذا الجهاز: الطالب ⇒ الأصل (F2.4: غير المعتمد محجوب
+  /// بالفلاتر القائمة)؛ الأستاذ (وضع المراجعة) ⇒ كل الأسئلة مفتوحة للعرض.
+  Future<ContentPack> _loadPackForMode() async {
+    final original = await (widget.packLoader ?? _defaultLoadPack)();
+    final on = widget.packLoader == null && await ReviewModeStore().isEnabled();
+    if (!on) return original;
+    _reviewMode = true;
+    _unapprovedIds = unapprovedQuestionIds(original);
+    _sync.suspended = true; // لا تلويث للدوري بجلسات الأستاذ
+    return openAllForReview(original);
+  }
 
   LicenseStore get _license => widget.licenseStore ?? SharedPrefsLicenseStore();
 
@@ -245,63 +263,68 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
       ),
       home: FutureBuilder<ContentPack>(
         future: _packFuture,
-        builder: (context, snap) {
-          if (snap.connectionState != ConnectionState.done) {
-            return const _Splash();
-          }
-          if (snap.hasError || !snap.hasData) {
-            return _ErrorView(error: snap.error);
-          }
-          return FutureBuilder<LicenseData>(
-            future: _licenseFuture,
-            builder: (context, licSnap) {
-              if (licSnap.connectionState != ConnectionState.done) {
-                return const _Splash();
-              }
-              final license = licSnap.data ?? const LicenseData();
-              if (license.mode == LicenseMode.none) {
-                // F3.6: بوابة أول فتح — تظهر مرة واحدة ثم من «حسابي»
-                if (_pubkeyB64 == null) return const _Splash();
-                return ActivationGate(
-                  licenseStore: _license,
-                  onModeSet: _reloadLicense,
-                  activationApi: _activationApi,
-                  devicePubkeyB64: _pubkeyB64!,
-                );
-              }
-              // F3.8: الرئيسية شاشة الانطلاق — والمنهاج منها
-              if (widget.startOnHome) {
-                return HomeScreen(
-                  pack: snap.data!,
-                  progressStore:
-                      widget.progressStore ?? SharedPrefsProgressStore(),
-                  trainingStore:
-                      widget.trainingStore ?? SharedPrefsTrainingStore(),
-                  licenseStore: _license,
-                  xpRecorder: _xpRecorder,
-                  onToggleTheme: _toggleTheme,
-                  syncManager: _sync,
-                  fetchLeague: () => _leagueApi.fetch(_pubkeyB64 ?? ''),
-                  openDuel: () => _openDuelFlow(snap.data!),
-                  openLocalDuel: () => _openLocalDuelFlow(snap.data!),
-                );
-              }
-              return CurriculumScreen(
-                pack: snap.data!,
-                onToggleTheme: _toggleTheme,
-                progressStore:
-                    widget.progressStore ?? SharedPrefsProgressStore(),
-                trainingStore:
-                    widget.trainingStore ?? SharedPrefsTrainingStore(),
-                licenseStore: _license,
-                xpRecorder: _xpRecorder,
-                devicePubkeyB64: _pubkeyB64 ?? '',
-              );
-            },
-          );
-        },
+        builder: (context, snap) => ReviewScope(
+          enabled: _reviewMode,
+          unapprovedQuestionIds: _unapprovedIds,
+          notes: _reviewNotes,
+          child: _buildRoot(context, snap),
+        ),
       ),
     );
+  }
+
+  Widget _buildRoot(BuildContext context, AsyncSnapshot<ContentPack> snap) {
+    {
+      if (snap.connectionState != ConnectionState.done) {
+        return const _Splash();
+      }
+      if (snap.hasError || !snap.hasData) {
+        return _ErrorView(error: snap.error);
+      }
+      return FutureBuilder<LicenseData>(
+        future: _licenseFuture,
+        builder: (context, licSnap) {
+          if (licSnap.connectionState != ConnectionState.done) {
+            return const _Splash();
+          }
+          final license = licSnap.data ?? const LicenseData();
+          if (license.mode == LicenseMode.none) {
+            // F3.6: بوابة أول فتح — تظهر مرة واحدة ثم من «حسابي»
+            if (_pubkeyB64 == null) return const _Splash();
+            return ActivationGate(
+              licenseStore: _license,
+              onModeSet: _reloadLicense,
+              activationApi: _activationApi,
+              devicePubkeyB64: _pubkeyB64!,
+            );
+          }
+          // F3.8: الرئيسية شاشة الانطلاق — والمنهاج منها
+          if (widget.startOnHome) {
+            return HomeScreen(
+              pack: snap.data!,
+              progressStore: widget.progressStore ?? SharedPrefsProgressStore(),
+              trainingStore: widget.trainingStore ?? SharedPrefsTrainingStore(),
+              licenseStore: _license,
+              xpRecorder: _xpRecorder,
+              onToggleTheme: _toggleTheme,
+              syncManager: _sync,
+              fetchLeague: () => _leagueApi.fetch(_pubkeyB64 ?? ''),
+              openDuel: () => _openDuelFlow(snap.data!),
+              openLocalDuel: () => _openLocalDuelFlow(snap.data!),
+            );
+          }
+          return CurriculumScreen(
+            pack: snap.data!,
+            onToggleTheme: _toggleTheme,
+            progressStore: widget.progressStore ?? SharedPrefsProgressStore(),
+            trainingStore: widget.trainingStore ?? SharedPrefsTrainingStore(),
+            licenseStore: _license,
+            xpRecorder: _xpRecorder,
+            devicePubkeyB64: _pubkeyB64 ?? '',
+          );
+        },
+      );
+    }
   }
 }
 

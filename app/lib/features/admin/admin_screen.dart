@@ -10,6 +10,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/review/review_mode.dart';
 import '../../core/supabase/office_api.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/util/arabic_number.dart';
@@ -32,8 +33,16 @@ class _AdminScreenState extends State<AdminScreen> {
   String _key = '';
   bool _busy = false;
 
+  // وضع المراجعة (F2.4/F6.2) — يُفعَّل على جهاز الأستاذ قبل التسليم
+  final ReviewModeStore _reviewStore = ReviewModeStore();
+  bool _reviewOn = false;
+
   OfficeStats _stats = const OfficeStats(
-      issued: 0, activated: 0, revoked: 0, activeLicenses: 0);
+    issued: 0,
+    activated: 0,
+    revoked: 0,
+    activeLicenses: 0,
+  );
   List<Subscriber> _subs = const <Subscriber>[];
   String _filter = 'activated'; // activated | issued | revoked | all
 
@@ -44,6 +53,7 @@ class _AdminScreenState extends State<AdminScreen> {
   }
 
   Future<void> _bootstrap() async {
+    _reviewOn = await _reviewStore.isEnabled();
     final saved = await _vault.read();
     if (saved == null) {
       setState(() => _loading = false);
@@ -110,7 +120,11 @@ class _AdminScreenState extends State<AdminScreen> {
       _unlocked = false;
       _subs = const <Subscriber>[];
       _stats = const OfficeStats(
-          issued: 0, activated: 0, revoked: 0, activeLicenses: 0);
+        issued: 0,
+        activated: 0,
+        revoked: 0,
+        activeLicenses: 0,
+      );
     });
   }
 
@@ -133,8 +147,10 @@ class _AdminScreenState extends State<AdminScreen> {
   }
 
   Future<void> _revoke(Subscriber s) async {
-    final sure = await _confirm('إلغاء ${s.code}؟',
-        'سيُسحب الاشتراك وتُرفض تجديداته فور أول اتصال للجهاز.');
+    final sure = await _confirm(
+      'إلغاء ${s.code}؟',
+      'سيُسحب الاشتراك وتُرفض تجديداته فور أول اتصال للجهاز.',
+    );
     if (sure != true || !mounted) return;
     setState(() => _busy = true);
     try {
@@ -192,22 +208,22 @@ class _AdminScreenState extends State<AdminScreen> {
   }
 
   Future<bool?> _confirm(String title, String body) => showDialog<bool>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: Text(title),
-          content: Text(body),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(ctx).pop(false),
-              child: const Text('تراجع'),
-            ),
-            FilledButton(
-              onPressed: () => Navigator.of(ctx).pop(true),
-              child: const Text('تأكيد الإلغاء'),
-            ),
-          ],
+    context: context,
+    builder: (ctx) => AlertDialog(
+      title: Text(title),
+      content: Text(body),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(ctx).pop(false),
+          child: const Text('تراجع'),
         ),
-      );
+        FilledButton(
+          onPressed: () => Navigator.of(ctx).pop(true),
+          child: const Text('تأكيد الإلغاء'),
+        ),
+      ],
+    ),
+  );
 
   Future<void> _showCodes(List<String> codes) async {
     if (!mounted) return;
@@ -227,7 +243,9 @@ class _AdminScreenState extends State<AdminScreen> {
                   textAlign: TextAlign.center,
                   textDirection: TextDirection.ltr,
                   style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.w800),
+                    fontSize: 18,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
               ),
           ],
@@ -251,8 +269,7 @@ class _AdminScreenState extends State<AdminScreen> {
 
   void _toast(String msg) {
     if (!mounted) return;
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(msg)));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
   }
 
   @override
@@ -363,22 +380,52 @@ class _AdminScreenState extends State<AdminScreen> {
                     runSpacing: 8,
                     children: [
                       _StatChip(
-                          'مصدرون ${ArabicNumber.from(_stats.issued)}', null),
+                        'مصدرون ${ArabicNumber.from(_stats.issued)}',
+                        null,
+                      ),
                       _StatChip(
-                          'ملغاة ${ArabicNumber.from(_stats.revoked)}', null),
+                        'ملغاة ${ArabicNumber.from(_stats.revoked)}',
+                        null,
+                      ),
                       _StatChip(
-                          'رخص نشطة ${ArabicNumber.from(_stats.activeLicenses)}',
-                          _gold(context)),
+                        'رخص نشطة ${ArabicNumber.from(_stats.activeLicenses)}',
+                        _gold(context),
+                      ),
                     ],
                   ),
                   if (_error.isNotEmpty) ...[
                     const SizedBox(height: 8),
-                    Text(_error,
-                        style: txt.bodySmall?.copyWith(
-                            color: _danger(context))),
+                    Text(
+                      _error,
+                      style: txt.bodySmall?.copyWith(color: _danger(context)),
+                    ),
                   ],
                 ],
               ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          // ── وضع المراجعة (جهاز الأستاذ) ──
+          Card(
+            child: SwitchListTile(
+              title: const Text('وضع المراجعة (للأستاذ)'),
+              subtitle: const Text(
+                'يفتح كل المحتوى غير المعتمد بشارة «قيد المراجعة» + دفتر '
+                'ملاحظات + إيقاف المزامنة. يسري بعد إعادة تشغيل التطبيق. '
+                'فعّله على جهاز الأستاذ فقط.',
+              ),
+              secondary: const Icon(Icons.rate_review_outlined),
+              value: _reviewOn,
+              onChanged: (v) async {
+                await _reviewStore.setEnabled(v);
+                if (!mounted) return;
+                setState(() => _reviewOn = v);
+                _toast(
+                  v
+                      ? 'وضع المراجعة مفعّل — أغلق التطبيق وافتحه'
+                      : 'وضع المراجعة مطفأ — أغلق التطبيق وافتحه',
+                );
+              },
             ),
           ),
           const SizedBox(height: 10),
@@ -411,15 +458,18 @@ class _AdminScreenState extends State<AdminScreen> {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Center(
-                child: Text('لا توجد سجلات في هذه الفئة',
-                    style: txt.bodyMedium),
+                child: Text(
+                  'لا توجد سجلات في هذه الفئة',
+                  style: txt.bodyMedium,
+                ),
               ),
             )
           else
-            for (final s in shown) _SubscriberTile(
-              subscriber: s,
-              onRevoke: s.status == 'revoked' ? null : () => _revoke(s),
-            ),
+            for (final s in shown)
+              _SubscriberTile(
+                subscriber: s,
+                onRevoke: s.status == 'revoked' ? null : () => _revoke(s),
+              ),
         ],
       ),
     );
@@ -455,9 +505,7 @@ class _StatChip extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: Theme.of(context)
-            .textTheme
-            .bodyMedium
+        style: Theme.of(context).textTheme.bodyMedium
             ?.copyWith(color: color ?? cs.onSurface),
       ),
     );
@@ -477,9 +525,9 @@ class _SubscriberTile extends StatelessWidget {
     final (label, color) = switch (subscriber.status) {
       'activated' => ('مشترك', dark ? AppColors.goldDark : AppColors.goldLight),
       'revoked' => (
-          'ملغى',
-          dark ? AppColors.dangerDark : AppColors.dangerLight
-        ),
+        'ملغى',
+        dark ? AppColors.dangerDark : AppColors.dangerLight,
+      ),
       _ => ('مصدر', null),
     };
     final date = subscriber.activatedAt ?? subscriber.createdAt ?? '';
@@ -504,11 +552,11 @@ class _SubscriberTile extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
-                color: (color ?? Theme.of(context).dividerColor)
-                    .withValues(alpha: 0.15),
+                color: (color ?? Theme.of(context).dividerColor).withValues(
+                  alpha: 0.15,
+                ),
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Text(

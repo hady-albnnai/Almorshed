@@ -12,18 +12,24 @@ enum SyncPhase { idle, syncing, synced, offline, rejected }
 
 class SyncManager {
   SyncManager({required Future<SyncEngine> Function() engineFactory})
-      : _engineFactory = engineFactory;
+    : _engineFactory = engineFactory;
 
   final Future<SyncEngine> Function() _engineFactory;
   SyncEngine? _engine;
   bool _busy = false;
 
   /// يستمع عليه الرئيسية ليرسم المؤشر الصغير.
-  final ValueNotifier<SyncPhase> phase = ValueNotifier<SyncPhase>(SyncPhase.idle);
+  final ValueNotifier<SyncPhase> phase = ValueNotifier<SyncPhase>(
+    SyncPhase.idle,
+  );
 
   /// جولة مزامنة — آمنة للاستدعاء المتكرر (الثانية أثناء جولة تُهمل).
+  /// وضع المراجعة (جهاز الأستاذ): لا مزامنة إطلاقاً — أحداث جلسات المراجعة
+  /// تبقى محلية ولا تدخل الدوري (قرار المالك 2026-09-14).
+  bool suspended = false;
+
   Future<void> runNow() async {
-    if (_busy) return;
+    if (_busy || suspended) return;
     _busy = true;
     phase.value = SyncPhase.syncing;
     try {

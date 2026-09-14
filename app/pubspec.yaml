@@ -22,6 +22,8 @@ dependencies:
   crypto: ^3.0.0
   # خزنة بذرة مفتاح الجهاز (F3.7 — الترقية لـKeystore مع F4.4)
   flutter_secure_storage: ^9.2.2
+  # زر واتساب لإرسال ملاحظات الأستاذ (وضع المراجعة — قرار ١٩)
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:

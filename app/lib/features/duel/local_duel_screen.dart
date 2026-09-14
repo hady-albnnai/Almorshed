@@ -17,6 +17,7 @@ import '../../core/duel/local_duel_flow.dart';
 import '../../core/duel/local_link.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/util/arabic_number.dart';
+import '../review/review_widgets.dart';
 
 /// مصنع تدفق مبارزة محلية — يحضّره main.dart بلا سيرفر.
 typedef LocalDuelFlowFactory = LocalDuelFlow Function();
@@ -114,7 +115,9 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
     } catch (_) {
       await _backToSetup();
       if (mounted) {
-        setState(() => _setupError = 'تعذر فتح نقطة الاتصال — فعّلها ثم أعد المحاولة');
+        setState(
+          () => _setupError = 'تعذر فتح نقطة الاتصال — فعّلها ثم أعد المحاولة',
+        );
       }
     } finally {
       if (mounted) setState(() => _busy = false);
@@ -253,14 +256,16 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
             child: const Text('إنشاء المبارزة ⚔️'),
           ),
           const SizedBox(height: 22),
-          Row(children: [
-            const Expanded(child: Divider()),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Text('أو', style: txt.bodyMedium),
-            ),
-            const Expanded(child: Divider()),
-          ]),
+          Row(
+            children: [
+              const Expanded(child: Divider()),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Text('أو', style: txt.bodyMedium),
+              ),
+              const Expanded(child: Divider()),
+            ],
+          ),
           const SizedBox(height: 14),
           Text('انضم لمبارزة (ضيف)', style: txt.titleMedium),
           const SizedBox(height: 8),
@@ -424,10 +429,7 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
                 child: const Text('دخل الخصم! ابدأ ⚔️'),
               ),
             const SizedBox(height: 8),
-            OutlinedButton(
-              onPressed: _cancel,
-              child: const Text('إلغاء'),
-            ),
+            OutlinedButton(onPressed: _cancel, child: const Text('إلغاء')),
           ],
         ),
       ),
@@ -450,6 +452,8 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
       appBar: AppBar(
         title: const Text('مبارزة محلية ⚔️'),
         actions: [
+          if (q != null)
+            ReviewNoteButton(kind: 'q', itemId: '${q.id}', preview: q.stem),
           IconButton(
             tooltip: 'إنهاء',
             onPressed: () => Navigator.of(context).pop(),
@@ -476,9 +480,12 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
-                  child: Text('ضد',
-                      style: txt.titleMedium
-                          ?.copyWith(fontWeight: FontWeight.w900)),
+                  child: Text(
+                    'ضد',
+                    style: txt.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                 ),
                 Expanded(
                   child: _PlayerBar(
@@ -544,6 +551,7 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          PendingBadge(questionId: q.id),
                           Text(q.stem, style: txt.titleMedium),
                           const SizedBox(height: 12),
                           for (var k = 0; k < opts.length; k++)
@@ -653,7 +661,8 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
                       _ScoreBlock(
                         name: 'أنت',
                         score: myScore,
-                        sub: '${ArabicNumber.from(myCorrects)}/'
+                        sub:
+                            '${ArabicNumber.from(myCorrects)}/'
                             '${ArabicNumber.from(s.questionCount)}',
                         color: _brand(context),
                       ),
@@ -664,7 +673,8 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
                       _ScoreBlock(
                         name: oppName,
                         score: oppScore,
-                        sub: '${ArabicNumber.from(s.oppCorrects)}/'
+                        sub:
+                            '${ArabicNumber.from(s.oppCorrects)}/'
                             '${ArabicNumber.from(s.questionCount)}',
                         color: _brand2(context),
                       ),
@@ -691,7 +701,7 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
           OutlinedButton.icon(
             onPressed: () => _copy(
               '⚔️ مبارزة فيزيا كلاش المحلية — ${won ? 'فزت' : 'خسرت'} '
-              '(${ArabicNumber.from(myScore)} مقابل ${ArabicNumber.from(oppScore)})',
+                  '(${ArabicNumber.from(myScore)} مقابل ${ArabicNumber.from(oppScore)})',
               'نُسخت النتيجة — شاركها مع صديقك',
             ),
             icon: const Icon(Icons.ios_share),
@@ -808,15 +818,11 @@ class _StatusChip extends StatelessWidget {
       decoration: BoxDecoration(
         color: cs.surface,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: color ?? Theme.of(context).dividerColor,
-        ),
+        border: Border.all(color: color ?? Theme.of(context).dividerColor),
       ),
       child: Text(
         label,
-        style: Theme.of(context)
-            .textTheme
-            .bodyMedium
+        style: Theme.of(context).textTheme.bodyMedium
             ?.copyWith(color: color ?? cs.onSurface),
       ),
     );
@@ -855,8 +861,12 @@ class _PlayerBar extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        Text(name,
-            style: txt.bodyMedium, maxLines: 1, overflow: TextOverflow.ellipsis),
+        Text(
+          name,
+          style: txt.bodyMedium,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
         const SizedBox(height: 4),
         ClipRRect(
           borderRadius: BorderRadius.circular(4),
@@ -920,8 +930,8 @@ class _OptionTile extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                  child:
-                      Text(text, style: Theme.of(context).textTheme.bodyLarge)),
+                child: Text(text, style: Theme.of(context).textTheme.bodyLarge),
+              ),
             ],
           ),
         ),

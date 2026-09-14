@@ -18,6 +18,8 @@ import '../curriculum/lesson_screen.dart';
 import '../duel/duel_screen.dart';
 import '../duel/local_duel_screen.dart';
 import '../admin/admin_screen.dart';
+import '../review/review_notes_screen.dart';
+import '../review/review_widgets.dart';
 import '../training/cards_screen.dart';
 import '../training/training_screen.dart';
 
@@ -62,8 +64,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with WidgetsBindingObserver {
+class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   bool _loading = true;
   LicenseData? _license;
   ReadProgress? _progress;
@@ -103,8 +104,11 @@ class _HomeScreenState extends State<HomeScreen>
     final training = await widget.trainingStore.load();
     final events = await widget.xpRecorder.ledger.events();
     final verified = await widget.xpRecorder.ledger.verifiedTotalXp();
-    final due = todayCardQueue(training, widget.pack.cards, dateKeyOf(now))
-        .length;
+    final due = todayCardQueue(
+      training,
+      widget.pack.cards,
+      dateKeyOf(now),
+    ).length;
     // واصل الدرس: أول فصل غير مكتمل بترتيب الحزمة
     Chapter? target;
     final done = progress.completedIds;
@@ -140,8 +144,7 @@ class _HomeScreenState extends State<HomeScreen>
 
   void _onAdminTap() {
     final now = DateTime.now();
-    if (_lastAdminTap != null &&
-        now.difference(_lastAdminTap!).inSeconds > 3) {
+    if (_lastAdminTap != null && now.difference(_lastAdminTap!).inSeconds > 3) {
       _adminTaps = 0;
     }
     _lastAdminTap = now;
@@ -149,9 +152,8 @@ class _HomeScreenState extends State<HomeScreen>
     if (_adminTaps >= 5) {
       _adminTaps = 0;
       _lastAdminTap = null;
-      Navigator.of(context).push(
-        MaterialPageRoute<void>(builder: (_) => const AdminScreen()),
-      );
+      Navigator.of(context)
+          .push(MaterialPageRoute<void>(builder: (_) => const AdminScreen()));
     }
   }
 
@@ -176,6 +178,27 @@ class _HomeScreenState extends State<HomeScreen>
         child: ListView(
           padding: const EdgeInsets.all(14),
           children: [
+            // ── وضع المراجعة (جهاز الأستاذ فقط): شريط + مدخل الملاحظات ──
+            if (ReviewScope.enabledIn(context)) ...[
+              const ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+                child: ReviewBanner(),
+              ),
+              const SizedBox(height: 8),
+              FilledButton.tonalIcon(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => ReviewNotesScreen(
+                      pack: widget.pack,
+                      notes: ReviewScope.maybeOf(context)!.notes,
+                    ),
+                  ),
+                ),
+                icon: const Icon(Icons.edit_note),
+                label: const Text('ملاحظاتي — إرسال للمطوّر 📝'),
+              ),
+              const SizedBox(height: 12),
+            ],
             // ── بطاقة الترحيب (النموذج: تدرّج + شارة + سلسلة + تقدم) ──
             Container(
               padding: const EdgeInsets.all(16),
@@ -189,9 +212,10 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(
-                    color: Theme.of(context).brightness == Brightness.dark
-                        ? AppColors.darkLine
-                        : AppColors.lightLine),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? AppColors.darkLine
+                      : AppColors.lightLine,
+                ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,10 +230,11 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                       Chip(
                         avatar: Icon(
-                            licensed
-                                ? Icons.verified_outlined
-                                : Icons.science_outlined,
-                            size: 16),
+                          licensed
+                              ? Icons.verified_outlined
+                              : Icons.science_outlined,
+                          size: 16,
+                        ),
                         label: Text(
                           licensed
                               ? 'مفعّل حتى ${_expiryShort(license)}'
@@ -223,13 +248,15 @@ class _HomeScreenState extends State<HomeScreen>
                   Text(
                     _streak.days > 0
                         ? 'تدرّبت ${ArabicNumber.from(_streak.days)} '
-                            'يوماً متتالياً — واصل! 🔥'
+                              'يوماً متتالياً — واصل! 🔥'
                         : 'أول نشاط اليوم يشعل السلسلة 🔥',
                     style: txt.bodyLarge,
                   ),
                   const SizedBox(height: 6),
-                  Text('⭐ نقاطك الموثقة: ${ArabicNumber.from(_verifiedXp)}',
-                      style: txt.bodyMedium?.copyWith(color: gold)),
+                  Text(
+                    '⭐ نقاطك الموثقة: ${ArabicNumber.from(_verifiedXp)}',
+                    style: txt.bodyMedium?.copyWith(color: gold),
+                  ),
                   const SizedBox(height: 10),
                   ..._buildUnitProgress(txt),
                 ],
@@ -245,25 +272,27 @@ class _HomeScreenState extends State<HomeScreen>
                   builder: (_, phase, __) {
                     final (label, color) = switch (phase) {
                       SyncPhase.syncing => (
-                          'جارٍ المزامنة…',
-                          Colors.blue.shade300
-                        ),
+                        'جارٍ المزامنة…',
+                        Colors.blue.shade300,
+                      ),
                       SyncPhase.synced => ('مُتزامن ✓', Colors.green.shade400),
                       SyncPhase.rejected => (
-                          'بانتظار إعادة محاولة',
-                          Colors.orange.shade300
-                        ),
+                        'بانتظار إعادة محاولة',
+                        Colors.orange.shade300,
+                      ),
                       SyncPhase.offline => (
-                          'دون اتصال — ستُزامن تلقائياً',
-                          txt2
-                        ),
+                        'دون اتصال — ستُزامن تلقائياً',
+                        txt2,
+                      ),
                       SyncPhase.idle => ('', txt2),
                     };
                     if (label.isEmpty) return const SizedBox.shrink();
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 2),
-                      child: Text(label,
-                          style: txt.bodySmall?.copyWith(color: color)),
+                      child: Text(
+                        label,
+                        style: txt.bodySmall?.copyWith(color: color),
+                      ),
                     );
                   },
                 ),
@@ -273,9 +302,11 @@ class _HomeScreenState extends State<HomeScreen>
             Card(
               child: ListTile(
                 leading: const Text('📘', style: TextStyle(fontSize: 22)),
-                title: Text(_continueChapter == null
-                    ? 'أكملت المنهاج كله — راجع ما شئت'
-                    : 'واصل الدرس'),
+                title: Text(
+                  _continueChapter == null
+                      ? 'أكملت المنهاج كله — راجع ما شئت'
+                      : 'واصل الدرس',
+                ),
                 subtitle: _continueChapter == null
                     ? null
                     : Text('${_continueChapter!.title} ←'),
@@ -286,13 +317,15 @@ class _HomeScreenState extends State<HomeScreen>
                     await _openCurriculum();
                     return;
                   }
-                  await Navigator.of(context).push(MaterialPageRoute<void>(
-                    builder: (_) => LessonScreen(
-                      chapter: ch,
-                      progressStore: widget.progressStore,
-                      xpRecorder: widget.xpRecorder,
+                  await Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => LessonScreen(
+                        chapter: ch,
+                        progressStore: widget.progressStore,
+                        xpRecorder: widget.xpRecorder,
+                      ),
                     ),
-                  ));
+                  );
                   _openHome();
                 },
               ),
@@ -305,13 +338,15 @@ class _HomeScreenState extends State<HomeScreen>
                 subtitle: const Text('١٠ أسئلة ←'),
                 trailing: const Icon(Icons.chevron_left),
                 onTap: () async {
-                  await Navigator.of(context).push(MaterialPageRoute<void>(
-                    builder: (_) => TrainingScreen(
-                      pack: widget.pack,
-                      trainingStore: widget.trainingStore,
-                      xpRecorder: widget.xpRecorder,
+                  await Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => TrainingScreen(
+                        pack: widget.pack,
+                        trainingStore: widget.trainingStore,
+                        xpRecorder: widget.xpRecorder,
+                      ),
                     ),
-                  ));
+                  );
                   _openHome();
                 },
               ),
@@ -321,9 +356,11 @@ class _HomeScreenState extends State<HomeScreen>
               child: ListTile(
                 leading: const Text('🎯', style: TextStyle(fontSize: 22)),
                 title: const Text('بطاقات اليوم'),
-                subtitle: Text(_dueCards > 0
-                    ? 'مراجعة متباعدة ٥ دقائق — +١٥ نقطة ←'
-                    : 'أنجزت طابور اليوم ✓'),
+                subtitle: Text(
+                  _dueCards > 0
+                      ? 'مراجعة متباعدة ٥ دقائق — +١٥ نقطة ←'
+                      : 'أنجزت طابور اليوم ✓',
+                ),
                 trailing: Chip(
                   label: Text(
                     _dueCards > 0
@@ -332,13 +369,15 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                 ),
                 onTap: () async {
-                  await Navigator.of(context).push(MaterialPageRoute<void>(
-                    builder: (_) => CardsScreen(
-                      pack: widget.pack,
-                      trainingStore: widget.trainingStore,
-                      xpRecorder: widget.xpRecorder,
+                  await Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => CardsScreen(
+                        pack: widget.pack,
+                        trainingStore: widget.trainingStore,
+                        xpRecorder: widget.xpRecorder,
+                      ),
                     ),
-                  ));
+                  );
                   _openHome();
                 },
               ),
@@ -348,17 +387,20 @@ class _HomeScreenState extends State<HomeScreen>
               child: ListTile(
                 leading: const Text('⚔️', style: TextStyle(fontSize: 22)),
                 title: const Text('تحديات اليوم'),
-                subtitle: const Text('مبارزة مباشرة مع صديق — أنشئ أو انضم برمز'),
+                subtitle: const Text(
+                  'مبارزة مباشرة مع صديق — أنشئ أو انضم برمز',
+                ),
                 enabled: widget.openDuel != null,
                 onTap: widget.openDuel == null
                     ? null
-                    : () => Navigator.of(context)
-                        .push(MaterialPageRoute<void>(
+                    : () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
                           builder: (_) => DuelScreen(
                             pack: widget.pack,
                             flowFactory: widget.openDuel!,
                           ),
-                        )),
+                        ),
+                      ),
               ),
             ),
             // ── مبارزة محلية بلا نت (F5.4 — نقطة اتصال/شبكة مشتركة) ──
@@ -367,17 +409,19 @@ class _HomeScreenState extends State<HomeScreen>
                 leading: const Text('📡', style: TextStyle(fontSize: 22)),
                 title: const Text('مبارزة محلية — بلا نت'),
                 subtitle: const Text(
-                    'تحدَّ صديقك عبر نقطة الاتصال — بلا إنترنت وبلا سيرفر'),
+                  'تحدَّ صديقك عبر نقطة الاتصال — بلا إنترنت وبلا سيرفر',
+                ),
                 enabled: widget.openLocalDuel != null,
                 onTap: widget.openLocalDuel == null
                     ? null
-                    : () => Navigator.of(context)
-                        .push(MaterialPageRoute<void>(
+                    : () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
                           builder: (_) => LocalDuelScreen(
                             pack: widget.pack,
                             flowFactory: widget.openLocalDuel!,
                           ),
-                        )),
+                        ),
+                      ),
               ),
             ),
             // ── فكرة اليوم ──
@@ -406,18 +450,23 @@ class _HomeScreenState extends State<HomeScreen>
               Card(
                 child: ListTile(
                   leading: const Text('🏆', style: TextStyle(fontSize: 22)),
-                  title: Text('دوري فيزيا كلاش',
-                      style: txt.titleMedium?.copyWith(
-                          color: Theme.of(context).brightness ==
-                                  Brightness.dark
-                              ? AppColors.violetDark
-                              : AppColors.violetLight)),
+                  title: Text(
+                    'دوري فيزيا كلاش',
+                    style: txt.titleMedium?.copyWith(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? AppColors.violetDark
+                          : AppColors.violetLight,
+                    ),
+                  ),
                   subtitle: const Text('مجموعتك هذا الأسبوع ←'),
                   trailing: const Icon(Icons.chevron_left),
                   onTap: () async {
-                    await Navigator.of(context).push(MaterialPageRoute<void>(
-                      builder: (_) => LeagueScreen(fetch: widget.fetchLeague!),
-                    ));
+                    await Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) =>
+                            LeagueScreen(fetch: widget.fetchLeague!),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -440,8 +489,7 @@ class _HomeScreenState extends State<HomeScreen>
     return [
       ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: LinearProgressIndicator(
-            value: percent / 100, minHeight: 7),
+        child: LinearProgressIndicator(value: percent / 100, minHeight: 7),
       ),
       const SizedBox(height: 4),
       Text(
@@ -461,8 +509,9 @@ class _HomeScreenState extends State<HomeScreen>
       final m = RegExp(r'"expires_at":(\d+)').firstMatch(json);
       if (m == null) return '—';
       final d = DateTime.fromMillisecondsSinceEpoch(
-          int.parse(m.group(1)!),
-          isUtc: true);
+        int.parse(m.group(1)!),
+        isUtc: true,
+      );
       return '${d.year}/${d.month.toString().padLeft(2, '0')}/'
           '${d.day.toString().padLeft(2, '0')}';
     } catch (_) {
@@ -471,16 +520,18 @@ class _HomeScreenState extends State<HomeScreen>
   }
 
   Future<void> _openCurriculum() async {
-    await Navigator.of(context).push(MaterialPageRoute<void>(
-      builder: (_) => CurriculumScreen(
-        pack: widget.pack,
-        onToggleTheme: widget.onToggleTheme,
-        progressStore: widget.progressStore,
-        trainingStore: widget.trainingStore,
-        licenseStore: widget.licenseStore,
-        xpRecorder: widget.xpRecorder,
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => CurriculumScreen(
+          pack: widget.pack,
+          onToggleTheme: widget.onToggleTheme,
+          progressStore: widget.progressStore,
+          trainingStore: widget.trainingStore,
+          licenseStore: widget.licenseStore,
+          xpRecorder: widget.xpRecorder,
+        ),
       ),
-    ));
+    );
     _openHome();
   }
 }

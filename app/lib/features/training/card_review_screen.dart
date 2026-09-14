@@ -9,6 +9,7 @@ import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../../core/xp/xp_ledger.dart';
 import '../../core/util/arabic_number.dart';
+import '../review/review_widgets.dart';
 
 /// F3.4 — جلسة مراجعة البطاقات: كشف/استرجاع + ٣ أزرار تقييم (قرار ٤٢)
 /// + شاشة الإتمام (+١٥). التصفح صريح — نفس درس بق القفز الموثق F3.3.
@@ -100,12 +101,16 @@ class _CardReviewScreenState extends State<CardReviewScreen> {
               const SizedBox(height: 12),
               Text('أنهيت بطاقات اليوم!', style: txt.headlineSmall),
               const SizedBox(height: 8),
-              Text('+١٥ نقطة لدوري فيزيا كلاش ✓',
-                  style: txt.titleMedium?.copyWith(color: gold)),
+              Text(
+                '+١٥ نقطة لدوري فيزيا كلاش ✓',
+                style: txt.titleMedium?.copyWith(color: gold),
+              ),
               const SizedBox(height: 8),
-              Text('المراجعة القادمة غداً — جدول FSRS يوقظ كل بطاقة وقتها',
-                  style: txt.bodyMedium,
-                  textAlign: TextAlign.center),
+              Text(
+                'المراجعة القادمة غداً — جدول FSRS يوقظ كل بطاقة وقتها',
+                style: txt.bodyMedium,
+                textAlign: TextAlign.center,
+              ),
               const SizedBox(height: 24),
               FilledButton(
                 onPressed: () => Navigator.of(context).pop(),
@@ -128,10 +133,19 @@ class _CardReviewScreenState extends State<CardReviewScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            'بطاقة ${ArabicNumber.from(_current + 1)} من ${ArabicNumber.from(_day.queue.length)}'),
+          'بطاقة ${ArabicNumber.from(_current + 1)} من ${ArabicNumber.from(_day.queue.length)}',
+        ),
+        actions: [
+          ReviewNoteButton(
+            kind: 'c',
+            itemId: '${card.id}',
+            preview: card.front,
+          ),
+        ],
       ),
       body: Column(
         children: [
+          const ReviewBanner(),
           LinearProgressIndicator(value: _day.doneCount / _day.queue.length),
           Expanded(
             child: ListView(
@@ -145,20 +159,26 @@ class _CardReviewScreenState extends State<CardReviewScreen> {
                   ),
                   child: InkWell(
                     borderRadius: BorderRadius.circular(14),
-                    onTap: _revealed ? null : () => setState(() => _revealed = true),
+                    onTap: _revealed
+                        ? null
+                        : () => setState(() => _revealed = true),
                     child: Padding(
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          Text(card.front, style: txt.titleLarge,
-                              textAlign: TextAlign.center),
+                          Text(
+                            card.front,
+                            style: txt.titleLarge,
+                            textAlign: TextAlign.center,
+                          ),
                           const SizedBox(height: 14),
                           if (!_revealed)
-                            Text('اضغط لكشف الجواب',
-                                style: txt.bodyMedium?.copyWith(
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .primary)),
+                            Text(
+                              'اضغط لكشف الجواب',
+                              style: txt.bodyMedium?.copyWith(
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                            ),
                         ],
                       ),
                     ),
@@ -166,17 +186,25 @@ class _CardReviewScreenState extends State<CardReviewScreen> {
                 ),
                 if (_revealed) ...[
                   const SizedBox(height: 14),
-                  Text(card.back, style: txt.titleMedium,
-                      textAlign: TextAlign.center),
+                  Text(
+                    card.back,
+                    style: txt.titleMedium,
+                    textAlign: TextAlign.center,
+                  ),
                   if (card.formula != null) ...[
                     const SizedBox(height: 10),
-                    Text(card.formula!,
-                        style: txt.headlineSmall?.copyWith(color: gold),
-                        textAlign: TextAlign.center),
+                    Text(
+                      card.formula!,
+                      style: txt.headlineSmall?.copyWith(color: gold),
+                      textAlign: TextAlign.center,
+                    ),
                   ],
                   const SizedBox(height: 22),
-                  Text('كيف كانت استرجاعك؟',
-                      style: txt.bodyMedium, textAlign: TextAlign.center),
+                  Text(
+                    'كيف كانت استرجاعك؟',
+                    style: txt.bodyMedium,
+                    textAlign: TextAlign.center,
+                  ),
                   const SizedBox(height: 8),
                   Row(
                     children: [
