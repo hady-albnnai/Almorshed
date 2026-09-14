@@ -435,7 +435,8 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 12 | دالة حكم المبارزة (server-referential) | `functions/duel_finish/index.ts` + `functions/_shared/duel_session.ts` | ⬜ بانتظار النشر — المنفذ مطابق بتّياً (متجهات §٩-١٠) |
 | 13 | بنك المبارزات — المعتمد حصراً (قرار ٢٤) | `docs/supabase/content_index.sql` مولَّد من `tools/gen_content_index.py` | ⬜ يُولَّد ويُطبَّق **بعد اعتماد الأستاذ للأسئلة** (اليوم: 0 صف معتمد) |
 | 14 | سجل تدقيق أداة المكتب (RLS سلبية) | `0006_office_audit.sql` | ✅ مُطبَّق (تحقق المالك 2026-09-14: `to_regclass('public.office_audit') is not null` = true) |
-| 15 | أداة المكتب `office_codes` (توليد/إلغاء/جرد) | `functions/office_codes/index.ts` — الحماية بسر `OFFICE_KEY` (ترويسة `x-office-key`) | ⬜ بانتظار النشر — `supabase secrets set OFFICE_KEY=…` ثم `functions deploy office_codes --no-verify-jwt` |
+| 15 | أداة المكتب `office_codes` (توليد/إلغاء/جرد) | `functions/office_codes/index.ts` — الحماية بسر `OFFICE_KEY` (ترويسة `x-office-key`) | ✅ منشورة (دخان المالك 2026-09-14: generate → كودان حقيقيان) |
+| 16 | توسعة أداة المكتب: `stats` (عداد+لائحة) + إلغاء اشتراك كامل (سحب الرخص) | `functions/office_codes/index.ts` (2026-09-14) | ⬜ **يُعاد نشر الدالة** ليصعد فعل `stats` للوحة الإدارة المخفية بالتطبيق — `functions deploy office_codes --no-verify-jwt` أو من اللوحة بملف واحد |
 
 طريقة 5-7 (بلا CLI): اللوحة ← **Edge Functions** ← Create a new function
 ← «I have function code that I want to deploy» — الاسم مطابق للمجلد،
@@ -629,16 +630,26 @@ traversal غير مطروح (لا ملفات بأسماء مدخلة)؛ والف
   المكتب ليس «مستخدم تطبيق». الغياب ⇒ `NOT_CONFIGURED` 500، عدم التطابق ⇒ `FORBIDDEN` 403.
 - الداخل يقرأ/يكتب بـ`SERVICE_ROLE_KEY` حصراً؛ الجداول الإدارية RLS سلبية.
 
-### ٩.٣ الاستدعاء (POST واحد بثلاثة أفعال)
+### ٩.٣ الاستدعاء (POST واحد بأفعال)
 ```jsonc
 // توليد count كود (١..١٠٠) — يُعيدها مشكّلة ٥-٥-٥
 { "action": "generate", "count": 3, "distributor": "مكتب لورانيم",
   "release_id": "2027-v1", "hard_deadline": "2027-05-01T00:00:00Z" }
-// إلغاء كود
+// إلغاء كود/اشتراك (يسحب الرخص كلها أيضاً — 2026-09-14)
 { "action": "revoke", "code": "K7M2P-9QW4X-ABCDE" }
 // جرد (اختياري status = issued|activated|revoked) — مع devices_used لكل كود
 { "action": "list", "status": "issued" }
+// عداد + لائحة (لوحة الإدارة المخفية بالتطبيق — 2026-09-14)
+{ "action": "stats" }
+// → { ok, stats: { issued, activated, revoked, activeLicenses },
+//     subscribers: [ { code, status, distributor, release_id,
+//                      created_at, activated_at, devices_used } ] }
 ```
+
+### ٩.٤-ب الإلغاء الكامل (2026-09-14)
+`revoke` يسحب اشتراك المشترك فعلياً: `activation_codes.status='revoked'` **و**
+كل `licenses` بذلك الكود تصير `revoked=true` — `heartbeat` يرفض تجديد أي كود
+revoked وRLS تحجب الرخص المسحوبة عن الدوري ⇒ الإبطال عند أول اتصال (قرار ٢٧).
 
 ### ٩.٤ شكل الكود (العقد القانوني)
 ١٥ محرفاً Crockford بلا I/L/O/U — مطابق `CODE_RE` (§٢) و`formatLicenseCode`

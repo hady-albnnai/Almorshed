@@ -97,7 +97,8 @@ Deno.serve(async (req) => {
       return json({ ok: true, count: issued.length, codes: issued.map(group5) });
     }
 
-    // ── ٣) revoke ──
+    // ── ٣) revoke ── (إلغاء كود أو اشتراك: الرخص كلها تُسحب أيضاً —
+    // heartbeat يرفض تجديد أي كود revoked وRLS تحجب الرخص المسحوبة — قرار ٢٧)
     if (action === 'revoke') {
       const code = normalizeCode(body.code);
       if (!CODE_RE.test(code)) return json({ ok: false, error: 'CODE_FORMAT' }, 422);
@@ -109,6 +110,7 @@ Deno.serve(async (req) => {
       if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
       if (!rows || rows.length === 0)
         return json({ ok: false, error: 'CODE_NOT_FOUND' }, 404);
+      await admin.from('licenses').update({ revoked: true }).eq('code', code);
       await admin.from('office_audit').insert({
         action: 'revoke',
         codes: [code],
@@ -153,6 +155,64 @@ Deno.serve(async (req) => {
           created_at: c.created_at,
           activated_at: c.activated_at,
           activated_by: c.activated_by,
+          devices_used: used.get(c.code) ?? 0,
+        })),
+      });
+    }
+
+    // ── ٥) stats — عداد المشتركين + لائحة (لوحة الإدارة المخفية بالتطبيق) ──
+    if (action === 'stats') {
+      const [iss, act, rev, lic] = await Promise.all([
+        admin
+          .from('activation_codes')
+          .select('code', { count: 'exact', head: true })
+          .eq('status', 'issued'),
+        admin
+          .from('activation_codes')
+          .select('code', { count: 'exact', head: true })
+          .eq('status', 'activated'),
+        admin
+          .from('activation_codes')
+          .select('code', { count: 'exact', head: true })
+          .eq('status', 'revoked'),
+        admin
+          .from('licenses')
+          .select('id', { count: 'exact', head: true })
+          .eq('revoked', false),
+      ]);
+      const { data: codes, error } = await admin
+        .from('activation_codes')
+        .select('code,status,distributor,release_id,created_at,activated_at')
+        .order('created_at', { ascending: false })
+        .limit(500);
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      const list = (codes ?? []).map((c) => c.code);
+      const used = new Map<string, number>();
+      if (list.length > 0) {
+        const { data: licRows } = await admin
+          .from('licenses')
+          .select('code')
+          .in('code', list)
+          .eq('revoked', false);
+        for (const row of licRows ?? []) {
+          used.set(row.code, (used.get(row.code) ?? 0) + 1);
+        }
+      }
+      return json({
+        ok: true,
+        stats: {
+          issued: iss.count ?? 0,
+          activated: act.count ?? 0,
+          revoked: rev.count ?? 0,
+          activeLicenses: lic.count ?? 0,
+        },
+        subscribers: (codes ?? []).map((c) => ({
+          code: group5(c.code),
+          status: c.status,
+          distributor: c.distributor,
+          release_id: c.release_id,
+          created_at: c.created_at,
+          activated_at: c.activated_at,
           devices_used: used.get(c.code) ?? 0,
         })),
       });

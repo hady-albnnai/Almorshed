@@ -17,6 +17,7 @@ import '../curriculum/curriculum_screen.dart';
 import '../curriculum/lesson_screen.dart';
 import '../duel/duel_screen.dart';
 import '../duel/local_duel_screen.dart';
+import '../admin/admin_screen.dart';
 import '../training/cards_screen.dart';
 import '../training/training_screen.dart';
 
@@ -133,6 +134,27 @@ class _HomeScreenState extends State<HomeScreen>
     widget.syncManager?.runNow(); // جلسة أنجزت أحداث XP — زامن فوراً
   }
 
+  // ── المدخل المخفي للوحة إدارة المكتب (F6.1): ٥ نقرات على الترحيب ──
+  int _adminTaps = 0;
+  DateTime? _lastAdminTap;
+
+  void _onAdminTap() {
+    final now = DateTime.now();
+    if (_lastAdminTap != null &&
+        now.difference(_lastAdminTap!).inSeconds > 3) {
+      _adminTaps = 0;
+    }
+    _lastAdminTap = now;
+    _adminTaps++;
+    if (_adminTaps >= 5) {
+      _adminTaps = 0;
+      _lastAdminTap = null;
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(builder: (_) => const AdminScreen()),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
@@ -177,7 +199,11 @@ class _HomeScreenState extends State<HomeScreen>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('👋 أهلاً بك', style: txt.titleLarge),
+                      GestureDetector(
+                        onTap: _onAdminTap,
+                        behavior: HitTestBehavior.opaque,
+                        child: Text('👋 أهلاً بك', style: txt.titleLarge),
+                      ),
                       Chip(
                         avatar: Icon(
                             licensed

@@ -105,7 +105,7 @@ cd /d %USERPROFILE%\Almorshed\app && git pull && chcp 65001 && flutter test
 3. **F5.3** التدفق الكامل بالواجهات (إنشاء→لوبي→لعب ×٢/×٣→نتيجة+ثأر+مشاركة — قرار ٤١).
 4. **F5.4** النقلية المحلية — **جزء ١ منفّذ @ 3ccfc07** (Hotspot TCP بلا سيرفر: local_link/local_duel_flow/local_duel_screen + 5 اختبارات)؛ المتبقي تحت قرار المالك: nearby_connections ببوابة GMS و/أو QR بالبذرة (قرار ٢٣) وتوقيع النتيجة (قرار ٢٥) والمبدّل التلقائي.
 5. **F5.5** اختبار العدالة (نفس البذرة على جهازين ⇒ نفس الأسئلة والنتائج) — **الجزء الآلي منفّذ @ 3ccfc07+** (`questionsFingerprint` بصمة أسئلة بلوبي المبارزة المحلية + `seed_equivalence_test.dart` ٥ اختبارات)؛ المتبقي تثبّت المالك على جهازين.
-6. لاحقاً: M6 (تشفير المحتوى + POS/لوحة الأستاذ) ⇒ M7 (Play Integrity، pinning، توقيع متجر). **F6.1 أداة المكتب بدأت (2026-09-14):** `functions/office_codes/index.ts` + ترحيل `0006` + `office_code_spec_test` + `tool/office/` مكتوبة — بيد المالك النشر (OFFICE_KEY + deploy --no-verify-jwt).
+6. لاحقاً: M6 (تشفير المحتوى + POS/لوحة الأستاذ) ⇒ M7 (Play Integrity، pinning، توقيع متجر). **F6.1 أداة المكتب (2026-09-14):** منشورة ومدخّنة (generate → كودان) + **قرار المالك: لوحة إدارة مخفية بالتطبيق** (نقرة سرية ٥× على الترحيب + بوابة OFFICE_KEY بالخزنة الآمنة) — `admin_screen.dart` + `office_api.dart` + توسعة الدالة بفعل `stats` — **المتبقي: إعادة نشر office_codes (ليصعد stats) + flutter test عند المالك.**
 
 ---
 
