@@ -64,6 +64,7 @@ void main() {
     expect(() => RoomCode.decode('K7M2P-9QW4'), throwsFormatException);
     expect(() => RoomCode.decode('K7M2P-9QW4UI'), throwsFormatException); // U غريبة
     expect(_pack().questions.length, 15); // استهلاك البانية
+    expect(_scope().count, 10); // استهلاك النطاق
   });
 
 //  test('scopeTag: 13 بت مطابقة للمرجع — والبذرة دائماً < 2^63', () {
@@ -74,7 +75,8 @@ void main() {
 //    for (var t = 0; t < 8192; t++) {
 //      expect(makeSeed(tag: t, roomCode: 676889741750429), isNonNegative);
 //    }
-//    expect(_pack().questions.length, 15); // استهلاك البانية (تفادي unused)
+//    expect(_pack().questions.length, 15); // استهلاك البانية
+    expect(_scope().count, 10); // استهلاك النطاق (تفادي unused)
 //  });
 //
 ////  test('بناء الجلسة: نفس البذرة ⇒ متجه الحزمة الاصطناعية حرفياً', () {
