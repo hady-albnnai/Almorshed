@@ -62,7 +62,7 @@ class DuelChannel {
   final _presenceJoins = StreamController<Map<String, dynamic>>.broadcast();
   final _presenceLeaves = StreamController<Map<String, dynamic>>.broadcast();
 
-  String? _joinRef;
+  int? _joinRef; // refs أرقام — مطابقة لما يعيده jsonDecode
   Completer<bool>? _joinCompleter;
   bool _joinedOnce = false;
 

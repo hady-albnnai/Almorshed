@@ -24,7 +24,7 @@ void main() {
     server = await HttpServer.bind('127.0.0.1', 0);
     server.listen((req) async {
       final ws = await WebSocketTransformer.upgrade(req);
-      ws.stream.listen((raw) {
+      ws.listen((raw) { // WebSocket نفسه Stream
         final msg = jsonDecode(raw as String) as Map<String, dynamic>;
         received.add(msg);
         if (msg['event'] == 'phx_join') {
@@ -77,7 +77,8 @@ void main() {
     final ch = rt.channel('duel:abc');
     final got = <Map<String, dynamic>>[];
     ch.broadcasts.listen(got.add);
-    final ws = await ch.join().then((_) => joinReplies.first);
+    final ws =
+        await ch.join().then((_) => joinReplies.stream.first);
     await pumpEventLoop();
     ws.add(jsonEncode(<String, dynamic>{
       'topic': 'realtime:duel:abc',
