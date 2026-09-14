@@ -90,12 +90,12 @@ select tgname from pg_trigger where tgrelid = 'public.duels'::regclass;
 -- ✅ duels_guard_trigger
 
 -- ٣) سياسات الجداول (RLS)
-select tablename, polname from pg_policies
+select tablename, policyname from pg_policies
 where tablename in ('duels','duel_answers','duel_status') order by tablename;
 -- ✅ ٧ سياسات
 
 -- ٤) سياسات القناة الخاصة (إن كان Realtime مفعلاً)
-select polname from pg_policies where schemaname='realtime' and tablename='messages';
+select policyname from pg_policies where schemaname='realtime' and tablename='messages';
 -- ✅ duel_channel_read + duel_channel_write
 
 -- ٥) verify_commit الموسّعة (دعوى duelWin/duelLoss)
