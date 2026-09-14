@@ -12,18 +12,20 @@ void main() {
   late HttpServer server;
   late Uri baseUri;
   final received = <Map<String, dynamic>>[];
-  // مخزّن أحادي (البثّ الأساسي يفقد الأحداث بلا مستمع لحظتها) — لكل اختبار
-  late StreamController<WebSocket> joinReplies;
+  // مقابس الخادم المرقّاة — تُغلَق صراحةً في tearDown (server.close(force:true)
+  // لا يغلق المقابس المرقّاة بموثوقية، وكان تعليقها يفشل الاختبار بالمهلة).
+  final sockets = <WebSocket>[];
 
   Future<void> pumpEventLoop() =>
       Future<void>.delayed(const Duration(milliseconds: 50));
 
   setUp(() async {
     received.clear();
-    joinReplies = StreamController<WebSocket>();
+    sockets.clear();
     server = await HttpServer.bind('127.0.0.1', 0);
     server.listen((req) async {
       final ws = await WebSocketTransformer.upgrade(req);
+      sockets.add(ws);
       ws.listen((raw) { // WebSocket نفسه Stream
         final msg = jsonDecode(raw as String) as Map<String, dynamic>;
         received.add(msg);
@@ -34,7 +36,6 @@ void main() {
             'payload': <String, dynamic>{'status': 'ok'},
             'ref': msg['ref'],
           }));
-          joinReplies.add(ws);
         }
       });
     });
@@ -42,8 +43,17 @@ void main() {
   });
 
   tearDown(() async {
+    // إغلاق المقابس المرقّاة أولاً — درس مثبت بجهاز المالك: بلا هذا التعليق
+    // يعيش اختبار واحد بالمهلة (server.close يعلّق مع اتصال WS مفتوح).
+    for (final ws in sockets) {
+      try {
+        await ws.close();
+      } catch (_) {
+        // مُغلق أصلاً — لا شيء
+      }
+    }
+    sockets.clear();
     await server.close(force: true);
-    await joinReplies.close();
   });
 
   test('الانضمام: مظروف صحيح + phx_reply ok ⇒ join() يكتمل true', () async {
@@ -77,9 +87,9 @@ void main() {
     final ch = rt.channel('duel:abc');
     final got = <Map<String, dynamic>>[];
     ch.broadcasts.listen(got.add);
-    final ws =
-        await ch.join().then((_) => joinReplies.stream.first);
+    await ch.join();
     await pumpEventLoop();
+    final ws = sockets.single;
     ws.add(jsonEncode(<String, dynamic>{
       'topic': 'realtime:duel:abc',
       'event': 'broadcast',
