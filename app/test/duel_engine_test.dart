@@ -1,9 +1,6 @@
-// Run E5 — getter يحضر لكن scopeString لا تُلمس
+// Run D4 — إنشاء DuelScope بلا scopeString
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/duel/duel_engine.dart';
-
-DuelScope _scope() =>
-    DuelScope(units: ['U1', 'U2', 'U3'], packTag: 'test-pack-1');
 
 void main() {
   test('Crockford: الرمز المرجعي K7M2P-9QW4X ذهاباً وإياباً', () {
@@ -27,6 +24,32 @@ void main() {
     for (var t = 0; t < 8192; t++) {
       expect(makeSeed(tag: t, roomCode: 676889741750429), isNonNegative);
     }
+  });
+
+  test('بناء الجلسة: نفس البذرة ⇒ متجه الحزمة الاصطناعية حرفياً', () {
+    final seed = makeSeed(tag: 2852, roomCode: 676889741750429);
+    final a = buildDuelSession(_pack(), seed: seed, scope: _scope());
+    final b = buildDuelSession(_pack(), seed: seed, scope: _scope());
+    expect(a.built.questionIds, b.built.questionIds);
+    expect(a.correctDisplay, b.correctDisplay);
+    // المتجه المرجعي من Python
+    expect(a.built.questionIds, const [11, 12, 3, 4, 5, 1, 2, 8, 9, 10]);
+    expect(a.correctDisplay, const [1, 1, 3, 1, 0, 1, 1, 1, 3, 0]);
+    // بلا تكرار وبالعدد المطلوب
+    expect(a.built.questionIds.toSet().length, 10);
+  });
+
+  test('بناء الجلسة: نفس البذرة ⇒ متجه الحزمة الاصطناعية حرفياً', () {
+    final seed = makeSeed(tag: 2852, roomCode: 676889741750429);
+    final a = buildDuelSession(_pack(), seed: seed, scope: _scope());
+    final b = buildDuelSession(_pack(), seed: seed, scope: _scope());
+    expect(a.built.questionIds, b.built.questionIds);
+    expect(a.correctDisplay, b.correctDisplay);
+    // المتجه المرجعي من Python
+    expect(a.built.questionIds, const [11, 12, 3, 4, 5, 1, 2, 8, 9, 10]);
+    expect(a.correctDisplay, const [1, 1, 3, 1, 0, 1, 1, 1, 3, 0]);
+    // بلا تكرار وبالعدد المطلوب
+    expect(a.built.questionIds.toSet().length, 10);
   });
 
 }
