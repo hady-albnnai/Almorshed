@@ -15,6 +15,7 @@ import '../../core/util/arabic_number.dart';
 import '../../core/xp/streak_service.dart';
 import '../curriculum/curriculum_screen.dart';
 import '../curriculum/lesson_screen.dart';
+import '../duel/duel_screen.dart';
 import '../training/cards_screen.dart';
 import '../training/training_screen.dart';
 
@@ -32,6 +33,7 @@ class HomeScreen extends StatefulWidget {
     required this.onToggleTheme,
     this.syncManager,
     this.fetchLeague,
+    this.openDuel,
   });
 
   final ContentPack pack;
@@ -46,6 +48,9 @@ class HomeScreen extends StatefulWidget {
 
   /// F4.6 — واجهة الدوري (null = بلا بطاقة الدوري).
   final Future<LeagueView> Function()? fetchLeague;
+
+  /// F5.3 — مصنع تدفق المبارزة (null = بطاقة التحديات معطلة كما كانت).
+  final DuelFlowFactory? openDuel;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -307,13 +312,22 @@ class _HomeScreenState extends State<HomeScreen>
                 },
               ),
             ),
-            // ── تحديات اليوم (M5) ──
+            // ── تحديات اليوم (F5.3 — مبارزة مباشرة) ──
             Card(
               child: ListTile(
                 leading: const Text('⚔️', style: TextStyle(fontSize: 22)),
                 title: const Text('تحديات اليوم'),
-                subtitle: const Text('قريباً — دوري فيزيا كلاش'),
-                enabled: false,
+                subtitle: const Text('مبارزة مباشرة مع صديق — أنشئ أو انضم برمز'),
+                enabled: widget.openDuel != null,
+                onTap: widget.openDuel == null
+                    ? null
+                    : () => Navigator.of(context)
+                        .push(MaterialPageRoute<void>(
+                          builder: (_) => DuelScreen(
+                            pack: widget.pack,
+                            flowFactory: widget.openDuel!,
+                          ),
+                        )),
               ),
             ),
             // ── فكرة اليوم ──

@@ -17,8 +17,13 @@ import 'core/sync/sync_manager.dart';
 import 'core/sync/sync_store.dart';
 import 'core/supabase/anonymous_auth.dart';
 import 'core/supabase/supabase_transport.dart';
+import 'core/supabase/duel_api.dart';
+import 'core/supabase/realtime_client.dart';
+import 'core/duel/duel_engine.dart';
+import 'core/duel/duel_flow.dart';
 import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
+import 'features/duel/duel_screen.dart';
 import 'features/home/home_screen.dart';
 
 void main() => runApp(const FizyaClashApp());
@@ -106,6 +111,35 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
   /// واجهة الدوري (قراءة RLS للمفعّلين حصراً).
   late final LeagueApi _leagueApi = LeagueApi(transport: _net, auth: _netAuth);
 
+  /// واجهة المبارزات (F5.3) — نفس النقلية والجلسة المشتركتين.
+  late final DuelApi _duelApi = DuelApi(_net);
+
+  /// فتح تدفق مبارزة — جلسة صالحة + معرّف الجهاز + ناقل حي + حكم XP.
+  Future<DuelFlow> _openDuelFlow(ContentPack pack) async {
+    final session = await _netAuth.session();
+    final deviceId = await _duelApi.myDeviceId(
+          accessToken: session.accessToken,
+          pubkeyB64: _pubkeyB64 ?? '',
+        ) ??
+        '';
+    if (deviceId.isEmpty) {
+      throw StateError('الجهاز غير مسجّل بعد');
+    }
+    return DuelFlow(
+      gateway: ApiDuelGateway(_duelApi),
+      wireFactory: () => RealtimeDuelWire(
+        SupabaseRealtime(baseUrl: _net.baseUrl, anonKey: _net.anonKey),
+      ),
+      deviceId: deviceId,
+      accessToken: session.accessToken,
+      buildSession: (seed, scope) =>
+          buildDuelSession(pack, seed: seed, scope: scope),
+      xpSink: (typeId, extra) async {
+        await _xpRecorder.record(typeId, extra: extra);
+      },
+    );
+  }
+
   late Future<LicenseData> _licenseFuture = _license.load();
 
   @override
@@ -182,6 +216,7 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
                   onToggleTheme: _toggleTheme,
                   syncManager: _sync,
                   fetchLeague: () => _leagueApi.fetch(_pubkeyB64 ?? ''),
+                  openDuel: () => _openDuelFlow(snap.data!),
                 );
               }
               return CurriculumScreen(
