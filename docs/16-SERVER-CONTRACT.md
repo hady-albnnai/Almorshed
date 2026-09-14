@@ -422,7 +422,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | # | القطعة | نصها | الحالة |
 |---|---|---|---|
 | 1 | الجداول الثمانية + RLS | `0001_init.sql` | ✅ مُطبَّق (تحقق 8/8) |
-| 2 | دوال القاعدة الأربع + تحصين EXECUTE | `0002_server_functions.sql` | ✅ مُطبَّق (تحقق 12/12) |
+| 2 | دوال القاعدة الأربع + تحصين EXECUTE | `0002_server_functions.sql` | ✅ مُطبَّق (تحقق 12/12 — **أُعيد تحققه من السيرفر 2026-09-14**: service_role=true للأربع، anon/authenticated=false للأربع) |
 | 3 | تشديد سياسة الدوري | `0003_tighten_standings.sql` | ✅ مُطبَّق |
 | 4 | مضاد التعداد القسري (مستخدم + IP) | `0004_activation_throttle.sql` | ✅ مُطبَّق (تحقق: جدول+RLS t+0 سياسات+3 فهارس) |
 | 5 | دالة تفعيل الكود | `functions/license_activate/index.ts` | ✅ منشورة (دخان المالك: {} ⇒ AUTH_REQUIRED بالضبط) |
@@ -434,7 +434,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 11 | جداول المبارزات (duels/duel_answers/duel_status/content_questions) + RLS + زناد الحارس + سياسات القناة الخاصة + verify_commit بدعوى المبارزة | `0005_duels.sql` | ⬜ بانتظار تطبيق المالك — **idempotent (2026-09-14)**: إعادة التشغيل آمنة؛ فعّل Realtime ثم أعد التشغيل إن فاتتك سياسات القناة. التحقق: 4 جداول + الزناد + 7 سياسات + سياسَتا القناة + verify_commit الجديدة (دفتر النشر ب-٣) |
 | 12 | دالة حكم المبارزة (server-referential) | `functions/duel_finish/index.ts` + `functions/_shared/duel_session.ts` | ⬜ بانتظار النشر — المنفذ مطابق بتّياً (متجهات §٩-١٠) |
 | 13 | بنك المبارزات — المعتمد حصراً (قرار ٢٤) | `docs/supabase/content_index.sql` مولَّد من `tools/gen_content_index.py` | ⬜ يُولَّد ويُطبَّق **بعد اعتماد الأستاذ للأسئلة** (اليوم: 0 صف معتمد) |
-| 14 | سجل تدقيق أداة المكتب (RLS سلبية) | `0006_office_audit.sql` | ⬜ بانتظار تطبيق المالك |
+| 14 | سجل تدقيق أداة المكتب (RLS سلبية) | `0006_office_audit.sql` | ✅ مُطبَّق (تحقق المالك 2026-09-14: `to_regclass('public.office_audit') is not null` = true) |
 | 15 | أداة المكتب `office_codes` (توليد/إلغاء/جرد) | `functions/office_codes/index.ts` — الحماية بسر `OFFICE_KEY` (ترويسة `x-office-key`) | ⬜ بانتظار النشر — `supabase secrets set OFFICE_KEY=…` ثم `functions deploy office_codes --no-verify-jwt` |
 
 طريقة 5-7 (بلا CLI): اللوحة ← **Edge Functions** ← Create a new function
