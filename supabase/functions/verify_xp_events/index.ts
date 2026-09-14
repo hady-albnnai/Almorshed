@@ -88,6 +88,15 @@ Deno.serve(async (req) => {
     const seenCaps = new Set<string>();
     for (const ev of events) {
       lastSeq++;
+      // ٢-٠ شكل الحدث: كائن، نوع نصي قصير، حمولة ≤ 2KB (تدقيق الحقن 2026-09-14)
+      if (typeof ev !== 'object' || ev === null ||
+          typeof ev.type !== 'string' || !/^[a-zA-Z]{2,32}$/.test(ev.type) ||
+          typeof ev.seq !== 'number' || typeof ev.ts !== 'number' ||
+          typeof ev.prevHash !== 'string' || typeof ev.hash !== 'string' ||
+          typeof ev.sig !== 'string' ||
+          JSON.stringify(ev.payload ?? null).length > 2048)
+        return json({ accepted: false, reason: 'EVENT_SHAPE',
+          synced_up_to: lastSeq - 1 }, 422);
       // ٢-أ التسلسل بلا فجوات
       if (ev.seq !== lastSeq)
         return json({ accepted: false, reason: 'SEQ_GAP',
@@ -158,7 +167,8 @@ Deno.serve(async (req) => {
           return json({ accepted: false, reason: 'MANUAL_POINTS_RANGE',
             synced_up_to: lastSeq - 1 }, 422);
         if (typeof ev.payload?.reason !== 'string' ||
-            ev.payload.reason.trim().length === 0)
+            ev.payload.reason.trim().length === 0 ||
+            ev.payload.reason.length > 200)
           return json({ accepted: false, reason: 'MANUAL_REASON',
             synced_up_to: lastSeq - 1 }, 422);
       } else {

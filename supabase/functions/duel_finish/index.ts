@@ -110,6 +110,13 @@ Deno.serve(async (req) => {
 
     // ── ٥) اتساق البذرة مع النطاق (tag داخل البذرة = tag النطاق) ──
     const scope = duel.scope;
+    // شكل النطاق (كتبه المضيف عبر PostgREST — 0007 يقيّده بالقاعدة، وهذا قفل ثانٍ)
+    if (typeof scope !== 'object' || scope === null ||
+        !Array.isArray(scope.units) || scope.units.length === 0 || scope.units.length > 5 ||
+        !scope.units.every((u: unknown) => typeof u === 'string' && /^U[1-5]$/.test(u)) ||
+        typeof scope.count !== 'number' || !Number.isInteger(scope.count) ||
+        scope.count < 1 || scope.count > 50)
+      return json({ ok: false, reason: 'SCOPE_SHAPE' }, 422);
     const seed = BigInt(duel.seed_text); // bigint موقّع — البذرة < 2^63 بالبناء
     const tag = await scopeTagOf(scope);
     if (Number(seed >> 50n) !== tag)

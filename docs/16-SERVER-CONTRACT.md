@@ -444,6 +444,9 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 14 | سجل تدقيق أداة المكتب (RLS سلبية) | `0006_office_audit.sql` | ✅ مُطبَّق (تحقق المالك 2026-09-14: `to_regclass('public.office_audit') is not null` = true) |
 | 15 | أداة المكتب `office_codes` (توليد/إلغاء/جرد) | `functions/office_codes/index.ts` — الحماية بسر `OFFICE_KEY` (ترويسة `x-office-key`) | ✅ منشورة (دخان المالك 2026-09-14: generate → كودان حقيقيان) |
 | 16 | توسعة أداة المكتب: `stats` (عداد+لائحة) + إلغاء اشتراك كامل (سحب الرخص) | `functions/office_codes/index.ts` (2026-09-14) | ✅ أُعيد نشرها (تأكيد المالك 2026-09-14) + التطبيق نظيف (analyze + test) |
+| 17 | **تدقيق الحقن** — قيود شكل/حجم على كل عمود يكتبه العميل (duels/xp_events/devices/profiles/activation_codes) | `0007_input_hardening.sql` (idempotent؛ قسم duels يتخطّى نفسه قبل 0005) | ⬜ يطبّقه المالك — تحقق: 13 قيداً (`docs/18` §٦) |
+| 18 | تشديد `verify_xp_events`: `EVENT_SHAPE` (نوع/أرقام/حمولة ≤ 2KB) + `reason ≤ 200` | `functions/verify_xp_events/index.ts` (2026-09-14) | ⬜ إعادة نشر |
+| 19 | تشديد `duel_finish`: `SCOPE_SHAPE` (units U1..U5 ≤ 5، count 1..50) | `functions/duel_finish/index.ts` | ⬜ يُنشر مع المسار ب |
 
 طريقة 5-7 (بلا CLI): اللوحة ← **Edge Functions** ← Create a new function
 ← «I have function code that I want to deploy» — الاسم مطابق للمجلد،
@@ -561,6 +564,9 @@ traversal غير مطروح (لا ملفات بأسماء مدخلة)؛ والف
 | 2026-09-13 | **منصة**: allowBackup=false + dataExtractionRules (رفض سحابي/نقل) + usesCleartextTraffic=false + R8/minify/shrink للإصدار + proguard-rules | بناء الإصدار الأول يُدخّن يدوياً بM7 |
 | 2026-09-13 | **أرضية ساعة رتيبة** ب«حسابي» (max(now, lastWall)) + تدقيق شامل §٨-د بمصفوفة التهديدات | لا شيء — فحص أصرم |
 | 2026-09-13 | **جلسة**: اعتماد expires_at الرسمي من GoTrue (لا اشتقاق الساعة المحلية) + تجديد فوري للوليدة القريبة من الانتهاء (لصقتا 16/17 — أخضر 34654ff 144/144) | عميل أدق زمنياً — لا تغيير عقد |
+
+## ٨-و تدقيق الحقن الشامل (2026-09-14)
+> التقرير الكامل بجرد كل مدخل وطبقاته الثلاث: **`docs/18-INJECTION-AUDIT.md`**. الخلاصة: لا مسار حقن SQL/XSS بنيوياً؛ أُغلقت فجوتا شكل/حجم (0007 + EVENT_SHAPE + SCOPE_SHAPE).
 
 ## ٨-هـ فرز تنبيهات Security Advisor (تقرير المالك 2026-09-14 — 9 تنبيهات، كلها WARN)
 

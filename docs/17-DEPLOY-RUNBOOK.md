@@ -147,3 +147,24 @@ supabase db push                        # (أو SQL Editor: الصق النات�
 1. **اليوم**: المسار أ كاملاً (٣ أوامر + دخان) — البيع في المكتب يصبح حياً.
 2. **متى أحببت**: المسار ب (ب-١→ب-٤) — يرفع أنابيب المبارزة؛ لا ضرورة لعجلة.
 3. **بعد الأستاذ**: المسار ج ثم دخان ب-٥.
+
+---
+
+## المسار د — تدقيق الحقن (0007 + إعادة نشر verify_xp_events) — يُطبَّق الآن
+
+### د-١) الترحيل
+SQL Editor ← الصق كامل `supabase/migrations/0007_input_hardening.sql` ← Run.
+> إن لم تُطبَّق 0005 بعد: يطبع notice ويتخطّى قيود duels (تُضاف بإعادة 0007 بعد 0005). الباقي (8 قيود) يُطبَّق فوراً.
+
+### د-٢) إعادة نشر verify_xp_events
+Edge Functions ← `verify_xp_events` ← Edit ← الصق `supabase/functions/verify_xp_events/index.ts` كاملاً ← Deploy.
+
+### د-٣) تحقق
+```sql
+select count(*) from pg_constraint where conname in (
+  'duels_room_code_format','duels_seed_range','duels_scope_shape','duels_host_name_len','duels_guest_name_len',
+  'xp_events_type_known','xp_events_payload_size','xp_events_hash_hex','xp_events_sig_b64',
+  'devices_pubkey_b64_format','devices_fp_len','profiles_display_name_len','activation_codes_format');
+-- ✅ 13 (أو 8 قبل 0005)
+```
+ثم دخان XP (ب-٦) — يجب أن يبقى 200.
