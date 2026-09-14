@@ -15,10 +15,12 @@
 | **تحليل ساكن CI** | ✅ **أخضر لأول مرة منذ M5** (من كومِت fe6ca83 فصاعداً بلا انقطاع) |
 | duel_api_test (5 اختبارات) | ✅ خضراء كاملة |
 | duel_engine_test (7 اختبارات) | ✅ **خضراء CI كاملة — المتجهات الذهبية مطابقة** (إصلاح toUnsigned حسمها، كومِت 72d4fff) |
-| realtime_client_test (5 اختبارات) | ⏳ تصريفه سليم؛ **5 إخفاقات وقت تشغيل** = الحدّ الأخير الوحيد — تحتاج لصقة المالك (السطر في §٤-أ) |
+| realtime_client_test (5 اختبارات) | ⏳ تصريفه سليم؛ **5 إخفاقات وقت تشغيل** — تُسمّى بلصقة المالك (§٤-أ)؛ اختباراته حساسة توقيتاً (pumpEventLoop 50ms · نبض ≥2 خلال 220ms — قوّ الفواصل قبل أي حكم) |
 | docs/14 ختم F5.1/F5.2 | ⏳ بعد الأخضر الكامل |
 | F5.3/F5.4/F5.5 | ⬜ لم تبدأ |
 | لائحة 11-13 (نشر ICTN) | ⬜ معطلة على اعتماد الأستاذ للبنك (اليوم: 0 صف معتمد) |
+
+**آخر حالة CI وقت التسليم:** `171+1` (ثالثاً توالياً — مفارقة حتمية، انظر §٤-أ) على كومِت a732dc8 · **الفرع:** `arena/01a08df0-almorshed` (كل العمل هنا) · **آخر كومِت:** انظر `git log --oneline -3`.
 
 **قاعدة CI:** subosito/flutter-action → `flutter analyze` ثم `flutter test` ثم بناء APK.
 البوابة تسد على أي warning **وحتى أي info** — صفر تسامح.
@@ -74,17 +76,17 @@ scopeTag('duel-v1|U1,U2,U3|count=10|mode=quiz|pack=test-pack-1') = 2852
 
 ### أ) مفارقة الـ«171+1» الحتمية (مفتاح مهم للجولة القادمة)
 - بكومِت 72d4fff (الملفات الثلاثة .dart): 172 نجح / 5 فشل (realtime حصراً) — **الـ12 الأخرى كلها خضراء**.
-- بإخفاء realtime فقط (بلا أي تغيير كود آخر): **171+1 حتمياً مرتين متتاليتين** (2db206a، 88e6bb0).
+- بإخفاء realtime فقط (بلا أي تغيير كود آخر): **171+1 حتمياً ثلاث مرات توالياً**
+  (2db206a، 88e6bb0، a732dc8 — نفس العدد بالنص حرفياً).
 - **الاستنتاج:** اختبار ما من الـ160 الأخرى يعتمد على حضور/ترتيب اختبارات realtime
   (حالة مشتركة أو منافذ). ليس عابراً.
-- **الخطوة القادمة:** لصقة المالك `flutter test` كاملاً تسمّي الاختبار الساقط بنصه —
-  ثم نعالج (عزل الحالة أو إصلاح الاختبار المعني).
-الكود الحالي: realtime مخفي كـ`.txt` والتحليل أخضر مستقر.
-**استعد ثم اطلب من المالك:**
+
+**أول فعل بالجولة القادمة — لصقة واحدة من المالك تسمّي كل شيء (المفارقة + إخفاقات realtime الخمسة معاً):**
 ```
-cd /d %USERPROFILE%\Almorshed\app && git pull && chcp 65001 && flutter test test\realtime_client_test.dart
+cd /d %USERPROFILE%\Almorshed\app && git pull && chcp 65001 && flutter test
 ```
-لصقته تعطي `[E]` لكل فشل بنص Expected/Actual — أصلح بالنص ثم أعد الملف `.dart` وادفع.
+اللصقة تعطي لكل فشل: الاسم الكامل + Expected/Actual. أصلح بالنص ثم:
+استعادة realtime (`git mv test/realtime_client_test.dart.txt test/realtime_client_test.dart`) وكومِت واحد.
 
 ### ب) بقية السلم
 1. **تنظيف الذيل:** `grep -rn "BISECT\|SPYOFF" app/` يجب أن يعيد صفراً — أي بقايا احذفها بكومِت واحد.
@@ -96,8 +98,25 @@ cd /d %USERPROFILE%\Almorshed\app && git pull && chcp 65001 && flutter test test
 
 ---
 
+## ٤-ج) خريطة الملفات والمؤشرات (كل ما تحتاج مراجعته)
+- **الفرع:** `arena/01a08df0-almorshed` — كل العمل هنا، لا تفتح غيره.
+- `app/lib/core/rng/session.dart` — **الإصلاح التاريخي:** `toUnsigned(64)` في fisherYates (سطر ~57).
+- `app/lib/core/duel/duel_engine.dart` — RoomCode/seed/scopeTag/scopeString (المُصلَح بلا cascade-انتشار).
+- `app/lib/core/supabase/realtime_client.dart` — العميل الكامل (F5.2)؛ `_joinRef` نوعها `int?`؛ الارتداد بـ`.toInt()`.
+- `app/lib/core/supabase/supabase_transport.dart` — postJson وpostJsonRaw كلاهما يقرأ `reason`.
+- `app/test/duel_api_test.dart` — النمط المعتمد: كل اختبار ينشئ تجسسه (حقل final بلا إسناد لاحق) + حرفيات متروكة داخل المغلقات.
+- `app/test/duel_engine_test.dart` — السباعي الأخضر (بناء كائنات مباشر بـ`_pack()` + `_scope()` **دالة** لا getter).
+- `app/test/realtime_client_test.dart.txt` — مخفي الآن؛ 5 إخفاقات تشغيل بانتظار التسمية.
+- **عقد الخادم:** docs/16 §٩ (duel_finish: 200/409/422/403/404 · seed=(tag<<50)|roomCode · القناة `duel:{uuid}` الخاصة).
+- **مصنوعات Supabase مكتومِتة:** supabase/migrations/0005_duels.sql · supabase/functions/{duel_finish,_shared/duel_session.ts,verify_xp_events} · tools/duel_session_vectors_check.ts (تحقق ثلاثي TS=Python=Dart بnode --experimental-strip-types).
+- **بنك الأسئلة:** مولَّد وapproved:false (قرار ٢٤) — اختبارات المبارزة على test-pack-1.
+- docs/14: F5.1/F5.2=[~] بانتظار الختم · docs/12 §٢.١ معلق حتى الأخضر الكامل.
+- minSdk = 23 ثابت ملزم (F3.7) · pubspec.lock الحقيقي من جهاز المالك مرجع معتمد.
+
+---
+
 ## ٥) ⚠️ أمن — عاجل
-- **توكن المالك `ghp_A6eDIM4z...` انكشف بالمحادثة** — استُخدم للتشغيل حين مات توكن المنصة
+- **توكن المالك الذي لُصق بالمحادثة (جولة M5) انكشف** — استُخدم للتشغيل حين مات توكن المنصة
   (مات مرتين، بطلان دائم ~10 دقائق كل مرة). **يجب حذفه من GitHub فوراً**
   (Settings → Developer settings → Personal access tokens → Delete).
 - أسرار الخادم لا تمر بالمحادثة أبداً (docs/11 §١٢.١) — URL/anon عامّان فقط.
@@ -111,4 +130,9 @@ cd /d %USERPROFILE%\Almorshed\app && git pull && chcp 65001 && flutter test test
 - ⚠️ حذار فخ python: `str.replace` يبدّل **كل** التطابقات — عدّل بالفهارس أو assert عدداً.
 - ⚠️ فخ التنصيف: تعليق اختبارات يجعل `_pack`/`_scope` يتامى ⇒ unused_element أحمر زائف —
   أضف سطر استهلاك دائماً.
-- نصوص الكتاب لا تُدفع (قرار ٥٥) · أسئلة approved:false (قرار ٢٤) · ci.yml بيد المالك.
+- نصوص الكتاب لا تُدفع (قرار ٥٥) · أسئلة approved:false (قرار ٢٤) · ci.yml بيد المالك حصراً.
+- لا إنجاز بلا كومِت+دفع+`git ls-remote` · «خلينا نمشي خطوة خطوة» أثناء الحقن · مشروع واحد/مستودع واحد.
+- بحث معمّق قبل كل مهمة جديدة · التوكنات عبر سكربت واحد ينفّذ ويطبع (لا نسخ يدوي).
+- `gh run rerun` مرفوض دائماً («workflow file may be broken») · أوامر gh من مجلد المستودع أو بـ`-R hady-albnnai/Almorshed`.
+- توكن المنصة (GH_TOKEN) قد يبطل مؤقتاً (حدث مرتين) — عند 401 انتظر دقائق وأعد المحاولة قبل أي إجراء.
+- **الأولوية للجهاز المحلي:** أي فشل غير مفهوم ⇒ لصقة مالك (`flutter analyze` ثم `flutter test`) قبل أي تنصيف CI عمياء.
