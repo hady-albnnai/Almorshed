@@ -54,9 +54,11 @@ abstract final class SessionStreams {
 List<int> fisherYates(List<int> input, SplitMix64 rng) {
   final list = List<int>.of(input);
   for (var i = list.length - 1; i > 0; i--) {
-    // toUnsigned: next() موقّع بDart، و% الإقليدي على الموقّع يخالف المرجع
-    // اللاإشاري كلما كان (2^64 mod m ≠ 0) — درس M5 المثبت بجهاز المالك.
-    final j = rng.next().toUnsigned(64) % (i + 1);
+    // المودولو اللاإشاري الحقيقي (64بت) — يطابق السيرفر (TS BigInt) والمرجع
+    // Python بتّياً. درس M5 المثبت بجهاز المالك: toUnsigned(64) على int هو
+    // NO-OP (int موقّع 64بت لا يمثّل ≥2⁶³) — الصحيح BigInt.toUnsigned(64).
+    final j =
+        (BigInt.from(rng.next()).toUnsigned(64) % BigInt.from(i + 1)).toInt();
     final tmp = list[i];
     list[i] = list[j];
     list[j] = tmp;
