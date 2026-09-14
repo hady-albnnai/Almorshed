@@ -400,6 +400,23 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
               style: txt.bodyMedium,
               textAlign: TextAlign.center,
             ),
+            if (s.questionIds.isNotEmpty) ...[
+              const SizedBox(height: 10),
+              Text(
+                'بصمة الأسئلة: '
+                '${questionsFingerprint(s.questionIds, s.optionOrders)}',
+                textDirection: TextDirection.ltr,
+                style: txt.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 2,
+                ),
+              ),
+              Text(
+                'تطابق البصمة على الجهازين = نفس الأسئلة',
+                style: txt.bodySmall,
+                textAlign: TextAlign.center,
+              ),
+            ],
             const Spacer(),
             if (isHost && s.opponentJoined)
               FilledButton(

@@ -206,3 +206,25 @@ bool hostWins({
   if (host.corrects != guest.corrects) return host.corrects > guest.corrects;
   return hostWinsTieCoin(seed: seed);
 }
+
+/// بصمة أسئلة الجلسة — ٨ محارف hex من sha256(قائمة الأسئلة+ترتيب خياراتها).
+/// تُعرض على الجهازين للتثبت البصري أن نفس البذرة ⇒ نفس الأسئلة (F5.5) —
+/// بلا سيرفر ولا شبكة.
+String questionsFingerprint(
+  List<int> questionIds,
+  Map<int, List<int>> optionOrders,
+) {
+  final b = StringBuffer();
+  for (final qid in questionIds) {
+    b.write(qid);
+    b.write(':');
+    b.write(optionOrders[qid]?.join(',') ?? '');
+    b.write(';');
+  }
+  final digest = sha256.convert(utf8.encode(b.toString())).bytes;
+  return digest
+      .take(4)
+      .map((x) => x.toRadixString(16).padLeft(2, '0'))
+      .join()
+      .toUpperCase();
+}
