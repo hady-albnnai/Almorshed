@@ -447,8 +447,8 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 17 | **تدقيق الحقن** — قيود شكل/حجم على كل عمود يكتبه العميل (duels/xp_events/devices/profiles/activation_codes) | `0007_input_hardening.sql` (idempotent؛ قسم duels يتخطّى نفسه قبل 0005) | ✅ مُطبَّق (تحقق المالك 2026-09-14: **8/8** قيود على profiles/devices/activation_codes/xp_events — قيود duels الخمسة تُضاف بإعادة 0007 بعد 0005) |
 | 18 | تشديد `verify_xp_events`: `EVENT_SHAPE` (نوع/أرقام/حمولة ≤ 2KB) + `reason ≤ 200` | `functions/verify_xp_events/index.ts` (2026-09-14) | ✅ أُعيد نشرها (دخان المالك: accepted=true، synced_up_to=0) |
 | 19 | تشديد `duel_finish`: `SCOPE_SHAPE` (units U1..U5 ≤ 5، count 1..50) | `functions/duel_finish/index.ts` | ⬜ يُنشر مع المسار ب |
-| 20 | `0008_review_codes.sql` — عمود `activation_codes.review` | SQL Editor | ⏳ |
-| 21 | إعادة نشر `office_codes` (generate يقبل `review`) + `license_activate` (علم `teacher`) + `heartbeat` (يحفظ العلم عند التجديد) | Dashboard → Functions | ⏳ |
+| 20 | `0008_review_codes.sql` — عمود `activation_codes.review` | SQL Editor | ✅ 2026-09-15 (تحقق: review/false) |
+| 21 | إعادة نشر `office_codes` (generate يقبل `review`) + `license_activate` (علم `teacher`) + `heartbeat` (يحفظ العلم عند التجديد) | Dashboard → Functions | ✅ 2026-09-15 (فحص: generate review=true) |
 
 طريقة 5-7 (بلا CLI): اللوحة ← **Edge Functions** ← Create a new function
 ← «I have function code that I want to deploy» — الاسم مطابق للمجلد،
