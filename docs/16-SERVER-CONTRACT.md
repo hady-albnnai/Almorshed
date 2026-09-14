@@ -436,7 +436,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 13 | بنك المبارزات — المعتمد حصراً (قرار ٢٤) | `docs/supabase/content_index.sql` مولَّد من `tools/gen_content_index.py` | ⬜ يُولَّد ويُطبَّق **بعد اعتماد الأستاذ للأسئلة** (اليوم: 0 صف معتمد) |
 | 14 | سجل تدقيق أداة المكتب (RLS سلبية) | `0006_office_audit.sql` | ✅ مُطبَّق (تحقق المالك 2026-09-14: `to_regclass('public.office_audit') is not null` = true) |
 | 15 | أداة المكتب `office_codes` (توليد/إلغاء/جرد) | `functions/office_codes/index.ts` — الحماية بسر `OFFICE_KEY` (ترويسة `x-office-key`) | ✅ منشورة (دخان المالك 2026-09-14: generate → كودان حقيقيان) |
-| 16 | توسعة أداة المكتب: `stats` (عداد+لائحة) + إلغاء اشتراك كامل (سحب الرخص) | `functions/office_codes/index.ts` (2026-09-14) | ⬜ **يُعاد نشر الدالة** ليصعد فعل `stats` للوحة الإدارة المخفية بالتطبيق — `functions deploy office_codes --no-verify-jwt` أو من اللوحة بملف واحد |
+| 16 | توسعة أداة المكتب: `stats` (عداد+لائحة) + إلغاء اشتراك كامل (سحب الرخص) | `functions/office_codes/index.ts` (2026-09-14) | ✅ أُعيد نشرها (تأكيد المالك 2026-09-14) + التطبيق نظيف (analyze + test) |
 
 طريقة 5-7 (بلا CLI): اللوحة ← **Edge Functions** ← Create a new function
 ← «I have function code that I want to deploy» — الاسم مطابق للمجلد،
@@ -554,6 +554,27 @@ traversal غير مطروح (لا ملفات بأسماء مدخلة)؛ والف
 | 2026-09-13 | **منصة**: allowBackup=false + dataExtractionRules (رفض سحابي/نقل) + usesCleartextTraffic=false + R8/minify/shrink للإصدار + proguard-rules | بناء الإصدار الأول يُدخّن يدوياً بM7 |
 | 2026-09-13 | **أرضية ساعة رتيبة** ب«حسابي» (max(now, lastWall)) + تدقيق شامل §٨-د بمصفوفة التهديدات | لا شيء — فحص أصرم |
 | 2026-09-13 | **جلسة**: اعتماد expires_at الرسمي من GoTrue (لا اشتقاق الساعة المحلية) + تجديد فوري للوليدة القريبة من الانتهاء (لصقتا 16/17 — أخضر 34654ff 144/144) | عميل أدق زمنياً — لا تغيير عقد |
+
+## ٨-هـ فرز تنبيهات Security Advisor (تقرير المالك 2026-09-14 — 9 تنبيهات، كلها WARN)
+
+> المبدأ: اللِنت `auth_allow_anonymous_sign_ins` يعلّم **كل** سياسة تنطبق على
+> دور المجهول بغض النظر عن فلترتها — ومشروعنا مبني على الدخول المجهول بالتصميم
+> (F4.3). الحكم بقراءة السياسة الفعلية لا بعنوان التنبيه. **لم يظهر أي تنبيه
+> «RLS Disabled» ⇒ كل الجداول محمية.**
+
+| التنبيه | السياسة الفعلية (0001) | الحكم | الإجراء |
+|---|---|---|---|
+| `profiles_select_own` / `profiles_update_own` | `auth.uid() = id` | ✅ بالتصميم — صاحبه فقط | لا شيء |
+| `devices_select_own` | `auth.uid() = profile_id` | ✅ بالتصميم | لا شيء |
+| `licenses_select_own` · `xp_events_select_own` · `weekly_select_own` | `exists(devices where profile_id = auth.uid())` | ✅ بالتصميم — صفوف صاحبها | لا شيء |
+| `standings_select_licensed` | `to authenticated` + جهاز بترخيص غير مسحوب | ✅ مشددة عمداً (2026-09-12) | لا شيء |
+| `cron.job` · `cron.job_run_details` | سياسات افتراضية من الإضافة pg_cron — ليست من ترحيلاتنا | ⚪ ضجيج — مخطط `cron` **غير معرّض** عبر API (Exposed schemas = public فقط) | لا شيء (التحقق بالعين §٨-هـ-٢) |
+| `auth_leaked_password_protection` | يخص تسجيل بالإيميل/كلمة سر — التطبيق بلا كلمات سر أصلاً | ⚪ لا أثر | تفعيل اختياري مناعةً (Auth → Providers → Email) |
+
+**الجوهر الأمني:** لمفتاح `anon` الخام `auth.uid()` = NULL ⇒ كل السياسات تعيد صفر صفوف. للمجهول المسجّل: صفوفه هو حصراً. **تحصين دوال القاعدة مؤكد من السيرفر 12/12** (استعلام §٥.٦ — 2026-09-14). **الخلاصة: صفر خرق — لا يُعاد فتح هذا الملف إلا لتنبيه جديد بمستوى ERROR أو لجدول جديد.**
+
+### ٨-هـ-٢ تحقق بالعين (مرة واحدة)
+Settings → API → **Exposed schemas**: المطلوب `public` (وربما `graphql_public`) — **بلا `cron`**. إن ظهر `cron` أزله فوراً.
 
 ---
 
