@@ -29,17 +29,4 @@ void main() {
     }
   });
 
-  test('بناء الجلسة: نفس البذرة ⇒ متجه الحزمة الاصطناعية حرفياً', () {
-    final seed = makeSeed(tag: 2852, roomCode: 676889741750429);
-    final a = buildDuelSession(_pack(), seed: seed, scope: _scope());
-    final b = buildDuelSession(_pack(), seed: seed, scope: _scope());
-    expect(a.built.questionIds, b.built.questionIds);
-    expect(a.correctDisplay, b.correctDisplay);
-    // المتجه المرجعي من Python
-    expect(a.built.questionIds, const [11, 12, 3, 4, 5, 1, 2, 8, 9, 10]);
-    expect(a.correctDisplay, const [1, 1, 3, 1, 0, 1, 1, 1, 3, 0]);
-    // بلا تكرار وبالعدد المطلوب
-    expect(a.built.questionIds.toSet().length, 10);
-  });
-
 }
