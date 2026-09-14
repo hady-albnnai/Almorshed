@@ -37,9 +37,13 @@ class DuelScope {
   final String mode;
 
   /// النص القياسي — مطابق حرفياً لـ scopeString بـTS (العقد §٦.٠).
+  /// ⚠️ بلا cascade-على-انتشار وبلا اقتباسات متداخلة داخل الاستقراء —
+  /// ذلك النمط يُسقط محلّل Flutter (درس جولة M5 المثبت بالتنصيف D2/D3/D4).
   String get scopeString {
-    final sorted = [...units]..sort();
-    return 'duel-v1|${sorted.join(',')}'
+    final sorted = List<String>.of(units);
+    sorted.sort();
+    final joined = sorted.join(',');
+    return 'duel-v1|$joined'
         '|count=$count|mode=$mode|pack=$packTag';
   }
 
