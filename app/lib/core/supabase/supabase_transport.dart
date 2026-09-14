@@ -127,7 +127,8 @@ class SupabaseTransport {
       } catch (_) {}
       throw TransportException(
           response.statusCode,
-          (err['error'] ?? err['msg'] ?? err['message'] ?? text).toString(),
+          (err['error'] ?? err['msg'] ?? err['reason'] ?? err['message'] ?? text)
+              .toString(),
           body: err);
     }
     return jsonDecode(text);
