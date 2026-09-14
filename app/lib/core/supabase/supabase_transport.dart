@@ -100,7 +100,11 @@ class SupabaseTransport {
       // جسم غير JSON — يُرسل نصاً في الرسالة
     }
     if (response.statusCode >= 400) {
-      final msg = (json['error'] ?? json['msg'] ?? json['message'] ?? text)
+      final msg = (json['error'] ??
+              json['msg'] ??
+              json['reason'] ?? // دوالنا ترد reason حصراً (العقد §١)
+              json['message'] ??
+              text)
           .toString();
       throw TransportException(response.statusCode, msg, body: json);
     }

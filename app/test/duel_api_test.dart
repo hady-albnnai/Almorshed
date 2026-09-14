@@ -157,39 +157,56 @@ void main() {
     await spy.stop();
   });
 
-//  test('الإجابات وإعلان الإتمام: POST بreturn=minimal', () async {/    final spy = _Spy((m, p, q, b) => <String, dynamic>{':payload': []});/    final base = await spy.start();/    final api = DuelApi(SupabaseTransport(baseUrl: base, anonKey: _anon));/    await api.insertAnswer(/        accessToken: 'tok', duelId: _duelUuid, deviceId: _uuidHost,/        qIndex: 3, chosen: 1);/    await api.markDone(/        accessToken: 'tok', duelId: _duelUuid, deviceId: _uuidHost);/    final a = spy.hits[0];/    expect(a.body, {'duel_id': _duelUuid,/        'device_id': _uuidHost, 'q_index': 3, 'chosen': 1});/    expect(a.headers['prefer'], 'return=minimal');/    final d = spy.hits[1];/    expect(d.path, '/rest/v1/duel_status');/    await spy.stop();/  });//
+  test('الإجابات وإعلان الإتمام: POST بreturn=minimal', () async {
+    final spy = _Spy((m, p, q, b) => <String, dynamic>{':payload': []});
+    final base = await spy.start();
+    final api = DuelApi(SupabaseTransport(baseUrl: base, anonKey: _anon));
+    await api.insertAnswer(
+        accessToken: 'tok', duelId: _duelUuid, deviceId: _uuidHost,
+        qIndex: 3, chosen: 1);
+    await api.markDone(
+        accessToken: 'tok', duelId: _duelUuid, deviceId: _uuidHost);
+    final a = spy.hits[0];
+    expect(a.body, {'duel_id': _duelUuid,
+        'device_id': _uuidHost, 'q_index': 3, 'chosen': 1});
+    expect(a.headers['prefer'], 'return=minimal');
+    final d = spy.hits[1];
+    expect(d.path, '/rest/v1/duel_status');
+    await spy.stop();
+  });
+
   test('duel_finish: النتيجة تُبثّ Verdict — والرفض 422 يرمي بالسبب', () async {
-//    final spy = _Spy((m, p, q, b) => <String, dynamic>{
-//          ':payload': {
-//            'ok': true, 'already': false, 'duel_id': _duelUuid,
-//            'host_score': 2300, 'guest_score': 300, 'winner_device': _uuidHost,
-//            'tie_break': 'score',
-//            'corrects': [1, 1, 3, 1, 0, 1, 1, 1, 3, 0],
-//            'my_device': _uuidHost,
-//          },
-//        });
-//    final base = await spy.start();
-//    final api = DuelApi(SupabaseTransport(baseUrl: base, anonKey: _anon));
-//    final v = await api.finish(
-//        accessToken: 'tok', duelId: _duelUuid, myDevice: _uuidHost);
-//    expect(v.hostScore, 2300);
-//    expect(v.guestScore, 300);
-//    expect(v.winnerDevice, _uuidHost);
-//    expect(v.corrects.length, 10);
-//    expect(spy.hits.single.path, '/functions/v1/duel_finish');
-//    await spy.stop();
-//
-//    final spy2 = _Spy((m, p, q, b) => <String, dynamic>{
-//          ':status': 422,
-//          ':payload': {'ok': false, 'reason': 'BAD_ANSWER'},
-//        });
-//    final base2 = await spy2.start();
-//    final api2 = DuelApi(SupabaseTransport(baseUrl: base2, anonKey: _anon));
-//    await expectLater(
-//      api2.finish(accessToken: 'tok', duelId: _duelUuid, myDevice: _uuidHost),
-//      throwsA(isA<TransportException>()
-//          .having((e) => e.message, 'message', 'BAD_ANSWER')),
-//    );
-//    await spy2.stop();
-//  });
+    final spy = _Spy((m, p, q, b) => <String, dynamic>{
+          ':payload': {
+            'ok': true, 'already': false, 'duel_id': _duelUuid,
+            'host_score': 2300, 'guest_score': 300, 'winner_device': _uuidHost,
+            'tie_break': 'score',
+            'corrects': [1, 1, 3, 1, 0, 1, 1, 1, 3, 0],
+            'my_device': _uuidHost,
+          },
+        });
+    final base = await spy.start();
+    final api = DuelApi(SupabaseTransport(baseUrl: base, anonKey: _anon));
+    final v = await api.finish(
+        accessToken: 'tok', duelId: _duelUuid, myDevice: _uuidHost);
+    expect(v.hostScore, 2300);
+    expect(v.guestScore, 300);
+    expect(v.winnerDevice, _uuidHost);
+    expect(v.corrects.length, 10);
+    expect(spy.hits.single.path, '/functions/v1/duel_finish');
+    await spy.stop();
+
+    final spy2 = _Spy((m, p, q, b) => <String, dynamic>{
+          ':status': 422,
+          ':payload': {'ok': false, 'reason': 'BAD_ANSWER'},
+        });
+    final base2 = await spy2.start();
+    final api2 = DuelApi(SupabaseTransport(baseUrl: base2, anonKey: _anon));
+    await expectLater(
+      api2.finish(accessToken: 'tok', duelId: _duelUuid, myDevice: _uuidHost),
+      throwsA(isA<TransportException>()
+          .having((e) => e.message, 'message', 'BAD_ANSWER')),
+    );
+    await spy2.stop();
+  });
 }
