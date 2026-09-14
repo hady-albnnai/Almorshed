@@ -52,6 +52,7 @@ alter table public.duels enable row level security;
 
 -- القراءة: مبارزات اللوبي متاحة لأي موثق (رمز الغرفة هو الصلاحية — 50 بت)،
 -- ومبارزات المشارك متاحة له دائماً.
+drop policy if exists "duels_select" on public.duels;
 create policy "duels_select" on public.duels
   for select to authenticated
   using (
@@ -64,6 +65,7 @@ create policy "duels_select" on public.duels
   );
 
 -- الإنشاء: المضيف جهازاً له، لوبي فارغ.
+drop policy if exists "duels_insert_host" on public.duels;
 create policy "duels_insert_host" on public.duels
   for insert to authenticated
   with check (
@@ -73,6 +75,7 @@ create policy "duels_insert_host" on public.duels
   );
 
 -- التحديث: للمشاركين — الأعمدة الحاسمة يحرسها الزناد أدناه.
+drop policy if exists "duels_update_participants" on public.duels;
 create policy "duels_update_participants" on public.duels
   for update to authenticated
   using (
@@ -149,6 +152,7 @@ create table if not exists public.duel_answers (
 );
 alter table public.duel_answers enable row level security;
 
+drop policy if exists "duel_answers_select" on public.duel_answers;
 create policy "duel_answers_select" on public.duel_answers
   for select to authenticated
   using (exists (
@@ -156,6 +160,7 @@ create policy "duel_answers_select" on public.duel_answers
     where d.id = duel_answers.duel_id
       and dev.id in (d.host_device, coalesce(d.guest_device, d.host_device))));
 
+drop policy if exists "duel_answers_insert" on public.duel_answers;
 create policy "duel_answers_insert" on public.duel_answers
   for insert to authenticated
   with check (
@@ -175,6 +180,7 @@ create table if not exists public.duel_status (
 );
 alter table public.duel_status enable row level security;
 
+drop policy if exists "duel_status_select" on public.duel_status;
 create policy "duel_status_select" on public.duel_status
   for select to authenticated
   using (exists (
@@ -182,6 +188,7 @@ create policy "duel_status_select" on public.duel_status
     where d.id = duel_status.duel_id
       and dev.id in (d.host_device, coalesce(d.guest_device, d.host_device))));
 
+drop policy if exists "duel_status_insert" on public.duel_status;
 create policy "duel_status_insert" on public.duel_status
   for insert to authenticated
   with check (
@@ -211,7 +218,8 @@ do $$
 begin
   if to_regclass('realtime.messages') is not null then
     execute $p$
-      create policy "duel_channel_read" on realtime.messages
+      drop policy if exists "duel_channel_read" on realtime.messages;
+create policy "duel_channel_read" on realtime.messages
         for select to authenticated
         using (
           extension in ('broadcast','presence')
@@ -219,7 +227,8 @@ begin
         );
     $p$;
     execute $p$
-      create policy "duel_channel_write" on realtime.messages
+      drop policy if exists "duel_channel_write" on realtime.messages;
+create policy "duel_channel_write" on realtime.messages
         for insert to authenticated
         with check (
           extension in ('broadcast','presence')

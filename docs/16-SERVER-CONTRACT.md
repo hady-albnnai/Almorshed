@@ -377,6 +377,8 @@ DEVICE_HASH = ae216c2ef5247a3782c135efa279a3e4cdc61094270f5d2be58c6204b7a612c9
 
 ## ٧. النشر والاختبار (أوامر حقيقية)
 
+> 📖 **دفتر النشر خطوة-خطوة** (المسارات أ/ب/ج مع أوامر التحقق): `docs/17-DEPLOY-RUNBOOK.md` — يُقرأ قبل أي نشر جديد.
+
 ```bash
 # ربط المشروع (مرة — بك جلسة المالك):
 supabase link --project-ref <PROJECT_REF>
@@ -429,7 +431,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 8 | سر التوقيع `SIGNING_SEED_B64` + المفتاح العام بالعميل | أداة المالك | ✅ البذرة بأسرار المنصة (على مستوى المشروع) + العامة `a4Fzh3MYmy1yw60q3Ve0/6AOZVIoLfjvl3G1n5GMQz8=` مضمّنة بlicense_core (de4c50a) |
 | 9 | pg_cron: تفعيل الإضافة + فك تعليق الجدولة | ذيل 0002 | ✅ مُجدوَل (تحقق المالك: league_rollup | 5 21 * * 0 — صف واحد بcron.job) |
 | 10 | اختبار الدخان | curl §٧ | ✅ **تفعيل حقيقي كامل** (2026-09-13): signup مجهول → license_activate بكود حقيقي → ok:true+activated_now:true — **والتوكن مُتحقق منه محلياً بمستقل RFC 8032**: التوقيع سليم بمفتاح المالك + ربط الجهاز = المتجه الذهبي + 30ي + سقف 2027-05-01 + flags[full] — الحلقة التشفيرية مغلقة من الطرفين |
-| 11 | جداول المبارزات (duels/duel_answers/duel_status/content_questions) + RLS + زناد الحارس + سياسات القناة الخاصة + verify_commit بدعوى المبارزة | `0005_duels.sql` | ⬜ بانتظار تطبيق المالك — التحقق المقترح: 3 جداول duel* بRLS مفعلة + الفهارس + صفّا السياسة على realtime.messages |
+| 11 | جداول المبارزات (duels/duel_answers/duel_status/content_questions) + RLS + زناد الحارس + سياسات القناة الخاصة + verify_commit بدعوى المبارزة | `0005_duels.sql` | ⬜ بانتظار تطبيق المالك — **idempotent (2026-09-14)**: إعادة التشغيل آمنة؛ فعّل Realtime ثم أعد التشغيل إن فاتتك سياسات القناة. التحقق: 4 جداول + الزناد + 7 سياسات + سياسَتا القناة + verify_commit الجديدة (دفتر النشر ب-٣) |
 | 12 | دالة حكم المبارزة (server-referential) | `functions/duel_finish/index.ts` + `functions/_shared/duel_session.ts` | ⬜ بانتظار النشر — المنفذ مطابق بتّياً (متجهات §٩-١٠) |
 | 13 | بنك المبارزات — المعتمد حصراً (قرار ٢٤) | `docs/supabase/content_index.sql` مولَّد من `tools/gen_content_index.py` | ⬜ يُولَّد ويُطبَّق **بعد اعتماد الأستاذ للأسئلة** (اليوم: 0 صف معتمد) |
 | 14 | سجل تدقيق أداة المكتب (RLS سلبية) | `0006_office_audit.sql` | ⬜ بانتظار تطبيق المالك |
