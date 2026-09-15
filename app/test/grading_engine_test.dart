@@ -195,14 +195,15 @@ void main() {
         attempt: const ProofAttempt(orderedStepNumbers: [1, 3, 2, 4, 6, 5, 8, 7]),
       );
       expect(swapInside.points, 25);
-      // الخطوة ٨ (الكتلة ٤) قُدِّمت بعد ١ مباشرة ⇒ تُحتسب هي، ثم كل ما بعدها
-      // من كتل أسبق (٢..٧) خطوات «قبل أوانها» فلا تُحتسب: 5 + 4 = 9
+      // الخطوة ٨ (الكتلة ٤) قُدِّمت بعد ١ مباشرة ⇒ تُحتسب هي، وكل ما بعدها
+      // من كتل أسبق (٢..٦) «قبل أوانه» فلا يُحتسب؛ أما ٧ فمن كتلة ٨ نفسها
+      // (ترتيب مرن داخل الكتلة) فتُحتسب: 5 + 4 + 2 = 11
       final jump = gradeProof(
         steps: steps,
         attempt: const ProofAttempt(orderedStepNumbers: [1, 8, 2, 3, 4, 5, 6, 7]),
       );
-      expect(jump.points, 9);
-      expect(jump.notes.where((n) => n.contains('غير موضعها')).length, 6);
+      expect(jump.points, 11);
+      expect(jump.notes.where((n) => n.contains('غير موضعها')).length, 5);
     });
 
     test('خطوات ناقصة تُذكر بعباراتها', () {
