@@ -99,9 +99,15 @@ create index if not exists xp_events_challenge_q_idx
   on public.xp_events ((payload ->> 'challengeId'), (payload ->> 'qIndex'))
   where type = 'challengeQ';
 
--- فحص «الخصم نفسه مرة/يوم للنقاط» (قرار ٦٠)
-create index if not exists xp_events_duel_opp_idx
-  on public.xp_events ((payload ->> 'dateKey'), (payload ->> 'opponentPubkey'))
+-- فحص «الخصم نفسه مرة/يوم للنقاط» (قرار ٦٠) — داخل verify_commit:
+-- يبحث أحداث المبارزة لهذا الجهاز في هذا اليوم، ثم يرجع لصفوف duels
+-- لمعرفة الخصم ⇒ فهرسان: (الجهاز · النوع · اليوم) و(معرّف المبارزة).
+create index if not exists xp_events_duel_claim_idx
+  on public.xp_events (device_id, type, ((payload ->> 'dateKey')))
+  where type in ('duelWin', 'duelLoss');
+
+create index if not exists xp_events_duel_id_idx
+  on public.xp_events (((payload ->> 'duelId')::uuid))
   where type in ('duelWin', 'duelLoss');
 
 -- ── ٤) تحصين: الدالة التنفيذية لـ service_role حصراً (كبقية دوال 0002) ──
