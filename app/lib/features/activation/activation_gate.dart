@@ -1,3 +1,7 @@
+import 'dart:convert' show base64Decode, utf8;
+
+import 'package:crypto/crypto.dart';
+import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -5,15 +9,13 @@ import '../../core/license/license_core.dart';
 import '../../core/license/license_store.dart';
 import '../../core/supabase/activation_api.dart';
 import '../../core/theme/app_colors.dart';
-import 'package:crypto/crypto.dart';
-import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
-import 'dart:convert' show base64Decode, utf8;
 
-/// F3.6 — بوابة أول فتح (قرار ٣٨/٤٤ — مطابقة النموذج s-activate):
-/// «تظهر مرة واحدة عند أول فتح — بعدها تُدار من حسابي».
-/// الفحص المحلي Ed25519 ظاهر + انتظار تدريجي بعد ٥ محاولات — الدخول بالكود فقط (قرار ٥٣).
-/// F4.4: بتمرير activationApi يصير التفعيل حقيقياً على الخادم؛ بلا تمرير
-/// (الاختبارات) يبقى المسار المحلي «قيد التجهيز» كما كان.
+/// A1 — شاشة التفعيل (قرار 57):
+/// أعلى يمين: تطوير → لورانيم تك → الشعار
+/// أعلى يسار: إشراف علمي → الأستاذ فداء مأمون البني
+/// تحتهما حقل الكود (٥-٥-٥ Crockford) + زر تفعيل
+/// أسفل: حقوق النشر محفوظة
+/// بلا وضع تجريبي وبلا دخول بلا تفعيل (قرار 53).
 class ActivationGate extends StatefulWidget {
   const ActivationGate({
     super.key,
@@ -28,8 +30,6 @@ class ActivationGate extends StatefulWidget {
   final VoidCallback onModeSet;
   final ActivationApi? activationApi;
   final String devicePubkeyB64;
-
-  /// مفتاح فحص بديل للاختبارات (الإنتاج: المفتاح المضمّن license_core).
   final ed.PublicKey? licenseKey;
 
   @override
@@ -66,6 +66,17 @@ class _ActivationGateState extends State<ActivationGate> {
         _messageColor = color;
       });
 
+  bool _isCrockfordValid(String raw) {
+    // Crockford Base32: 0-9 A-H J K M N P R-Z (بدون I L O U)
+    // raw already uppercased and stripped of dashes
+    const invalid = {'I', 'L', 'O', 'U'};
+    for (final c in raw.split('')) {
+      if (invalid.contains(c)) return false;
+    }
+    // يجب أن يكون 0-9 أو A-Z فقط (بعد الفلترة لا يوجد غيرها)
+    return RegExp(r'^[0-9A-Z]+$').hasMatch(raw);
+  }
+
   Future<void> _activate() async {
     final now = DateTime.now().millisecondsSinceEpoch;
     final lockRemaining = _data.lockUntilMs - now;
@@ -75,13 +86,23 @@ class _ActivationGateState extends State<ActivationGate> {
           Colors.red.shade300);
       return;
     }
-    final digits = _codeController.text.replaceAll('-', '');
-    if (digits.length < 15) {
-      _say('الكود ناقص — ١٥ حرفاً بصيغة XXXXX-XXXXX-XXXXX (من مكتبنا)',
+    final rawUpper = _codeController.text.toUpperCase().replaceAll('-', '').replaceAll(' ', '');
+    if (rawUpper.isEmpty) {
+      _say('أدخل كود التفعيل المكوّن من 15 حرفاً', Colors.red.shade300);
+      return;
+    }
+    if (rawUpper.length < 15) {
+      _say('الكود ناقص — ١٥ حرفاً بصيغة XXXXX-XXXXX-XXXXX (من مكتب لورانيم)',
           Colors.red.shade300);
       return;
     }
-    // F4.4 — المسار الحقيقي: الخادم يوقّع الإيجار والفحص المحلي يعيد التحقق
+    if (!_isCrockfordValid(rawUpper)) {
+      _say('الكود يحوي حروف غير مسموحة — المسموح 0-9 و A-H,J,K,M,N,P,R-Z (بدون I L O U)',
+          Colors.red.shade300);
+      return;
+    }
+    final digits = rawUpper; // 15 حرف Crockford صافية
+    // المسار الحقيقي عبر الخادم
     if (widget.activationApi != null && widget.devicePubkeyB64.isNotEmpty) {
       setState(() => _busy = true);
       _say('جارٍ التحقق من الكود على خادم لورانيم...', Colors.blue.shade200);
@@ -99,12 +120,12 @@ class _ActivationGateState extends State<ActivationGate> {
               mode: LicenseMode.licensed,
               token: r.token,
               activatedAtMs: r.serverTimeMs,
-              lastWallMs: r.serverTimeMs, // مرساة زمن السيرفر (L4)
+              lastWallMs: r.serverTimeMs,
               failures: 0,
               lockUntilMs: 0,
             ));
             if (!mounted) return;
-            widget.onModeSet(); // يفكك البوابة — بلا setState بعدها
+            widget.onModeSet();
             return;
           }
           await _recordFailure(false,
@@ -123,8 +144,6 @@ class _ActivationGateState extends State<ActivationGate> {
     setState(() => _busy = true);
     _say('جارٍ فحص الكود على جهازك — التحقق من التوقيع الرقمي...',
         Colors.blue.shade200);
-    // F3.6: إصدار التوكن من خادم التفعيل (F4.4) — فكل إدخال شكله سليم الآن
-    // يُعدّ محاولة فاشلة حقيقية ويزيد الانتظار التدريجي (نمط حماية الكود).
     final failures = _data.failures + 1;
     final lockMinutes = lockoutMinutesFor(failures);
     final updated = _data.copyWith(
@@ -142,8 +161,6 @@ class _ActivationGateState extends State<ActivationGate> {
     });
   }
 
-  /// تسجيل فشل تفعيل — يُحسب ضد قفل الانتظار حصراً إن كان خطأ كود
-  /// (انقطاع الشبكة/عطل الخادم لا يعاقَب — عدالة القفل docs/11 §٩).
   Future<void> _recordFailure(bool counts, String msg) async {
     final now = DateTime.now().millisecondsSinceEpoch;
     final failures = counts ? _data.failures + 1 : _data.failures;
@@ -159,95 +176,183 @@ class _ActivationGateState extends State<ActivationGate> {
       _data = updated;
       _busy = false;
       _message = msg;
-      _messageColor =
-          counts ? Colors.red.shade300 : Colors.orange.shade200;
+      _messageColor = counts ? Colors.red.shade300 : Colors.orange.shade200;
     });
   }
 
-  /// بصمة الجهاز المرسلة — مشتقة من المفتاح العام (ثابتة بلا حزم خارجية؛
-  /// الانحراف عن AndroidId موثّق بالعقد §٩ — حزم device_info محجوبة).
   String _deviceFp() =>
-      sha256.convert(utf8.encode(widget.devicePubkeyB64)).toString()
-          .substring(0, 16);
-
+      sha256.convert(utf8.encode(widget.devicePubkeyB64)).toString().substring(0, 16);
 
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
-    final gold = Theme.of(context).brightness == Brightness.dark
-        ? AppColors.goldDark
-        : AppColors.goldLight;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final gold = isDark ? AppColors.goldDark : AppColors.goldLight;
+    final line = isDark ? AppColors.darkLine : AppColors.lightLine;
 
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.fromLTRB(22, 40, 22, 22),
+        child: Column(
           children: [
-            const Text('📘',
-                textAlign: TextAlign.center, style: TextStyle(fontSize: 48)),
-            const SizedBox(height: 12),
-            Text('فيزيا كلاش',
-                style: txt.headlineMedium, textAlign: TextAlign.center),
-            const SizedBox(height: 4),
-            Text('Clash of Physics ⚔️',
-                style: txt.bodySmall, textAlign: TextAlign.center),
-            const SizedBox(height: 32),
-            Text('أدخل كود التفعيل',
-                style: txt.titleMedium, textAlign: TextAlign.center),
-            const SizedBox(height: 12),
-            TextField(
-              controller: _codeController,
-              textAlign: TextAlign.center,
-              // تحصين الإدخال (دفاع أول): حروف Crockford والشرطة حصراً —
-              // أي محرف آخر يُرفض قبل أن يلمس الحالة إطلاقاً. والمنسق
-              // الحي (formatLicenseCode) دفاع ثانٍ والخادم دفاع ثالث.
-              inputFormatters: <TextInputFormatter>[
-                FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9-]')),
-                LengthLimitingTextInputFormatter(17),
-              ],
-              maxLength: 17,
-              autocorrect: false,
-              enableSuggestions: false,
-              smartDashesType: SmartDashesType.disabled,
-              style: const TextStyle(
-                  letterSpacing: 2, fontWeight: FontWeight.w700),
-              decoration: const InputDecoration(
-                hintText: 'XXXXX-XXXXX-XXXXX',
-                counterText: '',
+            // ── الشريط العلوي: يمين تطوير / يسار إشراف (قرار 57) ──
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // يمين — تطوير
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('تطوير',
+                            style: txt.bodySmall?.copyWith(
+                                color: isDark
+                                    ? AppColors.darkTxt2
+                                    : AppColors.lightTxt2,
+                                fontSize: 11)),
+                        const SizedBox(height: 2),
+                        Text('لورانيم تك',
+                            style: txt.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w800, fontSize: 13)),
+                        const SizedBox(height: 6),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(
+                            'assets/brand/loraneem_tech.png',
+                            width: 44,
+                            height: 44,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) => Container(
+                              width: 44,
+                              height: 44,
+                              decoration: BoxDecoration(
+                                color: isDark
+                                    ? AppColors.darkCard
+                                    : AppColors.lightCard,
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: line),
+                              ),
+                              child: const Icon(Icons.memory, size: 22),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // يسار — إشراف علمي
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text('إشراف علمي',
+                            style: txt.bodySmall?.copyWith(
+                                color: isDark
+                                    ? AppColors.darkTxt2
+                                    : AppColors.lightTxt2,
+                                fontSize: 11),
+                            textAlign: TextAlign.end),
+                        const SizedBox(height: 2),
+                        Text('الأستاذ فداء مأمون البني',
+                            style: txt.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 12,
+                                color: gold),
+                            textAlign: TextAlign.end),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              onChanged: (v) => setState(() {
-                _codeController.value = TextEditingValue(
-                  text: formatLicenseCode(v),
-                  selection: TextSelection.collapsed(
-                      offset: formatLicenseCode(v).length),
-                );
-                _message = '';
-                _messageColor = Colors.transparent;
-              }),
             ),
-            const SizedBox(height: 6),
-            SizedBox(
-              height: 18,
-              child: Text(_message,
-                  style: txt.bodySmall?.copyWith(color: _messageColor),
-                  textAlign: TextAlign.center),
+            // ── المحتوى الأوسط ──
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.fromLTRB(22, 28, 22, 12),
+                children: [
+                  Text('فيزيا كلاش',
+                      style: txt.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.w900, letterSpacing: -0.5),
+                      textAlign: TextAlign.center),
+                  const SizedBox(height: 4),
+                  Text('Clash of Physics ⚔️',
+                      style: txt.bodySmall?.copyWith(
+                          color: isDark
+                              ? AppColors.darkTxt2
+                              : AppColors.lightTxt2),
+                      textAlign: TextAlign.center),
+                  const SizedBox(height: 28),
+                  Text('أدخل كود التفعيل',
+                      style: txt.titleMedium, textAlign: TextAlign.center),
+                  const SizedBox(height: 14),
+                  TextField(
+                    controller: _codeController,
+                    textAlign: TextAlign.center,
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9-]')),
+                      LengthLimitingTextInputFormatter(17),
+                    ],
+                    maxLength: 17,
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    smartDashesType: SmartDashesType.disabled,
+                    style: const TextStyle(
+                        letterSpacing: 2, fontWeight: FontWeight.w700),
+                    decoration: const InputDecoration(
+                      hintText: 'XXXXX-XXXXX-XXXXX',
+                      counterText: '',
+                    ),
+                    onChanged: (v) => setState(() {
+                      _codeController.value = TextEditingValue(
+                        text: formatLicenseCode(v),
+                        selection: TextSelection.collapsed(
+                            offset: formatLicenseCode(v).length),
+                      );
+                      _message = '';
+                      _messageColor = Colors.transparent;
+                    }),
+                  ),
+                  const SizedBox(height: 6),
+                  SizedBox(
+                    height: 20,
+                    child: Text(_message,
+                        style: txt.bodySmall?.copyWith(color: _messageColor),
+                        textAlign: TextAlign.center),
+                  ),
+                  const SizedBox(height: 8),
+                  FilledButton(
+                    onPressed: _busy ? null : _activate,
+                    child: const Text('تفعيل ✓'),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'الكود من مكتب لورانيم — بعد التفعيل يعمل التطبيق بدون إنترنت',
+                    style: txt.bodySmall?.copyWith(
+                        color: isDark
+                            ? AppColors.darkTxt2
+                            : AppColors.lightTxt2,
+                        fontSize: 11),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 8),
-            FilledButton(
-              onPressed: _busy ? null : _activate,
-              child: const Text('تفعيل ✓'),
-            ),
-            const SizedBox(height: 14),
-            Text(
-              'الكود من مكتب لورانيم — بعد التفعيل يعمل التطبيق بدون إنترنت',
-              style: txt.bodySmall,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 48),
-            Text(
-              'تم الإشراف على المادة العلمية من قبل\nالأستاذ القدير فداء مأمون البني',
-              style: txt.bodySmall?.copyWith(color: gold),
-              textAlign: TextAlign.center,
+            // ── التذييل ──
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+              child: Column(
+                children: [
+                  Divider(color: line, height: 1),
+                  const SizedBox(height: 10),
+                  Text('حقوق النشر محفوظة — لورانيم تك',
+                      style: txt.bodySmall?.copyWith(
+                          color: isDark
+                              ? AppColors.darkTxt2
+                              : AppColors.lightTxt2,
+                          fontSize: 11),
+                      textAlign: TextAlign.center),
+                ],
+              ),
             ),
           ],
         ),
