@@ -434,7 +434,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 4 | مضاد التعداد القسري (مستخدم + IP) | `0004_activation_throttle.sql` | ✅ مُطبَّق (تحقق: جدول+RLS t+0 سياسات+3 فهارس) |
 | 5 | دالة تفعيل الكود | `functions/license_activate/index.ts` | ✅ منشورة (دخان المالك: {} ⇒ AUTH_REQUIRED بالضبط) |
 | 6 | دالة النبض والتجديد | `functions/heartbeat/index.ts` | ✅ منشورة (تأكيد المالك — كلو تمام) |
-| 7 | دالة تحقق XP | `functions/verify_xp_events/index.ts` | ✅ منشورة (تأكيد المالك — تم) |
+| 7 | دالة تحقق XP | `functions/verify_xp_events/index.ts` | ✅ منشورة · **أُعيد نشرها 2026-09-15 بجدول قرار ٦٠** (دخان المالك: `{"accepted":true,"synced_up_to":0}`) ⚠️ كانت ستكسر مزامنة كل جهاز: القديمة ترفض `lessonNew=0` و`challengeQ` |
 | 8 | سر التوقيع `SIGNING_SEED_B64` + المفتاح العام بالعميل | أداة المالك | ✅ البذرة بأسرار المنصة (على مستوى المشروع) + العامة `a4Fzh3MYmy1yw60q3Ve0/6AOZVIoLfjvl3G1n5GMQz8=` مضمّنة بlicense_core (de4c50a) |
 | 9 | pg_cron: تفعيل الإضافة + فك تعليق الجدولة | ذيل 0002 | ✅ مُجدوَل (تحقق المالك: league_rollup | 5 21 * * 0 — صف واحد بcron.job) |
 | 10 | اختبار الدخان | curl §٧ | ✅ **تفعيل حقيقي كامل** (2026-09-13): signup مجهول → license_activate بكود حقيقي → ok:true+activated_now:true — **والتوكن مُتحقق منه محلياً بمستقل RFC 8032**: التوقيع سليم بمفتاح المالك + ربط الجهاز = المتجه الذهبي + 30ي + سقف 2027-05-01 + flags[full] — الحلقة التشفيرية مغلقة من الطرفين |
@@ -448,7 +448,7 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 18 | تشديد `verify_xp_events`: `EVENT_SHAPE` (نوع/أرقام/حمولة ≤ 2KB) + `reason ≤ 200` | `functions/verify_xp_events/index.ts` (2026-09-14) | ✅ أُعيد نشرها (دخان المالك: accepted=true، synced_up_to=0) |
 | 19 | تشديد `duel_finish`: `SCOPE_SHAPE` (units U1..U5 ≤ 5، count 1..50) | `functions/duel_finish/index.ts` | ⬜ يُنشر مع المسار ب |
 | 20 | `0008_review_codes.sql` — عمود `activation_codes.review` | SQL Editor | ✅ 2026-09-15 (تحقق: review/false) |
-| 22 | `0009_arena_points.sql` — الترتيب يقرأ أنواع `arena` حصراً (قرار ٦٠) + `is_arena_type` + فهرسا التحدي | SQL Editor | ⬜ **يُطبَّق الآن** — الجزء الآمن بلا `duels`. التشخيص قبل/بعد: `docs/supabase/0009-diagnostics.sql` |
+| 22 | `0009_arena_points.sql` — الترتيب يقرأ أنواع `arena` حصراً (قرار ٦٠) + `is_arena_type` + فهرسا التحدي | SQL Editor | ✅ **مُطبَّق (2026-09-15 — تحقق المالك 11/11):** دالة موجودة · فهران · الفلتر داخل المتن · والفحص الوظيفي: `challengeQ/duelWin/duelLoss/challengeAbandon`=true و `batchDone/cardReview/lessonNew/streakDay`=false |
 | 23 | `0010_duel_points.sql` — «الخصم نفسه مرة/يوم» + `verify_commit` موسّعة | SQL Editor | ⬜ **معلّق على 0005** — فيه حارس يرفض التشغيل إن لم يكن `public.duels` موجوداً |
 
 > **⚠️ اكتشاف ٢٠٢٦-٠٩-١٥ (مهم):** الهجرة `0005_duels.sql` **غير مطبَّقة إطلاقاً**
