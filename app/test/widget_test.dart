@@ -574,24 +574,19 @@ void main() {
     expect(data.cardDay!.finished, isTrue);
   });
 
-  testWidgets('F3.6: بوابة أول فتح — التجربة تدخل والبوابة لا تعود',
+  testWidgets('F3.6: بوابة أول فتح — لا مدخل بلا كود (قرار ٥٣)',
       (tester) async {
     final pack = _trainingPack();
     await pumpTrainingApp(tester, pack: pack,
         licenseStore: InMemoryLicenseStore()); // وضع none ⇒ البوابة
-    expect(find.text('أهلاً بك في «فيزيا كلاش»'), findsOneWidget);
+    expect(find.text('أدخل كود التفعيل'), findsOneWidget);
+    expect(find.text('تفعيل ✓'), findsOneWidget);
     expect(find.byIcon(Icons.person_outline), findsNothing);
-
-    await tester.tap(find.text('تجربة المحتوى التجريبي (بدون تفعيل)'));
-    await tester.pumpAndSettle();
-    // دخلت المنهاج — والبوابة اختفت
-    expect(find.text('أهلاً بك في «فيزيا كلاش»'), findsNothing);
-    expect(find.byIcon(Icons.person_outline), findsOneWidget);
-
-    // إعادة فتح كاملة (بناء جديد): الوضع محفوظ — لا بوابة مجدداً
-    await pumpTrainingApp(tester, pack: pack,
-        licenseStore: InMemoryLicenseStore.trial());
-    expect(find.text('أهلاً بك في «فيزيا كلاش»'), findsNothing);
+    // لا زر تجريبي إطلاقاً
+    expect(find.textContaining('تجريبي'), findsNothing);
+    expect(find.textContaining('بدون تفعيل'), findsNothing);
+    // سطر الإشراف العلمي
+    expect(find.textContaining('فداء مأمون البني'), findsOneWidget);
   });
 
   testWidgets('F3.6: تنسيق الكود الحي ٥-٥-٥ كالنموذج', (tester) async {

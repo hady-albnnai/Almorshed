@@ -11,7 +11,7 @@ import 'dart:convert' show base64Decode, utf8;
 
 /// F3.6 — بوابة أول فتح (قرار ٣٨/٤٤ — مطابقة النموذج s-activate):
 /// «تظهر مرة واحدة عند أول فتح — بعدها تُدار من حسابي».
-/// الفحص المحلي Ed25519 ظاهر + انتظار تدريجي بعد ٥ محاولات + مدخل تجريبي.
+/// الفحص المحلي Ed25519 ظاهر + انتظار تدريجي بعد ٥ محاولات — الدخول بالكود فقط (قرار ٥٣).
 /// F4.4: بتمرير activationApi يصير التفعيل حقيقياً على الخادم؛ بلا تمرير
 /// (الاختبارات) يبقى المسار المحلي «قيد التجهيز» كما كان.
 class ActivationGate extends StatefulWidget {
@@ -137,8 +137,7 @@ class _ActivationGateState extends State<ActivationGate> {
     setState(() {
       _data = updated;
       _busy = false;
-      _message = 'الكود غير معروف بعد — خادم التفعيل قيد التجهيز. '
-          'جرّب المحتوى التجريبي الآن';
+      _message = 'تعذر الاتصال بخادم التفعيل — تأكد من الإنترنت وحاول ثانية';
       _messageColor = Colors.orange.shade200;
     });
   }
@@ -171,13 +170,6 @@ class _ActivationGateState extends State<ActivationGate> {
       sha256.convert(utf8.encode(widget.devicePubkeyB64)).toString()
           .substring(0, 16);
 
-  Future<void> _enterTrial() async {
-    final now = DateTime.now().millisecondsSinceEpoch;
-    await widget.licenseStore.save(
-      _data.copyWith(mode: LicenseMode.trial, lastWallMs: now),
-    );
-    widget.onModeSet();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -189,29 +181,20 @@ class _ActivationGateState extends State<ActivationGate> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.all(22),
+          padding: const EdgeInsets.fromLTRB(22, 40, 22, 22),
           children: [
-            Text(
-              'هذه الشاشة تظهر مرة واحدة عند أول فتح للتطبيق — '
-              'بعدها تُدار من «حسابي»',
-              style: txt.bodySmall,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 28),
-            Text('loraneem-tech', style: txt.titleLarge, textAlign: TextAlign.center),
-            const SizedBox(height: 34),
-            const Text('📘', textAlign: TextAlign.center, style: TextStyle(fontSize: 42)),
-            const SizedBox(height: 10),
-            Text('أهلاً بك في «فيزيا كلاش»', style: txt.headlineSmall, textAlign: TextAlign.center),
+            const Text('📘',
+                textAlign: TextAlign.center, style: TextStyle(fontSize: 48)),
+            const SizedBox(height: 12),
+            Text('فيزيا كلاش',
+                style: txt.headlineMedium, textAlign: TextAlign.center),
             const SizedBox(height: 4),
-            Text('Clash of Physics ⚔️', style: txt.bodySmall, textAlign: TextAlign.center),
-            const SizedBox(height: 14),
-            Text(
-              'أدخل كود التفعيل الذي حصلت عليه من مكتبنا\nلفتح المنهاج الكامل وبنك الأسئلة',
-              style: txt.bodyMedium,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 18),
+            Text('Clash of Physics ⚔️',
+                style: txt.bodySmall, textAlign: TextAlign.center),
+            const SizedBox(height: 32),
+            Text('أدخل كود التفعيل',
+                style: txt.titleMedium, textAlign: TextAlign.center),
+            const SizedBox(height: 12),
             TextField(
               controller: _codeController,
               textAlign: TextAlign.center,
@@ -254,29 +237,15 @@ class _ActivationGateState extends State<ActivationGate> {
               onPressed: _busy ? null : _activate,
               child: const Text('تفعيل ✓'),
             ),
-            const SizedBox(height: 10),
-            Text(
-              'الفحص يتم على جهازك بالكامل — تحقق توقيع رقمي Ed25519 '
-              'بدون أي إنترنت. بعد ٥ محاولات خاطئة يُضاف انتظار تدريجي '
-              'لحماية الكود',
-              style: txt.bodySmall,
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(height: 22),
-            OutlinedButton(
-              onPressed: _enterTrial,
-              child: const Text('تجربة المحتوى التجريبي (بدون تفعيل)'),
-            ),
             const SizedBox(height: 14),
             Text(
-              'لا تملك كوداً؟ مرّ على مكتبنا — التفعيل دقيقة واحدة\n'
-              'بعدها التطبيق يعمل بدون إنترنت حتى يوم الامتحان',
+              'الكود من مكتب لورانيم — بعد التفعيل يعمل التطبيق بدون إنترنت',
               style: txt.bodySmall,
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 26),
+            const SizedBox(height: 48),
             Text(
-              '✓ المادة العلمية راجعتها: الأستاذ فداء البني',
+              'تم الإشراف على المادة العلمية من قبل\nالأستاذ القدير فداء مأمون البني',
               style: txt.bodySmall?.copyWith(color: gold),
               textAlign: TextAlign.center,
             ),
