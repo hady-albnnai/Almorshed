@@ -56,7 +56,7 @@ void main() {
     expect(violations, isEmpty);
   });
 
-  test('الحزمة الحقيقية (التأليف): U1C1 النواسات — سليمة ونظيفة لفظياً ومحجوبة عن الأستاذ', () async {
+  test('الحزمة الحقيقية v2 (التأليف من الكتاب + الأستاذ): ٥ وحدات · ١٧ درساً · نظيفة لفظياً · محجوبة عن الأستاذ', () async {
     const realRoot = AssetRoot(
       glossaryPath: 'assets/content/glossary.json',
       packPath: 'assets/content/pack.json',
@@ -64,163 +64,80 @@ void main() {
     final realLoader = ContentLoader(root: realRoot);
     final pack = await realLoader.loadPack();
 
-    expect(pack.units.first.id, 'U1');
-    expect(pack.units.first.title, 'الوحدة الأولى: النواسات');
-    final c1 = pack.units.first.chapters.first;
-    expect(c1.id, 'U1C1');
-    expect(c1.title, 'الاهتزازات التوافقية البسيطة: النواس المرن غير المتخامد');
-    expect(c1.paragraphs, hasLength(6));
-    // الرموز حرفياً من الكتاب (قرار ١٤)
-    expect(c1.paragraphs[1].text, contains('F = -kx'));
-    expect(c1.paragraphs[4].text, contains('T0 = 2π·√(m/k)'));
+    expect(pack.packId, 'syria-2027-v2');
+    expect(pack.edition, 2);
+
+    // خريطة الوحدات بحسب فهرس الكتاب الرسمي (docs/20)
+    expect(pack.units.map((u) => u.id), ['U1', 'U2', 'U3', 'U4', 'U5']);
+    expect(pack.units.map((u) => u.chapters.length), [5, 6, 2, 3, 1]);
+    expect(pack.units[0].title, 'الوحدة الأولى: الحركة والتحريك');
+    expect(pack.units[1].title, 'الوحدة الثانية: الكهرباء والمغناطيسية');
+    expect(pack.units[2].title, 'الوحدة الثالثة: الأمواج المستقرة');
+    expect(pack.units[3].title, 'الوحدة الرابعة: الفيزياء الحديثة');
+    expect(pack.units[4].title, contains('الفلكية'));
+
+    // صفحات الكتاب تصاعدية عبر الحزمة كلها
+    final pages = [
+      for (final u in pack.units)
+        for (final c in u.chapters) c.page,
+    ];
+    expect(pages.first, 6);
+    expect(pages.last, 254);
+    for (var i = 1; i < pages.length; i++) {
+      expect(pages[i], greaterThan(pages[i - 1]), reason: 'ترتيب الصفحات');
+    }
+
+    // كل درس: فقرة مصادر (P0) + أقسام القالب (🔑 📖 🧮 ✍️ 🎯 🧾 ⚖️ 📎)
+    for (final u in pack.units) {
+      for (final c in u.chapters) {
+        expect(c.paragraphs.length, greaterThanOrEqualTo(8), reason: c.id);
+        expect(c.paragraphs.first.id, '${c.id}P0');
+        final summaries = c.paragraphs.map((p) => p.summary).join('\n');
+        expect(summaries, contains('🔑'), reason: c.id);
+        expect(summaries, contains('🧾'), reason: c.id);
+        expect(summaries, contains('⚖️'), reason: c.id);
+        for (final p in c.paragraphs) {
+          expect(p.text, isNotEmpty);
+          expect(p.text, isNot(contains('**')), reason: '${p.id} بقايا Markdown');
+        }
+      }
+    }
+
+    // رموز الكتاب حرفياً (قرار ١٤) — عيّنات من الوحدات الأربع الامتحانية
+    String textOf(String chapterId) => pack.units
+        .expand((u) => u.chapters)
+        .firstWhere((c) => c.id == chapterId)
+        .paragraphs
+        .map((p) => p.text)
+        .join('\n');
+    expect(textOf('U1C1'), contains('T0 = 2π'));
+    expect(textOf('U2C4'), contains('T0 = 2π·√(LC)'));
+    expect(textOf('U2C5'), contains('P = Ueff·Ieff·cos φ'));
+    expect(textOf('U3C1'), contains('v = √(FT/μ)'));
+    expect(textOf('U3C2'), contains('f = (2n−1)·v/(4L)'));
+    expect(textOf('U4C3'), contains('h·f = Ws + ½·me·v²max'));
 
     // بوابة الأستاذ: لا سؤال مؤلَّف يُفتح قبل مصادقته (قرار ٢٤)
-    expect(pack.questions, hasLength(71));
+    expect(pack.questions.length, greaterThanOrEqualTo(60));
     expect(pack.approvedQuestions, isEmpty);
-
-    // الفصل الثاني: التوابع الزمنية الثلاثة
-    final c2 = pack.units.first.chapters[1];
-    expect(c2.id, 'U1C2');
-    expect(c2.paragraphs, hasLength(6));
-    expect(c2.paragraphs[4].text, contains('a = −ω0²·x'));
-    expect(pack.questions.where((q) => q.chapter == 'U1C2'), hasLength(3));
-
-    // الفصل الثالث: الطاقة الكلية
-    final c3 = pack.units.first.chapters[2];
-    expect(c3.id, 'U1C3');
-    expect(c3.paragraphs, hasLength(3));
-    expect(c3.paragraphs[0].text, contains('E = ½k·XmaX²'));
-    expect(pack.questions.where((q) => q.chapter == 'U1C3'), hasLength(2));
-
-    // الفصل الرابع: طرق حل المسألة
-    final c4 = pack.units.first.chapters[3];
-    expect(c4.id, 'U1C4');
-    expect(c4.paragraphs, hasLength(5));
-    expect(c4.paragraphs[0].text, contains('XmaX = vmaX/ω0'));
-    expect(c4.paragraphs[4].text, contains('Ek = ½k·(XmaX² − x²)'));
-    expect(pack.questions.where((q) => q.chapter == 'U1C4'), hasLength(5));
-
-    // الفصل الخامس: نواس الفتل — جيبية دورانية
-    final c5 = pack.units.first.chapters[4];
-    expect(c5.id, 'U1C5');
-    expect(c5.paragraphs, hasLength(5));
-    expect(c5.paragraphs[1].text, contains('جيبية دورانية'));
-    expect(c5.paragraphs[2].text, contains('T0 = 2π·√(IΔ/k)'));
-    expect(pack.questions.where((q) => q.chapter == 'U1C5'), hasLength(5));
-
-    // الفصل السادس: الثقلي المركب — غير توافقي عموماً، جيبي صغراً فقط
-    final c6 = pack.units.first.chapters[5];
-    expect(c6.id, 'U1C6');
-    expect(c6.paragraphs, hasLength(4));
-    expect(c6.paragraphs[2].text, contains('0.24'));
-    expect(c6.paragraphs[3].text, contains('T0 = 2π·√(IΔ/(m·g·d))'));
-    expect(pack.questions.where((q) => q.chapter == 'U1C6'), hasLength(3));
-
-    // الفصل السابع: الثقلي البسيط — اكتمال الأنواس الأربعة
-    final c7 = pack.units.first.chapters[6];
-    expect(c7.id, 'U1C7');
-    expect(c7.paragraphs, hasLength(4));
-    expect(c7.paragraphs[3].text, contains('T0 = 2π·√(l/g)'));
-    expect(pack.questions.where((q) => q.chapter == 'U1C7'), hasLength(3));
-
-    // الفصل الثامن: ذيل الأنواس — اكتمال الوحدة الأولى
-    final c8 = pack.units.first.chapters[7];
-    expect(c8.id, 'U1C8');
-    expect(c8.paragraphs, hasLength(3));
-    expect(c8.paragraphs[0].text, contains('(x)t\'\' = −(k/m)·x'));
-    expect(pack.questions.where((q) => q.chapter == 'U1C8'), hasLength(3));
-
-    // الوحدة الثانية بدأت: الأمواج المستقرة العرضية
-    expect(pack.units[1].title, 'الوحدة الثانية: الأمواج المستقرة');
-    final c21 = pack.units[1].chapters.first;
-    expect(c21.id, 'U2C1');
-    expect(c21.paragraphs, hasLength(4));
-    expect(c21.paragraphs[3].text, contains('ymax/n = 2·ymaX·sin((2π/λ)·x)'));
-    expect(pack.questions.where((q) => q.chapter == 'U2C1'), hasLength(3));
-
-    // U2C2: الأوتار والتجاوب والمدروجات
-    final c22 = pack.units[1].chapters[1];
-    expect(c22.id, 'U2C2');
-    expect(c22.paragraphs, hasLength(5));
-    expect(c22.paragraphs[3].text, contains('f = n·v/2L'));
-    expect(c22.paragraphs[4].text, contains('v = √(FT/μ)'));
-    expect(pack.questions.where((q) => q.chapter == 'U2C2'), hasLength(4));
-
-    // U2C3: الكهرطيسية المستوية
-    final c23 = pack.units[1].chapters[2];
-    expect(c23.id, 'U2C3');
-    expect(c23.paragraphs, hasLength(3));
-    expect(c23.paragraphs[2].text, contains('عقدة للحقل E وبطن للحقل B'));
-    expect(pack.questions.where((q) => q.chapter == 'U2C3'), hasLength(3));
-
-    // U2C4: الطولية — عقد وبطون الاهتزاز والضغط
-    final c24 = pack.units[1].chapters[3];
-    expect(c24.id, 'U2C4');
-    expect(c24.paragraphs, hasLength(2));
-    expect(c24.paragraphs[1].text, contains('عقداً للضغط'));
-    expect(pack.questions.where((q) => q.chapter == 'U2C4'), hasLength(2));
-
-    // U2C5: المزمار — اكتمال الوحدة الثانية
-    final c25 = pack.units[1].chapters[4];
-    expect(c25.id, 'U2C5');
-    expect(c25.paragraphs, hasLength(6));
-    expect(c25.paragraphs[4].text, contains('f = (2n−1)·v/4L'));
-    expect(c25.paragraphs[5].text, contains('√(T1/T2)'));
-    expect(pack.questions.where((q) => q.chapter == 'U2C5'), hasLength(4));
-
-    // الوحدة الثالثة كاملة: ميكانيك السوائل المتحركة
-    expect(pack.units[2].title, 'الوحدة الثالثة: ميكانيك السوائل المتحركة');
-    final c31 = pack.units[2].chapters[0];
-    expect(c31.id, 'U3C1');
-    expect(c31.paragraphs[1].text, contains('Q = ρ·Q\''));
-    final c33 = pack.units[2].chapters[2];
-    expect(c33.paragraphs[1].text, contains('P + ½ρ·v² + ρ·g·z = ثابت'));
-    final c34 = pack.units[2].chapters[3];
-    expect(c34.paragraphs[1].text, contains('v2 = √(2·g·h)'));
-    expect(pack.questions.where((q) => q.unit == 'U3'), hasLength(8));
-
-    // الوحدة الرابعة بدأت: دارة الاهتزاز الكهربائي L–C
-    expect(pack.units[3].title, 'الوحدة الرابعة: الظواهر الكهربائية');
-    final c41 = pack.units[3].chapters.first;
-    expect(c41.id, 'U4C1');
-    expect(c41.paragraphs[1].text, contains('T0 = 2π/ω0 = 2π·√(L·C)'));
-    expect(c41.paragraphs[3].text, contains('= ½·qmaX²/C'));
-    // 12 = المصادقة النهائية (159–170): 5 لـU4C1 + 2 لـU4C2 + 2 لـU4C3 + 3 لـU4C4
-    expect(pack.questions.where((q) => q.unit == 'U4'), hasLength(12));
-
-    // U4C2: التيار المتناوب الجيبي
-    final c42 = pack.units[3].chapters[1];
-    expect(c42.id, 'U4C2');
-    expect(c42.paragraphs[2].text, contains('6×10⁶ m'));
-    expect(pack.questions.where((q) => q.chapter == 'U4C2'), hasLength(2));
-
-    // U4C3+U4C4: أنبوب التفريغ والليزر — اكتمال الوحدة الرابعة
-    final c43 = pack.units[3].chapters[2];
-    expect(c43.id, 'U4C3');
-    expect(c43.paragraphs[3].text, contains('0.01 و0.001 mmHg'));
-    final c44 = pack.units[3].chapters[3];
-    expect(c44.id, 'U4C4');
-    expect(c44.paragraphs[0].text, contains('N* > N'));
-    expect(c44.paragraphs[3].text, contains('شبه ناقلة'));
-    expect(pack.questions.where((q) => q.chapter == 'U4C3'), hasLength(2));
-    expect(pack.questions.where((q) => q.chapter == 'U4C4'), hasLength(3));
-
-    // الوحدة الخامسة (الأخيرة): المغناطيسية والنسبية — اكتمال المنهاج
-    expect(pack.units[4].title, 'الوحدة الخامسة: المغناطيسية والنسبية الخاصة');
-    final c51 = pack.units[4].chapters[0];
-    expect(c51.id, 'U5C1');
-    expect(c51.paragraphs[2].text, contains('Φ = N·S·B·cos(α)'));
-    final c52 = pack.units[4].chapters[1];
-    expect(c52.paragraphs[1].text, contains('F = q·v·B·sin(θ)'));
-    final c53 = pack.units[4].chapters[2];
-    expect(c53.id, 'U5C3');
-    expect(c53.paragraphs[1].text, contains('t/t0 = 1/√(1−v²/c²)'));
-    expect(c53.paragraphs[3].text, contains('E0 = m0·c²'));
-    expect(pack.questions.where((q) => q.unit == 'U5'), hasLength(7));
+    for (final q in pack.questions) {
+      expect(q.options, hasLength(4), reason: 'Q${q.id}');
+      expect(q.correctIndex, inInclusiveRange(0, 3), reason: 'Q${q.id}');
+      expect(q.stem, isNotEmpty);
+    }
+    // كل درس له أسئلة وبطاقات
+    for (final u in pack.units) {
+      for (final c in u.chapters) {
+        expect(pack.questions.where((q) => q.chapter == c.id), isNotEmpty, reason: c.id);
+        expect(pack.cards.where((k) => k.chapter == c.id), isNotEmpty, reason: c.id);
+      }
+    }
+    expect(pack.cards.length, greaterThanOrEqualTo(150));
 
     // نظافة لفظية على القاموس الحقيقي 444/30
     expect(await realLoader.lintLoadedPack(), isEmpty);
   });
+
 
   test('فحص السلامة يرفض حزمة فاسدة (سؤال بفصل غير معروف)', () async {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
