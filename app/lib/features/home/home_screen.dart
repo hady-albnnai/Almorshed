@@ -508,7 +508,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                           : AppColors.violetLight,
                     ),
                   ),
-                  subtitle: const Text('مجموعتك هذا الأسبوع ←'),
+                  subtitle: const Text('ترتيبك هذا الموسم ←'),
                   trailing: const Icon(Icons.chevron_left),
                   onTap: () async {
                     await Navigator.of(context).push(

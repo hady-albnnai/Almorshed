@@ -33,7 +33,7 @@ void main() {
   testWidgets('لا ترتيب بعد ⇒ رسالة البداية', (tester) async {
     await pumpView(tester,
         () async => const LeagueView(isoWeek: 0, groupNo: 0, rows: []));
-    expect(find.textContaining('أول إقفال للأسبوع'), findsOneWidget);
+    expect(find.textContaining('أول إقفال للترتيب'), findsOneWidget); // نص الموسم (قرار ٦٥)
   });
 
   testWidgets('فشل الشبكة ⇒ رسالة لطيفة + زر إعادة يعمل', (tester) async {
