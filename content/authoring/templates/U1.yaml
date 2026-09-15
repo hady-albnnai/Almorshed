@@ -1,0 +1,2152 @@
+# ═══════════════════════════════════════════════════════════════════
+# قوالب الأسئلة — الوحدة ١ (الحركة والتحريك) — المادة ٩ من المرحلة B
+# الدروس هنا: L1 النواس المرن · L2 نواس الفتل · L3 النواس الثقلي
+# (L4 السوائل · L5 النسبية ⇒ ملحق U1b لاحقاً — بنكاهما لم يدخلا distractors.yaml بعد)
+#
+# المدخلات:
+#   - content/authoring/distractors.yaml (مادة ٨): ٤٠٢ سؤالاً بلا مفتاح.
+#     الإحالة هنا بـ idx = الموضع الترتيبي (1-based) داخل lessons[id].items
+#     (لأن الحقل n يتكرر في المصدر — الأقسام تبدأ العدّ من ١ كل مرة).
+#   - content/authoring/U1/L1..L3 (الدروس المؤلَّفة من الكتاب + ملخص الأستاذ)
+#   - content/authoring/exams/2026-1.md + docs/20 (قواعد السلم التسع)
+#
+# ⚠️ ضوابط دستورية:
+#   ١) المصدر بلا مفتاح إجابات ⇒ «key» هنا مشتق من قانون الكتاب المذكور في
+#      answer_basis (قانون ⇒ حساب)، لا من تخمين. كل ما التبس ⇒ review_notes
+#      + إدراج في review_queue آخر الملف، ولا يدخل التوليد.
+#   ٢) approved: false لكل قالب حتى مراجعة الأستاذ (لا أختام مسبقة).
+#   ٣) الرموز كالكتاب: XmaX ω0 T0 φ x0 Fs0 k(ثابت صلابة النابض)
+#      · θ θmax IΔ C(ثابت فتل السلك — الكتاب C، glossary K: سؤال للأستاذ) Γ_η/Δ (عزم مزدوجة الفتل) · d l g m.
+#   ٤) الثوابت الامتحانية: g = 10 m·s⁻² · π² = 10 (كل قالب يستعملها يصرّح بها).
+#   ٥) الإسناد: تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني.
+# ═══════════════════════════════════════════════════════════════════
+
+meta:
+  version: 1
+  generated: 2026-09-16
+  unit: U1
+  lessons_covered: [L1-simple-harmonic-motion, L2-torsion-pendulum, L3-gravity-pendulum]
+  lessons_pending: [L4-fluid-mechanics, L5-special-relativity]
+  source_items_total: 402
+  source_items_assigned: 400
+  source_items_unassigned: 2      # انظر review_queue
+  templates_total: 52
+
+schema:
+  template_fields:
+    - id            # U1.L1.T01
+    - chapter       # U1C1 | U1C2 | U1C3 (كما في pack.json)
+    - type          # mcq | numeric | why | list | proof | problem
+    - difficulty    # 1 مفهوم/تعريف · 2 خطوة حسابية واحدة · 3 متعدد الخطوات
+    - weight        # درجة الامتحان المرجعية (MCQ = 10)
+    - source        # bank_idx (من distractors.yaml) + book (صفحات) + exam
+    - vars          # المتغيرات: set أو range + unit
+    - constraints   # قيود بايثون تُقيَّم على القيم المسحوبة
+    - compute       # تعابير بايثون: sqrt pi sin cos acos abs · الثوابت g pi_sq
+    - stem          # الجذع؛ {var} يُستبدل
+    - options       # key + distractors[{rule, value|text, rationale}]
+    - variants      # للقوالب المفاهيمية بدل vars/compute: قائمة جذوع بمفاتيحها
+    - rubric        # [{step, points, keys[], anti_keys[]}] بنمط السلم الوزاري
+    - answer_basis  # القانون/الصفحة التي اشتُق منها المفتاح
+    - review_notes  # التباسات صريحة للأستاذ
+    - approved      # false دائماً هنا
+  option_count: 4
+  numeric_tolerance: 0.02          # ±٢٪ (docs/14 §ج)
+  unit_required: true              # الوحدة درجة مستقلة (قاعدة السلم ٢)
+  rubric_pattern_numeric: "العلاقة ٥ · التعويض ٣ · النتيجة ١ · الوحدة ١"
+  distractor_rules:
+    forget_sqrt:        "أهمل الجذر التربيعي (T0 ∝ m/k بدل √)"
+    invert_ratio:       "قلب النسبة (خلط T0 مع ω0 أو m مع k)"
+    forget_square:      "أهمل التربيع (T0² أو ω0² أو x²)"
+    forget_2pi:         "أهمل 2π بين ω0 وT0"
+    forget_4pi2:        "أهمل 4π² في k = 4π²m/T0²"
+    forget_half:        "أهمل ½ في الطاقة"
+    sign_flip:          "إشارة معكوسة (قوة/تسارع/سرعة/φ)"
+    unit_cm_m:          "لم يحوّل cm ⇒ m"
+    unit_g_kg:          "لم يحوّل g ⇒ kg"
+    amplitude_dependence: "ظنّ الدور يتعلق بالسعة"
+    mix_max_center:     "قلب الطرفين ↔ مركز الاهتزاز"
+    mix_Ep_Ek:          "خلط الكامنة بالحركية"
+    mix_v_a:            "خلط علاقة السرعة بالتسارع (ω0 ↔ ω0²)"
+    sin_cos:            "خلط sin بـcos في التوابع الزمنية"
+    forget_pm:          "أهمل ± في المطال أو السرعة"
+    forget_n:           "أهمل الحل العام (+ nπ / + 2nπ) فحسب المرور الأول فقط"
+    quarter_period_reflex: "افترض المرور الأول عند T0/4 مهما كان φ"
+    mix_pendulums:      "خلط النواس المرن/الفتل مع الثقلي (أثر g أو الكتلة)"
+    d_vs_I:             "استعمل بعد الكتلة في IΔ مكان d مركز العطالة"
+    sign_r_above:       "أهمل إشارة r السالبة للكتلة فوق المحور"
+    forget_small_angle: "طبّق θ′max = ω0θmax على سعة كبيرة"
+    forget_normal_accel: "ظنّ التوتر عند الشاقول = الثقل"
+    exponent4:          "تجاهل الأس ٤ في تبعية K لقطر السلك"
+    scalar_vector:      "كتب 0 بدل 0⃗ للمحصلة"
+    true_but_partial:   "خيار صحيح جزئياً حين يكون المفتاح «جميع ما سبق»"
+
+constants:
+  g: 10          # m·s⁻²
+  pi_sq: 10      # π² = 10
+  pi_approx: 3.14
+
+templates:
+
+# ───────────────────────────── L1 — النواس المرن (U1C1) ─────────────────────────────
+
+- id: U1.L1.T01
+  title: "قوة الإرجاع — تناسبها واتجاهها، وتبعية الدور"
+  chapter: U1C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [1, 2, 16, 29, 40, 66], book: "ص ١٠–١٢", lesson: "L1 §٣ §٥"}
+  variants:
+    - stem: "تتناسب شدة قوة الإرجاع في النواس المرن غير المتخامد:"
+      key: "طرداً مع المطال وتعاكسه بالإشارة"
+      distractors:
+        - {text: "طرداً مع سعة الحركة", rule: amplitude_dependence, rationale: "السعة ثابتة؛ القوة تتغير لحظياً مع x"}
+        - {text: "طرداً مع الجذر التربيعي لكتلة الجسم المهتز", rule: invert_ratio, rationale: "خلط مع علاقة الدور"}
+        - {text: "عكساً مع الجذر التربيعي لثابت صلابة النابض", rule: invert_ratio, rationale: "خلط مع علاقة الدور"}
+    - stem: "تتجه قوة الإرجاع في النواس المرن غير المتخامد دوماً:"
+      key: "نحو مركز الاهتزاز"
+      distractors:
+        - {text: "نحو الموضعين الطرفيين", rule: mix_max_center, rationale: "F = −k·x تعاكس المطال فتتجه للمركز"}
+        - {text: "بجهة شعاع السرعة", rule: mix_v_a, rationale: "القوة بجهة التسارع لا السرعة"}
+        - {text: "بعكس جهة شعاع التسارع", rule: sign_flip, rationale: "F = m·a ⇒ الجهة نفسها"}
+    - stem: "تزداد شدة قوة الإرجاع في النواس المرن بازدياد:"
+      key: "مطاله x"
+      distractors:
+        - {text: "سرعته v", rule: mix_v_a, rationale: "حيث السرعة عظمى تنعدم القوة"}
+        - {text: "سعة الحركة XmaX", rule: amplitude_dependence, rationale: "السعة ثابتة أثناء الحركة"}
+        - {text: "دوره T0", rule: mix_pendulums, rationale: "الدور ثابت"}
+    - stem: "يتناسب دور النواس المرن غير المتخامد:"
+      key: "طرداً مع الجذر التربيعي لكتلة الجسم المهتز"
+      distractors:
+        - {text: "طرداً مع كتلة الجسم المهتز", rule: forget_sqrt, rationale: "T0 = 2π√(m/k)"}
+        - {text: "طرداً مع الجذر التربيعي لثابت صلابة النابض", rule: invert_ratio, rationale: "k في المقام"}
+        - {text: "عكساً مع الجذر التربيعي لكتلة الجسم المهتز", rule: invert_ratio, rationale: "m في البسط"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "F = −k·x (الكتاب ص ١١) · T0 = 2π√(m/k) (ص ١٢)"
+  review_notes:
+    - "idx 2 (طبيعة التسارع: ثابت/متغير في الحامل والجهة والشدة): الصواب فيزيائياً «ثابت الحامل، متغير الجهة والشدة» ولا خيار يطابقه حرفياً في المصدر ⇒ مُستبعد من التوليد حتى يُراجع نصّه الأصلي."
+  approved: false
+
+- id: U1.L1.T02
+  title: "أين يكون المقدار أعظمياً وأين ينعدم"
+  chapter: U1C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [9, 10, 18, 20, 48, 53, 64, 68, 88], book: "ص ١٣–١٤", lesson: "L1 §٦ جدول الأعظمي/المعدوم"}
+  vars:
+    q: {set: ["المطال", "السرعة", "التسارع", "قوة الإرجاع"]}
+  table:
+    المطال:        {max: "الموضعين الطرفيين", zero: "مركز الاهتزاز"}
+    السرعة:        {max: "مركز الاهتزاز", zero: "الموضعين الطرفيين"}
+    التسارع:       {max: "الموضعين الطرفيين", zero: "مركز الاهتزاز"}
+    قوة الإرجاع:   {max: "الموضعين الطرفيين", zero: "مركز الاهتزاز"}
+  stem: "في النواس المرن غير المتخامد يكون {q}:"
+  options:
+    key: "أعظمياً (طويلةً) في {table[q].max} ومعدوماً في {table[q].zero}"
+    distractors:
+      - {text: "أعظمياً في {table[q].zero} ومعدوماً في {table[q].max}", rule: mix_max_center, rationale: "قلب الموضعين"}
+      - {text: "مقداراً ثابتاً لا يتغير أثناء الحركة", rule: mix_pendulums, rationale: "كل المقادير اللحظية تتغير مع x"}
+      - {text: "أعظمياً ولا ينعدم مطلقاً", rule: mix_max_center, rationale: "كل مقدار لحظي ينعدم في موضع"}
+  variants:
+    - stem: "عند حركة نواس مرن غير متخامد وفي مركز الاهتزاز يكون:"
+      key: "a = 0 · v = vmax · Ek = E · Ep = 0"
+      distractors:
+        - {text: "a = amax · v = 0 · Ep = E · Ek = 0", rule: mix_max_center, rationale: "هذا وصف الطرفين"}
+        - {text: "a = 0 · v = 0 · Ek = Ep", rule: mix_v_a, rationale: "السرعة عظمى في المركز"}
+        - {text: "a = 0 · E = 0 · Ek = 0 · v = 0", rule: mix_Ep_Ek, rationale: "E لا تنعدم أبداً"}
+    - stem: "عند حركة نواس مرن غير متخامد وفي الموضعين الطرفيين يكون:"
+      key: "a = amax · v = 0 · Ep = E · Ek = 0"
+      distractors:
+        - {text: "a = 0 · v = vmax · Ek = E · Ep = 0", rule: mix_max_center, rationale: "هذا وصف المركز"}
+        - {text: "a = 0 · v = 0 · Ep = E", rule: mix_v_a, rationale: "السرعة صفر لا يعني التسارع صفر"}
+        - {text: "a = amax · v = vmax · Ek = E", rule: mix_max_center, rationale: "لا يبلغان أقصاهما معاً"}
+    - stem: "عندما يمر الجسم في مركز الاهتزاز فإن الهزازة التوافقية البسيطة:"
+      key: "ينعدم تسارعها ولا يقف الجسم (سرعته عظمى)"
+      distractors:
+        - {text: "ينعدم التسارع ويقف الجسم", rule: mix_v_a, rationale: "الخطأ الشائع ١ في الدرس: القوة صفر لا السرعة"}
+        - {text: "تنعدم السرعة ويقف الجسم", rule: mix_max_center, rationale: "ذلك في الطرفين"}
+        - {text: "تنعدم السرعة والتسارع ويقف الجسم", rule: mix_v_a, rationale: "لا ينعدمان معاً أبداً"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "v = −ω0·XmaX·sin(ω0t+φ) · a = −ω0²·x · F = −k·x (الكتاب ص ١٣–١٤)"
+  approved: false
+
+- id: U1.L1.T03
+  title: "الطاقة: مواضعها وتحوّلاتها وتمثيلها البياني"
+  chapter: U1C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [8, 11, 35, 37, 39, 42, 54, 55, 56, 57, 63, 109, 137, 138], book: "ص ١٥–١٦", lesson: "L1 §٧"}
+  variants:
+    - stem: "في مركز الاهتزاز تكون الطاقة الميكانيكية للنواس المرن غير المتخامد مساوية:"
+      key: "للطاقة الحركية العظمى"
+      distractors:
+        - {text: "للطاقة الكامنة المرونية العظمى", rule: mix_max_center, rationale: "Ep = 0 في المركز"}
+        - {text: "معدومة", rule: mix_Ep_Ek, rationale: "E ثابتة لا تنعدم"}
+        - {text: "لنصف الطاقة الحركية العظمى", rule: forget_half, rationale: "E = Ek,max كاملة"}
+    - stem: "في الموضعين الطرفيين تكون الطاقة الميكانيكية (الكلية) مساوية:"
+      key: "الطاقة الكامنة المرونية العظمى"
+      distractors:
+        - {text: "الطاقة الحركية", rule: mix_max_center, rationale: "Ek = 0 عند v = 0"}
+        - {text: "مجموع الطاقتين الحركية والكامنة وكلتاهما غير معدومة", rule: mix_Ep_Ek, rationale: "الحركية معدومة هناك"}
+        - {text: "معدومة", rule: mix_Ep_Ek, rationale: "E ثابتة"}
+    - stem: "عندما تنعدم الطاقة الحركية لنواس مرن غير متخامد تكون طاقته الكامنة المرونية:"
+      key: "عظمى"
+      distractors:
+        - {text: "معدومة", rule: mix_Ep_Ek, rationale: "مجموعهما ثابت"}
+        - {text: "ثابتة لا تتغير", rule: mix_pendulums, rationale: "Ep تتغير مع x²"}
+        - {text: "تتناقص حتى تنعدم", rule: mix_max_center, rationale: "عندئذ تكون في ذروتها"}
+    - stem: "عندما تنعدم الطاقة الكامنة المرونية لنواس مرن غير متخامد تكون طاقته الحركية:"
+      key: "عظمى"
+      distractors:
+        - {text: "معدومة", rule: mix_Ep_Ek, rationale: "E = Ek عندئذ"}
+        - {text: "ثابتة لا تتغير", rule: mix_pendulums, rationale: "Ek تتغير مع v²"}
+        - {text: "تتناقص حتى تنعدم", rule: mix_max_center, rationale: "العكس"}
+    - stem: "عندما يتحرك الجسم من نقطة مطالها x = +XmaX/2 إلى مركز الاهتزاز فإن:"
+      key: "الطاقة الكامنة المرونية تتناقص والحركية تزداد والميكانيكية ثابتة"
+      distractors:
+        - {text: "الطاقة الحركية تتناقص والكامنة تزداد", rule: mix_Ep_Ek, rationale: "المطال يصغر ⇒ Ep تصغر"}
+        - {text: "الطاقة الميكانيكية تتناقص", rule: mix_Ep_Ek, rationale: "لا تخامد ⇒ E ثابتة"}
+        - {text: "الطاقة الميكانيكية تزداد", rule: mix_Ep_Ek, rationale: "E ثابتة"}
+    - stem: "بالاقتراب من مركز الاهتزاز في الهزازة التوافقية البسيطة وبإهمال القوى المبددة للطاقة:"
+      key: "تتحول الطاقة الكامنة المرونية إلى طاقة حركية"
+      distractors:
+        - {text: "تتحول الطاقة الحركية إلى كامنة مرونية", rule: mix_Ep_Ek, rationale: "ذلك عند الابتعاد عن المركز"}
+        - {text: "تزداد الطاقة الكامنة المرونية", rule: mix_Ep_Ek, rationale: "x يصغر"}
+        - {text: "تتحول الطاقة الميكانيكية إلى حرارة", rule: mix_pendulums, rationale: "لا تخامد"}
+    - stem: "في النواس المرن غير المتخامد وبازدياد القيمة المطلقة للمطال:"
+      key: "تزداد الطاقة الكامنة المرونية وتنقص الحركية"
+      distractors:
+        - {text: "تنقص الطاقة الكامنة المرونية وتزداد الحركية", rule: mix_Ep_Ek, rationale: "Ep = ½kx²"}
+        - {text: "تزداد الطاقتان معاً", rule: mix_Ep_Ek, rationale: "مجموعهما ثابت"}
+        - {text: "تتحول الطاقة الكامنة إلى حركية", rule: mix_Ep_Ek, rationale: "العكس"}
+    - stem: "تُمثَّل الطاقة الميكانيكية لنواس مرن غير متخامد بيانياً بدلالة مطاله:"
+      key: "بخط مستقيم يوازي محور المطال"
+      distractors:
+        - {text: "بقطع مكافئ ذروته المبدأ O", rule: mix_Ep_Ek, rationale: "هذا تمثيل Ep = ½kx²"}
+        - {text: "بخط مستقيم يمر ممدده من المبدأ", rule: mix_Ep_Ek, rationale: "E لا تتعلق بـx"}
+        - {text: "بمنحنٍ جيبي متناوب", rule: sin_cos, rationale: "ذلك بدلالة الزمن لا المطال، وللمطال لا للطاقة"}
+    - stem: "تُمثَّل الطاقة الكامنة المرونية لنواس مرن غير متخامد بيانياً بدلالة مطاله:"
+      key: "بقطع مكافئ ذروته المبدأ O"
+      distractors:
+        - {text: "بخط مستقيم يوازي محور المطال", rule: mix_Ep_Ek, rationale: "هذا تمثيل E الكلية"}
+        - {text: "بخط مستقيم يمر ممدده من المبدأ", rule: forget_square, rationale: "Ep ∝ x² لا x"}
+        - {text: "بمنحنٍ جيبي متناوب", rule: sin_cos, rationale: "ليس تابعاً للزمن هنا"}
+    - stem: "تكون الطاقة الحركية للنواس المرن غير المتخامد:"
+      key: "معدومة في الموضعين الطرفيين وتساوي الطاقة الميكانيكية في مركز الاهتزاز"
+      distractors:
+        - {text: "عظمى في الموضعين الطرفيين ومعدومة في مركز الاهتزاز", rule: mix_max_center, rationale: "قلب"}
+        - {text: "تساوي الطاقة الميكانيكية في الموضعين الطرفيين", rule: mix_Ep_Ek, rationale: "هناك Ep = E"}
+        - {text: "تساوي الطاقة الكامنة المرونية في كل لحظة", rule: mix_Ep_Ek, rationale: "تتساويان في موضع واحد فقط"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "E = ½k·XmaX² = const · Ep = ½k·x² · Ek = E − Ep (الكتاب ص ١٥–١٦)"
+  review_notes:
+    - "idx 137 (التوقف عند x = 4 cm بين المركز وXmaX = 10 cm …): الجذع مبتور في المصدر ⇒ مستبعد حتى يُقرأ كاملاً."
+  approved: false
+
+- id: U1.L1.T04
+  title: "تمييز العلاقة الصحيحة (توابع، دور، نبض، طاقة، معادلة تفاضلية)"
+  chapter: U1C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [5, 7, 15, 19, 30, 34, 38, 44, 45, 47, 49, 58, 60, 72, 73, 74, 76, 78, 83, 104, 113], book: "ص ١١–١٦", lesson: "L1 §٣–§٧ + الخلاصة"}
+  vars:
+    q: {set: [a_t, v_t, F, T0, omega0, E, Ek, Ep, ode, k_from_omega, k_from_T0, k_from_E, x0, v_x, vmax, a_x, a_at_plus_XmaX, a_at_minus_XmaX, a_def, T0_from_omega]}
+  table:
+    a_t:            {stem: "يُعطى التابع الزمني لتسارع النواس المرن غير المتخامد بالعلاقة:", key: "a = −ω0²·XmaX·cos(ω0·t + φ)"}
+    v_t:            {stem: "يُعطى التابع الزمني لسرعة النواس المرن غير المتخامد بالعلاقة:", key: "v = −ω0·XmaX·sin(ω0·t + φ)"}
+    F:              {stem: "تُعطى قوة الإرجاع في النواس المرن غير المتخامد بالعلاقة:", key: "F = −k·x"}
+    T0:             {stem: "دور النواس المرن غير المتخامد هو:", key: "T0 = 2π·√(m/k)"}
+    omega0:         {stem: "النبض الخاص للنواس المرن غير المتخامد ω0 هو:", key: "ω0 = √(k/m)"}
+    E:              {stem: "الطاقة الميكانيكية الكلية للنواس المرن غير المتخامد تُعطى بالعلاقة:", key: "E = Ek + Ep = ½·k·XmaX²"}
+    Ek:             {stem: "الطاقة الحركية الانسحابية للنواس المرن غير المتخامد هي:", key: "Ek = ½·m·v²"}
+    Ep:             {stem: "الطاقة الكامنة المرونية للنواس المرن غير المتخامد هي:", key: "Ep = ½·k·x²"}
+    ode:            {stem: "المعادلة التفاضلية من المرتبة الثانية للنواس المرن غير المتخامد والتي تقبل حلاً جيبياً هي:", key: "x″ = −(k/m)·x"}
+    k_from_omega:   {stem: "انطلاقاً من علاقة النبض الخاص تكون قيمة ثابت صلابة النابض k:", key: "k = m·ω0²"}
+    k_from_T0:      {stem: "يُعطى ثابت صلابة النابض بدلالة الدور بالعلاقة:", key: "k = 4π²·m/T0²"}
+    k_from_E:       {stem: "انطلاقاً من علاقة الطاقة الميكانيكية تكون قيمة ثابت صلابة النابض k:", key: "k = 2E/XmaX²"}
+    x0:             {stem: "تُعطى الاستطالة السكونية للنابض الشاقولي بالعلاقة:", key: "x0 = m·g/k"}
+    v_x:            {stem: "سرعة النواس المرن غير المتخامد في مطال x تُعطى بالعلاقة:", key: "v = ±ω0·√(XmaX² − x²)"}
+    vmax:           {stem: "تُعطى السرعة العظمى للنواس المرن غير المتخامد بالعلاقة:", key: "vmax = ±ω0·XmaX"}
+    a_x:            {stem: "يُعطى تسارع النواس المرن غير المتخامد بدلالة مطاله بالعلاقة:", key: "a = −ω0²·x"}
+    a_at_plus_XmaX: {stem: "في الموضع الطرفي حيث المطال أعظمي موجب يُعطى التسارع بالعلاقة:", key: "a = −ω0²·XmaX"}
+    a_at_minus_XmaX: {stem: "في الموضع الطرفي حيث المطال أعظمي سالب يُعطى التسارع بالعلاقة:", key: "a = +ω0²·XmaX"}
+    a_def:          {stem: "تابع التسارع في النواس المرن غير المتخامد هو:", key: "a = v′ = x″ (المشتق الأول للسرعة = المشتق الثاني للمطال)"}
+    T0_from_omega:  {stem: "يُعطى دور النواس المرن غير المتخامد بالعلاقة:", key: "T0 = 2π/ω0"}
+  stem: "{table[q].stem}"
+  options:
+    key: "{table[q].key}"
+    distractor_generation:
+      - {rule: sign_flip, rationale: "حذف/قلب الإشارة السالبة (خصم ٤ في السلم على x″ = −ω0²x)"}
+      - {rule: sin_cos, rationale: "sin مكان cos أو العكس"}
+      - {rule: forget_square, rationale: "ω0 مكان ω0² أو x مكان x²"}
+      - {rule: invert_ratio, rationale: "m/k ↔ k/m"}
+      - {rule: forget_half, rationale: "½ محذوفة"}
+      - {rule: forget_2pi, rationale: "2π محذوفة"}
+    note: "المولّد يشتق ٣ مشتتات مختلفة من القواعد أعلاه ويرفض أي مشتت يطابق المفتاح رياضياً."
+  variants:
+    - stem: "يُعطى ثابت صلابة النابض بالعلاقة:"
+      key: "جميع ما سبق صحيح (k = m·ω0² · k = 4π²m/T0² · k = 2E/XmaX²)"
+      distractors:
+        - {text: "k = m·ω0² فقط", rule: true_but_partial, rationale: "صحيح لكنه ليس الوحيد"}
+        - {text: "k = 4π²m/T0² فقط", rule: true_but_partial, rationale: "صحيح لكنه ليس الوحيد"}
+        - {text: "k = 2E/XmaX² فقط", rule: true_but_partial, rationale: "صحيح لكنه ليس الوحيد"}
+    - stem: "دور النواس المرن غير المتخامد يُعطى بالعلاقة:"
+      key: "جميع ما سبق صحيح (T0 = 2π√(m/k) · T0 = 2π/ω0 · T0 = زمن الهزات / عددها)"
+      distractors:
+        - {text: "T0 = 2π√(m/k) فقط", rule: true_but_partial, rationale: "صحيح لكنه ليس الوحيد"}
+        - {text: "T0 = 2π/ω0 فقط", rule: true_but_partial, rationale: "صحيح لكنه ليس الوحيد"}
+        - {text: "T0 = زمن الهزات / عدد الهزات فقط", rule: true_but_partial, rationale: "صحيح لكنه ليس الوحيد"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ١١–١٦ · L1 الخلاصة"
+  approved: false
+
+- id: U1.L1.T05
+  title: "تعاريف ومصطلحات (الدور، التواتر، المطال، الاستطالة السكونية، فرينل، طبيعة الحركة)"
+  chapter: U1C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [3, 12, 24, 26, 31, 32, 79, 87, 100, 108, 112, 118, 147, 165], book: "ص ٨–٩، ١٢", lesson: "L1 §١ §٢"}
+  variants:
+    - stem: "يعبّر الزمن اللازم لإنجاز هزة واحدة عن:"
+      key: "دور النواس T0"
+      distractors:
+        - {text: "تواتر الحركة f", rule: invert_ratio, rationale: "f = 1/T0 عدد الهزات في الثانية"}
+        - {text: "النبض الخاص للحركة ω0", rule: forget_2pi, rationale: "ω0 = 2π/T0"}
+        - {text: "سعة الحركة XmaX", rule: mix_pendulums, rationale: "السعة مسافة لا زمن"}
+    - stem: "يعبّر عدد الهزات التي ينجزها النواس خلال واحدة الزمن عن:"
+      key: "تواتر الحركة f"
+      distractors:
+        - {text: "دور النواس T0", rule: invert_ratio, rationale: "الدور زمن الهزة الواحدة"}
+        - {text: "النبض الخاص للحركة ω0", rule: forget_2pi, rationale: "ω0 = 2π·f"}
+        - {text: "سعة الحركة XmaX", rule: mix_pendulums, rationale: "ليست زمنية"}
+    - stem: "يعبّر البعد الجبري لمركز عطالة الجسم الصلب عن مركز الاهتزاز عن:"
+      key: "المطال x"
+      distractors:
+        - {text: "سعة الحركة XmaX", rule: amplitude_dependence, rationale: "السعة هي أكبر قيمة للمطال"}
+        - {text: "الطور الابتدائي φ", rule: mix_pendulums, rationale: "زاوية لا مسافة"}
+        - {text: "الاستطالة السكونية x0", rule: mix_pendulums, rationale: "تقاس من النابض غير المحمّل لا من مركز الاهتزاز"}
+    - stem: "عند وصل النهاية السفلية للنابض المرن بجسم صلب يستطيل النابض ويتوقف مركز العطالة في مركز الاهتزاز، وتُسمّى هذه الاستطالة:"
+      key: "الاستطالة السكونية x0"
+      distractors:
+        - {text: "المطال x", rule: mix_pendulums, rationale: "المطال يقاس من مركز الاهتزاز"}
+        - {text: "سعة الحركة XmaX", rule: amplitude_dependence, rationale: "لا حركة بعد"}
+        - {text: "الطور الابتدائي φ", rule: mix_pendulums, rationale: "زاوية"}
+    - stem: "في النواس المرن غير المتخامد يكون:"
+      key: "جميع ما سبق صحيح (النابض مرن، حلقاته متباعدة، كتلته مهملة)"
+      distractors:
+        - {text: "النابض مرن فقط", rule: true_but_partial, rationale: ""}
+        - {text: "حلقات النابض متباعدة فقط", rule: true_but_partial, rationale: ""}
+        - {text: "كتلة النابض مهملة فقط", rule: true_but_partial, rationale: ""}
+    - stem: "يتحرك الجسم الصلب إلى جانبي نقطة ثابتة تُسمّى مركز الاهتزاز، لذا فإن حركته:"
+      key: "حركة اهتزازية"
+      distractors:
+        - {text: "حركة متخامدة", rule: mix_pendulums, rationale: "لا تبدد"}
+        - {text: "حركة دورانية", rule: mix_pendulums, rationale: "انسحابية على خط"}
+        - {text: "حركة مستقيمة منتظمة", rule: mix_pendulums, rationale: "السرعة متغيرة"}
+    - stem: "حركة النواس المرن غير المتخامد هي حركة:"
+      key: "جميع ما سبق صحيح (جيبية توافقية، انسحابية، هزازة غير متخامدة)"
+      distractors:
+        - {text: "جيبية توافقية فقط", rule: true_but_partial, rationale: ""}
+        - {text: "انسحابية فقط", rule: true_but_partial, rationale: ""}
+        - {text: "هزازة غير متخامدة فقط", rule: true_but_partial, rationale: ""}
+    - stem: "عند تمثيل الحركة التوافقية البسيطة بشعاع فرينل فإن شعاع فرينل:"
+      key: "يدور بسرعة زاوية ثابتة تساوي النبض الخاص ω0"
+      distractors:
+        - {text: "يدور بسرعة خطية ثابتة تساوي vmax", rule: mix_v_a, rationale: "الخاصية زاوية"}
+        - {text: "يدور بسرعة زاوية متغيرة تساوي السرعة اللحظية", rule: mix_pendulums, rationale: "ω0 ثابت"}
+        - {text: "يدور بسرعة زاوية ثابتة تساوي الدور T0", rule: forget_2pi, rationale: "ω0 = 2π/T0"}
+    - stem: "عند تمثيل الحركة التوافقية البسيطة بشعاع فرينل فإن طويلة شعاع فرينل:"
+      key: "ثابتة وتساوي سعة الحركة XmaX"
+      distractors:
+        - {text: "متغيرة وتساوي المطال x", rule: amplitude_dependence, rationale: "المطال هو مسقط الشعاع"}
+        - {text: "ثابتة وتساوي النبض ω0", rule: mix_pendulums, rationale: "ω0 سرعة الدوران"}
+        - {text: "متغيرة وتساوي السرعة v", rule: mix_v_a, rationale: ""}
+    - stem: "عند تمثيل الحركة التوافقية البسيطة بشعاع فرينل فإن الزاوية التي يصنعها حامل الشعاع مع المحور في اللحظة t = 0 هي:"
+      key: "الطور الابتدائي φ"
+      distractors:
+        - {text: "طور الحركة (ω0·t + φ)", rule: mix_pendulums, rationale: "هذا في لحظة t عامة"}
+        - {text: "النبض الخاص ω0", rule: mix_pendulums, rationale: "سرعة لا زاوية"}
+        - {text: "سعة الحركة XmaX", rule: mix_pendulums, rationale: "طول لا زاوية"}
+    - stem: "عند انفصال الجسم الصلب عن النابض الشاقولي وهو في المطال الأعظمي الموجب (الأسفل) تكون حركته:"
+      key: "سقوط حر بحركة مستقيمة متسارعة بانتظام"
+      distractors:
+        - {text: "قذف شاقولي نحو الأعلى متباطئ في الصعود متسارع في الهبوط", rule: mix_max_center, rationale: "سرعته معدومة هناك"}
+        - {text: "حركة مستقيمة منتظمة", rule: mix_pendulums, rationale: "يخضع لثقله فقط"}
+        - {text: "حركة توافقية بسيطة بالنابض نفسه", rule: mix_pendulums, rationale: "انفصل"}
+    - stem: "عند انفصال الجسم الصلب عن النابض الشاقولي وهو في مركز الاهتزاز متحركاً بالاتجاه السالب (نحو الأعلى) تكون حركته:"
+      key: "قذف شاقولي نحو الأعلى بحركة مستقيمة متباطئة بانتظام في الصعود ومتسارعة بانتظام في الهبوط"
+      distractors:
+        - {text: "سقوط حر بحركة مستقيمة متسارعة بانتظام", rule: mix_max_center, rationale: "له سرعة ابتدائية نحو الأعلى"}
+        - {text: "قذف شاقولي نحو الأعلى متسارع في الصعود ومتباطئ في الهبوط", rule: sign_flip, rationale: "الثقل يعاكس الصعود"}
+        - {text: "حركة توافقية بسيطة بالنابض نفسه", rule: mix_pendulums, rationale: "انفصل"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ٨–٩ (التعاريف) · ص ١٢ (تمثيل فرينل)"
+  review_notes:
+    - "idx 108 (طبيعة حركة مركز العطالة: متغيرة بانتظام/منتظمة/متباطئة بانتظام/متسارعة): الحركة التوافقية ليست متغيرة بانتظام (a غير ثابت) ولا خيار صحيح ظاهرياً ⇒ مستبعد حتى مراجعة النص الأصلي."
+    - "idx 100 (مكعب خشبي طافٍ): خارج نص الكتاب (تطبيق أرخميدس على SHM) ⇒ يُعرض على الأستاذ قبل إدراجه."
+    - "اتجاه المحور في قالبَي الانفصال: الكتاب يوجّه محور النابض الشاقولي نحو الأسفل موجباً (ص ١٠) ⇒ «الاتجاه السالب» = نحو الأعلى. يُثبَّت مع الأستاذ."
+  approved: false
+
+- id: U1.L1.T06
+  title: "الوحدات"
+  chapter: U1C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [21, 22], book: "ص ١١–١٢"}
+  vars:
+    q: {set: [k, omega0, F, E, T0]}
+  table:
+    k:      {name: "ثابت صلابة النابض k", key: "N·m⁻¹", wrong: ["N·m", "m·N⁻¹", "rad·s⁻¹"]}
+    omega0: {name: "النبض الخاص ω0", key: "rad·s⁻¹", wrong: ["rad·s⁻²", "m·s⁻²", "s"]}
+    F:      {name: "قوة الإرجاع F", key: "N", wrong: ["N·m", "J", "N·m⁻¹"]}
+    E:      {name: "الطاقة الميكانيكية E", key: "J", wrong: ["W", "N", "J·s⁻¹"]}
+    T0:     {name: "الدور الخاص T0", key: "s", wrong: ["Hz", "rad·s⁻¹", "s⁻¹"]}
+  stem: "يُقاس {table[q].name} في الجملة الدولية بواحدة:"
+  options: {key: "{table[q].key}", distractors_from: "table[q].wrong"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ١١–١٢ · glossary.json U1C1"
+  approved: false
+
+- id: U1.L1.T07
+  title: "القوى المؤثرة وقوة توتر النابض في السكون والحركة"
+  chapter: U1C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [6, 13, 17, 23, 27, 28, 41, 46, 70, 153], book: "ص ١٠–١١", lesson: "L1 §٣"}
+  variants:
+    - stem: "عند سكون مركز عطالة الجسم الصلب فإن محصلة القوى الخارجية المؤثرة فيه ΣF⃗ هي:"
+      key: "0⃗ (الشعاع المعدوم)"
+      distractors:
+        - {text: "0 (العدد صفر)", rule: scalar_vector, rationale: "المحصلة شعاع ⇒ يُكتب 0⃗"}
+        - {text: "m·a⃗", rule: mix_pendulums, rationale: "a⃗ = 0⃗ عند السكون"}
+        - {text: "−k·x⃗", rule: mix_pendulums, rationale: "هذه محصلة الحركة"}
+    - stem: "عند سكون النواس المرن الشاقولي غير المتخامد تؤثر في النابض قوة شد Fs0 تساوي:"
+      key: "k·x0"
+      distractors:
+        - {text: "−k·x0", rule: sign_flip, rationale: "الشدة موجبة؛ الإشارة للإسقاط"}
+        - {text: "k·(x0 + x)", rule: mix_max_center, rationale: "هذه في الحركة"}
+        - {text: "m·a", rule: mix_pendulums, rationale: "a = 0 عند السكون"}
+    - stem: "يخضع النابض في النواس المرن الشاقولي غير المتخامد في حالة الحركة لقوة شد Fs هي:"
+      key: "k·(x0 + x)"
+      distractors:
+        - {text: "k·x0", rule: mix_max_center, rationale: "هذه في السكون"}
+        - {text: "−k·(x0 + x)", rule: sign_flip, rationale: "الشدة موجبة"}
+        - {text: "−k·x", rule: mix_pendulums, rationale: "هذه المحصلة لا التوتر"}
+    - stem: "مقدار استطالة النابض المرن الشاقولي في حالة الحركة هو:"
+      key: "x0 + x"
+      distractors:
+        - {text: "x0", rule: mix_max_center, rationale: "هذه السكونية"}
+        - {text: "x", rule: mix_pendulums, rationale: "المطال يُقاس من مركز الاهتزاز"}
+        - {text: "x0 − x", rule: sign_flip, rationale: "المحور موجّه نحو الأسفل"}
+    - stem: "نواس مرن أفقي مؤلف من نابض وجسم صلب؛ نؤثر في الجسم بقوة شد فيستطيل النابض بالمقدار:"
+      key: "x (لا استطالة سكونية في النواس الأفقي)"
+      distractors:
+        - {text: "x0", rule: mix_pendulums, rationale: "لا ثقل على محور الحركة"}
+        - {text: "x0 + x", rule: mix_pendulums, rationale: "x0 = 0 أفقياً"}
+        - {text: "x0 − x", rule: sign_flip, rationale: ""}
+    - stem: "يخضع الجسم الصلب في النواس المرن الشاقولي غير المتخامد في حالة السكون لتأثير القوى الخارجية:"
+      key: "قوة الثقل w⃗ وقوة توتر النابض F⃗s0"
+      distractors:
+        - {text: "قوة الثقل w⃗ وقوة رد فعل المستوي R⃗", rule: mix_pendulums, rationale: "لا مستوي في الشاقولي"}
+        - {text: "قوة الثقل w⃗ وقوة توتر النابض F⃗s وقوة الإرجاع F⃗", rule: mix_pendulums, rationale: "قوة الإرجاع هي المحصلة لا قوة مستقلة"}
+        - {text: "قوة توتر النابض فقط", rule: mix_pendulums, rationale: "الثقل موجود"}
+    - stem: "يخضع الجسم الصلب في النواس المرن الأفقي غير المتخامد في حالة الحركة لتأثير القوى الخارجية:"
+      key: "قوة الثقل w⃗ وقوة رد فعل المستوي R⃗ وقوة توتر النابض F⃗s"
+      distractors:
+        - {text: "قوة الثقل w⃗ وقوة توتر النابض F⃗s فقط", rule: mix_pendulums, rationale: "المستوي يرد على الثقل"}
+        - {text: "قوة توتر النابض F⃗s فقط", rule: mix_pendulums, rationale: "الثقل ورد الفعل يتوازنان لكنهما موجودان"}
+        - {text: "قوة الثقل w⃗ وقوة الإرجاع F⃗", rule: mix_pendulums, rationale: "الإرجاع محصلة لا قوة"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "حالة السكون w − Fs0 = 0 ⇒ Fs0 = k·x0 · حالة الحركة Fs = k(x0 + x) (الكتاب ص ١٠–١١)"
+  approved: false
+
+- id: U1.L1.T08
+  title: "نسب الدور/النبض عند تغيير الكتلة أو ثابت الصلابة أو السعة"
+  chapter: U1C1
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [4, 36, 62, 110, 111], book: "ص ١٢", lesson: "L1 §٥ مسائل النسبة [أستاذ]", exam: "نمط ٢٠٢٦ س١-١"}
+  vars:
+    fm: {set: [0.25, 0.5, 1, 2, 3, 4], desc: "m′/m"}
+    fk: {set: [0.25, 0.5, 1, 2, 4], desc: "k′/k"}
+    fx: {set: [1, 2, 0.5], desc: "XmaX′/XmaX — لا أثر"}
+    ask: {set: ["T0", "ω0"]}
+  constraints:
+    - "not (fm == 1 and fk == 1 and fx == 1)"
+    - "sqrt(fm/fk) in (0.25, 0.5, 1, 2, 4) or fm == 3"
+  compute:
+    rT: "sqrt(fm/fk)"
+    rW: "sqrt(fk/fm)"
+    key: "rT if ask == 'T0' else rW"
+  stem: "نواس مرن غير متخامد دوره T0 ونبضه ω0. نجعل كتلة الجسم {fm}·m وثابت صلابة النابض {fk}·k وسعة الاهتزاز {fx}·XmaX. يصبح {ask}′:"
+  options:
+    key: "{key}·{ask}"
+    distractors:
+      - {value: "fm/fk if ask == 'T0' else fk/fm", rule: forget_sqrt, rationale: "نسي الجذر"}
+      - {value: "rW if ask == 'T0' else rT", rule: invert_ratio, rationale: "قلب النسبة"}
+      - {value: "fx if fx != 1 else 1/sqrt(fm/fk) * 0 + (2 if key != 2 else 0.5)", rule: amplitude_dependence, rationale: "ظنّ السعة تؤثر / أو اختار قيمة لا تتغير"}
+  rubric:
+    - {step: "T0′/T0 = √(m′/m)·√(k/k′)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 2}
+  answer_basis: "T0 = 2π√(m/k) لا يتعلق بالسعة (الكتاب ص ١٢)"
+  approved: false
+
+- id: U1.L1.T09
+  title: "الدور والتواتر والنبض من العدّ (n هزة في Δt)"
+  chapter: U1C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [14, 33, 43, 50, 52, 71], book: "ص ٩، ١٩ م٣", lesson: "L1 مثال ٢ (قراءة المعطيات المخفية)"}
+  vars:
+    n:  {set: [4, 5, 8, 10, 12, 20, 25]}
+    dt: {set: [2, 3, 4, 5, 8, 10, 20], unit: s}
+    ask: {set: [T0, f, omega0, n_from_T0, t_from_n_T0]}
+  constraints: ["(dt / n) in (0.1, 0.2, 0.25, 0.4, 0.5, 0.8, 1, 2, 4, 5)"]
+  compute:
+    T0: "dt / n"
+    f: "n / dt"
+    omega0: "2*pi / T0"
+  stem: "نواس مرن غير متخامد ينجز {n} هزة خلال {dt} s. احسب {ask}."
+  options:
+    key: {T0: "{T0} s", f: "{f} Hz", omega0: "{omega0} rad·s⁻¹", n_from_T0: "{n} هزة", t_from_n_T0: "{dt} s"}
+    distractors:
+      - {value: "n/dt for T0 | dt/n for f", rule: invert_ratio, rationale: "قلب الدور والتواتر"}
+      - {value: "n/dt for omega0", rule: forget_2pi, rationale: "ω0 = 2πf لا f"}
+      - {value: "2*pi*T0 for omega0", rule: invert_ratio, rationale: "ω0 = 2π/T0 لا 2πT0"}
+  rubric:
+    - {step: "T0 = زمن الهزات / عددها (أو f = 1/T0 · ω0 = 2π/T0)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1, keys: ["s", "Hz", "rad·s⁻¹"]}
+  answer_basis: "T0 = Δt/n · f = 1/T0 · ω0 = 2π/T0 (الكتاب ص ٩، ١٢)"
+  approved: false
+
+- id: U1.L1.T10
+  title: "الكتلة أو ثابت الصلابة أو الدور من T0 = 2π√(m/k) (π² = 10)"
+  chapter: U1C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [81, 85, 91, 94, 99, 136, 142, 146, 160], book: "ص ١٢، ١٩", lesson: "L1 مثال ١ (٢) ومثال ٣ (٤)"}
+  vars:
+    m:  {set: [0.1, 0.16, 0.2, 0.25, 0.4, 0.5, 1, 2], unit: kg}
+    k:  {set: [1.25, 4, 10, 16, 20, 40], unit: "N·m⁻¹"}
+    T0: {set: [0.4, 0.5, 0.8, 1, 2, 4], unit: s}
+    ask: {set: [k, m, T0]}
+  constants_used: {pi_sq: 10}
+  constraints: ["ask != 'k' or (4*pi_sq*m/T0**2) in k.set", "ask != 'm' or (k*T0**2/(4*pi_sq)) in m.set", "ask != 'T0' or (2*sqrt(pi_sq)*sqrt(m/k)) in T0.set"]
+  compute:
+    k_val: "4*pi_sq*m/T0**2"
+    m_val: "k*T0**2/(4*pi_sq)"
+    T0_val: "2*sqrt(pi_sq*m/k)"
+  stem: "نواس مرن غير متخامد {given}. احسب {ask} (خذ π² = 10)."
+  options:
+    key: {k: "{k_val} N·m⁻¹", m: "{m_val} kg", T0: "{T0_val} s"}
+    distractors:
+      - {value: "4*pi_sq*m/T0 (k) | k*T0/(4*pi_sq) (m)", rule: forget_square, rationale: "نسي تربيع T0"}
+      - {value: "m/T0**2 (k) | k*T0**2 (m)", rule: forget_4pi2, rationale: "نسي 4π²"}
+      - {value: "T0**2/(4*pi_sq*m) (k) | 4*pi_sq/(k*T0**2) (m)", rule: invert_ratio, rationale: "قلب العلاقة"}
+      - {value: "m*1000 handling", rule: unit_g_kg, rationale: "ترك الكتلة بالغرام"}
+  rubric:
+    - {step: "T0 = 2π√(m/k) ⇒ عزل المطلوب", points: 5}
+    - {step: "التعويض مع π² = 10", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1, keys: ["N·m⁻¹", "kg", "s"]}
+  answer_basis: "T0 = 2π√(m/k) (الكتاب ص ١٢)"
+  approved: false
+
+- id: U1.L1.T11
+  title: "قوة الإرجاع أو التسارع في مطال معلوم"
+  chapter: U1C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [80, 82, 96, 101], book: "ص ١١، ١٤", lesson: "L1 مثال ٢ (٣) ومثال ٣ (٣)"}
+  vars:
+    k:    {set: [8, 10, 16, 20, 40], unit: "N·m⁻¹"}
+    x_cm: {set: [-5, -4, -2, -0.5, 0.5, 2, 4, 5], unit: cm}
+    T0:   {set: [0.5, 1, 2], unit: s}
+    ask:  {set: [F, a]}
+  constants_used: {pi_sq: 10}
+  compute:
+    x: "x_cm/100"
+    F: "-k*x"
+    omega0_sq: "4*pi_sq/T0**2"
+    a: "-omega0_sq*x"
+  stem: "نواس مرن غير متخامد {given}. احسب {ask} في الموضع الذي مطاله x = {x_cm} cm (π² = 10)."
+  options:
+    key: {F: "{F} N", a: "{a} m·s⁻²"}
+    distractors:
+      - {value: "+k*x | +omega0_sq*x", rule: sign_flip, rationale: "أهمل الإشارة السالبة (نحو المركز)"}
+      - {value: "-k*x_cm | -omega0_sq*x_cm", rule: unit_cm_m, rationale: "لم يحوّل إلى m"}
+      - {value: "-sqrt(omega0_sq)*x", rule: mix_v_a, rationale: "استعمل ω0 بدل ω0²"}
+  rubric:
+    - {step: "F = −k·x أو a = −ω0²·x", points: 5}
+    - {step: "التعويض (x بالمتر)", points: 3}
+    - {step: "النتيجة بإشارتها", points: 1}
+    - {step: "الوحدة", points: 1, keys: ["N", "m·s⁻²"]}
+  answer_basis: "F = −k·x (ص ١١) · a = −ω0²·x (ص ١٤)"
+  approved: false
+
+- id: U1.L1.T12
+  title: "السرعة العظمى والسرعة في مطال معلوم"
+  chapter: U1C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [84, 89, 150], book: "ص ١٣، ١٥", lesson: "L1 §٦ §٧ (v = ω0√(XmaX² − x²))"}
+  vars:
+    XmaX_cm: {set: [4, 5, 6, 8, 10], unit: cm}
+    x_cm:    {set: [0, 3, 4, 6], unit: cm}
+    omega0:  {set: [2, 4, 5, 10, "2π", "π"], unit: "rad·s⁻¹"}
+    ask:     {set: [vmax, v_at_x]}
+  constraints: ["x_cm < XmaX_cm", "ask != 'v_at_x' or sqrt(XmaX_cm**2 - x_cm**2) == int(sqrt(XmaX_cm**2 - x_cm**2))"]
+  compute:
+    XmaX: "XmaX_cm/100"
+    x: "x_cm/100"
+    vmax: "omega0*XmaX"
+    v: "omega0*sqrt(XmaX**2 - x**2)"
+  stem: "نواس مرن غير متخامد نبضه ω0 = {omega0} rad·s⁻¹ وسعته {XmaX_cm} cm. احسب {ask}."
+  options:
+    key: {vmax: "{vmax} m·s⁻¹", v_at_x: "±{v} m·s⁻¹"}
+    distractors:
+      - {value: "omega0*x", rule: mix_max_center, rationale: "استعمل المطال مكان الجذر"}
+      - {value: "omega0*(XmaX - x)", rule: forget_sqrt, rationale: "طرح بلا تربيع وجذر"}
+      - {value: "omega0**2*XmaX", rule: mix_v_a, rationale: "هذا amax"}
+      - {value: "omega0*XmaX_cm", rule: unit_cm_m, rationale: "cm"}
+  rubric:
+    - {step: "vmax = ω0·XmaX أو v = ±ω0√(XmaX² − x²)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة (± عند طلب السرعة في مطال)", points: 1}
+    - {step: "الوحدة", points: 1, keys: ["m·s⁻¹"]}
+  answer_basis: "vmax = ω0·XmaX (ص ١٣) · من الطاقة v = ±ω0√(XmaX² − x²) (ص ١٥)"
+  approved: false
+
+- id: U1.L1.T13
+  title: "الطاقة الميكانيكية والكامنة والحركية عددياً"
+  chapter: U1C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [92, 95, 121, 157, 176], book: "ص ١٥–١٦، ١٩ م٣", lesson: "L1 مثال ٢ (٤)"}
+  vars:
+    k:       {set: [4, 10, 16, 20, 40], unit: "N·m⁻¹"}
+    XmaX_cm: {set: [4, 5, 8, 10, 16], unit: cm}
+    x_cm:    {set: [2, 3, 4, 6], unit: cm}
+    ask:     {set: [E, Ep, Ek, k_from_E]}
+  constraints: ["x_cm < XmaX_cm"]
+  compute:
+    XmaX: "XmaX_cm/100"
+    x: "x_cm/100"
+    E: "0.5*k*XmaX**2"
+    Ep: "0.5*k*x**2"
+    Ek: "E - Ep"
+    k_from_E: "2*E/XmaX**2"
+  stem: "نواس مرن غير متخامد ثابت صلابة نابضه {k} N·m⁻¹ يهتز بسعة {XmaX_cm} cm. احسب {ask} في الموضع x = {x_cm} cm."
+  options:
+    key: {E: "{E} J", Ep: "{Ep} J", Ek: "{Ek} J", k_from_E: "{k_from_E} N·m⁻¹"}
+    distractors:
+      - {value: "k*XmaX**2 | k*x**2", rule: forget_half, rationale: "نسي ½"}
+      - {value: "0.5*k*XmaX | 0.5*k*x", rule: forget_square, rationale: "نسي التربيع"}
+      - {value: "0.5*k*x**2 for Ek", rule: mix_Ep_Ek, rationale: "حسب Ep وسمّاها Ek"}
+      - {value: "0.5*k*XmaX_cm**2", rule: unit_cm_m, rationale: "cm"}
+  rubric:
+    - {step: "E = ½k·XmaX² · Ep = ½k·x² · Ek = E − Ep", points: 5}
+    - {step: "التعويض (بالمتر)", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1, keys: ["J"]}
+  answer_basis: "الكتاب ص ١٥–١٦"
+  approved: false
+
+- id: U1.L1.T14
+  title: "نسب الطاقة بحسب الموضع (x = XmaX/n، تساوي الطاقتين، Ep = r·Ek)"
+  chapter: U1C1
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [116, 124, 127, 128, 129, 139, 161, 162, 163, 174, 175], book: "ص ١٥–١٦", lesson: "L1 §٧ + docs/15 §٨٧ (أُهمل سابقاً لغياب المفتاح — هنا يُشتق حسابياً)"}
+  vars:
+    mode: {set: [Ep_at_frac, Ek_at_frac, x_for_equal, x_for_Ek_r_Ep, x_for_Ep_r_E, x_for_Ek_r_E]}
+    n:    {set: [2, 3, 4, "√2", "√3", "√5"]}
+    r:    {set: [0.12, 0.2, 0.25, 0.5, 0.8, 3]}
+  compute:
+    Ep_frac: "1/n**2"                       # Ep/E عند x = XmaX/n
+    Ek_frac: "1 - 1/n**2"
+    x_equal: "XmaX/sqrt(2)"                 # Ep = Ek
+    x_Ek_r_Ep: "XmaX/sqrt(1 + r)"           # Ek = r·Ep ⇒ x² = XmaX²/(1+r)
+    x_Ep_r_E: "XmaX*sqrt(r)"                # Ep = r·E
+    x_Ek_r_E: "XmaX*sqrt(1 - r)"            # Ek = r·E
+  stems:
+    Ep_at_frac: "قيمة الطاقة الكامنة المرونية في نقطة مطالها x = XmaX/{n} هي:"
+    Ek_at_frac: "قيمة الطاقة الحركية في نقطة مطالها x = XmaX/{n} هي:"
+    x_for_equal: "في النواس المرن غير المتخامد تتساوى الطاقتان الكامنة والحركية عندما يكون المطال:"
+    x_for_Ek_r_Ep: "في أي موضع x من مسار الجسم تكون Ek = {r}·Ep؟"
+    x_for_Ep_r_E: "في أي موضع x من مسار الجسم تكون Ep = {r}·E؟"
+    x_for_Ek_r_E: "في أي موضع x من مسار الجسم تكون Ek = {r}·E؟"
+  options:
+    key:
+      Ep_at_frac: "Ep = E/{n²}"
+      Ek_at_frac: "Ek = ({n²} − 1)·E/{n²}"
+      x_for_equal: "x = ±XmaX/√2"
+      x_for_Ek_r_Ep: "x = ±XmaX/√(1 + {r})"
+      x_for_Ep_r_E: "x = ±XmaX·√{r}"
+      x_for_Ek_r_E: "x = ±XmaX·√(1 − {r})"
+    distractors:
+      - {rule: forget_square, rationale: "Ep/E = 1/n بدل 1/n²"}
+      - {rule: forget_pm, rationale: "موضع واحد بدل موضعين متناظرين"}
+      - {rule: mix_Ep_Ek, rationale: "قلب Ep وEk"}
+      - {rule: invert_ratio, rationale: "√(1+r) في البسط"}
+  rubric:
+    - {step: "Ep = ½kx² · E = ½kXmaX² ⇒ Ep/E = x²/XmaX²", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة مع ±", points: 2}
+  answer_basis: "E = ½kXmaX² · Ep = ½kx² (الكتاب ص ١٥–١٦)"
+  approved: false
+
+- id: U1.L1.T15
+  title: "الاستطالة السكونية عددياً وقوة توتر النابض عند السكون"
+  chapter: U1C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [51, 102, 153], book: "ص ١٠، ١٩ م٣", lesson: "L1 مثال ٢ (١)"}
+  vars:
+    m:  {set: [0.1, 0.16, 0.2, 0.5, 1], unit: kg}
+    k:  {set: [10, 20, 40], unit: "N·m⁻¹"}
+    T0: {set: [1, 2, 4], unit: s}
+    ask: {set: [x0_from_mk, x0_from_T0, Fs0]}
+  constants_used: {g: 10, pi_sq: 10}
+  compute:
+    x0_mk: "m*g/k"
+    x0_T0: "g*T0**2/(4*pi_sq)"      # لأن k/m = 4π²/T0²
+    Fs0: "m*g"
+  stem: "نواس مرن شاقولي غير متخامد {given}. احسب {ask} (g = 10 m·s⁻²، π² = 10)."
+  options:
+    key: {x0_from_mk: "{x0_mk} m", x0_from_T0: "{x0_T0} m", Fs0: "{Fs0} N"}
+    distractors:
+      - {value: "k/(m*g)", rule: invert_ratio, rationale: "قلب العلاقة"}
+      - {value: "m/k", rule: mix_pendulums, rationale: "نسي g"}
+      - {value: "m*1000*g/k", rule: unit_g_kg, rationale: "الكتلة بالغرام"}
+      - {value: "g*T0/(4*pi_sq)", rule: forget_square, rationale: "نسي تربيع T0"}
+  rubric:
+    - {step: "حالة السكون w − Fs0 = 0 ⇒ m·g = k·x0 ⇒ x0 = m·g/k (تُستنتج لا تُكتب مباشرة)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1, keys: ["m", "N"]}
+  answer_basis: "الكتاب ص ١٠ · خصم السلم: كتابة x0 = mg/k دون استنتاج عند «استنتج»"
+  approved: false
+
+- id: U1.L1.T16
+  title: "طول المسار وأزمنة الانتقال بين الطرفين"
+  chapter: U1C1
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [75, 77, 97, 98, 151, 166, 167, 168], book: "ص ٩، ١٩ م٣", lesson: "L1 مثال ٢ (القطعة = 2XmaX)"}
+  vars:
+    mode: {set: [segment_len, time_end_to_end, path_n_osc, T0_from_path, XmaX_from_path, omega0_from_time]}
+    XmaX_cm: {set: [4, 5, 6, 8, 10]}
+    n:  {set: [5, 10, 20]}
+    dt: {set: [2, 5, 10]}
+    T0: {set: [1, 2, 4]}
+  compute:
+    segment_len: "2*XmaX"                 # من +XmaX إلى −XmaX
+    time_end_to_end: "T0/2"
+    path_n_osc: "4*n*XmaX"                # كل هزة 4XmaX
+    T0_from_path_8X: "dt/2"               # مسار 8XmaX = هزتان خلال dt
+    XmaX_from_path: "path/(4*n)"
+    omega0_from_time: "pi/dt"             # من +XmaX إلى −XmaX خلال dt = T0/2
+  stems:
+    segment_len: "طول القطعة المستقيمة التي يرسمها مركز عطالة الجسم عندما ينتقل من +XmaX إلى −XmaX هي:"
+    time_end_to_end: "الزمن الذي يستغرقه مركز العطالة للانتقال من +XmaX إلى −XmaX هو:"
+    path_n_osc: "نواس يهتز {n} هزة بسعة XmaX؛ طول المسار الذي يقطعه الجسم:"
+    T0_from_path: "نواس يرسم مساراً طوله 8·XmaX خلال {dt} s؛ دوره:"
+    XmaX_from_path: "نواس ينجز {n} هزة ويرسم مساراً مستقيماً طوله {path} cm؛ سعته:"
+    omega0_from_time: "ينتقل الجسم من +XmaX إلى −XmaX خلال {dt} s؛ نبضه:"
+  options:
+    key: {segment_len: "2·XmaX", time_end_to_end: "T0/2", path_n_osc: "4·{n}·XmaX", T0_from_path: "{dt/2} s", XmaX_from_path: "{path/(4n)} cm", omega0_from_time: "π/{dt} rad·s⁻¹"}
+    distractors:
+      - {rule: mix_max_center, text: "XmaX / T0/4", rationale: "حسب نصف المسافة أو ربع الدور"}
+      - {rule: forget_square, text: "4·XmaX / T0", rationale: "اعتبر الذهاب هزة كاملة"}
+      - {rule: forget_half, text: "2·n·XmaX / 2π/dt", rationale: "نسي أن الهزة = 4XmaX أو أن dt = T0/2"}
+  rubric:
+    - {step: "الهزة الكاملة = 4·XmaX وزمنها T0؛ الذهاب من طرف لطرف = 2·XmaX خلال T0/2", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة بوحدتها", points: 2}
+  answer_basis: "تعريف الدور والسعة (الكتاب ص ٩)"
+  approved: false
+
+- id: U1.L1.T17
+  title: "الطور الابتدائي φ من شروط البدء"
+  chapter: U1C1
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [65, 86, 105, 152, 159], book: "ص ١٢–١٣", lesson: "L1 §٦ (الشكل المختزل) ومثال ٣ (١) [أستاذ: نناقش الإشارة في تابع السرعة]"}
+  vars:
+    start: {set: [plus_XmaX, minus_XmaX, center_neg, center_pos, half_neg, half_pos, minus_half_neg]}
+  table:
+    plus_XmaX:     {desc: "في المطال الأعظمي الموجب (تُرك دون سرعة ابتدائية)", phi: "0"}
+    minus_XmaX:    {desc: "في المطال الأعظمي السالب (تُرك دون سرعة ابتدائية)", phi: "π"}
+    center_neg:    {desc: "في مركز الاهتزاز متحركاً بالاتجاه السالب", phi: "+π/2"}
+    center_pos:    {desc: "في مركز الاهتزاز متحركاً بالاتجاه الموجب", phi: "−π/2"}
+    half_neg:      {desc: "في x = +XmaX/2 متحركاً بالاتجاه السالب", phi: "+π/3"}
+    half_pos:      {desc: "في x = +XmaX/2 متحركاً بالاتجاه الموجب", phi: "−π/3"}
+    minus_half_neg: {desc: "في x = −XmaX/2 متحركاً بالاتجاه السالب", phi: "+2π/3"}
+  stem: "نواس مرن غير متخامد كان جسمه في مبدأ الزمن t = 0 {table[start].desc}. الطور الابتدائي φ في x = XmaX·cos(ω0·t + φ):"
+  options:
+    key: "φ = {table[start].phi} rad"
+    distractors:
+      - {rule: sign_flip, rationale: "الإشارة المعاكسة — لم يناقش إشارة السرعة v = −ω0XmaX·sin φ"}
+      - {rule: forget_pm, text: "φ = ±(القيمة)", rationale: "ترك ± دون حسم"}
+      - {rule: mix_max_center, text: "π/2 مكان π أو 0 مكان π/2", rationale: "خلط الطرف بالمركز"}
+  rubric:
+    - {step: "t = 0 في تابع المطال ⇒ cos φ", points: 3}
+    - {step: "t = 0 في تابع السرعة ⇒ إشارة sin φ من جهة الحركة", points: 3}
+    - {step: "قيمة φ النهائية", points: 4}
+  answer_basis: "شروط البدء (الكتاب ص ١٢–١٣) · مثال الكتاب ص ١٩ م٤"
+  approved: false
+
+- id: U1.L1.T18
+  title: "لحظات المرور بالمركز/الطرف وقيم v وa في لحظة معلومة"
+  chapter: U1C1
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {bank_idx: [93, 103, 106, 107, 115, 117, 119, 122, 123, 125, 126, 130, 131, 134, 143, 144, 149, 154, 155, 156, 158, 169, 170, 171, 177], book: "ص ١٩ م٤", lesson: "L1 مثال ٣ (٢) + [أستاذ] أزمنة المرور = أعداد فردية من T0/4 عند φ = 0"}
+  vars:
+    omega0: {set: ["π", "2π", 2, 5, 10], unit: "rad·s⁻¹"}
+    phi:    {set: ["0", "π/6", "π/3", "π/2", "π", "−π/3"], unit: rad}
+    XmaX:   {set: [0.04, 0.06, 0.08, 0.1, 0.12], unit: m}
+    mode:   {set: [t_center_first, t_center_second, t_center_third, t_plus_max_first, t_minus_max_first, v_at_center_first, v_at_t, a_at_t, which_pass, t_for_x_value]}
+    tq:     {set: ["T0/4", "T0/2", "3T0/4", "5T0/4", "3T0/2", "5T0/12"]}
+  compute:
+    T0: "2*pi/omega0"
+    t_center_n: "((pi/2 - phi) + n*pi)/omega0  for n = 0,1,2 with t ≥ 0"   # x = 0 ⇒ ω0t+φ = π/2 + nπ
+    t_plus_max_n: "((0 - phi) + 2*n*pi)/omega0 with t ≥ 0"                # x = +XmaX ⇒ ω0t+φ = 2nπ
+    t_minus_max_n: "((pi - phi) + 2*n*pi)/omega0 with t ≥ 0"              # x = −XmaX ⇒ ω0t+φ = (2n+1)π
+    v_at_center_first: "-omega0*XmaX*sin(pi/2 + n0*pi)"                   # الإشارة سالبة إذا انطلق من مطال موجب
+    v_at_t: "-omega0*XmaX*sin(omega0*t + phi)"
+    a_at_t: "-omega0**2*XmaX*cos(omega0*t + phi)"
+  stems:
+    t_center_first: "تابع المطال x = {XmaX}·cos({omega0}·t + {phi}). لحظة المرور الأول بمركز الاهتزاز:"
+    t_center_second: "تابع المطال x = {XmaX}·cos({omega0}·t + {phi}). لحظة المرور الثاني بمركز الاهتزاز:"
+    t_plus_max_first: "تابع المطال x = {XmaX}·cos({omega0}·t + {phi}). أول لحظة يكون فيها المطال أعظمياً موجباً:"
+    t_minus_max_first: "تابع المطال x = {XmaX}·cos({omega0}·t + {phi}). أول لحظة يكون فيها المطال أعظمياً سالباً:"
+    v_at_center_first: "تابع المطال x = {XmaX}·cos({omega0}·t). سرعة الجسم لحظة المرور الأول بوضع التوازن:"
+    v_at_t: "تابع السرعة v = −{vmax}·sin({omega0}·t + {phi}). قيمة السرعة في اللحظة t = {tq}:"
+    a_at_t: "تابع التسارع a = −amax·cos({omega0}·t). قيمة التسارع في اللحظة t = {tq}:"
+    which_pass: "لحظات المرور بوضع التوازن تُعطى بـ t = {t0} + n·T0/2. في اللحظة t = {t_given} يكون النواس في المرور:"
+    t_for_x_value: "تابع المطال x = {XmaX}·cos({omega0}·t + {phi}). أول لحظة يكون فيها المطال x = {XmaX/2}:"
+  options:
+    key: "المحسوب من compute بحسب mode"
+    distractors:
+      - {rule: quarter_period_reflex, rationale: "T0/4 مهما كان φ"}
+      - {rule: forget_n, rationale: "المرور الثاني = الأول + T0 بدل + T0/2"}
+      - {rule: sign_flip, rationale: "سرعة المرور الأول موجبة مع أنه انطلق من مطال موجب"}
+      - {rule: sin_cos, rationale: "عوّض في cos بدل sin"}
+  rubric:
+    - {step: "شرط الموضع (x = 0 ⇒ cos(…) = 0 ⇒ ω0t + φ = π/2 + nπ)", points: 5}
+    - {step: "الحل العام ثم اختيار n المناسب", points: 3}
+    - {step: "النتيجة بوحدتها (وإشارة السرعة عند طلبها)", points: 2}
+  answer_basis: "الكتاب ص ١٩ م٤ · L1 مثال ٣ (٢)"
+  review_notes:
+    - "idx 90 (جذع مبتور «m.s 0.04 في موضع مطاله») مستبعد — انظر review_queue."
+  approved: false
+
+- id: U1.L1.T19
+  title: "كتابة التابع الزمني للمطال من معطيات"
+  chapter: U1C1
+  type: mcq
+  difficulty: 3
+  weight: 10
+  source: {bank_idx: [114, 141, 148, 173], book: "ص ١٨–١٩", lesson: "L1 مثال ٣ (١)"}
+  vars:
+    XmaX_cm: {set: [4, 5, 8, 12, 30], unit: cm}
+    T0:      {set: [1, 2, 4, "π/5"], unit: s}
+    m_k:     {set: [[2, 20], [0.04, 10], [0.5, 8]], desc: "بديل عن T0: (m, k) ⇒ ω0 = √(k/m)"}
+    start:   {ref: U1.L1.T17.table}
+  compute:
+    omega0: "2*pi/T0  |  sqrt(k/m)"
+    phi: "من جدول T17"
+  stem: "نواس مرن غير متخامد سعته {XmaX_cm} cm و{given}؛ في مبدأ الزمن كان الجسم {start.desc}. تابع المطال الزمني:"
+  options:
+    key: "x = {XmaX_cm/100}·cos({omega0}·t + {phi})"
+    distractors:
+      - {rule: unit_cm_m, rationale: "السعة بالـcm داخل التابع"}
+      - {rule: sign_flip, rationale: "إشارة φ معكوسة"}
+      - {rule: forget_2pi, rationale: "وضع T0 أو 1/T0 مكان ω0"}
+  rubric:
+    - {step: "الشكل العام x = XmaX·cos(ω0t + φ)", points: 2}
+    - {step: "ω0 = 2π/T0 أو √(k/m)", points: 3}
+    - {step: "φ من شروط البدء (مطال + إشارة سرعة)", points: 3}
+    - {step: "التابع النهائي بوحدات SI", points: 2}
+  answer_basis: "الكتاب ص ١٢–١٣، ١٩"
+  approved: false
+
+- id: U1.L1.T20
+  title: "قراءة الخط البياني x(t) أو v(t) أو a(t) ⇒ التابع الزمني"
+  chapter: U1C1
+  type: mcq
+  difficulty: 3
+  weight: 10
+  needs_figure: true
+  source: {bank_idx: [120, 132, 133, 135, 140, 145, 164, 172], lesson: "L3 §١١ قراءة الخط البياني [أستاذ] (القاعدة نفسها للمرن)"}
+  vars:
+    curve:   {set: [x, v, a]}
+    XmaX:    {set: [0.2, 0.4, 0.6, 0.8], unit: m}
+    T0:      {set: [1, 2, 4, "4/3"], unit: s}
+    value_at_0: {set: ["+max", "−max", "0 صاعد", "0 هابط", "+max/2 هابط"]}
+  compute:
+    omega0: "2*pi/T0"
+    phi: "من قيمة t = 0 وجهة التغير (جدول T17)"
+    x_t: "XmaX*cos(omega0*t + phi)"
+    v_t: "-omega0*XmaX*sin(omega0*t + phi)"
+    a_t: "-omega0**2*XmaX*cos(omega0*t + phi)"
+  figure_spec: "منحنٍ جيبي؛ يُقرأ منه: القيمة القصوى (السعة أو vmax أو amax)، وبين تقاطعين متتاليين مع محور الزمن = T0/2، وقيمة t = 0 مع جهة التغير."
+  stem: "يمثّل الخط البياني المجاور تغيّرات {curve} بدلالة الزمن لجسم مرتبط بنابض يتحرك بحركة توافقية بسيطة. التابع الزمني الذي يمثّله:"
+  options:
+    key: "التابع المحسوب"
+    distractors:
+      - {rule: forget_2pi, rationale: "ω0 = T0 أو 1/T0"}
+      - {rule: sign_flip, rationale: "إشارة φ أو إشارة التابع"}
+      - {rule: sin_cos, rationale: "كتب v بـcos"}
+      - {rule: forget_half, rationale: "قرأ T0 على أنه المسافة بين تقاطعين (وهي T0/2)"}
+  rubric:
+    - {step: "قراءة السعة/القيمة القصوى", points: 2}
+    - {step: "قراءة T0 (تقاطعان متتاليان = T0/2) ⇒ ω0", points: 3}
+    - {step: "φ من قيمة t = 0 وجهة التغير", points: 3}
+    - {step: "التابع", points: 2}
+  answer_basis: "L3 §١١ [أستاذ] + الكتاب ص ١٢–١٣"
+  approved: false
+
+- id: U1.L1.T21
+  title: "علّل (لأن / بسبب)"
+  chapter: U1C1
+  type: why
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [13, 25, 59, 61, 67, 69], book: "ص ١١–١٦", lesson: "L1 §٣ §٧"}
+  variants:
+    - stem: "علّل: النبض الخاص للنواس المرن غير المتخامد مقدار ثابت وموجب."
+      keys: ["k وm مقادير ثابتة وموجبة", "ω0 = √(k/m)"]
+      anti_keys: ["لأن الحركة انسحابية", "لأن الحركة غير متخامدة"]
+      mcq_key: "لأن k وm مقداران ثابتان وموجبان"
+      mcq_distractors: ["لأن حركة النواس انسحابية", "لأن حركة النواس غير متخامدة", "لأن النواس يخضع لقوة إرجاع"]
+    - stem: "علّل: تنعدم الطاقة الكامنة المرونية في مركز الاهتزاز."
+      keys: ["المطال معدوم", "x = 0", "Ep = ½kx²"]
+      anti_keys: ["السرعة معدومة", "السعة معدومة"]
+      mcq_key: "بسبب انعدام المطال"
+      mcq_distractors: ["بسبب انعدام السرعة", "بسبب انعدام سعة الحركة", "بسبب انعدام النبض الخاص"]
+    - stem: "علّل: تنعدم الطاقة الحركية في الموضعين الطرفيين."
+      keys: ["السرعة معدومة", "v = 0"]
+      anti_keys: ["المطال معدوم", "الدور معدوم"]
+      mcq_key: "بسبب انعدام السرعة"
+      mcq_distractors: ["بسبب انعدام المطال", "بسبب انعدام سعة الحركة", "بسبب انعدام الدور"]
+    - stem: "علّل: الطاقة الحركية عظمى في مركز الاهتزاز."
+      keys: ["السرعة عظمى"]
+      anti_keys: ["المطال أعظمي", "الكامنة عظمى"]
+      mcq_key: "لأن السرعة عظمى"
+      mcq_distractors: ["لأن المطال أعظمي", "لأن الطاقة الكامنة المرونية عظمى", "لأن النبض أعظمي"]
+    - stem: "علّل: الطاقة الكامنة المرونية عظمى في الموضعين الطرفيين."
+      keys: ["المطال أعظمي", "x = ±XmaX"]
+      anti_keys: ["السرعة عظمى"]
+      mcq_key: "لأن المطال أعظمي"
+      mcq_distractors: ["لأن السرعة عظمى", "بسبب انعدام الطاقة الميكانيكية", "لأن النبض أعظمي"]
+    - stem: "علّل: يكون تسارع النواس المرن أعظمياً في الموضعين الطرفيين."
+      keys: ["المطال أعظمي", "a = −ω0²x", "قوة الإرجاع عظمى"]
+      anti_keys: ["السرعة عظمى"]
+      mcq_key: "لأن المطال أعظمي فقوة الإرجاع عظمى"
+      mcq_distractors: ["لأن السرعة عظمى", "لأن المطال معدوم", "لأن السرعة معدومة فيتوقف الجسم"]
+    - stem: "علّل: تُسمّى محصلة القوى الخارجية المؤثرة في مركز عطالة الجسم قوة إرجاع."
+      keys: ["تعيد الجسم إلى مركز الاهتزاز", "تعاكس المطال بالإشارة", "نحو مركز الاهتزاز"]
+      anti_keys: ["نحو الموضع الطرفي", "بجهة الحركة"]
+      mcq_key: "لأنها تعيد الجسم الصلب المهتز إلى مركز الاهتزاز (تعاكس المطال بالإشارة)"
+      mcq_distractors: ["لأنها تعيد الجسم نحو الموضع الطرفي", "لأنها بجهة حركة الجسم دوماً", "لأنها تعيد الجسم إلى موضع انطلاقه"]
+  rubric:
+    - {step: "جملة السبب بمفتاحها", points: 10, anti_keys_zero: true}
+  answer_basis: "الكتاب ص ١١–١٦"
+  approved: false
+
+# ───────────────────────────── L2 — نواس الفتل (U1C2) ─────────────────────────────
+
+- id: U1.L2.T01
+  title: "تعريف نواس الفتل وطبيعة حركته"
+  chapter: U1C2
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [7, 30], book: "ص ٢٢–٢٣", lesson: "L2 §١"}
+  variants:
+    - stem: "حركة نواس الفتل غير المتخامد هي:"
+      key: "جميع ما سبق صحيح (جيبية دورانية، توافقية بسيطة، اهتزازية غير متخامدة)"
+      distractors:
+        - {text: "حركة جيبية دورانية فقط", rule: true_but_partial, rationale: ""}
+        - {text: "توافقية بسيطة فقط", rule: true_but_partial, rationale: ""}
+        - {text: "اهتزازية غير متخامدة فقط", rule: true_but_partial, rationale: ""}
+    - stem: "في نواس الفتل غير المتخامد يكون:"
+      key: "جميع ما سبق صحيح (الساق أو القرص متجانس، معلّق من مركزه بسلك فتل شاقولي، يهتز في مستوٍ أفقي حول محور السلك)"
+      distractors:
+        - {text: "الساق (أو القرص) متجانس فقط", rule: true_but_partial, rationale: ""}
+        - {text: "الساق معلّق من مركزه فقط", rule: true_but_partial, rationale: ""}
+        - {text: "يهتز الساق في مستوٍ أفقي فقط", rule: true_but_partial, rationale: ""}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "تعريف نواس الفتل (الكتاب ص ٢٢) [أستاذ]"
+  approved: false
+
+- id: U1.L2.T02
+  title: "القوى والعزوم: لماذا يبقى عزم الفتل وحده"
+  chapter: U1C2
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [3, 4, 6, 11, 12, 21, 34], book: "ص ٢٢", lesson: "L2 §٢"}
+  variants:
+    - stem: "يخضع ساق نواس الفتل غير المتخامد لتأثير القوى الخارجية الآتية:"
+      key: "قوة الثقل w⃗، قوة توتر السلك T⃗، ومزدوجة الفتل"
+      distractors:
+        - {text: "قوة الثقل w⃗ وقوة توتر السلك T⃗ فقط", rule: mix_pendulums, rationale: "المزدوجة هي المُرجِعة"}
+        - {text: "قوة الثقل w⃗ ومزدوجة الفتل فقط", rule: mix_pendulums, rationale: "السلك مشدود ⇒ توتر"}
+        - {text: "قوة الثقل w⃗ وقوة رد فعل المحور R⃗ ومزدوجة الفتل", rule: mix_pendulums, rationale: "لا محور صلب؛ خلط مع الثقلي"}
+    - stem: "في نواس الفتل غير المتخامد يكون عزم قوة الثقل وعزم قوة توتر السلك بالنسبة لمحور السلك:"
+      key: "معدومين لأن حامل كلٍّ منهما ينطبق على محور الدوران"
+      distractors:
+        - {text: "متساويين ومتعاكسين فيتلاشيان", rule: mix_pendulums, rationale: "كلٌّ منهما صفر بذاته"}
+        - {text: "معدومين لأن نقطة تأثير كلٍّ منهما لا تنتقل", rule: mix_pendulums, rationale: "هذا تعليل انعدام العمل لا العزم"}
+        - {text: "غير معدومين ويجب إدخالهما في المعادلة", rule: mix_pendulums, rationale: "ذراعهما صفر"}
+    - stem: "عندما ندير ساق نواس الفتل بزاوية θ عن وضع توازنه في مستوٍ أفقي فإن مزدوجة الفتل:"
+      key: "جميع ما سبق صحيح (تنشأ في السلك، تؤثر في الساق، تقاوم عملية الفتل)"
+      distractors:
+        - {text: "تنشأ في السلك فقط", rule: true_but_partial, rationale: ""}
+        - {text: "تؤثر في الساق فقط", rule: true_but_partial, rationale: ""}
+        - {text: "تقاوم عملية الفتل فقط", rule: true_but_partial, rationale: ""}
+    - stem: "يتناسب عزم مزدوجة الفتل لنواس فتل غير متخامد:"
+      key: "طرداً مع ثابت الفتل C وطرداً مع زاوية الفتل θ ويعاكسها بالإشارة"
+      distractors:
+        - {text: "طرداً مع ثابت الفتل وعكساً مع زاوية الفتل", rule: invert_ratio, rationale: "Γ = −C·θ"}
+        - {text: "طرداً مع زاوية الفتل فقط ولا يتعلق بالسلك", rule: mix_pendulums, rationale: "C يمثل السلك"}
+        - {text: "عكساً مع الجذر التربيعي لعزم العطالة", rule: mix_pendulums, rationale: "خلط مع الدور"}
+    - stem: "يُسمّى عزم مزدوجة الفتل عزم إرجاع لأنه:"
+      key: "يعيد الساق المهتز إلى وضع توازنه (يعاكس زاوية الفتل بالإشارة)"
+      distractors:
+        - {text: "يعيد الساق إلى الموضع الطرفي", rule: mix_max_center, rationale: ""}
+        - {text: "يوافق جهة دوران الساق دوماً", rule: sign_flip, rationale: ""}
+        - {text: "يعيد الساق إلى موضع انطلاقه", rule: mix_max_center, rationale: ""}
+    - stem: "النبض الخاص لنواس الفتل غير المتخامد مقدار ثابت وموجب لأن:"
+      key: "C وIΔ مقداران ثابتان وموجبان"
+      distractors:
+        - {text: "حركة النواس دورانية", rule: mix_pendulums, rationale: ""}
+        - {text: "حركة النواس غير متخامدة", rule: mix_pendulums, rationale: ""}
+        - {text: "النواس يخضع لعزم إرجاع", rule: mix_pendulums, rationale: ""}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "Γ_η/Δ = −C·θ · عزما w وT معدومان لانطباق حامليهما على المحور (الكتاب ص ٢٢)"
+  approved: false
+
+- id: U1.L2.T03
+  title: "تمييز العلاقة الصحيحة (نواس الفتل)"
+  chapter: U1C2
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [1, 2, 5, 10, 13, 14, 16, 22, 23, 24, 25, 26, 32, 40], book: "ص ٢٢–٢٧", lesson: "L2 الخلاصة"}
+  vars:
+    q: {set: [fund, Gamma, C_wire, alpha, omega0, T0, Ep, Ek, ode, dEp, dEk, omega_t, C_all, Ek_all]}
+  table:
+    fund:    {stem: "عند دراسة حركة نواس الفتل نستخدم العلاقة الأساسية في التحريك الدوراني:", key: "ΣΓ/Δ = IΔ·θ″"}
+    Gamma:   {stem: "يُعطى عزم مزدوجة الفتل بالعلاقة:", key: "Γ_η/Δ = −C·θ"}
+    C_wire:  {stem: "يُعطى ثابت فتل السلك C بدلالة أبعاده بالعلاقة:", key: "C ∝ r⁴/l (يزداد بالأس الرابع لنصف القطر ويتناقص مع الطول)"}
+    alpha:   {stem: "يُعطى التسارع الزاوي لنواس فتل غير متخامد بالعلاقة:", key: "θ″ = −ω0²·θ"}
+    omega0:  {stem: "النبض الخاص لنواس الفتل غير المتخامد هو:", key: "ω0 = √(C/IΔ)"}
+    T0:      {stem: "دور نواس الفتل غير المتخامد T0 هو:", key: "T0 = 2π·√(IΔ/C)"}
+    Ep:      {stem: "الطاقة الكامنة المرونية لنواس الفتل تُعطى بالعلاقة:", key: "Ep = ½·C·θ²"}
+    Ek:      {stem: "الطاقة الحركية الدورانية لنواس الفتل تُعطى بالعلاقة:", key: "Ek = ½·IΔ·θ′²"}
+    ode:     {stem: "المعادلة التفاضلية من المرتبة الثانية لنواس الفتل غير المتخامد التي تقبل حلاً جيبياً هي:", key: "θ″ = −(C/IΔ)·θ"}
+    dEp:     {stem: "مشتق الطاقة الكامنة المرونية لنواس الفتل بالنسبة للزمن هو:", key: "C·θ·θ′"}
+    dEk:     {stem: "مشتق الطاقة الحركية الدورانية لنواس الفتل بالنسبة للزمن هو:", key: "IΔ·θ′·θ″"}
+    omega_t: {stem: "يُعطى التابع الزمني للسرعة الزاوية لنواس الفتل بالعلاقة:", key: "θ′ = −ω0·θmax·sin(ω0·t + φ)"}
+    C_all:   {stem: "يُعطى ثابت فتل السلك C بالعلاقة:", key: "جميع ما سبق صحيح (C = IΔ·ω0² · C = 4π²IΔ/T0² · C = −Γ/θ)"}
+    Ek_all:  {stem: "الطاقة الحركية الدورانية لنواس الفتل تُعطى بالعلاقة:", key: "جميع ما سبق صحيح (Ek = E − Ep · Ek = ½IΔθ′² · Ek = ½C(θmax² − θ²))"}
+  stem: "{table[q].stem}"
+  options:
+    key: "{table[q].key}"
+    distractor_generation:
+      - {rule: sign_flip, rationale: "حذف الإشارة السالبة"}
+      - {rule: invert_ratio, rationale: "IΔ/C ↔ C/IΔ"}
+      - {rule: forget_square, rationale: "θ بدل θ² أو ω0 بدل ω0²"}
+      - {rule: sin_cos, rationale: "cos بدل sin في السرعة الزاوية"}
+      - {rule: exponent4, rationale: "r² بدل r⁴ أو l في البسط"}
+      - {rule: mix_pendulums, rationale: "m بدل IΔ أو k بدل C (علاقات المرن)"}
+      - {rule: true_but_partial, rationale: "لقوالب «جميع ما سبق»"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ٢٢–٢٧"
+  review_notes:
+    - "رمز ثابت الفتل: الكتاب C (L2 والدفتر) بينما glossary.json يستعمل K وبنك المصدر يكتب K = k(2r)⁴/l بالقطر. يُثبَّت الرمز وصيغة ص ٢٥ (r⁴ أم (2r)⁴) حرفياً مع الأستاذ قبل التوليد؛ إلى حينها لا يُولَّد صف C_wire."
+  approved: false
+
+- id: U1.L2.T04
+  title: "الوحدات (نواس الفتل)"
+  chapter: U1C2
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [8, 9, 28], book: "ص ٢٢–٢٣"}
+  vars:
+    q: {set: [I, C, Gamma, theta_dot]}
+  table:
+    I:         {name: "عزم عطالة ساق (أو قرص) نواس الفتل IΔ", key: "kg·m²", wrong: ["kg·m⁻²", "rad·s⁻²", "N·m·rad⁻¹"]}
+    C:         {name: "ثابت فتل السلك C", key: "N·m·rad⁻¹", wrong: ["kg·m²", "rad·s⁻²", "N·m⁻¹"]}
+    Gamma:     {name: "عزم مزدوجة الفتل", key: "m·N", wrong: ["N·m⁻¹", "N·m·rad⁻¹", "J·s"]}
+    theta_dot: {name: "السرعة الزاوية θ′", key: "rad·s⁻¹", wrong: ["rad·s⁻²", "m·s⁻¹", "s⁻²"]}
+  stem: "يُقاس {table[q].name} بواحدة:"
+  options: {key: "{table[q].key}", distractors_from: "table[q].wrong"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "glossary.json U1C2 (وحدة عزم المزدوجة m·N بقرار الأستاذ)"
+  approved: false
+
+- id: U1.L2.T05
+  title: "تبعية الدور: عزم العطالة، طول السلك، السعة، الميقاتية"
+  chapter: U1C2
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [29, 35, 36, 37, 38], book: "ص ٢٣–٢٦", lesson: "L2 §٤"}
+  variants:
+    - stem: "يتناسب دور نواس الفتل غير المتخامد:"
+      key: "طرداً مع الجذر التربيعي لعزم العطالة وعكساً مع الجذر التربيعي لثابت الفتل"
+      distractors:
+        - {text: "طرداً مع عزم العطالة", rule: forget_sqrt, rationale: ""}
+        - {text: "طرداً مع الجذر التربيعي لثابت الفتل", rule: invert_ratio, rationale: ""}
+        - {text: "طرداً مع الجذر التربيعي للسعة الزاوية", rule: amplitude_dependence, rationale: ""}
+    - stem: "لا تتغير قيمة الدور الخاص لنواس الفتل بتغير السعة الزاوية للحركة وذلك لأن:"
+      key: "لا يوجد في علاقة الدور T0 = 2π√(IΔ/C) أي أثر للسعة الزاوية"
+      distractors:
+        - {text: "حركة النواس جيبية", rule: mix_pendulums, rationale: "نتيجة لا سبب"}
+        - {text: "النواس يخضع لعزم إرجاع", rule: mix_pendulums, rationale: ""}
+        - {text: "الدور مقدار ثابت بالتعريف", rule: mix_pendulums, rationale: "مصادرة"}
+    - stem: "عند زيادة عزم عطالة نواس فتل غير متخامد فإن دوره T0′:"
+      key: "T0′ > T0"
+      distractors:
+        - {text: "T0′ < T0", rule: invert_ratio, rationale: ""}
+        - {text: "T0′ = T0", rule: mix_pendulums, rationale: ""}
+        - {text: "لا يمكن الحكم", rule: mix_pendulums, rationale: ""}
+    - stem: "عند نقصان طول سلك الفتل لنواس فتل غير متخامد:"
+      key: "تزداد قيمة ثابت الفتل فينقص الدور"
+      distractors:
+        - {text: "تنقص قيمة ثابت الفتل فيزداد الدور", rule: invert_ratio, rationale: "C ∝ 1/l"}
+        - {text: "تنقص قيمة ثابت الفتل فينقص الدور", rule: invert_ratio, rationale: ""}
+        - {text: "يبقى دور النواس ثابتاً", rule: mix_pendulums, rationale: ""}
+    - stem: "ميقاتية تعتمد في عملها على نواس فتل، ولتصحيح التأخير الحاصل في الوقت فيها:"
+      key: "إنقاص طول سلك الفتل بمقدار ضئيل"
+      distractors:
+        - {text: "زيادة طول سلك الفتل", rule: invert_ratio, rationale: "يكبّر الدور فتؤخّر أكثر"}
+        - {text: "زيادة كتلة القرص مع المحافظة على قطره", rule: invert_ratio, rationale: "يزيد IΔ فيزيد الدور"}
+        - {text: "زيادة قطر القرص مع المحافظة على كتلته", rule: invert_ratio, rationale: "يزيد IΔ"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "T0 = 2π√(IΔ/C) · C ∝ 1/l (الكتاب ص ٢٣–٢٦)"
+  approved: false
+
+- id: U1.L2.T06
+  title: "نسب الدور عند تغيير طول السلك أو قطره أو عزم العطالة (C ∝ r⁴/l)"
+  chapter: U1C2
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [20, 39, 42, 46, 49, 50, 51, 61, 63, 64, 65, 68, 69, 70, 71, 72, 73, 74, 78, 83, 99], book: "ص ٢٥، ٢٨", lesson: "L2 §٤ [أستاذ] قاعدة النسبة", exam: "٢٠٢٦ س١-١ (ربع الطول ⇒ نصف الدور) ✅"}
+  vars:
+    mode: {set: [length, diameter, inertia, amplitude, split_wire, cut_fraction, two_wires_C, two_wires_L, target_T]}
+    fl: {set: [0.25, 0.5, 0.75, 0.8, 2, 4, 5], desc: "l′/l"}
+    fd: {set: [0.5, 2], desc: "القطر الجديد/القديم"}
+    fI: {set: [2, 4], desc: "IΔ′/IΔ"}
+    T0: {set: [2, 4], unit: s}
+  compute:
+    r_length: "sqrt(fl)"
+    r_diameter: "1/fd**2"
+    r_inertia: "sqrt(fI)"
+    r_amplitude: "1"
+    r_split_wire: "0.5"
+    r_cut_quarter: "sqrt(0.75)"
+    two_wires_C: "C1 = fC*C2 ⇒ T01/T02 = 1/sqrt(fC)"
+    two_wires_L: "T01/T02 = sqrt(L1/L2)"
+    target_T: "l′/l = (T0′/T0)**2"
+  stems:
+    length: "نواس فتل دوره T0؛ نجعل طول سلك الفتل {fl} ما كان عليه. دوره الجديد:"
+    diameter: "نواس فتل دوره T0؛ نجعل قطر السلك {fd} ما كان عليه (الطول نفسه). دوره الجديد:"
+    inertia: "نواس فتل دوره T0؛ نزيد عزم عطالته إلى {fI} أمثال ما كان. دوره الجديد:"
+    amplitude: "نواس فتل دوره {T0} s وسعته الزاوية 10°؛ نزيد سعته إلى 15°. دوره:"
+    split_wire: "نقسم سلك الفتل إلى قسمين متساويين ثم نعلّق الساق من منتصفها بنصفَي السلك معاً (أعلى وأسفل). دوره الجديد:"
+    cut_fraction: "نواس فتل دوره T0؛ ننقص من طول سلكه بمقدار الثلث/الربع. دوره الجديد:"
+    two_wires_C: "ساقان متماثلتان معلّقتان بسلكَي فتل لهما الطول نفسه، C1 و C2 مع T01 = 2·T02. العلاقة بين الثابتين:"
+    two_wires_L: "ساقان متماثلتان بسلكَي فتل متماثلين (المادة والقطر) طولاهما L1 وL2، وT01 = 2·T02. العلاقة بين الطولين:"
+    target_T: "نواس فتل دوره {T0} s؛ نغيّر طول السلك فقط ليصبح دوره {T0/2} s. طول السلك الجديد:"
+  options:
+    key: "المحسوب (مثلاً length مع fl = 0.25 ⇒ T0/2 · diameter مع fd = 2 ⇒ T0/4 · two_wires_C ⇒ C2 = 4C1 · two_wires_L ⇒ L1 = 4L2 · split_wire ⇒ T0/2 · target_T ⇒ l/4)"
+    distractors:
+      - {rule: forget_sqrt, rationale: "T0 ∝ l بدل √l (ربع الطول ⇒ ربع الدور)"}
+      - {rule: invert_ratio, rationale: "طول أقصر ⇒ دور أطول"}
+      - {rule: exponent4, rationale: "القطر: نسي الأس ٤ (T0 ∝ 1/d بدل 1/d²)"}
+      - {rule: amplitude_dependence, rationale: "السعة تغيّر الدور"}
+  rubric:
+    - {step: "C ∝ r⁴/l ⇒ T0 = 2π√(IΔ/C) ∝ √l / r²", points: 5}
+    - {step: "النسبة T0′/T0", points: 3}
+    - {step: "النتيجة", points: 2}
+  answer_basis: "الكتاب ص ٢٥ · امتحان ٢٠٢٦ س١-١ (T0′ = T0/2 لربع الطول) ✅ مؤكَّد بالسلم"
+  review_notes:
+    - "cut_fraction: «ننقص بمقدار الثلث» ⇒ l′ = 2l/3 ⇒ T0′ = T0·√(2/3)؛ خيارات المصدر (√2، √3، …) مشوّشة ⇒ تُقرأ بصرياً قبل اعتماد أي منها."
+  approved: false
+
+- id: U1.L2.T07
+  title: "C أو IΔ أو T0 من T0 = 2π√(IΔ/C)"
+  chapter: U1C2
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [17, 82], book: "ص ٢٧", lesson: "L2 مثال ١ (٣)"}
+  vars:
+    I:  {set: [0.02, 0.03, 0.04, 0.05, 0.1], unit: "kg·m²"}
+    C:  {set: [0.4, 0.8, 1.2, 2, 8], unit: "N·m·rad⁻¹"}
+    T0: {set: [0.5, 1, 2], unit: s}
+    ask: {set: [C, I, T0]}
+  constants_used: {pi_sq: 10}
+  compute:
+    C_val: "4*pi_sq*I/T0**2"
+    I_val: "C*T0**2/(4*pi_sq)"
+    T0_val: "2*sqrt(pi_sq*I/C)"
+  stem: "نواس فتل غير متخامد {given}. احسب {ask} (π² = 10)."
+  options:
+    key: {C: "{C_val} N·m·rad⁻¹", I: "{I_val} kg·m²", T0: "{T0_val} s"}
+    distractors:
+      - {value: "4*pi_sq*I/T0", rule: forget_square, rationale: ""}
+      - {value: "I/T0**2", rule: forget_4pi2, rationale: ""}
+      - {value: "T0**2/(4*pi_sq*I)", rule: invert_ratio, rationale: ""}
+  rubric:
+    - {step: "T0 = 2π√(IΔ/C) ⇒ عزل المطلوب", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1, keys: ["N·m·rad⁻¹", "kg·m²", "s"]}
+  answer_basis: "الكتاب ص ٢٣ (IΔ = 4·10⁻² و T0 = 0.5 s ⇒ C = 6.4 N·m·rad⁻¹)"
+  approved: false
+
+- id: U1.L2.T08
+  title: "التسارع الزاوي والسرعة الزاوية والطاقة في مطال زاوي معلوم"
+  chapter: U1C2
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [19, 31, 45, 47, 48, 57, 58, 59, 60], book: "ص ٢٣–٢٤، ٢٧", lesson: "L2 §٦ + مثال ٢"}
+  vars:
+    T0:        {set: [0.5, 1, 2, 4], unit: s}
+    theta_max: {set: [0.1, 0.2, 0.4, 1, "π/4", "π/2"], unit: rad}
+    theta:     {set: [0.05, "−π/4", "π/4", "θmax", "θmax/2", "θmax/3", "θmax/√3"], unit: rad}
+    C:         {set: [0.1, 0.4], unit: "N·m·rad⁻¹"}
+    ask:       {set: [alpha_at_theta, alpha_max, omega_max, E, Ep_frac, Ek_frac]}
+  constants_used: {pi_sq: 10}
+  compute:
+    omega0_sq: "4*pi_sq/T0**2"
+    alpha_at_theta: "-omega0_sq*theta"
+    alpha_max: "omega0_sq*theta_max"
+    omega_max: "sqrt(omega0_sq)*theta_max"
+    E: "0.5*C*theta_max**2"
+    Ep_frac: "(theta/theta_max)**2 * E"
+    Ek_frac: "(1 - (theta/theta_max)**2) * E"
+  stem: "نواس فتل غير متخامد {given}. احسب {ask} (π² = 10)."
+  options:
+    key: "المحسوب بوحدته (rad·s⁻² · rad·s⁻¹ · J)"
+    distractors:
+      - {value: "+omega0_sq*theta", rule: sign_flip, rationale: "أهمل إشارة الإرجاع"}
+      - {value: "sqrt(omega0_sq)*theta", rule: mix_v_a, rationale: "ω0 بدل ω0²"}
+      - {value: "C*theta_max**2", rule: forget_half, rationale: ""}
+      - {value: "(theta/theta_max)*E", rule: forget_square, rationale: "Ep ∝ θ²"}
+  rubric:
+    - {step: "θ″ = −ω0²θ / θ′max = ω0θmax / E = ½Cθmax²", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة بإشارتها", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "الكتاب ص ٢٣–٢٤"
+  approved: false
+
+- id: U1.L2.T09
+  title: "مواضع الأعظمي/المعدوم في نواس الفتل"
+  chapter: U1C2
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [15, 43, 44], book: "ص ٢٤", lesson: "L2 §٦ الجدول"}
+  variants:
+    - stem: "عند مرور نواس الفتل في وضع التوازن:"
+      key: "جميع ما سبق صحيح (ينعدم المطال الزاوي، ينعدم التسارع الزاوي، السرعة الزاوية عظمى)"
+      distractors:
+        - {text: "ينعدم المطال الزاوي فقط", rule: true_but_partial, rationale: ""}
+        - {text: "ينعدم التسارع الزاوي فقط", rule: true_but_partial, rationale: ""}
+        - {text: "السرعة الزاوية عظمى فقط", rule: true_but_partial, rationale: ""}
+    - stem: "عند حركة نواس فتل غير متخامد وفي مركز الاهتزاز يكون:"
+      key: "θ″ = 0 · θ′ = θ′max · Ek = E · Ep = 0"
+      distractors:
+        - {text: "θ″ = θ″max · θ′ = 0 · Ep = E · Ek = 0", rule: mix_max_center, rationale: "وصف الطرفين"}
+        - {text: "θ″ = 0 · θ′ = 0 · Ek = Ep", rule: mix_v_a, rationale: ""}
+        - {text: "θ″ = 0 · E = 0", rule: mix_Ep_Ek, rationale: ""}
+    - stem: "عند حركة نواس فتل غير متخامد وفي الموضعين الطرفيين يكون:"
+      key: "θ″ = θ″max · θ′ = 0 · Ep = E · Ek = 0"
+      distractors:
+        - {text: "θ″ = 0 · θ′ = θ′max · Ek = E", rule: mix_max_center, rationale: "وصف المركز"}
+        - {text: "θ″ = 0 · θ′ = 0 · Ep = E", rule: mix_v_a, rationale: ""}
+        - {text: "θ″ = θ″max · θ′ = θ′max", rule: mix_max_center, rationale: ""}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ٢٤ · L2 §٦"
+  approved: false
+
+- id: U1.L2.T10
+  title: "مسألة الجملة: IΔ (ساق/قرص/كتل نقطية) ⇒ T0 أو C أو l أو تابع المطال"
+  chapter: U1C2
+  type: problem
+  difficulty: 3
+  weight: 10
+  source: {bank_idx: [27, 33, 52, 55, 62, 67, 77, 79, 80, 86, 87, 88, 89, 90, 91, 92, 94, 95, 96, 97, 98, 100, 101, 102, 103, 105], book: "ص ٢٧–٢٨", lesson: "L2 §٥ + مثال ١ + مثال ٢"}
+  vars:
+    body: {set: [rod_uniform, rod_massless_2masses, disk, disk_plus_rod, disk_plus_2masses]}
+    m:    {set: [0.02, 0.1, 0.12, 0.2, 0.5, 1, 2], unit: kg}
+    l:    {set: [0.08, 0.1, 0.2, 0.5, 1], unit: m}
+    r:    {set: [0.02, 0.04, 0.05, 0.1, 0.2], unit: m}
+    m1:   {set: [0.02, 0.075, 0.125, 0.2, 0.4, 0.75], unit: kg}
+    C:    {set: [0.008, 0.072, 0.08, 0.4, 0.8], unit: "N·m·rad⁻¹"}
+    T0:   {set: [0.5, 1, 2, 2.5, 4], unit: s}
+    theta_max: {set: [0.1, 0.3, "π/3", "π/2"], unit: rad}
+    ask:  {set: [I, T0, C, l, r, theta_t, omega_first_pass, E]}
+  constants_used: {pi_sq: 10}
+  compute:
+    I_rod_uniform: "m*l**2/12"
+    I_rod_massless_2masses: "2*m1*(l/2)**2"
+    I_disk: "0.5*m*r**2"
+    I_disk_plus_rod: "0.5*m*r**2 + m_rod*l_rod**2/12"
+    I_disk_plus_2masses: "0.5*m*r**2 + 2*m1*r**2"
+    T0_val: "2*sqrt(pi_sq*I/C)"
+    C_val: "4*pi_sq*I/T0**2"
+    l_from_T0: "T0*sqrt(C/(2*pi_sq*m1))"
+    theta_t: "theta_max*cos(omega0*t)  (φ = 0: تُركت دون سرعة ابتدائية)"
+    omega_first_pass: "-omega0*theta_max  (سالبة: انطلق من مطال موجب)"
+    E: "0.5*C*theta_max**2"
+  stem: "نواس فتل يتألف من {body_desc} معلّق من مركزه بسلك فتل شاقولي {given}. {question}"
+  options:
+    key: "المحسوب بوحدته"
+    distractors:
+      - {rule: mix_pendulums, rationale: "استعمل m·r² للقرص أو ⅓ml² للساق من منتصفها"}
+      - {rule: forget_square, rationale: "T0 بلا تربيع عند عزل C"}
+      - {rule: unit_g_kg, rationale: "الكتلة بالغرام أو الطول بالسنتيمتر"}
+      - {rule: sign_flip, rationale: "السرعة الزاوية عند المرور الأول موجبة"}
+      - {rule: forget_pm, rationale: "φ ≠ 0 رغم الترك دون سرعة ابتدائية"}
+  rubric:
+    - {step: "IΔ للجملة (مجموع عزوم الأجزاء)", points: 5}
+    - {step: "T0 = 2π√(IΔ/C) أو العلاقة المطلوبة", points: 5}
+    - {step: "التعويض (π² = 10، وحدات SI)", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+    - {step: "عند التابع: φ = 0 «لأنه تُرك دون سرعة ابتدائية»", points: 3, anti_keys: ["φ = π/2"]}
+  answer_basis: "L2 §٥ (IΔ: ساق ml²/12 · قرص mr²/2 · نقطية mr²) · مثالا الكتاب ص ٢٧"
+  review_notes:
+    - "الأعداد في بنك المصدر مشوّشة كثيراً في هذه العائلة (أسس 10⁻² و10⁻³ مبعثرة) ⇒ لا يُنقل أي رقم منها؛ القيم أعلاه مختارة لتعطي نتائج نظيفة مع π² = 10."
+    - "idx 90–91 (ميقاتية قرص + كتلتان + ساق): بنية مركّبة تحتاج الشكل ⇒ تُعرض على الأستاذ."
+  approved: false
+
+- id: U1.L2.T11
+  title: "لحظات المرور وقيم السرعة الزاوية في لحظة (فتل)"
+  chapter: U1C2
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {bank_idx: [18, 41, 53, 54, 56, 75, 85], book: "ص ٢٧", lesson: "L2 مثال ١ (٢) + [أستاذ] إشارة المرور الفردي/الزوجي"}
+  inherits: U1.L1.T18
+  symbol_map: {x: θ, XmaX: θmax, v: θ′, a: θ″}
+  stem: "نواس فتل غير متخامد تابع مطاله الزاوي θ = {theta_max}·cos({omega0}·t + {phi}). {question}"
+  answer_basis: "القاعدة نفسها: θ = 0 ⇒ ω0t + φ = π/2 + nπ · المرور الأول من +θmax بسرعة زاوية سالبة"
+  approved: false
+
+- id: U1.L2.T12
+  title: "تغيّر IΔ أثناء الاهتزاز (كأسان يفرغان، كتلتان تبتعدان)"
+  chapter: U1C2
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [66, 76], book: "ص ٢٦، ٢٨ (تفكير ناقد)", lesson: "L2 اختبر نفسك س٣ س٤"}
+  variants:
+    - stem: "نواس فتل قرصه يحمل على محيطه كأسين متماثلين يحويان ماءً يتسرّب نحو مركز القرص أثناء الاهتزاز. أثناء التفريغ:"
+      key: "ينقص عزم عطالة الجملة فينقص الدور وتزداد السرعة الزاوية"
+      distractors:
+        - {text: "يزداد عزم عطالة الجملة فيزداد الدور", rule: invert_ratio, rationale: "الكتلة تقترب من المحور"}
+        - {text: "ينقص عزم العطالة فيزداد الدور", rule: invert_ratio, rationale: "T0 ∝ √IΔ"}
+        - {text: "لا يتغير شيء لأن الكتلة الكلية ثابتة", rule: mix_pendulums, rationale: "IΔ يتعلق بتوزيع الكتلة لا بمجموعها"}
+    - stem: "أثناء اهتزاز نواس فتل ابتعدت الكتلتان النقطيتان عن المحور بالمقدار نفسه. الخط البياني للمطال الزاوي بعد تلك اللحظة:"
+      key: "يصبح المنحني أعرض (يزداد الدور لأن IΔ ازداد)"
+      distractors:
+        - {text: "يصبح المنحني أضيق (ينقص الدور)", rule: invert_ratio, rationale: ""}
+        - {text: "لا يتغير", rule: mix_pendulums, rationale: ""}
+        - {text: "تزداد السعة الزاوية", rule: mix_pendulums, rationale: "الطاقة لا تزداد"}
+  rubric: [{step: "الاختيار الصحيح مع التعليل", points: 10}]
+  answer_basis: "IΔ = Σmr² · T0 ∝ √IΔ (الكتاب ص ٢٦، ٢٨)"
+  approved: false
+
+- id: U1.L2.T13
+  title: "قراءة الخط البياني θ(t) / θ′(t) / θ″(t) ⇒ التابع (فتل)"
+  chapter: U1C2
+  type: mcq
+  difficulty: 3
+  weight: 10
+  needs_figure: true
+  source: {bank_idx: [81, 84, 93, 104]}
+  inherits: U1.L1.T20
+  symbol_map: {x: θ, XmaX: θmax, v: θ′, a: θ″}
+  approved: false
+
+# ───────────────────────────── L3 — النواس الثقلي (U1C3) ─────────────────────────────
+
+- id: U1.L3.T01
+  title: "تعريف النواس البسيط والمركّب"
+  chapter: U1C3
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [11, 16, 67], book: "ص ٣٠، ٣٣، ٣٨", lesson: "L3 §٢ §٦"}
+  variants:
+    - stem: "يتألف النواس الثقلي البسيط غير المتخامد من:"
+      key: "نقطة مادية كتلتها m تهتز بتأثير ثقلها في مستوٍ شاقولي على بعد ثابت l من محور دوران أفقي (عملياً: كرة صغيرة كثيفة بخيط مهمل الكتلة لا يمتط)"
+      distractors:
+        - {text: "جسم صلب يهتز حول محور أفقي لا يمر من مركز عطالته", rule: mix_pendulums, rationale: "هذا المركّب"}
+        - {text: "نقطة مادية تهتز في مستوٍ أفقي حول سلك شاقولي", rule: mix_pendulums, rationale: "هذا الفتل"}
+        - {text: "جسم معلّق بنابض مرن يهتز شاقولياً", rule: mix_pendulums, rationale: "هذا المرن"}
+    - stem: "أي من هذه العبارات خاطئة بالنسبة للنواس الثقلي البسيط؟"
+      key: "طول الخيط صغير بالنسبة لنصف قطر الكرة"
+      distractors:
+        - {text: "كرة النواس صغيرة الحجم", rule: true_but_partial, rationale: "صحيحة"}
+        - {text: "كثافة الكرة كبيرة نسبياً", rule: true_but_partial, rationale: "صحيحة"}
+        - {text: "الخيط مهمل الكتلة لا يمتط", rule: true_but_partial, rationale: "صحيحة"}
+    - stem: "في النواس الثقلي المركّب غير المتخامد يهتز النواس:"
+      key: "جميع ما سبق صحيح (بتأثير عزم ثقله، حول محور أفقي لا يمر من مركز عطالته، في مستوٍ شاقولي)"
+      distractors:
+        - {text: "بتأثير عزم قوة ثقله فقط", rule: true_but_partial, rationale: ""}
+        - {text: "حول محور دوران أفقي لا يمر من مركز عطالته فقط", rule: true_but_partial, rationale: ""}
+        - {text: "في مستوٍ شاقولي فقط", rule: true_but_partial, rationale: ""}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ٣٠، ٣٣ [أستاذ]"
+  approved: false
+
+- id: U1.L3.T02
+  title: "لماذا الحركة غير توافقية وشرط السعات الصغيرة"
+  chapter: U1C3
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [6, 15, 17, 18, 19, 27, 28, 38, 73], book: "ص ٣١–٣٥", lesson: "L3 §١ §٣ §٨"}
+  variants:
+    - stem: "حركة النواس الثقلي المركّب غير المتخامد من أجل الزوايا صغيرة السعة هي:"
+      key: "جميع ما سبق صحيح (جيبية دورانية، توافقية بسيطة، هزازة غير متخامدة)"
+      distractors:
+        - {text: "جيبية دورانية فقط", rule: true_but_partial, rationale: ""}
+        - {text: "توافقية بسيطة فقط", rule: true_but_partial, rationale: ""}
+        - {text: "هزازة غير متخامدة فقط", rule: true_but_partial, rationale: ""}
+    - stem: "حركة النواس الثقلي المركّب حركة اهتزازية غير توافقية:"
+      key: "من أجل السعات الزاوية الكبيرة (لأن المعادلة تحوي sin θ)"
+      distractors:
+        - {text: "من أجل السعات الزاوية الصغيرة", rule: forget_small_angle, rationale: "هناك sin θ ≈ θ فتصير توافقية"}
+        - {text: "الحركة اهتزازية توافقية دوماً", rule: mix_pendulums, rationale: ""}
+        - {text: "الحركة اهتزازية غير توافقية دوماً", rule: mix_pendulums, rationale: ""}
+    - stem: "في المعادلة التفاضلية θ″ = −(mgd/IΔ)·sin θ ومن أجل السعات الزاوية الصغيرة نعتبر:"
+      key: "sin θ ≈ θ (بالراديان)"
+      distractors:
+        - {text: "sin θ ≈ 1", rule: mix_pendulums, rationale: ""}
+        - {text: "sin θ ≈ cos θ", rule: sin_cos, rationale: ""}
+        - {text: "sin θ ≈ 0", rule: mix_pendulums, rationale: "تنعدم الحركة"}
+    - stem: "في النواس الثقلي المركّب المعادلة التفاضلية θ″ = −(mgd/IΔ)·sin θ لا تقبل حلاً جيبياً لأنها:"
+      key: "تحوي sin θ بدلاً من θ"
+      distractors:
+        - {text: "تحوي IΔ", rule: mix_pendulums, rationale: ""}
+        - {text: "من المرتبة الثانية", rule: mix_pendulums, rationale: "المرن كذلك ويقبل"}
+        - {text: "بل تقبل حلاً جيبياً دوماً", rule: forget_small_angle, rationale: ""}
+    - stem: "في النواس الثقلي البسيط ومن أجل النوسات صغيرة السعة تكون النوسات متواقتة أي:"
+      key: "لها الدور نفسه"
+      distractors:
+        - {text: "لها التسارع المماسي نفسه", rule: mix_pendulums, rationale: ""}
+        - {text: "لها الطول نفسه", rule: mix_pendulums, rationale: ""}
+        - {text: "لها السعة نفسها", rule: amplitude_dependence, rationale: ""}
+    - stem: "في النواس الثقلي البسيط النبض الخاص مقدار موجب دوماً لأن:"
+      key: "l وg مقداران موجبان"
+      distractors:
+        - {text: "m وg مقداران موجبان", rule: mix_pendulums, rationale: "m لا تظهر في ω0 = √(g/l)"}
+        - {text: "حركة النواس اهتزازية", rule: mix_pendulums, rationale: ""}
+        - {text: "IΔ وm وg وd مقادير موجبة", rule: mix_pendulums, rationale: "هذا للمركّب"}
+    - stem: "دور النواس الثقلي غير المتخامد من أجل السعات الزاوية الكبيرة يُعطى بالعلاقة:"
+      key: "T = T0·(1 + θmax²/16) مع θmax بالراديان"
+      distractors:
+        - {text: "T = T0·(1 − θmax²/16)", rule: sign_flip, rationale: "الدور يزداد مع السعة"}
+        - {text: "T = T0·(1 + θmax/16)", rule: forget_square, rationale: ""}
+        - {text: "T = T0·(1 + θmax²/4)", rule: mix_pendulums, rationale: ""}
+    - stem: "في النواس الثقلي البسيط المعادلة التفاضلية θ″ = −(g/l)·θ تقبل حلاً جيبياً من الشكل:"
+      key: "θ = θmax·cos(ω0·t + φ)"
+      distractors:
+        - {text: "ω0 = √(g/l) > 0", rule: mix_pendulums, rationale: "نتيجة المطابقة لا الحل"}
+        - {text: "θ″ = −ω0²·θ", rule: mix_pendulums, rationale: "المعادلة نفسها"}
+        - {text: "T0 = 2π√(l/g)", rule: mix_pendulums, rationale: "نتيجة"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ٣١–٣٥ · L3 §١"
+  review_notes:
+    - "idx 18 (الحد العددي للسعة الصغيرة): الخيارات مشوّشة ولا نص في الدرس يحدد الرقم ⇒ يُسأل الأستاذ عن قيمة الكتاب."
+  approved: false
+
+- id: U1.L3.T03
+  title: "القوى والعزوم والإسقاطات وتبرير الانعدام (عزم/عمل)"
+  chapter: U1C3
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [2, 3, 4, 8, 21, 24, 25, 26, 34, 35, 36, 37, 44, 45, 52, 56, 61, 66], book: "ص ٣١، ٣٣، ٣٦", lesson: "L3 §٣ §٧ §٩"}
+  variants:
+    - stem: "تخضع كرة النواس الثقلي البسيط غير المتخامد لتأثير القوى الخارجية:"
+      key: "ثقل الكرة w⃗ وقوة توتر الخيط T⃗"
+      distractors:
+        - {text: "ثقل الكرة w⃗ ورد فعل المحور R⃗", rule: mix_pendulums, rationale: "هذا المركّب"}
+        - {text: "ثقل الكرة w⃗ وقوة توتر الخيط T⃗ وقوة الإرجاع F⃗", rule: mix_pendulums, rationale: "الإرجاع محصلة"}
+        - {text: "قوة توتر الخيط T⃗ فقط", rule: mix_pendulums, rationale: ""}
+    - stem: "يخضع النواس الثقلي المركّب غير المتخامد لتأثير القوى الخارجية:"
+      key: "ثقل النواس w⃗ ورد فعل محور الدوران R⃗"
+      distractors:
+        - {text: "ثقل النواس w⃗ وقوة توتر الخيط T⃗", rule: mix_pendulums, rationale: "لا خيط"}
+        - {text: "ثقل النواس w⃗ ومزدوجة الفتل", rule: mix_pendulums, rationale: "لا سلك فتل"}
+        - {text: "ثقل النواس w⃗ فقط", rule: mix_pendulums, rationale: ""}
+    - stem: "في النواس الثقلي البسيط عزم قوة التوتر T⃗ معدوم لأن:"
+      key: "حامل T⃗ يمر من محور الدوران"
+      distractors:
+        - {text: "حامل T⃗ يعامد الانتقال", rule: mix_pendulums, rationale: "هذا تعليل انعدام العمل"}
+        - {text: "نقطة تأثير T⃗ لا تنتقل", rule: mix_pendulums, rationale: "تعليل عمل R في المركّب"}
+        - {text: "حامل T⃗ يوازي محور الدوران", rule: mix_pendulums, rationale: ""}
+    - stem: "في النواس الثقلي المركّب عزم قوة رد الفعل R⃗ معدوم لأن:"
+      key: "حامل R⃗ يمر من محور الدوران"
+      distractors:
+        - {text: "حامل R⃗ يعامد محور الدوران", rule: mix_pendulums, rationale: ""}
+        - {text: "نقطة تأثير R⃗ لا تنتقل", rule: mix_pendulums, rationale: "تعليل العمل لا العزم"}
+        - {text: "حامل R⃗ ينطبق على الشاقول", rule: mix_pendulums, rationale: ""}
+    - stem: "في النواس الثقلي البسيط عمل قوة التوتر معدوم لأن:"
+      key: "حامل T⃗ يعامد الانتقال في كل لحظة"
+      distractors:
+        - {text: "حامل T⃗ يمر من محور الدوران", rule: mix_pendulums, rationale: "تعليل العزم"}
+        - {text: "نقطة تأثير T⃗ لا تنتقل", rule: mix_pendulums, rationale: "تعليل R في المركّب"}
+        - {text: "T⃗ ثابتة الشدة", rule: mix_pendulums, rationale: "ليست ثابتة أصلاً"}
+    - stem: "في النواس الثقلي المركّب عمل قوة رد الفعل معدوم لأن:"
+      key: "نقطة تأثير R⃗ لا تنتقل"
+      distractors:
+        - {text: "حامل R⃗ يعامد الانتقال", rule: mix_pendulums, rationale: "تعليل T في البسيط"}
+        - {text: "حامل R⃗ يمر من محور الدوران", rule: mix_pendulums, rationale: "تعليل العزم"}
+        - {text: "R⃗ معدومة", rule: mix_pendulums, rationale: "غير معدومة"}
+    - stem: "عزم قوة الثقل في النواس الثقلي البسيط يُعطى بالعلاقة:"
+      key: "Γ_w = −m·g·l·sin θ"
+      distractors:
+        - {text: "+m·g·l·sin θ", rule: sign_flip, rationale: "عزم إرجاع"}
+        - {text: "−m·g·l·cos θ", rule: sin_cos, rationale: ""}
+        - {text: "−m·g·l", rule: mix_pendulums, rationale: "الذراع l·sin θ"}
+    - stem: "عندما نزيح النواس الثقلي المركّب زاوية كبيرة السعة ونتركه، يكون عزم ثقله:"
+      key: "Γ_w = −m·g·d·sin θ"
+      distractors:
+        - {text: "−m·g·d·θ", rule: forget_small_angle, rationale: "التقريب لا يصح للسعة الكبيرة"}
+        - {text: "−m·g·d·cos θ", rule: sin_cos, rationale: ""}
+        - {text: "+m·g·d·sin θ", rule: sign_flip, rationale: ""}
+    - stem: "في النواس الثقلي البسيط مسقط قوة الثقل على المحور المماسي الموجّه بجهة إزاحة الكرة هو:"
+      key: "−m·g·sin θ"
+      distractors:
+        - {text: "+m·g·sin θ", rule: sign_flip, rationale: ""}
+        - {text: "−m·g·cos θ", rule: sin_cos, rationale: "هذا على الناظم"}
+        - {text: "−W", rule: mix_pendulums, rationale: ""}
+    - stem: "في النواس الثقلي البسيط مسقط قوة الثقل على المحور الناظمي (الموجّه نحو المحور بجهة T⃗) عندما يصنع الخيط زاوية θ مع الشاقول هو:"
+      key: "−m·g·cos θ"
+      distractors:
+        - {text: "+m·g·cos θ", rule: sign_flip, rationale: ""}
+        - {text: "−m·g·sin θ", rule: sin_cos, rationale: "المماسي"}
+        - {text: "−m·g", rule: mix_pendulums, rationale: "فقط عند θ = 0"}
+    - stem: "في النواس الثقلي البسيط مسقط قوة الثقل على المحور الناظمي عندما ينطبق الخيط على الشاقول هو:"
+      key: "−W = −m·g"
+      distractors:
+        - {text: "+W", rule: sign_flip, rationale: ""}
+        - {text: "−W·sin θ", rule: sin_cos, rationale: ""}
+        - {text: "0", rule: mix_pendulums, rationale: ""}
+    - stem: "مسقط قوة التوتر على المحور الناظمي الذي له حامل T⃗ وجهتها هو:"
+      key: "+T"
+      distractors:
+        - {text: "−T", rule: sign_flip, rationale: ""}
+        - {text: "T·cos θ", rule: mix_pendulums, rationale: ""}
+        - {text: "T·sin θ", rule: mix_pendulums, rationale: ""}
+    - stem: "يُعطى التسارع المماسي لكرة النواس الثقلي البسيط at بالعلاقة:"
+      key: "جميع ما سبق صحيح (at = l·θ″ · at = r·α · at = −g·sin θ)"
+      distractors:
+        - {text: "at = l·θ″ فقط", rule: true_but_partial, rationale: ""}
+        - {text: "at = v²/l", rule: mix_pendulums, rationale: "هذا الناظمي"}
+        - {text: "at = 2π√(l/g)", rule: mix_pendulums, rationale: ""}
+    - stem: "لحساب سرعة نواس ثقلي (بسيط أو مركّب) ننطلق من:"
+      key: "نظرية الطاقة الحركية بين وضع الانطلاق (سكون) والوضع المطلوب"
+      distractors:
+        - {text: "العلاقة الأساسية في التحريك الدوراني", rule: mix_pendulums, rationale: "تعطي المعادلة التفاضلية لا السرعة"}
+        - {text: "القانون الثاني بالإسقاط على الناظم", rule: mix_pendulums, rationale: "ذلك لحساب التوتر"}
+        - {text: "θ′max = ω0·θmax دوماً", rule: forget_small_angle, rationale: "صحيح للسعات الصغيرة فقط"}
+    - stem: "لحساب قوة توتر خيط النواس الثقلي البسيط ننطلق من:"
+      key: "القانون الثاني w⃗ + T⃗ = m·a⃗ بالإسقاط على المحور الناظمي"
+      distractors:
+        - {text: "نظرية الطاقة الحركية", rule: mix_pendulums, rationale: "T لا تعمل"}
+        - {text: "الإسقاط على المحور المماسي", rule: mix_pendulums, rationale: "T لا مسقط لها هناك"}
+        - {text: "العلاقة الأساسية في التحريك الدوراني", rule: mix_pendulums, rationale: "عزم T صفر"}
+    - stem: "عند إيجاد قوة التوتر يتم إسقاط العلاقة الشعاعية w⃗ + T⃗ = m·a⃗ على:"
+      key: "المحور الناظمي الموجّه بجهة T⃗ (نحو المحور)"
+      distractors:
+        - {text: "المحور المماسي الموجّه بجهة الحركة", rule: mix_pendulums, rationale: ""}
+        - {text: "المحور الشاقولي الموجّه نحو الأعلى", rule: mix_pendulums, rationale: ""}
+        - {text: "المحور الناظمي الموجّه بعكس T⃗", rule: sign_flip, rationale: ""}
+    - stem: "لحساب عزم عطالة جسم صلب بالنسبة لمحور لا يمر من مركز عطالته نستخدم نظرية هايغنز:"
+      key: "IΔ = IG + m·d²"
+      distractors:
+        - {text: "IΔ = IG + m·d", rule: forget_square, rationale: ""}
+        - {text: "IG = IΔ + m·d²", rule: invert_ratio, rationale: ""}
+        - {text: "IΔ = IG − m·d²", rule: sign_flip, rationale: ""}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ٣١–٣٦ · L3 §٣ §٧ §٩ · عبارات السلم: «حاملها يمر من المحور» (عزم) · «نقطة تأثيرها لا تنتقل» (عمل R) · «تعامد الانتقال» (عمل T)"
+  approved: false
+
+- id: U1.L3.T04
+  title: "تمييز العلاقة الصحيحة (نواس ثقلي)"
+  chapter: U1C3
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [5, 23, 42, 51, 54, 55, 58, 62, 63, 78, 83, 84], book: "ص ٣١–٣٧", lesson: "L3 الخلاصة"}
+  vars:
+    q: {set: [T0_compound, omega0_compound, h_simple, v_bottom, T_theta, T_bottom, W_weight, cos_from_h, omega_max_compound, T_max_where, sync, E_mech, d_def, l_simple_def]}
+  table:
+    T0_compound:  {stem: "دور النواس الثقلي المركّب من أجل السعات الصغيرة يُعطى بالعلاقة:", key: "T0 = 2π·√(IΔ/(m·g·d))"}
+    omega0_compound: {stem: "النبض الخاص للنواس الثقلي المركّب يُعطى بالعلاقة:", key: "ω0 = √(m·g·d/IΔ)"}
+    h_simple:     {stem: "المسافة الشاقولية h التي تقطعها كرة النواس البسيط من زاوية θ حتى ينطبق الخيط على الشاقول:", key: "h = l·(1 − cos θ)"}
+    v_bottom:     {stem: "سرعة كرة النواس البسيط في وضع الشاقول (أُزيح θmax وتُرك) تُعطى بالعلاقة:", key: "v0 = √(2·g·l·(1 − cos θmax))"}
+    T_theta:      {stem: "توتر خيط النواس البسيط عند الزاوية θ (أُزيح θmax وتُرك):", key: "T = m·g·(3·cos θ − 2·cos θmax)"}
+    T_bottom:     {stem: "توتر خيط النواس البسيط عند المرور بالشاقول:", key: "T = m·g·(3 − 2·cos θmax)"}
+    W_weight:     {stem: "عمل قوة الثقل لكرة النواس البسيط أثناء الهبوط من الطرف إلى الشاقول:", key: "W(w⃗) = +m·g·h"}
+    cos_from_h:   {stem: "انطلاقاً من h = d(1 − cos θmax) للنواس المركّب في وضع التوازن الشاقولي فإن:", key: "cos θmax = 1 − h/d"}
+    omega_max_compound: {stem: "تُعطى السرعة الزاوية العظمى للنواس الثقلي المركّب (سعة صغيرة) بالعلاقة:", key: "θ′max = ω0·θmax"}
+    T_max_where:  {stem: "يكون توتر خيط النواس الثقلي البسيط أعظمياً:", key: "في وضع التوازن الشاقولي (θ = 0)"}
+    sync:         {stem: "نواس ثقلي بسيط دوره T01 مواقت لنواس ثقلي مركّب دوره T02، عندئذ:", key: "T01 = T02"}
+    E_mech:       {stem: "الطاقة الميكانيكية للنواس الثقلي البسيط غير المتخامد هي:", key: "جميع ما سبق صحيح (E = Ek + Ep · E = ½mv² + mgh · E = const)"}
+    d_def:        {stem: "في النواس الثقلي المركّب غير المتخامد البعد بين محور الدوران ومركز العطالة هو:", key: "d (m)"}
+    l_simple_def: {stem: "في النواس الثقلي البسيط البعد بين محور الدوران ومركز عطالة الكرة هو:", key: "l (وهو d نفسه في هذه الحالة)"}
+  stem: "{table[q].stem}"
+  options:
+    key: "{table[q].key}"
+    distractor_generation:
+      - {rule: invert_ratio, rationale: "mgd/IΔ ↔ IΔ/mgd"}
+      - {rule: forget_2pi, rationale: "2 بدل 2π"}
+      - {rule: sin_cos, rationale: "sin بدل cos"}
+      - {rule: sign_flip, rationale: "(cos θmax − cos θ) بدل (cos θ − cos θmax) · 3cos θmax − 2cos θ"}
+      - {rule: forget_normal_accel, rationale: "T = mg عند الشاقول"}
+      - {rule: mix_pendulums, rationale: "√(l/g) للمركّب"}
+      - {rule: true_but_partial, rationale: "«جميع ما سبق»"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ٣١–٣٧ · L3 الخلاصة"
+  review_notes:
+    - "idx 83: الجذع مبتور في المصدر ⇒ مستبعد."
+  approved: false
+
+- id: U1.L3.T05
+  title: "تبعية دور الثقلي (g، الكتلة، الطول) والميقاتية"
+  chapter: U1C3
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [12, 20, 30, 31, 81], book: "ص ٣٢، ٣٤–٣٥، ٣٨–٣٩", lesson: "L3 §٨ §١٠"}
+  variants:
+    - stem: "يتناسب دور النواس الثقلي البسيط غير المتخامد:"
+      key: "طرداً مع الجذر التربيعي لطول الخيط وعكساً مع الجذر التربيعي لتسارع الجاذبية"
+      distractors:
+        - {text: "طرداً مع طول الخيط", rule: forget_sqrt, rationale: ""}
+        - {text: "طرداً مع كتلة الكرة", rule: mix_pendulums, rationale: "الكتلة تُختصر"}
+        - {text: "طرداً مع نوع مادة الكرة", rule: mix_pendulums, rationale: ""}
+    - stem: "ميقاتية ذات نواس ثقلي تدق الثانية على سطح البحر؛ ننقلها إلى قمة جبل فإنها:"
+      key: "تؤخّر (تنقص g فيزداد الدور)"
+      distractors:
+        - {text: "تقدّم", rule: invert_ratio, rationale: ""}
+        - {text: "تبقى تدق الثانية", rule: mix_pendulums, rationale: "خلط مع المرن/الفتل"}
+        - {text: "تقف عن العمل", rule: mix_pendulums, rationale: ""}
+    - stem: "ميقاتية تعتمد على نواس ثقلي بسيط تؤخّر في قمة ناطحة سحاب لأن:"
+      key: "تنقص قيمة تسارع الجاذبية بالارتفاع فيزداد الدور"
+      distractors:
+        - {text: "تنقص قيمة الجاذبية فينقص الدور", rule: invert_ratio, rationale: ""}
+        - {text: "تزداد قيمة الجاذبية فيزداد الدور", rule: invert_ratio, rationale: ""}
+        - {text: "تزداد قيمة الجاذبية فينقص الدور", rule: invert_ratio, rationale: ""}
+    - stem: "لتصحيح ميقاتية تقدّم في وقتها وتعتمد على نواس ثقلي مركّب (ساق وقرص):"
+      key: "إيقاف الميقاتية وخفض القرص على الساق (تكبير الدور) ثم ضبط العقارب"
+      distractors:
+        - {text: "إيقاف الميقاتية ورفع القرص على الساق", rule: invert_ratio, rationale: "يصغّر الدور فتقدّم أكثر"}
+        - {text: "تصحيح عقرب الدقائق فقط", rule: mix_pendulums, rationale: "الخلل يعود"}
+        - {text: "إيقاف الميقاتية مدة ثم تشغيلها", rule: mix_pendulums, rationale: ""}
+    - stem: "من أجل النواس الثقلي البسيط وعند انعدام الثقل الظاهري داخل المحطة الفضائية فإن دور النواس:"
+      key: "لا نهائي (لا يهتز؛ g الظاهرية معدومة)"
+      distractors:
+        - {text: "معدوم", rule: invert_ratio, rationale: ""}
+        - {text: "ثابت لا يتغير", rule: mix_pendulums, rationale: "خلط مع الفتل"}
+        - {text: "نصف قيمته على الأرض", rule: mix_pendulums, rationale: ""}
+  rubric: [{step: "الاختيار الصحيح مع التعليل", points: 10}]
+  answer_basis: "T0 = 2π√(l/g) (الكتاب ص ٣٤) · ملاحظات الميقاتية [أستاذ] · ص ٣٨–٣٩"
+  approved: false
+
+- id: U1.L3.T06
+  title: "نسب الدور عند تغيير طول الخيط أو g أو الكتلة"
+  chapter: U1C3
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [46, 47], book: "ص ٣٤", lesson: "L3 اختبر نفسك س١ س٦"}
+  vars:
+    fl: {set: [0.25, 0.5, 2, 4], desc: "l′/l"}
+    fg: {set: [1, "1/6"], desc: "g′/g (القمر)"}
+    fm: {set: [1, 4], desc: "m′/m — لا أثر"}
+  compute:
+    r: "sqrt(fl/fg)"
+  stem: "نواس ثقلي {kind} دوره T0؛ {change}. دوره الجديد:"
+  options:
+    key: "{r}·T0"
+    distractors:
+      - {value: "fl/fg", rule: forget_sqrt, rationale: ""}
+      - {value: "1/sqrt(fl/fg)", rule: invert_ratio, rationale: ""}
+      - {value: "sqrt(fm)*r", rule: mix_pendulums, rationale: "ظنّ الكتلة تؤثر"}
+  rubric:
+    - {step: "T0′/T0 = √(l′/l)·√(g/g′)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 2}
+  answer_basis: "T0 = 2π√(l/g) · المركّب لا يتعلق بالكتلة (IΔ ∝ m)"
+  approved: false
+
+- id: U1.L3.T07
+  title: "النواس البسيط: ω0 أو l أو IΔ من معطيات بسيطة"
+  chapter: U1C3
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [7, 40, 41], book: "ص ٣٣–٣٤"}
+  vars:
+    l:  {set: [0.1, 0.2, 0.4, 0.625, 1, 2.5], unit: m}
+    m:  {set: [0.1, 0.2, 0.5], unit: kg}
+    T0: {set: [1, 2, "π"], unit: s}
+    ask: {set: [omega0, I, l_from_I, l_from_T0]}
+  constants_used: {g: 10, pi_sq: 10}
+  compute:
+    omega0: "sqrt(g/l)"
+    I: "m*l**2"
+    l_from_I: "sqrt(I/m)"
+    l_from_T0: "g*T0**2/(4*pi_sq)"
+  stem: "نواس ثقلي بسيط {given}. احسب {ask} (g = 10 m·s⁻²، π² = 10)."
+  options:
+    key: "المحسوب بوحدته (rad·s⁻¹ · kg·m² · m)"
+    distractors:
+      - {value: "g/l", rule: forget_sqrt, rationale: ""}
+      - {value: "m*l", rule: forget_square, rationale: ""}
+      - {value: "I/m", rule: forget_sqrt, rationale: ""}
+      - {value: "sqrt(l/g)", rule: invert_ratio, rationale: ""}
+  rubric:
+    - {step: "العلاقة (ω0 = √(g/l) · IΔ = m·l² · T0 = 2π√(l/g))", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "الكتاب ص ٣٣–٣٤ (T0 = 2 s ⇒ l = 1 m)"
+  approved: false
+
+- id: U1.L3.T08
+  title: "النواس البسيط: السرعة عند الشاقول/زاوية، التوتر، التسارع، السعة"
+  chapter: U1C3
+  type: problem
+  difficulty: 3
+  weight: 10
+  source: {bank_idx: [43, 69, 70, 71, 76, 77, 79, 80, 85, 90, 108], book: "ص ٣٦، ٤٠ م٢", lesson: "L3 §٩ + مثال ٢"}
+  vars:
+    m:  {set: [0.1, 0.2, 0.4, 0.5], unit: kg}
+    l:  {set: [0.2, 0.4, 1], unit: m}
+    theta_max_deg: {set: [37, 60, 90], unit: "°"}
+    theta_deg: {set: [0, 37, 60], unit: "°"}
+    v0: {set: [2], unit: "m·s⁻¹", desc: "للسؤال العكسي عن θmax"}
+    ask: {set: [v_bottom, v_theta, T_bottom, T_theta, theta_max_from_v0, a_n_bottom, a_t_theta]}
+  constants_used: {g: 10, cos37: 0.8, cos60: 0.5, cos90: 0}
+  constraints: ["theta_deg <= theta_max_deg"]
+  compute:
+    v_theta: "sqrt(2*g*l*(cos(theta) - cos(theta_max)))"
+    v_bottom: "sqrt(2*g*l*(1 - cos(theta_max)))"
+    T_theta: "m*g*(3*cos(theta) - 2*cos(theta_max))"
+    T_bottom: "m*g*(3 - 2*cos(theta_max))"
+    theta_max_from_v0: "acos(1 - v0**2/(2*g*l))"
+    a_n_bottom: "v_bottom**2/l"
+    a_t_theta: "g*sin(theta)"
+  stem: "نواس ثقلي بسيط كتلة كرته {m} kg وطول خيطه {l} m، يُزاح عن الشاقول بزاوية {theta_max_deg}° ويُترك دون سرعة ابتدائية. احسب {ask} (g = 10 m·s⁻²)."
+  options:
+    key: "المحسوب بوحدته"
+    distractors:
+      - {value: "m*g", rule: forget_normal_accel, rationale: "التوتر = الثقل عند الشاقول"}
+      - {value: "sqrt(g*l*(1 - cos(theta_max)))", rule: forget_half, rationale: "نسي 2 في 2gh"}
+      - {value: "sqrt(2*g*l*(1 + cos(theta_max)))", rule: sign_flip, rationale: ""}
+      - {value: "m*g*cos(theta)", rule: forget_normal_accel, rationale: "نسي mv²/l"}
+      - {value: "omega0*theta_max*l", rule: forget_small_angle, rationale: "طبّق SHM على ٦٠°"}
+  rubric:
+    - {step: "نظرية الطاقة الحركية: ½mv² − 0 = W(w) + W(T)، W(T) = 0 «لأن T تعامد الانتقال»", points: 5}
+    - {step: "h = l(cos θ − cos θmax) ⇒ v", points: 3}
+    - {step: "التوتر: إسقاط w⃗ + T⃗ = ma⃗ على الناظم ⇒ T − mg·cos θ = m·v²/l", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "الكتاب ص ٣٦ · مثال الكتاب ص ٤٠ م٢ (m = 0.1 kg، l = 0.4 m، θmax = 60° ⇒ v0 = 2 m·s⁻¹، T = 2 N)"
+  review_notes:
+    - "idx 108 (دور بسيط طوله 40 cm بالسعة الكبيرة): يحتاج T = T0(1 + θmax²/16) وقيمة θmax غير مقروءة ⇒ مستبعد حتى قراءة النص."
+  approved: false
+
+- id: U1.L3.T09
+  title: "المركّب من أجسام متجانسة: ساق من طرفها، قرص من محيطه، حلقة، مواقت"
+  chapter: U1C3
+  type: problem
+  difficulty: 3
+  weight: 10
+  source: {bank_idx: [32, 53, 59, 68, 72, 75, 82, 86, 87, 88, 96, 97, 98, 99, 100, 101, 102, 103, 107, 109, 119, 120], book: "ص ٣٢، ٤٠ م١", lesson: "L3 §٤ + مثال ١"}
+  vars:
+    body: {set: [rod_end, rod_at_L6, disk_rim, disk_at_r2, ring_rim, rod_end_plus_mass]}
+    L: {set: [0.5, 1, 1.5, 6], unit: m}
+    r: {set: [0.02, 0.3, 0.6, "6/π²"], unit: m}
+    M: {set: [0.5, 2, 3], unit: kg}
+    m1: {set: [0.5], unit: kg}
+    T0: {set: [2, 4], unit: s}
+    theta_max: {set: [0.2, "π/3"], unit: rad}
+    ask: {set: [T0, l_sync, omega_bottom, v_point, Ek_bottom, T0_formula]}
+  constants_used: {g: 10, pi_sq: 10}
+  table:
+    rod_end:     {I: "M*L**2/3", d: "L/2", T0_formula: "T0 = 2π√(2L/(3g))"}
+    rod_at_L6:   {I: "M*L**2/12 + M*(L/6)**2", d: "L/6", T0_formula: "T0 = 2π√(2L/(3g))"}
+    disk_rim:    {I: "0.5*M*r**2 + M*r**2", d: "r", T0_formula: "T0 = 2π√(3r/(2g))"}
+    disk_at_r2:  {I: "0.5*M*r**2 + M*(r/2)**2", d: "r/2", T0_formula: "T0 = 2π√(3r/(2g))"}
+    ring_rim:    {I: "M*r**2 + M*r**2", d: "r", T0_formula: "T0 = 2π√(2r/g)"}
+    rod_end_plus_mass: {I: "M*L**2/3 + m1*a**2", d: "(M*L/2 + m1*a)/(M + m1)", T0_formula: "T0 = 2π√(IΔ/((M+m1)·g·d))"}
+  compute:
+    T0_val: "2*sqrt(pi_sq*I/(Mtot*g*d))"
+    l_sync: "I/(Mtot*d)"
+    omega_bottom: "sqrt(2*Mtot*g*d*(1 - cos(theta_max))/I)"
+    v_point: "omega_bottom*r_point"
+    Ek_bottom: "Mtot*g*d*(1 - cos(theta_max))"
+  stem: "نواس ثقلي مركّب من {body_desc} يهتز في مستوٍ شاقولي حول محور أفقي {axis_desc}. {question} (g = 10 m·s⁻²، π² = 10)"
+  options:
+    key: "المحسوب (مثلاً ساق L = 6 m من طرفها ⇒ T0 = 2π√(4/10) = 4 s · قرص r = 0.6 m من محيطه ⇒ T0 = 2π√0.09 = 0.6π ≈ 1.9 s · حلقة r = 2 cm ⇒ T0 = 2π√0.004 = 0.4 s)"
+    distractors:
+      - {value: "بـ IG بدل IΔ (نسي هايغنز)", rule: d_vs_I, rationale: "IΔ = IG + M·d²"}
+      - {value: "بـ d = L بدل L/2", rule: d_vs_I, rationale: "مركز العطالة في المنتصف"}
+      - {value: "2π√(L/g)", rule: mix_pendulums, rationale: "عامل الساق كنواس بسيط"}
+      - {value: "بلا π (2√(…))", rule: forget_2pi, rationale: ""}
+  rubric:
+    - {step: "IΔ حول المحور (هايغنز عند الحاجة)", points: 5}
+    - {step: "d = بعد المحور عن مركز عطالة الجملة", points: 3}
+    - {step: "T0 = 2π√(IΔ/(m·g·d)) (يُقبل الشكل المختزل مثل 2π√(2L/3g))", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "الكتاب ص ٣٢ (هايغنز، d) · ص ٤٠ م١ (ساق 0.5 kg/1.5 m + نقطية 0.5 kg على 1 m ⇒ IΔ = 0.875، d = 0.875، T0 ≈ 2 s) · قاعدة السلم ٦: الحل البديل الصحيح مقبول"
+  approved: false
+
+- id: U1.L3.T10
+  title: "المركّب: ساق مهملة الكتلة + كتل نقطية (نمط مسألة ٢٠٢٦ الأولى — ٨٥ درجة)"
+  chapter: U1C3
+  type: problem
+  difficulty: 3
+  weight: 85
+  source: {bank_idx: [74, 91, 93, 94, 95, 104, 105, 106, 110, 111, 112, 113, 114, 115, 116, 117, 118], book: "ص ٤١ م٥", lesson: "L3 §٤ §٥ + مثال ٣", exam: "٢٠٢٦ المسألة الأولى ✅ (IΔ = (5/8)m1L² · d = L/4 · T0 = 2 s · θ′ = √10 rad·s⁻¹)"}
+  vars:
+    L: {set: [0.5, 0.8, 1, 1.5], unit: m}
+    config: {set: [axis_at_L4_two_equal, axis_top_mass_top_and_bottom, axis_top_mass_mid_and_bottom, axis_top_single_mass_bottom]}
+    m1: {set: [0.2, 0.3, 0.4, 0.5], unit: kg}
+    m2: {set: [0.2, 0.4, 0.6], unit: kg}
+    theta_max_deg: {set: [37, 60, 90], unit: "°"}
+    ask: {set: [T0, L_from_T0, l_sync, omega_bottom, v_lower_mass, theta_t, T0_after_detach]}
+  constants_used: {g: 10, pi_sq: 10}
+  table:
+    axis_at_L4_two_equal:
+      desc: "ساق مهملة الكتلة طولها L تحمل في طرفيها كتلتين نقطيتين m1؛ المحور على بعد L/4 من الطرف العلوي"
+      I: "m1*(L/4)**2 + m1*(3*L/4)**2 = (5/8)*m1*L**2"
+      d: "(m1*(-L/4) + m1*(3*L/4))/(2*m1) = L/4"
+      Mtot: "2*m1"
+      T0_formula: "T0 = 2π√(5L/(4g)) = π√(5L/g)"
+    axis_top_mass_top_and_bottom:
+      desc: "ساق مهملة الكتلة طولها L، المحور في طرفها العلوي، كتلة m1 عند المحور وكتلة m2 في الطرف السفلي"
+      I: "m2*L**2"
+      d: "m2*L/(m1 + m2)"
+      Mtot: "m1 + m2"
+      T0_formula: "T0 = 2π√(L/g)"
+    axis_top_mass_mid_and_bottom:
+      desc: "ساق مهملة الكتلة طولها L، المحور في طرفها العلوي، كتلة m1 في منتصفها وكتلة m2 في طرفها السفلي"
+      I: "m1*(L/2)**2 + m2*L**2"
+      d: "(m1*L/2 + m2*L)/(m1 + m2)"
+      Mtot: "m1 + m2"
+      T0_formula: "T0 = 2π√(IΔ/((m1+m2)·g·d))"
+    axis_top_single_mass_bottom:
+      desc: "ساق مهملة الكتلة طولها L تحمل في نهايتها السفلية كتلة نقطية m1 (نواس بسيط طوله L)"
+      I: "m1*L**2"
+      d: "L"
+      Mtot: "m1"
+      T0_formula: "T0 = 2π√(L/g)"
+  compute:
+    T0_val: "2*sqrt(pi_sq*I/(Mtot*g*d))"
+    L_from_T0: "حل T0_formula بالنسبة لـ L (config 1: L = g·T0²/(5π²) = T0²/5)"
+    l_sync: "I/(Mtot*d)"
+    omega_bottom: "sqrt(2*Mtot*g*d*(1 - cos(theta_max))/I)"
+    v_lower_mass: "omega_bottom * r_lower"
+    theta_t: "theta_max*cos(omega0*t)  (φ = 0 تُرك دون سرعة ابتدائية؛ صالح للسعات الصغيرة فقط)"
+    T0_after_detach: "انفصال السفلية في config 1 ⇒ تبقى العلوية على بعد L/4 ⇒ T0′ = 2π√(L/(4g))"
+  stem: "{table[config].desc}. {question} (g = 10 m·s⁻²، π² = 10)"
+  options:
+    key: "المحسوب (٢٠٢٦: L = 0.8 m ⇒ T0 = π√0.4 = 2 s · ℓ = 1 m · θ′ = √10 rad·s⁻¹ عند 60°)"
+    distractors:
+      - {value: "d = 3L/4 أو d = L/2", rule: d_vs_I, rationale: "استعمل بعد كتلة بدل مركز عطالة الجملة"}
+      - {value: "d = (L/4 + 3L/4)/2 = L/2", rule: sign_r_above, rationale: "أهمل إشارة الكتلة فوق المحور"}
+      - {value: "θ′ = ω0·θmax عند 60°", rule: forget_small_angle, rationale: "٦٠° ليست سعة صغيرة"}
+      - {value: "m = m1 بدل 2m1 في mgd", rule: mix_pendulums, rationale: "كتلة الجملة كلها"}
+  rubric:
+    - {step: "IΔ = Σmi·ri² (كل الأبعاد موجبة)", points: 5}
+    - {step: "d = Σmi·ri/Σmi مع ri جبرية (سالبة فوق المحور)", points: 5}
+    - {step: "T0 = 2π√(IΔ/(m·g·d)) مع m = كتلة الجملة", points: 5}
+    - {step: "الاختزال (يُقبل T0 = 2π√(5L/4g) — السلم ٢٠٢٦)", points: 3}
+    - {step: "التعويض والنتيجة والوحدة", points: 5}
+    - {step: "المواقت: 2π√(ℓ/g) = T0 ⇒ ℓ = IΔ/(m·d)", points: 5}
+    - {step: "السرعة الزاوية: نظرية الطاقة الحركية، W(R) = 0 «لأن نقطة تأثيرها لا تنتقل»", points: 8}
+    - {step: "θ′ = √(2mgd(1 − cos θmax)/IΔ) ⇒ النتيجة بوحدتها", points: 5}
+  answer_basis: "امتحان ٢٠٢٦ المسألة الأولى وسلمها (docs/20 §٢) · الكتاب ص ٤١ م٥ · L3 §٥"
+  review_notes:
+    - "نص ورقة ٢٠٢٦ يذكر m1 وm2 والمحور على بعد d من الطرف العلوي؛ السلم يعطي IΔ = (5/8)m1L² وd = L/4 مما يوافق m1 = m2 ومحوراً عند L/4. يُثبَّت مع الأستاذ."
+    - "في المصدر idx 92–95 و116–117 أعداد مشوّشة ⇒ لا تُنقل."
+  approved: false
+
+- id: U1.L3.T11
+  title: "تحوّلات الطاقة في النواس الثقلي ومبدأ قياس الكامنة"
+  chapter: U1C3
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [1, 9, 10, 29, 33, 39, 48, 49, 50, 57, 60], book: "ص ٣٧", lesson: "L3 §٩ (الطاقة الميكانيكية)"}
+  variants:
+    - stem: "في النواس الثقلي البسيط عندما تتحرك الكرة مبتعدة عن مركز الاهتزاز:"
+      key: "تنقص الطاقة الحركية وتزداد الكامنة الثقالية حتى تصبح عظمى في الموضعين الطرفيين"
+      distractors:
+        - {text: "تزداد الطاقة الحركية وتنقص الكامنة الثقالية حتى تنعدم في الطرفين", rule: mix_Ep_Ek, rationale: ""}
+        - {text: "تزداد الطاقتان معاً", rule: mix_Ep_Ek, rationale: ""}
+        - {text: "تنقص الطاقة الحركية وتنقص الكامنة", rule: mix_Ep_Ek, rationale: "المجموع ثابت"}
+    - stem: "في النواس الثقلي البسيط عندما تتحرك الكرة مقتربة من مركز الاهتزاز:"
+      key: "تزداد الطاقة الحركية وتنقص الكامنة الثقالية حتى تنعدم في وضع التوازن"
+      distractors:
+        - {text: "تنقص الطاقة الحركية وتزداد الكامنة", rule: mix_Ep_Ek, rationale: ""}
+        - {text: "تزداد الطاقة الحركية وتزداد الكامنة", rule: mix_Ep_Ek, rationale: ""}
+        - {text: "تبقى الطاقتان ثابتتين", rule: mix_pendulums, rationale: ""}
+    - stem: "الطاقة الحركية الدورانية للنواس الثقلي المركّب تُعطى بالعلاقة:"
+      key: "Ek = ½·IΔ·θ′²"
+      distractors:
+        - {text: "Ek = ½·m·v²", rule: mix_pendulums, rationale: "هذه للكرة النقطية (البسيط)"}
+        - {text: "Ek = ½·IΔ·θ′", rule: forget_square, rationale: ""}
+        - {text: "Ek = ΣW(F⃗)", rule: mix_pendulums, rationale: "هذه نظرية الطاقة الحركية (ΔEk) لا Ek"}
+    - stem: "الطاقة الحركية الانسحابية لكرة النواس الثقلي البسيط تُعطى بالعلاقة:"
+      key: "Ek = ½·m·v²"
+      distractors:
+        - {text: "Ek = ½·IΔ·θ′²", rule: mix_pendulums, rationale: "صيغة المركّب (تكافئها لكن المطلوب الانسحابية)"}
+        - {text: "Ek = m·v²", rule: forget_half, rationale: ""}
+        - {text: "Ek = ½·m·v", rule: forget_square, rationale: ""}
+    - stem: "في النواس الثقلي البسيط والمركّب تكون الطاقة الحركية الابتدائية معدومة لأن:"
+      key: "النواس يُترك من الموضع الطرفي دون سرعة ابتدائية"
+      distractors:
+        - {text: "حركة النواس غير توافقية", rule: mix_pendulums, rationale: ""}
+        - {text: "النواس يهتز بحركة جيبية", rule: mix_pendulums, rationale: ""}
+        - {text: "الطاقة الكامنة معدومة", rule: mix_Ep_Ek, rationale: "العكس: عظمى"}
+    - stem: "الطاقة الحركية الانسحابية لكرة النواس الثقلي البسيط غير المتخامد:"
+      key: "جميع ما سبق صحيح (عظمى في وضع التوازن، معدومة في الموضعين الطرفيين، معدومة عندما تكون الكامنة عظمى)"
+      distractors:
+        - {text: "عظمى في وضع التوازن فقط", rule: true_but_partial, rationale: ""}
+        - {text: "معدومة في الموضعين الطرفيين فقط", rule: true_but_partial, rationale: ""}
+        - {text: "معدومة عندما تكون الكامنة عظمى فقط", rule: true_but_partial, rationale: ""}
+    - stem: "الطاقة الكامنة الثقالية لكرة النواس الثقلي البسيط غير المتخامد:"
+      key: "جميع ما سبق صحيح (معدومة في وضع التوازن، عظمى في الموضعين الطرفيين، عظمى عندما تنعدم الحركية)"
+      distractors:
+        - {text: "معدومة في وضع التوازن فقط", rule: true_but_partial, rationale: ""}
+        - {text: "عظمى في الموضعين الطرفيين فقط", rule: true_but_partial, rationale: ""}
+        - {text: "عظمى عندما تنعدم الحركية فقط", rule: true_but_partial, rationale: ""}
+    - stem: "مبدأ قياس الطاقة الكامنة الثقالية في النواس الثقلي البسيط هو:"
+      key: "المستوي الأفقي المار من مركز الكرة في وضع التوازن الشاقولي"
+      distractors:
+        - {text: "المستوي الأفقي المار من محور الدوران", rule: mix_pendulums, rationale: ""}
+        - {text: "المستوي الأفقي المار من الكرة في الموضع الطرفي", rule: mix_max_center, rationale: ""}
+        - {text: "أي مستوٍ أفقي يمر من منتصف الخيط", rule: mix_pendulums, rationale: ""}
+    - stem: "عند إيجاد سرعة كرة النواس البسيط عند المرور بالشاقول ننطلق من نظرية الطاقة الحركية بين:"
+      key: "الوضع الأول حيث θ = θmax وv = 0، والوضع الثاني حيث θ = 0 وv = v0"
+      distractors:
+        - {text: "الوضع الأول حيث θ = 0 والثاني حيث θ = θmax", rule: sign_flip, rationale: "الترتيب معكوس يعطي إشارة سالبة"}
+        - {text: "وضعين متناظرين θmax و−θmax", rule: mix_pendulums, rationale: "ΔEk = 0"}
+        - {text: "الوضع الأول حيث v = vmax", rule: mix_max_center, rationale: ""}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ٣٧ · L3 §٩"
+  approved: false
+
+- id: U1.L3.T12
+  title: "البعد d: تعريفه وإشارته وحالاته"
+  chapter: U1C3
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {bank_idx: [22, 64, 65, 89, 92], book: "ص ٣٢", lesson: "L3 §٤ (d جبري)"}
+  variants:
+    - stem: "يُعدّ المقدار ri (بعد كتلة نقطية عن المحور) موجباً عند حساب d = Σmi·ri/Σmi إذا كانت:"
+      key: "الكتلة تحت محور الدوران (وسالباً إذا كانت فوقه، وصفراً إذا كانت عليه)"
+      distractors:
+        - {text: "الكتلة فوق محور الدوران", rule: sign_r_above, rationale: ""}
+        - {text: "d مقدار موجب دوماً بلا إشارة", rule: sign_r_above, rationale: "يُحسب جبرياً"}
+        - {text: "الكتلة على يمين المحور", rule: mix_pendulums, rationale: ""}
+    - stem: "في النواس الثقلي المركّب غير المتخامد يكون البعد d بين محور الدوران ومركز عطالة الجملة مساوياً لبعد المحور عن مركز العطالة الهندسي في:"
+      key: "جميع ما سبق (ساق متجانسة من طرفها d = L/2 · قرص متجانس محوره على محيطه d = r · النواس البسيط d = l)"
+      distractors:
+        - {text: "الساق المتجانسة من طرفها فقط", rule: true_but_partial, rationale: ""}
+        - {text: "القرص المتجانس المعلّق من محيطه فقط", rule: true_but_partial, rationale: ""}
+        - {text: "النواس الثقلي البسيط فقط", rule: true_but_partial, rationale: ""}
+    - stem: "في النواس الثقلي البسيط غير المتخامد البعد بين محور الدوران ومركز عطالة الكرة هو:"
+      key: "l (وهو d في هذه الحالة)"
+      distractors:
+        - {text: "r نصف قطر الكرة", rule: mix_pendulums, rationale: ""}
+        - {text: "l/2", rule: d_vs_I, rationale: "الكتلة نقطية لا ساق"}
+        - {text: "لا يمكن تحديده", rule: mix_pendulums, rationale: ""}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "الكتاب ص ٣٢ · L3 §٤ ⚠️ الخطأ الشائع ٢"
+  approved: false
+
+- id: U1.L3.T13
+  title: "الوحدات (نواس ثقلي)"
+  chapter: U1C3
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {bank_idx: [13, 14], book: "ص ٣١–٣٦"}
+  vars:
+    q: {set: [I, T_tension, d, omega0]}
+  table:
+    I:         {name: "عزم عطالة النواس الثقلي IΔ", key: "kg·m²", wrong: ["N·m·rad⁻¹", "s", "kg·m⁻²"]}
+    T_tension: {name: "توتر خيط النواس الثقلي البسيط T", key: "N", wrong: ["s", "kg·m²", "rad·s⁻¹"]}
+    d:         {name: "بعد مركز العطالة عن المحور d", key: "m", wrong: ["kg·m²", "kg", "N·m"]}
+    omega0:    {name: "النبض الخاص ω0", key: "rad·s⁻¹", wrong: ["rad·s⁻²", "s", "Hz·m"]}
+  stem: "يُقاس {table[q].name} بواحدة:"
+  options: {key: "{table[q].key}", distractors_from: "table[q].wrong"}
+  rubric: [{step: "الاختيار الصحيح", points: 10}]
+  answer_basis: "glossary.json U1C3"
+  approved: false
+
+- id: U1.L3.T14
+  title: "لحظات المرور والتابع الزمني (ثقلي، سعة صغيرة)"
+  chapter: U1C3
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {bank_idx: [87, 104, 105, 110], lesson: "L3 §١١"}
+  inherits: U1.L1.T18
+  symbol_map: {x: θ, XmaX: θmax, v: θ′, a: θ″}
+  constraints_extra: ["θmax صغيرة (≤ 0.2 rad) وإلا فالتابع الجيبي غير صالح"]
+  approved: false
+
+- id: U1.L3.T15
+  title: "قراءة الخط البياني ⇒ التابع (ثقلي)"
+  chapter: U1C3
+  type: mcq
+  difficulty: 3
+  weight: 10
+  needs_figure: true
+  source: {bank_idx: [], note: "لا عيّنة مباشرة في بنك الثقلي؛ العائلة موجودة في [أستاذ] L3 §١١ ⇒ تُولَّد بالوراثة"}
+  inherits: U1.L1.T20
+  symbol_map: {x: θ, XmaX: θmax, v: θ′, a: θ″}
+  approved: false
+
+# ───────────────────────────── براهين الوحدة (نمط ٢٥ درجة) ─────────────────────────────
+
+- id: U1.PROOF.SHM
+  title: "برهان: حركة النواس المرن جيبية + استنتاج T0"
+  chapter: U1C1
+  type: proof
+  difficulty: 3
+  weight: 25
+  source: {exam: "٢٠٢٦ س٣-١ (٢٥) ✅ مؤكَّد بالسلم", lesson: "L1 🧮"}
+  stem: "انطلاقاً من المعادلة التفاضلية x″ = −(k/m)·x برهن أن حركة الجسم جيبية انسحابية (توافقية بسيطة) ثم استنتج علاقة الدور الخاص."
+  steps:
+    - {n: 1, text: "معادلة تفاضلية من المرتبة الثانية تقبل حلاً جيبياً x = XmaX·cos(ω0·t + φ)", points: 5, penalty: {missing_phi: -1}}
+    - {n: 2, text: "x′ = −ω0·XmaX·sin(ω0·t + φ)", points: 4}
+    - {n: 3, text: "x″ = −ω0²·XmaX·cos(ω0·t + φ)", points: 4}
+    - {n: 4, text: "x″ = −ω0²·x", points: 2, penalty: {missing_minus: -4}}
+    - {n: 5, text: "بالمطابقة ω0² = k/m", points: 2}
+    - {n: 6, text: "ω0 = √(k/m) > 0 لأن ما تحت الجذر موجب ⇒ الحركة جيبية", points: 2}
+    - {n: 7, text: "ω0 = 2π/T0 ⇒ 2π/T0 = √(k/m)", points: 2}
+    - {n: 8, text: "T0 = 2π·√(m/k)", points: 4}
+  step_distractors:
+    - {for_step: 1, wrong: "x = XmaX·cos(ω0·t)", rule: forget_pm, rationale: "بلا φ ⇒ −1"}
+    - {for_step: 4, wrong: "x″ = ω0²·x", rule: sign_flip, rationale: "⇒ −4 (أثقل خصم مفرد في الورقة)"}
+    - {for_step: 8, wrong: "T0 = 2π·√(k/m)", rule: invert_ratio, rationale: ""}
+    - {for_step: 8, wrong: "T0 = √(m/k)", rule: forget_2pi, rationale: ""}
+  answer_basis: "سلم ٢٠٢٦ (docs/20 §٢) · الكتاب ص ١٢"
+  approved: false
+
+- id: U1.PROOF.TORSION
+  title: "برهان: حركة نواس الفتل جيبية دورانية + T0 (+ طريق مصونية الطاقة)"
+  chapter: U1C2
+  type: proof
+  difficulty: 3
+  weight: 25
+  source: {lesson: "L2 🧮", book: "ص ٢٣، ٢٧ س٢"}
+  inherits: U1.PROOF.SHM
+  symbol_map: {x: θ, XmaX: θmax, k: C, m: IΔ}
+  extra_steps:
+    - {n: 0, text: "ΣΓ/Δ = IΔ·θ″ · عزما w وT معدومان (حاملاهما على المحور) ⇒ −C·θ = IΔ·θ″ ⇒ θ″ = −(C/IΔ)·θ", points: 4}
+    - {n: 6, text: "⇒ الحركة جيبية دورانية (كلمة «دورانية» مطلوبة)", points: 2}
+  alt_route: "من E = ½Cθ² + ½IΔθ′² = const ⇒ نشتق: Cθθ′ + IΔθ′θ″ = 0 ⇒ ÷θ′ ⇒ θ″ + (C/IΔ)θ = 0"
+  approved: false
+
+- id: U1.PROOF.COMPOUND
+  title: "برهان: النواس الثقلي المركّب جيبي دوراني في السعات الصغيرة فقط + T0 + دلالات الرموز"
+  chapter: U1C3
+  type: proof
+  difficulty: 3
+  weight: 25
+  source: {lesson: "L3 🧮", book: "ص ٣١–٣٢"}
+  steps:
+    - {n: 1, text: "القوى w وR؛ ΣΓ/Δ = IΔ·θ″؛ عزم R معدوم لأن حاملها يمر من المحور", points: 3}
+    - {n: 2, text: "−m·g·d·sin θ = IΔ·θ″ ⇒ θ″ + (mgd/IΔ)·sin θ = 0", points: 4}
+    - {n: 3, text: "لا تقبل حلاً جيبياً لوجود sin θ ⇒ الحركة غير توافقية", points: 3}
+    - {n: 4, text: "في السعات الصغيرة sin θ ≈ θ (rad) ⇒ θ″ + (mgd/IΔ)·θ = 0", points: 3}
+    - {n: 5, text: "تقبل θ = θmax·cos(ω0t + φ)؛ نشتق مرتين ⇒ θ″ = −ω0²·θ", points: 4}
+    - {n: 6, text: "بالمطابقة ω0² = mgd/IΔ ⇒ جيبية دورانية في السعات الصغيرة فقط", points: 3}
+    - {n: 7, text: "T0 = 2π·√(IΔ/(m·g·d))", points: 3}
+    - {n: 8, text: "الدلالات: T0 (s) · IΔ (kg·m²) · m (kg) · g (m·s⁻²) · d (m)", points: 2}
+  step_distractors:
+    - {for_step: 4, wrong: "sin θ ≈ 1", rule: mix_pendulums, rationale: ""}
+    - {for_step: 6, wrong: "جيبية دورانية دوماً", rule: forget_small_angle, rationale: "خصم: إغفال «في السعات الصغيرة فقط»"}
+    - {for_step: 7, wrong: "T0 = 2π√(mgd/IΔ)", rule: invert_ratio, rationale: ""}
+  answer_basis: "L3 🧮 [أستاذ] · الكتاب ص ٣١–٣٢"
+  approved: false
+
+# ───────────────────────────── قائمة المراجعة (لا تدخل التوليد) ─────────────────────────────
+
+review_queue:
+  unassigned:
+    - {lesson: L1-simple-harmonic-motion, idx: 90, reason: "جذع مبتور في المصدر — يبدو تكملة لسؤال سرعة/مطال"}
+    - {lesson: L2-torsion-pendulum, idx: 4, reason: "مصنَّف يدوياً تحت U1.L2.T02 (مزدوجة الفتل: تنشأ/تؤثر/تقاوم ⇒ جميع ما سبق)"}
+  excluded_from_generation:
+    - {template: U1.L1.T01, idx: [2], reason: "لا خيار صحيح ظاهرياً (طبيعة التسارع)"}
+    - {template: U1.L1.T03, idx: [137], reason: "جذع مبتور"}
+    - {template: U1.L1.T05, idx: [100], reason: "مكعب طافٍ — خارج نص الكتاب"}
+    - {template: U1.L1.T05, idx: [108], reason: "لا خيار صحيح ظاهرياً (طبيعة الحركة)"}
+    - {template: U1.L2.T03, idx: [], reason: "صف C_wire معلّق حتى تثبيت صيغة ص ٢٥ ورمز C/K"}
+    - {template: U1.L2.T06, idx: [70, 71], reason: "خيارات النسب مشوّشة (√2/√3/√5)"}
+    - {template: U1.L2.T10, idx: [90, 91], reason: "بنية تحتاج الشكل"}
+    - {template: U1.L3.T02, idx: [18], reason: "حد السعة الصغيرة عددياً — يُسأل الأستاذ"}
+    - {template: U1.L3.T04, idx: [83], reason: "جذع مبتور"}
+    - {template: U1.L3.T08, idx: [108], reason: "السعة الكبيرة بقيمة غير مقروءة"}
+  teacher_questions:
+    - "رمز ثابت الفتل: الكتاب C أم K؟ وصيغة ص ٢٥: بنصف القطر r⁴ أم بالقطر (2r)⁴؟"
+    - "اتجاه المحور الموجب للنواس المرن الشاقولي (نحو الأسفل كما ص ١٠؟) لتثبيت إشارات φ وحالات الانفصال."
+    - "الحد العددي للسعة «الصغيرة» في النواس الثقلي (إن وُجد في الكتاب)."
+    - "مسألة ٢٠٢٦ الأولى: هل m1 = m2 والساق مهملة الكتلة؟ (يوافق السلم IΔ = (5/8)m1L²)."
+
+# تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني
