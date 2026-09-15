@@ -5,6 +5,7 @@
 library;
 
 import '../../core/training/batch_builder.dart';
+import '../../core/xp/challenge_points.dart';
 import '../../core/xp/xp_event.dart';
 import '../../core/xp/xp_ledger.dart';
 import '../../core/xp/xp_store.dart';
@@ -101,8 +102,11 @@ class XpRecorder {
       tsMsOverride: ts.millisecondsSinceEpoch,
     );
     if (!r.ok) return false;
-    if (typeId != xpStreakDay.id) {
-      // أول نشاط باليوم يشعل السلسلة — والسقف اليومي يمنع التكرار
+    // أول نشاط باليوم يشعل السلسلة — والسقف اليومي يمنع التكرار.
+    // استثناء (قرار ٦٠): قراءة الدرس ٠ نقطة ولا تشعلها — «لا نقاط بلا
+    // إجابة صحيحة»، وإلا صارت القراءة باباً للنقاط من الباب الخلفي.
+    final t = xpEventTypes[typeId];
+    if (typeId != xpStreakDay.id && (t?.awardsStreak ?? false)) {
       await ledger.append(
         typeId: xpStreakDay.id,
         dateKey: key,
@@ -111,4 +115,46 @@ class XpRecorder {
     }
     return true;
   }
+
+  /// إجابة صحيحة داخل تحدي اليوم — النقاط تناقصية مع الزمن (قرار ٦٠).
+  ///
+  /// `qIndex` و`challengeId` يجعلان السؤال مرة واحدة خادمياً؛
+  /// `reason` سبب الإنهاء عند المغادرة.
+  Future<bool> recordChallenge({
+    required String challengeId,
+    required int qIndex,
+    required String qType,
+    required int elapsedMs,
+    DateTime? now,
+  }) {
+    final kind = challengeKindOf(qType);
+    if (kind == null) return Future<bool>.value(false);
+    return record(
+      xpChallengeQ.id,
+      extra: <String, dynamic>{
+        'challengeId': challengeId,
+        'qIndex': qIndex,
+        'qType': qType,
+        'elapsedMs': elapsedMs,
+      },
+      pointsOverride: challengePoints(kind: kind, elapsedMs: elapsedMs),
+      now: now,
+    );
+  }
+
+  /// إنهاء التحدي بمغادرة التطبيق (قرار ٦٠) — ٠ نقطة ويُقفل التحدي.
+  Future<bool> recordChallengeAbandon({
+    required String challengeId,
+    required String reason,
+    DateTime? now,
+  }) =>
+      record(
+        xpChallengeAbandon.id,
+        extra: <String, dynamic>{
+          'challengeId': challengeId,
+          'reason': reason,
+        },
+        pointsOverride: 0,
+        now: now,
+      );
 }

@@ -64,12 +64,13 @@ void main() {
       final r = XpRecorder.inMemory();
       final now = DateTime(2026, 9, 13, 17);
       expect(await r.record('batchDone', now: now), isTrue); // +١٥
-      expect(await r.record('lessonNew', now: now), isTrue); // +١٠
+      expect(await r.record('lessonNew', now: now), isTrue); // +٠ (قرار ٦٠)
       final events = await r.ledger.events();
-      // batchDone + streakDay + lessonNew — بلا streakDay ثانٍ
+      // batchDone + streakDay + lessonNew — بلا streakDay ثانٍ:
+      // قراءة الدرس لا تشعل السلسلة («لا نقاط بلا إجابة صحيحة»).
       expect(events.map((e) => e.type).toList(),
           ['batchDone', 'streakDay', 'lessonNew']);
-      expect(await r.ledger.dayPoints('2026-09-13'), 35);
+      expect(await r.ledger.dayPoints('2026-09-13'), 25); // ١٥+١٠+٠
       final v = await r.ledger.verifyAll();
       expect(v.ok, isTrue);
     });
@@ -78,9 +79,28 @@ void main() {
       final r = XpRecorder.inMemory();
       final now = DateTime(2026, 9, 13, 17);
       expect(await r.record('batchDone', now: now), isTrue);
-      expect(await r.record('batchDone', now: now), isFalse); // مرة/يوم
+      expect(await r.record('batchDone', now: now), isTrue); // بلا سقف (قرار ٦٠)
       final v = await r.ledger.verifyAll();
       expect(v.ok, isTrue);
+    });
+
+    test('السلسلة وحدها مرة/يوم — والتكرار يُرفض بلا كسر للسلسلة', () async {
+      final r = XpRecorder.inMemory();
+      final now = DateTime(2026, 9, 13, 17);
+      expect(await r.record('streakDay', now: now), isTrue);
+      expect(await r.record('streakDay', now: now), isFalse); // مرة/يوم
+      expect((await r.ledger.verifyAll()).ok, isTrue);
+    });
+
+    test('قراءة الدرس لا تشعل السلسلة (قرار ٦٠)', () async {
+      final r = XpRecorder.inMemory();
+      await r.record('lessonNew', now: DateTime(2026, 9, 13, 17));
+      final events = await r.ledger.events();
+      expect(events.map((e) => e.type).toList(), ['lessonNew']);
+      expect(await r.ledger.totalXp(), 0);
+      // لكنه يبقى نشاطاً مسجَّلاً ⇒ السلسلة تُحسب منه يوماً نشطاً
+      final s = computeStreak(events, DateTime(2026, 9, 13, 20));
+      expect(s.todayDone, isTrue);
     });
   });
 

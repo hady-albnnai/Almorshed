@@ -29,22 +29,73 @@ const sha256Hex = async (s: string): Promise<string> =>
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
 
-// ── أنواع XP العشرة — docs/12 §٤.١ (نقاط/سقف مرة-يوم) ──
-// capped: يُمنع تكرار (type + payload.dateKey) لكل جهاز — العقد §٤.٥
-const CAPPED: Record<string, number> = {
+// ═══ جدول النقاط — قرار ٦٠ (اقتصاد النقاط) ═══════════════════════════
+// ⚠️ يجب أن يطابق app/lib/core/xp/xp_ledger.dart حرفياً. أي اختلاف في رقم
+// ⇒ رفض الدفعة كلها (POINTS_MISMATCH). القاعدة الحاكمة: «التحديات هي الفاصل».
+//
+// نقاط التعلّم: شخصية، بلا سقف، بلا جوائز، ولا تُحسب في الترتيب الأسبوعي
+// (league_rollup يقرأ أنواع arena فقط — هجرة 0009). الغش فيها يضر صاحبها.
+const TRAINING: Record<string, number> = {
   batchDone: 15,
   mistakesFive: 10,
-  lessonNew: 10,
-  streakDay: 10,
+  lessonNew: 0, // قراءة الدرس = ٠ نقطة (علامة ✓ فقط)
+  cardReview: 1,
   queueDone: 15,
   labChallenge: 10,
 };
-const UNLIMITED: Record<string, number> = {
-  cardReview: 1,
+// السلسلة اليومية وحدها «مرة/يوم» — بحكم تعريفها، لا لمنع تكرار نشاط.
+const CAPPED: Record<string, number> = { streakDay: 10 };
+
+// ── التحديات — النقاط التناقصية مع الزمن (قرار ٦٠) ──
+// نفس الثوابت ونفس الدالة في app/lib/core/xp/challenge_points.dart حرفياً:
+//   elapsed >= budget  ⇒  0        (انتهى الوقت بلا إجابة = بلا نقاط)
+//   غير ذلك            ⇒  min + (base − min) × (budget − elapsed) ÷ budget
+// القسمة مقطوعة نحو الصفر طرفياً (Math.trunc ⇄ `~/`) والقيم موجبة ⇒ تطابق بتّي.
+const CHALLENGE_KINDS: Record<
+  string,
+  { base: number; min: number; budget: number }
+> = {
+  mcq: { base: 12, min: 4, budget: 22000 }, // اختياري — ٢٢ ث (نطاق ٢٠–٢٥)
+  step: { base: 18, min: 6, budget: 40000 }, // خطوة مسألة (قرار ٦١/أ)
+  numeric: { base: 30, min: 10, budget: 90000 }, // مسألة رقمية (قرار ٦١/ب)
 };
-// duelWin/duelLoss: النقاط مثبتة + duelId إلزامي — والدعوى الخادمية
-// (صف المبارزة/الفائز/٤٨ ساعة/بلا ادعاء مكرر) داخل verify_commit ذرياً (0005).
-// manual: نقاط مخصصة ١..١٠٠٠ + سبب إلزامي
+const challengePoints = (
+  base: number,
+  min: number,
+  budget: number,
+  elapsed: number,
+): number => {
+  if (!Number.isInteger(elapsed) || elapsed < 0 || elapsed >= budget) return 0;
+  return min + Math.trunc(((base - min) * (budget - elapsed)) / budget);
+};
+
+// المبارزة: الفوز وحده يُكافأ؛ الخسارة صفر (قرار ٦٠).
+// الدعوى الخادمية (صف المبارزة/الفائز/٤٨ ساعة/بلا ادعاء مكرر) تبقى داخل
+// verify_commit ذرياً (0005) — هذا الفحص طبقة نقاط فقط.
+const DUEL_POINTS: Record<string, number> = { duelWin: 45, duelLoss: 0 };
+
+// manual: نقاط مخصصة ١..١٠٠٠ + سبب إلزامي (جائزة الأستاذ)
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+type Admin = ReturnType<typeof createClient>;
+
+/// هل أُنهي هذا التحدي بمغادرة؟ (القرار ٦٠: المغادرة = إنهاء + احتساب،
+/// وبعدها يُقفل التحدي فلا تُقبل منه أي نقاط.)
+const hasAbandon = async (
+  admin: Admin,
+  deviceId: string,
+  cid: string,
+): Promise<boolean> => {
+  const { count } = await admin
+    .from('xp_events')
+    .select('seq', { count: 'exact', head: true })
+    .eq('device_id', deviceId)
+    .eq('type', 'challengeAbandon')
+    .eq('payload->>challengeId', cid);
+  return (count ?? 0) > 0;
+};
 
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), {
@@ -86,6 +137,9 @@ Deno.serve(async (req) => {
     // ── ٢) التحقق المتسلسل — كل الخطوات لكل حدث بالترتيب (العقد §٤.٤) ──
     const accepted: Record<string, unknown>[] = [];
     const seenCaps = new Set<string>();
+    // تحديات أُنهيت بالمغادرة داخل هذه الدفعة نفسها (قبل الإيداع) —
+    // فلا تُقبل نقاطها حتى لو وردت بترتيب مقلوب.
+    const abandoned = new Set<string>();
     for (const ev of events) {
       lastSeq++;
       // ٢-٠ شكل الحدث: كائن، نوع نصي قصير، حمولة ≤ 2KB (تدقيق الحقن 2026-09-14)
@@ -120,19 +174,18 @@ Deno.serve(async (req) => {
       if (!ok)
         return json({ accepted: false, reason: 'BAD_SIGNATURE',
           synced_up_to: lastSeq - 1 }, 422);
-      // ٢-هـ النوع والنقاط
+      // ٢-هـ النوع والنقاط (قرار ٦٠ — التحديات هي الفاصل)
       const type: string = ev.type;
       const points = ev.payload?.points;
       if (type in CAPPED) {
+        // السلسلة اليومية — مرة/يوم بحكم تعريفها
         if (points !== CAPPED[type])
-          return json({ accepted: false,
-            reason: `POINTS_MISMATCH:${type}`,
+          return json({ accepted: false, reason: `POINTS_MISMATCH:${type}`,
             synced_up_to: lastSeq - 1 }, 422);
         const dk = ev.payload?.dateKey;
-        if (typeof dk !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(dk))
+        if (typeof dk !== 'string' || !DATE_RE.test(dk))
           return json({ accepted: false, reason: 'DATEKEY_FORMAT',
             synced_up_to: lastSeq - 1 }, 422);
-        // السقف اليومي: ضد القاعدة + ضد الدفعة الحالية (العقد §٤.٥)
         const key = `${type}:${dk}`;
         if (seenCaps.has(key))
           return json({ accepted: false, reason: `DUP_CAP:${type}`,
@@ -147,20 +200,88 @@ Deno.serve(async (req) => {
           return json({ accepted: false, reason: `DUP_CAP_DB:${type}`,
             synced_up_to: lastSeq - 1 }, 422);
         seenCaps.add(key);
-      } else if (type in UNLIMITED) {
-        if (points !== UNLIMITED[type])
-          return json({ accepted: false,
-            reason: `POINTS_MISMATCH:${type}`,
+      } else if (type in TRAINING) {
+        // نقاط تعلّم شخصية — بلا سقف (الغش فيها يضر صاحبها فقط)
+        if (points !== TRAINING[type])
+          return json({ accepted: false, reason: `POINTS_MISMATCH:${type}`,
             synced_up_to: lastSeq - 1 }, 422);
-      } else if (type === 'duelWin' || type === 'duelLoss') {
-        if (points !== (type === 'duelWin' ? 45 : 15))
+      } else if (type === 'challengeQ') {
+        // إجابة صحيحة داخل تحدي اليوم — النقاط تناقصية مع الزمن
+        const kind = typeof ev.payload?.qType === 'string'
+          ? CHALLENGE_KINDS[ev.payload.qType]
+          : undefined;
+        if (!kind)
+          return json({ accepted: false, reason: 'CHALLENGE_KIND',
+            synced_up_to: lastSeq - 1 }, 422);
+        const cid = ev.payload?.challengeId;
+        if (typeof cid !== 'string' || !UUID_RE.test(cid))
+          return json({ accepted: false, reason: 'CHALLENGE_ID_FORMAT',
+            synced_up_to: lastSeq - 1 }, 422);
+        const qi = ev.payload?.qIndex;
+        if (!Number.isInteger(qi) || qi < 0 || qi > 49)
+          return json({ accepted: false, reason: 'CHALLENGE_QINDEX',
+            synced_up_to: lastSeq - 1 }, 422);
+        const el = ev.payload?.elapsedMs;
+        if (!Number.isInteger(el) || el < 0 || el > kind.budget)
+          return json({ accepted: false, reason: 'CHALLENGE_ELAPSED',
+            synced_up_to: lastSeq - 1 }, 422);
+        // النقاط من الدالة الحتمية — لا ثقة برقم الجهاز
+        if (points !== challengePoints(kind.base, kind.min, kind.budget, el))
+          return json({ accepted: false, reason: 'POINTS_MISMATCH:challengeQ',
+            synced_up_to: lastSeq - 1 }, 422);
+        // المغادرة أنهت التحدي ⇒ مُقفل: لا نقاط بعدها (قرار ٦٠)
+        if (abandoned.has(cid) || (await hasAbandon(admin, deviceId, cid)))
+          return json({ accepted: false, reason: 'CHALLENGE_CLOSED',
+            synced_up_to: lastSeq - 1 }, 422);
+        // كل سؤال مرة واحدة لكل تحدي (ضد القاعدة وضد الدفعة)
+        const key = `q:${cid}:${qi}`;
+        if (seenCaps.has(key))
+          return json({ accepted: false, reason: 'DUP_CAP:challengeQ',
+            synced_up_to: lastSeq - 1 }, 422);
+        const { count } = await admin
+          .from('xp_events')
+          .select('seq', { count: 'exact', head: true })
+          .eq('device_id', deviceId)
+          .eq('type', 'challengeQ')
+          .eq('payload->>challengeId', cid)
+          .eq('payload->>qIndex', String(qi));
+        if ((count ?? 0) > 0)
+          return json({ accepted: false, reason: 'DUP_CAP_DB:challengeQ',
+            synced_up_to: lastSeq - 1 }, 422);
+        seenCaps.add(key);
+      } else if (type === 'challengeAbandon') {
+        // إنهاء التحدي بمغادرة التطبيق — ٠ نقطة ويُقفل التحدي
+        const cid = ev.payload?.challengeId;
+        if (typeof cid !== 'string' || !UUID_RE.test(cid))
+          return json({ accepted: false, reason: 'CHALLENGE_ID_FORMAT',
+            synced_up_to: lastSeq - 1 }, 422);
+        const why = ev.payload?.reason;
+        if (typeof why !== 'string' || why.length === 0 || why.length > 100)
+          return json({ accepted: false, reason: 'CHALLENGE_REASON',
+            synced_up_to: lastSeq - 1 }, 422);
+        if (points !== 0)
           return json({ accepted: false,
-            reason: `POINTS_MISMATCH:${type}`,
+            reason: 'POINTS_MISMATCH:challengeAbandon',
+            synced_up_to: lastSeq - 1 }, 422);
+        if (abandoned.has(cid))
+          return json({ accepted: false, reason: 'DUP_CAP:challengeAbandon',
+            synced_up_to: lastSeq - 1 }, 422);
+        abandoned.add(cid);
+      } else if (type === 'duelWin' || type === 'duelLoss') {
+        // القرار ٦٠: الفوز وحده يُكافأ؛ الخسارة صفر
+        if (points !== DUEL_POINTS[type])
+          return json({ accepted: false, reason: `POINTS_MISMATCH:${type}`,
             synced_up_to: lastSeq - 1 }, 422);
         const duelId = ev.payload?.duelId;
-        if (typeof duelId !== 'string' ||
-            !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(duelId))
+        if (typeof duelId !== 'string' || !UUID_RE.test(duelId))
           return json({ accepted: false, reason: 'DUEL_ID_FORMAT',
+            synced_up_to: lastSeq - 1 }, 422);
+        // مفتاح اليوم لازم لقاعدة «الخصم نفسه مرة/يوم» — تُطبَّق خادمياً
+        // داخل verify_commit (هجرة 0009) لأن الخصم يُقرأ من صف المبارزة
+        // نفسه، لا من ادعاء الجهاز (لا ثقة بالحمولة في قرار النقاط).
+        const dk = ev.payload?.dateKey;
+        if (typeof dk !== 'string' || !DATE_RE.test(dk))
+          return json({ accepted: false, reason: 'DATEKEY_FORMAT',
             synced_up_to: lastSeq - 1 }, 422);
       } else if (type === 'manual') {
         if (!Number.isInteger(points) || points < 1 || points > 1000)
@@ -175,6 +296,7 @@ Deno.serve(async (req) => {
         return json({ accepted: false, reason: 'UNKNOWN_TYPE',
           synced_up_to: lastSeq - 1 }, 422);
       }
+
       accepted.push(ev);
     }
 
@@ -188,13 +310,20 @@ Deno.serve(async (req) => {
       p_server_ms: serverTimeMs,
     });
     if (commitErr) {
-      const gap = commitErr.message.includes('VZ_GAP');
+      const msg = commitErr.message;
+      const gap = msg.includes('VZ_GAP');
+      // قرار ٦٠: رُفضت الدفعة بقاعدة «الخصم نفسه مرة/يوم للنقاط» —
+      // خطأ عمل (٤٢٢) لا عطل سيرفر: الطالب يعرف أن النقاط لم تُحتسب
+      // لأنه لعب مع الخصم نفسه اليوم، لا لأن الخادم تعطّل.
+      const oppDay = msg.includes('VZ_DUEL_OPP_DAY');
       return json({
         accepted: false,
-        reason: gap ? 'SEQ_GAP' : 'COMMIT_INTERNAL',
+        reason: gap ? 'SEQ_GAP'
+            : oppDay ? 'DUEL_OPP_ONCE_PER_DAY'
+            : 'COMMIT_INTERNAL',
         synced_up_to: lastSeq - accepted.length,
-        detail: gap ? undefined : commitErr.message,
-      }, gap ? 422 : 500);
+        detail: (gap || oppDay) ? undefined : msg,
+      }, (gap || oppDay) ? 422 : 500);
     }
     return json({
       accepted: true,

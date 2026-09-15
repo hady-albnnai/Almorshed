@@ -138,17 +138,45 @@ void main() {
   });
 
   group('الحدود اليومية ومهام اليوم (§٤.١)', () {
-    test('نوع مرة/يوم: مرة ينام والثاني يُرفض — وغداً يعود', () async {
+    test('السلسلة اليومية: مرة/يوم بحكم تعريفها — وغداً تعود', () async {
       final l = ledger();
       expect(
-          (await l.append(typeId: 'batchDone', dateKey: '2026-09-12')).ok,
+          (await l.append(typeId: 'streakDay', dateKey: '2026-09-12')).ok,
           isTrue);
       final second = await l.append(
-          typeId: 'batchDone', dateKey: '2026-09-12');
+          typeId: 'streakDay', dateKey: '2026-09-12');
       expect(second.ok, isFalse); // السقف اليومي
       expect(
-          (await l.append(typeId: 'batchDone', dateKey: '2026-09-13')).ok,
+          (await l.append(typeId: 'streakDay', dateKey: '2026-09-13')).ok,
           isTrue); // يوم جديد
+    });
+
+    test('قرار ٦٠: نقاط التعلّم بلا سقف — batchDone ×٣ في اليوم نفسه',
+        () async {
+      final l = ledger();
+      for (var i = 0; i < 3; i++) {
+        expect(
+            (await l.append(typeId: 'batchDone', dateKey: '2026-09-12')).ok,
+            isTrue);
+      }
+      expect(await l.dayPoints('2026-09-12'), 45); // ١٥×٣
+    });
+
+    test('قرار ٦٠: قراءة الدرس = ٠ نقطة — ولا تشعل السلسلة', () async {
+      final l = ledger();
+      final r = await l.append(typeId: 'lessonNew', dateKey: '2026-09-12');
+      expect(r.ok, isTrue);
+      expect(r.event!.payload['points'], 0);
+      expect(await l.totalXp(), 0);
+      expect(xpEventTypes['lessonNew']!.awardsStreak, isFalse);
+      expect(xpEventTypes['lessonNew']!.arena, isFalse);
+    });
+
+    test('قرار ٦٠: الخسارة = ٠ والفوز = ٤٥ — والاثنان تنافسيان', () {
+      expect(xpEventTypes['duelWin']!.points, 45);
+      expect(xpEventTypes['duelWin']!.arena, isTrue);
+      expect(xpEventTypes['duelLoss']!.points, 0);
+      expect(xpEventTypes['duelLoss']!.arena, isTrue);
     });
 
     test('نوع بلا سقف: بطاقة المراجعة ×3 والنقاط تجمّع', () async {
@@ -176,8 +204,8 @@ void main() {
       final l = ledger();
       await l.append(typeId: 'batchDone', dateKey: '2026-09-12'); // 15
       await l.append(typeId: 'cardReview', dateKey: '2026-09-12'); // 1
-      await l.append(typeId: 'lessonNew', dateKey: '2026-09-13'); // 10
-      expect(await l.totalXp(), 26);
+      await l.append(typeId: 'lessonNew', dateKey: '2026-09-13'); // ٠ (قرار ٦٠)
+      expect(await l.totalXp(), 16); // ١٥ + ١ + ٠
     });
   });
 
@@ -229,7 +257,7 @@ void main() {
       expect(r.event!.seq, 3);
       final v = await l.verifyAll();
       expect(v.ok, isTrue);
-      expect(await l.totalXp(), 35); // 15+10+10
+      expect(await l.totalXp(), 25); // ١٥ + ٠ (الدرس) + ١٠ (السلسلة)
     });
   });
 }

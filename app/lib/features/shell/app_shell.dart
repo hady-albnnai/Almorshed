@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../challenge/challenge_screen.dart';
 import '../../core/content/models.dart';
 import '../../core/license/license_store.dart';
 import '../../core/progress/progress_store.dart';
@@ -492,11 +493,14 @@ class _ChallengesTab extends StatelessWidget {
           child: ListTile(
             leading: const Text('⚔️', style: TextStyle(fontSize: 22)),
             title: const Text('تحدي اليوم'),
-            subtitle: const Text('10 أسئلة بتوقيت تناقصي — نقاط التحدي فقط'),
+            subtitle: const Text('10 أسئلة بوقت محدود — النقاط تقلّ مع البطء'),
             trailing: const Icon(Icons.chevron_left),
-            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('تحدي اليوم — يُفعل في A5 (مؤقت + تناقص)')),
-            ),
+            onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
+              builder: (_) => ChallengeScreen(
+                pack: pack,
+                xpRecorder: xpRecorder,
+              ),
+            )),
           ),
         ),
         Card(
@@ -539,11 +543,23 @@ class _ChallengesTab extends StatelessWidget {
               children: [
                 Text('نقاطي — كيف تُحسب؟', style: txt.titleMedium),
                 const SizedBox(height: 8),
-                Text('التدريب = نقاط تعلّم بلا جوائز · التحديات = نقاط تنافسية بمؤقت تناقصي · الفوز فقط يُكافأ · الأسبوع يُصفّر الاثنين.', style: txt.bodyMedium),
+                // A5 — قرار ٦٠: فصل حاسم بين نقاط التعلّم (شخصية) ونقاط الترتيب (التحديات)
+                const Text('التدريب والبطاقات = نقاط تعلّم شخصية، بلا سقف وبلا جوائز — لا تدخل الترتيب. التحديات وحدها هي نقاط الترتيب الأسبوعي، والفوز فقط يُكافَأ.'),
                 const SizedBox(height: 6),
                 FutureBuilder<int>(
+                  future: xpRecorder.ledger.arenaTotalXp(),
+                  builder: (_, snap) => Text(
+                    'نقاط الترتيب (التحديات): ${snap.data ?? 0}',
+                    style: txt.titleSmall,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                FutureBuilder<int>(
                   future: xpRecorder.ledger.verifiedTotalXp(),
-                  builder: (_, snap) => Text('نقاطك الموثقة الآن: ${snap.data ?? 0}', style: txt.bodySmall),
+                  builder: (_, snap) => Text(
+                    'نقاط التعلّم الموثقة: ${snap.data ?? 0}',
+                    style: txt.bodySmall,
+                  ),
                 ),
               ],
             ),

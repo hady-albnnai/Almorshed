@@ -1,4 +1,4 @@
-/// F3.7 — دفتر XP: الأنواع العشرة من docs/12 §٤.١ + السلسلة + التحقق.
+/// F3.7 — دفتر XP: جدول الأنواع (docs/12 §٤.١ + قرار ٦٠) + السلسلة + التحقق.
 /// Append-only بالبنية: لا توجد أي واجهة تعديل أو حذف أصلاً — والتحقق
 /// يرفض ١٠٠٪ (تعديل payload، حذف حدث، توقيع مزيف — docs/12 §٨-4).
 library;
@@ -11,36 +11,72 @@ import '../../core/xp/xp_signer.dart';
 import 'xp_store.dart';
 
 /// تعريف نوع حدث XP — النقاط من الجدول المرجعي حصراً.
+///
+/// **قرار ٦٠ (اقتصاد النقاط):** التدريب = نقاط تعلّم شخصية (بلا سقف،
+/// بلا جوائز، لا تُحسب في الترتيب). التحديات وحدها = نقاط تنافسية
+/// (`arena: true`) وهي ما تُحسب في لوحة الأسبوع.
+/// قراءة الدرس = ٠ نقطة (علامة ✓ فقط) ولا تشعل السلسلة — «لا نقاط بلا
+/// إجابة صحيحة».
 class XpEventType {
-  const XpEventType(this.id, this.points, {this.cappedPerDay = true});
+  const XpEventType(
+    this.id,
+    this.points, {
+    this.cappedPerDay = false,
+    this.awardsStreak = true,
+    this.requiresPoints = false,
+    this.arena = false,
+  });
 
   final String id;
   final int points;
 
-  /// «مرة/يوم» — النقاط بلا سقف يُمسح الحدّ عنها (بطاقة المراجعة والمبارزات).
+  /// «مرة/يوم» — السلسلة اليومية وحدها بحكم تعريفها (لا تتكرر).
   final bool cappedPerDay;
+
+  /// هل يشعل «سلسلة اليوم»؟ (قراءة الدرس لا تشعلها — ليست إجابة صحيحة).
+  final bool awardsStreak;
+
+  /// النقاط تُحسب وقت الحدث وتمر معه (تحدٍّ مؤقّت / نقاط يدوية) —
+  /// بلا قيمة ⇒ رفض (يمنع تزوير النقاط من نوع ثابت).
+  final bool requiresPoints;
+
+  /// نقاط تنافسية — تُحسب في لوحة الأسبوع (قرار ٦٠: التحديات هي الفاصل).
+  final bool arena;
 }
 
+// ── نقاط التعلّم — شخصية، بلا سقف، بلا جوائز (الغش فيها يضر صاحبها فقط) ──
 const XpEventType xpBatchDone =
     XpEventType('batchDone', 15); // إتمام دفعة التدريب
 const XpEventType xpMistakesFive =
     XpEventType('mistakesFive', 10); // ٥ أسئلة من أخطائي
-const XpEventType xpLessonNew =
-    XpEventType('lessonNew', 10); // درس جديد في المنهاج
-const XpEventType xpStreakDay =
-    XpEventType('streakDay', 10); // سلسلة اليوم (أي نشاط)
-const XpEventType xpCardReview = XpEventType('cardReview', 1,
-    cappedPerDay: false); // بطاقة مراجعة
+/// درس مقروء في المنهاج — **٠ نقطة** (علامة ✓ فقط) ولا يشعل السلسلة
+/// («لا نقاط بلا إجابة صحيحة» — قرار ٦٠). الحدث يبقى لأجل التقدّم والسلسلة
+/// البصرية، لا لأجل النقاط.
+const XpEventType xpLessonNew = XpEventType('lessonNew', 0,
+    awardsStreak: false, arena: false);
+const XpEventType xpStreakDay = XpEventType('streakDay', 10,
+    cappedPerDay: true); // سلسلة اليوم — مرة/يوم بحكم تعريفها
+const XpEventType xpCardReview =
+    XpEventType('cardReview', 1); // بطاقة مراجعة
 const XpEventType xpQueueDone =
     XpEventType('queueDone', 15); // إتمام طابور اليوم
 const XpEventType xpLabChallenge =
     XpEventType('labChallenge', 10); // تحدي المختبر T=٢ث
-const XpEventType xpDuelWin = XpEventType('duelWin', 45,
-    cappedPerDay: false); // فوز مبارزة
-const XpEventType xpDuelLoss = XpEventType('duelLoss', 15,
-    cappedPerDay: false); // خسارة مبارزة (مشاركة)
 const XpEventType xpManual = XpEventType('manual', 0,
-    cappedPerDay: false); // نقاط يدوية — النقاط بالحمولة مع سبب
+    requiresPoints: true); // نقاط يدوية من الأستاذ — النقاط مع سبب
+
+// ── النقاط التنافسية — التحديات وحدها (قرار ٦٠) ──
+/// إجابة صحيحة داخل تحدي اليوم — النقاط تناقصية مع الزمن
+/// (الدالة الحتمية في `core/xp/challenge_points.dart` — نفسها على السيرفر).
+const XpEventType xpChallengeQ = XpEventType('challengeQ', 0,
+    requiresPoints: true, arena: true);
+/// إنهاء التحدي بمغادرة التطبيق — ٠ نقطة ويُقفل التحدي (لا نقاط بعده).
+const XpEventType xpChallengeAbandon = XpEventType('challengeAbandon', 0,
+    awardsStreak: false, arena: true);
+const XpEventType xpDuelWin =
+    XpEventType('duelWin', 45, arena: true); // الفوز وحده يُكافأ
+const XpEventType xpDuelLoss =
+    XpEventType('duelLoss', 0, arena: true); // الخسارة = صفر (قرار ٦٠)
 
 final Map<String, XpEventType> xpEventTypes = <String, XpEventType>{
   for (final t in const [
@@ -51,9 +87,11 @@ final Map<String, XpEventType> xpEventTypes = <String, XpEventType>{
     xpCardReview,
     xpQueueDone,
     xpLabChallenge,
+    xpManual,
+    xpChallengeQ,
+    xpChallengeAbandon,
     xpDuelWin,
     xpDuelLoss,
-    xpManual,
   ])
     t.id: t,
 };
@@ -117,6 +155,28 @@ class XpLedgerService {
     return sum;
   }
 
+  /// هل بدأ هذا التحدي من قبل؟ (منع تكرار تحدي اليوم محلياً قبل السيرفر —
+  /// المعرّف حتمي من الجهاز + مفتاح اليوم، فالتكرار يُكتشف محلياً فوراً).
+  Future<bool> challengeStarted(String challengeId) async {
+    final events = await _ensureEvents();
+    return events.any((e) =>
+        (e.type == xpChallengeQ.id || e.type == xpChallengeAbandon.id) &&
+        e.payload['challengeId'] == challengeId);
+  }
+
+  /// نقاط التحديات فقط (قرار ٦٠) — ما يُحسب في لوحة الأسبوع:
+  /// `challengeQ` (+ التناقصي) و`duelWin`. الباقي نقاط تعلّم شخصية.
+  Future<int> arenaTotalXp() async {
+    final events = await _ensureEvents();
+    var sum = 0;
+    for (final e in events) {
+      final t = xpEventTypes[e.type];
+      if (t == null || !t.arena) continue;
+      sum += (e.payload['points'] as num?)?.toInt() ?? 0;
+    }
+    return sum;
+  }
+
   /// إجمالي XP المعتمد (مجموع حمولات السلسلة).
   Future<int> totalXp() async {
     final events = await _ensureEvents();
@@ -139,8 +199,9 @@ class XpLedgerService {
     if (type == null) {
       return XpAppendResult(false, 'نوع مجهول: $typeId');
     }
-    if (typeId == xpManual.id && pointsOverride == null) {
-      return XpAppendResult(false, 'النقاط اليدوية تتطلب pointsOverride وسبباً');
+    if (type.requiresPoints && pointsOverride == null) {
+      return XpAppendResult(
+          false, 'النوع $typeId يتطلب نقاطاً محسوبة مع الحدث (pointsOverride)');
     }
     if (type.cappedPerDay && await dayDone(typeId, dateKey)) {
       return XpAppendResult(false, 'النوع $typeId أنجز اليوم $dateKey مسبقاً');

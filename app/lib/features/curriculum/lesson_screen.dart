@@ -116,7 +116,8 @@ class _LessonScreenState extends State<LessonScreen> {
       completed: true,
     );
     await widget.progressStore.save(ReadProgress(chapters: chapters));
-    // F3.8: «درس جديد» +١٠ — السقف اليومي بالخدمة يمنع التكرار
+    // قرار ٦٠: قراءة الدرس = ٠ نقطة (علامة ✓ فقط) — الحدث يُسجَّل لأجل
+    // التقدّم والسلسلة البصرية، بلا نقاط وبلا إشعال لسلسلة اليوم.
     await widget.xpRecorder?.record('lessonNew');
   }
 
