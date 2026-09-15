@@ -103,6 +103,51 @@ def flatten_block(lines: list[str]) -> str:
     return "\n".join(out).strip()
 
 
+def _split_long(text: str, max_len: int = 700) -> list[str]:
+    """تقسيم فقرة طويلة ≤max_len عند حدود منطقية (عناوين مرقمة، نقاط، أسطر)."""
+    if len(text) <= max_len:
+        return [text]
+    lines = text.split("\n")
+    chunks: list[str] = []
+    cur: list[str] = []
+    cur_len = 0
+    for ln in lines:
+        # سطر وحده أطول من الحد — قطّعه قسراً
+        if len(ln) > max_len:
+            if cur:
+                chunks.append("\n".join(cur))
+                cur = []
+                cur_len = 0
+            for i in range(0, len(ln), max_len):
+                chunks.append(ln[i:i+max_len])
+            continue
+        add_len = len(ln) + 1 + cur_len
+        # حدود مفضلة للقطع: ترقيم عربي/لاتيني أو نقطة
+        is_boundary = bool(re.match(r"^\s*[٠-٩\d]+\)", ln)) or ln.startswith("•") or ln.startswith("—") or ln.strip() == ""
+        if cur and add_len > max_len:
+            # إن كان السطر الحالي حداً، ابدأ به مقطعاً جديداً
+            chunks.append("\n".join(cur))
+            cur = [ln]
+            cur_len = len(ln)
+        else:
+            cur.append(ln)
+            cur_len = add_len
+            # إن تجاوزنا الحد وليس حداً واضحاً، ابحث عن أقرب حد سابق داخل cur
+            if cur_len > max_len and len(cur) > 1:
+                # ابحث عكسياً عن سطر حدودي
+                split_idx = -1
+                for idx in range(len(cur)-1, 0, -1):
+                    if re.match(r"^\s*[٠-٩\d]+\)", cur[idx]) or cur[idx].startswith("•"):
+                        split_idx = idx
+                        break
+                if split_idx > 0:
+                    chunks.append("\n".join(cur[:split_idx]))
+                    cur = cur[split_idx:]
+                    cur_len = sum(len(x)+1 for x in cur)
+    if cur:
+        chunks.append("\n".join(cur))
+    return [c for c in chunks if c.strip()]
+
 def split_sections(md: str):
     """[(title, [lines])] على مستوى ## ."""
     secs, cur, buf = [], None, []
@@ -224,14 +269,24 @@ def build():
                 text = flatten_block(slines)
                 if not text:
                     continue
-                pi += 1
-                first = next((l for l in text.split("\n") if l and not l.startswith("•")), text.split("\n")[0])
-                summary = first[:160]
-                paragraphs.append({
-                    "id": f"{chid}P{pi}",
-                    "text": text,
-                    "summary": clean_inline(stitle) + (" — " + summary if summary and summary != stitle else ""),
-                })
+                # A4 — وضوح الدرس: تقسيم الفقرات الطويلة ≤700 حرف عند العناوين المرقمة والخطوط
+                chunks = _split_long(text, 700)
+                for ci, chunk in enumerate(chunks):
+                    pi += 1
+                    first = next((l for l in chunk.split("\n") if l and not l.startswith("•")), chunk.split("\n")[0])
+                    summary = first[:160]
+                    base_summary = clean_inline(stitle)
+                    if len(chunks) > 1:
+                        base_summary += f" — جزء {ci+1}/{len(chunks)}"
+                    if summary and summary != stitle:
+                        base_summary += " — " + summary
+                    # عنوان القسم فوق النص (قرار A4) — نضمن أن النص يبدأ بالعنوان عند العرض
+                    # نحفظ العنوان منفصلاً في summary، والنص يبقى كما هو؛ الواجهة تعرض summary كعنوان
+                    paragraphs.append({
+                        "id": f"{chid}P{pi}",
+                        "text": chunk,
+                        "summary": base_summary,
+                    })
             intro = intro_text(chid)
             if intro:
                 paragraphs.insert(0, {"id": f"{chid}P0", "text": intro, "summary": "مقدمة — لماذا هذا الدرس وماذا ستتعلم"})

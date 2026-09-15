@@ -202,7 +202,20 @@ class _LessonScreenState extends State<LessonScreen> {
                 Expanded(
                   child: SingleChildScrollView(
                     padding: const EdgeInsets.all(16),
-                    child: Text(_paragraph.text, style: txt.bodyLarge),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // A4 — عنوان القسم فوق النص (قرار وضوح الدرس)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text(
+                            _paragraph.summary.split(' — ').first.trim(),
+                            style: txt.titleSmall?.copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.secondary),
+                          ),
+                        ),
+                        Text(_paragraph.text, style: txt.bodyLarge),
+                      ],
+                    ),
                   ),
                 ),
                 Card(
