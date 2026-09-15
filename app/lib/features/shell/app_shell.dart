@@ -328,10 +328,10 @@ class _ReviewView extends StatelessWidget {
 
 // ── تبويب التدريب ────────────────────────────────────────────────
 class _TrainingTab extends StatefulWidget {
-  const _TrainingTab({required this.pack, required this.trainingStore, this.xpRecorder});
+  const _TrainingTab({required this.pack, required this.trainingStore, required this.xpRecorder});
   final ContentPack pack;
   final TrainingStore trainingStore;
-  final XpRecorder xpRecorder;
+  final XpRecorder? xpRecorder;
 
   @override
   State<_TrainingTab> createState() => _TrainingTabState();
