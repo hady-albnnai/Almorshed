@@ -33,5 +33,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/brand/
     - assets/content/
   # خطا Cairo وTajawal يُعلَنان هنا في F0.3 بعد وضع ملفاتهما (app/BUILD.md §الخطوط)
