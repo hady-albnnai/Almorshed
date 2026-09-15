@@ -31,6 +31,7 @@ import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
 import 'features/home/home_screen.dart';
 import 'features/review/review_widgets.dart';
+import 'features/shell/app_shell.dart';
 
 void main() => runApp(const FizyaClashApp());
 
@@ -298,9 +299,9 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
               devicePubkeyB64: _pubkeyB64!,
             );
           }
-          // F3.8: الرئيسية شاشة الانطلاق — والمنهاج منها
+          // A2 — الهيكل الجديد (قرار 58): 3 تبويبات، الافتراضي المنهاج
           if (widget.startOnHome) {
-            return HomeScreen(
+            return AppShell(
               pack: snap.data!,
               progressStore: widget.progressStore ?? SharedPrefsProgressStore(),
               trainingStore: widget.trainingStore ?? SharedPrefsTrainingStore(),
@@ -311,6 +312,7 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
               fetchLeague: () => _leagueApi.fetch(_pubkeyB64 ?? ''),
               openDuel: () => _openDuelFlow(snap.data!),
               openLocalDuel: () => _openLocalDuelFlow(snap.data!),
+              devicePubkeyB64: _pubkeyB64 ?? '',
             );
           }
           return CurriculumScreen(
