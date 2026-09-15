@@ -87,7 +87,7 @@ void main() {
       expect(pages[i], greaterThan(pages[i - 1]), reason: 'ترتيب الصفحات');
     }
 
-    // كل درس: فقرة مصادر (P0) + أقسام القالب (🔑 📖 🧮 ✍️ 🎯 🧾 ⚖️ 📎)
+    // كل درس: مقدمة للطالب (P0) + أقسام القالب (🔑 📖 🧮 ✍️ 🎯 🧾 ⚖️)
     for (final u in pack.units) {
       for (final c in u.chapters) {
         expect(c.paragraphs.length, greaterThanOrEqualTo(8), reason: c.id);

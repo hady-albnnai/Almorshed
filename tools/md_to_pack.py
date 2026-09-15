@@ -18,6 +18,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "content" / "authoring"
 OUT = ROOT / "app" / "assets" / "content" / "pack.json"
+INTROS = json.loads((SRC / "intros.json").read_text(encoding="utf-8"))
+AR_ORD = "١٢٣٤٥٦٧٨٩"
+
+
+def intro_text(chid: str) -> str:
+    """مقدمة الدرس للطالب (Advance Organizer): مشهد → سؤال → ماذا ستتعلم → الامتحان."""
+    it = INTROS.get(chid)
+    if not it:
+        return ""
+    lines = [it["scene"], "", "السؤال الكبير: " + it["question"], "", "في هذا الدرس ستعرف:"]
+    lines += [f"{AR_ORD[i]}) {w}" for i, w in enumerate(it["will_learn"])]
+    lines += ["", "في الامتحان: " + it["exam"]]
+    return "\n".join(lines)
 
 UNIT_TITLES = {
     "U1": "الوحدة الأولى: الحركة والتحريك",
@@ -33,7 +46,11 @@ def ar2int(s: str) -> int:
     return int(s.translate(AR_DIGITS))
 
 
+SRC_REF = re.compile(r"\s*(?:\[(?:أستاذ|سلم|كتاب)[^\]]*\]|\((?:الكتاب\s*)?ص\s*[٠-٩\d–\-، ]+\)|\(نمط س[^)]*\)|\[الكتاب[^\]]*\])")
+
+
 def clean_inline(s: str) -> str:
+    s = SRC_REF.sub("", s)
     s = re.sub(r"\n\s*-\s*$", "", s)
     s = s.replace("**", "")
     s = re.sub(r"<details><summary>(.*?)</summary>(.*?)</details>", r"\1: \2", s, flags=re.S)
@@ -197,6 +214,8 @@ def build():
                         cid += 1
                         cards.append({"id": cid, "unit": uid, "chapter": chid, "front": q, "back": a})
                     continue
+                if stitle.startswith("📎"):
+                    continue  # جدول المقابلة كتاب↔أستاذ↔امتحان: للتأليف فقط، لا يُعرض للطالب
                 if stitle.startswith("🧾"):
                     for c in parse_summary_cards(slines):
                         cid += 1
@@ -213,8 +232,9 @@ def build():
                     "text": text,
                     "summary": clean_inline(stitle) + (" — " + summary if summary and summary != stitle else ""),
                 })
-            if head:
-                paragraphs.insert(0, {"id": f"{chid}P0", "text": head, "summary": "مصادر الدرس ووزنه في امتحان ٢٠٢٦"})
+            intro = intro_text(chid)
+            if intro:
+                paragraphs.insert(0, {"id": f"{chid}P0", "text": intro, "summary": "مقدمة — لماذا هذا الدرس وماذا ستتعلم"})
             chapters.append({"id": chid, "title": ltitle, "page": page, "paragraphs": paragraphs})
         units.append({"id": uid, "title": UNIT_TITLES.get(uid, uid), "chapters": chapters})
     pack = {"packId": "syria-2027-v2", "year": 2027, "edition": 2,
