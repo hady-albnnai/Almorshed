@@ -448,6 +448,15 @@ curl -s -X POST "$URL/functions/v1/verify_xp_events" \
 | 18 | تشديد `verify_xp_events`: `EVENT_SHAPE` (نوع/أرقام/حمولة ≤ 2KB) + `reason ≤ 200` | `functions/verify_xp_events/index.ts` (2026-09-14) | ✅ أُعيد نشرها (دخان المالك: accepted=true، synced_up_to=0) |
 | 19 | تشديد `duel_finish`: `SCOPE_SHAPE` (units U1..U5 ≤ 5، count 1..50) | `functions/duel_finish/index.ts` | ⬜ يُنشر مع المسار ب |
 | 20 | `0008_review_codes.sql` — عمود `activation_codes.review` | SQL Editor | ✅ 2026-09-15 (تحقق: review/false) |
+| 22 | `0009_arena_points.sql` — الترتيب يقرأ أنواع `arena` حصراً (قرار ٦٠) + `is_arena_type` + فهرسا التحدي | SQL Editor | ⬜ **يُطبَّق الآن** — الجزء الآمن بلا `duels`. التشخيص قبل/بعد: `docs/supabase/0009-diagnostics.sql` |
+| 23 | `0010_duel_points.sql` — «الخصم نفسه مرة/يوم» + `verify_commit` موسّعة | SQL Editor | ⬜ **معلّق على 0005** — فيه حارس يرفض التشغيل إن لم يكن `public.duels` موجوداً |
+
+> **⚠️ اكتشاف ٢٠٢٦-٠٩-١٥ (مهم):** الهجرة `0005_duels.sql` **غير مطبَّقة إطلاقاً**
+> (انكشف عند فشل 0009 بـ `42P01: relation "public.duels" does not exist`).
+> الأثر: **المبارزة عن بعد ميتة بالكامل على السيرفر** — لا جداول، لا حكم
+> خادمي (`duel_finish` غير منشورة، بند ١٢)، ولا بنك أسئلة (بند ١٣).
+> كود التطبيق جاهز واختباراته خضراء، لكن المسار ب من docs/17 لم يُنفَّذ.
+> ⇒ أي هجرة جديدة **يجب ألا تفترض وجود `duels`** حتى تُطبَّق 0005.
 | 21 | إعادة نشر `office_codes` (generate يقبل `review`) + `license_activate` (علم `teacher`) + `heartbeat` (يحفظ العلم عند التجديد) | Dashboard → Functions | ✅ 2026-09-15 (فحص: generate review=true) |
 
 طريقة 5-7 (بلا CLI): اللوحة ← **Edge Functions** ← Create a new function
