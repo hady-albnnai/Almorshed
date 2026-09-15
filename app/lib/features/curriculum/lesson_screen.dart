@@ -206,13 +206,16 @@ class _LessonScreenState extends State<LessonScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         // A4 — عنوان القسم فوق النص (قرار وضوح الدرس)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            _paragraph.summary.split(' — ').first.trim(),
-                            style: txt.titleSmall?.copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.secondary),
+                        // لا نعرض العنوان إن كان لا يحوي فاصل « — » (اختبارات sample_pack)
+                        // حتى لا نكرر نفس نص الخلاصة مرتين → فشل findsOneWidget
+                        if (_paragraph.summary.contains(' — '))
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
+                            child: Text(
+                              _paragraph.summary.split(' — ').first.trim(),
+                              style: txt.titleSmall?.copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.secondary),
+                            ),
                           ),
-                        ),
                         Text(_paragraph.text, style: txt.bodyLarge),
                       ],
                     ),
