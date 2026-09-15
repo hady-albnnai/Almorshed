@@ -4,9 +4,14 @@ import '../../core/supabase/league_api.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/util/arabic_number.dart';
 
-/// F4.6 — دوري فيزيا كلاش 🏆 (بنفسجي docs/13 — مطابقة اللوحة النموذجية):
-/// مجموعتي الأسبوع (~٣٠ طالباً بمستوى متقارب) — أرقام وترتيب حصراً بلا
-/// هويات، وصفّي مميز بـ«أنت». القراءة بـRLS للمفعّلين حصراً.
+/// F4.6 — ترتيب فيزيا كلاش 🏆 (بنفسجي docs/13 — مطابقة اللوحة النموذجية).
+///
+/// **قرار ٦٥:** الترتيب **تراكمي طوال الموسم الدراسي** وفي **لوحة واحدة
+/// بلا مجموعات** — لا يُصفَّر كل اثنين، ولا تقسيم إلى مجموعات ٣٠.
+/// (القديم كان أسبوعياً بمجموعات ~٣٠؛ أُلغي بقرار المالك، والرقم ٣٠ أصلاً
+/// كان بلا سند — انظر هجرة 0011.)
+/// أرقام وترتيب حصراً بلا هويات، وصفّي مميز بـ«أنت». القراءة بـRLS
+/// للمفعّلين حصراً.
 class LeagueScreen extends StatefulWidget {
   const LeagueScreen({super.key, required this.fetch});
 
@@ -66,7 +71,7 @@ class _LeagueScreenState extends State<LeagueScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('دوري فيزيا كلاش 🏆',
+        title: Text('ترتيب فيزيا كلاش 🏆',
             style: txt.titleMedium?.copyWith(color: violet)),
         actions: <Widget>[
           IconButton(
@@ -94,7 +99,7 @@ class _LeagueScreenState extends State<LeagueScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(24),
                         child: Text(
-                          'أول إقفال للأسبوع يوم الاثنين 🗓️\nزامن نقاطك (افتح التطبيق مع الإنترنت)\nليظهر اسمك ضمن مجموعتك',
+                          'أول إقفال للترتيب يوم الاثنين 🗓️\nزامن نقاطك (افتح التطبيق مع الإنترنت)\nليظهر اسمك على لوحة الموسم',
                           style: txt.bodyMedium?.copyWith(color: txt2),
                           textAlign: TextAlign.center,
                         ),
@@ -111,10 +116,8 @@ class _LeagueScreenState extends State<LeagueScreen> {
                             border: Border.all(color: line),
                           ),
                           child: Text(
-                            'الأسبوع ${ArabicNumber.from(_view!.isoWeek ~/ 100)}-'
-                            'و${ArabicNumber.from(_view!.isoWeek % 100)}'
-                            ' · مجموعتك رقم ${ArabicNumber.from(_view!.groupNo)}'
-                            ' · ${ArabicNumber.from(_view!.rows.length)} طلاباً',
+                            'الموسم ٢٠٢٦-٢٠٢٧ · ترتيب تراكمي'
+                            ' · ${ArabicNumber.from(_view!.rows.length)} طالباً',
                             style: txt.bodyMedium?.copyWith(color: violet),
                             textAlign: TextAlign.center,
                           ),
@@ -151,7 +154,8 @@ class _LeagueScreenState extends State<LeagueScreen> {
                           ),
                         const SizedBox(height: 8),
                         Text(
-                          'الإقفال الأسبوعي: الاثنين ٠٠:٠٥ بتوقيت دمشق —\nمجموعات ~٣٠ طالباً بمستوى متقارب (قرار ٤١)',
+                          'النقاط تراكمية طوال العام الدراسي (قرار ٦٥) —\n'
+                          'لوحة واحدة بلا مجموعات · التحديث كل اثنين ٠٠:٠٥ بتوقيت دمشق',
                           style: txt.bodySmall?.copyWith(color: txt2),
                           textAlign: TextAlign.center,
                         ),

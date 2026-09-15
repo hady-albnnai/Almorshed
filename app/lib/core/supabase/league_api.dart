@@ -70,24 +70,24 @@ class LeagueApi {
         .map((e) => e as Map<String, dynamic>)
         .where((r) => r['iso_week'] == latestWeek)
         .toList();
-    final mine = weekRows.where((r) => r['device_id'] == myId).toList();
-    if (mine.isEmpty) {
+    if (weekRows.isEmpty) {
       return LeagueView(isoWeek: latestWeek, groupNo: 0, rows: const []);
     }
-    final myGroup = mine.first['group_no'] as int;
-    final groupRows = weekRows
-        .where((r) => r['group_no'] == myGroup)
+    // قرار ٦٥: **لوحة واحدة بلا مجموعات** — الترتيب تراكمي طوال الموسم،
+    // فتُعرض اللوحة كلها لا «مجموعتي» (group_no ثابت = ١ خادمياً).
+    final all = weekRows
         .map((r) => LeagueRow(
               rank: r['rank_no'] as int,
               xp: r['xp'] as int,
               isMe: r['device_id'] == myId,
             ))
         .toList();
+    final mine = weekRows.where((r) => r['device_id'] == myId).toList();
     return LeagueView(
       isoWeek: latestWeek,
-      groupNo: myGroup,
-      rows: groupRows,
-      myRank: mine.first['rank_no'] as int,
+      groupNo: mine.isEmpty ? 0 : 1, // ٠ = لست على اللوحة بعد
+      rows: all,
+      myRank: mine.isEmpty ? null : mine.first['rank_no'] as int,
     );
   }
 }

@@ -56,7 +56,8 @@ AnonymousAuth _auth(SupabaseTransport t) => AnonymousAuth(
     transport: t, store: _cachedSession(), nowMs: () => 1790000000000);
 
 void main() {
-  test('التجميع: أحدث أسبوع + مجموعتي + isMe + الترتيب محفوظ', () async {
+  test('التجميع: أحدث أسبوع + اللوحة كلها + isMe + الترتيب محفوظ (قرار ٦٥)',
+      () async {
     final spy = _Spy((path, query, headers) {
       if (path == '/rest/v1/devices') {
         expect(query.contains('pubkey_b64=eq.'), true);
@@ -87,8 +88,9 @@ void main() {
       final api = LeagueApi(transport: t, auth: _auth(t));
       final v = await api.fetch('QUJD');
       expect(v.isoWeek, 202637); // الأقدم انحذف من العرض
-      expect(v.groupNo, 1);
-      expect(v.rows.length, 3); // مجموعتي فقط (لا المجموعة 2)
+      expect(v.groupNo, 1); // قرار ٦٥: group_no ثابت = ١ (بلا مجموعات)
+      // قرار ٦٥: اللوحة كلها تُعرض — لا فلترة «مجموعتي» (الصف ٣١ يُعرض)
+      expect(v.rows.length, 4);
       expect(v.myRank, 2);
       expect(v.rows[1].isMe, true);
       expect(v.rows[0].isMe, false);

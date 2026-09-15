@@ -529,8 +529,8 @@ class _ChallengesTab extends StatelessWidget {
           Card(
             child: ListTile(
               leading: const Text('🏆', style: TextStyle(fontSize: 22)),
-              title: const Text('لوحة الأسبوع'),
-              subtitle: const Text('ترتيبك بين 30 طالباً — يُصفّر كل اثنين'),
+              title: const Text('لوحة الموسم'),
+              subtitle: const Text('ترتيب تراكمي طوال العام — بلا مجموعات'),
               trailing: const Icon(Icons.chevron_left),
               onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => LeagueScreen(fetch: fetchLeague!))),
             ),

@@ -19,15 +19,15 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('العرض الكامل: رأس المجموعة + أنت 🎯 مميز + الميداليات',
+  testWidgets('العرض الكامل: رأس الموسم + أنت 🎯 مميز + الميداليات',
       (tester) async {
     await pumpView(tester, () async => makeView());
-    expect(find.textContaining('مجموعتك رقم'), findsOneWidget);
+    expect(find.textContaining('ترتيب تراكمي'), findsOneWidget); // رأس الموسم (قرار ٦٥)
     expect(find.text('أنت 🎯'), findsOneWidget);
     expect(find.text('المركز ١'), findsOneWidget);
     expect(find.text('المركز ٣'), findsOneWidget);
     expect(find.textContaining('٣٠٠ نقطة'), findsOneWidget);
-    expect(find.textContaining('مجموعات ~'), findsOneWidget); // ذيل الشرح
+    expect(find.textContaining('بلا مجموعات'), findsOneWidget); // ذيل الشرح (قرار ٦٥)
   });
 
   testWidgets('لا ترتيب بعد ⇒ رسالة البداية', (tester) async {
