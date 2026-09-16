@@ -678,6 +678,22 @@ void main() {
     expect(find.textContaining('مستحقة'), findsOneWidget);
   });
 
+  testWidgets('الرئيسية: بطاقة المختبر تفتح فهرس التجارب الست وتعود',
+      (tester) async {
+    final pack = _trainingPack();
+    await pumpTrainingApp(tester, pack: pack,
+        xpRecorder: XpRecorder.inMemory(), startOnHome: true);
+    await tester.scrollUntilVisible(find.byKey(const Key('home-lab')), 200);
+    await tester.tap(find.byKey(const Key('home-lab')));
+    await tester.pumpAndSettle();
+    expect(find.text('النابض التوافقي'), findsOneWidget);
+    expect(find.byKey(const Key('lab-gravity')), findsOneWidget);
+    expect(find.byKey(const Key('lab-photo')), findsOneWidget);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(find.text('المختبر — التجارب التفاعلية'), findsOneWidget);
+  });
+
   testWidgets('F3.8: دورة البطاقات تسجّل النقاط — تقييمان وطابور وسلسلة',
       (tester) async {
     final pack = _trainingPack();

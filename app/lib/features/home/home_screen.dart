@@ -19,6 +19,7 @@ import '../curriculum/curriculum_screen.dart';
 import '../curriculum/lesson_screen.dart';
 import '../duel/duel_screen.dart';
 import '../duel/local_duel_screen.dart';
+import '../lab/lab_screen.dart';
 import '../admin/admin_screen.dart';
 import '../review/review_notes_screen.dart';
 import '../review/items_review_screen.dart';
@@ -535,6 +536,29 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     Text(factForDay(todayKey), style: txt.bodyLarge),
                   ],
                 ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            // ── المختبر (طلب المالك ٢٠٢٦-٠٩-١٦: التجارب على الرئيسية) ──
+            Card(
+              key: const Key('home-lab'),
+              child: ListTile(
+                leading: const Text('🧪', style: TextStyle(fontSize: 22)),
+                title: const Text('المختبر — التجارب التفاعلية'),
+                subtitle: const Text(
+                    '٦ محاكاات: النابض · الفتل · الثقلي · الدارة المهتزّة · الوتر · الكهرضوئي ←'),
+                trailing: const Icon(Icons.chevron_left),
+                onTap: () async {
+                  await Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => LabScreen(
+                        trainingStore: widget.trainingStore,
+                        xpRecorder: widget.xpRecorder,
+                      ),
+                    ),
+                  );
+                  _openHome();
+                },
               ),
             ),
             const SizedBox(height: 8),
