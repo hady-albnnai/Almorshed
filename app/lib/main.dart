@@ -91,9 +91,18 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
     final original = await (widget.packLoader ?? _defaultLoadPack)();
     final on = widget.packLoader == null && await ReviewModeStore().isEnabled();
     if (!on) return original;
-    _reviewMode = true;
-    _unapprovedIds = unapprovedQuestionIds(original);
     _sync.suspended = true; // لا تلويث للدوري بجلسات الأستاذ
+    final ids = unapprovedQuestionIds(original);
+    // العلم يُقرأ في MaterialApp.builder (فوق الـNavigator) ⇒ إعادة بناء صريحة
+    if (mounted) {
+      setState(() {
+        _reviewMode = true;
+        _unapprovedIds = ids;
+      });
+    } else {
+      _reviewMode = true;
+      _unapprovedIds = ids;
+    }
     return openAllForReview(original);
   }
 
@@ -260,16 +269,19 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
       darkTheme: AppTheme.dark,
       builder: (context, child) => Directionality(
         textDirection: TextDirection.rtl, // التطبيق عربي بالكامل
-        child: child ?? const SizedBox.shrink(),
-      ),
-      home: FutureBuilder<ContentPack>(
-        future: _packFuture,
-        builder: (context, snap) => ReviewScope(
+        // وضع المراجعة **فوق الـNavigator**: كان تحت `home` فلا تراه الشاشات
+        // المدفوعة بـpush (دفعة التدريب، الدرس، ملاحظاتي…) ⇒ ✏️ والشريط
+        // مخفيان هناك. الآن الشجرة كلها — بما فيها المسارات — تراه.
+        child: ReviewScope(
           enabled: _reviewMode,
           unapprovedQuestionIds: _unapprovedIds,
           notes: _reviewNotes,
-          child: _buildRoot(context, snap),
+          child: child ?? const SizedBox.shrink(),
         ),
+      ),
+      home: FutureBuilder<ContentPack>(
+        future: _packFuture,
+        builder: _buildRoot,
       ),
     );
   }

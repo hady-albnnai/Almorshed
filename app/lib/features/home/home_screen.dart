@@ -21,6 +21,8 @@ import '../duel/duel_screen.dart';
 import '../duel/local_duel_screen.dart';
 import '../admin/admin_screen.dart';
 import '../review/review_notes_screen.dart';
+import '../review/items_review_screen.dart';
+import '../../core/content/generated_items.dart';
 import '../../core/review/review_mode.dart';
 import '../review/review_widgets.dart';
 import '../training/cards_screen.dart';
@@ -42,6 +44,7 @@ class HomeScreen extends StatefulWidget {
     this.fetchLeague,
     this.openDuel,
     this.openLocalDuel,
+    this.loadGeneratedItems,
   });
 
   final ContentPack pack;
@@ -62,6 +65,10 @@ class HomeScreen extends StatefulWidget {
 
   /// F5.4 — مصنع المبارزة المحلية بلا نت (null = البطاقة معطلة).
   final LocalDuelFlowFactory? openLocalDuel;
+
+  /// المادة ١٣ — محمّل البنود المولّدة لفهرس مراجعة الأستاذ (حقن للاختبارات؛
+  /// null = الأصل `assets/content/items_u1.json`).
+  final Future<GeneratedItemsPack> Function()? loadGeneratedItems;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -207,6 +214,17 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     );
   }
 
+  /// المادة ١٣ — البنود المولّدة لوضع المراجعة؛ null عند تعذر التحميل.
+  Future<GeneratedItemsPack?> _loadGeneratedOrNull() async {
+    try {
+      final load =
+          widget.loadGeneratedItems ?? () => GeneratedItemsPack.loadAsset();
+      return await load();
+    } catch (_) {
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
@@ -236,16 +254,46 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               ),
               const SizedBox(height: 8),
               FilledButton.tonalIcon(
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => ReviewNotesScreen(
-                      pack: widget.pack,
-                      notes: ReviewScope.maybeOf(context)!.notes,
+                onPressed: () async {
+                  final notes = ReviewScope.maybeOf(context)!.notes;
+                  final navigator = Navigator.of(context);
+                  final generated = await _loadGeneratedOrNull();
+                  await navigator.push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => ReviewNotesScreen(
+                        pack: widget.pack,
+                        notes: notes,
+                        generatedItems: generated,
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
                 icon: const Icon(Icons.edit_note),
                 label: const Text('ملاحظاتي — إرسال للمطوّر 📝'),
+              ),
+              const SizedBox(height: 8),
+              // المادة ١٣ — فهرس البنود المولّدة (١٠٠ بند U1) لحكم الأستاذ
+              OutlinedButton.icon(
+                key: const Key('items-review-entry'),
+                onPressed: () async {
+                  final notes = ReviewScope.maybeOf(context)!.notes;
+                  final navigator = Navigator.of(context);
+                  final messenger = ScaffoldMessenger.of(context);
+                  final items = await _loadGeneratedOrNull();
+                  if (items == null) {
+                    messenger.showSnackBar(const SnackBar(
+                        content: Text('تعذر تحميل البنود المولّدة')));
+                    return;
+                  }
+                  await navigator.push(
+                    MaterialPageRoute<void>(
+                      builder: (_) =>
+                          ItemsReviewScreen(pack: items, notes: notes),
+                    ),
+                  );
+                },
+                icon: const Icon(Icons.fact_check_outlined),
+                label: const Text('مراجعة البنود المولّدة (الوحدة الأولى)'),
               ),
               const SizedBox(height: 12),
             ],

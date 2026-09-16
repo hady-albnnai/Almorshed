@@ -84,10 +84,11 @@ extension ReviewVerdictAr on ReviewVerdict {
   };
 }
 
-/// ملاحظة على بند واحد — المفتاح: نوع + معرّف (س101 · ب14 · ف U1C1P3).
+/// ملاحظة على بند واحد — المفتاح: نوع + معرّف
+/// (س101 · ب14 · ف U1C1P3 · بند20001 للبنود المولّدة — المادة ١٣).
 class ReviewNote {
   const ReviewNote({
-    required this.kind, // q | c | p
+    required this.kind, // q | c | p | g
     required this.itemId,
     required this.verdict,
     this.text = '',
@@ -106,6 +107,7 @@ class ReviewNote {
   String get label => switch (kind) {
     'q' => 'س$itemId',
     'c' => 'ب$itemId',
+    'g' => 'بند$itemId',
     _ => 'ف $itemId',
   };
 

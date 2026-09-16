@@ -31,17 +31,23 @@ class ItemSessionScreen extends StatefulWidget {
     super.key,
     required this.items,
     this.title = 'تدريب الوحدة الأولى',
+    this.initialIndex = 0,
   });
 
   final List<GeneratedItem> items;
   final String title;
+
+  /// البدء من بند بعينه (فهرس مراجعة الأستاذ — المادة ١٣).
+  final int initialIndex;
 
   @override
   State<ItemSessionScreen> createState() => _ItemSessionScreenState();
 }
 
 class _ItemSessionScreenState extends State<ItemSessionScreen> {
-  int _current = 0;
+  late int _current = widget.items.isEmpty
+      ? 0
+      : widget.initialIndex.clamp(0, widget.items.length - 1).toInt();
   final Map<int, GradeResult> _results = {};
   final Map<int, int> _chosen = {};
 
@@ -106,7 +112,7 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
           'بند ${ArabicNumber.from(_current + 1)} من ${ArabicNumber.from(_total)}',
         ),
         actions: [
-          ReviewNoteButton(kind: 'q', itemId: '${item.id}', preview: item.stem),
+          ReviewNoteButton(kind: 'g', itemId: '${item.id}', preview: item.stem),
         ],
       ),
       body: Column(
@@ -117,7 +123,11 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                _KindChip(kind: mode, chapter: item.chapter),
+                _KindChip(
+                  kind: mode,
+                  chapter: item.chapter,
+                  pending: !item.approved && ReviewScope.enabledIn(context),
+                ),
                 const SizedBox(height: 8),
                 Text(item.stem, style: txt.titleMedium),
                 const SizedBox(height: 14),
@@ -241,9 +251,16 @@ String _fmt(double v) {
 // ───────────────────────────── شارة النمط ─────────────────────────────
 
 class _KindChip extends StatelessWidget {
-  const _KindChip({required this.kind, required this.chapter});
+  const _KindChip({
+    required this.kind,
+    required this.chapter,
+    this.pending = false,
+  });
   final ItemKind kind;
   final String chapter;
+
+  /// وضع المراجعة: البند غير معتمد بعد ⇒ شارة «قيد المراجعة».
+  final bool pending;
 
   @override
   Widget build(BuildContext context) {
@@ -264,6 +281,13 @@ class _KindChip extends StatelessWidget {
       children: [
         Chip(label: Text(label), visualDensity: VisualDensity.compact),
         Chip(label: Text(ch), visualDensity: VisualDensity.compact),
+        if (pending)
+          const Chip(
+            label: Text('قيد المراجعة'),
+            visualDensity: VisualDensity.compact,
+            backgroundColor: Color(0x40F5C518),
+            side: BorderSide(color: Color(0xFFF5C518)),
+          ),
       ],
     );
   }

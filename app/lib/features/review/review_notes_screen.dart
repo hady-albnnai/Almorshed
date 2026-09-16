@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../core/content/generated_items.dart';
 import '../../core/content/models.dart';
 import '../../core/review/review_mode.dart';
 import '../../core/util/arabic_number.dart';
@@ -16,10 +17,18 @@ import 'review_widgets.dart';
 const String kOfficeWhatsApp = '963938862469';
 
 class ReviewNotesScreen extends StatefulWidget {
-  const ReviewNotesScreen({super.key, required this.pack, required this.notes});
+  const ReviewNotesScreen({
+    super.key,
+    required this.pack,
+    required this.notes,
+    this.generatedItems,
+  });
 
   final ContentPack pack;
   final ReviewNotesStore notes;
+
+  /// المادة ١٣ — البنود المولّدة (لمعاينة ملاحظات «بند…» ولعدّ التقدم).
+  final GeneratedItemsPack? generatedItems;
 
   @override
   State<ReviewNotesScreen> createState() => _ReviewNotesScreenState();
@@ -30,7 +39,9 @@ class _ReviewNotesScreenState extends State<ReviewNotesScreen> {
   bool _loading = true;
 
   int get _totalItems =>
-      widget.pack.questions.length + widget.pack.cards.length;
+      widget.pack.questions.length +
+      widget.pack.cards.length +
+      (widget.generatedItems?.items.length ?? 0);
 
   @override
   void initState() {
@@ -81,6 +92,11 @@ class _ReviewNotesScreenState extends State<ReviewNotesScreen> {
       final id = int.tryParse(n.itemId);
       for (final c in widget.pack.cards) {
         if (c.id == id) return c.front;
+      }
+    } else if (n.kind == 'g') {
+      final id = int.tryParse(n.itemId);
+      for (final g in widget.generatedItems?.items ?? const []) {
+        if (g.id == id) return g.stem;
       }
     }
     return '';
