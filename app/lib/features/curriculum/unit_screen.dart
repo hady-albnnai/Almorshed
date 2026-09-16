@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
+import '../../core/lab/experiments.dart';
 import '../../core/progress/progress_store.dart';
 import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
+import '../lab/experiment_screen.dart';
 import 'lesson_screen.dart';
 
 /// شاشة الوحدة — فصولها (F3.2 · قرارات ٢، ٣٧).
@@ -115,6 +117,29 @@ class _ChapterCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text('${ArabicNumber.from(chapter.paragraphs.length)} فقرات',
                 style: txt.bodyMedium),
+            // شارات التجارب (قرار المالك ٢٠٢٦-٠٩-١٦): تفتح التجربة مباشرة —
+            // نفس الشاشة التي تظهر بموضعها داخل الدرس (لا تكرار محتوى، قرار ٣٧)
+            for (final exp in _experimentsOf(chapter))
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: ActionChip(
+                  key: Key('unit-exp-${exp.id}'),
+                  avatar: const Text('🧪'),
+                  label: Text('تجربة: ${exp.title}'),
+                  onPressed: () => Navigator.of(context)
+                      .push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => ExperimentScreen(
+                            experiment: exp,
+                            trainingStore:
+                                trainingStore ?? InMemoryTrainingStore(),
+                            xpRecorder: xpRecorder,
+                          ),
+                        ),
+                      )
+                      .then((_) => onReturned()),
+                ),
+              ),
             const SizedBox(height: 10),
             FilledButton(
               onPressed: chapter.paragraphs.isEmpty
@@ -141,3 +166,10 @@ class _ChapterCard extends StatelessWidget {
     );
   }
 }
+
+/// تجارب الفصل بترتيب ورودها في الفقرات (عادة واحدة؛ قد تكون صفراً).
+List<LabExperiment> _experimentsOf(Chapter chapter) => [
+      for (final p in chapter.paragraphs)
+        if (p.experimentId != null && labExperiments.containsKey(p.experimentId))
+          labExperiments[p.experimentId]!,
+    ];

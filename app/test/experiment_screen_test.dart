@@ -9,6 +9,7 @@ import 'package:fizya_clash/core/training/batch_builder.dart';
 import 'package:fizya_clash/core/training/training_store.dart';
 import 'package:fizya_clash/core/xp/streak_service.dart';
 import 'package:fizya_clash/features/curriculum/lesson_screen.dart';
+import 'package:fizya_clash/features/curriculum/unit_screen.dart';
 import 'package:fizya_clash/features/lab/experiment_screen.dart';
 import 'package:fizya_clash/features/lab/lab_screen.dart';
 
@@ -245,6 +246,70 @@ void main() {
     await tester.pageBack(); // عودة إلى الدرس بموضعه
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('experiment-gravity')), findsOneWidget);
+  });
+
+  testWidgets('بطاقة الدرس بالوحدة: شارة 🧪 تفتح التجربة مباشرة وتعود',
+      (tester) async {
+    final pack = ContentPack.fromJsonString(jsonEncode({
+      'packId': 'p',
+      'year': 2027,
+      'edition': 1,
+      'units': [
+        {
+          'id': 'U1',
+          'title': 'و١',
+          'chapters': [
+            {
+              'id': 'U1C1',
+              'title': 'بلا تجربة',
+              'page': 10,
+              'paragraphs': [
+                {'id': 'U1C1P1', 'text': 'نص', 'summary': 'أ'},
+              ],
+            },
+            {
+              'id': 'U1C2',
+              'title': 'نواس الفتل',
+              'page': 30,
+              'paragraphs': [
+                {'id': 'U1C2P1', 'text': 'نص', 'summary': 'أ'},
+                {
+                  'id': 'U1C2P2',
+                  'text': 'التجارب الثلاث',
+                  'summary': 'ب',
+                  'experimentId': 'torsion',
+                },
+              ],
+            }
+          ],
+        }
+      ],
+      'questions': [],
+      'cards': [],
+    }));
+    tester.view.physicalSize = const Size(1080, 2400);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(MaterialApp(
+      home: Directionality(
+        textDirection: TextDirection.rtl,
+        child: UnitScreen(
+          unit: pack.units.single,
+          progressStore: InMemoryProgressStore(),
+          trainingStore: InMemoryTrainingStore(),
+        ),
+      ),
+    ));
+    await tester.pumpAndSettle();
+    // الفصل بلا تجربة لا شارة له؛ فصل الفتل شارة واحدة
+    expect(find.byKey(const Key('unit-exp-torsion')), findsOneWidget);
+    expect(find.textContaining('تجربة: '), findsOneWidget);
+    await tester.tap(find.byKey(const Key('unit-exp-torsion')));
+    await tester.pumpAndSettle();
+    expect(find.text('توقع قبل التجريب'), findsOneWidget);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+    expect(find.byKey(const Key('unit-exp-torsion')), findsOneWidget);
   });
 
   test('TrainingData: labChallengeDays يدور عبر JSON ويبقى مع copyWith', () {
