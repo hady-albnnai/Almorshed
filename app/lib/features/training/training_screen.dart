@@ -5,8 +5,11 @@ import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
+import '../../core/content/generated_items.dart';
+import '../review/review_widgets.dart';
 import 'cards_screen.dart';
 import 'batch_session_screen.dart';
+import 'item_session_screen.dart';
 import 'mistakes_screen.dart';
 
 /// F3.3 — بوابة التدريب: دفعة اليوم (بذرة يومية حتمية) + أرشيف أخطائي.
@@ -21,10 +24,14 @@ class TrainingScreen extends StatefulWidget {
     required this.trainingStore,
     this.deviceId = 0,
       this.xpRecorder, // F3.8
+    this.loadItems, // المادة ١٢: null = من الأصول assets/content/items_u1.json
   });
 
   final ContentPack pack;
   final TrainingStore trainingStore;
+
+  /// المادة ١٢ — محمّل بنود الوحدة الأولى المولّدة (اختبارات تحقنه بلا أصول).
+  final Future<GeneratedItemsPack> Function()? loadItems;
 
   /// يُربط بمعرف الجهاز الحقيقي في F3.6/F3.7 — صفر مؤقتاً.
   final int deviceId;
@@ -85,6 +92,30 @@ class _TrainingScreenState extends State<TrainingScreen> {
         TrainingData(daily: state, mistakes: _data.mistakes));
     if (!mounted) return; // فجوة غير متزامنة قبل استخدام context
     await _openSession(state);
+  }
+
+  /// المادة ١٢ — جلسة بنود الوحدة الأولى: المعتمد فقط، أو الكل في وضع
+  /// المراجعة (F2.4) حتى يرى الأستاذ الأنماط الأربعة بسياقها.
+  Future<void> _openItems() async {
+    final reviewMode = ReviewScope.enabledIn(context);
+    final navigator = Navigator.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    final GeneratedItemsPack pack;
+    try {
+      final load = widget.loadItems ?? () => GeneratedItemsPack.loadAsset();
+      pack = await load();
+    } catch (_) {
+      messenger.showSnackBar(
+        const SnackBar(content: Text('تعذر تحميل بنود الوحدة الأولى')),
+      );
+      return;
+    }
+    if (!mounted) return;
+    await navigator.push(MaterialPageRoute<void>(
+      builder: (_) => ItemSessionScreen(
+        items: pack.visible(reviewMode: reviewMode),
+      ),
+    ));
   }
 
   @override
@@ -196,6 +227,21 @@ class _TrainingScreenState extends State<TrainingScreen> {
                       ));
                       _reload();
                     },
+                  ),
+                ),
+                const SizedBox(height: 18),
+                Text('بنود الوحدة الأولى', style: txt.titleLarge),
+                const SizedBox(height: 8),
+                Card(
+                  child: ListTile(
+                    key: const Key('items-u1'),
+                    leading: const Icon(Icons.calculate_outlined),
+                    title: const Text('تدريب بأنماط الامتحان'),
+                    subtitle: const Text(
+                        'اختياري · حساب بالوحدة · علّل · برهان مرتّب — '
+                        'تصحيح فوري بسلم الوزارة'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: _openItems,
                   ),
                 ),
                 const SizedBox(height: 18),

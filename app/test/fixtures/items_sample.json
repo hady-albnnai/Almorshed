@@ -1,0 +1,371 @@
+{
+ "meta": {
+  "seed": 1
+ },
+ "items": [
+  {
+   "id": 20001,
+   "templateId": "U1.L1.T01",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": true,
+   "stem": "تتناسب شدة قوة الإرجاع في النواس المرن غير المتخامد:",
+   "options": [
+    "طرداً مع الجذر التربيعي لكتلة الجسم المهتز",
+    "عكساً مع الجذر التربيعي لثابت صلابة النابض",
+    "طرداً مع سعة الحركة",
+    "طرداً مع المطال وتعاكسه بالإشارة"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "invert_ratio",
+    "invert_ratio",
+    "amplitude_dependence",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: خلط مع علاقة الدور",
+    "(B) خطأ [invert_ratio]: خلط مع علاقة الدور",
+    "(C) خطأ [amplitude_dependence]: السعة ثابتة؛ القوة تتغير لحظياً مع x",
+    "✓ (D) طرداً مع المطال وتعاكسه بالإشارة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الاختيار الصحيح",
+     "points": 10
+    }
+   ],
+   "answerBasis": "F = −k·x (الكتاب ص ١١) · T0 = 2π√(m/k) (ص ١٢)",
+   "source": {
+    "bank_idx": [
+     1,
+     2,
+     16,
+     29,
+     40,
+     66
+    ],
+    "book": "ص ١٠–١٢",
+    "lesson": "L1 §٣ §٥"
+   }
+  },
+  {
+   "id": 20052,
+   "templateId": "U1.L1.T09",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "نواس مرن غير متخامد دوره الخاص T0 = 0.5 s. الزمن اللازم لإنجاز 10 هزات كاملة:",
+   "options": [
+    "2.5 s",
+    "5.5 s",
+    "5 s",
+    "20 s"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_half",
+    "off_by_one",
+    null,
+    "invert_ratio"
+   ],
+   "optionValues": [
+    2.5,
+    5.5,
+    5.0,
+    20.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_half]: استعمل نصف الدور (ذهاب فقط)",
+    "(B) خطأ [off_by_one]: خطأ بواحدة في العدّ",
+    "✓ (C) 5 s",
+    "(D) خطأ [invert_ratio]: قسم العدد على الدور بدل الضرب"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 5.0,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "T0 = زمن الهزات / عددها (أو f = 1/T0 · ω0 = 2π/T0)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1,
+     "keys": [
+      "s",
+      "Hz",
+      "rad·s⁻¹"
+     ]
+    }
+   ],
+   "answerBasis": "T0 = Δt/n · f = 1/T0 · ω0 = 2π/T0 (الكتاب ص ٩، ١٢)",
+   "source": {
+    "bank_idx": [
+     14,
+     33,
+     43,
+     50,
+     52,
+     71
+    ],
+    "book": "ص ٩، ١٩ م٣",
+    "lesson": "L1 مثال ٢ (قراءة المعطيات المخفية)"
+   }
+  },
+  {
+   "id": 20127,
+   "templateId": "U1.L1.T21",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "why",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": true,
+   "stem": "علّل: يكون تسارع النواس المرن أعظمياً في الموضعين الطرفيين.",
+   "options": [
+    "لأن المطال أعظمي فقوة الإرجاع عظمى",
+    "لأن السرعة معدومة فيتوقف الجسم",
+    "لأن السرعة عظمى",
+    "لأن المطال معدوم"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "true_but_partial",
+    "true_but_partial",
+    "true_but_partial"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) لأن المطال أعظمي فقوة الإرجاع عظمى",
+    "(B) خطأ [true_but_partial]: تعليل شائع لكنه لا يجيب عن السبب الفيزيائي",
+    "(C) خطأ [true_but_partial]: تعليل شائع لكنه لا يجيب عن السبب الفيزيائي",
+    "(D) خطأ [true_but_partial]: تعليل شائع لكنه لا يجيب عن السبب الفيزيائي"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "جملة السبب بمفتاحها",
+     "points": 10,
+     "anti_keys_zero": true
+    }
+   ],
+   "answerBasis": "الكتاب ص ١١–١٦",
+   "source": {
+    "bank_idx": [
+     13,
+     25,
+     59,
+     61,
+     67,
+     69
+    ],
+    "book": "ص ١١–١٦",
+    "lesson": "L1 §٣ §٧"
+   },
+   "keys": [
+    "المطال أعظمي",
+    "a = −ω0²x",
+    "قوة الإرجاع عظمى"
+   ],
+   "antiKeys": [
+    "السرعة عظمى"
+   ]
+  },
+  {
+   "id": 20301,
+   "templateId": "U1.PROOF.SHM",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "proof",
+   "difficulty": 3,
+   "weight": 25,
+   "approved": true,
+   "stem": "انطلاقاً من المعادلة التفاضلية x″ = −(k/m)·x برهن أن حركة الجسم جيبية انسحابية (توافقية بسيطة) ثم استنتج علاقة الدور الخاص.",
+   "options": [],
+   "correctIndex": -1,
+   "steps": [
+    {
+     "n": 1,
+     "text": "معادلة تفاضلية من المرتبة الثانية تقبل حلاً جيبياً x = XmaX·cos(ω0·t + φ)",
+     "points": 5,
+     "penalty": {
+      "missing_phi": -1
+     }
+    },
+    {
+     "n": 2,
+     "text": "x′ = −ω0·XmaX·sin(ω0·t + φ)",
+     "points": 4
+    },
+    {
+     "n": 3,
+     "text": "x″ = −ω0²·XmaX·cos(ω0·t + φ)",
+     "points": 4
+    },
+    {
+     "n": 4,
+     "text": "x″ = −ω0²·x",
+     "points": 2,
+     "penalty": {
+      "missing_minus": -4
+     }
+    },
+    {
+     "n": 5,
+     "text": "بالمطابقة ω0² = k/m",
+     "points": 2
+    },
+    {
+     "n": 6,
+     "text": "ω0 = √(k/m) > 0 لأن ما تحت الجذر موجب ⇒ الحركة جيبية",
+     "points": 2
+    },
+    {
+     "n": 7,
+     "text": "ω0 = 2π/T0 ⇒ 2π/T0 = √(k/m)",
+     "points": 2
+    },
+    {
+     "n": 8,
+     "text": "T0 = 2π·√(m/k)",
+     "points": 4
+    }
+   ],
+   "stepDistractors": [
+    {
+     "for_step": 1,
+     "wrong": "x = XmaX·cos(ω0·t)",
+     "rule": "forget_pm",
+     "rationale": "بلا φ ⇒ −1"
+    },
+    {
+     "for_step": 4,
+     "wrong": "x″ = ω0²·x",
+     "rule": "sign_flip",
+     "rationale": "⇒ −4 (أثقل خصم مفرد في الورقة)"
+    },
+    {
+     "for_step": 8,
+     "wrong": "T0 = 2π·√(k/m)",
+     "rule": "invert_ratio",
+     "rationale": ""
+    },
+    {
+     "for_step": 8,
+     "wrong": "T0 = √(m/k)",
+     "rule": "forget_2pi",
+     "rationale": ""
+    }
+   ],
+   "altRoute": null,
+   "totalPoints": 25,
+   "solutionSteps": [
+    "1. معادلة تفاضلية من المرتبة الثانية تقبل حلاً جيبياً x = XmaX·cos(ω0·t + φ) (5)",
+    "2. x′ = −ω0·XmaX·sin(ω0·t + φ) (4)",
+    "3. x″ = −ω0²·XmaX·cos(ω0·t + φ) (4)",
+    "4. x″ = −ω0²·x (2)",
+    "5. بالمطابقة ω0² = k/m (2)",
+    "6. ω0 = √(k/m) > 0 لأن ما تحت الجذر موجب ⇒ الحركة جيبية (2)",
+    "7. ω0 = 2π/T0 ⇒ 2π/T0 = √(k/m) (2)",
+    "8. T0 = 2π·√(m/k) (4)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "answerBasis": "سلم ٢٠٢٦ (docs/20 §٢) · الكتاب ص ١٢",
+   "source": {
+    "exam": "٢٠٢٦ س٣-١ (٢٥) ✅ مؤكَّد بالسلم",
+    "lesson": "L1 🧮"
+   }
+  },
+  {
+   "id": 99999,
+   "templateId": "U1.L1.T01",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "تتناسب شدة قوة الإرجاع في النواس المرن غير المتخامد:",
+   "options": [
+    "طرداً مع الجذر التربيعي لكتلة الجسم المهتز",
+    "عكساً مع الجذر التربيعي لثابت صلابة النابض",
+    "طرداً مع سعة الحركة",
+    "طرداً مع المطال وتعاكسه بالإشارة"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "invert_ratio",
+    "invert_ratio",
+    "amplitude_dependence",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: خلط مع علاقة الدور",
+    "(B) خطأ [invert_ratio]: خلط مع علاقة الدور",
+    "(C) خطأ [amplitude_dependence]: السعة ثابتة؛ القوة تتغير لحظياً مع x",
+    "✓ (D) طرداً مع المطال وتعاكسه بالإشارة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الاختيار الصحيح",
+     "points": 10
+    }
+   ],
+   "answerBasis": "F = −k·x (الكتاب ص ١١) · T0 = 2π√(m/k) (ص ١٢)",
+   "source": {
+    "bank_idx": [
+     1,
+     2,
+     16,
+     29,
+     40,
+     66
+    ],
+    "book": "ص ١٠–١٢",
+    "lesson": "L1 §٣ §٥"
+   }
+  }
+ ]
+}
