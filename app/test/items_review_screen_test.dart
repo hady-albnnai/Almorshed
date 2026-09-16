@@ -83,7 +83,7 @@ void main() {
     expect(find.text('المعروض: ١ بند'), findsOneWidget);
     expect(find.byKey(const Key('item-row-20301')), findsOneWidget);
     expect(find.byKey(const Key('item-row-20001')), findsNothing);
-    expect(find.textContaining('صحيح'), findsOneWidget); // حكمه ظاهر بالصف
+    expect(find.textContaining('· صحيح'), findsOneWidget); // حكمه ظاهر بالصف
 
     // «غير المراجَع فقط» يخفي المحكوم
     await tester.tap(find.byKey(const Key('filter-unreviewed')));
