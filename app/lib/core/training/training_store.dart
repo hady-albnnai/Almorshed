@@ -192,6 +192,7 @@ class TrainingData {
     this.cardStates = const {},
     this.cardDay,
     this.labChallengeDoneDateKey,
+    this.labChallengeDays = const {},
   });
 
   /// حالة دفعة اليوم (null ⇒ لا دفعة محفوظة).
@@ -209,6 +210,29 @@ class TrainingData {
   /// F3.5 — يوم إنجاز تحدي المختبر «اجعل T=٢ث» (+١٠ بسقف يومي — docs/12 §٦).
   final String? labChallengeDoneDateKey;
 
+  /// المادة ١٤ — يوم إنجاز تحدّي كل تجربة من الخمس: {experimentId: dateKey}
+  /// (النابض يبقى على حقله القديم). حدث XP واحد `labChallenge` مرة/يوم.
+  final Map<String, String> labChallengeDays;
+
+  /// نسخة معدّلة — تحفظ كل الحقول الأخرى كما هي (بدل إعادة بنائها يدوياً).
+  TrainingData copyWith({
+    DailyBatchState? daily,
+    List<MistakeRecord>? mistakes,
+    Map<int, CardStateData>? cardStates,
+    CardDayState? cardDay,
+    String? labChallengeDoneDateKey,
+    Map<String, String>? labChallengeDays,
+  }) =>
+      TrainingData(
+        daily: daily ?? this.daily,
+        mistakes: mistakes ?? this.mistakes,
+        cardStates: cardStates ?? this.cardStates,
+        cardDay: cardDay ?? this.cardDay,
+        labChallengeDoneDateKey:
+            labChallengeDoneDateKey ?? this.labChallengeDoneDateKey,
+        labChallengeDays: labChallengeDays ?? this.labChallengeDays,
+      );
+
   Map<String, dynamic> toJson() => {
         'daily': daily?.toJson(),
         'mistakes': [for (final m in mistakes) m.toJson()],
@@ -218,6 +242,7 @@ class TrainingData {
         'cardDay': cardDay?.toJson(),
         if (labChallengeDoneDateKey != null)
           'labChallengeDoneDateKey': labChallengeDoneDateKey,
+        if (labChallengeDays.isNotEmpty) 'labChallengeDays': labChallengeDays,
       };
 
   factory TrainingData.fromJson(Map<String, dynamic> json) => TrainingData(
@@ -243,6 +268,12 @@ class TrainingData {
             : CardDayState.fromJson(json['cardDay'] as Map<String, dynamic>),
         labChallengeDoneDateKey:
             json['labChallengeDoneDateKey'] as String?,
+        labChallengeDays: {
+          for (final e in (json['labChallengeDays'] as Map<String, dynamic>? ??
+                  const <String, dynamic>{})
+              .entries)
+            e.key: e.value as String,
+        },
       );
 }
 
@@ -255,7 +286,7 @@ TrainingData withNewMistakes(TrainingData data, List<MistakeRecord> added) {
   };
   final merged = byId.values.toList()
     ..sort((a, b) => b.atMs.compareTo(a.atMs));
-  return TrainingData(daily: data.daily, mistakes: merged);
+  return data.copyWith(mistakes: merged); // يحفظ البطاقات وأيام التحدي
 }
 
 /// واجهة تخزين التدريب — InMemory للاختبارات وSharedPrefs على الجهاز.

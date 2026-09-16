@@ -126,6 +126,7 @@ class _CurriculumScreenState extends State<CurriculumScreen> {
             _UnitCard(
               index: i,
               xpRecorder: widget.xpRecorder,
+              trainingStore: widget.trainingStore, // المادة ١٤: تجارب الدرس
               unit: widget.pack.units[i],
               completedIds: _progress.completedIds,
               progressStore: widget.progressStore,
@@ -145,6 +146,7 @@ class _UnitCard extends StatelessWidget {
     required this.progressStore,
     required this.onReturned,
     required this.xpRecorder,
+    this.trainingStore,
   });
 
   final int index;
@@ -153,6 +155,7 @@ class _UnitCard extends StatelessWidget {
   final ProgressStore progressStore;
   final VoidCallback onReturned;
   final XpRecorder? xpRecorder;
+  final TrainingStore? trainingStore;
 
 
   @override
@@ -178,6 +181,7 @@ class _UnitCard extends StatelessWidget {
                             unit: unit,
                             progressStore: progressStore,
                             xpRecorder: xpRecorder,
+                            trainingStore: trainingStore,
                           )),
                 )
                 .then((_) => onReturned())

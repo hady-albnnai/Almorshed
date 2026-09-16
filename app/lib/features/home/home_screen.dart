@@ -421,6 +421,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         chapter: ch,
                         progressStore: widget.progressStore,
                         xpRecorder: widget.xpRecorder,
+                        trainingStore: widget.trainingStore,
                       ),
                     ),
                   );

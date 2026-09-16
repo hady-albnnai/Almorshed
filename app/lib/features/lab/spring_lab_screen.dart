@@ -110,13 +110,7 @@ class _SpringLabScreenState extends State<SpringLabScreen>
 
   Future<void> _recordChallenge() async {
     final today = dateKeyOf(DateTime.now());
-    final updated = TrainingData(
-      daily: _data.daily,
-      mistakes: _data.mistakes,
-      cardStates: _data.cardStates,
-      cardDay: _data.cardDay,
-      labChallengeDoneDateKey: today,
-    );
+    final updated = _data.copyWith(labChallengeDoneDateKey: today);
     await widget.trainingStore.save(updated);
     // F3.8: تحدي المختبر موثق بدفتر XP (+١٠ مرة/يوم)
     await widget.xpRecorder?.record('labChallenge');

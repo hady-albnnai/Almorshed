@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../../core/lab/experiments.dart';
+import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
+import 'experiment_screen.dart';
 import 'spring_lab_screen.dart';
 
-/// F3.5 — بوابة المختبر: تجربة النابض التوافقي جاهزة (قرار ٤٣)،
-/// وبقية التجارب الخمس تُبنى بنفس القالب (POE + محاكاة حتمية).
+/// F3.5 + المادة ١٤ — فهرس المختبر (قرار ٣٧: عرض بديل لنفس تجارب الدروس):
+/// النابض التوافقي + التجارب الخمس بقالب توقّع/لاحظ/اشرح ومحاكاة حتمية.
 class LabScreen extends StatefulWidget {
   /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
   final XpRecorder? xpRecorder;
@@ -69,18 +72,31 @@ class _LabScreenState extends State<LabScreen> {
                     },
                   ),
                 ),
-                for (final name in const [
-                  'السقوط الحر — الفيزياء',
-                  'الدائرة المهتزة L–C',
-                  'الموجات على حبل',
-                  'مرشح الترشيح الهندسي',
-                  'انكسار الضوء',
-                ])
+                for (final exp in labExperiments.values)
                   Card(
+                    key: Key('lab-${exp.id}'),
                     child: ListTile(
-                      leading: const Icon(Icons.lock_outline),
-                      title: Text(name),
-                      subtitle: const Text('قيد الإعداد — بنفس القالب'),
+                      leading: Text(
+                        data.labChallengeDays[exp.id] ==
+                                dateKeyOf(DateTime.now())
+                            ? '✓'
+                            : '🧪',
+                        style: const TextStyle(fontSize: 22),
+                      ),
+                      title: Text(exp.title),
+                      subtitle: Text(
+                          '${_chapterLabel(exp.chapterId)} · ${exp.challenge?.title ?? ''}'),
+                      trailing: const Icon(Icons.chevron_left),
+                      onTap: () async {
+                        await Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (_) => ExperimentScreen(
+                            experiment: exp,
+                            trainingStore: widget.trainingStore,
+                            xpRecorder: widget.xpRecorder,
+                          ),
+                        ));
+                        _load(); // تحديث علامة ✓ عند العودة
+                      },
                     ),
                   ),
                 const SizedBox(height: 8),
@@ -94,4 +110,11 @@ class _LabScreenState extends State<LabScreen> {
             ),
     );
   }
+}
+
+/// «الوحدة ١ · الفصل ٢» من معرّف الفصل `U1C2` (للعنوان الفرعي فقط).
+String _chapterLabel(String chapterId) {
+  final m = RegExp(r'^U(\d+)C(\d+)$').firstMatch(chapterId);
+  if (m == null) return chapterId;
+  return 'الوحدة ${m.group(1)} · الفصل ${m.group(2)}';
 }

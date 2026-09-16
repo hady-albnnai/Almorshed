@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
 import '../../core/progress/progress_store.dart';
+import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
 import 'lesson_screen.dart';
@@ -17,10 +18,12 @@ class UnitScreen extends StatefulWidget {
     required this.unit,
     required this.progressStore,
       this.xpRecorder, // F3.8
+    this.trainingStore, // المادة ١٤: تجارب الدرس بموضعها
   });
 
   final Unit unit;
   final ProgressStore progressStore;
+  final TrainingStore? trainingStore;
 
   @override
   State<UnitScreen> createState() => _UnitScreenState();
@@ -58,6 +61,7 @@ class _UnitScreenState extends State<UnitScreen> {
                   _ChapterCard(
                     index: i,
                     xpRecorder: widget.xpRecorder,
+                    trainingStore: widget.trainingStore,
                     chapter: widget.unit.chapters[i],
                     completed: done.contains(widget.unit.chapters[i].id),
                     progress: _progress.chapters[widget.unit.chapters[i].id],
@@ -79,8 +83,10 @@ class _ChapterCard extends StatelessWidget {
     required this.progressStore,
     required this.onReturned,
     required this.xpRecorder,
+    this.trainingStore,
   });
 
+  final TrainingStore? trainingStore;
   final int index;
   final Chapter chapter;
   final bool completed;
@@ -120,6 +126,7 @@ class _ChapterCard extends StatelessWidget {
                                   chapter: chapter,
                                   progressStore: progressStore,
                                   xpRecorder: xpRecorder,
+                                  trainingStore: trainingStore,
                                 )),
                       )
                       .then((_) => onReturned()),

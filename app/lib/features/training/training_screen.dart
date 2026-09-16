@@ -71,7 +71,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
         trainingStore: widget.trainingStore,
           xpRecorder: widget.xpRecorder,
         // الحالة الفعلية + الأرشيف الحالي — لا حالة قديمة أبداً
-        data: TrainingData(daily: state, mistakes: _data.mistakes),
+        data: _data.copyWith(daily: state),
         deviceId: widget.deviceId,
       ),
     ));
@@ -88,8 +88,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
     if (batch == null) return; // نظرياً: الزر معطل حين لا بنك
     final state = DailyBatchState(
         dateKey: todayKey, order: batch.session.questionIds);
-    await widget.trainingStore.save(
-        TrainingData(daily: state, mistakes: _data.mistakes));
+    await widget.trainingStore.save(_data.copyWith(daily: state));
     if (!mounted) return; // فجوة غير متزامنة قبل استخدام context
     await _openSession(state);
   }

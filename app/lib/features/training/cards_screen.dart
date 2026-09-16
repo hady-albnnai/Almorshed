@@ -53,12 +53,7 @@ class _CardsScreenState extends State<CardsScreen> {
         pack: widget.pack,
         trainingStore: widget.trainingStore,
         xpRecorder: widget.xpRecorder,
-        data: TrainingData(
-          daily: _data.daily,
-          mistakes: _data.mistakes,
-          cardStates: _data.cardStates,
-          cardDay: day,
-        ),
+        data: _data.copyWith(cardDay: day),
       ),
     ));
     _reload(); // تحديث البوابة عند العودة (نمط F3.1)

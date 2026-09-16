@@ -78,8 +78,7 @@ class _MistakesScreenState extends State<MistakesScreen> {
         else
           x,
     ];
-    await widget.trainingStore
-        .save(TrainingData(daily: _data.daily, mistakes: updated));
+    await widget.trainingStore.save(_data.copyWith(mistakes: updated));
     // الخامسة اليوم ⇒ +١٠ (السقف اليومي بالدفتر يحمي من أي تكرار)
     if (before == 4) {
       await widget.xpRecorder?.record('mistakesFive');

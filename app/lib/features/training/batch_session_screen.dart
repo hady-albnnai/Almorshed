@@ -77,9 +77,7 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
     if (_state.answers.containsKey(qid)) return;
     setState(() => _state = _state.withAnswer(qid, displayIndex));
     // حفظ فوري مع الأرشيف كما هو — الاستئناف يعمل ولا يمسح أخطائي
-    await widget.trainingStore.save(
-      TrainingData(daily: _state, mistakes: _initial.mistakes),
-    );
+    await widget.trainingStore.save(_initial.copyWith(daily: _state));
   }
 
   Future<void> _finish() async {
@@ -108,10 +106,7 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
       }
     }
     final finished = _state.finish(score);
-    final data = withNewMistakes(
-      TrainingData(daily: finished, mistakes: _initial.mistakes),
-      mistakes,
-    );
+    final data = withNewMistakes(_initial.copyWith(daily: finished), mistakes);
     await widget.trainingStore.save(data);
     // F3.8: إتمام دفعة التدريب +١٥ مرة/يوم (موثقة بدفتر XP)
     await widget.xpRecorder?.record('batchDone');

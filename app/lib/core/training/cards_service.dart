@@ -89,12 +89,7 @@ TrainingData applyCardReview(
     grade: grade,
     todayKey: todayKey,
   );
-  return TrainingData(
-    daily: data.daily,
-    mistakes: data.mistakes,
-    cardStates: states,
-    cardDay: day.advance(),
-  );
+  return data.copyWith(cardStates: states, cardDay: day.advance());
 }
 
 /// تجهيز يوم البطاقات: يجمد طابور اليوم إذا لم يكن مجمداً (أو تغيّر اليوم).
@@ -112,10 +107,7 @@ TrainingData startCardDay(
     dateKey: todayKey,
   );
   if (queue.isEmpty) return data;
-  return TrainingData(
-    daily: data.daily,
-    mistakes: data.mistakes,
-    cardStates: data.cardStates,
+  return data.copyWith(
     cardDay: CardDayState(dateKey: todayKey, queue: queue),
   );
 }

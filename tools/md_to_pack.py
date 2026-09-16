@@ -233,6 +233,29 @@ def parse_summary_cards(lines: list[str]):
     return cards
 
 
+# المادة ١٤ — التجارب داخل الدرس بموضعها (قرار ٥٨/٣٧): معرّف التجربة يُعلَّق على
+# أول فقرة في الفصل تحوي المرساة النصية (مطابقة حرفية على نص الفقرة).
+EXPERIMENT_ANCHORS = {
+    "U1C2": ("torsion", "التجارب الثلاث"),
+    "U1C3": ("gravity", "غير توافقية"),
+    "U2C4": ("lc", "راسم اهتزاز"),
+    "U3C1": ("string", "تجربة ملد"),
+    "U4C3": ("photo", "تجربة هرتز"),
+}
+
+
+def attach_experiments(chid: str, paragraphs: list[dict]) -> None:
+    exp = EXPERIMENT_ANCHORS.get(chid)
+    if not exp:
+        return
+    exp_id, anchor = exp
+    for para in paragraphs:
+        if anchor in para["text"]:
+            para["experimentId"] = exp_id
+            return
+    raise ValueError(f"{chid}: مرساة التجربة «{anchor}» غير موجودة في أي فقرة")
+
+
 def build():
     units, questions, cards = [], [], []
     qid, cid = 1000, 5000
@@ -290,6 +313,7 @@ def build():
             intro = intro_text(chid)
             if intro:
                 paragraphs.insert(0, {"id": f"{chid}P0", "text": intro, "summary": "مقدمة — لماذا هذا الدرس وماذا ستتعلم"})
+            attach_experiments(chid, paragraphs)
             chapters.append({"id": chid, "title": ltitle, "page": page, "paragraphs": paragraphs})
         units.append({"id": uid, "title": UNIT_TITLES.get(uid, uid), "chapters": chapters})
     pack = {"packId": "syria-2027-v2", "year": 2027, "edition": 2,

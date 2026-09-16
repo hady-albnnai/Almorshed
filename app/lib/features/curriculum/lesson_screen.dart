@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../core/content/models.dart';
+import '../../core/lab/experiments.dart';
 import '../../core/progress/progress_store.dart';
+import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/tts/flutter_tts_speaker.dart';
 import '../../core/tts/speaker.dart';
 import '../../core/util/arabic_number.dart';
+import '../lab/experiment_screen.dart';
 import '../review/review_widgets.dart';
 
 /// شاشة القراءة — فقرة واحدة لكل شاشة (قرار نمط القراءة · F3.2):
@@ -18,10 +21,14 @@ class LessonScreen extends StatefulWidget {
     required this.progressStore,
     this.speaker,
     this.xpRecorder, // F3.8: تسجيل درس جديد بدفتر XP
+    this.trainingStore, // المادة ١٤: تحدّي التجربة داخل الدرس (null = بلا حفظ)
   });
 
   final Chapter chapter;
   final ProgressStore progressStore;
+
+  /// المادة ١٤ — مخزن التدريب لتحدّيات التجارب المدمجة (قرار ٥٨).
+  final TrainingStore? trainingStore;
 
   /// حقن اختياري للنطق (اختبارات)؛ الافتراضي FlutterTtsSpeaker حقيقي.
   final Speaker? speaker;
@@ -218,6 +225,28 @@ class _LessonScreenState extends State<LessonScreen> {
                             ),
                           ),
                         Text(_paragraph.text, style: txt.bodyLarge),
+                        // المادة ١٤ — التجربة بموضعها من النوطة (قرار ٥٨/٣٧)
+                        if (_paragraph.experimentId != null &&
+                            labExperiments.containsKey(
+                                _paragraph.experimentId))
+                          _ExperimentCard(
+                            experiment:
+                                labExperiments[_paragraph.experimentId]!,
+                            onOpen: () {
+                              _stopSpeaking();
+                              Navigator.of(context).push(
+                                MaterialPageRoute<void>(
+                                  builder: (_) => ExperimentScreen(
+                                    experiment: labExperiments[
+                                        _paragraph.experimentId]!,
+                                    trainingStore: widget.trainingStore ??
+                                        InMemoryTrainingStore(),
+                                    xpRecorder: widget.xpRecorder,
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
                       ],
                     ),
                   ),
@@ -399,4 +428,34 @@ class _EndView extends StatelessWidget {
   Color _gold(BuildContext c) => Theme.of(c).brightness == Brightness.dark
       ? AppColors.goldDark
       : AppColors.goldLight;
+}
+
+/// بطاقة «🧪 جرّبها بنفسك» داخل الفقرة — تفتح التجربة التفاعلية بموضعها.
+class _ExperimentCard extends StatelessWidget {
+  const _ExperimentCard({required this.experiment, required this.onOpen});
+  final LabExperiment experiment;
+  final VoidCallback onOpen;
+
+  @override
+  Widget build(BuildContext context) {
+    final txt = Theme.of(context).textTheme;
+    final cs = Theme.of(context).colorScheme;
+    return Card(
+      key: Key('experiment-${experiment.id}'),
+      margin: const EdgeInsets.only(top: 14),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(14),
+        side: BorderSide(color: cs.secondary.withValues(alpha: .5)),
+      ),
+      child: ListTile(
+        leading: const Text('🧪', style: TextStyle(fontSize: 24)),
+        title: Text('جرّبها بنفسك: ${experiment.title}',
+            style: txt.titleSmall),
+        subtitle: const Text(
+            'توقّع ← لاحظ (محاكاة حتمية) ← اشرح · تحدٍّ +١٠'),
+        trailing: const Icon(Icons.chevron_left),
+        onTap: onOpen,
+      ),
+    );
+  }
 }
