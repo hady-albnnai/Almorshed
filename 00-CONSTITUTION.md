@@ -50,3 +50,5 @@
 | docs/13-DESIGN-IDENTITY.md | الهوية: ألوان مقيسة WCAG + خطا Cairo/Tajawal |
 | docs/14-EXECUTION-PLAN-FLUTTER-SUPABASE.md | خطة التنفيذ — §١٢ خريطة التقدم + §١٣ الحالة |
 | ui-mockup/index.html | النموذج البصري المرجعي (٢٣ شاشة حية) |
+| docs/22-HANDOFF-2026-09-15-B.md | القواعد والقرارات ٥٣–٦٥ + حالة المكوّنات |
+| **docs/25-HANDOFF-2026-09-16-NOTES.md** | **آخر تسليم** — نوط الأستاذ المصحّحة (R1–R14) · ما أُنجز · ما سيُعمل · يُقرأ بعد هذا الملف |
