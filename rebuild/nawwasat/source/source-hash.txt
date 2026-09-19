@@ -2,8 +2,8 @@ file: notes/النواسات م_101932-r23-all-absolute-value-bars-green.docx
 copied_to: rebuild/nawwasat/source/original.docx
 sha256: 39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50
 bytes: 5193418
-repo: https://github.com/hady-albnnai/Almorshed.git
-git_branch: main
-git_commit: 5dfb41ddd4f34b4e66fe6a2296cd49d5605c48b9
-recorded_at_utc: 2026-09-19T17:46:58Z
+repo: 
+git_branch: 
+git_commit: 
+recorded_at_utc: 2026-09-19T18:28:09Z
 note: نسخة مطابقة بايت-لبايت لملف المصدر؛ لا تُعدَّل ولا تُعاد حفظها بأي مكتبة.

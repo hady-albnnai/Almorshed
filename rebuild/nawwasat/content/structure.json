@@ -1,0 +1,41 @@
+{
+ "stage": "NHTML-2",
+ "generated_at_utc": "2026-09-19T18:46:54Z",
+ "generator": "rebuild/nawwasat/tools/build_html.py",
+ "source_sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
+ "rules_applied": {
+  "R14 max→maX": 288,
+  "R13 E_K→E_k": 12,
+  "R1 T_o→T_0": 36,
+  "R13 E_P→E_p": 3,
+  "R5 Γ_n→Γ_η": 5,
+  "R2 ω(ثقل)→w": 34,
+  "R4 ∝→α": 23,
+  "R3 ∆→Δ": 184,
+  "R8 m..g→m.g": 4
+ },
+ "stats": {
+  "empty_paragraph": 351,
+  "heading": 1,
+  "list_item": 155,
+  "question": 13,
+  "two_column_paragraph": 217,
+  "display_equation_par": 803,
+  "empty_cells_dropped": 78,
+  "table": 6,
+  "spaced_line_paragraph": 3
+ },
+ "coverage": {
+  "blocks_total": 1916,
+  "paragraphs_total": 1910,
+  "paragraphs_visited": 1910,
+  "paragraphs_skipped_empty": 351,
+  "tables_rendered": 6,
+  "equations_total": 1346,
+  "equations_rendered": 1346,
+  "figures_total": 399,
+  "figures_rendered": 399
+ },
+ "notes": [],
+ "html_bytes": 1307126
+}

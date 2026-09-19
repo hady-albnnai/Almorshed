@@ -263,6 +263,7 @@ class Inventory:
         self.media_info = {}
         self.img_usage = collections.defaultdict(list)
         self.blocks = []
+        self.block_elems = []
         self.equations = []
         self.figures = []
         self.tables = []
@@ -594,7 +595,13 @@ class Inventory:
         return ids
 
     def handle_paragraph(self, p, path, textbox_owner=None):
+        # حجز المعرّف أولاً: كتل المربعات النصية المتداخلة تأخذ أرقاماً بعده
         i = len(self.blocks) + 1
+        skeleton = {"i": i, "path": path, "kind": "p", "text": "", "eqs": [], "figs": [],
+                    "fig_offsets": [], "in_textbox_of": textbox_owner, "in_table": None,
+                    "flags": {}, "empty": False}
+        self.blocks.append(skeleton)
+        self.block_elems.append(p)
         prev_ctx = dict(self._ctx)
         self._ctx["block"] = i
         if textbox_owner:
@@ -703,7 +710,8 @@ class Inventory:
             "empty": (not text.strip()) and not fig_ids and not eq_ids,
         }
         rec["flags"] = self.block_flags(rec)
-        self.blocks.append(rec)
+        skeleton.clear()
+        skeleton.update(rec)
         self._ctx = prev_ctx
         return i
 
@@ -728,12 +736,17 @@ class Inventory:
         return flags
 
     def handle_table(self, tbl, path):
+        i = len(self.blocks) + 1
+        skeleton = {"i": i, "path": path, "kind": "tbl", "cell_blocks": [], "all_blocks": [],
+                    "text": "", "figs": [], "eqs": [], "rows": 0, "cols": 0}
+        self.blocks.append(skeleton)
+        self.block_elems.append(tbl)
         rows = tbl.findall(f"{{{W}}}tr")
         cells = [tr.findall(f"{{{W}}}tc") for tr in rows]
         tblPr = tbl.find(f"{{{W}}}tblPr")
         grid = tbl.find(f"{{{W}}}tblGrid")
         rec = {
-            "i": len(self.blocks) + 1,
+            "i": i,
             "path": path,
             "kind": "tbl",
             "rows": len(rows),
@@ -758,7 +771,8 @@ class Inventory:
         rec["chars"] = len(rec["text"])
         rec["figs"] = [f["id"] for f in self.figures if f.get("block") in all_ids]
         rec["eqs"] = [e["id"] for e in self.equations if e.get("block") in all_ids]
-        self.blocks.append(rec)
+        skeleton.clear()
+        skeleton.update(rec)
         self.tables.append(rec)
         self._ctx = prev_ctx
         return rec["i"]

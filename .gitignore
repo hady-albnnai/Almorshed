@@ -2,3 +2,6 @@ __pycache__/
 
 # نصوص الكتاب الخام — خارج المستودع نهائياً (شرط الطفو العام — قرار ٥٥)
 sources/fadaa/
+
+# معاينة NHTML-2 المولَّدة (قابلة لإعادة التوليد بـ tools/make_preview.py — لا تُحفظ في git)
+rebuild/nawwasat/html/preview-nhtml2.html
