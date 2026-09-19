@@ -74,6 +74,16 @@ def nsprefix(el) -> str:
     return "?"
 
 
+def nested_textbox_ancestor(el, stop):
+    """هل بين `el` و`stop` (حصراً) حاوية مربع نصي متداخلة؟"""
+    cur = el.getparent()
+    while cur is not None and cur is not stop:
+        if cur.tag == f"{{{W}}}txbxContent":
+            return True
+        cur = cur.getparent()
+    return False
+
+
 def scope_iter(el):
     """تكرار آمن على نطاق قد يكون None."""
     return el.iter() if el is not None else iter(())
@@ -507,7 +517,8 @@ class Inventory:
                     rec["extent_cm"] = {"w": round(cx / EMU_PER_CM, 3), "h": round(cy / EMU_PER_CM, 3)}
         fig_rec = self.new_figure(**rec)
         fig_id = fig_rec["id"]
-        self._handled_objs[obj_el] = fig_id
+        created = [fig_id]
+        self._handled_objs[obj_el] = created
         if rec.get("media"):
             self.img_usage[rec["media"]].append(fig_id)
 
@@ -523,15 +534,18 @@ class Inventory:
                 self._ctx["in_textbox"] = None
             elif cand.tag == f"{{{A}}}graphicData" and cand is not obj_el:
                 # شكل داخل مجموعة (مسار DrawingML العادي)
-                self.handle_graphic_object(cand, self.nearest_anchor(cand), block_i, block_path, source="group-child")
+                created.extend(self.handle_graphic_object(
+                    cand, self.nearest_anchor(cand), block_i, block_path, source="group-child"))
             elif cand.tag == f"{{{WPS}}}wsp" and cand is not obj_el:
                 # أبناء المجموعة (grpSp / wgp) عناصر wps:wsp مباشرة — تُفهرس ككائنات مستقلة
-                self.handle_graphic_object(cand, self.nearest_anchor(cand), block_i, block_path, source="group-child")
+                created.extend(self.handle_graphic_object(
+                    cand, self.nearest_anchor(cand), block_i, block_path, source="group-child"))
             elif cand.tag == f"{{{PIC}}}pic" and cand is not obj_el:
                 # صور مباشرة داخل مجموعة (بلا wsp وسيط)
-                self.handle_graphic_object(cand, self.nearest_anchor(cand), block_i, block_path, source="group-child")
+                created.extend(self.handle_graphic_object(
+                    cand, self.nearest_anchor(cand), block_i, block_path, source="group-child"))
         self._ctx["parent_fig"] = ctx_parent
-        return fig_id
+        return created
 
     # -------------------------------------------------- equations
     def handle_equation(self, om, block_i, block_path, container):
@@ -622,6 +636,9 @@ class Inventory:
         seen_fig_elements = set()
 
         for el in iter_effective(p):
+            if nested_textbox_ancestor(el, p):
+                # محتوى مربع نصي متداخل: يُفهرس ككتل مستقلة، فلا يُحسب في نص الفقرة الأم
+                continue
             if el.tag == f"{{{W}}}t":
                 text_chunks.append(el.text or "")
                 char_pos += len(el.text or "")
@@ -642,22 +659,28 @@ class Inventory:
                 if el in seen_fig_elements:
                     continue
                 seen_fig_elements.add(el)
-                fid = self.handle_graphic_object(el, anchor_el, i, path)
-                fig_ids.append(fid)
-                fig_offsets.append({"fig": fid, "char": char_pos})
+                fids = self.handle_graphic_object(el, anchor_el, i, path)
+                fig_ids.extend(fids)
+                for k, fid in enumerate(fids):
+                    fig_offsets.append({"fig": fid, "char": char_pos,
+                                        **({} if k == 0 else {"nested_in": fids[0]})})
             elif el.tag == f"{{{V}}}imagedata":
                 # صورة VML بلا مقابل DrawingML
                 has_dml = any(local(a) == "graphicData" for a in ancestors(el, stop=p))
                 if not has_dml:
-                    fid = self.handle_graphic_object(el, self.nearest_anchor(el), i, path)
-                    fig_ids.append(fid)
-                    fig_offsets.append({"fig": fid, "char": char_pos})
+                    fids = self.handle_graphic_object(el, self.nearest_anchor(el), i, path)
+                    fig_ids.extend(fids)
+                    for k, fid in enumerate(fids):
+                        fig_offsets.append({"fig": fid, "char": char_pos,
+                                            **({} if k == 0 else {"nested_in": fids[0]})})
             elif etree.QName(el).namespace == V and local(el) in ("shape", "group", "rect", "oval", "line", "roundrect", "polyline"):
                 has_dml = any(local(a) == "graphicData" for a in ancestors(el, stop=p))
                 if not has_dml:
-                    fid = self.handle_graphic_object(el, self.nearest_anchor(el), i, path)
-                    fig_ids.append(fid)
-                    fig_offsets.append({"fig": fid, "char": char_pos})
+                    fids = self.handle_graphic_object(el, self.nearest_anchor(el), i, path)
+                    fig_ids.extend(fids)
+                    for k, fid in enumerate(fids):
+                        fig_offsets.append({"fig": fid, "char": char_pos,
+                                            **({} if k == 0 else {"nested_in": fids[0]})})
 
         text = "".join(text_chunks)
         rec = {
@@ -895,13 +918,8 @@ def build_report(src, sha, manifest, extra):
         if v:
             A(f"| {k} | {v} |")
     A("")
-    A("**فحص أنماط تصحيح الرموز السابقة (R1–R14) على المصدر الحالي** "
-      "(القواعد R2/R6/R14 سياقية — التفصيل في تقرير تدقيق المصدر):")
-    A("")
-    A("| القاعدة | مواضع لا تزال بالنمط القديم |")
-    A("|---|---|")
-    for k, v in m["symbol_rules_check"].items():
-        A(f"| {k} | {v} |")
+    A("> حالة قواعد تصحيح الرموز R1–R14 (ومقارنة السلالات وتسلسل المراجعات) في تقرير مستقل: "
+      "`reports/NHTML-0-source-audit.md` — لا تُكرَّر هنا كي لا يتفرّع مصدر الأرقام.")
     A("")
     A("## ٥. الرسومات والصور — جرد مرتّب")
     A("")
@@ -1134,6 +1152,7 @@ def main():
         "paragraphs_in_tables": len(p_tbl),
         "tables": len(tbls),
         "equations_total": len(inv.equations),
+        "equations_fallback_copies": 0,
         "equations_display": sum(1 for e in inv.equations if e["display"]),
         "equations_inline": sum(1 for e in inv.equations if not e["display"]),
         "equations_in_tables": sum(1 for e in inv.equations if e["in_table"]),
@@ -1172,7 +1191,10 @@ def main():
         "فقرات عنقود رسومات (4+)": len(cluster_blocks),
     }
 
-    n_omath = len(inv.doc.findall(f".//{{{M}}}oMath"))
+    n_omath_all = len(inv.doc.findall(f".//{{{M}}}oMath"))
+    n_omath_fb = len([e for e in inv.doc.iter(f"{{{M}}}oMath")
+                      if any(a.tag == f"{{{MC}}}Fallback" for a in e.iterancestors())])
+    n_omath = n_omath_all - n_omath_fb
     n_omathpara = len(inv.doc.findall(f".//{{{M}}}oMathPara"))
     n_gd = len(inv.doc.findall(f".//{{{A}}}graphicData"))
     n_pic = len([e for e in inv.doc.iter(f"{{{PIC}}}pic")
@@ -1182,11 +1204,18 @@ def main():
     n_imgrels = sum(1 for r in inv.rels.values() if r["type"] == "image")
     def ok(a, b): return f"{a} = {b} ✅" if a == b else f"{a} ≠ {b} ❌"
     checks = {
-        "معادلات OMML: المفهرس = الموجود في XML": ok(len(inv.equations), n_omath),
+        "معادلات OMML: المفهرس = المعروض في XML (خارج fallback)": ok(len(inv.equations), n_omath),
+        "معادلات نسخ fallback المرآتية (لا تُفهرس — Word يرسم Choice)": str(n_omath_fb),
         "معادلات معروضة (oMathPara) في XML": str(n_omathpara),
         "رسومات: المفهرس من مسار graphicData = عدد graphicData": ok(
             counts["figures_from_graphicData"], n_gd),
         "رسومات: أبناء المجموعات (مفهرسون إضافياً)": str(counts["figures_from_groups"]),
+        "رسومات: مراجع الفقرات = عدد الكائنات": (
+            f"{sum(len(b['figs']) for b in paras)} = {len(figures)} "
+            + ("✅" if sum(len(b["figs"]) for b in paras) == len(figures) else "❌")),
+        "رسومات: كل كائن مرتبط بكتلة في الفهرس": (
+            f"{len([f for f in figures if f.get('block')])} من {len(figures)} ✅"
+            if all(f.get("block") for f in figures) else "❌ كائن بلا كتلة"),
         "صور pic:pic (خارج fallback) = رسومات نوع «صورة»": ok(counts["figures_pictures"], n_pic),
         "مربعات النص w:txbxContent = كائنات نوع «مربع نص»": ok(counts["figures_textboxes"], n_txbx),
         "مراجع الصور في العلاقات = الملفات المستخدمة + fallback + يتيم/غير مستخدم": ok(
@@ -1231,7 +1260,7 @@ def main():
         "block_census": block_census,
         "equation_features": dict(eq_feats),
         "symbol_census": inv.symbol_census()[0],
-        "symbol_rules_check": inv.symbol_census()[1],
+        "symbol_rules_see": "content/source-audit.json (تقرير NHTML-0-source-audit.md)",
         "checks": checks,
         "layout_evidence": {
             "figure_cluster_blocks": [{"block": b["i"], "figs": len(b["figs"]), "text": b["text"][:80]} for b in cluster_blocks],
@@ -1300,7 +1329,7 @@ def main():
     print(json.dumps(counts, ensure_ascii=False, indent=1))
     for k, v in checks.items():
         print(f"  - {k}: {v}")
-    print("symbol rules check:", json.dumps(manifest["symbol_rules_check"], ensure_ascii=False))
+
     print("wrote:", (out / "content" / "manifest.json"), (out / "reports" / "NHTML-0-inventory.md"))
 
 

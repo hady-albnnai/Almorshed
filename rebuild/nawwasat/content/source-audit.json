@@ -1,6 +1,6 @@
 {
  "stage": "NHTML-0",
- "generated_at_utc": "2026-09-19T17:37:21Z",
+ "generated_at_utc": "2026-09-19T17:50:39Z",
  "generator": "rebuild/nawwasat/tools/source_audit.py",
  "source": {
   "path": "notes/النواسات م_101932-r23-all-absolute-value-bars-green.docx",
@@ -11,7 +11,8 @@
   {
    "rule": "R1",
    "desc": "T_o (حرف o) → T_0",
-   "remaining": 0
+   "remaining": 36,
+   "note": "عدّ بنيوي على التوابع (m:sub داخل m:sSub/m:sSubSup)"
   },
   {
    "rule": "R2",
@@ -31,7 +32,8 @@
   {
    "rule": "R5",
    "desc": "Γ_n → Γ_η",
-   "remaining": 5
+   "remaining": 5,
+   "note": "عدّ بنيوي على التوابع (m:sub داخل m:sSub/m:sSubSup)"
   },
   {
    "rule": "R6",
@@ -46,7 +48,7 @@
   {
    "rule": "R8",
    "desc": "HZ/COS/P_evg/m..g/ⅈ",
-   "remaining": 8
+   "remaining": 4
   },
   {
    "rule": "R9",
@@ -61,44 +63,48 @@
   {
    "rule": "R11",
    "desc": "f_o/v_o/v_ox/v_oy → _0",
-   "remaining": 0
+   "remaining": 0,
+   "note": "عدّ بنيوي على التوابع (m:sub داخل m:sSub/m:sSubSup)"
   },
   {
    "rule": "R12",
    "desc": "E_S/W_S/U_S → _s",
-   "remaining": 0
+   "remaining": 0,
+   "note": "عدّ بنيوي على التوابع (m:sub داخل m:sSub/m:sSubSup)"
   },
   {
    "rule": "R13",
    "desc": "E_K/E_P → _k/_p",
-   "remaining": 0
+   "remaining": 15,
+   "note": "عدّ بنيوي على التوابع (m:sub داخل m:sSub/m:sSubSup)"
   },
   {
    "rule": "R14",
-   "desc": "max → maX (توحيد)",
-   "remaining": 348
+   "desc": "max → maX (توحيد التوابع)",
+   "remaining": 288,
+   "note": "توابع مكتوبة `max`: 288 · ظهور `max` في نص المعادلات: 288 · `maX`: 21"
   }
  ],
  "symbol_summary": {
   "rules_with_remaining_old_style": [
+   "R1",
    "R2",
    "R3",
    "R4",
    "R5",
    "R6",
    "R8",
+   "R13",
    "R14"
   ],
   "rules_clean": [
-   "R1",
    "R7",
    "R9",
    "R10",
    "R11",
-   "R12",
-   "R13"
+   "R12"
   ],
-  "total_remaining": 621
+  "total_remaining": 608
  },
  "history_reference": {
   "git_ref": "827dbcb^:sources/fadaa/النواسات م_101932.docx",
@@ -200,13 +206,13 @@
   "00B050": -18,
   "000000": -17,
   "275317": -10,
-  "FFFFFF": -7,
   "153D63": -7,
+  "FFFFFF": -7,
   "008000": 6,
   "FFC000": -4,
-  "BF4E14": -3,
-  "7030A0": -3,
   "0F4761": -3,
+  "7030A0": -3,
+  "BF4E14": -3,
   "FF0000": -2,
   "00B0F0": -2,
   "C00000": -1
@@ -240,8 +246,8 @@
    "green_008000_positions": 1,
    "media_changed_from_previous": [],
    "color_count_delta_from_previous": {
-    "EE0000": -1,
-    "008000": 1
+    "008000": 1,
+    "EE0000": -1
    }
   },
   {
@@ -253,8 +259,8 @@
    "green_008000_positions": 2,
    "media_changed_from_previous": [],
    "color_count_delta_from_previous": {
-    "3A7C22": -1,
-    "008000": 1
+    "008000": 1,
+    "3A7C22": -1
    }
   },
   {
@@ -266,8 +272,8 @@
    "green_008000_positions": 3,
    "media_changed_from_previous": [],
    "color_count_delta_from_previous": {
-    "EE0000": -1,
-    "008000": 1
+    "008000": 1,
+    "EE0000": -1
    }
   },
   {
@@ -327,8 +333,8 @@
    "green_008000_positions": 6,
    "media_changed_from_previous": [],
    "color_count_delta_from_previous": {
-    "000000": -1,
-    "008000": 2
+    "008000": 2,
+    "000000": -1
    }
   }
  ],

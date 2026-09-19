@@ -33,20 +33,20 @@ WEIGHT_PAT = re.compile(
     r"d'\.ω|ⅆ'ω|d\.\s*ω|F=2ω|ω_e|R\+\s*ω|tan∝=Fω|ω\+F|ω-F"
 )
 RULES = [
-    ("R1", "T_o (حرف o) → T_0", lambda mt, at: len(re.findall(r"T_o\b", mt))),
+    ("R1", "T_o (حرف o) → T_0", None),   # تُحسب بنيوياً
     ("R2", "ω بمعنى الثقل → w", lambda mt, at: len(WEIGHT_PAT.findall(mt))),
     ("R3", "∆ (U+2206) → Δ (U+0394)", lambda mt, at: at.count("∆")),
     ("R4", "∝ (تناسب) → α", lambda mt, at: at.count("∝")),
-    ("R5", "Γ_n → Γ_η", lambda mt, at: len(re.findall(r"Γ_?n", mt))),
+    ("R5", "Γ_n → Γ_η", None),           # تُحسب بنيوياً
     ("R6", "K ثابت الصلابة/الفتل → k", lambda mt, at: len(re.findall(r"(?<![A-Za-zΠ])\bK\b(?![a-z])", mt))),
     ("R7", "Υ → γ (لورنتز)", lambda mt, at: at.count("Υ")),
-    ("R8", "HZ/COS/P_evg/m..g/ⅈ", lambda mt, at: len(re.findall(r"HZ|COS|P_evg|m\.\.g|ⅈ", mt + at))),
-    ("R9", "ωeb/ωat → Wb/W", lambda mt, at: len(re.findall(r"ωeb|ωat", mt + at))),
+    ("R8", "HZ/COS/P_evg/m..g/ⅈ", lambda mt, at: len(re.findall(r"HZ|COS|P_evg|m\.\.g|ⅈ", at))),
+    ("R9", "ωeb/ωat → Wb/W", lambda mt, at: len(re.findall(r"ωeb|ωat", at))),
     ("R10", "Λ → ∧ (جداء شعاعي)", lambda mt, at: at.count("Λ")),
-    ("R11", "f_o/v_o/v_ox/v_oy → _0", lambda mt, at: len(re.findall(r"[fv]_o\b|[fv]_ox|[fv]_oy", mt))),
-    ("R12", "E_S/W_S/U_S → _s", lambda mt, at: len(re.findall(r"[EWU]_S\b", mt))),
-    ("R13", "E_K/E_P → _k/_p", lambda mt, at: len(re.findall(r"[EW]_[KP]\b", mt))),
-    ("R14", "max → maX (توحيد)", lambda mt, at: len(re.findall(r"(X|θ|F|v|a|h)max\b", mt + at))),
+    ("R11", "f_o/v_o/v_ox/v_oy → _0", None),   # تُحسب بنيوياً
+    ("R12", "E_S/W_S/U_S → _s", None),         # تُحسب بنيوياً
+    ("R13", "E_K/E_P → _k/_p", None),          # تُحسب بنيوياً
+    ("R14", "max → maX (توحيد التوابع)", None),   # تُحسب بنيوياً في main()
 ]
 
 
@@ -93,7 +93,40 @@ def main():
 
     z, doc, mt, wt = load(src)
     allt = mt + "\n" + wt
-    rules = [{"rule": r, "desc": d, "remaining": fn(mt, allt)} for r, d, fn in RULES]
+    # عدّ بنيوي للقواعد التي تعمل على التوابع (كما تفعل أداة التصحيح تماماً)
+    struct = collections.Counter()
+    for tag in ("sSub", "sSubSup"):
+        for sc in doc.iter(f"{{{M}}}{tag}"):
+            e = sc.find(f"{{{M}}}e"); sub = sc.find(f"{{{M}}}sub")
+            if e is None or sub is None:
+                continue
+            base = "".join(t.text or "" for t in e.iter(f"{{{M}}}t")).strip()
+            st = "".join(t.text or "" for t in sub.iter(f"{{{M}}}t")).strip()
+            if base == "T" and st == "o":
+                struct["R1"] += 1
+            elif base == "Γ" and st == "n":
+                struct["R5"] += 1
+            elif base in ("f", "v") and re.fullmatch(r"o[xy]?", st or "x"):
+                struct["R11"] += 1
+            elif base in ("E", "W") and st == "S":
+                struct["R12"] += 1
+            elif base == "E" and st in ("K", "P"):
+                struct["R13"] += 1
+            if st == "max":
+                struct["R14"] += 1
+    sub_max = struct["R14"]
+    structural = {k: struct[k] for k in ("R1", "R5", "R11", "R12", "R13")}
+    rules = []
+    struct_override = dict(structural, R14=sub_max)
+    for r, d, fn in RULES:
+        remaining = struct_override[r] if fn is None else fn(mt, allt)
+        rules.append({"rule": r, "desc": d, "remaining": remaining})
+    for x in rules:
+        if x["rule"] in structural:
+            x["note"] = "عدّ بنيوي على التوابع (m:sub داخل m:sSub/m:sSubSup)"
+    r14 = next(x for x in rules if x["rule"] == "R14")
+    r14["note"] = (f"توابع مكتوبة `max`: {sub_max} · ظهور `max` في نص المعادلات: {mt.count('max')} · "
+                   f"`maX`: {mt.count('maX')}")
 
     # ---- الأصل التاريخي للمقارنة (اختياري)
     hist_path = Path("/tmp/nawwasat_hist.docx")
