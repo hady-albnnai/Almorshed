@@ -14,8 +14,7 @@
 
 ## آخر commit
 
-`<يُحدَّث تلقائياً في كومِت التوثيق التالي>` — راجع آخر كومِت على `main` باسم
-`NHTML-0: inventory source figures equations and text`.
+`a6c695f` — «NHTML-0: inventory source figures equations and text» (مدفوع على `main`).
 آخر كومِت قبل المرحلة: `4aceef9` (R23: color all absolute-value bars green).
 
 ## المرحلة التالية
