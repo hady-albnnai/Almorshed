@@ -1,0 +1,1329 @@
+{
+ "stage": "NHTML-1",
+ "generated_at_utc": "2026-09-19T17:52:05Z",
+ "source_sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
+ "count": 78,
+ "byte_identical_copies": 78,
+ "images": [
+  {
+   "file": "assets/images/image1.png",
+   "media_name": "word/media/image1.png",
+   "bytes": 454,
+   "sha256": "ebe0f3b27259f742c5e959c6776d24e852f4e5b5387018c0950c42d24562f9dd",
+   "px": [
+    15,
+    15
+   ],
+   "format": "PNG",
+   "figures": [],
+   "first_block": null,
+   "role": "orphan",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image10.png",
+   "media_name": "word/media/image10.png",
+   "bytes": 46288,
+   "sha256": "b3ed022d5e419c4b94fba0d644963b18915be9def2b3b96df7fc8df9f4afb818",
+   "px": [
+    521,
+    231
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0089"
+   ],
+   "first_block": 523,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image11.png",
+   "media_name": "word/media/image11.png",
+   "bytes": 72855,
+   "sha256": "5d41f575442e1cc493dd98c905710220cf4a58bc850869ea83aeed4567663e7b",
+   "px": [
+    955,
+    335
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0091"
+   ],
+   "first_block": 548,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image12.png",
+   "media_name": "word/media/image12.png",
+   "bytes": 70320,
+   "sha256": "404e4f10612b923513dd0fe8593d9015c2e3e8a8b1b49db5b90eb85e40ab6281",
+   "px": [
+    963,
+    304
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0094"
+   ],
+   "first_block": 568,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image13.png",
+   "media_name": "word/media/image13.png",
+   "bytes": 77229,
+   "sha256": "d3fe1e0335b095f750ee33c8c98132807f8e1f0195b84b1022cb0b9b5bfecb46",
+   "px": [
+    962,
+    336
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0099"
+   ],
+   "first_block": 610,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image14.png",
+   "media_name": "word/media/image14.png",
+   "bytes": 78434,
+   "sha256": "84e20fece90dd7cf698e9dec78665a71c9eef9f93084c5cb42fae3a878284b0f",
+   "px": [
+    985,
+    345
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0101"
+   ],
+   "first_block": 641,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image15.png",
+   "media_name": "word/media/image15.png",
+   "bytes": 109502,
+   "sha256": "64c4ce0a348a53f75535ca14c01cbf64fc8e83698e4460a1e6ac3306caf49c85",
+   "px": [
+    993,
+    420
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0105"
+   ],
+   "first_block": 669,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image16.png",
+   "media_name": "word/media/image16.png",
+   "bytes": 26217,
+   "sha256": "704fa56cb5a11a5ff863cd4243e1f107a1b4e72e23f8416a56da3924050ca8c3",
+   "px": [
+    732,
+    382
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0109"
+   ],
+   "first_block": 717,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image17.png",
+   "media_name": "word/media/image17.png",
+   "bytes": 11865,
+   "sha256": "875f348290757c4757f05474dc12aac382c6a59337ac46b5de41d8c2bacb1466",
+   "px": [
+    748,
+    45
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0127"
+   ],
+   "first_block": 784,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image18.png",
+   "media_name": "word/media/image18.png",
+   "bytes": 20891,
+   "sha256": "4bcbb866466951ea0cad395d9b5e945a7fb53aaf42fc6a92453953acec4f3938",
+   "px": [
+    957,
+    92
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0161"
+   ],
+   "first_block": 906,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image19.png",
+   "media_name": "word/media/image19.png",
+   "bytes": 117044,
+   "sha256": "5c766b3ebb9896ab68f3e4a86a5d6215416b0a028bdaac55b59c71bb95afab48",
+   "px": [
+    964,
+    420
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0169"
+   ],
+   "first_block": 928,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image2.png",
+   "media_name": "word/media/image2.png",
+   "bytes": 170200,
+   "sha256": "054127ea94718ee1c573874abb18f1cd2b61389a45a7eeba44ec78f664063716",
+   "px": [
+    745,
+    598
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0002"
+   ],
+   "first_block": 8,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image20.png",
+   "media_name": "word/media/image20.png",
+   "bytes": 112693,
+   "sha256": "8510aeba54299214054ed5d862e4bb25a4595212132d31d891f6f7b3d54a1807",
+   "px": [
+    968,
+    358
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0173"
+   ],
+   "first_block": 975,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image21.png",
+   "media_name": "word/media/image21.png",
+   "bytes": 11197,
+   "sha256": "430784706062354831cfc4669d2a5a5466905770e747041ae9c055d70b13d06c",
+   "px": [
+    335,
+    263
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0180"
+   ],
+   "first_block": 983,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image22.png",
+   "media_name": "word/media/image22.png",
+   "bytes": 139390,
+   "sha256": "950863cc223eb8b0d56e23fc1148a9e1e6057b842556a96754b9d36453334519",
+   "px": [
+    955,
+    535
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0190"
+   ],
+   "first_block": 1015,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image23.png",
+   "media_name": "word/media/image23.png",
+   "bytes": 1110,
+   "sha256": "9f0fd83d0c105ad9af5db2b7b05835f53e221865b792ed0f8dc335083fc34a6f",
+   "px": [
+    187,
+    184
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0198"
+   ],
+   "first_block": 1048,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image24.png",
+   "media_name": "word/media/image24.png",
+   "bytes": 11704,
+   "sha256": "cfe672dbedf8d0accfdcfc48390fdce7f2e84775d976033bf5aae59b76d465f5",
+   "px": [
+    358,
+    291
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0199"
+   ],
+   "first_block": 1048,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image25.png",
+   "media_name": "word/media/image25.png",
+   "bytes": 4697,
+   "sha256": "8aa15e57d5460a842ee13d6d4c05fe50b3fd8335bd5ccbd244fa1d2aa1ac8ccf",
+   "px": [
+    202,
+    237
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0200"
+   ],
+   "first_block": 1067,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image26.png",
+   "media_name": "word/media/image26.png",
+   "bytes": 2624,
+   "sha256": "d9e1192f7dd728b51ecb3f4ddc93d285df0b4fa917d83ca3c763912a0cd000c2",
+   "px": [
+    147,
+    226
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0201"
+   ],
+   "first_block": 1067,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image27.png",
+   "media_name": "word/media/image27.png",
+   "bytes": 303300,
+   "sha256": "a5bb1a89711dfe74952e4997d7fddaadd0e755ffb0b56142b0cd2fe31d83db81",
+   "px": [
+    989,
+    544
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0203"
+   ],
+   "first_block": 1081,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image28.png",
+   "media_name": "word/media/image28.png",
+   "bytes": 8415,
+   "sha256": "f561c352f4922585081f8a6e25b73483856e2a2d8a897c7947ff32dc6f99e1b2",
+   "px": [
+    433,
+    219
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0209"
+   ],
+   "first_block": 1116,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image29.png",
+   "media_name": "word/media/image29.png",
+   "bytes": 49875,
+   "sha256": "5af49fc289b6c25049e578f93724c4e7970b7bcf1eada15ca19c3f3e54d0562f",
+   "px": [
+    726,
+    671
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0210"
+   ],
+   "first_block": 1125,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image3.png",
+   "media_name": "word/media/image3.png",
+   "bytes": 32815,
+   "sha256": "89964523898d9dd29570635647da7a9b216fd2a0e8a35149f2ae98e7dacebf3e",
+   "px": [
+    589,
+    435
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0042"
+   ],
+   "first_block": 181,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image30.png",
+   "media_name": "word/media/image30.png",
+   "bytes": 106163,
+   "sha256": "1f4e08c9f7e0f5aa9362e34a8d827264ef806c68fffcfa7c5deb75c4f998c675",
+   "px": [
+    569,
+    586
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0229"
+   ],
+   "first_block": 1209,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image31.png",
+   "media_name": "word/media/image31.png",
+   "bytes": 110078,
+   "sha256": "abbf8f113e6a48a7c703b255b6a9bd546375cff02b6f90ca7b2d8ef2c2a74b72",
+   "px": [
+    698,
+    636
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0245"
+   ],
+   "first_block": 1307,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image32.png",
+   "media_name": "word/media/image32.png",
+   "bytes": 56772,
+   "sha256": "20a512a2c60f7552b20e8c6dcd865ac84a044d21d2cf9934cfa34819f6133894",
+   "px": [
+    964,
+    237
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0264"
+   ],
+   "first_block": 1396,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image33.png",
+   "media_name": "word/media/image33.png",
+   "bytes": 101433,
+   "sha256": "96f50327abb90a2f550e37cb1c77479e1956a203009a6aa3106e2be02ff8dbc1",
+   "px": [
+    963,
+    389
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0268"
+   ],
+   "first_block": 1415,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image34.png",
+   "media_name": "word/media/image34.png",
+   "bytes": 22263,
+   "sha256": "9b662ffa631f29b503ac55e5fd641c2d8d203cad4d09c2cb78059e6030e551d4",
+   "px": [
+    408,
+    360
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0271"
+   ],
+   "first_block": 1430,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image35.png",
+   "media_name": "word/media/image35.png",
+   "bytes": 20286,
+   "sha256": "5b0b864fc02f193b50c990f985c5975b5599d7c32c0f8aa7e88eb0753b83aee6",
+   "px": [
+    508,
+    417
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0289"
+   ],
+   "first_block": 1484,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image36.png",
+   "media_name": "word/media/image36.png",
+   "bytes": 12936,
+   "sha256": "f0ea2d748a916a081e623d8037fedbfb4fc899bf553a8534c5f2a39cd78eacee",
+   "px": [
+    264,
+    375
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0294"
+   ],
+   "first_block": 1497,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image37.png",
+   "media_name": "word/media/image37.png",
+   "bytes": 8487,
+   "sha256": "ceb34fcea9247d31dd8eb2fa31dd75cd703f61892dc9c78afcbb407a76f59261",
+   "px": [
+    258,
+    404
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0296"
+   ],
+   "first_block": 1502,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image38.png",
+   "media_name": "word/media/image38.png",
+   "bytes": 13232,
+   "sha256": "0fbb969f043b907b8389d785468602467a79941f947c6633bb9ec9ccd5848e39",
+   "px": [
+    271,
+    362
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0297"
+   ],
+   "first_block": 1502,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image39.png",
+   "media_name": "word/media/image39.png",
+   "bytes": 10111,
+   "sha256": "23d2a00af5a163a9fe9e39684a923506fcf74a414173de35be9c358dc9548f23",
+   "px": [
+    273,
+    415
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0299"
+   ],
+   "first_block": 1511,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image4.png",
+   "media_name": "word/media/image4.png",
+   "bytes": 30080,
+   "sha256": "181697c42a4801271b5235de71a47ad5fc2e2149bb44c963c02b3300ab54ce8a",
+   "px": [
+    584,
+    451
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0049"
+   ],
+   "first_block": 273,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image40.png",
+   "media_name": "word/media/image40.png",
+   "bytes": 11268,
+   "sha256": "0319a9378f39b8ff36216b05c41c48f13f1a4059f29e51d2138f14e1b6ca7b25",
+   "px": [
+    286,
+    378
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0300"
+   ],
+   "first_block": 1516,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image41.png",
+   "media_name": "word/media/image41.png",
+   "bytes": 10659,
+   "sha256": "c8c6bb1aa1007e1f2c0b94266ee5752e7fdf55d5dece827321be6296601eb677",
+   "px": [
+    258,
+    396
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0301"
+   ],
+   "first_block": 1516,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image42.png",
+   "media_name": "word/media/image42.png",
+   "bytes": 18978,
+   "sha256": "c48c00ecbdc8229e661381b942d5fd5d2d781a9c64ac279e7ba2f840739ce8ba",
+   "px": [
+    400,
+    354
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0306"
+   ],
+   "first_block": 1529,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image43.png",
+   "media_name": "word/media/image43.png",
+   "bytes": 18150,
+   "sha256": "ad81db3d72442f9c90f4ad61966ca91acc43c9955fa6ff45b17847b6462f308f",
+   "px": [
+    384,
+    367
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0307"
+   ],
+   "first_block": 1529,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image44.png",
+   "media_name": "word/media/image44.png",
+   "bytes": 9858,
+   "sha256": "e05024a2974a5f79229e2de53e7856c76cabea07163b86d0e113549debb5aa33",
+   "px": [
+    289,
+    355
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0308"
+   ],
+   "first_block": 1529,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image45.png",
+   "media_name": "word/media/image45.png",
+   "bytes": 18028,
+   "sha256": "1078ee3ec2288ab1b7c06a543e9a8652db0a7b29655a63b8a16ac975ccf3e8fc",
+   "px": [
+    398,
+    329
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0309"
+   ],
+   "first_block": 1529,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image46.png",
+   "media_name": "word/media/image46.png",
+   "bytes": 21634,
+   "sha256": "2c2759413ed78f91d93b8db5990368ebc41c507a47c0aaf2db0016f0519bf449",
+   "px": [
+    410,
+    412
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0320"
+   ],
+   "first_block": 1557,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image47.png",
+   "media_name": "word/media/image47.png",
+   "bytes": 153274,
+   "sha256": "0874330e39cd4657df9dfb98139a6842028e98772023f4c895234e1322b8d084",
+   "px": [
+    868,
+    629
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0321"
+   ],
+   "first_block": 1563,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image48.png",
+   "media_name": "word/media/image48.png",
+   "bytes": 12239,
+   "sha256": "00621b2a14dfbfb9fb09158120170e45278ad855f271265e4ca03db9ecac063a",
+   "px": [
+    352,
+    402
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0324"
+   ],
+   "first_block": 1573,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image49.png",
+   "media_name": "word/media/image49.png",
+   "bytes": 162457,
+   "sha256": "5b0581453db3d18f6b413cb6866fe5b14e6d5df8391f0e6d75481e724db3d2ed",
+   "px": [
+    979,
+    576
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0326"
+   ],
+   "first_block": 1591,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image5.png",
+   "media_name": "word/media/image5.png",
+   "bytes": 35488,
+   "sha256": "0a98d5ed9c30d10f0f10ec04ea742063be083395fd2fd3e2ff64a1840a819907",
+   "px": [
+    584,
+    444
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0052"
+   ],
+   "first_block": 302,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image50.png",
+   "media_name": "word/media/image50.png",
+   "bytes": 11405,
+   "sha256": "da10c0e03a99e68ad5216157d91e0990bda5b14621773c1b2c550c0a208bf5b9",
+   "px": [
+    281,
+    388
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0328"
+   ],
+   "first_block": 1600,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image51.png",
+   "media_name": "word/media/image51.png",
+   "bytes": 4283,
+   "sha256": "d71b0905d43c2821b047d2afd9abfd99b9a00845137c31b6e1c20df989909e87",
+   "px": [
+    462,
+    211
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0331"
+   ],
+   "first_block": 1632,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image52.png",
+   "media_name": "word/media/image52.png",
+   "bytes": 157396,
+   "sha256": "bef81032f31e9937046635102d2a81814619218d369c3808c9e9acfe868f0d10",
+   "px": [
+    955,
+    688
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0337"
+   ],
+   "first_block": 1645,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image53.png",
+   "media_name": "word/media/image53.png",
+   "bytes": 14461,
+   "sha256": "4867dcd51ab4f438547aadcb4aa6d9f9aca954da8618ae942a849b961f7e3bd8",
+   "px": [
+    463,
+    338
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0339"
+   ],
+   "first_block": 1654,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image54.png",
+   "media_name": "word/media/image54.png",
+   "bytes": 106659,
+   "sha256": "49331f234bada53316d24d2d341c0d07bf80cf9495e63932c63667570cf268c3",
+   "px": [
+    961,
+    429
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0343"
+   ],
+   "first_block": 1676,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image55.png",
+   "media_name": "word/media/image55.png",
+   "bytes": 12307,
+   "sha256": "6bf59e025860b9c8fae4a68b4df783bf7640be4382741b6ed3343a1a3b9a8577",
+   "px": [
+    323,
+    367
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0345"
+   ],
+   "first_block": 1686,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image56.png",
+   "media_name": "word/media/image56.png",
+   "bytes": 6641,
+   "sha256": "07b91c8aa30b19a0d388e5e5524cbb7fafe23d42ff5ace61098f2c0ff7c82f87",
+   "px": [
+    244,
+    341
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0353"
+   ],
+   "first_block": 1716,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image57.png",
+   "media_name": "word/media/image57.png",
+   "bytes": 90504,
+   "sha256": "92d91a1dd5f485951453c51fb4ffbb49fef98b8849fa50126be6ae6c4049cf7a",
+   "px": [
+    980,
+    334
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0354"
+   ],
+   "first_block": 1722,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image58.png",
+   "media_name": "word/media/image58.png",
+   "bytes": 89928,
+   "sha256": "d9763354f5c73ca38e5db7906a7878281623ae6d903d3a45d29ec620ed27c54a",
+   "px": [
+    997,
+    337
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0359"
+   ],
+   "first_block": 1741,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image59.png",
+   "media_name": "word/media/image59.png",
+   "bytes": 50081,
+   "sha256": "e1e29d48b8a3b2011889c3f5d74ef6b198fb8fc245011d26b406df2b65c15848",
+   "px": [
+    976,
+    158
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0360"
+   ],
+   "first_block": 1741,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image590.png",
+   "media_name": "word/media/image590.png",
+   "bytes": 89928,
+   "sha256": "d9763354f5c73ca38e5db7906a7878281623ae6d903d3a45d29ec620ed27c54a",
+   "px": [
+    997,
+    337
+   ],
+   "format": "PNG",
+   "figures": [],
+   "first_block": null,
+   "role": "fallback-only",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image6.png",
+   "media_name": "word/media/image6.png",
+   "bytes": 20981,
+   "sha256": "f25fb2988712a2607a9a23059a29a70ac2bdf2e3b35ea40d9a136622ce89a1b0",
+   "px": [
+    672,
+    363
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0054"
+   ],
+   "first_block": 335,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image60.png",
+   "media_name": "word/media/image60.png",
+   "bytes": 50081,
+   "sha256": "e1e29d48b8a3b2011889c3f5d74ef6b198fb8fc245011d26b406df2b65c15848",
+   "px": [
+    976,
+    158
+   ],
+   "format": "PNG",
+   "figures": [],
+   "first_block": null,
+   "role": "fallback-only",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image61.png",
+   "media_name": "word/media/image61.png",
+   "bytes": 16447,
+   "sha256": "3d3aa4117fb2a8343e56bca61ea3cd3b07b96b02d317c441456fdb36b36ee16e",
+   "px": [
+    270,
+    343
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0364"
+   ],
+   "first_block": 1754,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image62.png",
+   "media_name": "word/media/image62.png",
+   "bytes": 20594,
+   "sha256": "c8288b81012bbb89acd8594ce499caaa205f7a5caae1c77ebfae5a976a38f4c1",
+   "px": [
+    406,
+    358
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0365"
+   ],
+   "first_block": 1767,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image63.png",
+   "media_name": "word/media/image63.png",
+   "bytes": 159294,
+   "sha256": "3f48e75c07b7e9b7f3ef4f11f33fdcb7197dc321f4d353f419b301cc52466e28",
+   "px": [
+    913,
+    351
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0369"
+   ],
+   "first_block": 1792,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image64.png",
+   "media_name": "word/media/image64.png",
+   "bytes": 130409,
+   "sha256": "4951da514bd37807528f72d395a2b6ccf894b0223878bd55fc4843e2d1892c22",
+   "px": [
+    897,
+    462
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0370"
+   ],
+   "first_block": 1798,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image65.png",
+   "media_name": "word/media/image65.png",
+   "bytes": 50590,
+   "sha256": "4277059b91305d2a3a4644cbc68a06062b857050a13ef7dd4fd0563d82bb056b",
+   "px": [
+    959,
+    348
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0374"
+   ],
+   "first_block": 1807,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image66.png",
+   "media_name": "word/media/image66.png",
+   "bytes": 3656,
+   "sha256": "9d2ab79d31802b48850976991e88d5a7303a041bda86fe75ae7d5cbfb1ebc6a8",
+   "px": [
+    121,
+    269
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0376"
+   ],
+   "first_block": 1810,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image67.png",
+   "media_name": "word/media/image67.png",
+   "bytes": 2154,
+   "sha256": "a87981120cb157384095ac1a91c76dc8a995419f6bcb93367214fa39996c5001",
+   "px": [
+    751,
+    39
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0379"
+   ],
+   "first_block": 1821,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image68.png",
+   "media_name": "word/media/image68.png",
+   "bytes": 52954,
+   "sha256": "2092c03105df3ba39afc39c34c49453cc97e7a3d3c5535acb232e436a2981700",
+   "px": [
+    888,
+    604
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0380"
+   ],
+   "first_block": 1825,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image69.png",
+   "media_name": "word/media/image69.png",
+   "bytes": 60104,
+   "sha256": "c79f00322f4d1e53a6a59cc711f1b333786867ac6ecbb5dcf9a2d76db07063b1",
+   "px": [
+    956,
+    316
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0381"
+   ],
+   "first_block": 1832,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image7.png",
+   "media_name": "word/media/image7.png",
+   "bytes": 15779,
+   "sha256": "a9b69b5a32a6cda66144652a0845ebe10332c4ec1fc437c4f76608d9949b387b",
+   "px": [
+    628,
+    77
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0062"
+   ],
+   "first_block": 374,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image70.png",
+   "media_name": "word/media/image70.png",
+   "bytes": 61552,
+   "sha256": "f7be9c5397dc7456e408537485f734e88823a6cb7309bc16a5af66301f0d4d99",
+   "px": [
+    955,
+    353
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0383"
+   ],
+   "first_block": 1846,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image71.png",
+   "media_name": "word/media/image71.png",
+   "bytes": 85714,
+   "sha256": "707b23c5c7ba1286906a99ea6e0357db67f74296629eada617e8d26618b65fcb",
+   "px": [
+    954,
+    623
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0386"
+   ],
+   "first_block": 1856,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image72.png",
+   "media_name": "word/media/image72.png",
+   "bytes": 76697,
+   "sha256": "46ac908aa34951005316908455983f32fac029a78965c41b7a772bfe4dbebaa1",
+   "px": [
+    949,
+    317
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0387"
+   ],
+   "first_block": 1864,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image73.png",
+   "media_name": "word/media/image73.png",
+   "bytes": 114527,
+   "sha256": "b1847782539ef24bb20902f80b9ea92726324ac469216af0c386b99f33521468",
+   "px": [
+    960,
+    390
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0389"
+   ],
+   "first_block": 1871,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image74.png",
+   "media_name": "word/media/image74.png",
+   "bytes": 73792,
+   "sha256": "dc375f899c84ee1b24bad3281f2654afc0b61e8ac561972cdb505f6172cb0c8f",
+   "px": [
+    886,
+    233
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0394"
+   ],
+   "first_block": 1882,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image75.png",
+   "media_name": "word/media/image75.png",
+   "bytes": 27154,
+   "sha256": "28f634daf94d29668f0dd9570aa7c3bfaf66b94b9062b74f3dda8ace15b9849c",
+   "px": [
+    352,
+    297
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0396"
+   ],
+   "first_block": 1888,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image76.png",
+   "media_name": "word/media/image76.png",
+   "bytes": 36949,
+   "sha256": "d76484992b89d069320219d90ec7bcc2cdba6825033630fd384dfd745a3bece8",
+   "px": [
+    653,
+    213
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0397"
+   ],
+   "first_block": 1903,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image77.png",
+   "media_name": "word/media/image77.png",
+   "bytes": 66267,
+   "sha256": "2a7fdb9cdb82449c51ea8821f2ac167280d8caf68b2977dfb9318041acd32fdd",
+   "px": [
+    355,
+    502
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0399"
+   ],
+   "first_block": 1911,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image8.png",
+   "media_name": "word/media/image8.png",
+   "bytes": 96807,
+   "sha256": "89efae2ccdf85a354a936da09c4a4dcd9cd744d8c671b3172273000ab3ee5a95",
+   "px": [
+    963,
+    353
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0065"
+   ],
+   "first_block": 384,
+   "role": "used",
+   "byte_identical_copy": true
+  },
+  {
+   "file": "assets/images/image9.png",
+   "media_name": "word/media/image9.png",
+   "bytes": 21873,
+   "sha256": "d0819ad8f5196f2b579f4642773f92736fd9c07c457406abe0de5c112ca38b99",
+   "px": [
+    243,
+    568
+   ],
+   "format": "PNG",
+   "figures": [
+    "F0087"
+   ],
+   "first_block": 503,
+   "role": "used",
+   "byte_identical_copy": true
+  }
+ ]
+}
