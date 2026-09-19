@@ -1,0 +1,581 @@
+{
+ "stage": "NHTML-0",
+ "generated_at_utc": "2026-09-19T17:37:21Z",
+ "generator": "rebuild/nawwasat/tools/source_audit.py",
+ "source": {
+  "path": "notes/النواسات م_101932-r23-all-absolute-value-bars-green.docx",
+  "sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
+  "bytes": 5193418
+ },
+ "symbol_rules": [
+  {
+   "rule": "R1",
+   "desc": "T_o (حرف o) → T_0",
+   "remaining": 0
+  },
+  {
+   "rule": "R2",
+   "desc": "ω بمعنى الثقل → w",
+   "remaining": 37
+  },
+  {
+   "rule": "R3",
+   "desc": "∆ (U+2206) → Δ (U+0394)",
+   "remaining": 184
+  },
+  {
+   "rule": "R4",
+   "desc": "∝ (تناسب) → α",
+   "remaining": 23
+  },
+  {
+   "rule": "R5",
+   "desc": "Γ_n → Γ_η",
+   "remaining": 5
+  },
+  {
+   "rule": "R6",
+   "desc": "K ثابت الصلابة/الفتل → k",
+   "remaining": 16
+  },
+  {
+   "rule": "R7",
+   "desc": "Υ → γ (لورنتز)",
+   "remaining": 0
+  },
+  {
+   "rule": "R8",
+   "desc": "HZ/COS/P_evg/m..g/ⅈ",
+   "remaining": 8
+  },
+  {
+   "rule": "R9",
+   "desc": "ωeb/ωat → Wb/W",
+   "remaining": 0
+  },
+  {
+   "rule": "R10",
+   "desc": "Λ → ∧ (جداء شعاعي)",
+   "remaining": 0
+  },
+  {
+   "rule": "R11",
+   "desc": "f_o/v_o/v_ox/v_oy → _0",
+   "remaining": 0
+  },
+  {
+   "rule": "R12",
+   "desc": "E_S/W_S/U_S → _s",
+   "remaining": 0
+  },
+  {
+   "rule": "R13",
+   "desc": "E_K/E_P → _k/_p",
+   "remaining": 0
+  },
+  {
+   "rule": "R14",
+   "desc": "max → maX (توحيد)",
+   "remaining": 348
+  }
+ ],
+ "symbol_summary": {
+  "rules_with_remaining_old_style": [
+   "R2",
+   "R3",
+   "R4",
+   "R5",
+   "R6",
+   "R8",
+   "R14"
+  ],
+  "rules_clean": [
+   "R1",
+   "R7",
+   "R9",
+   "R10",
+   "R11",
+   "R12",
+   "R13"
+  ],
+  "total_remaining": 621
+ },
+ "history_reference": {
+  "git_ref": "827dbcb^:sources/fadaa/النواسات م_101932.docx",
+  "census": {
+   "sha256": "a96aba3042d8fa07ea2095ac0118bfe38c7678dbbd7fef606d709ee2c331d610",
+   "bytes": 5285769,
+   "oMath": 1482,
+   "text_chars": 30604,
+   "math_chars": 21073,
+   "media_count": 77,
+   "media_bytes": 4307981,
+   "max": 35,
+   "maX": 273
+  }
+ },
+ "current_census": {
+  "sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
+  "bytes": 5193418,
+  "oMath": 1483,
+  "text_chars": 30656,
+  "math_chars": 21086,
+  "media_count": 78,
+  "media_bytes": 4320961,
+  "max": 288,
+  "maX": 21
+ },
+ "delta_vs_history": {
+  "oMath": 1,
+  "text_chars": 52,
+  "math_chars": 13,
+  "media_count": 1,
+  "media_bytes": 12980,
+  "max": 253,
+  "maX": -252
+ },
+ "media_only_in_source": [
+  "word/media/image590.png"
+ ],
+ "media_only_in_history": [],
+ "media_changed_vs_history": [
+  "word/media/image10.png",
+  "word/media/image11.png",
+  "word/media/image12.png",
+  "word/media/image13.png",
+  "word/media/image14.png",
+  "word/media/image15.png",
+  "word/media/image16.png",
+  "word/media/image17.png",
+  "word/media/image18.png",
+  "word/media/image19.png",
+  "word/media/image2.png",
+  "word/media/image20.png",
+  "word/media/image21.png",
+  "word/media/image22.png",
+  "word/media/image23.png",
+  "word/media/image24.png",
+  "word/media/image25.png",
+  "word/media/image26.png",
+  "word/media/image27.png",
+  "word/media/image28.png",
+  "word/media/image29.png",
+  "word/media/image30.png",
+  "word/media/image31.png",
+  "word/media/image32.png",
+  "word/media/image33.png",
+  "word/media/image34.png",
+  "word/media/image35.png",
+  "word/media/image36.png",
+  "word/media/image37.png",
+  "word/media/image38.png",
+  "word/media/image39.png",
+  "word/media/image4.png",
+  "word/media/image40.png",
+  "word/media/image41.png",
+  "word/media/image42.png",
+  "word/media/image43.png",
+  "word/media/image44.png",
+  "word/media/image45.png",
+  "word/media/image46.png",
+  "word/media/image47.png",
+  "word/media/image48.png",
+  "word/media/image49.png",
+  "word/media/image50.png",
+  "word/media/image51.png",
+  "word/media/image52.png",
+  "word/media/image53.png",
+  "word/media/image54.png",
+  "word/media/image55.png",
+  "word/media/image56.png",
+  "word/media/image57.png",
+  "word/media/image58.png",
+  "word/media/image59.png",
+  "word/media/image68.png",
+  "word/media/image69.png"
+ ],
+ "color_count_delta_vs_history": {
+  "EE0000": -19,
+  "3A7C22": -18,
+  "00B050": -18,
+  "000000": -17,
+  "275317": -10,
+  "FFFFFF": -7,
+  "153D63": -7,
+  "008000": 6,
+  "FFC000": -4,
+  "BF4E14": -3,
+  "7030A0": -3,
+  "0F4761": -3,
+  "FF0000": -2,
+  "00B0F0": -2,
+  "C00000": -1
+ },
+ "abs_value_green_runs": {
+  "count": 6,
+  "distinct_labels": {
+   "FmaX=∓kXmax ⟸x=∓Xmax": 1,
+   "x=± Xmax": 1,
+   " vmax= ±ω0 Xmax      ⟸       x=0": 1,
+   "amax=∓ω02Xmax⇐x=∓Xmax": 1,
+   "Fmax=∓kXmax ⇐ x=∓Xmax": 1,
+   "h=lcosθ-cosθmaX": 1
+  }
+ },
+ "revision_series": [
+  {
+   "file": "النواسات م_101932-r15-ball-corrected.docx",
+   "revision": 15,
+   "sha256": "8a6f6dcf64cc408d5bc035e01c019c0d762075fec0c4e1720f8c5fa1bec21f6b",
+   "document_xml_bytes": 6597405,
+   "oMath": 1483,
+   "green_008000_positions": 0
+  },
+  {
+   "file": "النواسات م_101932-r16-Fmax-absolute-bars-green.docx",
+   "revision": 16,
+   "sha256": "16f4388749fe04a0c7e2833f959c07f67525aff8918a09a3b581158b65ccf895",
+   "document_xml_bytes": 6597404,
+   "oMath": 1483,
+   "green_008000_positions": 1,
+   "media_changed_from_previous": [],
+   "color_count_delta_from_previous": {
+    "EE0000": -1,
+    "008000": 1
+   }
+  },
+  {
+   "file": "النواسات م_101932-r17-vmax-absolute-bars-green.docx",
+   "revision": 17,
+   "sha256": "4a65751aa821a649b0b267ba57baf1ecd2c21b72108be78d8f9f5cbaa7978872",
+   "document_xml_bytes": 6597404,
+   "oMath": 1483,
+   "green_008000_positions": 2,
+   "media_changed_from_previous": [],
+   "color_count_delta_from_previous": {
+    "3A7C22": -1,
+    "008000": 1
+   }
+  },
+  {
+   "file": "النواسات م_101932-r18-amax-absolute-bars-green.docx",
+   "revision": 18,
+   "sha256": "8a18084b5372ac69e5d40f0c26d4b117ca08d8d23b219b80833a9ef34a3c7699",
+   "document_xml_bytes": 6597404,
+   "oMath": 1483,
+   "green_008000_positions": 3,
+   "media_changed_from_previous": [],
+   "color_count_delta_from_previous": {
+    "EE0000": -1,
+    "008000": 1
+   }
+  },
+  {
+   "file": "النواسات م_101932-r19-height-existing-absolute-green.docx",
+   "revision": 19,
+   "sha256": "77dfc5371aa0fe8072ec507254f4e3ab171f02deab6dbc382aec6b44650eac55",
+   "document_xml_bytes": 6597429,
+   "oMath": 1483,
+   "green_008000_positions": 4,
+   "media_changed_from_previous": [],
+   "color_count_delta_from_previous": {
+    "008000": 1
+   }
+  },
+  {
+   "file": "النواسات م_101932-r20-v-axis-green.docx",
+   "revision": 20,
+   "sha256": "37ad237b78ce454c5763a3e86c77cfc34aa13885c31e9cab49b1370ff9787f36",
+   "document_xml_bytes": 6597429,
+   "oMath": 1483,
+   "green_008000_positions": 4,
+   "media_changed_from_previous": [
+    "word/media/image4.png"
+   ],
+   "color_count_delta_from_previous": {}
+  },
+  {
+   "file": "النواسات م_101932-r21-av-legend-colors.docx",
+   "revision": 21,
+   "sha256": "9fec24a433996982f8f7ef145a60caa86d532ea7ea8efd7d834ee19dc5e53ec2",
+   "document_xml_bytes": 6597429,
+   "oMath": 1483,
+   "green_008000_positions": 4,
+   "media_changed_from_previous": [
+    "word/media/image68.png"
+   ],
+   "color_count_delta_from_previous": {}
+  },
+  {
+   "file": "النواسات م_101932-r22-v-graph-labels-green.docx",
+   "revision": 22,
+   "sha256": "24625d06164060158baaed14c25af0d681211b5198c2c8a6337db2a6fc56eaa9",
+   "document_xml_bytes": 6597429,
+   "oMath": 1483,
+   "green_008000_positions": 4,
+   "media_changed_from_previous": [
+    "word/media/image69.png"
+   ],
+   "color_count_delta_from_previous": {}
+  },
+  {
+   "file": "النواسات م_101932-r23-all-absolute-value-bars-green.docx",
+   "revision": 23,
+   "sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
+   "document_xml_bytes": 6597454,
+   "oMath": 1483,
+   "green_008000_positions": 6,
+   "media_changed_from_previous": [],
+   "color_count_delta_from_previous": {
+    "000000": -1,
+    "008000": 2
+   }
+  }
+ ],
+ "media_pixel_compare": {
+  "identical_pixels_reencoded": 0,
+  "visually_changed": 54,
+  "visually_changed_files": [
+   {
+    "file": "word/media/image10.png",
+    "reason": "size (955, 335)→(521, 231)"
+   },
+   {
+    "file": "word/media/image11.png",
+    "reason": "size (963, 304)→(955, 335)"
+   },
+   {
+    "file": "word/media/image12.png",
+    "reason": "size (962, 336)→(963, 304)"
+   },
+   {
+    "file": "word/media/image13.png",
+    "reason": "size (985, 345)→(962, 336)"
+   },
+   {
+    "file": "word/media/image14.png",
+    "reason": "size (993, 420)→(985, 345)"
+   },
+   {
+    "file": "word/media/image15.png",
+    "reason": "size (732, 382)→(993, 420)"
+   },
+   {
+    "file": "word/media/image16.png",
+    "reason": "size (748, 45)→(732, 382)"
+   },
+   {
+    "file": "word/media/image17.png",
+    "reason": "size (957, 92)→(748, 45)"
+   },
+   {
+    "file": "word/media/image18.png",
+    "reason": "size (964, 420)→(957, 92)"
+   },
+   {
+    "file": "word/media/image19.png",
+    "reason": "size (968, 358)→(964, 420)"
+   },
+   {
+    "file": "word/media/image2.png",
+    "size": [
+     745,
+     598
+    ],
+    "diff_pixels_pct": 0.47,
+    "max_channel_delta": 255,
+    "class": "تعديل موضعي مركّز"
+   },
+   {
+    "file": "word/media/image20.png",
+    "reason": "size (335, 263)→(968, 358)"
+   },
+   {
+    "file": "word/media/image21.png",
+    "reason": "size (955, 535)→(335, 263)"
+   },
+   {
+    "file": "word/media/image22.png",
+    "reason": "size (187, 184)→(955, 535)"
+   },
+   {
+    "file": "word/media/image23.png",
+    "reason": "size (358, 291)→(187, 184)"
+   },
+   {
+    "file": "word/media/image24.png",
+    "reason": "size (202, 237)→(358, 291)"
+   },
+   {
+    "file": "word/media/image25.png",
+    "reason": "size (147, 226)→(202, 237)"
+   },
+   {
+    "file": "word/media/image26.png",
+    "reason": "size (989, 544)→(147, 226)"
+   },
+   {
+    "file": "word/media/image27.png",
+    "reason": "size (433, 219)→(989, 544)"
+   },
+   {
+    "file": "word/media/image28.png",
+    "reason": "size (726, 671)→(433, 219)"
+   },
+   {
+    "file": "word/media/image29.png",
+    "reason": "size (569, 586)→(726, 671)"
+   },
+   {
+    "file": "word/media/image30.png",
+    "reason": "size (698, 636)→(569, 586)"
+   },
+   {
+    "file": "word/media/image31.png",
+    "reason": "size (964, 237)→(698, 636)"
+   },
+   {
+    "file": "word/media/image32.png",
+    "reason": "size (963, 389)→(964, 237)"
+   },
+   {
+    "file": "word/media/image33.png",
+    "reason": "size (408, 360)→(963, 389)"
+   },
+   {
+    "file": "word/media/image34.png",
+    "reason": "size (508, 417)→(408, 360)"
+   },
+   {
+    "file": "word/media/image35.png",
+    "reason": "size (264, 375)→(508, 417)"
+   },
+   {
+    "file": "word/media/image36.png",
+    "reason": "size (258, 404)→(264, 375)"
+   },
+   {
+    "file": "word/media/image37.png",
+    "reason": "size (271, 362)→(258, 404)"
+   },
+   {
+    "file": "word/media/image38.png",
+    "reason": "size (273, 415)→(271, 362)"
+   },
+   {
+    "file": "word/media/image39.png",
+    "reason": "size (286, 378)→(273, 415)"
+   },
+   {
+    "file": "word/media/image4.png",
+    "size": [
+     584,
+     451
+    ],
+    "diff_pixels_pct": 0.007,
+    "max_channel_delta": 96,
+    "class": "تعديل موضعي مركّز"
+   },
+   {
+    "file": "word/media/image40.png",
+    "reason": "size (258, 396)→(286, 378)"
+   },
+   {
+    "file": "word/media/image41.png",
+    "reason": "size (400, 354)→(258, 396)"
+   },
+   {
+    "file": "word/media/image42.png",
+    "reason": "size (384, 367)→(400, 354)"
+   },
+   {
+    "file": "word/media/image43.png",
+    "reason": "size (289, 355)→(384, 367)"
+   },
+   {
+    "file": "word/media/image44.png",
+    "reason": "size (398, 329)→(289, 355)"
+   },
+   {
+    "file": "word/media/image45.png",
+    "reason": "size (410, 412)→(398, 329)"
+   },
+   {
+    "file": "word/media/image46.png",
+    "reason": "size (868, 629)→(410, 412)"
+   },
+   {
+    "file": "word/media/image47.png",
+    "reason": "size (352, 402)→(868, 629)"
+   },
+   {
+    "file": "word/media/image48.png",
+    "reason": "size (979, 576)→(352, 402)"
+   },
+   {
+    "file": "word/media/image49.png",
+    "reason": "size (281, 388)→(979, 576)"
+   },
+   {
+    "file": "word/media/image50.png",
+    "reason": "size (462, 211)→(281, 388)"
+   },
+   {
+    "file": "word/media/image51.png",
+    "reason": "size (955, 688)→(462, 211)"
+   },
+   {
+    "file": "word/media/image52.png",
+    "reason": "size (463, 338)→(955, 688)"
+   },
+   {
+    "file": "word/media/image53.png",
+    "reason": "size (961, 429)→(463, 338)"
+   },
+   {
+    "file": "word/media/image54.png",
+    "reason": "size (323, 367)→(961, 429)"
+   },
+   {
+    "file": "word/media/image55.png",
+    "reason": "size (244, 341)→(323, 367)"
+   },
+   {
+    "file": "word/media/image56.png",
+    "reason": "size (980, 334)→(244, 341)"
+   },
+   {
+    "file": "word/media/image57.png",
+    "reason": "size (997, 337)→(980, 334)"
+   },
+   {
+    "file": "word/media/image58.png",
+    "reason": "size (976, 158)→(997, 337)"
+   },
+   {
+    "file": "word/media/image59.png",
+    "reason": "size (997, 337)→(976, 158)"
+   },
+   {
+    "file": "word/media/image68.png",
+    "size": [
+     888,
+     604
+    ],
+    "diff_pixels_pct": 0.024,
+    "max_channel_delta": 230,
+    "class": "تعديل موضعي مركّز"
+   },
+   {
+    "file": "word/media/image69.png",
+    "size": [
+     956,
+     316
+    ],
+    "diff_pixels_pct": 0.036,
+    "max_channel_delta": 99,
+    "class": "تعديل موضعي مركّز"
+   }
+  ]
+ }
+}
