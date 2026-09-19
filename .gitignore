@@ -5,3 +5,5 @@ sources/fadaa/
 
 # معاينة NHTML-2 المولَّدة (قابلة لإعادة التوليد بـ tools/make_preview.py — لا تُحفظ في git)
 rebuild/nawwasat/html/preview-nhtml2.html
+# معاينة خفيفة للمالك — تُحفظ في git ليسهل تنزيلها من GitHub
+

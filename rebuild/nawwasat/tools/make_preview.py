@@ -19,8 +19,8 @@ IMAGES = OUT / "assets" / "images"
 FONTS = OUT / "assets" / "fonts"
 DEST = OUT / "html" / "preview-nhtml2.html"
 DEST_LITE = OUT / "html" / "preview-lite.html"
-LITE_MAX_W = 620
-LITE_Q = 72
+LITE_MAX_W = 460
+LITE_Q = 66
 
 
 def data_uri(path: Path) -> str:
@@ -52,6 +52,9 @@ def build(html_path: Path, dest: Path, lite: bool):
     js = JS.read_text(encoding="utf-8")
 
     # الخطوط: تُستبدل مساراتها بمحتوى base64
+    if lite:
+        # المعاينة الخفيفة: الخطّ العربي الأساسي فقط (الاحتياطيان Amiri/Kufi غير مستعملَين هنا)
+        css = re.sub(r'@font-face\s*\{[^}]*\}\s*', lambda m: m.group(0) if "NotoNaskhArabic" in m.group(0) else "", css)
     for font in FONTS.glob("*.ttf"):
         uri = data_uri(font)
         css = css.replace(f'url("../assets/fonts/{font.name}")', f'url("{uri}")')
@@ -77,6 +80,8 @@ def build(html_path: Path, dest: Path, lite: bool):
         "body{background:#eef1f4}</style>\n<title>", 1)
     html = html.replace("</body>", "<script>\n" + js + "\n</script>\n</body>")
 
+    if lite:
+        html = re.sub(r">\s*<", "><", html)       # ضغط الفراغات بين الوسوم (معاينة فقط)
     dest.write_text(html, encoding="utf-8")
     print(f"{'lite preview' if lite else 'preview'}: {dest} "
           f"({dest.stat().st_size/1024/1024:.2f} MB) · صور مضمّنة: {n_imgs}"
