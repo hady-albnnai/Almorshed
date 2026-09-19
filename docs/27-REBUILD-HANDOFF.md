@@ -14,8 +14,9 @@
 
 ## آخر commit
 
-`a6c695f` — «NHTML-0: inventory source figures equations and text» (مدفوع على `main`).
-آخر كومِت قبل المرحلة: `4aceef9` (R23: color all absolute-value bars green).
+- **كومِت المرحلة NHTML-0:** `a6c695f` — «NHTML-0: inventory source figures equations and text» (مدفوع على `main`).
+- **آخر كومِت على `main` الآن:** اقرأه بأمر `git log -1 --format='%h %s'` (كل كومِت توثيقي يلي المرحلة يسجّل بصمة سابقه).
+- **آخر كومِت قبل المرحلة:** `4aceef9` (R23: color all absolute-value bars green).
 
 ## المرحلة التالية
 
