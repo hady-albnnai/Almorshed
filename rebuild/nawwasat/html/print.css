@@ -100,9 +100,23 @@
   .fig-box, .fig-brace, .fig-dot { opacity: .5; }
 
   /* ------------------------------------------------ الجداول */
+  /* لا حاويات تمرير في الطباعة: overflow:auto يقصّ المحتوى الأوسع من الصفحة */
+  .table-wrapper,
+  .equation,
+  .cols,
+  .cluster {
+    overflow: visible !important;
+  }
   table.data-table {
-    font-size: .92em;
+    font-size: .84em;              /* يصغر ليلائم عرض الصفحة (الجدول الأصلي أعرض من A4) */
     break-inside: avoid;
+    width: 100%;
+    max-width: 100%;
+  }
+  table.data-table td,
+  table.data-table th {
+    overflow-wrap: anywhere;       /* التفاف النصّ بدل القصّ */
+    padding: .9mm 1.1mm;
   }
   table.data-table td, table.data-table th { padding: 1.1mm 1.8mm; }
   table.data-table tr:nth-child(even) td { background: #f8fafc; }

@@ -187,12 +187,16 @@ def custgeom_svg(cg):
         ch = float(path0.get("h")) if path0 is not None and path0.get("h") else 0.0
     except Exception:
         cw = ch = 0.0
+    # نُطبّع الإحداثيات إلى فضاء 1000 وحدة: يحفظ الشكل ويُبقي بيانات المسار صغيرة
+    # (إحداثيات المصدر بالملايين ⇒ مسارات ضخمة تُنفخ ملف PDF عشرات الميغابايت)
+    sx = 1000.0 / cw if cw else 1.0
+    sy = 1000.0 / ch if ch else 1.0
     out = []
     for path in cg.iter(f"{{{APP_NS}}}path"):
         for cmd in path:
             nm = local(cmd)
             pts = cmd.findall(f"{{{APP_NS}}}pt")
-            coords = [f"{float(p.get('x', 0)):.1f},{float(p.get('y', 0)):.1f}" for p in pts]
+            coords = [f"{float(p.get('x', 0)) * sx:.1f},{float(p.get('y', 0)) * sy:.1f}" for p in pts]
             if nm == "moveTo" and coords:
                 out.append("M" + coords[0])
             elif nm == "lnTo" and coords:
@@ -204,10 +208,9 @@ def custgeom_svg(cg):
             elif nm == "close":
                 out.append("Z")
     if not cw or not ch:
-        nums = [float(v) for v in re.findall(r"-?\d+(?:\.\d+)?", " ".join(out)) or ["0"]]
-        cw = cw or (max(nums[::2]) if nums else 100.0)
-        ch = ch or (max(nums[1::2]) if len(nums) > 1 else 100.0)
-    return " ".join(out), cw, ch
+        cw = cw or 1000.0
+        ch = ch or 1000.0
+    return " ".join(out), 1000.0, 1000.0
 
 
 def _old_custgeom_to_svg_path(cg, w_emu, h_emu, scale=1.0):
@@ -264,12 +267,12 @@ def shape_svg(shape, w_mm: float, h_mm: float) -> str:
         if not d:
             d = f"M0,{ch / 2:.1f} L{cw:.1f},{ch / 2:.1f}"
         cw = max(cw, 1.0); ch = max(ch, 1.0)
-        sw = max(min(cw, ch) * 0.012, 1.0)
+        # الفضاء مُطبَّع إلى 1000 وحدة ⇒ سماكة 8 وحدات (~0.8% من العرض) بلا non-scaling-stroke
+        sw = 8.0
         vb = (f'viewBox="0 0 {cw:.1f} {ch:.1f}" width="{w:.1f}mm" height="{h:.1f}mm" '
               f'preserveAspectRatio="none" class="shape-svg"')
         return (f'<svg {vb}><path d="{d}" fill="none" stroke="{color}" '
-                f'stroke-width="{sw:.1f}" vector-effect="non-scaling-stroke" '
-                f'stroke-linecap="round"{dash_attr}/></svg>')
+                f'stroke-width="{sw:.1f}" stroke-linecap="round"{dash_attr}/></svg>')
     if prst in ("straightConnector1", "line"):
         y = mid if h_mm > 2 else h / 2
         markers = []
@@ -423,13 +426,27 @@ class Builder:
                 return txt
         return ""
 
-    def math_html(self, eid, display=False) -> str:
+    def math_html(self, eid, display=False, block=False) -> str:
         om = self._omath_of.get(eid)
         if om is None:
             return ""
         flat = math_flat(om)
         inner = omml_to_mathml(om)
-        return wrap_math(inner, display=display, alttext=flat)
+        html = wrap_math(inner, display=display or block, alttext=flat)
+        if block and not display:
+            html = f'<span class="math-block">{html}</span>'
+        return html
+
+    def is_long_inline_math(self, eid) -> bool:
+        om = self._omath_of.get(eid)
+        return bool(om is not None and self.is_long_inline_math_flat(math_flat(om)))
+
+    @staticmethod
+    def is_long_inline_math_flat(flat: str) -> bool:
+        """معادلة مضمّنة طويلة أو تحمل جملة عربية: تُعرض في سطرها الخاص (لا قصّ)."""
+        if len(flat) > 26:
+            return True
+        return bool(AR_RE.search(flat)) and len(flat) > 12
 
     # ------------------------------------------------ figures
     def figure_html(self, fid) -> str:
@@ -692,7 +709,10 @@ class Builder:
                 out.append(self.text_html(val, st or {}))
             elif kind == "math":
                 if val:
-                    out.append(self.math_html(val))
+                    block = self.is_long_inline_math(val)
+                    out.append(self.math_html(val, block=block))
+                    if block:
+                        self.stats["inline_math_promoted"] += 1
             elif kind == "br":
                 out.append("<br>")
             elif kind == "figs":
@@ -824,6 +844,623 @@ class Builder:
         return "\n".join(p for p in body_parts if p and p.strip())
 
 
+# ----------------------------------------------------------------- static assets
+# تُولَّد من البنّاء نفسه (لا تعتمد على وجودها كمُدخلات) — مناعة ضد فقدان الملفات
+STYLES_CSS = r"""/* ==========================================================================
+   نوطة النواسات — الأستاذ فداء البني
+   styles.css — تنسيق الشاشة والقاعدة العامة (NHTML-2)
+   قاعدة الطباعة A4 في print.css (NHTML-3)
+   المبدأ: لا float · لا position:absolute · لا إسقاط لأي كلمة
+   ========================================================================== */
+
+@font-face {
+  font-family: "Noto Naskh Arabic";
+  src: url("../assets/fonts/NotoNaskhArabic.ttf") format("truetype");
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Amiri";
+  src: url("../assets/fonts/Amiri-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --ink: #17202a;
+  --ink-soft: #454f5b;
+  --rule: #d5dbe1;
+  --rule-soft: #e8edf1;
+  --paper: #ffffff;
+  --tint: #f6f9fc;
+  --tint-2: #eef4fa;
+  --accent: #0f4c81;
+  --accent-soft: #e8f0f8;
+  --green: #008000;
+  --q-bg: #fbfaf6;
+  --q-rule: #c8b98a;
+  --label-bg: #f3f7fb;
+  --label-rule: #bfd2e4;
+  --math: "Latin Modern Math", "Cambria Math", "STIX Two Math", "DejaVu Serif", serif;
+  --body: "Noto Naskh Arabic", "Amiri", "Times New Roman", serif;
+}
+
+* { box-sizing: border-box; }
+
+html { direction: rtl; -webkit-text-size-adjust: 100%; }
+
+body {
+  direction: rtl;
+  margin: 0;
+  padding: 0;
+  background: #eef1f4;
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 14pt;
+  line-height: 1.85;
+}
+
+.notebook {
+  background: var(--paper);
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 14mm 12mm 18mm;
+  box-shadow: 0 2px 14px rgba(15, 40, 70, .09);
+}
+
+/* ---------------------------------------------------------------- العنوان */
+.doc-head {
+  text-align: center;
+  border-bottom: 2.5px solid var(--accent);
+  padding-bottom: 4mm;
+  margin-bottom: 6mm;
+}
+.doc-title {
+  font-size: 1.9em;
+  margin: 0 0 2mm;
+  color: var(--accent);
+  line-height: 1.4;
+}
+.doc-sub {
+  margin: 0;
+  font-size: .78em;
+  color: var(--ink-soft);
+}
+.section-title {
+  font-size: 1.32em;
+  color: #0b3b63;
+  background: linear-gradient(to left, var(--accent-soft), transparent);
+  border-right: 5px solid var(--accent);
+  border-radius: 3px;
+  padding: 1.5mm 3mm;
+  margin: 7mm 0 3mm;
+}
+
+/* ------------------------------------------------------------------ النص */
+p.text,
+.text-spaced,
+.q-line,
+.star-line {
+  margin: 0 0 2.6mm;
+  text-align: justify;
+  text-justify: inter-word;
+}
+.t { unicode-bidi: isolate; }
+bdi { unicode-bidi: isolate; }
+.q-line { font-weight: 600; }
+.star-line { font-weight: 600; }
+.orphan-label {
+  display: inline-block;
+  background: var(--label-bg);
+  border: 1px dashed var(--label-rule);
+  border-radius: 4px;
+  padding: 1mm 2.5mm;
+}
+
+/* الفواصل الأصلية داخل السطر (لا تُحذف: تُعرض كعرض) */
+.gap { display: inline-block; height: 1px; max-width: 12ch; }
+.tab { display: inline-block; width: 2.4em; flex: 0 0 auto; }
+.tab-run { max-width: 6em; }
+
+/* ----------------------------------------------------------------- القوائم */
+.li {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.5mm;
+  margin: 0 0 2.2mm;
+}
+.li-marker {
+  flex: 0 0 auto;
+  min-width: 7mm;
+  text-align: center;
+  color: var(--accent);
+  font-weight: 700;
+  line-height: 1.85;
+}
+.li-marker[data-fmt="bullet"] { color: var(--ink-soft); font-weight: 400; }
+.li-body { flex: 1 1 auto; min-width: 0; }
+
+/* --------------------------------------------------------------- المعادلات */
+.equation {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: center;
+  margin: 3mm 0;
+  padding: 1.2mm 2mm;
+  max-width: 100%;
+  overflow-x: auto;      /* الشاشة: تمرير · الطباعة: الملاءمة في NHTML-4 */
+  overflow-y: hidden;
+}
+.equation + .equation { margin-top: 0; }
+math {
+  font-family: var(--math);
+  font-size: 1.08em;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+math.math-display {
+  display: block;
+  margin: 0 auto 1.5mm;
+}
+math .ar-in-math {
+  font-family: var(--body);
+  font-size: .92em;
+}
+/* الجمل العربية داخل المعادلات: يُسمح لها بالالتفاف داخل صندوق المعادلة
+   (وإلا بقيت المعادلة أوسع من عمودها فخرجت عن الصفحة) */
+math mtext {
+  direction: rtl;
+  unicode-bidi: isolate;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-wrap: wrap;
+}
+math .accent { font-size: .95em; }
+math mo.fn { font-style: normal; }
+
+/* ------------------------------------------------------------- العمودان */
+.cols {
+  display: grid;
+  gap: 4mm 6mm;
+  margin: 2mm 0 3mm;
+  align-items: start;
+}
+.cols-2 { grid-template-columns: 1fr 1fr; }
+.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.cols .col { min-width: 0; overflow-wrap: anywhere; }
+/* لا max-width على math: يُخفي التجاوز فيمنع أداة الملاءمة من قياس العرض الحقيقي */
+.cols .col > p.text { margin-bottom: 1.6mm; }
+
+/* ---------------------------------------------------------------- الرسوم */
+.cluster {
+  margin: 3mm 0 4mm;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5mm 3mm;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+.cluster > * { max-width: 100%; min-width: 0; }
+.cluster.fig-cluster-heavy { justify-content: flex-start; }
+
+figure.fig { margin: 0; }
+.fig-picture { max-width: 100%; }
+.fig-picture img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+  border: 1px solid var(--rule-soft);
+  border-radius: 4px;
+  background: #fff;
+}
+.fig-box, .fig-arrow, .fig-brace, .fig-dot { display: inline-block; }
+.fig-box {
+  display: block;
+  height: 0;
+  border-top: 1px solid #9aa7b4;
+  opacity: .55;
+  margin: 1.4mm 0;
+}
+.fig-box[style*="min-width"] { border-top-style: dashed; opacity: .4; }
+.fig-arrow svg, .shape-svg {
+  display: block;
+  color: #333;
+  overflow: visible;
+}
+.fig-brace {
+  font-size: 2.4em;
+  line-height: .8;
+  color: #2b3a4a;
+  padding: 0 1mm;
+}
+.fig-dot {
+  width: 3mm; height: 3mm; border-radius: 50%;
+  background: #2b3a4a; display: inline-block; vertical-align: middle;
+}
+
+/* التسميات النصية (مربعات نصية من نوطة الأستاذ) */
+.fig-label, .fig-callout {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.fig-label .text,
+.fig-callout .text {
+  margin: 0;
+  text-align: center;
+  line-height: 1.6;
+}
+.fig-label .equation,
+.fig-callout .equation { margin: 1mm 0; }
+.callout-box,
+.callout-roundRect,
+.callout-round2DiagRect,
+.callout-bevel {
+  background: var(--label-bg);
+  border: 1.2px solid var(--label-rule);
+  border-radius: 5px;
+  padding: 1.6mm 3mm;
+}
+.callout-cloud {
+  background: #f7fbff;
+  border: 1.5px dashed #9bc0e0;
+  border-radius: 14px;
+  padding: 2mm 4mm;
+}
+.callout-brace {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+.fig-cluster .fig-callout + .fig-picture,
+.fig-cluster .fig-picture + .fig-callout { flex: 0 0 auto; }
+
+/* ------------------------------------------------------------------ الجداول */
+.table-wrapper {
+  margin: 3.5mm 0;
+  overflow-x: auto;
+}
+table.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  direction: rtl;
+  font-size: .95em;
+}
+table.data-table td,
+table.data-table th {
+  border: 1px solid var(--rule);
+  padding: 1.4mm 2.2mm;
+  vertical-align: middle;
+  text-align: center;
+}
+table.data-table tr:nth-child(even) td { background: var(--tint); }
+table.data-table .li { margin: 0; }
+
+/* ------------------------------------------------------------------ الأسئلة */
+.question {
+  background: var(--q-bg);
+  border: 1px solid var(--q-rule);
+  border-radius: 6px;
+  padding: 3mm 3.5mm 2mm;
+  margin: 5mm 0;
+}
+.q-head {
+  display: inline-block;
+  background: var(--q-rule);
+  color: #3a2f10;
+  font-size: .92em;
+  border-radius: 4px;
+  padding: .6mm 3mm;
+  margin: 0 0 2mm;
+}
+.question .q-body { margin: 0; }
+.question .text { text-align: right; }
+
+/* ------------------------------------------------------------------ متنوّع */
+hr { border: 0; border-top: 1px solid var(--rule); margin: 5mm 0; }
+
+@media (max-width: 780px) {
+  body { font-size: 13pt; }
+  .notebook { padding: 6mm 5mm; }
+  .cols-3, .cols-4 { grid-template-columns: 1fr 1fr; }
+}
+"""
+
+PRINT_CSS = r"""/* ==========================================================================
+   print.css — إخراج النوطة ككتاب A4 (NHTML-3)
+   يوضع على html/index.html كـ <link media="print">، ويُفعَّل تلقائياً في إخراج PDF.
+   قواعد ثابتة: لا قصّ لمحتوى · لا كسر داخل معادلة/رسم · لا عناصر عائمة.
+   ========================================================================== */
+
+@page {
+  size: A4 portrait;              /* 210 × 297 مم */
+  margin: 18mm 15mm 20mm 15mm;    /* سفلي 20مم ليتّسع تذييل الأستاذ */
+}
+
+@page :first {
+  margin-top: 14mm;               /* بداية أخفّ مع الترويسة */
+}
+
+@media print {
+  :root { --q-bg: #fdfcf8; --q-rule: #c3b283; }
+
+  html, body {
+    background: #fff !important;
+    color: #000;
+    font-size: 11.6pt;            /* مقاس متوازن لصفحة A4 */
+    line-height: 1.72;
+  }
+
+  .notebook {
+    max-width: none;
+    width: auto;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    background: #fff;
+  }
+
+  /* ------------------------------------------------ الترويسة والعناوين */
+  .doc-head {
+    border-bottom-width: 2px;
+    padding-bottom: 3mm;
+    margin-bottom: 5mm;
+  }
+  .doc-title { font-size: 1.55em; }
+  .doc-sub { font-size: .72em; }
+  .section-title {
+    break-after: avoid;
+    break-inside: avoid;
+    margin: 6mm 0 2.5mm;
+  }
+  .q-head { break-after: avoid; }
+
+  /* ------------------------------------------------ النصّ والفقرات */
+  p.text, .text-spaced, .q-line, .star-line, .li-body {
+    orphans: 3;
+    widows: 3;
+  }
+  .li { break-inside: avoid; }
+
+  /* ------------------------------------------------ الوحدات الذرّية */
+  .equation,
+  figure.fig,
+  .cluster,
+  .table-wrapper,
+  .cols {
+    break-inside: avoid;
+  }
+
+  /* الأسئلة طويلة جداً: يُسمح بالكسر داخلها (وإلا نشأت صفحات شبه فارغة)
+     وحدها لا تُكسر بعد رأسها */
+  .question {
+    break-inside: auto;
+    background: transparent;
+    border: 1px solid var(--q-rule);
+    border-radius: 4px;
+    padding: 2.5mm 3mm 1mm;
+    margin: 4mm 0;
+  }
+  .question .q-head { margin-bottom: 1.5mm; }
+
+  /* ------------------------------------------------ المعادلات */
+  .equation {
+    margin: 2.4mm 0;
+    padding: 0;
+    overflow: visible;            /* لا شرائط تمرير في الطباعة */
+  }
+  math { font-size: 1.04em; }
+  math.math-display { break-inside: avoid; }
+
+  /* ------------------------------------------------ الرسوم */
+  figure.fig { margin: 0; }
+  .fig-picture img {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    max-height: 120mm;            /* لا يستهلك رسم واحد أكثر من نصف الصفحة تقريباً */
+  }
+  .cluster { gap: 2mm 2.5mm; margin: 2.5mm 0 3mm; }
+  .fig-label, .fig-callout { break-inside: avoid; }
+  .callout-box, .callout-roundRect, .callout-round2DiagRect, .callout-bevel, .callout-cloud {
+    box-shadow: none;
+  }
+  .fig-box, .fig-brace, .fig-dot { opacity: .5; }
+
+  /* ------------------------------------------------ الجداول */
+  /* لا حاويات تمرير في الطباعة: overflow:auto يقصّ المحتوى الأوسع من الصفحة */
+  .table-wrapper,
+  .equation,
+  .cols,
+  .cluster {
+    overflow: visible !important;
+  }
+  table.data-table {
+    font-size: .84em;              /* يصغر ليلائم عرض الصفحة (الجدول الأصلي أعرض من A4) */
+    break-inside: avoid;
+    width: 100%;
+    max-width: 100%;
+  }
+  table.data-table td,
+  table.data-table th {
+    overflow-wrap: anywhere;       /* التفاف النصّ بدل القصّ */
+    padding: .9mm 1.1mm;
+  }
+  table.data-table td, table.data-table th { padding: 1.1mm 1.8mm; }
+  table.data-table tr:nth-child(even) td { background: #f8fafc; }
+  thead { display: table-header-group; }
+
+  /* ------------------------------------------------ العمودان */
+  .cols {
+    gap: 3mm 5mm;
+    margin: 1.6mm 0 2.4mm;
+  }
+
+  /* ------------------------------------------------ التذييل والروابط */
+  a[href]::after { content: none; }        /* لا يظهر أي رابط مطبوع */
+
+  /* سطر الأستاذ ورقم الصفحة:
+     - على الشاشة: يظهر أسفل المستند (تنسيق .doc-footer أدناه).
+     - في PDF: يُرسم على كل صفحة عبر قالب تذييل Chromium في NHTML-4
+       (نصّ الأستاذ حرفياً + رقم الصفحة)، لأنّ تثبيت العنصر داخل الصفحة يُقصّ عند حدّها. */
+  .doc-footer { display: none !important; }
+}
+
+/* ==========================================================================
+   تنسيق تذييل الأستاذ (يُستعمل في المعاينة على الشاشة)
+   ========================================================================== */
+.doc-footer {
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 2mm 12mm 6mm;
+  text-align: center;
+  color: #5a6572;
+  font-size: .8em;
+  border-top: 1px solid #e2e8ee;
+}
+.doc-footer .f-line { white-space: pre; }
+"""
+
+FIT_MATH_JS = r"""/* ==========================================================================
+   fit-math.js — ضبط تلقائي لعرض المعادلات الطويلة (بلا مسّ المحتوى)
+   يقلّص حجم خطّ المعادلة فقط عند تجاوزها عرض حاويتها، ولا يقلّص أكثر من 55%.
+   يُشغَّل عند التحميل وقبل الطباعة (وفي NHTML-4 قبل إخراج PDF).
+   ========================================================================== */
+(function () {
+  "use strict";
+  var MIN_RATIO = 0.45;     // أدنى نسبة تصغير مسموحة
+  var MIN_RATIO_COL = 0.24; // داخل أعمدة ضيّقة: تصغير أعمق
+  var MAX_ITER = 6;
+
+  function containerOf(m) {
+    var box = m.closest(".equation") || m.closest(".col") || m.closest("figure") ||
+              m.closest("td") || m.closest("p") || m.parentElement;
+    var node = box;
+    while (node && node !== document.body && (!node.clientWidth || node.clientWidth < 40)) {
+      node = node.parentElement;
+    }
+    return node || box;
+  }
+
+  function fitOne(m) {
+    m.style.fontSize = "";
+    var box = containerOf(m);
+    if (!box) return;
+    var avail = box.clientWidth - 2;
+    if (avail <= 0) return;
+    // عرض المحتوى الفعلي (قد يتجاوز إطار math في حال display:block) — وإلا فشلت الملاءمة
+    var w = Math.max(m.getBoundingClientRect().width, m.scrollWidth || 0);
+    if (!w || w < 5 || w <= avail) return;
+    var base = parseFloat(window.getComputedStyle(m).fontSize) || 16;
+    var minRatio = m.closest(".col") ? MIN_RATIO_COL : MIN_RATIO;
+    var size = base;
+    for (var i = 0; i < MAX_ITER + 3 && w > avail; i++) {
+      var ratio = avail / w;                       // < 1 دائماً
+      var target = size * ratio * 0.97;
+      // تصغير فقط، وبسقف أدنى — لا تكبير أبداً
+      var next = Math.max(base * minRatio, Math.min(size, target));
+      if (!isFinite(next) || next <= 0 || Math.abs(next - size) < 0.2) break;
+      size = next;
+      m.style.fontSize = size.toFixed(2) + "px";
+      w = Math.max(m.getBoundingClientRect().width, m.scrollWidth || 0);
+    }
+    m.dataset.fitted = "1";
+  }
+
+  /* الجداول الأعرض من الصفحة: يُصغَّر حجم خطّها فقط (المحتوى كما هو) */
+  function fitTables() {
+    var tables = document.querySelectorAll("table.data-table");
+    for (var t = 0; t < tables.length; t++) {
+      var table = tables[t];
+      table.style.fontSize = "";
+      var box = table.parentElement || table;
+      var avail = box.clientWidth - 2;
+      if (avail <= 0) continue;
+      var w = Math.max(table.getBoundingClientRect().width, table.scrollWidth || 0);
+      if (!w || w <= avail) continue;
+      var base = parseFloat(window.getComputedStyle(table).fontSize) || 15;
+      var size = base;
+      for (var i = 0; i < MAX_ITER && w > avail; i++) {
+        var next = Math.max(base * 0.5, Math.min(size, size * (avail / w) * 0.97));
+        if (!isFinite(next) || Math.abs(next - size) < 0.2) break;
+        size = next;
+        table.style.fontSize = size.toFixed(2) + "px";
+        w = Math.max(table.getBoundingClientRect().width, table.scrollWidth || 0);
+      }
+      table.dataset.fitted = "1";
+    }
+  }
+
+  /* أعمدة لا تلائمها معادلاتها حتى بعد التصغير: يُعاد ترتيب الشبكة صفّاً واحداً
+     (الشكل فقط — النصّ وترتيبه كما هما، ولا يُقصّ أي عنصر) */
+  function relaxGrids() {
+    var grids = document.querySelectorAll(".cols");
+    for (var g = 0; g < grids.length; g++) {
+      var grid = grids[g];
+      if (grid.dataset.relaxed) continue;
+      var cols = grid.children, bad = false;
+      for (var c = 0; c < cols.length && !bad; c++) {
+        var col = cols[c], limit = col.getBoundingClientRect().right + 1;
+        var nodes = col.querySelectorAll("math, table, img, svg");
+        for (var n = 0; n < nodes.length; n++) {
+          var r = nodes[n].getBoundingClientRect();
+          if (r.right > limit || r.left < col.getBoundingClientRect().left - 1) { bad = true; break; }
+        }
+      }
+      if (bad) {
+        grid.style.gridTemplateColumns = "1fr";
+        grid.dataset.relaxed = "1";
+      }
+    }
+  }
+
+  function fitAll() {
+    var list = document.querySelectorAll("math");
+    for (var i = 0; i < list.length; i++) fitOne(list[i]);
+    fitTables();
+    relaxGrids();
+    // بعد تحويل الشبكات: ملاءمة ثانية للأعمدة التي صارت أوسع
+    for (var j = 0; j < list.length; j++) fitOne(list[j]);
+  }
+
+  function schedule() {
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { requestAnimationFrame(fitAll); });
+    }
+    requestAnimationFrame(fitAll);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", schedule);
+  } else {
+    schedule();
+  }
+  window.addEventListener("beforeprint", fitAll, false);
+  window.addEventListener("resize", function () {
+    clearTimeout(window.__fitT);
+    window.__fitT = setTimeout(fitAll, 200);
+  });
+  window.__fitMath = fitAll;   // تستدعيها NHTML-4 قبل إخراج PDF
+})();
+"""
+
+
+def write_static_assets(html_dir: Path) -> list:
+    """يكتب styles.css و fit-math.js بجانب index.html ويُعيد قائمة ما كُتب."""
+    written = []
+    for name, content in (("styles.css", STYLES_CSS), ("print.css", PRINT_CSS), ("fit-math.js", FIT_MATH_JS)):
+        dest = html_dir / name
+        if not dest.exists() or dest.read_text(encoding="utf-8") != content:
+            dest.write_text(content, encoding="utf-8")
+            written.append(name)
+    return written
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--repo", default=".")
@@ -872,6 +1509,9 @@ def main():
 </html>
 '''
     (out / "html" / "index.html").write_text(html, encoding="utf-8")
+    written = write_static_assets(out / "html")
+    if written:
+        print("assets written:", ", ".join(written))
 
     # ---- ملخّص بنيوي + فحوصات
     struct = {
@@ -894,6 +1534,7 @@ def main():
         },
         "notes": b.notes,
         "html_bytes": len(html.encode("utf-8")),
+        "assets_required": sorted(f.name for f in (out / "html").iterdir()),
     }
     (out / "content" / "structure.json").write_text(
         json.dumps(struct, ensure_ascii=False, indent=1), encoding="utf-8")

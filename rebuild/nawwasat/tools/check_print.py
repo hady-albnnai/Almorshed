@@ -48,12 +48,16 @@ async def run(html: Path, out_dir: Path, shots: Path, pdf_diag: Path | None):
           const cw = document.documentElement.clientWidth;
           const ch = document.documentElement.clientHeight;
           const isAtomic = el => el.closest('.equation, figure.fig, .cluster, .table-wrapper, .cols, .li') !== null;
+          const nb = document.querySelector('.notebook').getBoundingClientRect();
           const overflow = [], tall = [], wideMath = [], tooTallAtomic = [];
           document.querySelectorAll('.notebook *').forEach(el => {
             const r = el.getBoundingClientRect();
             if (!r.width && !r.height) return;
-            if (r.width > cw + 1) overflow.push({tag: el.tagName, cls: (el.className||'').toString().slice(0,34),
-                                                 w: Math.round(r.width), txt: (el.textContent||'').trim().slice(0, 40)});
+            // التجاوز بالموضع: أي عنصر يخرج عن صندوق المحتوى (يمين/يسار) يُعدّ قصّاً محتملاً
+            if (r.width > cw + 1 || r.left < nb.left - 1 || r.right > nb.right + 1)
+              overflow.push({tag: el.tagName, cls: (el.className||'').toString().slice(0,34),
+                             w: Math.round(r.width), l: Math.round(r.left - nb.left), r: Math.round(r.right - nb.left),
+                             txt: (el.textContent||'').trim().slice(0, 40)});
             if (!isAtomic(el) && r.height > ch * 1.2)
               tall.push({tag: el.tagName, cls: (el.className||'').toString().slice(0,34),
                          h: Math.round(r.height), txt: (el.textContent||'').trim().slice(0, 40)});
@@ -62,7 +66,8 @@ async def run(html: Path, out_dir: Path, shots: Path, pdf_diag: Path | None):
                          h: Math.round(r.height), txt: (el.textContent||'').trim().slice(0, 40)});
           });
           document.querySelectorAll('math').forEach(m => {
-            const box = m.closest('.equation, .col, figure, p, td') || m.parentElement;
+            let box = m.closest('.equation, .col, figure, p, td') || m.parentElement;
+            while (box && box !== document.body && box.clientWidth < 40) box = box.parentElement;
             if (box && m.getBoundingClientRect().width > box.clientWidth + 1)
               wideMath.push({alt: m.getAttribute('alttext') || '', mw: Math.round(m.getBoundingClientRect().width),
                              bw: Math.round(box.clientWidth), fitted: m.dataset.fitted || ''});
@@ -80,6 +85,22 @@ async def run(html: Path, out_dir: Path, shots: Path, pdf_diag: Path | None):
                                        before: (main.children[i-1].className||'').toString().slice(0,30),
                                        after: (main.children[i].className||'').toString().slice(0,30)});
           }
+          // محتوى مقصوص داخل حاوية تمرير (overflow) = فقدان مطبوع
+          const wideTables = [];
+          document.querySelectorAll('table.data-table').forEach(t => {
+            const b = t.parentElement;
+            if (b && t.getBoundingClientRect().width > b.clientWidth + 1)
+              wideTables.push({w: Math.round(t.getBoundingClientRect().width), bw: Math.round(b.clientWidth),
+                               fitted: t.dataset.fitted || ''});
+          });
+          const clipped = [];
+          document.querySelectorAll('.notebook *').forEach(el => {
+            if (el.scrollWidth > el.clientWidth + 2 && el.clientWidth > 0 &&
+                ['auto','scroll','hidden'].includes(getComputedStyle(el).overflowX))
+              clipped.push({tag: el.tagName, cls: (el.className||'').toString().slice(0,32),
+                            scrollW: el.scrollWidth, clientW: el.clientWidth,
+                            txt: (el.textContent||'').trim().slice(0, 36)});
+          });
           const cs = getComputedStyle(document.querySelector('.notebook'));
           return { contentWidthPx: cw, contentHeightPx: ch, notebookWidth: Math.round(cs.width),
                    docHeightPx: document.body.scrollHeight,
@@ -97,6 +118,8 @@ async def run(html: Path, out_dir: Path, shots: Path, pdf_diag: Path | None):
                    tallBlocks: tall.slice(0, 15), tallTotal: tall.length,
                    wideMath: wideMath.slice(0, 20), wideMathTotal: wideMath.length,
                    tooTallAtomic: tooTallAtomic.slice(0, 12), tooTallAtomicTotal: tooTallAtomic.length,
+                   clipped: clipped.slice(0, 12), clippedTotal: clipped.length,
+                   wideTables, wideTablesTotal: wideTables.length,
                    deadGaps: gaps.slice(0, 15), deadGapsTotal: gaps.length,
                    deadGapsPxTotal: gaps.reduce((s, g) => s + g.px, 0) };
         })()""")
@@ -139,9 +162,14 @@ async def run(html: Path, out_dir: Path, shots: Path, pdf_diag: Path | None):
     print(json.dumps({k: report[k] for k in ("contentWidthPx", "contentHeightPx", "docHeightPx",
                                              "estimated_pages_by_height", "pdf_diagnostic_pages",
                                              "overflowTotal", "tallTotal", "tooTallAtomicTotal",
-                                             "wideMathTotal", "deadGapsTotal", "deadGapsPxTotal") },
+                                             "wideMathTotal", "deadGapsTotal", "deadGapsPxTotal",
+                                             "clippedTotal", "wideTablesTotal") },
                      ensure_ascii=False, indent=1))
     print("counts:", json.dumps(data["counts"], ensure_ascii=False))
+    if data.get("wideTables"):
+        print("جداول أعرض من الصفحة:", data["wideTables"][:4])
+    if data.get("clipped"):
+        print("محتوى مقصوص داخل حاويات:", data["clipped"][:4])
     if data["overflow"]:
         print("تجاوز العرض (أعلى 5):")
         for o in data["overflow"][:5]:
@@ -164,7 +192,7 @@ def main():
     pdf_diag = repo / args.pdf_diag
     pdf_diag.parent.mkdir(parents=True, exist_ok=True)
     rc = asyncio.run(run(repo / args.html, out / "content", out / "reports" / "nhtml3-shots", pdf_diag))
-    fails = [k for k in ("overflowTotal", "wideMathTotal") if rc.get(k)]
+    fails = [k for k in ("overflowTotal", "wideMathTotal", "clippedTotal", "wideTablesTotal") if rc.get(k)]
     print(("⚠️ يحتاج معالجة: " + ", ".join(fails)) if fails else "✅ لا قصّ ولا تجاوز أفقياً")
 
 
