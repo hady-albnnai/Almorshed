@@ -1,6 +1,6 @@
 {
  "stage": "NHTML-2",
- "generated_at_utc": "2026-09-20T10:56:58Z",
+ "generated_at_utc": "2026-09-20T11:38:27Z",
  "generator": "rebuild/nawwasat/tools/build_html.py",
  "source_sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
  "rules_applied": {
@@ -39,12 +39,10 @@
   "figures_rendered": 399
  },
  "notes": [],
- "html_bytes": 1307207,
+ "html_bytes": 1308884,
  "assets_required": [
   "fit-math.js",
   "index.html",
-  "preview-lite.html",
-  "preview-nhtml2.html",
   "print.css",
   "styles.css"
  ]

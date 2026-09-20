@@ -93,7 +93,10 @@ async def build(html: Path, pdf_out: Path, shots: Path, footer_text: str, font_f
                 ['auto','scroll','hidden'].includes(getComputedStyle(el).overflowX)).length,
             overWide: [...document.querySelectorAll('math')].filter(m => {
                 const b = m.closest('.equation, .col, figure, p, td') || m.parentElement;
-                return b && m.getBoundingClientRect().width > b.clientWidth + 1;
+                if (!b) return false;
+                // الحاوية قد تكون inline (clientWidth = 0) ⇒ نستخدم عرضها المرسوم أو صندوق المحتوى A4 (680px)
+                const cw = b.clientWidth || Math.round(b.getBoundingClientRect().width) || 680;
+                return m.getBoundingClientRect().width > cw + 1;
             }).length,
         })""")
 

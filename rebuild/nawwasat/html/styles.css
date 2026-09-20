@@ -228,6 +228,8 @@ figure.fig { margin: 0; }
   color: #2b3a4a;
   padding: 0 1mm;
 }
+.fig-star { display: inline-block; vertical-align: middle; }
+.fig-star svg { display: block; }
 .fig-dot {
   width: 3mm; height: 3mm; border-radius: 50%;
   background: #2b3a4a; display: inline-block; vertical-align: middle;

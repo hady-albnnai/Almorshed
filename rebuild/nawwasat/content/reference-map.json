@@ -1,6 +1,6 @@
 {
  "stage": "NHTML-2-reference-map",
- "generated_at_utc": "2026-09-19T18:47:00Z",
+ "generated_at_utc": "2026-09-20T11:30:34Z",
  "source_sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
  "rules_applied": {
   "R14 max→maX": 288,
@@ -1565,7 +1565,7 @@
    "i": 76,
    "kind": "p",
    "ref": "body/p[65]",
-   "text": "  قوة الإرجاع عظمى                                                                           [⃗]F_max          x<0",
+   "text": "  قوة الإرجاع عظمى                                                                           [⃗]F_maX          x<0",
    "eqs": [
     "E00030",
     "E00031"
@@ -5620,7 +5620,7 @@
    "i": 359,
    "kind": "p",
    "ref": "body/p[263]",
-   "text": "E=(1)/(2)kX^2_ max[sin^2(ω_0t+φ)+cos^2(ω_0t+φ)]                                          ",
+   "text": "E=(1)/(2)kX^2_ maX[sin^2(ω_0t+φ)+cos^2(ω_0t+φ)]                                          ",
    "eqs": [
     "E00230"
    ],
@@ -5646,7 +5646,7 @@
    "i": 361,
    "kind": "p",
    "ref": "body/p[265]",
-   "text": "E=(1)/(2)kX^2_ max =const                                                          ",
+   "text": "E=(1)/(2)kX^2_ maX =const                                                          ",
    "eqs": [
     "E00231"
    ],
@@ -7210,7 +7210,7 @@
    "i": 469,
    "kind": "p",
    "ref": "body/p[369]",
-   "text": "وَ  k  أيضاً من     E=(1)/(2)kX^2_ max",
+   "text": "وَ  k  أيضاً من     E=(1)/(2)kX^2_ maX",
    "eqs": [
     "E00333",
     "E00334"
@@ -7296,7 +7296,7 @@
    "i": 475,
    "kind": "p",
    "ref": "body/p[373]",
-   "text": "E_p=(1)/(2)Kx^2   ←      E=(1)/(2)kX^2_ max    ←  E_k=E-E_p",
+   "text": "E_p=(1)/(2)Kx^2   ←      E=(1)/(2)kX^2_ maX    ←  E_k=E-E_p",
    "eqs": [
     "E00338",
     "E00339",
@@ -7345,7 +7345,7 @@
    "i": 478,
    "kind": "p",
    "ref": "body/p[376]",
-   "text": " E_k=(1)/(2)mv^2    ←    E=(1)/(2)kX^2_ max   ←  E_p=E-E_k",
+   "text": " E_k=(1)/(2)mv^2    ←    E=(1)/(2)kX^2_ maX   ←  E_p=E-E_k",
    "eqs": [
     "E00345",
     "E00346",
@@ -27563,7 +27563,7 @@
    "container": "body",
    "in_table": null,
    "in_textbox_of": null,
-   "literal_text": "Fmax",
+   "literal_text": "FmaX",
    "chars": 4,
    "has_plus_minus": false
   },
@@ -30251,7 +30251,7 @@
    "container": "body",
    "in_table": null,
    "in_textbox_of": null,
-   "literal_text": "E=12kX2 maxsin2ω0t+φ+cos2ω0t+φ",
+   "literal_text": "E=12kX2 maXsin2ω0t+φ+cos2ω0t+φ",
    "chars": 72,
    "has_plus_minus": false
   },
@@ -30263,7 +30263,7 @@
    "container": "body",
    "in_table": null,
    "in_textbox_of": null,
-   "literal_text": "E=12kX2 max =const",
+   "literal_text": "E=12kX2 maX =const",
    "chars": 76,
    "has_plus_minus": false
   },
@@ -31499,7 +31499,7 @@
    "container": "body",
    "in_table": null,
    "in_textbox_of": null,
-   "literal_text": "E=12kX2 max",
+   "literal_text": "E=12kX2 maX",
    "chars": 11,
    "has_plus_minus": false
   },
@@ -31571,7 +31571,7 @@
    "container": "body",
    "in_table": null,
    "in_textbox_of": null,
-   "literal_text": "E=12kX2 max",
+   "literal_text": "E=12kX2 maX",
    "chars": 11,
    "has_plus_minus": false
   },
@@ -31655,7 +31655,7 @@
    "container": "body",
    "in_table": null,
    "in_textbox_of": null,
-   "literal_text": "E=12kX2 max",
+   "literal_text": "E=12kX2 maX",
    "chars": 11,
    "has_plus_minus": false
   },

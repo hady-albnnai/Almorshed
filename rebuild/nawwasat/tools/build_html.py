@@ -233,6 +233,28 @@ def _old_custgeom_to_svg_path(cg, w_emu, h_emu, scale=1.0):
     return " ".join(out)
 
 
+THEME_ACCENT1 = "#156082"      # accent1 في سمة الملف (word/theme/theme1.xml)
+
+
+def star_svg(w_mm: float, h_mm: float) -> str:
+    """نجمة خمسية بحجم المصدر: fillRef=accent1، lnRef=accent1 shade 15000."""
+    import math
+    w = max(w_mm, 2.0); h = max(h_mm, 2.0)
+    cx, cy = w / 2, h / 2
+    rx, ry = w / 2 * 0.96, h / 2 * 0.96
+    pts = []
+    for k in range(5):
+        ao = -math.pi / 2 + k * 2 * math.pi / 5
+        ai = ao + math.pi / 5
+        pts.append((cx + rx * math.cos(ao), cy + ry * math.sin(ao)))
+        pts.append((cx + rx * 0.382 * math.cos(ai), cy + ry * 0.382 * math.sin(ai)))
+    d = "M" + " L".join(f"{x:.2f},{y:.2f}" for x, y in pts) + " Z"
+    return (f'<svg viewBox="0 0 {w:.2f} {h:.2f}" width="{w:.1f}mm" height="{h:.1f}mm" '
+            f'preserveAspectRatio="none" class="shape-svg">'
+            f'<path d="{d}" fill="{THEME_ACCENT1}" stroke="#04141C" stroke-width="0.35" '
+            f'stroke-linejoin="round"/></svg>')
+
+
 def shape_svg(shape, w_mm: float, h_mm: float) -> str:
     """يرسم شكلاً (خط/وصلة/سهم/منحنى) كـ SVG ساكن."""
     prst = None
@@ -254,8 +276,16 @@ def shape_svg(shape, w_mm: float, h_mm: float) -> str:
             width = max(0.5, min(3.0, int(wv) / 12700.0 * 0.75))
         if ln.find(f"{{{APP_NS}}}prstDash") is not None:
             dash = "4 3"
-        head = ln.find(f"{{{APP_NS}}}headEnd") is not None
-        tail = ln.find(f"{{{APP_NS}}}tailEnd") is not None
+        def _end(tag):
+            e = ln.find(f"{{{APP_NS}}}{tag}")
+            if e is None:
+                return None
+            if (e.get("type") or "none") == "none":
+                return None
+            return (e.get("w") or "med", e.get("len") or "med")
+        head = _end("headEnd")
+        tail = _end("tailEnd")
+        mref = {"sm": "sm", "med": "md", "lg": "lg"}.get((tail or head or ("med",))[0], "md")
     w = max(1.0, w_mm)
     h = max(1.0, h_mm)
     sattrs = (f'viewBox="0 0 {w:.1f} {h:.1f}" width="{w:.1f}mm" height="{h:.1f}mm" '
@@ -278,16 +308,16 @@ def shape_svg(shape, w_mm: float, h_mm: float) -> str:
         markers = []
         heads = ""
         if tail:
-            heads += ' marker-end="url(#ah)"'
+            heads += f' marker-end="url(#ah-{mref})"'
         if head:
-            heads += ' marker-start="url(#ah)"'
+            heads += f' marker-start="url(#ah-{mref})"'
         return (f'<svg {sattrs}><line x1="0" y1="{y:.1f}" x2="{w:.1f}" y2="{y:.1f}" '
                 f'stroke="{color}" stroke-width="{width:.2f}"{dash_attr}{heads}/>{markers}</svg>')
     if prst and prst.startswith("curvedConnector"):
         # قوس بسيط
         return (f'<svg {sattrs}><path d="M0,{h:.1f} C{w*0.6:.1f},{h:.1f} {w*0.4:.1f},0 {w:.1f},0" '
                 f'fill="none" stroke="{color}" stroke-width="{width:.2f}"{dash_attr}'
-                f'{" marker-end=\"url(#ah)\"" if tail else ""}/></svg>')
+                f'{(" marker-end=\"url(#ah-" + mref + ")\"" if tail else "")}/></svg>')
     # افتراضي: خط أفقي
     return (f'<svg {sattrs}><line x1="0" y1="{mid:.1f}" x2="{w:.1f}" y2="{mid:.1f}" '
             f'stroke="{color}" stroke-width="{width:.2f}"{dash_attr}/></svg>')
@@ -517,6 +547,8 @@ class Builder:
             return f'<span class="fig fig-brace" data-fig="{fid}">{ch}</span>'
         if prst == "ellipse":
             return f'<span class="fig fig-dot" data-fig="{fid}"></span>'
+        if prst == "star5":
+            return f'<span class="fig fig-star" data-fig="{fid}">{star_svg(w_mm, h_mm)}</span>'
         if prst in ("rect", "roundRect", "round2DiagRect", "bevel", "cloud"):
             style = f"min-width:{min(max(w_mm, 3), 120):.1f}mm" if w_mm > 3 else ""
             return f'<span class="fig fig-box" data-fig="{fid}" style="{style}"></span>'
@@ -1076,6 +1108,8 @@ figure.fig { margin: 0; }
   color: #2b3a4a;
   padding: 0 1mm;
 }
+.fig-star { display: inline-block; vertical-align: middle; }
+.fig-star svg { display: block; }
 .fig-dot {
   width: 3mm; height: 3mm; border-radius: 50%;
   background: #2b3a4a; display: inline-block; vertical-align: middle;
@@ -1500,7 +1534,16 @@ def main():
 </footer>
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
   <defs>
-    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+    </marker>
+    <marker id="ah-sm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="2.2" markerHeight="2.2" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+    </marker>
+    <marker id="ah-md" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
+    </marker>
+    <marker id="ah-lg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"></path>
     </marker>
   </defs>

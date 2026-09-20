@@ -1,9 +1,9 @@
 {
  "stage": "NHTML-1",
- "generated_at_utc": "2026-09-19T18:28:14Z",
+ "generated_at_utc": "2026-09-20T11:28:13Z",
  "source_sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
  "count": 1346,
- "changed_count": 443,
+ "changed_count": 449,
  "rules_log": {
   "R14 max→maX": 288,
   "R13 E_K→E_k": 12,
@@ -794,10 +794,10 @@
    ],
    "sty": null,
    "linear_original": "[⃗]F_max",
-   "linear_corrected": "[⃗]F_max",
+   "linear_corrected": "[⃗]F_maX",
    "flat_original": "Fmax",
-   "flat_corrected": "Fmax",
-   "changed": false
+   "flat_corrected": "FmaX",
+   "changed": true
   },
   {
    "id": "E00031",
@@ -4666,10 +4666,10 @@
    ],
    "sty": "bi",
    "linear_original": "E=(1)/(2)kX^2_ max[sin^2(ω_0t+φ)+cos^2(ω_0t+φ)]                                          ",
-   "linear_corrected": "E=(1)/(2)kX^2_ max[sin^2(ω_0t+φ)+cos^2(ω_0t+φ)]                                          ",
+   "linear_corrected": "E=(1)/(2)kX^2_ maX[sin^2(ω_0t+φ)+cos^2(ω_0t+φ)]                                          ",
    "flat_original": "E=12kX2 maxsin2ω0t+φ+cos2ω0t+φ                                          ",
-   "flat_corrected": "E=12kX2 maxsin2ω0t+φ+cos2ω0t+φ                                          ",
-   "changed": false
+   "flat_corrected": "E=12kX2 maXsin2ω0t+φ+cos2ω0t+φ                                          ",
+   "changed": true
   },
   {
    "id": "E00231",
@@ -4686,10 +4686,10 @@
    ],
    "sty": "bi",
    "linear_original": "E=(1)/(2)kX^2_ max =const                                                          ",
-   "linear_corrected": "E=(1)/(2)kX^2_ max =const                                                          ",
+   "linear_corrected": "E=(1)/(2)kX^2_ maX =const                                                          ",
    "flat_original": "E=12kX2 max =const                                                          ",
-   "flat_corrected": "E=12kX2 max =const                                                          ",
-   "changed": false
+   "flat_corrected": "E=12kX2 maX =const                                                          ",
+   "changed": true
   },
   {
    "id": "E00232",
@@ -6581,10 +6581,10 @@
    ],
    "sty": "bi",
    "linear_original": "E=(1)/(2)kX^2_ max",
-   "linear_corrected": "E=(1)/(2)kX^2_ max",
+   "linear_corrected": "E=(1)/(2)kX^2_ maX",
    "flat_original": "E=12kX2 max",
-   "flat_corrected": "E=12kX2 max",
-   "changed": false
+   "flat_corrected": "E=12kX2 maX",
+   "changed": true
   },
   {
    "id": "E00335",
@@ -6685,10 +6685,10 @@
    ],
    "sty": "bi",
    "linear_original": "E=(1)/(2)kX^2_ max",
-   "linear_corrected": "E=(1)/(2)kX^2_ max",
+   "linear_corrected": "E=(1)/(2)kX^2_ maX",
    "flat_original": "E=12kX2 max",
-   "flat_corrected": "E=12kX2 max",
-   "changed": false
+   "flat_corrected": "E=12kX2 maX",
+   "changed": true
   },
   {
    "id": "E00341",
@@ -6812,10 +6812,10 @@
    ],
    "sty": "bi",
    "linear_original": "E=(1)/(2)kX^2_ max",
-   "linear_corrected": "E=(1)/(2)kX^2_ max",
+   "linear_corrected": "E=(1)/(2)kX^2_ maX",
    "flat_original": "E=12kX2 max",
-   "flat_corrected": "E=12kX2 max",
-   "changed": false
+   "flat_corrected": "E=12kX2 maX",
+   "changed": true
   },
   {
    "id": "E00348",

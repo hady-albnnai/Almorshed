@@ -106,7 +106,24 @@ def apply_rules(root, is_pend: bool, log: collections.Counter, changes: list):
                 new = st.strip().lower()
                 first.text = first.text.replace(st.strip(), new, 1); log[f"R13 E_{st.strip()}→E_{new}"] += 1
             if st.strip() == "max":
-                first.text = first.text.replace("max", "maX", 1); log["R14 max→maX"] += 1
+                # R14: توحيد max → maX. النصّ قد يكون موزّعاً على مقطعين
+                # (مثل "ma"+"x" أو " "+"max") فلا يكفي استبدال المقطع الأول.
+                applied = False
+                for t in subts:
+                    if t.text and "max" in t.text:
+                        t.text = t.text.replace("max", "maX", 1)
+                        applied = True
+                        break
+                if not applied:
+                    # مقسومة على مقاطع: تُجمع في أول مقطع غير فارغ وتُفرَّغ البقية
+                    target = next((t for t in subts if t.text and t.text.strip()), subts[0])
+                    target.text = (target.text or "").replace("ma", "maX", 1) if "ma" in (target.text or "") else "maX"
+                    for t in subts:
+                        if t is not target:
+                            t.text = ""
+                    applied = True
+                if applied:
+                    log["R14 max→maX"] += 1
 
     # R2 (الثقل) و R6 (K) — على مستوى الكتلة
     for om in root.iter(f"{{{M}}}oMath"):

@@ -1,0 +1,262 @@
+{
+ "stage": "NHTML-5",
+ "generated_at_utc": "2026-09-20T11:44:40Z",
+ "artifacts": {
+  "source_docx_sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
+  "source_docx_sha256_expected": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
+  "html_sha256": "ac892740aa4ee038960d40392abd270f46da6eb1e63fb3b9ea0cf37f55783c86",
+  "pdf_sha256": "3b9ffde641b83b0bd5229068d7c4a85dae4abdd4e37bcc0e8f67706f87fafb6a",
+  "pdf_bytes": 5037856
+ },
+ "pages": 79,
+ "text": {
+  "blocks_checked": 591,
+  "blocks_with_missing_letters": 0,
+  "missing_letters_total": 0,
+  "uncovered_sample": [],
+  "arabic_letters_in_pdf": 12997
+ },
+ "images": {
+  "source_files": 78,
+  "source_used_in_structure": 399,
+  "embedded_placements": 75,
+  "pages_with_images": 48,
+  "embedded_sha256_matching_source_files": 0,
+  "source_files_not_embedded_bytewise": [
+   "image1.png",
+   "image10.png",
+   "image11.png",
+   "image12.png",
+   "image13.png",
+   "image14.png",
+   "image15.png",
+   "image16.png",
+   "image17.png",
+   "image18.png"
+  ],
+  "expected_pictures": 75,
+  "phash_matched_placements": 75,
+  "phash_unmatched": [],
+  "phash_max_hamming": 0,
+  "distinct_source_images_placed": 75
+ },
+ "green_bars_in_pdf": {
+  "spans": 21,
+  "pages": [
+   3,
+   7,
+   9,
+   11,
+   26,
+   50
+  ]
+ },
+ "equations": {
+  "math_expected": 1346,
+  "math_in_html": 1346,
+  "inline_math_promoted": 29,
+  "symbol_match_html_vs_pdf": {
+   "±": {
+    "html": 2,
+    "pdf": 2,
+    "ok": true
+   },
+   "∓": {
+    "html": 15,
+    "pdf": 15,
+    "ok": true
+   },
+   "Δ": {
+    "html": 176,
+    "pdf": 176,
+    "ok": true
+   },
+   "α": {
+    "html": 24,
+    "pdf": 24,
+    "ok": true
+   },
+   "ω": {
+    "html": 260,
+    "pdf": 260,
+    "ok": true
+   },
+   "π": {
+    "html": 298,
+    "pdf": 298,
+    "ok": true
+   },
+   "θ": {
+    "html": 251,
+    "pdf": 251,
+    "ok": true
+   },
+   "φ": {
+    "html": 106,
+    "pdf": 106,
+    "ok": true
+   },
+   "Γ": {
+    "html": 18,
+    "pdf": 18,
+    "ok": true
+   },
+   "∑": {
+    "html": 9,
+    "pdf": 9,
+    "ok": true
+   },
+   "|": {
+    "html": 10,
+    "pdf": 10,
+    "ok": true
+   },
+   "⟸": {
+    "html": 11,
+    "pdf": 11,
+    "ok": true
+   },
+   "⇐": {
+    "html": 49,
+    "pdf": 49,
+    "ok": true
+   },
+   "⟹": {
+    "html": 13,
+    "pdf": 13,
+    "ok": true
+   },
+   "⇒": {
+    "html": 60,
+    "pdf": 60,
+    "ok": true
+   },
+   "→": {
+    "html": 50,
+    "pdf": 50,
+    "ok": true
+   },
+   "≤": {
+    "html": 4,
+    "pdf": 4,
+    "ok": true
+   },
+   "≠": {
+    "html": 2,
+    "pdf": 2,
+    "ok": true
+   },
+   "√": {
+    "html": 0,
+    "pdf": 142,
+    "ok": true
+   },
+   "ℰ": {
+    "html": 0,
+    "pdf": 0,
+    "ok": true
+   },
+   "∝": {
+    "html": 0,
+    "pdf": 0,
+    "ok": true
+   },
+   "∆": {
+    "html": 0,
+    "pdf": 0,
+    "ok": true
+   }
+  },
+  "symbol_mismatches": [],
+  "structure_counts": {
+   "msqrt_radicals": 142,
+   "mfrac_fractions": 717,
+   "vector_accents_mover": 55,
+   "vector_accents_source_m_acc": 55,
+   "green_008000_in_math": 12,
+   "math_elements": 1346
+  }
+ },
+ "pagination": {
+  "pages": 79,
+  "footer_on_pages": 79,
+  "footer_text": "أ . فداء البني22  ******  0999608158",
+  "page_numbers_sequential": true,
+  "page_number_range": [
+   1,
+   79
+  ],
+  "page_size_mm": [
+   [
+    209.9,
+    297.0
+   ]
+  ]
+ },
+ "visual_scan": {
+  "dark_pages": [],
+  "near_empty_pages": [],
+  "pages_rendered": 79,
+  "contact_sheets": [
+   {
+    "sheet": "sheet-01.png",
+    "pages": [
+     1,
+     12
+    ]
+   },
+   {
+    "sheet": "sheet-02.png",
+    "pages": [
+     13,
+     24
+    ]
+   },
+   {
+    "sheet": "sheet-03.png",
+    "pages": [
+     25,
+     36
+    ]
+   },
+   {
+    "sheet": "sheet-04.png",
+    "pages": [
+     37,
+     48
+    ]
+   },
+   {
+    "sheet": "sheet-05.png",
+    "pages": [
+     49,
+     60
+    ]
+   },
+   {
+    "sheet": "sheet-06.png",
+    "pages": [
+     61,
+     72
+    ]
+   },
+   {
+    "sheet": "sheet-07.png",
+    "pages": [
+     73,
+     79
+    ]
+   }
+  ]
+ },
+ "verdict": {
+  "text_complete": true,
+  "images_present": true,
+  "pages_clean": true,
+  "footer_every_page": true,
+  "source_untouched": true,
+  "symbols_intact": true,
+  "math_and_green_colors": true,
+  "PASS": true
+ }
+}

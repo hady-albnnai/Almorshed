@@ -1,6 +1,6 @@
 {
  "stage": "NHTML-3-print-check",
- "generated_at_utc": "2026-09-20T10:57:02Z",
+ "generated_at_utc": "2026-09-20T11:40:36Z",
  "html": "nawwasat/html/index.html",
  "page": {
   "size_mm": [
@@ -21,7 +21,7 @@
  "contentWidthPx": 680,
  "contentHeightPx": 978,
  "notebookWidth": NaN,
- "docHeightPx": 73304,
+ "docHeightPx": 73325,
  "counts": {
   "math": 1346,
   "equations": 803,
@@ -45,7 +45,7 @@
   {
    "tag": "SECTION",
    "cls": "question",
-   "h": 2549,
+   "h": 2567,
    "txt": "س3)\nس3) في النواس المرن الغير متخامد انط"
   },
   {
@@ -57,13 +57,13 @@
   {
    "tag": "SECTION",
    "cls": "question",
-   "h": 1476,
+   "h": 1478,
    "txt": "س5 )\nس5 ) في النواس المرن الغير متخامد ا"
   },
   {
    "tag": "SECTION",
    "cls": "question",
-   "h": 1895,
+   "h": 1900,
    "txt": "س6)\nس6) في النواس الغير متخامد انطلاقاً "
   },
   {
@@ -75,7 +75,7 @@
   {
    "tag": "SECTION",
    "cls": "question",
-   "h": 15206,
+   "h": 15204,
    "txt": "س1)\nس1) في نواس الفتل غير المتخامد انطلا"
   },
   {
@@ -110,5 +110,5 @@
  "deadGapsTotal": 0,
  "deadGapsPxTotal": 0,
  "estimated_pages_by_height": 75.0,
- "pdf_diagnostic_pages": 79
+ "pdf_diagnostic_pages": null
 }

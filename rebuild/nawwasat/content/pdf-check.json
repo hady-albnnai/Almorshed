@@ -1,6 +1,6 @@
 {
  "stage": "NHTML-4",
- "generated_at_utc": "2026-09-20T10:59:08Z",
+ "generated_at_utc": "2026-09-20T11:43:53Z",
  "source_sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
  "html": "rebuild/nawwasat/html/index.html",
  "pdf": "rebuild/nawwasat/pdf/نوطة-النواسات.pdf",
@@ -16,7 +16,7 @@
   "tables_fitted": 6,
   "wide_tables": 0,
   "clipped": 0,
-  "overWide": 2
+  "overWide": 0
  },
  "pdf_side": {
   "pages": 79,
@@ -32,7 +32,7 @@
   "blank_pages": [],
   "text_chars_total": 45658,
   "min_text_chars_on_page": 121,
-  "equation_text_hits": 290,
+  "equation_text_hits": 296,
   "content_outside_margins": [
    {
     "page": 1,
@@ -167,7 +167,7 @@
     ]
    }
   ],
-  "content_outside_margins_total": 34,
+  "content_outside_margins_total": 33,
   "dark_large_fills": [],
   "dark_large_fills_total": 0,
   "fonts_seen_first_pages": [
@@ -184,7 +184,7 @@
    "producer": "Skia/PDF m153",
    "creator": "Chromium"
   },
-  "bytes": 5039736,
-  "sha256": "99b9f841f038c5972ce5009b7cf96e012a7e0af14e9fc3a5a5823fd58866c617"
+  "bytes": 5037856,
+  "sha256": "3b9ffde641b83b0bd5229068d7c4a85dae4abdd4e37bcc0e8f67706f87fafb6a"
  }
 }

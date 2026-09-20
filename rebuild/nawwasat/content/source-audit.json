@@ -1,6 +1,6 @@
 {
  "stage": "NHTML-0",
- "generated_at_utc": "2026-09-19T18:28:11Z",
+ "generated_at_utc": "2026-09-20T11:28:11Z",
  "generator": "rebuild/nawwasat/tools/source_audit.py",
  "source": {
   "path": "notes/النواسات م_101932-r23-all-absolute-value-bars-green.docx",
@@ -157,8 +157,8 @@
    "green_008000_positions": 1,
    "media_changed_from_previous": [],
    "color_count_delta_from_previous": {
-    "008000": 1,
-    "EE0000": -1
+    "EE0000": -1,
+    "008000": 1
    }
   },
   {
@@ -170,8 +170,8 @@
    "green_008000_positions": 2,
    "media_changed_from_previous": [],
    "color_count_delta_from_previous": {
-    "3A7C22": -1,
-    "008000": 1
+    "008000": 1,
+    "3A7C22": -1
    }
   },
   {
@@ -183,8 +183,8 @@
    "green_008000_positions": 3,
    "media_changed_from_previous": [],
    "color_count_delta_from_previous": {
-    "008000": 1,
-    "EE0000": -1
+    "EE0000": -1,
+    "008000": 1
    }
   },
   {
@@ -244,8 +244,8 @@
    "green_008000_positions": 6,
    "media_changed_from_previous": [],
    "color_count_delta_from_previous": {
-    "000000": -1,
-    "008000": 2
+    "008000": 2,
+    "000000": -1
    }
   }
  ],
