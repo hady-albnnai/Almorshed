@@ -321,6 +321,7 @@ class Builder:
         self.rendered_eqs = set()
         self.rendered_figs = set()
         self.notes = []
+        self.footer_text = ""
 
     # ------------------------------------------------ segments of a paragraph
     def segments(self, p, block_i):
@@ -406,6 +407,21 @@ class Builder:
 
     def eq_note(self, eid):
         self.rendered_eqs.add(eid)
+
+    def read_footer(self) -> str:
+        """نصّ سطر الأستاذ من word/footer1.xml حرفياً (بلا نصوص تعليمات الحقول)."""
+        try:
+            root = etree.fromstring(self.zip.read("word/footer1.xml"))
+        except KeyError:
+            return ""
+        for p in root.iter(f"{{{W}}}p"):
+            txt = ""
+            for t in p.iter(f"{{{W}}}t"):
+                # نتجاهل w:t الواقعة داخل عنصر تعليمات الحقل (w:instrText مستقلّ هنا)
+                txt += t.text or ""
+            if "فداء" in txt and txt.strip():
+                return txt
+        return ""
 
     def math_html(self, eid, display=False) -> str:
         om = self._omath_of.get(eid)
@@ -652,7 +668,13 @@ class Builder:
             has_fig = any(k == "figs" for k, _, _ in c)
             weights.append(max(1.0, min(6.0, n / 9.0 + (0.0 if not has_fig else 0.5))))
         total = sum(weights) or 1.0
-        return " ".join(f"{max(1.0, w / total * 100):.0f}fr" for w in weights)
+        fracs = [w / total for w in weights]
+        # لا عمود أضيق من 22% ولا أوسع من 62% (يمنع الكلمة-في-سطر والفراغ الكبير)
+        lo, hi = (0.22, 0.62) if len(weights) == 2 else (0.18, 0.60)
+        fracs = [min(hi, max(lo, f)) for f in fracs]
+        renorm = sum(fracs)
+        fracs = [f / renorm for f in fracs]
+        return " ".join(f"{f * 100:.0f}fr" for f in fracs)
 
     def gap_span(self, gap: str) -> str:
         """يعيد الفراغ الأصلي كعرض محسوب (بلا حذف أي حرف)."""
@@ -815,6 +837,7 @@ def main():
 
     man = json.loads((out / "content" / "manifest.json").read_text(encoding="utf-8"))
     b = Builder(repo, out, man)
+    b.footer_text = b.read_footer()
     body = b.build()
 
     html = f'''<!DOCTYPE html>
@@ -835,6 +858,9 @@ def main():
 </header>
 {body}
 </main>
+<footer class="doc-footer" data-footer-text="{attr_esc(b.footer_text)}">
+  <span class="f-line">{esc(b.footer_text)}</span>
+</footer>
 <svg width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute">
   <defs>
     <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -854,6 +880,7 @@ def main():
         "source_sha256": man["source"]["sha256"],
         "rules_applied": dict(b.rules_log),
         "stats": dict(b.stats),
+        "footer_text": b.footer_text,
         "coverage": {
             "blocks_total": len(b.inv.blocks),
             "paragraphs_total": sum(1 for x in b.inv.blocks if x["kind"] == "p"),

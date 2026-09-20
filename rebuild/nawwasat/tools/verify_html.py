@@ -63,7 +63,8 @@ def main():
             txt = await pg.evaluate("() => document.body.textContent")  # يشمل نص MathML (mtext العربي)
             added = await pg.evaluate("""() => {
                const g = s => [...document.querySelectorAll(s)].map(e => e.textContent).join("");
-               return { header: g('.doc-head'), markers: g('.li-marker'), qheads: g('.q-head') };
+               return { header: g('.doc-head'), markers: g('.li-marker'), qheads: g('.q-head'),
+                        footer: g('.doc-footer') };
             }""")
             stats = await pg.evaluate("""() => ({
               math: document.querySelectorAll('math').length,

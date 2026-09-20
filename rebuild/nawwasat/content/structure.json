@@ -1,6 +1,6 @@
 {
  "stage": "NHTML-2",
- "generated_at_utc": "2026-09-19T18:46:54Z",
+ "generated_at_utc": "2026-09-20T10:41:09Z",
  "generator": "rebuild/nawwasat/tools/build_html.py",
  "source_sha256": "39dcae28ec74ad26520823b6057faeeefe9981ddd3c86a9f78244c27afd35d50",
  "rules_applied": {
@@ -25,6 +25,7 @@
   "table": 6,
   "spaced_line_paragraph": 3
  },
+ "footer_text": "أ . فداء البني22  ******  0999608158",
  "coverage": {
   "blocks_total": 1916,
   "paragraphs_total": 1910,
@@ -37,5 +38,5 @@
   "figures_rendered": 399
  },
  "notes": [],
- "html_bytes": 1307126
+ "html_bytes": 1307309
 }

@@ -1,0 +1,116 @@
+{
+ "stage": "NHTML-3-print-check",
+ "generated_at_utc": "2026-09-20T10:42:18Z",
+ "html": "nawwasat/html/index.html",
+ "page": {
+  "size_mm": [
+   210.0,
+   297.0
+  ],
+  "margin_mm": [
+   18.0,
+   15.0,
+   20.0,
+   15.0
+  ],
+  "content_mm": [
+   180.0,
+   259.0
+  ]
+ },
+ "contentWidthPx": 680,
+ "contentHeightPx": 978,
+ "notebookWidth": NaN,
+ "docHeightPx": 93690,
+ "counts": {
+  "math": 1346,
+  "equations": 803,
+  "figures": 244,
+  "images": 75,
+  "questions": 13,
+  "clusters": 93,
+  "cols": 217,
+  "tables": 6,
+  "footerVisible": true
+ },
+ "overflow": [],
+ "overflowTotal": 0,
+ "tallBlocks": [
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 2077,
+   "txt": "س1)\nس1) في النواس المرن الغير متخامد أثب"
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 1285,
+   "txt": "س2)\n[]}[]س2)  بين متى تكون FmaX=kXmaX-Xm"
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 3814,
+   "txt": "س3)\nس3) في النواس المرن الغير متخامد انط"
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 2281,
+   "txt": "س4)\nس4)  في النواس المرن الغير متخامد ان"
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 1742,
+   "txt": "س5 )\nس5 ) في النواس المرن الغير متخامد ا"
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 2594,
+   "txt": "س6)\nس6) في النواس الغير متخامد انطلاقاً "
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 18884,
+   "txt": "س7 )\nس7 ) في النواس المرن الغير متخامد  "
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 19915,
+   "txt": "س1)\nس1) في نواس الفتل غير المتخامد انطلا"
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 2701,
+   "txt": "س1)\nس1) في النواس الثقلي المركب انطلاقاً"
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 2682,
+   "txt": "س2)\nس2) في النواس الثقلي البسيط المطلوب "
+  },
+  {
+   "tag": "SECTION",
+   "cls": "question",
+   "h": 33246,
+   "txt": "س4)\nس4)  نواس ثقلي بسيط مؤلف من خيط مهمل"
+  }
+ ],
+ "tallTotal": 11,
+ "wideMath": [],
+ "wideMathTotal": 0,
+ "tooTallAtomic": [],
+ "tooTallAtomicTotal": 0,
+ "deadGaps": [],
+ "deadGapsTotal": 0,
+ "deadGapsPxTotal": 0,
+ "estimated_pages_by_height": 95.8,
+ "pdf_diagnostic_pages": 102
+}
