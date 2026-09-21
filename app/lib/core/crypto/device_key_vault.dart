@@ -3,8 +3,12 @@
 /// البذرة 32 بايت تعيش في خزنة آمنة (flutter_secure_storage الآن — الترقية
 /// لـKeystore غير القابل للتصدير مع F4.4 كما لـXpSigner). هذا المفتاح
 /// يُشفَّر إليه K_c (kc_wrap_v1) فلا ينتقل المحتوى لجهاز آخر.
+///
+/// درس لصقة 2026-09-21: `implements` لا ترث أجرام الدوال — الوراثة هنا
+/// `extends` لتصير loadOrCreate/publicBytes موروثتين لا التزامات مجردة.
 library;
 
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:cryptography/cryptography.dart';
@@ -36,7 +40,7 @@ abstract class DeviceKeyVault {
 }
 
 /// خزنة بالذاكرة — للاختبارات (بذرة حتمية ممكنة) والحقن.
-class InMemoryDeviceKeyVault implements DeviceKeyVault {
+class InMemoryDeviceKeyVault extends DeviceKeyVault {
   InMemoryDeviceKeyVault([Uint8List? seed]) : _seed = seed;
 
   Uint8List? _seed;
@@ -49,7 +53,7 @@ class InMemoryDeviceKeyVault implements DeviceKeyVault {
 }
 
 /// خزنة الإنتاج: flutter_secure_storage — مفتاح واحد base64.
-class SecureDeviceKeyVault implements DeviceKeyVault {
+class SecureDeviceKeyVault extends DeviceKeyVault {
   SecureDeviceKeyVault({FlutterSecureStorage? storage})
       : _storage = storage ?? const FlutterSecureStorage();
 

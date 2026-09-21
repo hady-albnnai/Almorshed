@@ -15,7 +15,7 @@ import 'package:fizya_clash/core/crypto/kc_wrap.dart';
 List<int> hexToBytes(String hex) {
   final out = <int>[];
   for (var i = 0; i < hex.length; i += 2) {
-    out.add(int.parse(hex.substring(i, i + 2)));
+    out.add(int.parse(hex.substring(i, i + 2), radix: 16));
   }
   return out;
 }

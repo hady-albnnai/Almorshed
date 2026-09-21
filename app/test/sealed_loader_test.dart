@@ -1,5 +1,9 @@
 /// F2.2-T1 — ContentKeyVault + محمّل الحزمة بمسار pack_seal_v1 المشفّر
 /// (قرار ٣٠: بلا مفتاح ⇒ القراءة النصية كالسابق؛ بمفتاح ⇒ الفكّ حصراً).
+///
+/// درس لصقة 2026-09-21: ملفات الاختبار المؤقتة تُكتب بمسارات **نسبية**
+/// داخل test/fixtures — فالمطلق بنوافذ ويندوز يُشوَّه داخل `Uri(path:)`
+/// بـPlatformAssetBundle فيصل المُعالج مفتاحاً مشوَّهاً فتفشل قراءته.
 library;
 
 import 'dart:convert';
@@ -15,29 +19,33 @@ import 'package:fizya_clash/core/crypto/content_seal.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  late Directory tmp;
+  final tempFiles = <String>[];
+  String tempFixture(String name) {
+    final path = 'test/fixtures/tmp_$name';
+    tempFiles.add(path);
+    return path;
+  }
 
   setUpAll(() {
-    // أصول من القرص مباشرة (قناة content_loader_test — مع دعم المسارات المطلقة
-    // لملفات الاختبار المؤقتة) — بلا تلويث pubspec بملفات الاختبار.
+    // أصول من القرص مباشرة (قناة content_loader_test المجرَّبة — بلا تلويث
+    // pubspec بملفات الاختبار) — مسارات نسبية حصراً (انظر تعليق الملف).
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMessageHandler(
       'flutter/assets',
       (message) async {
         final key = utf8.decode(message!.buffer.asUint8List());
-        final direct = File(key);
-        final file = direct.isAbsolute
-            ? direct
-            : File('${Directory.current.path}/$key');
-        if (!file.existsSync()) return null;
-        return ByteData.view(Uint8List.fromList(file.readAsBytesSync()).buffer);
+        final file = File('${Directory.current.path}/$key');
+        return ByteData.view(
+            Uint8List.fromList(file.readAsBytesSync()).buffer);
       },
     );
-    tmp = Directory.systemTemp.createTempSync('sealed_loader_test');
   });
 
   tearDownAll(() {
-    tmp.deleteSync(recursive: true);
+    for (final p in tempFiles) {
+      final f = File(p);
+      if (f.existsSync()) f.deleteSync();
+    }
   });
 
   test('خزنة المحتوى: كتابة/قراءة/مسح بالذاكرة', () async {
@@ -67,14 +75,14 @@ void main() {
 
   test('بمفتاح K_c ⇒ فكّ pack_seal_v1 من الأصول المشفرة', () async {
     final kc = Uint8List.fromList(List<int>.generate(32, (i) => 11 + i));
-    final plainPack = File(
-            '${Directory.current.path}/test/fixtures/sample_pack.json')
-        .readAsBytesSync();
+    final plainPack =
+        File('${Directory.current.path}/test/fixtures/sample_pack.json')
+            .readAsBytesSync();
     final plainGlossary =
         File('${Directory.current.path}/assets/content/glossary.json')
             .readAsBytesSync();
-    final packPath = '${tmp.path}/sample_pack.json.sealed';
-    final glossaryPath = '${tmp.path}/glossary.json.sealed';
+    final packPath = tempFixture('sample_pack.json.sealed');
+    final glossaryPath = tempFixture('glossary.json.sealed');
     File(packPath)
         .writeAsBytesSync(await ContentSeal.seal(plainPack, key: kc));
     File(glossaryPath)
@@ -99,11 +107,11 @@ void main() {
     final plain =
         File('${Directory.current.path}/test/fixtures/sample_pack.json')
             .readAsBytesSync();
-    final packPath = '${tmp.path}/bad_key_pack.sealed';
+    final packPath = tempFixture('bad_key_pack.sealed');
     File(packPath).writeAsBytesSync(await ContentSeal.seal(plain, key: kc));
 
-    final wrong =
-        InMemoryContentKeyVault(Uint8List.fromList(List<int>.generate(32, (i) => 6)));
+    final wrong = InMemoryContentKeyVault(
+        Uint8List.fromList(List<int>.generate(32, (i) => 6)));
     final loader = ContentLoader(
       root: AssetRoot(
         glossaryPath: 'assets/content/glossary.json',
