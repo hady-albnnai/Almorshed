@@ -3,6 +3,7 @@
 // مع تمييز «خطأ كود يُحسب ضد قفل الانتظار» من «عطل شبكة/خادم لا يُحسب»
 // (عدالة قفل docs/11 §٩: يُعاقَب تخمين الأكواد لا انقطاع النت).
 // ═════════════════════════════════════════════════════════════════════
+import '../crypto/kc_provision.dart';
 import '../license/license_core.dart';
 import 'anonymous_auth.dart';
 import 'supabase_transport.dart';
@@ -17,6 +18,7 @@ class ActivationAttempt {
     this.devicesUsed = 0,
     this.errorAr = '',
     this.countsAsAttempt = false,
+    this.contentKeyReceived = false,
   });
 
   final bool ok;
@@ -27,13 +29,23 @@ class ActivationAttempt {
   final int devicesUsed;
   final String errorAr;
   final bool countsAsAttempt;
+
+  /// F2.2-T2: حمل الرد `kc_wrapped` وفُكّ وحُفظ K_c (قرار ٣٠).
+  final bool contentKeyReceived;
 }
 
 class ActivationApi {
-  ActivationApi({required this.transport, required this.auth});
+  ActivationApi({
+    required this.transport,
+    required this.auth,
+    this.contentKeys,
+  });
 
   final SupabaseTransport transport;
   final AnonymousAuth auth;
+
+  /// F2.2-T2 (اختياري): بوجوده يُرفع مفتاح X25519 ويُبتلع `kc_wrapped`.
+  final ContentKeyProvisioner? contentKeys;
 
   /// أكواد منطقية من الخادم (العقد §٢.٤) — تُحسب محاولات فاشلة.
   static const Map<String, String> _codeErrors = <String, String>{
@@ -44,6 +56,7 @@ class ActivationApi {
     'CODE_FORMAT': 'صيغة الكود غير سليمة — ١٥ حرفاً بصيغة XXXXX-XXXXX-XXXXX',
     'PUBKEY_FORMAT': 'مشكلة بمفتاح الجهاز — أعد تثبيت التطبيق',
     'FP_FORMAT': 'مشكلة ببصمة الجهاز — أعد المحاولة',
+    'X25519_PUBKEY_FORMAT': 'مشكلة بمفتاح المحتوى — أعد تثبيت التطبيق',
   };
 
   Future<ActivationAttempt> activate(
@@ -52,6 +65,7 @@ class ActivationApi {
     String deviceFp,
   ) async {
     var session = await auth.session();
+    final x25519B64 = await contentKeys?.devicePublicB64();
     for (var attempt = 0; attempt < 2; attempt++) {
       try {
         final r = await transport.callFunction(
@@ -60,6 +74,7 @@ class ActivationApi {
             'code': code,
             'device_pubkey_b64': pubkeyB64,
             'device_fp': deviceFp,
+            if (x25519B64 != null) 'device_x25519_pub_b64': x25519B64,
           },
           accessToken: session.accessToken,
         );
@@ -71,8 +86,10 @@ class ActivationApi {
           return const ActivationAttempt(
               ok: false, errorAr: 'رد خادم غير مكتمل', countsAsAttempt: false);
         }
+        final gotKc = await contentKeys?.ingest(r) ?? false;
         return ActivationAttempt(
           ok: true,
+          contentKeyReceived: gotKc,
           token: LicenseToken(payloadB64: payload, sigB64: sig),
           serverTimeMs: (r['server_time_ms'] as num?)?.toInt() ?? 0,
           expiresAtMs: (r['expires_at'] as num?)?.toInt() ?? 0,

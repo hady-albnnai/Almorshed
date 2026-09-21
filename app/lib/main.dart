@@ -8,6 +8,8 @@ import 'core/xp/streak_service.dart';
 import 'core/content/content_loader.dart';
 import 'core/content/models.dart';
 import 'core/crypto/content_key_vault.dart';
+import 'core/crypto/device_key_vault.dart';
+import 'core/crypto/kc_provision.dart';
 import 'core/progress/progress_store.dart';
 import 'core/progress/shared_prefs_store.dart';
 import 'core/review/review_mode.dart';
@@ -78,7 +80,7 @@ class FizyaClashApp extends StatefulWidget {
 class _FizyaClashAppState extends State<FizyaClashApp> {
   ThemeMode _mode = ThemeMode.dark; // docs/13: الداكن أولاً
 
-  late final Future<ContentPack> _packFuture = _loadPackForMode();
+  late Future<ContentPack> _packFuture = _loadPackForMode();
 
   // ── وضع المراجعة (F2.4 + F6.2 المبسّط — جهاز الأستاذ فقط) ──
   bool _reviewMode = false;
@@ -120,8 +122,16 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
         return ActivationApi(
           transport: t,
           auth: AnonymousAuth(transport: t, store: SharedPrefsSessionStore()),
+          contentKeys: _contentKeys,
         );
       }();
+
+  // F2.2-T2 — تزويد K_c (قرار ٣٠): زوج X25519 للجهاز + خزنة مفتاح المحتوى.
+  // بناء بلا IO — الخزنتان تُقرآن عند أول استعمال فقط (آمن بالاختبارات).
+  late final ContentKeyProvisioner _contentKeys = ContentKeyProvisioner(
+    deviceKeys: SecureDeviceKeyVault(),
+    contentKeys: SecureContentKeyVault(),
+  );
   String? _pubkeyB64;
 
   // F4.5/F4.6 — الشبكة المشتركة: نقلية واحدة وجلسة واحدة للكل
@@ -237,10 +247,13 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
         auth: _netAuth,
         store: _license,
         devicePubkeyB64: k,
+        contentKeys: _contentKeys,
       );
       unawaited(
         _heartbeat!.beat().then((o) {
           if (o.renewed || o.clockSuspected) _reloadLicense();
+          // F2.2-T2: وصل K_c لأول مرة ⇒ أعد تحميل الحزمة (المسار المشفّر)
+          if (o.contentKeyReceived) _reloadPack();
         }),
       );
     }
@@ -252,6 +265,15 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
   void _reloadLicense() => setState(() {
     _licenseFuture = _license.load();
   });
+
+  /// F2.2-T2: بعد وصول K_c (تفعيل/نبض) تُعاد قراءة الحزمة بالمسار المشفّر.
+  /// محمّل جديد ⇒ لا ذاكرة مؤقتة قديمة؛ والفشل يُترك للـFutureBuilder.
+  void _reloadPack() {
+    if (!mounted) return;
+    setState(() {
+      _packFuture = _loadPackForMode();
+    });
+  }
 
   // قرار ٣٠: بوجود K_c بالخزنة تُقرأ الحزمة مشفرة pack_seal_v1؛ وإلا النصية.
   static Future<ContentPack> _defaultLoadPack() =>
@@ -308,7 +330,10 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
             if (_pubkeyB64 == null) return const _Splash();
             return ActivationGate(
               licenseStore: _license,
-              onModeSet: _reloadLicense,
+              onModeSet: () {
+                _reloadLicense();
+                _reloadPack(); // F2.2-T2: K_c قد وصل مع التفعيل
+              },
               activationApi: _activationApi,
               devicePubkeyB64: _pubkeyB64!,
             );

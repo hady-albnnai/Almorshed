@@ -18,6 +18,7 @@ import 'dart:typed_data';
 
 import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
 
+import '../crypto/kc_provision.dart';
 import '../supabase/anonymous_auth.dart';
 import '../supabase/supabase_transport.dart';
 import 'license_core.dart';
@@ -31,12 +32,16 @@ class HeartbeatOutcome {
     this.clockSuspected = false,
     this.serverTimeMs = 0,
     this.error = '',
+    this.contentKeyReceived = false,
   });
 
   /// وصلنا للسيرفر ورد بـ ok (بغض النظر عن التجديد).
   final bool reached;
   final bool renewed;
   final bool clockSuspected;
+
+  /// F2.2-T2: وصل K_c مغلّفاً وفُكّ وحُفظ ⇒ الحزمة المشفرة تُقرأ بعد إعادة التحميل.
+  final bool contentKeyReceived;
   final int serverTimeMs;
   final String error;
 
@@ -92,12 +97,17 @@ class HeartbeatClient {
     required this.auth,
     required this.store,
     required this.devicePubkeyB64,
+    this.contentKeys,
   });
 
   final SupabaseTransport transport;
   final AnonymousAuth auth;
   final LicenseStore store;
   final String devicePubkeyB64;
+
+  /// F2.2-T2 (اختياري): بلا K_c بالخزنة يطلبه النبض (`want_kc`) ويبتلع
+  /// `kc_wrapped` — الطالب الذي فعّل قبل T3 يحصل على المفتاح صامتاً.
+  final ContentKeyProvisioner? contentKeys;
 
   /// أدنى فاصل بين نبضتين (لا نطرق السيرفر بكل إعادة بناء للشاشة).
   static const minInterval = Duration(hours: 6);
@@ -117,13 +127,18 @@ class HeartbeatClient {
     }
 
     var session = await auth.session();
+    final wantKc = contentKeys != null && !(await contentKeys!.hasKey);
+    final x25519B64 = wantKc ? await contentKeys!.devicePublicB64() : null;
     for (var attempt = 0; attempt < 2; attempt++) {
       try {
         final r = await transport.callFunction('heartbeat', <String, dynamic>{
           'device_pubkey_b64': devicePubkeyB64,
           'client_now_ms': now,
+          if (wantKc) 'want_kc': true,
+          if (x25519B64 != null) 'device_x25519_pub_b64': x25519B64,
         }, accessToken: session.accessToken);
         _lastBeatMs = now;
+        final gotKc = wantKc && await contentKeys!.ingest(r);
         final updated = applyHeartbeatResponse(
           data,
           r,
@@ -133,6 +148,7 @@ class HeartbeatClient {
         return HeartbeatOutcome(
           reached: r['ok'] == true,
           renewed: r['renewed'] == true,
+          contentKeyReceived: gotKc,
           clockSuspected: r['clock_suspected'] == true,
           serverTimeMs: (r['server_time_ms'] as num?)?.toInt() ?? 0,
         );

@@ -7,6 +7,7 @@
 // ═════════════════════════════════════════════════════════════════════
 import { createClient } from 'npm:@supabase/supabase-js@2';
 import nacl from 'npm:tweetnacl@1.0.3';
+import { b64ToBytes, bytesToB64, kcFromEnv, parseDevicePubB64, wrapKc } from '../_shared/kc_wrap.ts';
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -27,7 +28,7 @@ const json = (body: unknown, status = 200) =>
   });
 
 // هاش hex صغير لبايتات خام (لا سلاسل وسيطة — utf8 يفسد البايتات >127)
-const sha256BytesHex = async (data: Uint8Array): Promise<string> =>
+const sha256BytesHex = async (data: Uint8Array<ArrayBuffer>): Promise<string> =>
   [...new Uint8Array(await crypto.subtle.digest('SHA-256', data))]
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
@@ -99,6 +100,11 @@ Deno.serve(async (req) => {
     if (!/^[A-Za-z0-9+/]{43}=$/.test(pubkeyB64))
       return json({ ok: false, error: 'PUBKEY_FORMAT' }, 422);
     if (deviceFp.length < 8) return json({ ok: false, error: 'FP_FORMAT' }, 422);
+    // F2.2-T2 (قرار ٣٠): مفتاح X25519 اختياري — إن حضر وجب أن يكون 32 بايت.
+    const x25519B64 = String(body.device_x25519_pub_b64 ?? '');
+    const x25519Pub = x25519B64 ? parseDevicePubB64(x25519B64) : null;
+    if (x25519B64 && !x25519Pub)
+      return json({ ok: false, error: 'X25519_PUBKEY_FORMAT' }, 422);
 
     // ── ٣) الكود من القاعدة (قراءة مسبقة للسقف الصلب والإصدار) ──
     const { data: codeRow, error: codeErr } = await admin
@@ -120,7 +126,7 @@ Deno.serve(async (req) => {
     const hardMs = new Date(codeRow.hard_deadline).getTime();
     const expiresMs = Math.min(nowMs + THIRTY_DAYS_MS, hardMs);
     // بايتات خام حصراً — atob ثم digest مباشرة (لا سلسلة وسيطة يفسدها utf8)
-    const rawPub = Uint8Array.from(atob(pubkeyB64), (c) => c.charCodeAt(0));
+    const rawPub = b64ToBytes(pubkeyB64);
     const deviceHash = EMIT_DEVICE_HASH ? await sha256BytesHex(rawPub) : '';
     // 0008: كود مراجعة ⇒ 'teacher' ضمن الأعلام الموقّعة (قرار ٥٥)
     const flags = codeRow.review === true ? ['full', 'teacher'] : ['full'];
@@ -171,6 +177,20 @@ Deno.serve(async (req) => {
       return json({ ok: false, error: 'ACT_INTERNAL', detail: msg }, 500);
     }
 
+    // ── ٦-ب) F2.2-T2: تغليف K_c للجهاز (kc_wrap_v1 — العقد §١٠.٢) ──
+    // يُعاد فقط بوجود مفتاح X25519 من العميل وسر KC_B64 مضبوط (T3)؛
+    // وإلا يغيب الحقل والعميل يبقى على القراءة النصية (الواجهة ثابتة).
+    let kcWrapped: string | undefined;
+    if (x25519Pub) {
+      // يُحفظ مع الجهاز ليخدم heartbeat التجديد الصامت لاحقاً (0012)
+      await admin
+        .from('devices')
+        .update({ x25519_pub_b64: x25519B64 })
+        .eq('pubkey_b64', pubkeyB64);
+      const kc = kcFromEnv();
+      if (kc) kcWrapped = bytesToB64(await wrapKc(kc, x25519Pub));
+    }
+
     // ── ٧) الرد — مطابق لحقول العقد §٢.٣ حرفياً ──
     return json({
       ok: true,
@@ -183,6 +203,7 @@ Deno.serve(async (req) => {
       devices_used: data.licenses_count,
       activated_now: data.activated_now,
       flags: [...flags].sort(),
+      ...(kcWrapped ? { kc_wrapped: kcWrapped } : {}),
     });
   } catch (e) {
     return json({ ok: false, error: 'INTERNAL', detail: String(e) }, 500);

@@ -6,6 +6,7 @@
 // ═════════════════════════════════════════════════════════════════════
 import { createClient } from 'npm:@supabase/supabase-js@2';
 import nacl from 'npm:tweetnacl@1.0.3';
+import { bytesToB64, kcFromEnv, parseDevicePubB64, wrapKc } from '../_shared/kc_wrap.ts';
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -34,11 +35,15 @@ Deno.serve(async (req) => {
     const pubkeyB64 = String(body.device_pubkey_b64 ?? '');
     const clientNowMs = Number.isFinite(body.client_now_ms)
       ? body.client_now_ms as number : null;
+    // F2.2-T2: العميل يطلب K_c صراحةً (بلا مفتاح بالخزنة أو بعد تحديث إصدار)
+    const wantKc = body.want_kc === true;
+    const x25519B64 = String(body.device_x25519_pub_b64 ?? '');
+    const x25519Pub = x25519B64 ? parseDevicePubB64(x25519B64) : null;
 
     // ── ١) الجهاز + مرساة الزمن ──
     const { data: device } = await admin
       .from('devices')
-      .select('id,pubkey_b64')
+      .select('id,pubkey_b64,x25519_pub_b64')
       .eq('pubkey_b64', pubkeyB64)
       .single();
     if (!device) return json({ ok: false, error: 'DEVICE_UNKNOWN' }, 404);
@@ -118,6 +123,18 @@ Deno.serve(async (req) => {
       }
     }
 
+    // ── ٣-ب) F2.2-T2: K_c مغلّف لمرخَّص فقط (kc_wrap_v1 — العقد §١٠.٢) ──
+    let kcWrapped: string | undefined;
+    if (wantKc && lic) {
+      if (x25519Pub && x25519B64 !== device.x25519_pub_b64) {
+        await admin.from('devices').update({ x25519_pub_b64: x25519B64 }).eq('id', device.id);
+      }
+      const pub = x25519Pub ??
+        (device.x25519_pub_b64 ? parseDevicePubB64(device.x25519_pub_b64 as string) : null);
+      const kc = kcFromEnv();
+      if (pub && kc) kcWrapped = bytesToB64(await wrapKc(kc, pub));
+    }
+
     // ── ٤) تحديث المراساة (بعد كل الحسابات) ──
     await admin
       .from('time_anchors')
@@ -128,6 +145,7 @@ Deno.serve(async (req) => {
       server_time_ms: serverTimeMs,
       renewed,
       ...(tokenOut ? { token: tokenOut } : {}),
+      ...(kcWrapped ? { kc_wrapped: kcWrapped } : {}),
       clock_suspected: clockSuspected,
     });
   } catch (e) {
