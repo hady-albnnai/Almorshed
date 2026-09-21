@@ -168,3 +168,60 @@ def test_pack_compatible_fields(pool):
         assert need <= set(it), it["templateId"]
         assert isinstance(it["id"], int)
     json.dumps(items, ensure_ascii=False)
+
+
+# ── المحرّك العام متعدد الوحدات (قوالب U1b / U2 / U3-U5) ──
+
+@pytest.fixture(scope="module")
+def all_pool():
+    doc = gi.load_docs()
+    gen = gi.Generator(doc, gi.load_banned(), seed=2026)
+    return gen, gen.generate(per_template=6)
+
+
+def test_load_docs_merges_all_units(all_pool):
+    gen, items = all_pool
+    chapters = {i["chapter"] for i in items}
+    assert chapters == set(gi.CHAPTER_WEIGHTS), chapters - set(gi.CHAPTER_WEIGHTS)
+    assert len(items) >= 500
+    # كل قاعدة مشتت في كل ملف موثّقة (وإلا رفع make ValueError أثناء التوليد)
+    assert all(r is None or r in gen.rules for i in items for r in i.get("optionRules") or [])
+
+
+def test_all_units_verify_clean(all_pool):
+    gen, items = all_pool
+    bad = [(i["templateId"], gi.verify(i, gen.rules)) for i in items if gi.verify(i, gen.rules)]
+    assert bad == []
+    hits = [i["templateId"] for i in items if any(b in " ".join([i["stem"]] + i["options"]) for b in gen.banned)]
+    assert hits == []
+
+
+def test_fmt_sci_and_nice_sci():
+    assert gi.fmt_sci(5.93e6) == "5.93×10⁶"
+    assert gi.fmt_sci(1e-3) == "10⁻³"
+    assert gi.fmt_sci(2.5, 3) == "2.5"
+    assert gi.nice_sci(7.5e6) and gi.nice_sci(1.24e-11)
+    assert not gi.nice_sci(5929994.53)
+
+
+def test_ratio_str_pulls_squares():
+    assert gi.ratio_str(gi.math.sqrt(15) / 4, "c") == "√15·c/4"
+    assert gi.ratio_str(gi.math.sqrt(8) / 3, "c") == "2√2·c/3"
+    assert gi.ratio_str(0.5, "T0") == "T0/2"
+
+
+def test_curriculum_anchor_values(all_pool):
+    _, items = all_pool
+    # U2: طومسون — 100 mH و10 μF ⇒ T0 = 6.28 ms
+    for it in _find(items, "U2.L4.T01", "100 mH ومكثفة سعتها 10 μF"):
+        if "الدور الخاص" in it["stem"]:
+            assert abs(it["answer"]["value"] - 6.28e-3) < 1e-6
+    # U3: مزمار مختلف 17 cm ⇒ f1 = 500 Hz والتالي 1500 Hz
+    for it in _find(items, "U3.L2.T01", "مختلف الطرفين (مغلق من أحد طرفيه) طوله 17 cm"):
+        assert min(abs(it["answer"]["value"] - v) for v in (500.0, 1500.0)) < 1e-6
+    # U4: بور 2→1 ⇒ 10.2 eV
+    for it in _find(items, "U4.L1.T01", "من السوية n = 2 إلى السوية n = 1"):
+        assert abs(it["answer"]["value"] - 10.2) < 1e-9
+    # U5: هابل 70 × 100 Mpc ⇒ 7000 km/s
+    for it in _find(items, "U5.L1.T01", "H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبعد عنا 100 Mpc"):
+        assert abs(it["answer"]["value"] - 7000) < 1e-9

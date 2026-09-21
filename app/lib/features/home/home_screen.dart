@@ -68,7 +68,7 @@ class HomeScreen extends StatefulWidget {
   final LocalDuelFlowFactory? openLocalDuel;
 
   /// المادة ١٣ — محمّل البنود المولّدة لفهرس مراجعة الأستاذ (حقن للاختبارات؛
-  /// null = الأصل `assets/content/items_u1.json`).
+  /// null = الأصل `assets/content/items.json`).
   final Future<GeneratedItemsPack> Function()? loadGeneratedItems;
 
   @override
@@ -294,7 +294,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   );
                 },
                 icon: const Icon(Icons.fact_check_outlined),
-                label: const Text('مراجعة البنود المولّدة (الوحدة الأولى)'),
+                label: const Text('مراجعة البنود المولّدة (المنهاج كاملاً)'),
               ),
               const SizedBox(height: 12),
             ],

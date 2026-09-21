@@ -24,13 +24,13 @@ class TrainingScreen extends StatefulWidget {
     required this.trainingStore,
     this.deviceId = 0,
       this.xpRecorder, // F3.8
-    this.loadItems, // المادة ١٢: null = من الأصول assets/content/items_u1.json
+    this.loadItems, // المادة ١٢: null = من الأصول assets/content/items.json
   });
 
   final ContentPack pack;
   final TrainingStore trainingStore;
 
-  /// المادة ١٢ — محمّل بنود الوحدة الأولى المولّدة (اختبارات تحقنه بلا أصول).
+  /// المادة ١٢ — محمّل البنود المولّدة (١٧ فصلاً) (اختبارات تحقنه بلا أصول).
   final Future<GeneratedItemsPack> Function()? loadItems;
 
   /// يُربط بمعرف الجهاز الحقيقي في F3.6/F3.7 — صفر مؤقتاً.
@@ -93,7 +93,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
     await _openSession(state);
   }
 
-  /// المادة ١٢ — جلسة بنود الوحدة الأولى: المعتمد فقط، أو الكل في وضع
+  /// المادة ١٢ — جلسة البنود المولّدة: المعتمد فقط، أو الكل في وضع
   /// المراجعة (F2.4) حتى يرى الأستاذ الأنماط الأربعة بسياقها.
   Future<void> _openItems() async {
     final reviewMode = ReviewScope.enabledIn(context);
@@ -105,7 +105,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
       pack = await load();
     } catch (_) {
       messenger.showSnackBar(
-        const SnackBar(content: Text('تعذر تحميل بنود الوحدة الأولى')),
+        const SnackBar(content: Text('تعذر تحميل البنود المولّدة')),
       );
       return;
     }
@@ -229,7 +229,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
                   ),
                 ),
                 const SizedBox(height: 18),
-                Text('بنود الوحدة الأولى', style: txt.titleLarge),
+                Text('البنود المولّدة من المنهاج', style: txt.titleLarge),
                 const SizedBox(height: 8),
                 Card(
                   child: ListTile(

@@ -1,0 +1,6133 @@
+{
+ "meta": {
+  "generator": "tools/gen_items.py",
+  "templates": "content/authoring/templates/*.yaml",
+  "templatesVersion": 1,
+  "seed": 2026,
+  "perTemplate": 6,
+  "poolSize": 549,
+  "sampleSize": 100,
+  "constants": {
+   "g": 10,
+   "pi_sq": 10,
+   "pi_approx": 3.14,
+   "c_light": 300000000.0,
+   "h_planck": 6.63e-34,
+   "e_charge": 1.6e-19,
+   "m_e": 9.1e-31,
+   "G_grav": 6.67e-11
+  },
+  "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
+  "approvedByDefault": false
+ },
+ "items": [
+  {
+   "id": 20732,
+   "templateId": "U2.L1.T01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة مسطحة من 200 لفة مساحة كل منها 50 cm² موضوعة في حقل مغناطيسي منتظم شدته 5 mT يوازي الناظم على مستويها. احسب التدفق المغناطيسي عبر الوشيعة.",
+   "options": [
+    "2.5×10⁻⁵ Wb",
+    "2.5×10⁻³ Wb",
+    "5×10⁻³ Wb",
+    "5×10¹ Wb"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_N",
+    "cos_sin_flux",
+    null,
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    2.5e-05,
+    0.0025,
+    0.005,
+    50.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_N]: أهمل N",
+    "(B) خطأ [cos_sin_flux]: sin بدل cos (الزاوية مع المستوي)",
+    "✓ (C) 5×10⁻³ Wb",
+    "(D) خطأ [unit_cm_m]: لم يحوّل cm² ⇒ m²"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.005,
+    "unit": "Wb",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Φ = N·B·S·cos α",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Wb",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Φ = N·B·S·cos α — α بين B⃗ والناظم (الكتاب ص ٨٠)",
+   "source": {
+    "book": "ص ٨٠–٨١",
+    "lesson": "L1 §٥ [أستاذ س٥–س٦]",
+    "exam": "خصم سلم ٢٠٢٦ «Δφ = NBS» −١"
+   }
+  },
+  {
+   "id": 20733,
+   "templateId": "U2.L1.T01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة مسطحة من 100 لفة مساحة كل منها 25 cm² موضوعة في حقل مغناطيسي منتظم شدته 4 mT يصنع زاوية 60° مع الناظم على مستويها. احسب التدفق المغناطيسي عبر الوشيعة.",
+   "options": [
+    "5×10⁻⁴ Wb",
+    "5 Wb",
+    "8.66×10⁻⁴ Wb",
+    "5×10⁻⁶ Wb"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "unit_cm_m",
+    "cos_sin_flux",
+    "forget_N"
+   ],
+   "optionValues": [
+    0.0005,
+    5.0,
+    0.000866,
+    5e-06
+   ],
+   "solutionSteps": [
+    "✓ (A) 5×10⁻⁴ Wb",
+    "(B) خطأ [unit_cm_m]: لم يحوّل cm² ⇒ m²",
+    "(C) خطأ [cos_sin_flux]: sin بدل cos (الزاوية مع المستوي)",
+    "(D) خطأ [forget_N]: أهمل N"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.0005,
+    "unit": "Wb",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Φ = N·B·S·cos α",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Wb",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Φ = N·B·S·cos α — α بين B⃗ والناظم (الكتاب ص ٨٠)",
+   "source": {
+    "book": "ص ٨٠–٨١",
+    "lesson": "L1 §٥ [أستاذ س٥–س٦]",
+    "exam": "خصم سلم ٢٠٢٦ «Δφ = NBS» −١"
+   }
+  },
+  {
+   "id": 20734,
+   "templateId": "U2.L1.T01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة مسطحة من 50 لفة مساحة كل منها 20 cm² موضوعة في حقل مغناطيسي منتظم شدته 5 mT يصنع زاوية 37° مع الناظم على مستويها. احسب التدفق المغناطيسي عبر الوشيعة.",
+   "options": [
+    "4×10⁻⁴ Wb",
+    "4 Wb",
+    "3×10⁻⁴ Wb",
+    "8×10⁻⁶ Wb"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "unit_cm_m",
+    "cos_sin_flux",
+    "forget_N"
+   ],
+   "optionValues": [
+    0.0004,
+    4.0,
+    0.0003,
+    8.000000000000001e-06
+   ],
+   "solutionSteps": [
+    "✓ (A) 4×10⁻⁴ Wb",
+    "(B) خطأ [unit_cm_m]: لم يحوّل cm² ⇒ m²",
+    "(C) خطأ [cos_sin_flux]: sin بدل cos (الزاوية مع المستوي)",
+    "(D) خطأ [forget_N]: أهمل N"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.0004,
+    "unit": "Wb",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Φ = N·B·S·cos α",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Wb",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Φ = N·B·S·cos α — α بين B⃗ والناظم (الكتاب ص ٨٠)",
+   "source": {
+    "book": "ص ٨٠–٨١",
+    "lesson": "L1 §٥ [أستاذ س٥–س٦]",
+    "exam": "خصم سلم ٢٠٢٦ «Δφ = NBS» −١"
+   }
+  },
+  {
+   "id": 20735,
+   "templateId": "U2.L1.T01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة مسطحة من 200 لفة مساحة كل منها 40 cm² موضوعة في حقل مغناطيسي منتظم شدته 50 mT يصنع زاوية 37° مع الناظم على مستويها. احسب التدفق المغناطيسي عبر الوشيعة.",
+   "options": [
+    "3.2×10⁻² Wb",
+    "3.2×10² Wb",
+    "2.4×10⁻² Wb",
+    "1.6×10⁻⁴ Wb"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "unit_cm_m",
+    "cos_sin_flux",
+    "forget_N"
+   ],
+   "optionValues": [
+    0.032,
+    320.0,
+    0.024,
+    0.00016
+   ],
+   "solutionSteps": [
+    "✓ (A) 3.2×10⁻² Wb",
+    "(B) خطأ [unit_cm_m]: لم يحوّل cm² ⇒ m²",
+    "(C) خطأ [cos_sin_flux]: sin بدل cos (الزاوية مع المستوي)",
+    "(D) خطأ [forget_N]: أهمل N"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.032,
+    "unit": "Wb",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Φ = N·B·S·cos α",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Wb",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Φ = N·B·S·cos α — α بين B⃗ والناظم (الكتاب ص ٨٠)",
+   "source": {
+    "book": "ص ٨٠–٨١",
+    "lesson": "L1 §٥ [أستاذ س٥–س٦]",
+    "exam": "خصم سلم ٢٠٢٦ «Δφ = NBS» −١"
+   }
+  },
+  {
+   "id": 20736,
+   "templateId": "U2.L1.T01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة مسطحة من 100 لفة مساحة كل منها 50 cm² موضوعة في حقل مغناطيسي منتظم شدته 20 mT يصنع زاوية 60° مع الناظم على مستويها. احسب التدفق المغناطيسي عبر الوشيعة.",
+   "options": [
+    "5×10⁻⁵ Wb",
+    "8.66×10⁻³ Wb",
+    "5×10⁻³ Wb",
+    "5×10¹ Wb"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_N",
+    "cos_sin_flux",
+    null,
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    5e-05,
+    0.00866,
+    0.005,
+    50.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_N]: أهمل N",
+    "(B) خطأ [cos_sin_flux]: sin بدل cos (الزاوية مع المستوي)",
+    "✓ (C) 5×10⁻³ Wb",
+    "(D) خطأ [unit_cm_m]: لم يحوّل cm² ⇒ m²"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.005,
+    "unit": "Wb",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Φ = N·B·S·cos α",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Wb",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Φ = N·B·S·cos α — α بين B⃗ والناظم (الكتاب ص ٨٠)",
+   "source": {
+    "book": "ص ٨٠–٨١",
+    "lesson": "L1 §٥ [أستاذ س٥–س٦]",
+    "exam": "خصم سلم ٢٠٢٦ «Δφ = NBS» −١"
+   }
+  },
+  {
+   "id": 20737,
+   "templateId": "U2.L1.T01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة مسطحة من 100 لفة مساحة كل منها 40 cm² موضوعة في حقل مغناطيسي منتظم شدته 10 mT يوازي الناظم على مستويها. احسب التدفق المغناطيسي عبر الوشيعة.",
+   "options": [
+    "4×10⁻⁵ Wb",
+    "2×10⁻³ Wb",
+    "4×10¹ Wb",
+    "4×10⁻³ Wb"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_N",
+    "cos_sin_flux",
+    "unit_cm_m",
+    null
+   ],
+   "optionValues": [
+    4e-05,
+    0.002,
+    40.0,
+    0.004
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_N]: أهمل N",
+    "(B) خطأ [cos_sin_flux]: sin بدل cos (الزاوية مع المستوي)",
+    "(C) خطأ [unit_cm_m]: لم يحوّل cm² ⇒ m²",
+    "✓ (D) 4×10⁻³ Wb"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.004,
+    "unit": "Wb",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Φ = N·B·S·cos α",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Wb",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Φ = N·B·S·cos α — α بين B⃗ والناظم (الكتاب ص ٨٠)",
+   "source": {
+    "book": "ص ٨٠–٨١",
+    "lesson": "L1 §٥ [أستاذ س٥–س٦]",
+    "exam": "خصم سلم ٢٠٢٦ «Δφ = NBS» −١"
+   }
+  },
+  {
+   "id": 20738,
+   "templateId": "U2.L1.T02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سلك مستقيم طويل يمر فيه تيار شدته 20 A. احسب شدة الحقل المغناطيسي في نقطة تبعد 2 cm عنه.",
+   "options": [
+    "2×10⁻⁴ T",
+    "8×10⁻⁸ T",
+    "10⁻⁴ T",
+    "2×10⁻⁶ T"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "invert_ratio",
+    "forget_mu0",
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    0.00019999999999999998,
+    8e-08,
+    9.999999999999999e-05,
+    2e-06
+   ],
+   "solutionSteps": [
+    "✓ (A) 2×10⁻⁴ T",
+    "(B) خطأ [invert_ratio]: قلب النسبة",
+    "(C) خطأ [forget_mu0]: ثابت خاطئ (10⁻⁷ بدل 2×10⁻⁷ / أهمل 4π)",
+    "(D) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.00019999999999999998,
+    "unit": "T",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "B = 2×10⁻⁷·I/d (سلك) أو B = μ0·n·I (وشيعة)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة T",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ٧٤ (سلك) و ص ٧٨ (وشيعة)",
+   "source": {
+    "book": "ص ٧٤–٧٨",
+    "lesson": "L1 §٤ جدول عناصر الحقل [أستاذ طرق حل]"
+   }
+  },
+  {
+   "id": 20739,
+   "templateId": "U2.L1.T02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سلك مستقيم طويل يمر فيه تيار شدته 5 A. احسب شدة الحقل المغناطيسي في نقطة تبعد 5 cm عنه.",
+   "options": [
+    "5×10⁻⁸ T",
+    "2×10⁻⁷ T",
+    "2×10⁻⁵ T",
+    "10⁻⁵ T"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "invert_ratio",
+    "unit_cm_m",
+    null,
+    "forget_mu0"
+   ],
+   "optionValues": [
+    5e-08,
+    2e-07,
+    1.9999999999999998e-05,
+    9.999999999999999e-06
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: قلب النسبة",
+    "(B) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "✓ (C) 2×10⁻⁵ T",
+    "(D) خطأ [forget_mu0]: ثابت خاطئ (10⁻⁷ بدل 2×10⁻⁷ / أهمل 4π)"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1.9999999999999998e-05,
+    "unit": "T",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "B = 2×10⁻⁷·I/d (سلك) أو B = μ0·n·I (وشيعة)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة T",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ٧٤ (سلك) و ص ٧٨ (وشيعة)",
+   "source": {
+    "book": "ص ٧٤–٧٨",
+    "lesson": "L1 §٤ جدول عناصر الحقل [أستاذ طرق حل]"
+   }
+  },
+  {
+   "id": 20740,
+   "templateId": "U2.L1.T02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سلك مستقيم طويل يمر فيه تيار شدته 2 A. احسب شدة الحقل المغناطيسي في نقطة تبعد 2 cm عنه.",
+   "options": [
+    "2×10⁻⁵ T",
+    "10⁻⁵ T",
+    "2×10⁻⁷ T",
+    "8×10⁻⁹ T"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_mu0",
+    "unit_cm_m",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    1.9999999999999998e-05,
+    9.999999999999999e-06,
+    2e-07,
+    8e-09
+   ],
+   "solutionSteps": [
+    "✓ (A) 2×10⁻⁵ T",
+    "(B) خطأ [forget_mu0]: ثابت خاطئ (10⁻⁷ بدل 2×10⁻⁷ / أهمل 4π)",
+    "(C) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "(D) خطأ [invert_ratio]: قلب النسبة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1.9999999999999998e-05,
+    "unit": "T",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "B = 2×10⁻⁷·I/d (سلك) أو B = μ0·n·I (وشيعة)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة T",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ٧٤ (سلك) و ص ٧٨ (وشيعة)",
+   "source": {
+    "book": "ص ٧٤–٧٨",
+    "lesson": "L1 §٤ جدول عناصر الحقل [أستاذ طرق حل]"
+   }
+  },
+  {
+   "id": 20741,
+   "templateId": "U2.L1.T02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة طويلة تحوي 50 لفة في كل سنتمتر من طولها يمر فيها تيار شدته 10 A. احسب شدة الحقل المغناطيسي داخلها (π = 3.14).",
+   "options": [
+    "5×10⁻³ T",
+    "6.28×10⁻² T",
+    "2.51×10⁻⁹ T",
+    "6.28×10⁻⁴ T"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "forget_mu0",
+    null,
+    "invert_ratio",
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    0.005,
+    0.0628,
+    2.5119999999999996e-09,
+    0.000628
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_mu0]: ثابت خاطئ (10⁻⁷ بدل 2×10⁻⁷ / أهمل 4π)",
+    "✓ (B) 6.28×10⁻² T",
+    "(C) خطأ [invert_ratio]: قلب النسبة",
+    "(D) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.0628,
+    "unit": "T",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "B = 2×10⁻⁷·I/d (سلك) أو B = μ0·n·I (وشيعة)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة T",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ٧٤ (سلك) و ص ٧٨ (وشيعة)",
+   "source": {
+    "book": "ص ٧٤–٧٨",
+    "lesson": "L1 §٤ جدول عناصر الحقل [أستاذ طرق حل]"
+   }
+  },
+  {
+   "id": 20743,
+   "templateId": "U2.L1.T02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سلك مستقيم طويل يمر فيه تيار شدته 5 A. احسب شدة الحقل المغناطيسي في نقطة تبعد 20 cm عنه.",
+   "options": [
+    "2.5×10⁻⁶ T",
+    "5×10⁻⁶ T",
+    "2×10⁻⁷ T",
+    "5×10⁻⁸ T"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "forget_mu0",
+    null,
+    "invert_ratio",
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    2.4999999999999998e-06,
+    4.9999999999999996e-06,
+    2e-07,
+    5e-08
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_mu0]: ثابت خاطئ (10⁻⁷ بدل 2×10⁻⁷ / أهمل 4π)",
+    "✓ (B) 5×10⁻⁶ T",
+    "(C) خطأ [invert_ratio]: قلب النسبة",
+    "(D) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 4.9999999999999996e-06,
+    "unit": "T",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "B = 2×10⁻⁷·I/d (سلك) أو B = μ0·n·I (وشيعة)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة T",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ٧٤ (سلك) و ص ٧٨ (وشيعة)",
+   "source": {
+    "book": "ص ٧٤–٧٨",
+    "lesson": "L1 §٤ جدول عناصر الحقل [أستاذ طرق حل]"
+   }
+  },
+  {
+   "id": 20744,
+   "templateId": "U2.L1.T02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سلك مستقيم طويل يمر فيه تيار شدته 8 A. احسب شدة الحقل المغناطيسي في نقطة تبعد 4 cm عنه.",
+   "options": [
+    "2×10⁻⁵ T",
+    "6.4×10⁻⁸ T",
+    "4×10⁻⁵ T",
+    "4×10⁻⁷ T"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_mu0",
+    "invert_ratio",
+    null,
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    1.9999999999999998e-05,
+    6.4e-08,
+    3.9999999999999996e-05,
+    4e-07
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_mu0]: ثابت خاطئ (10⁻⁷ بدل 2×10⁻⁷ / أهمل 4π)",
+    "(B) خطأ [invert_ratio]: قلب النسبة",
+    "✓ (C) 4×10⁻⁵ T",
+    "(D) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 3.9999999999999996e-05,
+    "unit": "T",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "B = 2×10⁻⁷·I/d (سلك) أو B = μ0·n·I (وشيعة)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة T",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ٧٤ (سلك) و ص ٧٨ (وشيعة)",
+   "source": {
+    "book": "ص ٧٤–٧٨",
+    "lesson": "L1 §٤ جدول عناصر الحقل [أستاذ طرق حل]"
+   }
+  },
+  {
+   "id": 20745,
+   "templateId": "U2.L1.T03",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "عامل النفوذية المغناطيسية μ لمادة هو:",
+   "options": [
+    "حاصل ضرب الحقل الكلي بالحقل الأصلي",
+    "الفرق بين الحقل الكلي والأصلي",
+    "حاصل قسمة الحقل الكلي بوجود المادة على الحقل الأصلي في الخلاء",
+    "مقدار له وحدة التسلا"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "true_but_partial",
+    null,
+    "unit_confusion"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [true_but_partial]: ذاك B′ حقل المغنطة",
+    "✓ (C) حاصل قسمة الحقل الكلي بوجود المادة على الحقل الأصلي في الخلاء",
+    "(D) خطأ [unit_confusion]: μ بلا وحدة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٦٨–٨٧ [أستاذ س٢ س٥]",
+   "source": {
+    "book": "ص ٦٨–٨٧",
+    "lesson": "L1 §١–§٦",
+    "exam": "٢٠٢٦ س٢-١ النفوذية (٢٠)"
+   }
+  },
+  {
+   "id": 20746,
+   "templateId": "U2.L1.T03",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "يكون التدفق المغناطيسي عبر إطار مستوٍ معدوماً عندما:",
+   "options": [
+    "يكون عدد اللفات صغيراً",
+    "تكون خطوط الحقل عمودية على مستوي الإطار",
+    "تصنع الخطوط 45° مع الناظم",
+    "توازي خطوط الحقل مستوي الإطار (α = 90° مع الناظم)"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "true_but_partial",
+    "cos_sin_flux",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [true_but_partial]: خيار صحيح جزئياً حين يكون المفتاح «جميع ما سبق»",
+    "(B) خطأ [cos_sin_flux]: هنا التدفق أعظمي",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) توازي خطوط الحقل مستوي الإطار (α = 90° مع الناظم)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٦٨–٨٧ [أستاذ س٢ س٥]",
+   "source": {
+    "book": "ص ٦٨–٨٧",
+    "lesson": "L1 §١–§٦",
+    "exam": "٢٠٢٦ س٢-١ النفوذية (٢٠)"
+   }
+  },
+  {
+   "id": 20747,
+   "templateId": "U2.L1.T03",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "أثبتت تجربة أورستد أن:",
+   "options": [
+    "الحقل المغناطيسي يولّد تياراً",
+    "التيار الكهربائي يولّد حقلاً مغناطيسياً",
+    "الشحنات الساكنة تولّد حقلاً مغناطيسياً",
+    "المغناطيس يجذب النحاس"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "flux_vs_rate",
+    null,
+    "mix_formulas",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [flux_vs_rate]: ذاك التحريض (فاراداي) ويلزم تغيّر",
+    "✓ (B) التيار الكهربائي يولّد حقلاً مغناطيسياً",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٦٨–٨٧ [أستاذ س٢ س٥]",
+   "source": {
+    "book": "ص ٦٨–٨٧",
+    "lesson": "L1 §١–§٦",
+    "exam": "٢٠٢٦ س٢-١ النفوذية (٢٠)"
+   }
+  },
+  {
+   "id": 20748,
+   "templateId": "U2.L1.T03",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "يتوقف عامل النفوذية المغناطيسية على:",
+   "options": [
+    "طبيعة المادة وشدة الحقل الممغنط",
+    "درجة الحرارة فقط",
+    "حجم العينة",
+    "طبيعة المادة فقط"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "mix_formulas",
+    "true_but_partial"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) طبيعة المادة وشدة الحقل الممغنط",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [true_but_partial]: خيار صحيح جزئياً حين يكون المفتاح «جميع ما سبق»"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٦٨–٨٧ [أستاذ س٢ س٥]",
+   "source": {
+    "book": "ص ٦٨–٨٧",
+    "lesson": "L1 §١–§٦",
+    "exam": "٢٠٢٦ س٢-١ النفوذية (٢٠)"
+   }
+  },
+  {
+   "id": 20749,
+   "templateId": "U2.L1.T03",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "وحدة التدفق المغناطيسي:",
+   "options": [
+    "الويبر Wb (= T·m²)",
+    "الهنري H",
+    "التسلا T",
+    "الأمبير A"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "unit_confusion",
+    "unit_confusion",
+    "unit_confusion"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) الويبر Wb (= T·m²)",
+    "(B) خطأ [unit_confusion]: واحدة مقدار آخر أو تركيب خاطئ للواحدات (أسئلة الوحدات)",
+    "(C) خطأ [unit_confusion]: واحدة مقدار آخر أو تركيب خاطئ للواحدات (أسئلة الوحدات)",
+    "(D) خطأ [unit_confusion]: واحدة مقدار آخر أو تركيب خاطئ للواحدات (أسئلة الوحدات)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٦٨–٨٧ [أستاذ س٢ س٥]",
+   "source": {
+    "book": "ص ٦٨–٨٧",
+    "lesson": "L1 §١–§٦",
+    "exam": "٢٠٢٦ س٢-١ النفوذية (٢٠)"
+   }
+  },
+  {
+   "id": 20750,
+   "templateId": "U2.L2.T01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "ساق ناقلة مستقيمة طولها 20 cm يمر فيها تيار شدته 4 A موضوعة في حقل مغناطيسي منتظم شدته 0.1 T عمودي على الساق. احسب شدة القوة الكهرطيسية المؤثرة فيها.",
+   "options": [
+    "0.04 N",
+    "0.08 N",
+    "0.16 N",
+    "8 N"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "sin_cos",
+    null,
+    "forget_2_torque",
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    0.04000000000000001,
+    0.08000000000000002,
+    0.16000000000000003,
+    8.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [sin_cos]: cos بدل sin",
+    "✓ (B) 0.08 N",
+    "(C) خطأ [forget_2_torque]: ضاعف بلا مبرر (خلط بالمزدوجة)",
+    "(D) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.08000000000000002,
+    "unit": "N",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "F = I·L·B·sin θ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N",
+     "points": 1
+    }
+   ],
+   "answerBasis": "F = I·L·B·sin θ (الكتاب ص ٩٤)",
+   "source": {
+    "book": "ص ٩٣–٩٥",
+    "lesson": "L2 §٥ [أستاذ س٥] + السكتان",
+    "exam": "٢٠٢٦ س٣-٣ (٢٥)"
+   }
+  },
+  {
+   "id": 20751,
+   "templateId": "U2.L2.T01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "ساق ناقلة مستقيمة طولها 20 cm يمر فيها تيار شدته 4 A موضوعة في حقل مغناطيسي منتظم شدته 0.2 T يصنع مع الساق زاوية 37°. احسب شدة القوة الكهرطيسية المؤثرة فيها.",
+   "options": [
+    "0.192 N",
+    "0.128 N",
+    "9.6 N",
+    "0.096 N"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_2_torque",
+    "sin_cos",
+    "unit_cm_m",
+    null
+   ],
+   "optionValues": [
+    0.19200000000000003,
+    0.12800000000000003,
+    9.6,
+    0.09600000000000002
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_2_torque]: ضاعف بلا مبرر (خلط بالمزدوجة)",
+    "(B) خطأ [sin_cos]: cos بدل sin",
+    "(C) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "✓ (D) 0.096 N"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.09600000000000002,
+    "unit": "N",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "F = I·L·B·sin θ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N",
+     "points": 1
+    }
+   ],
+   "answerBasis": "F = I·L·B·sin θ (الكتاب ص ٩٤)",
+   "source": {
+    "book": "ص ٩٣–٩٥",
+    "lesson": "L2 §٥ [أستاذ س٥] + السكتان",
+    "exam": "٢٠٢٦ س٣-٣ (٢٥)"
+   }
+  },
+  {
+   "id": 20752,
+   "templateId": "U2.L2.T01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "ساق ناقلة مستقيمة طولها 50 cm يمر فيها تيار شدته 10 A موضوعة في حقل مغناطيسي منتظم شدته 0.2 T يصنع مع الساق زاوية 37°. احسب شدة القوة الكهرطيسية المؤثرة فيها.",
+   "options": [
+    "0.6 N",
+    "0.8 N",
+    "1.2 N",
+    "60 N"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "sin_cos",
+    "forget_2_torque",
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    0.6,
+    0.8,
+    1.2,
+    60.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 0.6 N",
+    "(B) خطأ [sin_cos]: cos بدل sin",
+    "(C) خطأ [forget_2_torque]: ضاعف بلا مبرر (خلط بالمزدوجة)",
+    "(D) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.6,
+    "unit": "N",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "F = I·L·B·sin θ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N",
+     "points": 1
+    }
+   ],
+   "answerBasis": "F = I·L·B·sin θ (الكتاب ص ٩٤)",
+   "source": {
+    "book": "ص ٩٣–٩٥",
+    "lesson": "L2 §٥ [أستاذ س٥] + السكتان",
+    "exam": "٢٠٢٦ س٣-٣ (٢٥)"
+   }
+  },
+  {
+   "id": 20753,
+   "templateId": "U2.L2.T01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "ساق ناقلة مستقيمة طولها 5 cm يمر فيها تيار شدته 5 A موضوعة في حقل مغناطيسي منتظم شدته 0.4 T عمودي على الساق. احسب شدة القوة الكهرطيسية المؤثرة فيها.",
+   "options": [
+    "0.05 N",
+    "10 N",
+    "0.1 N",
+    "0.2 N"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "sin_cos",
+    "unit_cm_m",
+    null,
+    "forget_2_torque"
+   ],
+   "optionValues": [
+    0.05,
+    10.0,
+    0.1,
+    0.2
+   ],
+   "solutionSteps": [
+    "(A) خطأ [sin_cos]: cos بدل sin",
+    "(B) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "✓ (C) 0.1 N",
+    "(D) خطأ [forget_2_torque]: ضاعف بلا مبرر (خلط بالمزدوجة)"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.1,
+    "unit": "N",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "F = I·L·B·sin θ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N",
+     "points": 1
+    }
+   ],
+   "answerBasis": "F = I·L·B·sin θ (الكتاب ص ٩٤)",
+   "source": {
+    "book": "ص ٩٣–٩٥",
+    "lesson": "L2 §٥ [أستاذ س٥] + السكتان",
+    "exam": "٢٠٢٦ س٣-٣ (٢٥)"
+   }
+  },
+  {
+   "id": 20754,
+   "templateId": "U2.L2.T01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "ساق ناقلة مستقيمة طولها 5 cm يمر فيها تيار شدته 5 A موضوعة في حقل مغناطيسي منتظم شدته 0.1 T عمودي على الساق. احسب شدة القوة الكهرطيسية المؤثرة فيها.",
+   "options": [
+    "0.05 N",
+    "2.5 N",
+    "0.025 N",
+    "0.0125 N"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_2_torque",
+    "unit_cm_m",
+    null,
+    "sin_cos"
+   ],
+   "optionValues": [
+    0.05,
+    2.5,
+    0.025,
+    0.0125
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_2_torque]: ضاعف بلا مبرر (خلط بالمزدوجة)",
+    "(B) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "✓ (C) 0.025 N",
+    "(D) خطأ [sin_cos]: cos بدل sin"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.025,
+    "unit": "N",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "F = I·L·B·sin θ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N",
+     "points": 1
+    }
+   ],
+   "answerBasis": "F = I·L·B·sin θ (الكتاب ص ٩٤)",
+   "source": {
+    "book": "ص ٩٣–٩٥",
+    "lesson": "L2 §٥ [أستاذ س٥] + السكتان",
+    "exam": "٢٠٢٦ س٣-٣ (٢٥)"
+   }
+  },
+  {
+   "id": 20755,
+   "templateId": "U2.L2.T01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "ساق ناقلة مستقيمة طولها 5 cm يمر فيها تيار شدته 5 A موضوعة في حقل مغناطيسي منتظم شدته 0.5 T يصنع مع الساق زاوية 37°. احسب شدة القوة الكهرطيسية المؤثرة فيها.",
+   "options": [
+    "7.5 N",
+    "0.1 N",
+    "0.15 N",
+    "0.075 N"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "unit_cm_m",
+    "sin_cos",
+    "forget_2_torque",
+    null
+   ],
+   "optionValues": [
+    7.5,
+    0.1,
+    0.15,
+    0.075
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "(B) خطأ [sin_cos]: cos بدل sin",
+    "(C) خطأ [forget_2_torque]: ضاعف بلا مبرر (خلط بالمزدوجة)",
+    "✓ (D) 0.075 N"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.075,
+    "unit": "N",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "F = I·L·B·sin θ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N",
+     "points": 1
+    }
+   ],
+   "answerBasis": "F = I·L·B·sin θ (الكتاب ص ٩٤)",
+   "source": {
+    "book": "ص ٩٣–٩٥",
+    "lesson": "L2 §٥ [أستاذ س٥] + السكتان",
+    "exam": "٢٠٢٦ س٣-٣ (٢٥)"
+   }
+  },
+  {
+   "id": 20756,
+   "templateId": "U2.L2.T02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "إلكترون يدخل بسرعة v⃗ عمودية على حقل مغناطيسي منتظم B⃗. إذا ضاعفنا شدة الحقل فإن نصف قطر مساره:",
+   "options": [
+    "لا يتغير",
+    "ينصّف",
+    "يتضاعف",
+    "يصير أربعة أمثال"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "r_T_dependence",
+    null,
+    "invert_ratio",
+    "forget_sqrt"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [r_T_dependence]: ظنّ الدور T في الحقل المغناطيسي يتعلق بالسرعة",
+    "✓ (B) ينصّف",
+    "(C) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "(D) خطأ [forget_sqrt]: أهمل الجذر التربيعي (T0 ∝ m/k بدل √)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "r = me·v/(eB) · T = 2πme/(eB) (الكتاب ص ٩١–٩٢)",
+   "source": {
+    "book": "ص ٩١–٩٢، MCQ ص ١٠١",
+    "lesson": "L2 البرهان المُرقَّم [أستاذ س٤]"
+   }
+  },
+  {
+   "id": 20757,
+   "templateId": "U2.L2.T02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "دور حركة إلكترون في حقل مغناطيسي منتظم (v⃗ ⊥ B⃗):",
+   "options": [
+    "يتناسب طرداً مع شدة الحقل",
+    "يتناسب طرداً مع السرعة",
+    "لا يتعلق بسرعة الإلكترون",
+    "يتناسب عكساً مع السرعة"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "invert_ratio",
+    "r_T_dependence",
+    null,
+    "r_T_dependence"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: T = 2πme/(eB) عكساً",
+    "(B) خطأ [r_T_dependence]: ظنّ الدور T في الحقل المغناطيسي يتعلق بالسرعة",
+    "✓ (C) لا يتعلق بسرعة الإلكترون",
+    "(D) خطأ [r_T_dependence]: ظنّ الدور T في الحقل المغناطيسي يتعلق بالسرعة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "r = me·v/(eB) · T = 2πme/(eB) (الكتاب ص ٩١–٩٢)",
+   "source": {
+    "book": "ص ٩١–٩٢، MCQ ص ١٠١",
+    "lesson": "L2 البرهان المُرقَّم [أستاذ س٤]"
+   }
+  },
+  {
+   "id": 20758,
+   "templateId": "U2.L2.T02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "القوة المغناطيسية المؤثرة في شحنة متحركة في حقل مغناطيسي:",
+   "options": [
+    "تنقص قيمة السرعة",
+    "تزيد قيمة السرعة",
+    "تبذل عملاً موجباً",
+    "لا تبذل عملاً لأنها عمودية على السرعة دائماً"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "work_not_zero",
+    "work_not_zero",
+    "work_not_zero",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [work_not_zero]: ظنّ القوة المغناطيسية تبذل عملاً/تغيّر السرعة",
+    "(B) خطأ [work_not_zero]: ظنّ القوة المغناطيسية تبذل عملاً/تغيّر السرعة",
+    "(C) خطأ [work_not_zero]: ظنّ القوة المغناطيسية تبذل عملاً/تغيّر السرعة",
+    "✓ (D) لا تبذل عملاً لأنها عمودية على السرعة دائماً"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "r = me·v/(eB) · T = 2πme/(eB) (الكتاب ص ٩١–٩٢)",
+   "source": {
+    "book": "ص ٩١–٩٢، MCQ ص ١٠١",
+    "lesson": "L2 البرهان المُرقَّم [أستاذ س٤]"
+   }
+  },
+  {
+   "id": 20759,
+   "templateId": "U2.L2.T02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "تكون القوة المغناطيسية على شحنة متحركة معدومة عندما:",
+   "options": [
+    "تكون الشحنة سالبة",
+    "تكون السرعة كبيرة",
+    "تتحرك عمودياً على الحقل",
+    "تتحرك الشحنة موازيةً لخطوط الحقل"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "mix_formulas",
+    "sin_cos",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [sin_cos]: هنا القوة عظمى",
+    "✓ (D) تتحرك الشحنة موازيةً لخطوط الحقل"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "r = me·v/(eB) · T = 2πme/(eB) (الكتاب ص ٩١–٩٢)",
+   "source": {
+    "book": "ص ٩١–٩٢، MCQ ص ١٠١",
+    "lesson": "L2 البرهان المُرقَّم [أستاذ س٤]"
+   }
+  },
+  {
+   "id": 20760,
+   "templateId": "U2.L2.T02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "نصف قطر مسار إلكترون في حقل مغناطيسي منتظم يُعطى بالعلاقة:",
+   "options": [
+    "r = me·v/(e·B)",
+    "r = me·v²/(e·B)",
+    "r = e·B/(me·v)",
+    "r = 2π·me/(e·B)"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_square",
+    "invert_ratio",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) r = me·v/(e·B)",
+    "(B) خطأ [forget_square]: v زائدة",
+    "(C) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "(D) خطأ [mix_formulas]: هذه علاقة الدور T"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "r = me·v/(eB) · T = 2πme/(eB) (الكتاب ص ٩١–٩٢)",
+   "source": {
+    "book": "ص ٩١–٩٢، MCQ ص ١٠١",
+    "lesson": "L2 البرهان المُرقَّم [أستاذ س٤]"
+   }
+  },
+  {
+   "id": 20761,
+   "templateId": "U2.L2.T03",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "إطار مستطيل من 50 لفة مساحته 100 cm² يمر فيه تيار 1 A في حقل مغناطيسي منتظم شدته 0.2 T يوازي مستوي الإطار. احسب عزم المزدوجة الكهرطيسية المؤثرة فيه.",
+   "options": [
+    "0.1 N·m",
+    "0.05 N·m",
+    "0.002 N·m",
+    "10 N·m"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "cos_sin_flux",
+    "forget_N",
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    0.1,
+    0.05,
+    0.002,
+    10.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 0.1 N·m",
+    "(B) خطأ [cos_sin_flux]: cos بدل sin (خلط بالتدفق)",
+    "(C) خطأ [forget_N]: أهمل N",
+    "(D) خطأ [unit_cm_m]: تحويل cm² خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.1,
+    "unit": "N·m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Γ = N·I·S·B·sin α",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N·m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Γ = N·I·S·B·sin α (الكتاب ص ٩٧)",
+   "source": {
+    "book": "ص ٩٧–٩٨",
+    "lesson": "L2 §٨ [أستاذ س١١]",
+    "exam": "٢٠٢٦ مسألة ٢ الإطار (٤٥)"
+   }
+  },
+  {
+   "id": 20762,
+   "templateId": "U2.L2.T03",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "إطار مستطيل من 10 لفة مساحته 50 cm² يمر فيه تيار 4 A في حقل مغناطيسي منتظم شدته 0.5 T يصنع زاوية 30° مع الناظم على مستوي الإطار. احسب عزم المزدوجة الكهرطيسية المؤثرة فيه.",
+   "options": [
+    "0.0866 N·m",
+    "5 N·m",
+    "0.005 N·m",
+    "0.05 N·m"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "cos_sin_flux",
+    "unit_cm_m",
+    "forget_N",
+    null
+   ],
+   "optionValues": [
+    0.08660000000000001,
+    5.0,
+    0.005,
+    0.05
+   ],
+   "solutionSteps": [
+    "(A) خطأ [cos_sin_flux]: cos بدل sin (خلط بالتدفق)",
+    "(B) خطأ [unit_cm_m]: تحويل cm² خاطئ",
+    "(C) خطأ [forget_N]: أهمل N",
+    "✓ (D) 0.05 N·m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.05,
+    "unit": "N·m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Γ = N·I·S·B·sin α",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N·m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Γ = N·I·S·B·sin α (الكتاب ص ٩٧)",
+   "source": {
+    "book": "ص ٩٧–٩٨",
+    "lesson": "L2 §٨ [أستاذ س١١]",
+    "exam": "٢٠٢٦ مسألة ٢ الإطار (٤٥)"
+   }
+  },
+  {
+   "id": 20763,
+   "templateId": "U2.L2.T03",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "إطار مستطيل من 100 لفة مساحته 50 cm² يمر فيه تيار 2 A في حقل مغناطيسي منتظم شدته 0.5 T يصنع زاوية 30° مع الناظم على مستوي الإطار. احسب عزم المزدوجة الكهرطيسية المؤثرة فيه.",
+   "options": [
+    "0.0025 N·m",
+    "0.433 N·m",
+    "0.25 N·m",
+    "25 N·m"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_N",
+    "cos_sin_flux",
+    null,
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    0.0025,
+    0.433,
+    0.25,
+    25.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_N]: أهمل N",
+    "(B) خطأ [cos_sin_flux]: cos بدل sin (خلط بالتدفق)",
+    "✓ (C) 0.25 N·m",
+    "(D) خطأ [unit_cm_m]: تحويل cm² خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.25,
+    "unit": "N·m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Γ = N·I·S·B·sin α",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N·m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Γ = N·I·S·B·sin α (الكتاب ص ٩٧)",
+   "source": {
+    "book": "ص ٩٧–٩٨",
+    "lesson": "L2 §٨ [أستاذ س١١]",
+    "exam": "٢٠٢٦ مسألة ٢ الإطار (٤٥)"
+   }
+  },
+  {
+   "id": 20764,
+   "templateId": "U2.L2.T03",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "إطار مستطيل من 50 لفة مساحته 20 cm² يمر فيه تيار 4 A في حقل مغناطيسي منتظم شدته 0.1 T يصنع زاوية 30° مع الناظم على مستوي الإطار. احسب عزم المزدوجة الكهرطيسية المؤثرة فيه.",
+   "options": [
+    "2 N·m",
+    "0.02 N·m",
+    "0.0346 N·m",
+    "0.0004 N·m"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "unit_cm_m",
+    null,
+    "cos_sin_flux",
+    "forget_N"
+   ],
+   "optionValues": [
+    2.0,
+    0.020000000000000004,
+    0.034640000000000004,
+    0.0004
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_cm_m]: تحويل cm² خاطئ",
+    "✓ (B) 0.02 N·m",
+    "(C) خطأ [cos_sin_flux]: cos بدل sin (خلط بالتدفق)",
+    "(D) خطأ [forget_N]: أهمل N"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.020000000000000004,
+    "unit": "N·m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Γ = N·I·S·B·sin α",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N·m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Γ = N·I·S·B·sin α (الكتاب ص ٩٧)",
+   "source": {
+    "book": "ص ٩٧–٩٨",
+    "lesson": "L2 §٨ [أستاذ س١١]",
+    "exam": "٢٠٢٦ مسألة ٢ الإطار (٤٥)"
+   }
+  },
+  {
+   "id": 20765,
+   "templateId": "U2.L2.T03",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "إطار مستطيل من 20 لفة مساحته 100 cm² يمر فيه تيار 2 A في حقل مغناطيسي منتظم شدته 0.5 T يوازي مستوي الإطار. احسب عزم المزدوجة الكهرطيسية المؤثرة فيه.",
+   "options": [
+    "0.2 N·m",
+    "20 N·m",
+    "0.1 N·m",
+    "0.01 N·m"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "unit_cm_m",
+    "cos_sin_flux",
+    "forget_N"
+   ],
+   "optionValues": [
+    0.2,
+    20.0,
+    0.1,
+    0.01
+   ],
+   "solutionSteps": [
+    "✓ (A) 0.2 N·m",
+    "(B) خطأ [unit_cm_m]: تحويل cm² خاطئ",
+    "(C) خطأ [cos_sin_flux]: cos بدل sin (خلط بالتدفق)",
+    "(D) خطأ [forget_N]: أهمل N"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.2,
+    "unit": "N·m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Γ = N·I·S·B·sin α",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N·m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Γ = N·I·S·B·sin α (الكتاب ص ٩٧)",
+   "source": {
+    "book": "ص ٩٧–٩٨",
+    "lesson": "L2 §٨ [أستاذ س١١]",
+    "exam": "٢٠٢٦ مسألة ٢ الإطار (٤٥)"
+   }
+  },
+  {
+   "id": 20767,
+   "templateId": "U2.L2.T03",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "إطار مستطيل من 100 لفة مساحته 200 cm² يمر فيه تيار 2 A في حقل مغناطيسي منتظم شدته 0.1 T يصنع زاوية 30° مع الناظم على مستوي الإطار. احسب عزم المزدوجة الكهرطيسية المؤثرة فيه.",
+   "options": [
+    "0.2 N·m",
+    "0.346 N·m",
+    "0.002 N·m",
+    "20 N·m"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "cos_sin_flux",
+    "forget_N",
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    0.2,
+    0.34640000000000004,
+    0.002,
+    20.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 0.2 N·m",
+    "(B) خطأ [cos_sin_flux]: cos بدل sin (خلط بالتدفق)",
+    "(C) خطأ [forget_N]: أهمل N",
+    "(D) خطأ [unit_cm_m]: تحويل cm² خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.2,
+    "unit": "N·m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Γ = N·I·S·B·sin α",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة N·m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Γ = N·I·S·B·sin α (الكتاب ص ٩٧)",
+   "source": {
+    "book": "ص ٩٧–٩٨",
+    "lesson": "L2 §٨ [أستاذ س١١]",
+    "exam": "٢٠٢٦ مسألة ٢ الإطار (٤٥)"
+   }
+  },
+  {
+   "id": 20768,
+   "templateId": "U2.L3.T01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة من 200 لفة تغيّر التدفق المغناطيسي عبر كل لفة منها بمقدار 4 mWb خلال 20 ms. احسب القيمة المطلقة للقوة المحركة الكهربائية المتحرضة.",
+   "options": [
+    "40 V",
+    "0.2 V",
+    "0.016 V",
+    "0.8 V"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_N",
+    "invert_ratio",
+    "flux_vs_rate"
+   ],
+   "optionValues": [
+    40.0,
+    0.2,
+    0.016,
+    0.8
+   ],
+   "solutionSteps": [
+    "✓ (A) 40 V",
+    "(B) خطأ [forget_N]: أهمل N",
+    "(C) خطأ [invert_ratio]: ضرب بالزمن",
+    "(D) خطأ [flux_vs_rate]: أخذ التدفق نفسه لا معدل تغيره"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 40.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e = −N·ΔΦ/Δt",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة V",
+     "points": 1
+    }
+   ],
+   "answerBasis": "e = −N·ΔΦ/Δt (الكتاب ص ١١٠)",
+   "source": {
+    "book": "ص ١١٠",
+    "lesson": "L3 §٢ [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 20769,
+   "templateId": "U2.L3.T01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة من 100 لفة تغيّر التدفق المغناطيسي عبر كل لفة منها بمقدار 20 mWb خلال 20 ms. احسب القيمة المطلقة للقوة المحركة الكهربائية المتحرضة.",
+   "options": [
+    "2 V",
+    "1 V",
+    "100 V",
+    "0.04 V"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "flux_vs_rate",
+    "forget_N",
+    null,
+    "invert_ratio"
+   ],
+   "optionValues": [
+    2.0,
+    1.0,
+    100.0,
+    0.04
+   ],
+   "solutionSteps": [
+    "(A) خطأ [flux_vs_rate]: أخذ التدفق نفسه لا معدل تغيره",
+    "(B) خطأ [forget_N]: أهمل N",
+    "✓ (C) 100 V",
+    "(D) خطأ [invert_ratio]: ضرب بالزمن"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 100.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e = −N·ΔΦ/Δt",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة V",
+     "points": 1
+    }
+   ],
+   "answerBasis": "e = −N·ΔΦ/Δt (الكتاب ص ١١٠)",
+   "source": {
+    "book": "ص ١١٠",
+    "lesson": "L3 §٢ [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 20770,
+   "templateId": "U2.L3.T01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة من 1000 لفة تغيّر التدفق المغناطيسي عبر كل لفة منها بمقدار 4 mWb خلال 20 ms. احسب القيمة المطلقة للقوة المحركة الكهربائية المتحرضة.",
+   "options": [
+    "0.2 V",
+    "0.08 V",
+    "200 V",
+    "4 V"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_N",
+    "invert_ratio",
+    null,
+    "flux_vs_rate"
+   ],
+   "optionValues": [
+    0.2,
+    0.08,
+    200.0,
+    4.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_N]: أهمل N",
+    "(B) خطأ [invert_ratio]: ضرب بالزمن",
+    "✓ (C) 200 V",
+    "(D) خطأ [flux_vs_rate]: أخذ التدفق نفسه لا معدل تغيره"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 200.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e = −N·ΔΦ/Δt",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة V",
+     "points": 1
+    }
+   ],
+   "answerBasis": "e = −N·ΔΦ/Δt (الكتاب ص ١١٠)",
+   "source": {
+    "book": "ص ١١٠",
+    "lesson": "L3 §٢ [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 20771,
+   "templateId": "U2.L3.T01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة من 500 لفة تغيّر التدفق المغناطيسي عبر كل لفة منها بمقدار 5 mWb خلال 20 ms. احسب القيمة المطلقة للقوة المحركة الكهربائية المتحرضة.",
+   "options": [
+    "0.25 V",
+    "2.5 V",
+    "125 V",
+    "0.05 V"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_N",
+    "flux_vs_rate",
+    null,
+    "invert_ratio"
+   ],
+   "optionValues": [
+    0.25,
+    2.5,
+    125.0,
+    0.05
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_N]: أهمل N",
+    "(B) خطأ [flux_vs_rate]: أخذ التدفق نفسه لا معدل تغيره",
+    "✓ (C) 125 V",
+    "(D) خطأ [invert_ratio]: ضرب بالزمن"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 125.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e = −N·ΔΦ/Δt",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة V",
+     "points": 1
+    }
+   ],
+   "answerBasis": "e = −N·ΔΦ/Δt (الكتاب ص ١١٠)",
+   "source": {
+    "book": "ص ١١٠",
+    "lesson": "L3 §٢ [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 20772,
+   "templateId": "U2.L3.T01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة من 200 لفة تغيّر التدفق المغناطيسي عبر كل لفة منها بمقدار 5 mWb خلال 50 ms. احسب القيمة المطلقة للقوة المحركة الكهربائية المتحرضة.",
+   "options": [
+    "0.1 V",
+    "0.05 V",
+    "1 V",
+    "20 V"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_N",
+    "invert_ratio",
+    "flux_vs_rate",
+    null
+   ],
+   "optionValues": [
+    0.09999999999999999,
+    0.05,
+    1.0,
+    20.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_N]: أهمل N",
+    "(B) خطأ [invert_ratio]: ضرب بالزمن",
+    "(C) خطأ [flux_vs_rate]: أخذ التدفق نفسه لا معدل تغيره",
+    "✓ (D) 20 V"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 20.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e = −N·ΔΦ/Δt",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة V",
+     "points": 1
+    }
+   ],
+   "answerBasis": "e = −N·ΔΦ/Δt (الكتاب ص ١١٠)",
+   "source": {
+    "book": "ص ١١٠",
+    "lesson": "L3 §٢ [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 20773,
+   "templateId": "U2.L3.T01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة من 200 لفة تغيّر التدفق المغناطيسي عبر كل لفة منها بمقدار 20 mWb خلال 100 ms. احسب القيمة المطلقة للقوة المحركة الكهربائية المتحرضة.",
+   "options": [
+    "40 V",
+    "0.2 V",
+    "0.4 V",
+    "4 V"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_N",
+    "invert_ratio",
+    "flux_vs_rate"
+   ],
+   "optionValues": [
+    40.0,
+    0.19999999999999998,
+    0.4,
+    4.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 40 V",
+    "(B) خطأ [forget_N]: أهمل N",
+    "(C) خطأ [invert_ratio]: ضرب بالزمن",
+    "(D) خطأ [flux_vs_rate]: أخذ التدفق نفسه لا معدل تغيره"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 40.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e = −N·ΔΦ/Δt",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة V",
+     "points": 1
+    }
+   ],
+   "answerBasis": "e = −N·ΔΦ/Δt (الكتاب ص ١١٠)",
+   "source": {
+    "book": "ص ١١٠",
+    "lesson": "L3 §٢ [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 20774,
+   "templateId": "U2.L3.T02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة ذاتيتها 200 mH يتغير التيار فيها بمعدل 100 A·s⁻¹. احسب القيمة المطلقة للقوة المحركة الذاتية.",
+   "options": [
+    "20 V",
+    "10 V",
+    "20000 V",
+    "0.002 V"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_half",
+    "unit_confusion",
+    "forget_square"
+   ],
+   "optionValues": [
+    20.0,
+    10.0,
+    20000.0,
+    0.002
+   ],
+   "solutionSteps": [
+    "✓ (A) 20 V",
+    "(B) خطأ [forget_half]: أهمل ½ أو أضافه في غير موضعه",
+    "(C) خطأ [unit_confusion]: لم يحوّل mH ⇒ H",
+    "(D) خطأ [forget_square]: أهمل التربيع / قسم بدل الضرب"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 20.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "EL = ½·L·I² أو e = −L·di/dt",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "EL = ½·L·I² · e = −L·di/dt (الكتاب ص ١١٨–١٢٠)",
+   "source": {
+    "book": "ص ١١٨–١٢٠",
+    "lesson": "L3 §٦–§٧ [أستاذ س٩–س١١]"
+   }
+  },
+  {
+   "id": 20775,
+   "templateId": "U2.L3.T02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة ذاتيتها 200 mH يتغير التيار فيها بمعدل 20 A·s⁻¹. احسب القيمة المطلقة للقوة المحركة الذاتية.",
+   "options": [
+    "4 V",
+    "4000 V",
+    "2 V",
+    "0.01 V"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "unit_confusion",
+    "forget_half",
+    "forget_square"
+   ],
+   "optionValues": [
+    4.0,
+    4000.0,
+    2.0,
+    0.01
+   ],
+   "solutionSteps": [
+    "✓ (A) 4 V",
+    "(B) خطأ [unit_confusion]: لم يحوّل mH ⇒ H",
+    "(C) خطأ [forget_half]: أهمل ½ أو أضافه في غير موضعه",
+    "(D) خطأ [forget_square]: أهمل التربيع / قسم بدل الضرب"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 4.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "EL = ½·L·I² أو e = −L·di/dt",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "EL = ½·L·I² · e = −L·di/dt (الكتاب ص ١١٨–١٢٠)",
+   "source": {
+    "book": "ص ١١٨–١٢٠",
+    "lesson": "L3 §٦–§٧ [أستاذ س٩–س١١]"
+   }
+  },
+  {
+   "id": 20776,
+   "templateId": "U2.L3.T02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة ذاتيتها 20 mH يمر فيها تيار شدته 10 A. احسب الطاقة الكهرطيسية المختزنة فيها.",
+   "options": [
+    "2 J",
+    "0.1 J",
+    "1000 J",
+    "1 J"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_half",
+    "forget_square",
+    "unit_confusion",
+    null
+   ],
+   "optionValues": [
+    2.0,
+    0.1,
+    1000.0,
+    1.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_half]: أهمل ½ أو أضافه في غير موضعه",
+    "(B) خطأ [forget_square]: أهمل التربيع / قسم بدل الضرب",
+    "(C) خطأ [unit_confusion]: لم يحوّل mH ⇒ H",
+    "✓ (D) 1 J"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1.0,
+    "unit": "J",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "EL = ½·L·I² أو e = −L·di/dt",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "EL = ½·L·I² · e = −L·di/dt (الكتاب ص ١١٨–١٢٠)",
+   "source": {
+    "book": "ص ١١٨–١٢٠",
+    "lesson": "L3 §٦–§٧ [أستاذ س٩–س١١]"
+   }
+  },
+  {
+   "id": 20777,
+   "templateId": "U2.L3.T02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة ذاتيتها 20 mH يتغير التيار فيها بمعدل 20 A·s⁻¹. احسب القيمة المطلقة للقوة المحركة الذاتية.",
+   "options": [
+    "0.001 V",
+    "0.4 V",
+    "400 V",
+    "0.2 V"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "forget_square",
+    null,
+    "unit_confusion",
+    "forget_half"
+   ],
+   "optionValues": [
+    0.001,
+    0.4,
+    400.0,
+    0.2
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_square]: أهمل التربيع / قسم بدل الضرب",
+    "✓ (B) 0.4 V",
+    "(C) خطأ [unit_confusion]: لم يحوّل mH ⇒ H",
+    "(D) خطأ [forget_half]: أهمل ½ أو أضافه في غير موضعه"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.4,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "EL = ½·L·I² أو e = −L·di/dt",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "EL = ½·L·I² · e = −L·di/dt (الكتاب ص ١١٨–١٢٠)",
+   "source": {
+    "book": "ص ١١٨–١٢٠",
+    "lesson": "L3 §٦–§٧ [أستاذ س٩–س١١]"
+   }
+  },
+  {
+   "id": 20779,
+   "templateId": "U2.L3.T02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة ذاتيتها 20 mH يتغير التيار فيها بمعدل 10 A·s⁻¹. احسب القيمة المطلقة للقوة المحركة الذاتية.",
+   "options": [
+    "200 V",
+    "0.1 V",
+    "0.2 V",
+    "0.002 V"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "unit_confusion",
+    "forget_half",
+    null,
+    "forget_square"
+   ],
+   "optionValues": [
+    200.0,
+    0.1,
+    0.2,
+    0.002
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_confusion]: لم يحوّل mH ⇒ H",
+    "(B) خطأ [forget_half]: أهمل ½ أو أضافه في غير موضعه",
+    "✓ (C) 0.2 V",
+    "(D) خطأ [forget_square]: أهمل التربيع / قسم بدل الضرب"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.2,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "EL = ½·L·I² أو e = −L·di/dt",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "EL = ½·L·I² · e = −L·di/dt (الكتاب ص ١١٨–١٢٠)",
+   "source": {
+    "book": "ص ١١٨–١٢٠",
+    "lesson": "L3 §٦–§٧ [أستاذ س٩–س١١]"
+   }
+  },
+  {
+   "id": 20780,
+   "templateId": "U2.L3.T02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "وشيعة ذاتيتها 500 mH يتغير التيار فيها بمعدل 10 A·s⁻¹. احسب القيمة المطلقة للقوة المحركة الذاتية.",
+   "options": [
+    "2.5 V",
+    "5000 V",
+    "0.05 V",
+    "5 V"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_half",
+    "unit_confusion",
+    "forget_square",
+    null
+   ],
+   "optionValues": [
+    2.5,
+    5000.0,
+    0.05,
+    5.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_half]: أهمل ½ أو أضافه في غير موضعه",
+    "(B) خطأ [unit_confusion]: لم يحوّل mH ⇒ H",
+    "(C) خطأ [forget_square]: أهمل التربيع / قسم بدل الضرب",
+    "✓ (D) 5 V"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 5.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "EL = ½·L·I² أو e = −L·di/dt",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "EL = ½·L·I² · e = −L·di/dt (الكتاب ص ١١٨–١٢٠)",
+   "source": {
+    "book": "ص ١١٨–١٢٠",
+    "lesson": "L3 §٦–§٧ [أستاذ س٩–س١١]"
+   }
+  },
+  {
+   "id": 20781,
+   "templateId": "U2.L3.T03",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "تنشأ قوة محركة كهربائية متحرضة في دارة مغلقة عندما:",
+   "options": [
+    "توضع في حقل مغناطيسي منتظم ساكنة",
+    "يتغير التدفق المغناطيسي عبرها مع الزمن",
+    "تكون مقاومتها كبيرة",
+    "يكون التدفق المغناطيسي عبرها كبيراً وثابتاً"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "flux_vs_rate",
+    null,
+    "mix_formulas",
+    "flux_vs_rate"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [flux_vs_rate]: خلط التدفق بمعدل تغيره (e تتبع dΦ/dt)",
+    "✓ (B) يتغير التدفق المغناطيسي عبرها مع الزمن",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [flux_vs_rate]: خلط التدفق بمعدل تغيره (e تتبع dΦ/dt)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٠٤–١٢٠ [أستاذ س١–س٨]",
+   "source": {
+    "book": "ص ١٠٤–١٢٥",
+    "lesson": "L3 §١–§٨"
+   }
+  },
+  {
+   "id": 20782,
+   "templateId": "U2.L3.T03",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "ينص قانون لنز على أن التيار المتحرض:",
+   "options": [
+    "لا يتعلق بجهة تغير التدفق",
+    "يعزز السبب الذي ولّده",
+    "يكون دائماً بجهة التيار الأصلي",
+    "يعاكس بأثره السبب الذي ولّده"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "lenz_direction",
+    "lenz_direction",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [lenz_direction]: عكس جهة التيار المتحرض (لنز)",
+    "(C) خطأ [lenz_direction]: عكس جهة التيار المتحرض (لنز)",
+    "✓ (D) يعاكس بأثره السبب الذي ولّده"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٠٤–١٢٠ [أستاذ س١–س٨]",
+   "source": {
+    "book": "ص ١٠٤–١٢٥",
+    "lesson": "L3 §١–§٨"
+   }
+  },
+  {
+   "id": 20783,
+   "templateId": "U2.L3.T03",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "تكون القوة المحركة المتحرضة في مولد التيار المتناوب عظمى عندما:",
+   "options": [
+    "يوازي الناظم خطوط الحقل",
+    "يتوقف الإطار عن الدوران",
+    "يكون التدفق معدوماً (معدل تغيره أعظمي)",
+    "يكون التدفق أعظمياً"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "cos_sin_flux",
+    "flux_vs_rate",
+    null,
+    "flux_vs_rate"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [cos_sin_flux]: هنا Φ أعظمي وe = 0",
+    "(B) خطأ [flux_vs_rate]: خلط التدفق بمعدل تغيره (e تتبع dΦ/dt)",
+    "✓ (C) يكون التدفق معدوماً (معدل تغيره أعظمي)",
+    "(D) خطأ [flux_vs_rate]: خلط التدفق بمعدل تغيره (e تتبع dΦ/dt)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٠٤–١٢٠ [أستاذ س١–س٨]",
+   "source": {
+    "book": "ص ١٠٤–١٢٥",
+    "lesson": "L3 §١–§٨"
+   }
+  },
+  {
+   "id": 20784,
+   "templateId": "U2.L3.T03",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "وحدة الذاتية L هي:",
+   "options": [
+    "التسلا T",
+    "الفاراد F",
+    "الهنري H",
+    "الويبر Wb"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "unit_confusion",
+    "unit_confusion",
+    null,
+    "unit_confusion"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_confusion]: واحدة مقدار آخر أو تركيب خاطئ للواحدات (أسئلة الوحدات)",
+    "(B) خطأ [unit_confusion]: واحدة مقدار آخر أو تركيب خاطئ للواحدات (أسئلة الوحدات)",
+    "✓ (C) الهنري H",
+    "(D) خطأ [unit_confusion]: واحدة مقدار آخر أو تركيب خاطئ للواحدات (أسئلة الوحدات)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٠٤–١٢٠ [أستاذ س١–س٨]",
+   "source": {
+    "book": "ص ١٠٤–١٢٥",
+    "lesson": "L3 §١–§٨"
+   }
+  },
+  {
+   "id": 20785,
+   "templateId": "U2.L3.T03",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "عند اقتراب القطب الشمالي لمغناطيس من وجه وشيعة فإن ذلك الوجه يصبح:",
+   "options": [
+    "لا قطبية له",
+    "جنوبياً (يجذب المغناطيس)",
+    "شمالياً (يتنافر مع المغناطيس مقاوماً الاقتراب)",
+    "شمالياً أو جنوبياً حسب عدد اللفات"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "lenz_direction",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [lenz_direction]: عكس جهة التيار المتحرض (لنز)",
+    "✓ (C) شمالياً (يتنافر مع المغناطيس مقاوماً الاقتراب)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٠٤–١٢٠ [أستاذ س١–س٨]",
+   "source": {
+    "book": "ص ١٠٤–١٢٥",
+    "lesson": "L3 §١–§٨"
+   }
+  },
+  {
+   "id": 20786,
+   "templateId": "U2.L4.T01",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة مهتزة مؤلفة من وشيعة مهملة المقاومة ذاتيتها 10 mH ومكثفة سعتها 25 μF. احسب الدور الخاص T0 للاهتزازات الكهربائية الحرة غير المتخامدة (π = 3.14).",
+   "options": [
+    "5×10⁻⁴ s",
+    "3.18×10² s",
+    "3.14×10⁻³ s",
+    "1.26×10² s"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_2pi",
+    "invert_ratio",
+    null,
+    "LC_inverted"
+   ],
+   "optionValues": [
+    0.0005,
+    318.47133757961785,
+    0.00314,
+    125.60000000000001
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_2pi]: أهمل 2π",
+    "(B) خطأ [invert_ratio]: قلب الدور بالتواتر",
+    "✓ (C) 3.14×10⁻³ s",
+    "(D) خطأ [LC_inverted]: √(L/C) بدل √(LC)"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.00314,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "T0 = 2π√(LC)",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "T0 = 2π√(LC) علاقة طومسون (الكتاب ص ١٣٠)",
+   "source": {
+    "book": "ص ١٣٠",
+    "lesson": "L4 البرهان ١ [أستاذ س٣]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20787,
+   "templateId": "U2.L4.T01",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة مهتزة مؤلفة من وشيعة مهملة المقاومة ذاتيتها 100 mH ومكثفة سعتها 10 μF. احسب الدور الخاص T0 للاهتزازات الكهربائية الحرة غير المتخامدة (π = 3.14).",
+   "options": [
+    "10⁻³ s",
+    "6.28×10⁻³ s",
+    "6.28×10² s",
+    "1.59×10² s"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "forget_2pi",
+    null,
+    "LC_inverted",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    0.001,
+    0.00628,
+    628.0000000000001,
+    159.23566878980893
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_2pi]: أهمل 2π",
+    "✓ (B) 6.28×10⁻³ s",
+    "(C) خطأ [LC_inverted]: √(L/C) بدل √(LC)",
+    "(D) خطأ [invert_ratio]: قلب الدور بالتواتر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.00628,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "T0 = 2π√(LC)",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "T0 = 2π√(LC) علاقة طومسون (الكتاب ص ١٣٠)",
+   "source": {
+    "book": "ص ١٣٠",
+    "lesson": "L4 البرهان ١ [أستاذ س٣]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20789,
+   "templateId": "U2.L4.T01",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة مهتزة مؤلفة من وشيعة مهملة المقاومة ذاتيتها 10 mH ومكثفة سعتها 100 μF. احسب الدور الخاص T0 للاهتزازات الكهربائية الحرة غير المتخامدة (π = 3.14).",
+   "options": [
+    "1.59×10² s",
+    "6.28×10¹ s",
+    "6.28×10⁻³ s",
+    "10⁻³ s"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "invert_ratio",
+    "LC_inverted",
+    null,
+    "forget_2pi"
+   ],
+   "optionValues": [
+    159.23566878980893,
+    62.800000000000004,
+    0.00628,
+    0.001
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: قلب الدور بالتواتر",
+    "(B) خطأ [LC_inverted]: √(L/C) بدل √(LC)",
+    "✓ (C) 6.28×10⁻³ s",
+    "(D) خطأ [forget_2pi]: أهمل 2π"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.00628,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "T0 = 2π√(LC)",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "T0 = 2π√(LC) علاقة طومسون (الكتاب ص ١٣٠)",
+   "source": {
+    "book": "ص ١٣٠",
+    "lesson": "L4 البرهان ١ [أستاذ س٣]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20790,
+   "templateId": "U2.L4.T01",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة مهتزة مؤلفة من وشيعة مهملة المقاومة ذاتيتها 1 mH ومكثفة سعتها 10 μF. احسب الدور الخاص T0 للاهتزازات الكهربائية الحرة غير المتخامدة (π = 3.14).",
+   "options": [
+    "10⁻⁴ s",
+    "6.28×10¹ s",
+    "6.28×10⁻⁴ s",
+    "1.59×10³ s"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_2pi",
+    "LC_inverted",
+    null,
+    "invert_ratio"
+   ],
+   "optionValues": [
+    0.0001,
+    62.800000000000004,
+    0.0006280000000000001,
+    1592.356687898089
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_2pi]: أهمل 2π",
+    "(B) خطأ [LC_inverted]: √(L/C) بدل √(LC)",
+    "✓ (C) 6.28×10⁻⁴ s",
+    "(D) خطأ [invert_ratio]: قلب الدور بالتواتر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.0006280000000000001,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "T0 = 2π√(LC)",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "T0 = 2π√(LC) علاقة طومسون (الكتاب ص ١٣٠)",
+   "source": {
+    "book": "ص ١٣٠",
+    "lesson": "L4 البرهان ١ [أستاذ س٣]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20791,
+   "templateId": "U2.L4.T01",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة مهتزة مؤلفة من وشيعة مهملة المقاومة ذاتيتها 1 mH ومكثفة سعتها 250 μF. احسب الدور الخاص T0 للاهتزازات الكهربائية الحرة غير المتخامدة (π = 3.14).",
+   "options": [
+    "3.14×10⁻³ s",
+    "1.26×10¹ s",
+    "5×10⁻⁴ s",
+    "3.18×10² s"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "LC_inverted",
+    "forget_2pi",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    0.00314,
+    12.56,
+    0.0005,
+    318.47133757961785
+   ],
+   "solutionSteps": [
+    "✓ (A) 3.14×10⁻³ s",
+    "(B) خطأ [LC_inverted]: √(L/C) بدل √(LC)",
+    "(C) خطأ [forget_2pi]: أهمل 2π",
+    "(D) خطأ [invert_ratio]: قلب الدور بالتواتر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.00314,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "T0 = 2π√(LC)",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "T0 = 2π√(LC) علاقة طومسون (الكتاب ص ١٣٠)",
+   "source": {
+    "book": "ص ١٣٠",
+    "lesson": "L4 البرهان ١ [أستاذ س٣]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20792,
+   "templateId": "U2.L4.T01",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة مهتزة مؤلفة من وشيعة مهملة المقاومة ذاتيتها 40 mH ومكثفة سعتها 25 μF. احسب الدور الخاص T0 للاهتزازات الكهربائية الحرة غير المتخامدة (π = 3.14).",
+   "options": [
+    "2.51×10² s",
+    "1.59×10² s",
+    "6.28×10⁻³ s",
+    "10⁻³ s"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "LC_inverted",
+    "invert_ratio",
+    null,
+    "forget_2pi"
+   ],
+   "optionValues": [
+    251.20000000000002,
+    159.23566878980893,
+    0.00628,
+    0.001
+   ],
+   "solutionSteps": [
+    "(A) خطأ [LC_inverted]: √(L/C) بدل √(LC)",
+    "(B) خطأ [invert_ratio]: قلب الدور بالتواتر",
+    "✓ (C) 6.28×10⁻³ s",
+    "(D) خطأ [forget_2pi]: أهمل 2π"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.00628,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "T0 = 2π√(LC)",
+     "points": 5
+    },
+    {
+     "step": "التحويلات والتعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "T0 = 2π√(LC) علاقة طومسون (الكتاب ص ١٣٠)",
+   "source": {
+    "book": "ص ١٣٠",
+    "lesson": "L4 البرهان ١ [أستاذ س٣]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20793,
+   "templateId": "U2.L4.T02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "مكثفة سعتها 4 μF شُحنت تحت توتر 20 V ثم وُصلت بوشيعة مهملة المقاومة ذاتيتها 40 mH. احسب الشدة العظمى للتيار.",
+   "options": [
+    "0.283 A",
+    "0.04 A",
+    "0.2 A",
+    "0.0063 A"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_half",
+    "forget_square",
+    null,
+    "unit_confusion"
+   ],
+   "optionValues": [
+    0.282842712474619,
+    0.039999999999999994,
+    0.19999999999999998,
+    0.006324555320336759
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_half]: أهمل ½ في الطاقة",
+    "(B) خطأ [forget_square]: أهمل التربيع/الجذر",
+    "✓ (C) 0.2 A",
+    "(D) خطأ [unit_confusion]: تحويل μF/mH خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.19999999999999998,
+    "unit": "A",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "E = ½·C·U² = ½·L·Imax²",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "E = Qmax²/2C = ½CU² = ½LImax² (الكتاب ص ١٣٣)",
+   "source": {
+    "book": "ص ١٣٢–١٣٣",
+    "lesson": "L4 البرهان ٢ [أستاذ س٦]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20794,
+   "templateId": "U2.L4.T02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "مكثفة سعتها 2 μF شُحنت تحت توتر 5 V ثم وُصلت بوشيعة مهملة المقاومة ذاتيتها 20 mH. احسب الشدة العظمى للتيار.",
+   "options": [
+    "0.0025 A",
+    "0.0707 A",
+    "0.05 A",
+    "0.0016 A"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_square",
+    "forget_half",
+    null,
+    "unit_confusion"
+   ],
+   "optionValues": [
+    0.0024999999999999996,
+    0.07071067811865475,
+    0.049999999999999996,
+    0.0015811388300841897
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_square]: أهمل التربيع/الجذر",
+    "(B) خطأ [forget_half]: أهمل ½ في الطاقة",
+    "✓ (C) 0.05 A",
+    "(D) خطأ [unit_confusion]: تحويل μF/mH خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.049999999999999996,
+    "unit": "A",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "E = ½·C·U² = ½·L·Imax²",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "E = Qmax²/2C = ½CU² = ½LImax² (الكتاب ص ١٣٣)",
+   "source": {
+    "book": "ص ١٣٢–١٣٣",
+    "lesson": "L4 البرهان ٢ [أستاذ س٦]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20795,
+   "templateId": "U2.L4.T02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "مكثفة سعتها 2 μF شُحنت تحت توتر 50 V ثم وُصلت بوشيعة مهملة المقاومة ذاتيتها 200 mH. احسب الطاقة الكلية للدارة.",
+   "options": [
+    "2.5 J",
+    "2.5×10⁻³ J",
+    "5×10⁻³ J",
+    "5×10⁻⁵ J"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "unit_confusion",
+    null,
+    "forget_half",
+    "forget_square"
+   ],
+   "optionValues": [
+    2.5,
+    0.0025,
+    0.005,
+    4.9999999999999996e-05
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_confusion]: تحويل μF/mH خاطئ",
+    "✓ (B) 2.5×10⁻³ J",
+    "(C) خطأ [forget_half]: أهمل ½ في الطاقة",
+    "(D) خطأ [forget_square]: أهمل التربيع/الجذر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.0025,
+    "unit": "J",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "E = ½·C·U² = ½·L·Imax²",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "E = Qmax²/2C = ½CU² = ½LImax² (الكتاب ص ١٣٣)",
+   "source": {
+    "book": "ص ١٣٢–١٣٣",
+    "lesson": "L4 البرهان ٢ [أستاذ س٦]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20796,
+   "templateId": "U2.L4.T02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "مكثفة سعتها 2 μF شُحنت تحت توتر 10 V ثم وُصلت بوشيعة مهملة المقاومة ذاتيتها 10 mH. احسب الطاقة الكلية للدارة.",
+   "options": [
+    "10⁻¹ J",
+    "10⁻⁵ J",
+    "10⁻⁴ J",
+    "2×10⁻⁴ J"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "unit_confusion",
+    "forget_square",
+    null,
+    "forget_half"
+   ],
+   "optionValues": [
+    0.1,
+    9.999999999999999e-06,
+    9.999999999999999e-05,
+    0.00019999999999999998
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_confusion]: تحويل μF/mH خاطئ",
+    "(B) خطأ [forget_square]: أهمل التربيع/الجذر",
+    "✓ (C) 10⁻⁴ J",
+    "(D) خطأ [forget_half]: أهمل ½ في الطاقة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 9.999999999999999e-05,
+    "unit": "J",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "E = ½·C·U² = ½·L·Imax²",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "E = Qmax²/2C = ½CU² = ½LImax² (الكتاب ص ١٣٣)",
+   "source": {
+    "book": "ص ١٣٢–١٣٣",
+    "lesson": "L4 البرهان ٢ [أستاذ س٦]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20797,
+   "templateId": "U2.L4.T02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "مكثفة سعتها 4 μF شُحنت تحت توتر 10 V ثم وُصلت بوشيعة مهملة المقاومة ذاتيتها 10 mH. احسب الشدة العظمى للتيار.",
+   "options": [
+    "0.04 A",
+    "0.283 A",
+    "0.2 A",
+    "0.0063 A"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_square",
+    "forget_half",
+    null,
+    "unit_confusion"
+   ],
+   "optionValues": [
+    0.039999999999999994,
+    0.282842712474619,
+    0.19999999999999998,
+    0.006324555320336759
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_square]: أهمل التربيع/الجذر",
+    "(B) خطأ [forget_half]: أهمل ½ في الطاقة",
+    "✓ (C) 0.2 A",
+    "(D) خطأ [unit_confusion]: تحويل μF/mH خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.19999999999999998,
+    "unit": "A",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "E = ½·C·U² = ½·L·Imax²",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "E = Qmax²/2C = ½CU² = ½LImax² (الكتاب ص ١٣٣)",
+   "source": {
+    "book": "ص ١٣٢–١٣٣",
+    "lesson": "L4 البرهان ٢ [أستاذ س٦]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20798,
+   "templateId": "U2.L4.T02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "مكثفة سعتها 50 μF شُحنت تحت توتر 20 V ثم وُصلت بوشيعة مهملة المقاومة ذاتيتها 40 mH. احسب الطاقة الكلية للدارة.",
+   "options": [
+    "10¹ J",
+    "2×10⁻² J",
+    "5×10⁻⁴ J",
+    "10⁻² J"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "unit_confusion",
+    "forget_half",
+    "forget_square",
+    null
+   ],
+   "optionValues": [
+    10.0,
+    0.019999999999999997,
+    0.0005,
+    0.009999999999999998
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_confusion]: تحويل μF/mH خاطئ",
+    "(B) خطأ [forget_half]: أهمل ½ في الطاقة",
+    "(C) خطأ [forget_square]: أهمل التربيع/الجذر",
+    "✓ (D) 10⁻² J"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.009999999999999998,
+    "unit": "J",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "E = ½·C·U² = ½·L·Imax²",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "E = Qmax²/2C = ½CU² = ½LImax² (الكتاب ص ١٣٣)",
+   "source": {
+    "book": "ص ١٣٢–١٣٣",
+    "lesson": "L4 البرهان ٢ [أستاذ س٦]",
+    "exam": "٢٠٢٦ س٤ (٣٠)"
+   }
+  },
+  {
+   "id": 20799,
+   "templateId": "U2.L4.T03",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "يكون تفريغ المكثفة عبر وشيعة دورياً غير متخامد عندما تكون المقاومة الأومية للدارة:",
+   "options": [
+    "مهملة",
+    "صغيرة",
+    "أي قيمة",
+    "كبيرة جداً"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "true_but_partial",
+    "mix_formulas",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) مهملة",
+    "(B) خطأ [true_but_partial]: صغيرة ⇒ متخامد",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [mix_formulas]: كبيرة ⇒ لا دوري"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٢٨–١٣٣ [أستاذ س١ س٤ س٥]",
+   "source": {
+    "book": "ص ١٢٦–١٣٧",
+    "lesson": "L4 §١ §٣ §٤ [أستاذ س١ س٤ س٥]"
+   }
+  },
+  {
+   "id": 20800,
+   "templateId": "U2.L4.T03",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "في الدارة المهتزة LC، عندما تكون شحنة المكثفة عظمى فإن شدة التيار في الوشيعة:",
+   "options": [
+    "تساوي نصف قيمتها العظمى",
+    "عظمى",
+    "لا يمكن تحديدها",
+    "معدومة"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "sin_cos",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [sin_cos]: i متقدم على q بربع دور",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) معدومة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٢٨–١٣٣ [أستاذ س١ س٤ س٥]",
+   "source": {
+    "book": "ص ١٢٦–١٣٧",
+    "lesson": "L4 §١ §٣ §٤ [أستاذ س١ س٤ س٥]"
+   }
+  },
+  {
+   "id": 20801,
+   "templateId": "U2.L4.T03",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "تنتقل الطاقة في الدارة المهتزة غير المتخامدة:",
+   "options": [
+    "تتناقص باستمرار بفعل جول",
+    "من المكثفة إلى الوشيعة حيث تُستهلك",
+    "تبقى كلها في المكثفة",
+    "من كهربائية في المكثفة إلى كهرطيسية في الوشيعة وبالعكس، ومجموعهما ثابت"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "true_but_partial",
+    "power_in_LC",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [true_but_partial]: ذاك مع مقاومة",
+    "(B) خطأ [power_in_LC]: حسب استطاعة على وشيعة/مكثفة (P = 0 فيهما)",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) من كهربائية في المكثفة إلى كهرطيسية في الوشيعة وبالعكس، ومجموعهما ثابت"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٢٨–١٣٣ [أستاذ س١ س٤ س٥]",
+   "source": {
+    "book": "ص ١٢٦–١٣٧",
+    "lesson": "L4 §١ §٣ §٤ [أستاذ س١ س٤ س٥]"
+   }
+  },
+  {
+   "id": 20802,
+   "templateId": "U2.L4.T03",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "بمقارنة الدارة المهتزة بالنواس المرن، تقابل الذاتية L:",
+   "options": [
+    "السرعة v",
+    "الكتلة m",
+    "المطال x",
+    "ثابت الصلابة k"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "mix_formulas",
+    "LC_inverted"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: i ↔ v",
+    "✓ (B) الكتلة m",
+    "(C) خطأ [mix_formulas]: q ↔ x",
+    "(D) خطأ [LC_inverted]: 1/C ↔ k"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٢٨–١٣٣ [أستاذ س١ س٤ س٥]",
+   "source": {
+    "book": "ص ١٢٦–١٣٧",
+    "lesson": "L4 §١ §٣ §٤ [أستاذ س١ س٤ س٥]"
+   }
+  },
+  {
+   "id": 20803,
+   "templateId": "U2.L4.T03",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "يتقدم تابع شدة التيار على تابع الشحنة في الدارة المهتزة بالطور بمقدار:",
+   "options": [
+    "π/2 (ربع دور)",
+    "صفر (توافق بالطور)",
+    "π (نصف دور)",
+    "2π (دور كامل)"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "mix_formulas",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) π/2 (ربع دور)",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٢٨–١٣٣ [أستاذ س١ س٤ س٥]",
+   "source": {
+    "book": "ص ١٢٦–١٣٧",
+    "lesson": "L4 §١ §٣ §٤ [أستاذ س١ س٤ س٥]"
+   }
+  },
+  {
+   "id": 20804,
+   "templateId": "U2.L5.T01",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "منبع توتر متناوب جيبي قيمته المنتجة 240 V وتواتره 50 Hz. احسب الدور T.",
+   "options": [
+    "0.126 s",
+    "0.0032 s",
+    "50 s",
+    "0.02 s"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_2pi",
+    "mix_formulas",
+    "forget_sqrt2",
+    null
+   ],
+   "optionValues": [
+    0.12560000000000002,
+    0.0031847133757961785,
+    50.0,
+    0.02
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_2pi]: خلط 2 بـ√2 / 2π في غير موضعه",
+    "(B) خطأ [mix_formulas]: علاقة مقدار آخر",
+    "(C) خطأ [forget_sqrt2]: قسم على √2 بدل الضرب / خلط f بـT أو ω",
+    "✓ (D) 0.02 s"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.02,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Umax = Ueff·√2 · ω = 2πf · T = 1/f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Ueff = Umax/√2 (الكتاب ص ١٤١)",
+   "source": {
+    "book": "ص ١٤٠–١٤٢",
+    "lesson": "L5 §٢ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣: u = 120√2·cos(120πt)"
+   }
+  },
+  {
+   "id": 20805,
+   "templateId": "U2.L5.T01",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "منبع توتر متناوب جيبي قيمته المنتجة 240 V وتواتره 50 Hz. احسب النبض ω (π = 3.14).",
+   "options": [
+    "50 rad·s⁻¹",
+    "314 rad·s⁻¹",
+    "157 rad·s⁻¹",
+    "0.02 rad·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "forget_sqrt2",
+    null,
+    "forget_2pi",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    50.0,
+    314.0,
+    157.0,
+    0.02
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_sqrt2]: قسم على √2 بدل الضرب / خلط f بـT أو ω",
+    "✓ (B) 314 rad·s⁻¹",
+    "(C) خطأ [forget_2pi]: خلط 2 بـ√2 / 2π في غير موضعه",
+    "(D) خطأ [mix_formulas]: علاقة مقدار آخر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 314.0,
+    "unit": "rad·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Umax = Ueff·√2 · ω = 2πf · T = 1/f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Ueff = Umax/√2 (الكتاب ص ١٤١)",
+   "source": {
+    "book": "ص ١٤٠–١٤٢",
+    "lesson": "L5 §٢ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣: u = 120√2·cos(120πt)"
+   }
+  },
+  {
+   "id": 20806,
+   "templateId": "U2.L5.T01",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "منبع توتر متناوب جيبي قيمته المنتجة 220 V وتواتره 50 Hz. احسب النبض ω (π = 3.14).",
+   "options": [
+    "314 rad·s⁻¹",
+    "50 rad·s⁻¹",
+    "0.02 rad·s⁻¹",
+    "157 rad·s⁻¹"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_sqrt2",
+    "mix_formulas",
+    "forget_2pi"
+   ],
+   "optionValues": [
+    314.0,
+    50.0,
+    0.02,
+    157.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 314 rad·s⁻¹",
+    "(B) خطأ [forget_sqrt2]: قسم على √2 بدل الضرب / خلط f بـT أو ω",
+    "(C) خطأ [mix_formulas]: علاقة مقدار آخر",
+    "(D) خطأ [forget_2pi]: خلط 2 بـ√2 / 2π في غير موضعه"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 314.0,
+    "unit": "rad·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Umax = Ueff·√2 · ω = 2πf · T = 1/f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Ueff = Umax/√2 (الكتاب ص ١٤١)",
+   "source": {
+    "book": "ص ١٤٠–١٤٢",
+    "lesson": "L5 §٢ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣: u = 120√2·cos(120πt)"
+   }
+  },
+  {
+   "id": 20807,
+   "templateId": "U2.L5.T01",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "منبع توتر متناوب جيبي قيمته المنتجة 220 V وتواتره 50 Hz. احسب الدور T.",
+   "options": [
+    "50 s",
+    "0.02 s",
+    "0.0032 s",
+    "0.126 s"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "forget_sqrt2",
+    null,
+    "mix_formulas",
+    "forget_2pi"
+   ],
+   "optionValues": [
+    50.0,
+    0.02,
+    0.0031847133757961785,
+    0.12560000000000002
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_sqrt2]: قسم على √2 بدل الضرب / خلط f بـT أو ω",
+    "✓ (B) 0.02 s",
+    "(C) خطأ [mix_formulas]: علاقة مقدار آخر",
+    "(D) خطأ [forget_2pi]: خلط 2 بـ√2 / 2π في غير موضعه"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.02,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Umax = Ueff·√2 · ω = 2πf · T = 1/f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Ueff = Umax/√2 (الكتاب ص ١٤١)",
+   "source": {
+    "book": "ص ١٤٠–١٤٢",
+    "lesson": "L5 §٢ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣: u = 120√2·cos(120πt)"
+   }
+  },
+  {
+   "id": 20810,
+   "templateId": "U2.L5.T01",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "منبع توتر متناوب جيبي قيمته المنتجة 110 V وتواتره 50 Hz. احسب الدور T.",
+   "options": [
+    "0.02 s",
+    "50 s",
+    "0.0032 s",
+    "0.126 s"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_sqrt2",
+    "mix_formulas",
+    "forget_2pi"
+   ],
+   "optionValues": [
+    0.02,
+    50.0,
+    0.0031847133757961785,
+    0.12560000000000002
+   ],
+   "solutionSteps": [
+    "✓ (A) 0.02 s",
+    "(B) خطأ [forget_sqrt2]: قسم على √2 بدل الضرب / خلط f بـT أو ω",
+    "(C) خطأ [mix_formulas]: علاقة مقدار آخر",
+    "(D) خطأ [forget_2pi]: خلط 2 بـ√2 / 2π في غير موضعه"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.02,
+    "unit": "s",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Umax = Ueff·√2 · ω = 2πf · T = 1/f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Ueff = Umax/√2 (الكتاب ص ١٤١)",
+   "source": {
+    "book": "ص ١٤٠–١٤٢",
+    "lesson": "L5 §٢ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣: u = 120√2·cos(120πt)"
+   }
+  },
+  {
+   "id": 20812,
+   "templateId": "U2.L5.T01",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "منبع توتر متناوب جيبي قيمته المنتجة 120 V وتواتره 50 Hz. احسب النبض ω (π = 3.14).",
+   "options": [
+    "0.02 rad·s⁻¹",
+    "314 rad·s⁻¹",
+    "157 rad·s⁻¹",
+    "50 rad·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "forget_2pi",
+    "forget_sqrt2"
+   ],
+   "optionValues": [
+    0.02,
+    314.0,
+    157.0,
+    50.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة مقدار آخر",
+    "✓ (B) 314 rad·s⁻¹",
+    "(C) خطأ [forget_2pi]: خلط 2 بـ√2 / 2π في غير موضعه",
+    "(D) خطأ [forget_sqrt2]: قسم على √2 بدل الضرب / خلط f بـT أو ω"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 314.0,
+    "unit": "rad·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Umax = Ueff·√2 · ω = 2πf · T = 1/f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Ueff = Umax/√2 (الكتاب ص ١٤١)",
+   "source": {
+    "book": "ص ١٤٠–١٤٢",
+    "lesson": "L5 §٢ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣: u = 120√2·cos(120πt)"
+   }
+  },
+  {
+   "id": 20813,
+   "templateId": "U2.L5.T02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة على التسلسل تضم مقاومة R = 80 Ω ووشيعة مهملة المقاومة ردّيتها Lω = 160 Ω ومكثفة اتساعيتها 1/Cω = 100 Ω. احسب الممانعة الكلية Z للدارة.",
+   "options": [
+    "100 Ω",
+    "140 Ω",
+    "272 Ω",
+    "20 Ω"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "Z_algebraic",
+    "XL_XC_swap",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    100.0,
+    140.0,
+    272.02941017470886,
+    20.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 100 Ω",
+    "(B) خطأ [Z_algebraic]: جمع جبري بدل فيثاغورث",
+    "(C) خطأ [XL_XC_swap]: جمع Lω و1/Cω بدل طرحهما",
+    "(D) خطأ [mix_formulas]: أهمل R"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 100.0,
+    "unit": "Ω",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Z = √(R² + (Lω − 1/Cω)²)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Ω",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Z = √(R² + (Lω − 1/Cω)²) (الكتاب ص ١٥١)",
+   "source": {
+    "book": "ص ١٥٠–١٥١",
+    "lesson": "L5 §٥ القواعد الخمس + فرينل [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣ (٨٠)"
+   }
+  },
+  {
+   "id": 20814,
+   "templateId": "U2.L5.T02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة على التسلسل تضم مقاومة R = 60 Ω ووشيعة مهملة المقاومة ردّيتها Lω = 160 Ω ومكثفة اتساعيتها 1/Cω = 80 Ω. احسب الممانعة الكلية Z للدارة.",
+   "options": [
+    "140 Ω",
+    "100 Ω",
+    "40 Ω",
+    "247 Ω"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "Z_algebraic",
+    null,
+    "mix_formulas",
+    "XL_XC_swap"
+   ],
+   "optionValues": [
+    140.0,
+    100.0,
+    40.0,
+    247.38633753705963
+   ],
+   "solutionSteps": [
+    "(A) خطأ [Z_algebraic]: جمع جبري بدل فيثاغورث",
+    "✓ (B) 100 Ω",
+    "(C) خطأ [mix_formulas]: أهمل R",
+    "(D) خطأ [XL_XC_swap]: جمع Lω و1/Cω بدل طرحهما"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 100.0,
+    "unit": "Ω",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Z = √(R² + (Lω − 1/Cω)²)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Ω",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Z = √(R² + (Lω − 1/Cω)²) (الكتاب ص ١٥١)",
+   "source": {
+    "book": "ص ١٥٠–١٥١",
+    "lesson": "L5 §٥ القواعد الخمس + فرينل [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣ (٨٠)"
+   }
+  },
+  {
+   "id": 20816,
+   "templateId": "U2.L5.T02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة على التسلسل تضم مقاومة R = 80 Ω ووشيعة مهملة المقاومة ردّيتها Lω = 40 Ω ومكثفة اتساعيتها 1/Cω = 100 Ω. احسب الممانعة الكلية Z للدارة.",
+   "options": [
+    "100 Ω",
+    "140 Ω",
+    "161 Ω",
+    "20 Ω"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "Z_algebraic",
+    "XL_XC_swap",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    100.0,
+    140.0,
+    161.24515496597098,
+    20.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 100 Ω",
+    "(B) خطأ [Z_algebraic]: جمع جبري بدل فيثاغورث",
+    "(C) خطأ [XL_XC_swap]: جمع Lω و1/Cω بدل طرحهما",
+    "(D) خطأ [mix_formulas]: أهمل R"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 100.0,
+    "unit": "Ω",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Z = √(R² + (Lω − 1/Cω)²)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Ω",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Z = √(R² + (Lω − 1/Cω)²) (الكتاب ص ١٥١)",
+   "source": {
+    "book": "ص ١٥٠–١٥١",
+    "lesson": "L5 §٥ القواعد الخمس + فرينل [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣ (٨٠)"
+   }
+  },
+  {
+   "id": 20817,
+   "templateId": "U2.L5.T02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة على التسلسل تضم مقاومة R = 60 Ω ووشيعة مهملة المقاومة ردّيتها Lω = 100 Ω ومكثفة اتساعيتها 1/Cω = 20 Ω. احسب الممانعة الكلية Z للدارة.",
+   "options": [
+    "140 Ω",
+    "134 Ω",
+    "100 Ω",
+    "40 Ω"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "Z_algebraic",
+    "XL_XC_swap",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    140.0,
+    134.16407864998737,
+    100.0,
+    40.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [Z_algebraic]: جمع جبري بدل فيثاغورث",
+    "(B) خطأ [XL_XC_swap]: جمع Lω و1/Cω بدل طرحهما",
+    "✓ (C) 100 Ω",
+    "(D) خطأ [mix_formulas]: أهمل R"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 100.0,
+    "unit": "Ω",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Z = √(R² + (Lω − 1/Cω)²)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Ω",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Z = √(R² + (Lω − 1/Cω)²) (الكتاب ص ١٥١)",
+   "source": {
+    "book": "ص ١٥٠–١٥١",
+    "lesson": "L5 §٥ القواعد الخمس + فرينل [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣ (٨٠)"
+   }
+  },
+  {
+   "id": 20820,
+   "templateId": "U2.L5.T02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة على التسلسل تضم مقاومة R = 30 Ω ووشيعة مهملة المقاومة ردّيتها Lω = 40 Ω ومكثفة اتساعيتها 1/Cω = 80 Ω. احسب الممانعة الكلية Z للدارة.",
+   "options": [
+    "50 Ω",
+    "70 Ω",
+    "124 Ω",
+    "20 Ω"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "Z_algebraic",
+    "XL_XC_swap",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    50.0,
+    70.0,
+    123.69316876852982,
+    20.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 50 Ω",
+    "(B) خطأ [Z_algebraic]: جمع جبري بدل فيثاغورث",
+    "(C) خطأ [XL_XC_swap]: جمع Lω و1/Cω بدل طرحهما",
+    "(D) خطأ [mix_formulas]: أهمل R"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 50.0,
+    "unit": "Ω",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Z = √(R² + (Lω − 1/Cω)²)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Ω",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Z = √(R² + (Lω − 1/Cω)²) (الكتاب ص ١٥١)",
+   "source": {
+    "book": "ص ١٥٠–١٥١",
+    "lesson": "L5 §٥ القواعد الخمس + فرينل [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣ (٨٠)"
+   }
+  },
+  {
+   "id": 20821,
+   "templateId": "U2.L5.T02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة على التسلسل تضم مقاومة R = 60 Ω ووشيعة مهملة المقاومة ردّيتها Lω = 120 Ω ومكثفة اتساعيتها 1/Cω = 40 Ω. احسب الممانعة الكلية Z للدارة.",
+   "options": [
+    "171 Ω",
+    "100 Ω",
+    "140 Ω",
+    "40 Ω"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "XL_XC_swap",
+    null,
+    "Z_algebraic",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    170.88007490635061,
+    100.0,
+    140.0,
+    40.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [XL_XC_swap]: جمع Lω و1/Cω بدل طرحهما",
+    "✓ (B) 100 Ω",
+    "(C) خطأ [Z_algebraic]: جمع جبري بدل فيثاغورث",
+    "(D) خطأ [mix_formulas]: أهمل R"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 100.0,
+    "unit": "Ω",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Z = √(R² + (Lω − 1/Cω)²)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Ω",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Z = √(R² + (Lω − 1/Cω)²) (الكتاب ص ١٥١)",
+   "source": {
+    "book": "ص ١٥٠–١٥١",
+    "lesson": "L5 §٥ القواعد الخمس + فرينل [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣ (٨٠)"
+   }
+  },
+  {
+   "id": 20822,
+   "templateId": "U2.L5.T03",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة RLC على التسلسل مقاومتها R = 40 Ω وممانعتها Z = 100 Ω مغذّاة بتوتر منتج 200 V. احسب عامل الاستطاعة cos φ.",
+   "options": [
+    "2.5",
+    "0.4",
+    "0.917",
+    "40"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "power_in_LC",
+    null,
+    "mix_formulas",
+    "forget_square"
+   ],
+   "optionValues": [
+    2.5,
+    0.4,
+    0.916515138991168,
+    40.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [power_in_LC]: استعمل Z مكان R (الطاقة تُصرف في R فقط) / قلب النسبة",
+    "✓ (B) 0.4",
+    "(C) خطأ [mix_formulas]: الاستطاعة الظاهرية / sin φ",
+    "(D) خطأ [forget_square]: أهمل التربيع / نسبة مئوية"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.4,
+    "unit": "",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Ieff = Ueff/Z ثم P = R·Ieff² (أو cos φ = R/Z)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "P = Ueff·Ieff·cos φ = R·Ieff² و cos φ = R/Z (الكتاب ص ١٤٥، ١٥١)",
+   "source": {
+    "book": "ص ١٤٣–١٤٥، ١٥١",
+    "lesson": "L5 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣"
+   }
+  },
+  {
+   "id": 20823,
+   "templateId": "U2.L5.T03",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة RLC على التسلسل مقاومتها R = 60 Ω وممانعتها Z = 100 Ω مغذّاة بتوتر منتج 200 V. احسب عامل الاستطاعة cos φ.",
+   "options": [
+    "60",
+    "0.8",
+    "0.6",
+    "1.67"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_square",
+    "mix_formulas",
+    null,
+    "power_in_LC"
+   ],
+   "optionValues": [
+    60.0,
+    0.8,
+    0.6,
+    1.6666666666666667
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_square]: أهمل التربيع / نسبة مئوية",
+    "(B) خطأ [mix_formulas]: الاستطاعة الظاهرية / sin φ",
+    "✓ (C) 0.6",
+    "(D) خطأ [power_in_LC]: استعمل Z مكان R (الطاقة تُصرف في R فقط) / قلب النسبة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.6,
+    "unit": "",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Ieff = Ueff/Z ثم P = R·Ieff² (أو cos φ = R/Z)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "P = Ueff·Ieff·cos φ = R·Ieff² و cos φ = R/Z (الكتاب ص ١٤٥، ١٥١)",
+   "source": {
+    "book": "ص ١٤٣–١٤٥، ١٥١",
+    "lesson": "L5 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣"
+   }
+  },
+  {
+   "id": 20824,
+   "templateId": "U2.L5.T03",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة RLC على التسلسل مقاومتها R = 30 Ω وممانعتها Z = 50 Ω مغذّاة بتوتر منتج 220 V. احسب عامل الاستطاعة cos φ.",
+   "options": [
+    "0.8",
+    "1.67",
+    "60",
+    "0.6"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "power_in_LC",
+    "forget_square",
+    null
+   ],
+   "optionValues": [
+    0.8,
+    1.6666666666666667,
+    60.0,
+    0.6
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: الاستطاعة الظاهرية / sin φ",
+    "(B) خطأ [power_in_LC]: استعمل Z مكان R (الطاقة تُصرف في R فقط) / قلب النسبة",
+    "(C) خطأ [forget_square]: أهمل التربيع / نسبة مئوية",
+    "✓ (D) 0.6"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.6,
+    "unit": "",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Ieff = Ueff/Z ثم P = R·Ieff² (أو cos φ = R/Z)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "P = Ueff·Ieff·cos φ = R·Ieff² و cos φ = R/Z (الكتاب ص ١٤٥، ١٥١)",
+   "source": {
+    "book": "ص ١٤٣–١٤٥، ١٥١",
+    "lesson": "L5 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣"
+   }
+  },
+  {
+   "id": 20827,
+   "templateId": "U2.L5.T03",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة RLC على التسلسل مقاومتها R = 60 Ω وممانعتها Z = 100 Ω مغذّاة بتوتر منتج 100 V. احسب عامل الاستطاعة cos φ.",
+   "options": [
+    "0.6",
+    "60",
+    "1.67",
+    "0.8"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_square",
+    "power_in_LC",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    0.6,
+    60.0,
+    1.6666666666666667,
+    0.8
+   ],
+   "solutionSteps": [
+    "✓ (A) 0.6",
+    "(B) خطأ [forget_square]: أهمل التربيع / نسبة مئوية",
+    "(C) خطأ [power_in_LC]: استعمل Z مكان R (الطاقة تُصرف في R فقط) / قلب النسبة",
+    "(D) خطأ [mix_formulas]: الاستطاعة الظاهرية / sin φ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.6,
+    "unit": "",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Ieff = Ueff/Z ثم P = R·Ieff² (أو cos φ = R/Z)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "P = Ueff·Ieff·cos φ = R·Ieff² و cos φ = R/Z (الكتاب ص ١٤٥، ١٥١)",
+   "source": {
+    "book": "ص ١٤٣–١٤٥، ١٥١",
+    "lesson": "L5 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣"
+   }
+  },
+  {
+   "id": 20828,
+   "templateId": "U2.L5.T03",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة RLC على التسلسل مقاومتها R = 30 Ω وممانعتها Z = 100 Ω مغذّاة بتوتر منتج 200 V. احسب عامل الاستطاعة cos φ.",
+   "options": [
+    "0.954",
+    "0.3",
+    "3.33",
+    "30"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "power_in_LC",
+    "forget_square"
+   ],
+   "optionValues": [
+    0.9539392014169457,
+    0.3,
+    3.3333333333333335,
+    30.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: الاستطاعة الظاهرية / sin φ",
+    "✓ (B) 0.3",
+    "(C) خطأ [power_in_LC]: استعمل Z مكان R (الطاقة تُصرف في R فقط) / قلب النسبة",
+    "(D) خطأ [forget_square]: أهمل التربيع / نسبة مئوية"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.3,
+    "unit": "",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Ieff = Ueff/Z ثم P = R·Ieff² (أو cos φ = R/Z)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "P = Ueff·Ieff·cos φ = R·Ieff² و cos φ = R/Z (الكتاب ص ١٤٥، ١٥١)",
+   "source": {
+    "book": "ص ١٤٣–١٤٥، ١٥١",
+    "lesson": "L5 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣"
+   }
+  },
+  {
+   "id": 20829,
+   "templateId": "U2.L5.T03",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "دارة RLC على التسلسل مقاومتها R = 40 Ω وممانعتها Z = 50 Ω مغذّاة بتوتر منتج 120 V. احسب عامل الاستطاعة cos φ.",
+   "options": [
+    "0.6",
+    "0.8",
+    "1.25",
+    "80"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "power_in_LC",
+    "forget_square"
+   ],
+   "optionValues": [
+    0.5999999999999999,
+    0.8,
+    1.25,
+    80.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: الاستطاعة الظاهرية / sin φ",
+    "✓ (B) 0.8",
+    "(C) خطأ [power_in_LC]: استعمل Z مكان R (الطاقة تُصرف في R فقط) / قلب النسبة",
+    "(D) خطأ [forget_square]: أهمل التربيع / نسبة مئوية"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.8,
+    "unit": "",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Ieff = Ueff/Z ثم P = R·Ieff² (أو cos φ = R/Z)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "P = Ueff·Ieff·cos φ = R·Ieff² و cos φ = R/Z (الكتاب ص ١٤٥، ١٥١)",
+   "source": {
+    "book": "ص ١٤٣–١٤٥، ١٥١",
+    "lesson": "L5 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ مسألة ٣"
+   }
+  },
+  {
+   "id": 20830,
+   "templateId": "U2.L5.T04",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في دارة تحوي وشيعة مهملة المقاومة فقط، يكون التوتر بين طرفيها:",
+   "options": [
+    "على توافق بالطور مع التيار",
+    "متقدماً بنصف دور",
+    "متأخراً بالطور عن التيار بربع دور",
+    "متقدماً بالطور على التيار بربع دور"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "mix_formulas",
+    "XL_XC_swap",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: هذه المقاومة",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [XL_XC_swap]: هذه المكثفة",
+    "✓ (D) متقدماً بالطور على التيار بربع دور"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٤٦–١٥٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٤٦–١٥٤",
+    "lesson": "L5 §٤ الجدول الذهبي + §٦ الطنين [أستاذ س٣–س٦]"
+   }
+  },
+  {
+   "id": 20831,
+   "templateId": "U2.L5.T04",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "اتساعية المكثفة 1/(Cω) تنقص عندما:",
+   "options": [
+    "ينقص تواتر التيار",
+    "يزداد التوتر المطبق",
+    "تنقص سعة المكثفة",
+    "يزداد تواتر التيار"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "invert_ratio",
+    "mix_formulas",
+    "invert_ratio",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "✓ (D) يزداد تواتر التيار"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٤٦–١٥٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٤٦–١٥٤",
+    "lesson": "L5 §٤ الجدول الذهبي + §٦ الطنين [أستاذ س٣–س٦]"
+   }
+  },
+  {
+   "id": 20832,
+   "templateId": "U2.L5.T04",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في حالة الطنين الكهربائي في دارة RLC على التسلسل:",
+   "options": [
+    "Lω = يكون فرق الطور بين u وi يساوي π/2",
+    "Lω = تكون الممانعة أكبر ما يمكن",
+    "Lω = 1/(Cω) وتكون الممانعة أصغر ما يمكن وتساوي R",
+    "Lω = ينعدم التوتر بين طرفي الوشيعة والمكثفة كل على حدة"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "mix_formulas",
+    null,
+    "true_but_partial"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: φ = 0",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (C) Lω = 1/(Cω) وتكون الممانعة أصغر ما يمكن وتساوي R",
+    "(D) خطأ [true_but_partial]: ينعدم مجموعهما الشعاعي فقط"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٤٦–١٥٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٤٦–١٥٤",
+    "lesson": "L5 §٤ الجدول الذهبي + §٦ الطنين [أستاذ س٣–س٦]"
+   }
+  },
+  {
+   "id": 20833,
+   "templateId": "U2.L5.T04",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "الاستطاعة المتوسطة المستهلكة في مكثفة مثالية في دارة تيار متناوب:",
+   "options": [
+    "تساوي نصف الاستطاعة الظاهرية",
+    "تساوي Ieff²/(Cω)",
+    "تساوي Ueff·Ieff",
+    "معدومة لأن cos φ = 0"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "power_in_LC",
+    "power_in_LC",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [power_in_LC]: حسب استطاعة على وشيعة/مكثفة (P = 0 فيهما)",
+    "(C) خطأ [power_in_LC]: حسب استطاعة على وشيعة/مكثفة (P = 0 فيهما)",
+    "✓ (D) معدومة لأن cos φ = 0"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٤٦–١٥٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٤٦–١٥٤",
+    "lesson": "L5 §٤ الجدول الذهبي + §٦ الطنين [أستاذ س٣–س٦]"
+   }
+  },
+  {
+   "id": 20834,
+   "templateId": "U2.L5.T04",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "القيمة المنتجة لتيار متناوب هي شدة التيار المتواصل الذي:",
+   "options": [
+    "يُحدث في المقاومة نفسها الأثر الحراري نفسه في المدة نفسها",
+    "يُحدث الحقل المغناطيسي نفسه",
+    "له القيمة المتوسطة نفسها",
+    "له القيمة العظمى نفسها"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "mix_formulas",
+    "forget_sqrt2"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) يُحدث في المقاومة نفسها الأثر الحراري نفسه في المدة نفسها",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [mix_formulas]: متوسط الجيبي صفر",
+    "(D) خطأ [forget_sqrt2]: خلط القيمة العظمى بالمنتجة (√2)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٤٦–١٥٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٤٦–١٥٤",
+    "lesson": "L5 §٤ الجدول الذهبي + §٦ الطنين [أستاذ س٣–س٦]"
+   }
+  },
+  {
+   "id": 20835,
+   "templateId": "U2.L5.T04",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "تُعطى الاستطاعة المتوسطة في دارة RLC على التسلسل بالعلاقة:",
+   "options": [
+    "P = Z·Ieff²",
+    "P = Ueff·Ieff",
+    "P = Ueff·Ieff·cos φ = R·Ieff²",
+    "P = Umax·Imax"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "power_in_LC",
+    "mix_formulas",
+    null,
+    "forget_sqrt2"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [power_in_LC]: حسب استطاعة على وشيعة/مكثفة (P = 0 فيهما)",
+    "(B) خطأ [mix_formulas]: الظاهرية",
+    "✓ (C) P = Ueff·Ieff·cos φ = R·Ieff²",
+    "(D) خطأ [forget_sqrt2]: خلط القيمة العظمى بالمنتجة (√2)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٤٦–١٥٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٤٦–١٥٤",
+    "lesson": "L5 §٤ الجدول الذهبي + §٦ الطنين [أستاذ س٣–س٦]"
+   }
+  },
+  {
+   "id": 20836,
+   "templateId": "U2.L6.T01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "محولة مثالية عدد لفات أوليتها 500 وثانويتها 400، يُطبَّق على أوليتها توتر منتج 220 V. احسب التوتر المنتج بين طرفي الثانوية Us.",
+   "options": [
+    "275 V",
+    "220 V",
+    "176 V",
+    "352 V"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "ratio_inverted_transformer",
+    "transformer_energy",
+    null,
+    "forget_half"
+   ],
+   "optionValues": [
+    275.0,
+    220.0,
+    176.0,
+    352.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [ratio_inverted_transformer]: قلب النسبة",
+    "(B) خطأ [transformer_energy]: ظنّ القيمة لا تتغير",
+    "✓ (C) 176 V",
+    "(D) خطأ [forget_half]: عامل ٢ بلا مبرر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 176.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Us/Up = Ns/Np = Ip/Is",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Us/Up = Ns/Np = Ip/Is للمحولة المثالية (الكتاب ص ١٦٤)",
+   "source": {
+    "book": "ص ١٦٤–١٦٦",
+    "lesson": "L6 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20837,
+   "templateId": "U2.L6.T01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "محولة مثالية عدد لفات أوليتها 400 وثانويتها 4000، يمر في أوليتها تيار منتج 0.5 A. احسب شدة التيار المنتجة في الثانوية Is.",
+   "options": [
+    "0.025 A",
+    "5 A",
+    "0.05 A",
+    "0.5 A"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_half",
+    "ratio_inverted_transformer",
+    null,
+    "transformer_energy"
+   ],
+   "optionValues": [
+    0.025,
+    5.0,
+    0.05,
+    0.5
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_half]: عامل ٢ بلا مبرر",
+    "(B) خطأ [ratio_inverted_transformer]: قلب النسبة",
+    "✓ (C) 0.05 A",
+    "(D) خطأ [transformer_energy]: ظنّ القيمة لا تتغير"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.05,
+    "unit": "A",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Us/Up = Ns/Np = Ip/Is",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Us/Up = Ns/Np = Ip/Is للمحولة المثالية (الكتاب ص ١٦٤)",
+   "source": {
+    "book": "ص ١٦٤–١٦٦",
+    "lesson": "L6 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20838,
+   "templateId": "U2.L6.T01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "محولة مثالية عدد لفات أوليتها 2000 وثانويتها 400، يُطبَّق على أوليتها توتر منتج 110 V. احسب التوتر المنتج بين طرفي الثانوية Us.",
+   "options": [
+    "550 V",
+    "110 V",
+    "44 V",
+    "22 V"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "ratio_inverted_transformer",
+    "transformer_energy",
+    "forget_half",
+    null
+   ],
+   "optionValues": [
+    550.0,
+    110.0,
+    44.0,
+    22.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [ratio_inverted_transformer]: قلب النسبة",
+    "(B) خطأ [transformer_energy]: ظنّ القيمة لا تتغير",
+    "(C) خطأ [forget_half]: عامل ٢ بلا مبرر",
+    "✓ (D) 22 V"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 22.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Us/Up = Ns/Np = Ip/Is",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Us/Up = Ns/Np = Ip/Is للمحولة المثالية (الكتاب ص ١٦٤)",
+   "source": {
+    "book": "ص ١٦٤–١٦٦",
+    "lesson": "L6 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20839,
+   "templateId": "U2.L6.T01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "محولة مثالية عدد لفات أوليتها 500 وثانويتها 4000، يُطبَّق على أوليتها توتر منتج 110 V. احسب التوتر المنتج بين طرفي الثانوية Us.",
+   "options": [
+    "880 V",
+    "13.8 V",
+    "1760 V",
+    "110 V"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "ratio_inverted_transformer",
+    "forget_half",
+    "transformer_energy"
+   ],
+   "optionValues": [
+    880.0,
+    13.75,
+    1760.0,
+    110.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 880 V",
+    "(B) خطأ [ratio_inverted_transformer]: قلب النسبة",
+    "(C) خطأ [forget_half]: عامل ٢ بلا مبرر",
+    "(D) خطأ [transformer_energy]: ظنّ القيمة لا تتغير"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 880.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Us/Up = Ns/Np = Ip/Is",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Us/Up = Ns/Np = Ip/Is للمحولة المثالية (الكتاب ص ١٦٤)",
+   "source": {
+    "book": "ص ١٦٤–١٦٦",
+    "lesson": "L6 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20840,
+   "templateId": "U2.L6.T01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "محولة مثالية عدد لفات أوليتها 200 وثانويتها 4000، يمر في أوليتها تيار منتج 2 A. احسب شدة التيار المنتجة في الثانوية Is.",
+   "options": [
+    "0.05 A",
+    "40 A",
+    "0.1 A",
+    "2 A"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_half",
+    "ratio_inverted_transformer",
+    null,
+    "transformer_energy"
+   ],
+   "optionValues": [
+    0.05,
+    40.0,
+    0.1,
+    2.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_half]: عامل ٢ بلا مبرر",
+    "(B) خطأ [ratio_inverted_transformer]: قلب النسبة",
+    "✓ (C) 0.1 A",
+    "(D) خطأ [transformer_energy]: ظنّ القيمة لا تتغير"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.1,
+    "unit": "A",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Us/Up = Ns/Np = Ip/Is",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Us/Up = Ns/Np = Ip/Is للمحولة المثالية (الكتاب ص ١٦٤)",
+   "source": {
+    "book": "ص ١٦٤–١٦٦",
+    "lesson": "L6 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20841,
+   "templateId": "U2.L6.T01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "محولة مثالية عدد لفات أوليتها 500 وثانويتها 100، يمر في أوليتها تيار منتج 1 A. احسب شدة التيار المنتجة في الثانوية Is.",
+   "options": [
+    "5 A",
+    "1 A",
+    "2.5 A",
+    "0.2 A"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "transformer_energy",
+    "forget_half",
+    "ratio_inverted_transformer"
+   ],
+   "optionValues": [
+    5.0,
+    1.0,
+    2.5,
+    0.2
+   ],
+   "solutionSteps": [
+    "✓ (A) 5 A",
+    "(B) خطأ [transformer_energy]: ظنّ القيمة لا تتغير",
+    "(C) خطأ [forget_half]: عامل ٢ بلا مبرر",
+    "(D) خطأ [ratio_inverted_transformer]: قلب النسبة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 5.0,
+    "unit": "A",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Us/Up = Ns/Np = Ip/Is",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "Us/Up = Ns/Np = Ip/Is للمحولة المثالية (الكتاب ص ١٦٤)",
+   "source": {
+    "book": "ص ١٦٤–١٦٦",
+    "lesson": "L6 §٣ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20842,
+   "templateId": "U2.L6.T02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "تعمل المحولة الكهربائية على:",
+   "options": [
+    "التيار المتواصل فقط",
+    "المستمر والمتناوب معاً",
+    "المستمر بشرط وجود نواة حديدية",
+    "التيار المتناوب فقط لأن عملها يعتمد على تغير التدفق"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "flux_vs_rate",
+    "flux_vs_rate",
+    "true_but_partial",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [flux_vs_rate]: خلط التدفق بمعدل تغيره (e تتبع dΦ/dt)",
+    "(B) خطأ [flux_vs_rate]: خلط التدفق بمعدل تغيره (e تتبع dΦ/dt)",
+    "(C) خطأ [true_but_partial]: خيار صحيح جزئياً حين يكون المفتاح «جميع ما سبق»",
+    "✓ (D) التيار المتناوب فقط لأن عملها يعتمد على تغير التدفق"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٦٣–١٦٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٦٠–١٦٧",
+    "lesson": "L6 §١–§٥ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20843,
+   "templateId": "U2.L6.T02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "المحولة الرافعة للتوتر:",
+   "options": [
+    "ترفع التوتر وتخفض التواتر",
+    "ترفع التوتر وتخفض شدة التيار بحيث تبقى الاستطاعة ثابتة",
+    "ترفع التوتر وشدة التيار معاً",
+    "ترفع التوتر والاستطاعة معاً"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "transformer_energy",
+    "transformer_energy"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: التواتر لا يتغير",
+    "✓ (B) ترفع التوتر وتخفض شدة التيار بحيث تبقى الاستطاعة ثابتة",
+    "(C) خطأ [transformer_energy]: ظنّ المحولة الرافعة ترفع الاستطاعة",
+    "(D) خطأ [transformer_energy]: ظنّ المحولة الرافعة ترفع الاستطاعة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٦٣–١٦٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٦٠–١٦٧",
+    "lesson": "L6 §١–§٥ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20844,
+   "templateId": "U2.L6.T02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "يُرفع التوتر عند نقل الطاقة الكهربائية لمسافات بعيدة من أجل:",
+   "options": [
+    "تقليل مقاومة الأسلاك",
+    "زيادة الاستطاعة المنقولة",
+    "زيادة سرعة انتقال الطاقة",
+    "تخفيض شدة التيار فتقل الضياعات بفعل جول R·I² في الأسلاك"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "transformer_energy",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: R ثابتة؛ I هي التي تنقص",
+    "(B) خطأ [transformer_energy]: ظنّ المحولة الرافعة ترفع الاستطاعة",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) تخفيض شدة التيار فتقل الضياعات بفعل جول R·I² في الأسلاك"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٦٣–١٦٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٦٠–١٦٧",
+    "lesson": "L6 §١–§٥ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20845,
+   "templateId": "U2.L6.T02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "تُصنع نواة المحولة من صفائح حديدية معزولة عن بعضها من أجل:",
+   "options": [
+    "تقليل مقاومة اللفات",
+    "تقليل الضياع بالتخلفية",
+    "زيادة النفوذية المغناطيسية",
+    "تقليل ضياعات تيارات فوكو"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "mix_formulas",
+    "true_but_partial",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [true_but_partial]: النفوذية من الحديد لا من التصفيح",
+    "✓ (D) تقليل ضياعات تيارات فوكو"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٦٣–١٦٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٦٠–١٦٧",
+    "lesson": "L6 §١–§٥ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  },
+  {
+   "id": 20846,
+   "templateId": "U2.L6.T02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "في محولة مثالية عدد لفات ثانويتها ضعف عدد لفات أوليتها فإن شدة التيار في الثانوية:",
+   "options": [
+    "نصف شدة التيار في الأولية",
+    "تساوي شدة التيار في الأولية",
+    "ربع شدة التيار في الأولية",
+    "ضعف شدة التيار في الأولية"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "transformer_energy",
+    "forget_sqrt",
+    "ratio_inverted_transformer"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) نصف شدة التيار في الأولية",
+    "(B) خطأ [transformer_energy]: ظنّ المحولة الرافعة ترفع الاستطاعة",
+    "(C) خطأ [forget_sqrt]: أهمل الجذر التربيعي (T0 ∝ m/k بدل √)",
+    "(D) خطأ [ratio_inverted_transformer]: قلب نسبة التحويل (Ns/Np ↔ Np/Ns) أو نسبة التيار"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٦٣–١٦٤ [أستاذ]",
+   "source": {
+    "book": "ص ١٦٠–١٦٧",
+    "lesson": "L6 §١–§٥ [أستاذ]",
+    "exam": "٢٠٢٦ س١-٢"
+   }
+  }
+ ]
+}

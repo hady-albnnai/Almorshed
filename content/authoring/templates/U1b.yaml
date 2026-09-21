@@ -1,0 +1,396 @@
+# ═══════════════════════════════════════════════════════════════════
+# قوالب الأسئلة — الوحدة ١ (ملحق b): L4 ميكانيك السوائل · L5 النسبية الخاصة
+# المصادر: content/authoring/U1/L4-fluid-mechanics.md (الكتاب ص ٤٤–٥٤ + الأستاذ)
+#          content/authoring/U1/L5-special-relativity.md (الكتاب ص ٥٥–٦٧ + الأستاذ)
+# المحرّك: from_compute العام (vars/constraints/compute — بلا دالة بايثون)
+# ضوابط: approved:false · المفتاح يُحسب من قانون الكتاب المذكور في answer_basis
+#         · كل مشتت بقاعدة موثقة في schema.distractor_rules (هنا أو في U1.yaml)
+# تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني
+# ═══════════════════════════════════════════════════════════════════
+
+meta:
+  version: 1
+  generated: 2026-09-21
+  unit: U1b
+  lessons_covered: [L4-fluid-mechanics, L5-special-relativity]
+
+schema:
+  distractor_rules:
+    unit_L_m3:          "لم يحوّل L ⇒ m³ (×10⁻³)"
+    unit_cm2_m2:        "لم يحوّل cm² ⇒ m² (×10⁻⁴)"
+    forget_rho:         "نسي الكثافة ρ (خلط المنسوب الحجمي بالكتلي)"
+    invert_continuity:  "طبّق s·v عكسياً (السرعة تتناسب طرداً مع المقطع)"
+    forget_2_torricelli: "أهمل الـ٢ في v = √(2gh)"
+    gamma_inverted:     "قسم بدل الضرب على γ (أو العكس) — عكس اتجاه التمدد/التقلص"
+    forget_rest_energy: "أخذ الطاقة الكلية مكان الحركية (نسي طرح E0)"
+    classical_ke:       "استعمل ½m0v² الكلاسيكية بسرعة قريبة من c"
+    forget_c_squared:   "نسي c² (E = m بدل mc²)"
+    ratio_direct:       "أخذ النسبة خطية بدل الجذر/التربيع"
+    pressure_intuition: "«المقطع الضيق ضغطه أكبر» — عكس برنولي"
+
+constants:
+  g: 10
+  pi_sq: 10
+  c_light: 300000000.0
+
+templates:
+
+# ───────────────────────────── L4 — السوائل (U1C4) ─────────────────────────────
+
+- id: U1.L4.T01
+  title: "المنسوب الحجمي من الحجم والزمن (بالتحويل L ⇒ m³)"
+  chapter: U1C4
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٤٥ + مثال ص ٥٠", lesson: "L4 §١ + المثال المحلول ١ [أستاذ طرق حل ٥]"}
+  vars:
+    V_L: {set: [120, 240, 300, 600, 900, 1200]}
+    dt: {set: [60, 100, 120, 200, 300, 600]}
+  compute:
+    key: "V_L * 1e-3 / dt"
+  constraints:
+    - "round(V_L / dt, 6) in (1, 2, 3, 4, 5, 6, 1.5, 2.5, 1.2, 4.5, 10, 15, 20, 0.2, 0.4, 0.5, 0.6, 0.8)"
+  stem: "خزان حجمه {V_L} L يُملأ بالماء خلال {dt} s. احسب معدل التدفق الحجمي Q′."
+  answer: {unit: "m³·s⁻¹", format: sci}
+  options:
+    distractors:
+      - {value: "V_L / dt", rule: unit_L_m3, rationale: "بقي الحجم باللتر"}
+      - {value: "dt / (V_L * 1e-3)", rule: invert_ratio, rationale: "قسم الزمن على الحجم"}
+      - {value: "V_L * 1e-3 / (dt / 60)", rule: unit_confusion, rationale: "حوّل الثواني إلى دقائق خطأً"}
+  rubric:
+    - {step: "Q′ = V/Δt", points: 5}
+    - {step: "التحويل L ⇒ m³ والتعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة m³·s⁻¹", points: 1}
+  answer_basis: "Q′ = V/Δt (الكتاب ص ٤٥) مع 1 L = 10⁻³ m³"
+  approved: false
+
+- id: U1.L4.T02
+  title: "سرعة الجريان من المنسوب ومساحة المقطع (cm² ⇒ m²)"
+  chapter: U1C4
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٤٦ معادلة الاستمرارية", lesson: "L4 §٣ + المثال المحلول ١"}
+  vars:
+    Q_mL: {set: [1, 2, 4, 5, 8, 10], desc: "Q′ بوحدة 10⁻³ m³/s"}
+    s_cm2: {set: [2, 4, 5, 8, 10, 20, 25, 50]}
+  compute:
+    key: "Q_mL * 1e-3 / (s_cm2 * 1e-4)"
+  constraints:
+    - "abs(key - round(key, 1)) < 1e-9 and key <= 50"
+  stem: "يجري الماء في أنبوب مساحة مقطعه {s_cm2} cm² بمعدل تدفق حجمي {Q_mL}×10⁻³ m³·s⁻¹. احسب سرعة الجريان v."
+  answer: {unit: "m·s⁻¹"}
+  options:
+    distractors:
+      - {value: "Q_mL * 1e-3 / s_cm2", rule: unit_cm2_m2, rationale: "بقيت المساحة بالـcm²"}
+      - {value: "Q_mL * 1e-3 * s_cm2 * 1e-4 * 1e6", rule: invert_continuity, rationale: "ضرب المنسوب بالمساحة"}
+      - {value: "Q_mL * 1e-3 / (s_cm2 * 1e-4) / 2", rule: forget_half, rationale: "قسم على ٢ بلا مبرر (خلط بنصف القطر)"}
+  rubric:
+    - {step: "Q′ = s·v ⇒ v = Q′/s", points: 5}
+    - {step: "التحويل cm² ⇒ m² والتعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة m·s⁻¹", points: 1}
+  answer_basis: "Q′ = s·v (معادلة الاستمرارية — الكتاب ص ٤٦)"
+  approved: false
+
+- id: U1.L4.T03
+  title: "الاستمرارية — نسبة السرعتين من نسبة المقطعين"
+  chapter: U1C4
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٤٦", lesson: "L4 §٣ «ضيّقت المقطع للربع ⇒ السرعة ٤ أمثال»"}
+  vars:
+    r: {set: [2, 3, 4, 5]}
+    mode: {set: ["ضيق", "واسع"]}
+  compute:
+    key: "f'{r}·v' if mode == 'ضيق' else f'v/{r}'"
+    s2: "f's/{r}' if mode == 'ضيق' else f'{r}·s'"
+    d_inv: "f'v/{r}' if mode == 'ضيق' else f'{r}·v'"
+    d_sq: "f'{r*r}·v' if mode == 'ضيق' else f'v/{r*r}'"
+  stem: "سائل مثالي يجري في أنبوب أفقي، ينتقل من مقطع مساحته s إلى مقطع {mode} مساحته {s2}. سرعته في المقطع الثاني بالنسبة إلى سرعته v في الأول:"
+  options:
+    key: "{key}"
+    distractors:
+      - {text: "{d_inv}", rule: invert_continuity, rationale: "ظنّ السرعة تتناسب طرداً مع المقطع"}
+      - {text: "{d_sq}", rule: forget_sqrt, rationale: "ربّع النسبة (خلط بنصف القطر)"}
+      - {text: "v (لا تتغير)", rule: mix_formulas, rationale: "خلط ثبات Q′ بثبات v"}
+  rubric:
+    - {step: "s1·v1 = s2·v2", points: 5}
+    - {step: "v2 = (s1/s2)·v1", points: 5}
+  answer_basis: "s1·v1 = s2·v2 (الكتاب ص ٤٦)"
+  approved: false
+
+- id: U1.L4.T04
+  title: "تورشيللي — سرعة التدفق من فتحة على عمق h"
+  chapter: U1C4
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٤٩", lesson: "L4 §٥ج [أستاذ س٦]"}
+  vars:
+    h: {set: [0.2, 0.45, 0.8, 1.25, 1.8, 3.2, 5, 7.2, 20]}
+  compute:
+    key: "sqrt(2 * g * h)"
+  constraints:
+    - "abs(key - round(key, 2)) < 1e-9"
+  stem: "خزان كبير مفتوح مملوء بالماء، فُتحت فيه فتحة صغيرة على عمق {h} m تحت السطح الحر. احسب سرعة خروج الماء من الفتحة (g = 10 m·s⁻²)."
+  answer: {unit: "m·s⁻¹"}
+  options:
+    distractors:
+      - {value: "sqrt(g * h)", rule: forget_2_torricelli, rationale: "أهمل الـ٢ تحت الجذر"}
+      - {value: "2 * g * h", rule: forget_sqrt, rationale: "أهمل الجذر"}
+      - {value: "g * h", rule: forget_sqrt, rationale: "v = gh"}
+  rubric:
+    - {step: "برنولي بين السطح والفتحة مع P1 = P2 = P0 و v1 ≈ 0", points: 5}
+    - {step: "v = √(2gh)", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "v2 = √(2gh) نظرية تورشيللي (الكتاب ص ٤٩)"
+  approved: false
+
+- id: U1.L4.T05
+  title: "برنولي أفقي — فرق الضغط بين مقطعين"
+  chapter: U1C4
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {book: "ص ٤٧–٤٨", lesson: "L4 §٥أ + §٥د فنتوري"}
+  vars:
+    v1: {set: [1, 2, 3, 4]}
+    v2: {set: [3, 4, 5, 6, 8]}
+  constraints:
+    - "v2 > v1"
+  compute:
+    key: "0.5 * 1000 * (v2**2 - v1**2)"
+  stem: "يجري الماء (ρ = 1000 kg·m⁻³) في أنبوب أفقي، سرعته في المقطع الواسع {v1} m·s⁻¹ وفي المقطع الضيق {v2} m·s⁻¹. احسب فرق الضغط P1 − P2 بين المقطعين."
+  answer: {unit: "Pa", format: sci}
+  options:
+    distractors:
+      - {value: "1000 * (v2**2 - v1**2)", rule: forget_half, rationale: "أهمل ½"}
+      - {value: "0.5 * 1000 * (v2 - v1)**2", rule: forget_square, rationale: "ربّع الفرق بدل فرق المربعين"}
+      - {value: "-0.5 * 1000 * (v2**2 - v1**2)", rule: pressure_intuition, rationale: "ظنّ الضغط في الضيق أكبر"}
+  rubric:
+    - {step: "P1 + ½ρv1² = P2 + ½ρv2²", points: 5}
+    - {step: "P1 − P2 = ½ρ(v2² − v1²) والتعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة Pa", points: 1}
+  answer_basis: "برنولي في أنبوب أفقي (الكتاب ص ٤٧)"
+  approved: false
+
+- id: U1.L4.T06
+  title: "مفاهيم السوائل — الضيق/السرعة/الضغط والسائل المثالي"
+  chapter: U1C4
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ٤٤–٤٨، ٥٢", lesson: "L4 §٢ §٥ + أسئلة فسّر ص ٥٢"}
+  variants:
+    - stem: "عند مرور سائل مثالي من مقطع واسع إلى مقطع ضيق في أنبوب أفقي فإن:"
+      key: "سرعته تزداد وضغطه ينقص"
+      distractors:
+        - {text: "سرعته تزداد وضغطه يزداد", rule: pressure_intuition, rationale: "الحدس الخاطئ: الضيق مضغوط أكثر"}
+        - {text: "سرعته تنقص وضغطه ينقص", rule: invert_continuity}
+        - {text: "سرعته وضغطه لا يتغيران", rule: mix_formulas, rationale: "ثابت هو Q′ لا v"}
+    - stem: "من صفات السائل المثالي:"
+      key: "غير قابل للانضغاط وعديم اللزوجة"
+      distractors:
+        - {text: "قابل للانضغاط وعديم اللزوجة", rule: true_but_partial}
+        - {text: "غير قابل للانضغاط وذو لزوجة كبيرة", rule: true_but_partial}
+        - {text: "جريانه دوامي مستقر", rule: mix_formulas, rationale: "الجريان الصفحي لا الدوامي"}
+    - stem: "وحدة الحد ½ρv² في معادلة برنولي هي:"
+      key: "Pa (J·m⁻³)"
+      distractors:
+        - {text: "J", rule: unit_confusion}
+        - {text: "N", rule: unit_confusion}
+        - {text: "W", rule: unit_confusion}
+    - stem: "معادلة برنولي تعبير عن:"
+      key: "مصونية الطاقة لواحدة الحجوم على خط انسياب"
+      distractors:
+        - {text: "مصونية الكتلة", rule: mix_formulas, rationale: "ذاك معادلة الاستمرارية"}
+        - {text: "مصونية كمية الحركة", rule: mix_formulas}
+        - {text: "قانون نيوتن الثالث", rule: mix_formulas}
+    - stem: "يضيق عمود الماء المتدفق من صنبور نحو الأسفل لأن:"
+      key: "سرعته تزداد بالسقوط فيصغر مقطعه حفاظاً على Q′"
+      distractors:
+        - {text: "ضغط الهواء يضغطه", rule: pressure_intuition}
+        - {text: "الماء ينضغط", rule: true_but_partial, rationale: "الماء غير قابل للانضغاط"}
+        - {text: "المنسوب الحجمي ينقص بالسقوط", rule: mix_formulas, rationale: "Q′ ثابت"}
+  answer_basis: "الكتاب ص ٤٤–٤٨، أسئلة فسّر ص ٥٢ [أستاذ س٤]"
+  approved: false
+
+# ───────────────────────────── L5 — النسبية الخاصة (U1C5) ─────────────────────────────
+
+- id: U1.L5.T01
+  title: "تمدد الزمن — حساب t أو t0 بمعامل لورينتس نظيف"
+  chapter: U1C5
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٥٧–٥٨", lesson: "L5 §٢ ساعة الضوء + مفارقة التوءمين"}
+  vars:
+    beta_case: {set: [0.6, 0.8, 0.96]}
+    t0: {set: [3, 6, 9, 12, 15, 24]}
+    ask: {set: ["t", "t0"]}
+  compute:
+    gamma: "1 / sqrt(1 - beta_case**2)"
+    t: "t0 * gamma"
+    key: "t if ask == 't' else t0"
+    given: "t0 if ask == 't' else t"
+    q: "f'يقيس رائد داخلها مدة رحلته {fmt(given)} سنة. ما المدة التي يقيسها مراقب على الأرض؟' if ask == 't' else f'يقيس مراقب على الأرض مدة رحلتها {fmt(given)} سنة. ما المدة التي يقيسها رائد داخلها؟'"
+  constraints:
+    - "abs(given - round(given, 1)) < 1e-9 and abs(key - round(key, 1)) < 1e-9"
+  stem: "مركبة تتحرك بسرعة {beta_case}c بالنسبة إلى الأرض. {q}"
+  answer: {unit: "سنة"}
+  options:
+    distractors:
+      - {value: "given / gamma if ask == 't' else given * gamma", rule: gamma_inverted, rationale: "عكس اتجاه التمدد — الزمن المتمدد أكبر دائماً"}
+      - {value: "given * (1 - beta_case**2)", rule: forget_sqrt, rationale: "أهمل الجذر في γ"}
+      - {value: "given * (1 + beta_case)", rule: ratio_direct, rationale: "أخذ (1 + v/c) خطياً"}
+  rubric:
+    - {step: "t = t0/√(1 − v²/c²) = γ·t0", points: 5}
+    - {step: "حساب γ والتعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "t = γ·t0 (الكتاب ص ٥٧)"
+  approved: false
+
+- id: U1.L5.T02
+  title: "تقلص الأطوال — الطول المقيس للمراقب الخارجي"
+  chapter: U1C5
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٥٩–٦٠", lesson: "L5 §٣ [أستاذ ثانياً وثالثاً]"}
+  vars:
+    beta_case: {set: [0.6, 0.8]}
+    L0: {set: [5, 10, 15, 20, 25, 50, 100]}
+  compute:
+    key: "L0 * sqrt(1 - beta_case**2)"
+  stem: "سارية طولها الساكن {L0} m تتحرك بسرعة {beta_case}c موازيةً لطولها. ما طولها الذي يقيسه مراقب ساكن؟"
+  answer: {unit: "m"}
+  options:
+    distractors:
+      - {value: "L0 / sqrt(1 - beta_case**2)", rule: gamma_inverted, rationale: "الطول المتقلص أصغر دائماً"}
+      - {value: "L0 * (1 - beta_case**2)", rule: forget_sqrt, rationale: "أهمل الجذر"}
+      - {value: "L0 * (1 - beta_case)", rule: ratio_direct, rationale: "أخذ (1 − v/c) خطياً"}
+  rubric:
+    - {step: "L = L0·√(1 − v²/c²)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "L = L0/γ (الكتاب ص ٥٩)"
+  approved: false
+
+- id: U1.L5.T03
+  title: "نسب الطاقات النسبية — E · E0 · Ek · γ · v (نمط MCQ ٢٠٢٦ س١-٣)"
+  chapter: U1C5
+  type: mcq
+  difficulty: 3
+  weight: 10
+  source: {book: "ص ٦١–٦٢", lesson: "L5 §٤ [أستاذ أنماط MCQ الطاقات]", exam: "٢٠٢٦ س١-٣ (v = 2√2c/3)"}
+  vars:
+    n: {set: [2, 3, 4, 5]}
+    given: {set: ["E", "Ek"]}
+    ask: {set: ["Ek", "E", "gamma", "v"]}
+  constraints:
+    - "not (given == 'E' and ask == 'E') and not (given == 'Ek' and ask == 'Ek')"
+  compute:
+    gamma: "n if given == 'E' else n + 1"
+    Ek_n: "gamma - 1"
+    E_n: "gamma"
+    beta2: "1 - Fraction(1, gamma * gamma)"
+    vtxt: "ratio_str(sqrt(beta2), 'c')"
+    key: "{'Ek': f'{Ek_n}·E0', 'E': f'{E_n}·E0', 'gamma': f'{gamma}', 'v': vtxt}[ask]"
+    gtxt: "'الكلية E' if given == 'E' else 'الحركية Ek'"
+    qtxt: "{'Ek': 'طاقته الحركية تساوي:', 'E': 'طاقته الكلية تساوي:', 'gamma': 'معامل لورينتس γ يساوي:', 'v': 'سرعته تساوي:'}[ask]"
+    d1: "{'Ek': f'{E_n}·E0', 'E': f'{Ek_n}·E0', 'gamma': f'{n if given == \"Ek\" else n + 1}', 'v': ratio_str(sqrt(1 - Fraction(1, n * n)) if given == 'Ek' else sqrt(1 - Fraction(1, (n + 1) ** 2)), 'c')}[ask]"
+    d2: "{'Ek': f'{Fraction(1, gamma)}·E0', 'E': f'{Fraction(1, gamma)}·E0', 'gamma': f'{Fraction(1, gamma)}', 'v': ratio_str(sqrt(Fraction(1, gamma * gamma)), 'c')}[ask]"
+    d3: "{'Ek': f'{Fraction(gamma, 2)}·E0', 'E': f'{Fraction(gamma + 2, 2)}·E0', 'gamma': f'{gamma + 1}', 'v': ratio_str(sqrt(1 - Fraction(1, gamma)), 'c')}[ask]"
+  stem: "جسيم طاقته {gtxt} تساوي {n} أمثال طاقته السكونية E0. {qtxt}"
+  options:
+    key: "{key}"
+    distractors:
+      - {text: "{d1}", rule: forget_rest_energy, rationale: "خلط الطاقة الكلية بالحركية (لم يطرح/يضف E0)"}
+      - {text: "{d2}", rule: gamma_inverted, rationale: "قلب γ"}
+      - {text: "{d3}", rule: forget_square, rationale: "أهمل التربيع في 1 − 1/γ² (أو خلط γ بـγ+1)"}
+  rubric:
+    - {step: "E = γ·m0c² و Ek = (γ − 1)·m0c²", points: 5}
+    - {step: "استخراج γ ثم v = c·√(1 − 1/γ²)", points: 5}
+  answer_basis: "E = γm0c²، Ek = E − E0 (الكتاب ص ٦١–٦٢) [أستاذ س٢]"
+  approved: false
+
+- id: U1.L5.T04
+  title: "الطاقة السكونية E0 = m0c² لجسيم"
+  chapter: U1C5
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٦١ + مثال ص ٦٤", lesson: "L5 المثال المحلول ١–٢"}
+  vars:
+    particle: {set: ["إلكترون", "بروتون"]}
+  compute:
+    m0: "9.1e-31 if particle == 'إلكترون' else 1.67e-27"
+    key: "m0 * c_light**2"
+  stem: "احسب الطاقة السكونية لـ{particle} (m0 = {m0:sci} kg، c = 3×10⁸ m·s⁻¹)."
+  answer: {unit: "J", format: sci, sig: 4}
+  options:
+    distractors:
+      - {value: "m0 * c_light", rule: forget_c_squared, rationale: "نسي تربيع c"}
+      - {value: "0.5 * m0 * c_light**2", rule: forget_half, rationale: "أضاف ½ الكلاسيكية"}
+      - {value: "m0 * c_light**2 / 1.6e-19", rule: unit_confusion, rationale: "القيمة بالإلكترون-فولط لا بالجول"}
+  rubric:
+    - {step: "E0 = m0·c²", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة J", points: 1}
+  answer_basis: "E0 = m0c² (الكتاب ص ٦١)"
+  approved: false
+
+- id: U1.L5.T05
+  title: "مفاهيم النسبية — الفرضيتان، الزمن الخاص، حد السرعة، التوافق مع الكلاسيكي"
+  chapter: U1C5
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ٥٦–٦٥", lesson: "L5 §١ §٥ [أستاذ]"}
+  variants:
+    - stem: "تنص الفرضية الأولى لأينشتاين على أن:"
+      key: "سرعة الضوء في الخلاء واحدة في جميع جمل المقارنة مهما كانت سرعة المنبع أو المراقب"
+      distractors:
+        - {text: "سرعة الضوء تزداد إذا تحرك المنبع نحو المراقب", rule: classical_ke, rationale: "جمع كلاسيكي للسرعات"}
+        - {text: "القوانين الفيزيائية واحدة في جميع الجمل العطالية", rule: mix_formulas, rationale: "هذه الفرضية الثانية"}
+        - {text: "الزمن مطلق لجميع المراقبين", rule: mix_formulas}
+    - stem: "الزمن الخاص t0 هو الزمن الذي يقيسه:"
+      key: "المراقب الذي تقع الظاهرة في جملته (المراقب الداخلي)"
+      distractors:
+        - {text: "المراقب الخارجي المتحرك بالنسبة إلى الظاهرة", rule: gamma_inverted}
+        - {text: "أي مراقب — فالزمن مطلق", rule: mix_formulas}
+        - {text: "المراقب الأسرع فقط", rule: true_but_partial}
+    - stem: "لا يمكن لجسيم ذي كتلة سكونية أن يبلغ سرعة الضوء لأن:"
+      key: "كتلته تزداد مع السرعة فيلزم طاقة لا نهائية لتسريعه"
+      distractors:
+        - {text: "طوله يصبح سالباً", rule: mix_formulas}
+        - {text: "زمنه يتوقف تماماً", rule: true_but_partial, rationale: "نتيجة لا سبباً"}
+        - {text: "قوة الاحتكاك تمنعه", rule: mix_formulas}
+    - stem: "عندما تكون v ≪ c فإن علاقات النسبية:"
+      key: "تؤول إلى علاقات الميكانيك الكلاسيكي"
+      distractors:
+        - {text: "تصبح غير صالحة", rule: mix_formulas}
+        - {text: "تعطي Ek = 0", rule: forget_rest_energy}
+        - {text: "تعطي كتلة معدومة", rule: mix_formulas}
+    - stem: "يتقلص من أبعاد جسم متحرك بسرعة نسبية:"
+      key: "البعد الموازي لشعاع السرعة فقط"
+      distractors:
+        - {text: "جميع الأبعاد بالنسبة نفسها", rule: true_but_partial}
+        - {text: "البعد العمودي على السرعة فقط", rule: mix_formulas}
+        - {text: "لا يتقلص أي بعد؛ الكتلة فقط تتغير", rule: true_but_partial}
+  answer_basis: "الكتاب ص ٥٦–٦٥ [أستاذ]"
+  approved: false
+
+review_queue:
+  teacher_questions:
+    - "L4: هل يُطلب حساب تورشيللي بسطح خزان محدود (v1 ≠ 0) في الدورات، أم الحالة المثالية فقط؟"
+    - "L5: وحدة الطاقة السكونية بالامتحان: J حصراً أم يُقبل MeV؟"

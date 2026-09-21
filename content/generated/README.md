@@ -2,10 +2,16 @@
 
 | الملف | المحتوى |
 |---|---|
-| `U1.items.json` | المجمّع الكامل: كل البنود الصالحة من `content/authoring/templates/U1.yaml` (البذرة 2026، ٦ بنود لكل قالب محسوب) |
-| `U1.sample100.json` | عيّنة الـ ١٠٠ بند للأستاذ فداء البني، موزّعة بأوزان الدورة (مرن ٨٠ · فتل ٦٠ · ثقلي ٥٠) ومتوازنة بين القوالب |
+| `U1.items.json` … `U5.items.json` | المجمّع لكل وحدة: كل البنود الصالحة من قوالب `content/authoring/templates/*.yaml` (البذرة 2026، ٦ بنود لكل قالب محسوب) |
+| `ALL.items.json` | المجمّع الكامل للوحدات الخمس (١٧ فصلاً — ~٥٥٠ بنداً) |
+| `ALL.sample100.json` | عيّنة ١٠٠ بند للأستاذ فداء البني موزّعة بأوزان السلم الوزاري ٢٠٢٦ (`CHAPTER_WEIGHTS`) ومتوازنة بين القوالب |
+| `U1.sample100.json` | عيّنة الوحدة الأولى القديمة (تُنتَج بـ`--u1-only`) |
 
-- إعادة التوليد: `python3 tools/gen_items.py --seed 2026 --n 100 --per-template 6`
+- إعادة التوليد: `python3 tools/gen_items.py --seed 2026 --n 100 --per-template 6` (أضف `--asset` لكتابة `app/assets/content/items.json`)
+- ملفات القوالب: `U1.yaml` (النواسات) · `U1b.yaml` (الموائع + النسبية) · `U2.yaml` (المغناطيسية → المحوّلات) · `U3-U5.yaml` (الأوتار/المزامير، بور/المهبطية/الكهرضوئي، الفلك).
+- المحرّك العام: القالب يصف `vars` (مجموعات) + `compute` (تعابير بايثون تُقيَّم بالترتيب، `key` إلزامي) + `constraints` + `stem` بمتغيرات `{x}`؛
+  الرقمي: `answer: {unit, format: sci|auto, sig, round}` + `distractors: [{value, rule, rationale}]`؛ الاختياري: `options.key` + `distractors[].text`؛
+  المفاهيمي: `variants[]`. كل `rule` يجب أن تكون موثّقة في `schema.distractor_rules` بأحد الملفات.
 - الدمج في حزمة التطبيق (`app/assets/content/pack.json` قسم `items`): أضف `--pack` — **لا يُنفَّذ قبل اعتماد الأستاذ**.
 - الاختبارات: `python3 -m pytest tools/tests -q`
 - كل بند `approved: false`؛ حقول `optionRules/optionValues/solutionSteps` تشرح كل مشتت بقاعدته الموثّقة.
@@ -16,10 +22,10 @@
 
 ## المادة ١٢ — شاشة التدريب في التطبيق
 
-- الأصل: `app/assets/content/items_u1.json` = نسخة `U1.sample100.json` (١٠٠ بند، كلها `approved:false`).
+- الأصل: `app/assets/content/items.json` = نسخة `ALL.items.json` (المنهاج كاملاً، ١٧ فصلاً، كلها `approved:false`).
 - النموذج: `app/lib/core/content/generated_items.dart` — `GeneratedItemsPack.visible(reviewMode:)`:
   الطالب يرى **المعتمد فقط** (قرار ٢٤)، والأستاذ في وضع المراجعة يرى الكل.
-- الشاشة: `app/lib/features/training/item_session_screen.dart` (المدخل: التدريب ← «بنود الوحدة الأولى»):
+- الشاشة: `app/lib/features/training/item_session_screen.dart` (المدخل: التدريب ← «البنود المولّدة من المنهاج»):
   اختياري ببطاقات ملوّنة + سبب كل مشتت · رقمي (قيمة + وحدة، ±٢٪ والوحدة درجة مستقلة) ·
   علّل (نص حر بمفاتيح مطبَّعة) · برهان (ترتيب الخطوات بالنقر + إعلان «بلا إشارة»/«بلا φ» ⇒ −٤/−١).
 - بندا `problem` بلا مفتاح رقمي (زاوية/رمزي: 20259، 20267) يُعرضان كخيارات — لا تخمين في التصحيح.

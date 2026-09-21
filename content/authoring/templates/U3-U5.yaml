@@ -1,0 +1,663 @@
+# ═══════════════════════════════════════════════════════════════════
+# قوالب الأسئلة — الوحدات ٣ (الأمواج المستقرة) و٤ (الفيزياء الحديثة) و٥ (الفلك)
+# الفصول: U3C1 U3C2 · U4C1 U4C2 U4C3 · U5C1
+# المصادر: content/authoring/U3/L1–L2, U4/L1–L3, U5/L1 (الكتاب + ملخصات الأستاذ فداء)
+# المحرّك: from_compute العام + variants للمفاهيمي — approved:false حتى مصادقة الأستاذ
+# ═══════════════════════════════════════════════════════════════════
+
+meta:
+  version: 1
+  generated: 2026-09-21
+  unit: U3-U5
+  lessons_covered: [U3/L1-strings, U3/L2-pipes, U4/L1-bohr, U4/L2-cathode-rays, U4/L3-photoelectric-xray, U5/L1-astronomy]
+
+schema:
+  distractor_rules:
+    spindle_is_lambda:   "ظنّ طول المغزل = λ (هو λ/2)"
+    open_closed_swap:    "خلط قانون المزمار المفتوح nv/2L بالمغلق (2n−1)v/4L"
+    even_harmonic_closed: "أعطى المدروج الثاني 2f1 لمزمار مختلف الطرفين (المسموح 3f1)"
+    forget_sqrt_T:       "أهمل الجذر في v ∝ √T أو v ∝ √FT"
+    celsius_kelvin:      "استعمل درجة مئوية بدل الكلفن"
+    energy_sign_bohr:    "خطأ إشارة/اتجاه: ظنّ الطاقة تقل بالابتعاد عن النواة"
+    level_difference:    "أخذ طاقة السوية لا فرق السويتين"
+    n_not_squared:       "13.6/n بدل 13.6/n²"
+    intensity_vs_freq:   "ظنّ الشدة تحدد السرعة (بل التواتر)"
+    forget_work_function: "أهمل Ws (Ek = hf)"
+    ev_joule:            "لم يحوّل eV ⇒ J أو العكس"
+    hubble_inverted:     "قلب v = H0·d"
+    blue_red_swap:       "خلط الانزياح الأحمر (ابتعاد) بالأزرق (اقتراب)"
+    escape_orbital_swap: "خلط سرعة الإفلات √(2GM/R) بالمدارية √(GM/R)"
+    forget_2_escape:     "أهمل الـ٢ تحت الجذر في سرعة الإفلات"
+    half_lambda:         "λ/4 بدل λ/2 أو العكس"
+
+constants:
+  g: 10
+  pi_approx: 3.14
+  h_planck: 0.000000000000000000000000000000000663
+  e_charge: 0.00000000000000000016
+  m_e: 0.00000000000000000000000000000091
+  c_light: 300000000.0
+  G_grav: 0.0000000000667
+
+templates:
+
+# ───────────────────────────── U3 L1 — الأوتار (U3C1) ─────────────────────────────
+
+- id: U3.L1.T01
+  title: "تجربة ملد — طول الموجة والسرعة من عدد المغازل"
+  chapter: U3C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ١٧٤–١٧٨", lesson: "U3/L1 §٣ المسافات الذهبية + البرهان ٣ [أستاذ]"}
+  vars:
+    n: {set: [2, 3, 4, 5, 6]}
+    L_cm: {set: [60, 80, 90, 100, 120, 150]}
+    f: {set: [25, 50, 100]}
+    ask: {set: ["lambda", "v"]}
+  compute:
+    lam: "2 * L_cm * 1e-2 / n"
+    v: "lam * f"
+    key: "lam if ask == 'lambda' else v"
+    qtxt: "'طول الموجة λ' if ask == 'lambda' else 'سرعة انتشار الموجة على الوتر'"
+    unit: "'m' if ask == 'lambda' else 'm·s⁻¹'"
+  constraints:
+    - "abs(lam * 100 - round(lam * 100)) < 1e-6"
+  stem: "في تجربة ملد شكّل وتر طوله {L_cm} cm بين نهايتيه المقيدتين {n} مغازل عندما كان تواتر الهزازة {f} Hz. احسب {qtxt}."
+  answer: {unit: "{unit}", format: auto}
+  options:
+    distractors:
+      - {value: "L_cm * 1e-2 / n if ask == 'lambda' else L_cm * 1e-2 / n * f", rule: spindle_is_lambda, rationale: "عدّ المغزل طول موجة كاملة"}
+      - {value: "2 * L_cm * 1e-2 * n if ask == 'lambda' else lam / f", rule: invert_ratio, rationale: "قلب النسبة"}
+      - {value: "2 * L_cm / n if ask == 'lambda' else lam * f * 100", rule: unit_cm_m, rationale: "لم يحوّل cm ⇒ m"}
+  rubric:
+    - {step: "L = n·λ/2 ⇒ λ = 2L/n ثم v = λ·f", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "طول المغزل = λ/2 و v = λ·f (الكتاب ص ١٧٥)"
+  approved: false
+
+- id: U3.L1.T02
+  title: "سرعة الموجة على وتر مشدود v = √(FT/μ) والتواتر الأساسي"
+  chapter: U3C1
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {book: "ص ١٧٨–١٧٩", lesson: "U3/L1 §٥ [أستاذ]"}
+  vars:
+    FT: {set: [10, 40, 90, 160, 250, 360]}
+    mu_g_m: {set: [1, 4, 10, 25, 100]}
+    L_cm: {set: [50, 60, 80, 100]}
+    ask: {set: ["v", "f1"]}
+  compute:
+    mu: "mu_g_m * 1e-3"
+    v: "sqrt(FT / mu)"
+    f1: "v / (2 * L_cm * 1e-2)"
+    key: "v if ask == 'v' else f1"
+    qtxt: "'سرعة انتشار الأمواج العرضية على الوتر' if ask == 'v' else f'التواتر الأساسي لوتر طوله {L_cm} cm منه'"
+    unit: "'m·s⁻¹' if ask == 'v' else 'Hz'"
+  constraints:
+    - "abs(v - round(v)) < 1e-9"
+  stem: "وتر متجانس كتلته الخطية {mu_g_m} g·m⁻¹ مشدود بقوة شدها {FT} N. احسب {qtxt}."
+  answer: {unit: "{unit}", format: auto}
+  options:
+    distractors:
+      - {value: "FT / mu if ask == 'v' else FT / mu / (2 * L_cm * 1e-2)", rule: forget_sqrt_T, rationale: "أهمل الجذر"}
+      - {value: "sqrt(mu / FT) if ask == 'v' else v / (L_cm * 1e-2)", rule: invert_ratio, rationale: "قلب النسبة / نسي الـ٢ في 2L"}
+      - {value: "sqrt(FT / mu_g_m) if ask == 'v' else v / (2 * L_cm)", rule: unit_confusion, rationale: "ترك g·m⁻¹ أو cm"}
+  rubric:
+    - {step: "v = √(FT/μ) ثم f1 = v/2L", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "v = √(FT/μ) · fn = n·v/(2L) (الكتاب ص ١٧٨)"
+  approved: false
+
+- id: U3.L1.T03
+  title: "مفاهيم الأمواج المستقرة على الأوتار"
+  chapter: U3C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ١٧٠–١٨٠", lesson: "U3/L1 §٢–§٥"}
+  variants:
+    - stem: "المسافة بين عقدتين متتاليتين في موجة مستقرة تساوي:"
+      key: "λ/2"
+      distractors:
+        - {text: "λ", rule: spindle_is_lambda}
+        - {text: "λ/4", rule: half_lambda}
+        - {text: "2λ", rule: mix_formulas}
+    - stem: "المسافة بين عقدة والبطن الذي يليها مباشرة تساوي:"
+      key: "λ/4"
+      distractors:
+        - {text: "λ/2", rule: half_lambda}
+        - {text: "λ", rule: spindle_is_lambda}
+        - {text: "3λ/4", rule: mix_formulas}
+    - stem: "تنشأ الموجة المستقرة على الوتر نتيجة:"
+      key: "تداخل الموجة الواردة مع المنعكسة المتساويتين تواتراً وسعة"
+      distractors:
+        - {text: "انتشار موجة واحدة بسرعة كبيرة", rule: mix_formulas}
+        - {text: "تداخل موجتين مختلفتي التواتر", rule: mix_formulas}
+        - {text: "امتصاص الموجة عند النهاية المقيدة", rule: mix_formulas}
+    - stem: "بتواتر ثابت للهزازة، يزداد عدد المغازل على الوتر عندما:"
+      key: "يزداد طول الوتر أو تنقص قوة الشد"
+      distractors:
+        - {text: "تزداد قوة الشد", rule: invert_ratio, rationale: "v↑ ⇒ λ↑ ⇒ n↓"}
+        - {text: "ينقص طول الوتر", rule: invert_ratio}
+        - {text: "تزداد سعة الهزازة", rule: mix_formulas}
+    - stem: "إذا ضوعفت قوة شد الوتر أربع مرات فإن سرعة انتشار الموجة عليه:"
+      key: "تتضاعف"
+      distractors:
+        - {text: "تصير أربعة أمثال", rule: forget_sqrt_T}
+        - {text: "لا تتغير", rule: mix_formulas}
+        - {text: "تنصّف", rule: invert_ratio}
+    - stem: "الكتلة الخطية μ لوتر متجانس:"
+      key: "لا تتغير بتغير طول الوتر"
+      distractors:
+        - {text: "تتناسب طرداً مع طوله", rule: mix_formulas}
+        - {text: "تتناسب عكساً مع طوله", rule: mix_formulas}
+        - {text: "تتعلق بقوة الشد", rule: mix_formulas}
+  answer_basis: "الكتاب ص ١٧٤–١٧٨ [أستاذ ٢٩ ص ٢٧٩]"
+  approved: false
+
+# ───────────────────────────── U3 L2 — المزامير (U3C2) ─────────────────────────────
+
+- id: U3.L2.T01
+  title: "تواتر المزمار المفتوح/المغلق والمدروج التالي"
+  chapter: U3C2
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ١٨٦–١٩٠", lesson: "U3/L2 البرهانان + جدول المقارنة [أستاذ]", exam: "س٣ اختبر نفسك"}
+  vars:
+    kind: {set: ["open", "closed"]}
+    L_cm: {set: [17, 25, 34, 40, 50, 68, 85]}
+    v: {set: [340]}
+    ask: {set: ["f1", "next"]}
+  compute:
+    L: "L_cm * 1e-2"
+    f1: "v / (2 * L) if kind == 'open' else v / (4 * L)"
+    nxt: "2 * f1 if kind == 'open' else 3 * f1"
+    key: "f1 if ask == 'f1' else nxt"
+    ktxt: "'متشابه الطرفين (مفتوح)' if kind == 'open' else 'مختلف الطرفين (مغلق من أحد طرفيه)'"
+    qtxt: "'تواتر الصوت الأساسي' if ask == 'f1' else 'تواتر المدروج التالي للأساسي'"
+  constraints:
+    - "abs(key - round(key)) < 1e-9"
+  stem: "مزمار {ktxt} طوله {L_cm} cm، سرعة الصوت في الهواء {v} m·s⁻¹. احسب {qtxt}."
+  answer: {unit: "Hz"}
+  options:
+    distractors:
+      - {value: "(v / (4 * L) if kind == 'open' else v / (2 * L)) * (1 if ask == 'f1' else (3 if kind == 'open' else 2))", rule: open_closed_swap, rationale: "استعمل قانون النوع الآخر"}
+      - {value: "2 * f1 if (ask == 'next' and kind == 'closed') else (3 * f1 if ask == 'next' else v / L)", rule: even_harmonic_closed, rationale: "2f1 للمختلف / أهمل الـ٢ أو ٤"}
+      - {value: "f1 * 100 if ask == 'f1' else nxt / 100", rule: unit_cm_m, rationale: "ترك الطول بالسنتيمتر"}
+  rubric:
+    - {step: "المفتوح f = n·v/2L · المغلق f = (2n−1)·v/4L", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة Hz", points: 1}
+  answer_basis: "الكتاب ص ١٨٨–١٨٩ — المدروج التالي للمختلف 3f1"
+  approved: false
+
+- id: U3.L2.T02
+  title: "أثر درجة الحرارة في سرعة الصوت v ∝ √T"
+  chapter: U3C2
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ١٩٠", lesson: "U3/L2 §٥ [أستاذ ٣٤ ص ٢٨٠]"}
+  vars:
+    T1: {set: [273, 300]}
+    ratio: {set: [4, 9]}
+    v1: {set: [330, 340]}
+  compute:
+    r: "int(sqrt(ratio))"
+    key: "v1 * r"
+    d1: "v1 * ratio"
+    d2: "v1 * (1 + (ratio - 1) / 2) if ratio == 4 else v1 * 2"
+  stem: "سرعة الصوت في غاز عند درجة الحرارة المطلقة {T1} K تساوي {v1} m·s⁻¹. إذا ارتفعت درجة حرارته المطلقة إلى {ratio} أمثال قيمتها فإن سرعة الصوت فيه تصبح:"
+  options:
+    key: "{key} m·s⁻¹"
+    distractors:
+      - {text: "{d1} m·s⁻¹", rule: forget_sqrt_T, rationale: "ضرب بالنسبة بلا جذر"}
+      - {text: "{v1} m·s⁻¹ (لا تتغير)", rule: mix_formulas, rationale: "ظنّ السرعة لا تتعلق بالحرارة"}
+      - {text: "{d2} m·s⁻¹", rule: celsius_kelvin, rationale: "حساب غير جذري"}
+  answer_basis: "v2/v1 = √(T2/T1) (الكتاب ص ١٩٠)"
+  approved: false
+
+- id: U3.L2.T03
+  title: "مفاهيم المزامير — النهايات، الرنين، الأنواع"
+  chapter: U3C2
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ١٨٤–١٩٢", lesson: "U3/L2 §١–§٤ اختبر نفسك س١–س٦"}
+  variants:
+    - stem: "عند النهاية المغلقة لمزمار تتشكل:"
+      key: "عقدة اهتزاز وبطن ضغط"
+      distractors:
+        - {text: "بطن اهتزاز وبطن ضغط", rule: mix_formulas}
+        - {text: "عقدة اهتزاز وعقدة ضغط", rule: mix_formulas}
+        - {text: "بطن اهتزاز وعقدة ضغط", rule: open_closed_swap, rationale: "هذه النهاية المفتوحة"}
+    - stem: "مزمار ذو لسان نهايته مغلقة يُعدّ:"
+      key: "متشابه الطرفين"
+      distractors:
+        - {text: "مختلف الطرفين", rule: open_closed_swap}
+        - {text: "لا يصدر صوتاً", rule: mix_formulas}
+        - {text: "يصدر المدروجات الفردية فقط", rule: open_closed_swap}
+    - stem: "مزمار مختلف الطرفين تواتر صوته الأساسي 200 Hz؛ تواتر المدروج التالي:"
+      key: "600 Hz"
+      distractors:
+        - {text: "400 Hz", rule: even_harmonic_closed}
+        - {text: "300 Hz", rule: mix_formulas}
+        - {text: "100 Hz", rule: invert_ratio}
+    - stem: "في تجربة الرنين بالأنبوب والماء، المسافة بين موضعي صوتين شديدين متتاليين تمثل:"
+      key: "λ/2"
+      distractors:
+        - {text: "λ/4", rule: half_lambda, rationale: "ذاك طول الرنين الأول"}
+        - {text: "λ", rule: spindle_is_lambda}
+        - {text: "3λ/4", rule: mix_formulas}
+    - stem: "لمزمارين لهما الطول نفسه أحدهما مفتوح والآخر مغلق، يكون التواتر الأساسي للمغلق:"
+      key: "نصف تواتر المفتوح"
+      distractors:
+        - {text: "ضعف تواتر المفتوح", rule: invert_ratio}
+        - {text: "يساوي تواتر المفتوح", rule: open_closed_swap}
+        - {text: "ربع تواتر المفتوح", rule: mix_formulas}
+    - stem: "تُصنع جدران المزمار من الخشب أو المعدن السميك لكي:"
+      key: "لا تشارك في الاهتزاز"
+      distractors:
+        - {text: "تزيد سرعة الصوت", rule: mix_formulas}
+        - {text: "تضخّم الصوت بالاهتزاز معه", rule: mix_formulas}
+        - {text: "تخفّض التواتر", rule: mix_formulas}
+  answer_basis: "الكتاب ص ١٨٤–١٩٠ [أستاذ س١٢–س١٣]"
+  approved: false
+
+# ───────────────────────────── U4 L1 — ذرة بور (U4C1) ─────────────────────────────
+
+- id: U4.L1.T01
+  title: "سويات الهيدروجين — طاقة السوية وفوتون الانتقال"
+  chapter: U4C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٢٠٠–٢٠٤", lesson: "U4/L1 §٤ En = −13.6/n² [أستاذ س٦]"}
+  vars:
+    n_hi: {set: [2, 3, 4, 5]}
+    n_lo: {set: [1, 2, 3]}
+    ask: {set: ["En", "dE"]}
+  constraints:
+    - "n_lo < n_hi"
+  compute:
+    En: "-13.6 / n_hi**2"
+    dE: "13.6 * (1 / n_lo**2 - 1 / n_hi**2)"
+    key: "En if ask == 'En' else dE"
+    qtxt: "f'احسب طاقة السوية n = {n_hi}.' if ask == 'En' else f'احسب طاقة الفوتون الصادر عند انتقال الإلكترون من السوية n = {n_hi} إلى السوية n = {n_lo}.'"
+  stem: "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). {qtxt}"
+  answer: {unit: "eV", sig: 3}
+  options:
+    distractors:
+      - {value: "13.6 / n_hi if ask == 'En' else 13.6 * (1 / n_lo - 1 / n_hi)", rule: n_not_squared, rationale: "n بدل n²"}
+      - {value: "13.6 / n_hi**2 if ask == 'En' else -dE", rule: energy_sign_bohr, rationale: "إشارة خاطئة"}
+      - {value: "-13.6 / n_lo**2 if ask == 'En' else 13.6 / n_hi**2", rule: level_difference, rationale: "طاقة سوية بدل الفرق / سوية أخرى"}
+  rubric:
+    - {step: "En = −13.6/n² · hf = Ep − En", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة eV", points: 1}
+  answer_basis: "En = −13.6/n² eV (الكتاب ص ٢٠٢)"
+  approved: false
+
+- id: U4.L1.T02
+  title: "مفاهيم نموذج بور والطيوف"
+  chapter: U4C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ١٩٦–٢٠٦", lesson: "U4/L1 اختبر نفسك س١–س٧"}
+  variants:
+    - stem: "يمتص إلكترون ذرة الهيدروجين طاقة عندما:"
+      key: "يقفز من سوية دنيا إلى سوية عليا"
+      distractors:
+        - {text: "يهبط إلى سوية أقرب من النواة", rule: energy_sign_bohr}
+        - {text: "يدور ضمن السوية نفسها", rule: mix_formulas, rationale: "مدار مستقر لا إشعاع"}
+        - {text: "يسقط على النواة", rule: mix_formulas}
+    - stem: "نصف قطر المدار المستقر rn في نموذج بور يتناسب مع:"
+      key: "n²"
+      distractors:
+        - {text: "n", rule: n_not_squared}
+        - {text: "1/n²", rule: invert_ratio}
+        - {text: "1/n", rule: invert_ratio}
+    - stem: "طيف الإصدار لمصباح غازي يكون:"
+      key: "خطياً متقطعاً"
+      distractors:
+        - {text: "مستمراً", rule: mix_formulas}
+        - {text: "عصابات فقط", rule: mix_formulas}
+        - {text: "لا يعطي طيفاً", rule: mix_formulas}
+    - stem: "أكبر طاقة فوتون يمكن أن تصدرها ذرة هيدروجين (من الطاقة الكلية السالبة إلى السوية الأساسية) تقارب:"
+      key: "13.6 eV"
+      distractors:
+        - {text: "10.2 eV", rule: level_difference, rationale: "انتقال 2→1 فقط"}
+        - {text: "3.4 eV", rule: level_difference}
+        - {text: "لا نهائية", rule: mix_formulas}
+    - stem: "كلما ابتعد الإلكترون عن النواة في ذرة الهيدروجين فإن طاقته الكلية:"
+      key: "تزداد (تقل سلبية) ويقل مقدار طاقة الارتباط"
+      distractors:
+        - {text: "تقل لأنها تبتعد عن النواة", rule: energy_sign_bohr}
+        - {text: "لا تتغير", rule: mix_formulas}
+        - {text: "تصير موجبة فوراً", rule: mix_formulas}
+    - stem: "الطاقة الكلية للإلكترون في ذرة الهيدروجين سالبة لأن:"
+      key: "الكامنة السالبة أكبر مطلقاً من الحركية الموجبة (طاقة ارتباط)"
+      distractors:
+        - {text: "الإلكترون شحنته سالبة", rule: mix_formulas}
+        - {text: "الحركية سالبة", rule: mix_formulas}
+        - {text: "النواة تفقد طاقة", rule: mix_formulas}
+  answer_basis: "الكتاب ص ٢٠٠–٢٠٤ [أستاذ س٦ س٧]"
+  approved: false
+
+# ───────────────────────────── U4 L2 — الأشعة المهبطية (U4C2) ─────────────────────────────
+
+- id: U4.L2.T01
+  title: "سرعة الإلكترون المسرَّع بفرق كمون"
+  chapter: U4C2
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٢١٤–٢١٦", lesson: "U4/L2 البرهان ١ v = √(2eU/me) [أستاذ]"}
+  vars:
+    U: {set: [100, 400, 900, 1600, 2500, 3600]}
+  compute:
+    key: "sqrt(2 * e_charge * U / m_e)"
+    Ek: "e_charge * U"
+  stem: "يُسرَّع إلكترون من السكون بفرق كمون U = {U} V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي)."
+  answer: {unit: "m·s⁻¹", format: sci, sig: 3, round: true}
+  options:
+    distractors:
+      - {value: "2 * e_charge * U / m_e", rule: forget_sqrt, rationale: "أهمل الجذر"}
+      - {value: "sqrt(e_charge * U / m_e)", rule: forget_half, rationale: "أهمل الـ٢ (½mv²)"}
+      - {value: "sqrt(2 * e_charge * U * m_e)", rule: invert_ratio, rationale: "ضرب بالكتلة بدل القسمة"}
+  rubric:
+    - {step: "½me·v² = e·U ⇒ v = √(2eU/me)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "v = √(2eU/me) (الكتاب ص ٢١٥)"
+  approved: false
+
+- id: U4.L2.T02
+  title: "مفاهيم الأشعة المهبطية والانتزاع"
+  chapter: U4C2
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ٢١٠–٢٢٨", lesson: "U4/L2 اختبر نفسك س١–س٣ + الخواص"}
+  variants:
+    - stem: "الأشعة المهبطية في حقل كهربائي منتظم:"
+      key: "تنحرف نحو اللبوس الموجب"
+      distractors:
+        - {text: "تنحرف نحو اللبوس السالب", rule: sign_flip}
+        - {text: "لا تنحرف", rule: mix_formulas}
+        - {text: "تتوقف", rule: mix_formulas}
+    - stem: "الغرض من تطبيق حقل مغناطيسي مع حقل كهربائي بحيث v0 = E/B على حزمة الإلكترونات:"
+      key: "إبقاء حركتها مستقيمة منتظمة"
+      distractors:
+        - {text: "تسريعها", rule: work_not_zero}
+        - {text: "زيادة انحرافها", rule: mix_formulas}
+        - {text: "إيقافها", rule: mix_formulas}
+    - stem: "شرطا توليد الأشعة المهبطية في أنبوب التفريغ:"
+      key: "فراغ كبير (10⁻² – 10⁻³ mmHg) وتوتر كبير نسبياً"
+      distractors:
+        - {text: "ضغط جوي وتوتر صغير", rule: mix_formulas}
+        - {text: "غاز مضغوط وتسخين شديد", rule: mix_formulas}
+        - {text: "فراغ كبير فقط دون توتر", rule: true_but_partial}
+    - stem: "مسار الإلكترون داخل حقل كهربائي منتظم عمودي على سرعته الابتدائية هو:"
+      key: "قطع مكافئ"
+      distractors:
+        - {text: "دائرة", rule: mix_formulas, rationale: "ذاك في الحقل المغناطيسي"}
+        - {text: "خط مستقيم", rule: mix_formulas}
+        - {text: "حلزون", rule: mix_formulas}
+    - stem: "الفعل الكهرحراري هو انتزاع الإلكترونات من سطح المعدن:"
+      key: "بتسخينه إلى درجة حرارة مناسبة"
+      distractors:
+        - {text: "بتعريضه لإشعاع ضوئي", rule: mix_formulas, rationale: "ذاك الكهرضوئي"}
+        - {text: "بقذفه بجسيمات", rule: mix_formulas, rationale: "ذاك مفعول الحت"}
+        - {text: "بتطبيق حقل مغناطيسي", rule: mix_formulas}
+  answer_basis: "الكتاب ص ٢١٤–٢٢٨ [أستاذ ص ٢٢٢]"
+  approved: false
+
+# ───────────────────────────── U4 L3 — الكهرضوئي والأشعة السينية (U4C3) ─────────────────────────────
+
+- id: U4.L3.T01
+  title: "معادلة أينشتاين — الطاقة الحركية العظمى / كمون الإيقاف (بالـeV)"
+  chapter: U4C3
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٢٣٤–٢٣٨", lesson: "U4/L3 البرهان hf = Ws + ½mv²max [أستاذ س٣]"}
+  vars:
+    E_ph: {set: [2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0]}
+    Ws: {set: [1.5, 2.0, 2.3, 3.0, 4.0]}
+    ask: {set: ["Ek", "U0"]}
+  constraints:
+    - "E_ph > Ws + 0.4"
+  compute:
+    key: "E_ph - Ws"
+    qtxt: "'الطاقة الحركية العظمى للإلكترونات المنتزعة (بالـeV)' if ask == 'Ek' else 'كمون الإيقاف U0 (بالفولت)'"
+    unit: "'eV' if ask == 'Ek' else 'V'"
+  stem: "يسقط ضوء طاقة فوتونه {E_ph} eV على سطح معدن طاقة انتزاعه Ws = {Ws} eV. احسب {qtxt}."
+  answer: {unit: "{unit}"}
+  options:
+    distractors:
+      - {value: "E_ph", rule: forget_work_function, rationale: "أهمل Ws"}
+      - {value: "E_ph + Ws", rule: sign_flip, rationale: "جمع بدل الطرح"}
+      - {value: "(E_ph - Ws) * 1.6", rule: ev_joule, rationale: "خلط بتحويل eV/J"}
+  rubric:
+    - {step: "hf = Ws + Ek_max و e·U0 = Ek_max", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "hf = Ws + ½me·v²max (الكتاب ص ٢٣٦)"
+  approved: false
+
+- id: U4.L3.T02
+  title: "أنبوب كوليدج — أصغر طول موجة للأشعة السينية"
+  chapter: U4C3
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {book: "ص ٢٤٢–٢٤٣", lesson: "U4/L3 البرهان λmin = hc/(eUAC) [أستاذ]"}
+  vars:
+    U_kV: {set: [10, 20, 25, 40, 50, 100]}
+  compute:
+    key: "h_planck * c_light / (e_charge * U_kV * 1e3)"
+  stem: "يعمل أنبوب كوليدج بتوتر UAC = {U_kV} kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة."
+  answer: {unit: "m", format: sci, sig: 3, round: true}
+  options:
+    distractors:
+      - {value: "h_planck * c_light / (e_charge * U_kV)", rule: unit_confusion, rationale: "لم يحوّل kV ⇒ V"}
+      - {value: "e_charge * U_kV * 1e3 / (h_planck * c_light)", rule: invert_ratio, rationale: "قلب النسبة"}
+      - {value: "h_planck / (e_charge * U_kV * 1e3)", rule: mix_formulas, rationale: "أهمل c (حسب 1/f بدل λ)"}
+  rubric:
+    - {step: "e·UAC = h·fmax = h·c/λmin", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة m", points: 1}
+  answer_basis: "λmin = h·c/(e·UAC) (الكتاب ص ٢٤٣)"
+  approved: false
+
+- id: U4.L3.T03
+  title: "مفاهيم الكهرضوئي والفوتون والأشعة السينية والليزر"
+  chapter: U4C3
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٢٣٠–٢٥٠", lesson: "U4/L3 جدول المواجهة + الخطأ الشائع ١ [أستاذ س٣ س٨ س٩]", exam: "٢٠٢٦ س٢ الامتصاص"}
+  variants:
+    - stem: "في الظاهرة الكهرضوئية، زيادة شدة الضوء الساقط (بتواتر ثابت) تؤدي إلى:"
+      key: "زيادة عدد الإلكترونات المنتزعة (تيار الإشباع) دون تغيير سرعتها العظمى"
+      distractors:
+        - {text: "زيادة السرعة العظمى للإلكترونات", rule: intensity_vs_freq}
+        - {text: "زيادة كمون الإيقاف", rule: intensity_vs_freq}
+        - {text: "خفض تواتر العتبة", rule: mix_formulas}
+    - stem: "كمون الإيقاف U0 في الظاهرة الكهرضوئية يتعلق بـ:"
+      key: "تواتر الضوء الساقط وطبيعة المعدن فقط"
+      distractors:
+        - {text: "شدة الضوء الساقط", rule: intensity_vs_freq}
+        - {text: "مساحة سطح المهبط", rule: mix_formulas}
+        - {text: "المسافة بين المهبط والمصعد", rule: mix_formulas}
+    - stem: "كمية حركة الفوتون تُعطى بالعلاقة:"
+      key: "p = h/λ = E/c"
+      distractors:
+        - {text: "p = h·λ", rule: invert_ratio}
+        - {text: "p = m·c² ", rule: mix_formulas}
+        - {text: "p = h·f·c", rule: mix_formulas}
+    - stem: "في أنبوب كوليدج، رفع التوتر UAC بين المهبط والهدف يؤدي إلى:"
+      key: "زيادة طاقة الأشعة السينية (قساوتها) ونقصان λmin"
+      distractors:
+        - {text: "زيادة شدة الأشعة فقط", rule: mix_formulas, rationale: "الشدة من حرارة السلك"}
+        - {text: "زيادة λmin", rule: invert_ratio}
+        - {text: "لا أثر على الأشعة", rule: mix_formulas}
+    - stem: "تزداد النسبة الممتصة من الأشعة السينية في مادة بازدياد:"
+      key: "العدد الذري للمادة وسماكتها وطول موجة الأشعة"
+      distractors:
+        - {text: "تواتر الأشعة", rule: invert_ratio, rationale: "الأقسى أنفذ"}
+        - {text: "درجة حرارة المادة", rule: mix_formulas}
+        - {text: "توتر التشغيل", rule: invert_ratio}
+    - stem: "من خواص حزمة الليزر أنها:"
+      key: "وحيدة اللون ومترابطة بالطور وانفراجها صغير"
+      distractors:
+        - {text: "متعددة الألوان كالضوء الأبيض", rule: mix_formulas}
+        - {text: "تتشتت بسرعة بعد خروجها", rule: mix_formulas}
+        - {text: "فوتوناتها مختلفة الطور", rule: mix_formulas}
+    - stem: "تفسير أينشتاين للظاهرة الكهرضوئية يقوم على أن الفوتون:"
+      key: "يقدّم كامل طاقته لإلكترون واحد"
+      distractors:
+        - {text: "يوزع طاقته على عدة إلكترونات", rule: mix_formulas}
+        - {text: "يقدّم جزءاً من طاقته تدريجياً", rule: mix_formulas, rationale: "الموجية"}
+        - {text: "يسخّن المعدن فتتحرر الإلكترونات", rule: mix_formulas}
+  answer_basis: "الكتاب ص ٢٣٤–٢٤٨ [أستاذ س٣]"
+  approved: false
+
+# ───────────────────────────── U5 L1 — الفلك (U5C1) ─────────────────────────────
+
+- id: U5.L1.T01
+  title: "قانون هابل — سرعة الابتعاد / البعد"
+  chapter: U5C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٢٦٠–٢٦٢", lesson: "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"}
+  vars:
+    H0: {set: [68, 70]}
+    d_Mpc: {set: [10, 50, 100, 200, 500]}
+    ask: {set: ["v", "d"]}
+  compute:
+    v: "H0 * d_Mpc"
+    key: "v if ask == 'v' else d_Mpc"
+    qtxt: "f'مجرة تبعد عنا {d_Mpc} Mpc. احسب سرعة ابتعادها.' if ask == 'v' else f'مجرة تبتعد عنا بسرعة {v} km·s⁻¹. احسب بعدها عنا.'"
+    unit: "'km·s⁻¹' if ask == 'v' else 'Mpc'"
+  stem: "ثابت هابل H0 = {H0} km·s⁻¹·Mpc⁻¹. {qtxt}"
+  answer: {unit: "{unit}"}
+  options:
+    distractors:
+      - {value: "d_Mpc / H0 if ask == 'v' else v * H0", rule: hubble_inverted, rationale: "قلب العلاقة"}
+      - {value: "v * 1000 if ask == 'v' else d_Mpc * 1000", rule: unit_confusion, rationale: "ضرب بـ1000 بلا داعٍ"}
+      - {value: "H0 + d_Mpc if ask == 'v' else v - H0", rule: mix_formulas, rationale: "جمع/طرح بدل الضرب/القسمة"}
+  rubric:
+    - {step: "v = H0·d", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "v = H0·d (الكتاب ص ٢٦١)"
+  approved: false
+
+- id: U5.L1.T02
+  title: "الانزياح نحو الأحمر — سرعة الابتعاد من Δλ/λ"
+  chapter: U5C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٢٥٩–٢٦٠", lesson: "U5/L1 البرهان Δλ/λ = v/c"}
+  vars:
+    lam0: {set: [400, 500, 600, 656]}
+    dl: {set: [1, 2, 4, 5, 8, 10]}
+  compute:
+    key: "c_light * dl / lam0"
+  stem: "خط طيفي طول موجته في المختبر {lam0} nm يُرصد في طيف مجرة عند {lam0} + {dl} nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹)."
+  answer: {unit: "m·s⁻¹", format: sci, sig: 3, round: true}
+  options:
+    distractors:
+      - {value: "c_light * lam0 / dl", rule: invert_ratio, rationale: "قلب النسبة"}
+      - {value: "dl / lam0", rule: mix_formulas, rationale: "حسب النسبة Δλ/λ ونسي الضرب بـc"}
+      - {value: "c_light * dl / lam0 / 1000", rule: unit_confusion, rationale: "تحويل nm خاطئ"}
+  rubric:
+    - {step: "Δλ/λ = v/c ⇒ v = c·Δλ/λ", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "v = c·Δλ/λ (الكتاب ص ٢٦٠)"
+  approved: false
+
+- id: U5.L1.T03
+  title: "مفاهيم الفلك — الانزياح، الانفجار الأعظم، الثقوب السوداء، سرعة الإفلات"
+  chapter: U5C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ٢٥٤–٢٦٨", lesson: "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"}
+  variants:
+    - stem: "انزياح طيف مجرة نحو الأحمر يعني أن المجرة:"
+      key: "تبتعد عنا"
+      distractors:
+        - {text: "تقترب منا", rule: blue_red_swap}
+        - {text: "ساكنة", rule: mix_formulas}
+        - {text: "تدور حول نفسها", rule: mix_formulas}
+    - stem: "مصدر طاقة النجوم هو:"
+      key: "اندماج نوى الهيدروجين إلى هيليوم مع نقص في الكتلة"
+      distractors:
+        - {text: "احتراق كيميائي", rule: mix_formulas}
+        - {text: "انشطار نووي", rule: mix_formulas}
+        - {text: "التقلص الثقالي فقط", rule: true_but_partial}
+    - stem: "الثقوب السوداء بالضرورة:"
+      key: "ذات كتلة حجمية هائلة"
+      distractors:
+        - {text: "ذات نصف قطر هائل", rule: mix_formulas}
+        - {text: "ذات كتلة هائلة", rule: true_but_partial}
+        - {text: "ساخنة جداً", rule: mix_formulas}
+    - stem: "سرعة الإفلات vesc بدلالة السرعة المدارية v1 على السطح نفسه:"
+      key: "√2·v1"
+      distractors:
+        - {text: "v1", rule: escape_orbital_swap}
+        - {text: "2·v1", rule: forget_sqrt}
+        - {text: "v1/√2", rule: invert_ratio}
+    - stem: "يُقدَّر عمر الكون انطلاقاً من قانون هابل بـ:"
+      key: "1/H0"
+      distractors:
+        - {text: "H0", rule: hubble_inverted}
+        - {text: "c/H0", rule: mix_formulas, rationale: "هذا بعد لا زمن"}
+        - {text: "H0·c", rule: mix_formulas}
+    - stem: "سرعة الإفلات من سطح جرم كتلته M ونصف قطره R تُعطى بـ:"
+      key: "vesc = √(2GM/R)"
+      distractors:
+        - {text: "vesc = √(GM/R)", rule: forget_2_escape}
+        - {text: "vesc = √(2GM/R²)", rule: mix_formulas, rationale: "خلط بـg"}
+        - {text: "vesc = 2GM/R", rule: forget_sqrt}
+    - stem: "إذا انكمش نجم إلى ثقب أسود مع ثبات كتلته فإن قوة جذبه لكوكب يدور حوله على البعد نفسه:"
+      key: "لا تتغير"
+      distractors:
+        - {text: "تزداد كثيراً فيبتلعه", rule: mix_formulas}
+        - {text: "تنعدم", rule: mix_formulas}
+        - {text: "تنصّف", rule: mix_formulas}
+    - stem: "من الأسس الفيزيائية لنظرية الانفجار الأعظم:"
+      key: "إشعاع خلفية راديوي ضعيف منتظم من جميع الاتجاهات"
+      distractors:
+        - {text: "انزياح طيوف المجرات نحو الأزرق", rule: blue_red_swap}
+        - {text: "ثبات أبعاد المجرات", rule: mix_formulas}
+        - {text: "دوران الأرض حول الشمس", rule: mix_formulas}
+  answer_basis: "الكتاب ص ٢٥٤–٢٦٨"
+  approved: false
+
+review_queue:
+  teacher_questions:
+    - "U4.L1.T01: هل تُعتمد −13.6 eV أم −21.76×10⁻¹⁹ J في الأسئلة الوزارية؟"
+    - "U3.L2.T01: سرعة الصوت 340 m/s معتمدة؟ (الكتاب يستعمل 340 في الأمثلة)"
+    - "U5.L1.T01: قيمة H0 المعتمدة (68 أم 70 km/s/Mpc) — الخط البياني بالكتاب يعطي 68"

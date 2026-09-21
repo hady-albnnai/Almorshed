@@ -1,7 +1,7 @@
 /// المادة ١٢ — بنود المولّد (tools/gen_items.py) كما تصل للتطبيق.
 ///
-/// المصدر: `assets/content/items_u1.json` (نسخة من
-/// `content/generated/U1.sample100.json`). كل بند `approved:false` حتى يعتمده
+/// المصدر: `assets/content/items.json` (المجمّع الكامل من
+/// `content/generated/ALL.items.json` — الوحدات الخمس/١٧ فصلاً). كل بند `approved:false` حتى يعتمده
 /// الأستاذ — الفلتر نفسه المعتمد في F2.4: الوضع العادي يعرض المعتمد فقط،
 /// ووضع المراجعة يفتح الكل بشارة «قيد المراجعة».
 library;
@@ -62,8 +62,7 @@ class GeneratedItem {
 
   /// خطوات البرهان الخام (للبرهان فقط).
   List<Map<String, dynamic>> get proofSteps =>
-      (raw['steps'] as List<dynamic>? ?? const [])
-          .cast<Map<String, dynamic>>();
+      (raw['steps'] as List<dynamic>? ?? const []).cast<Map<String, dynamic>>();
 
   /// مفاتيح «علّل» و«اذكر».
   List<String> get keys =>
@@ -94,7 +93,7 @@ class GeneratedItemsPack {
   final List<GeneratedItem> items;
   final Map<String, dynamic> meta;
 
-  static const String defaultAssetPath = 'assets/content/items_u1.json';
+  static const String defaultAssetPath = 'assets/content/items.json';
 
   factory GeneratedItemsPack.fromJsonString(String raw) {
     final j = jsonDecode(raw) as Map<String, dynamic>;
@@ -119,3 +118,27 @@ class GeneratedItemsPack {
       ? items
       : items.where((i) => i.approved).toList(growable: false);
 }
+
+/// أسماء فصول المنهاج الوزاري السبعة عشر (U1C1…U5C1) — تُشارَك بين
+/// شاشة الجلسة وشاشة المراجعة؛ المعرّف الخام يعود كما هو إن لم يُعرف.
+const Map<String, String> chapterTitles = {
+  'U1C1': 'النواس المرن',
+  'U1C2': 'نواس الفتل',
+  'U1C3': 'النواس الثقلي',
+  'U1C4': 'ميكانيك الموائع',
+  'U1C5': 'النسبية الخاصة',
+  'U2C1': 'المغناطيسية',
+  'U2C2': 'القوة المغناطيسية والكهرطيسية',
+  'U2C3': 'التحريض الكهرطيسي',
+  'U2C4': 'الدارة المهتزة',
+  'U2C5': 'التيار المتناوب',
+  'U2C6': 'المحوّلات',
+  'U3C1': 'الأمواج المستقرة على الأوتار',
+  'U3C2': 'الأمواج الصوتية والمزامير',
+  'U4C1': 'نموذج بور',
+  'U4C2': 'الأشعة المهبطية',
+  'U4C3': 'الكهرضوئي والأشعة السينية',
+  'U5C1': 'الفلك والكون',
+};
+
+String chapterTitleOf(String chapter) => chapterTitles[chapter] ?? chapter;

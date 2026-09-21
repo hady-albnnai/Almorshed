@@ -30,7 +30,7 @@ class ItemSessionScreen extends StatefulWidget {
   const ItemSessionScreen({
     super.key,
     required this.items,
-    this.title = 'تدريب الوحدة الأولى',
+    this.title = 'تدريب البنود المولّدة',
     this.initialIndex = 0,
   });
 
@@ -68,8 +68,7 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
     });
   }
 
-  double get _points =>
-      _results.values.fold<double>(0, (s, r) => s + r.points);
+  double get _points => _results.values.fold<double>(0, (s, r) => s + r.points);
   double get _maxPoints =>
       widget.items.fold<double>(0, (s, i) => s + _maxOf(i));
 
@@ -171,7 +170,8 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
                       key: ValueKey('proof-${item.id}'),
                       item: item,
                       result: result,
-                      onSubmit: (attempt) => _grade(gradeItem(item.raw, attempt)),
+                      onSubmit: (attempt) =>
+                          _grade(gradeItem(item.raw, attempt)),
                     ),
                 },
                 if (result != null) ...[
@@ -227,7 +227,8 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
             const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(msg, style: txt.bodyLarge, textAlign: TextAlign.center),
+              child:
+                  Text(msg, style: txt.bodyLarge, textAlign: TextAlign.center),
             ),
             const SizedBox(height: 24),
             FilledButton(
@@ -270,12 +271,7 @@ class _KindChip extends StatelessWidget {
       ItemKind.why => 'علّل',
       ItemKind.proof => 'برهان — رتّب الخطوات',
     };
-    final ch = switch (chapter) {
-      'U1C1' => 'النواس المرن',
-      'U1C2' => 'نواس الفتل',
-      'U1C3' => 'النواس الثقلي',
-      _ => chapter,
-    };
+    final ch = chapterTitleOf(chapter);
     return Wrap(
       spacing: 6,
       children: [
@@ -420,9 +416,10 @@ class _NumericBodyState extends State<_NumericBody> {
     if (done) {
       final item = widget.item;
       final a = item.numericAnswer;
-      final key = item.correctIndex >= 0 && item.correctIndex < item.options.length
-          ? item.options[item.correctIndex]
-          : (a == null ? '' : '${a.value} ${a.unit}');
+      final key =
+          item.correctIndex >= 0 && item.correctIndex < item.options.length
+              ? item.options[item.correctIndex]
+              : (a == null ? '' : '${a.value} ${a.unit}');
       return Card(
         child: Padding(
           padding: const EdgeInsets.all(12),
@@ -546,7 +543,8 @@ class _WhyBodyState extends State<_WhyBody> {
                   padding: const EdgeInsets.only(top: 6),
                   child: Text(
                     'الصياغة النموذجية: ${widget.item.options[widget.item.correctIndex]}',
-                    style: txt.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                    style:
+                        txt.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
             ],
@@ -629,7 +627,10 @@ class _ProofBodyState extends State<_ProofBody> {
     final txt = Theme.of(context).textTheme;
     final cs = Theme.of(context).colorScheme;
     final done = widget.result != null;
-    final remaining = [for (final n in _shuffled) if (!_picked.contains(n)) n];
+    final remaining = [
+      for (final n in _shuffled)
+        if (!_picked.contains(n)) n
+    ];
     final total = _steps.fold<num>(0, (s, st) => s + (st['points'] as num));
 
     return Column(
@@ -770,7 +771,8 @@ class _PickedStep extends StatelessWidget {
             onChanged: enabled ? (v) => onFlag(e.key, v ?? false) : null,
             title: Text(
               switch (e.key) {
-                'missing_minus' => 'كتبتها بلا الإشارة السالبة (−${pen(e.value)})',
+                'missing_minus' =>
+                  'كتبتها بلا الإشارة السالبة (−${pen(e.value)})',
                 'missing_phi' => 'كتبت التابع بلا الطور φ (−${pen(e.value)})',
                 _ => '${e.key} (−${pen(e.value)})',
               },

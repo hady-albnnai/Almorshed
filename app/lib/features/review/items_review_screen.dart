@@ -9,7 +9,7 @@
 // • ✏️ في الصف نفسه للحكم السريع بلا حلّ.
 // • الملاحظات تُحفظ في ReviewNotesStore نفسه (kind 'g') ⇒ تدخل تقرير واتساب
 //   القائم «ملاحظاتي» بصيغة «بند20001: …» — لا مسار إرسال جديد.
-// • لا يكتب شيئاً في items_u1.json ولا يرفع علم approved — ذاك قرار المطوّر
+// • لا يكتب شيئاً في items.json ولا يرفع علم approved — ذاك قرار المطوّر
 //   بعد التقرير (قرار ٢٤: لا أختام مسبقة).
 // ═══════════════════════════════════════════════════════════════════════
 import 'package:flutter/material.dart';
@@ -266,13 +266,6 @@ class _ItemRow extends StatelessWidget {
 }
 
 /// أسماء الفصول والأنماط — تُشارَك مع شاشة الجلسة.
-String chapterTitleOf(String chapter) => switch (chapter) {
-      'U1C1' => 'النواس المرن',
-      'U1C2' => 'نواس الفتل',
-      'U1C3' => 'النواس الثقلي',
-      _ => chapter,
-    };
-
 String kindTitleOf(ItemKind k) => switch (k) {
       ItemKind.mcq => 'اختياري',
       ItemKind.numeric => 'حساب',

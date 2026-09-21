@@ -1,0 +1,713 @@
+# ═══════════════════════════════════════════════════════════════════
+# قوالب الأسئلة — الوحدة ٢ (الكهرباء والمغناطيسية) — U2C1…U2C6
+# المصادر: content/authoring/U2/L1…L6 (الكتاب ص ٦٨–١٦٧ + ملخصات الأستاذ فداء)
+#          + السلم الوزاري ٢٠٢٦ (docs/20 §٢): مسألة ٣ التيار المتناوب ٨٠ · مسألة ٢ الإطار ٤٥ ·
+#            س٤ ثبات الطاقة ٣٠ · س٣-٣ السكتان ٢٥ · س٢-١ النفوذية ٢٠ · س١-٢ المحولة
+# المحرّك: from_compute العام (vars/constraints/compute) + variants للمفاهيمي
+# ضوابط: approved:false · المفتاح من قانون الكتاب في answer_basis · كل مشتت بقاعدة موثقة
+# تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني
+# ═══════════════════════════════════════════════════════════════════
+
+meta:
+  version: 1
+  generated: 2026-09-21
+  unit: U2
+  lessons_covered: [L1-magnetism, L2-magnetic-force-laplace, L3-electromagnetic-induction, L4-oscillating-circuit, L5-alternating-current, L6-transformers]
+
+schema:
+  distractor_rules:
+    cos_sin_flux:        "خلط cos α (التدفق) بـsin α (العزم) — الزاوية مع الناظم لا مع المستوي"
+    forget_N:            "أهمل عدد اللفات N"
+    forget_mu0:          "أهمل μ0 أو 2×10⁻⁷ (ثابت الحقل)"
+    LC_inverted:         "√(L/C) بدل √(LC) (خلط مع النواس المرن)"
+    forget_sqrt2:        "خلط القيمة العظمى بالمنتجة (√2)"
+    XL_XC_swap:          "قلب ردّية الوشيعة Lω باتساعية المكثفة 1/Cω"
+    power_in_LC:         "حسب استطاعة على وشيعة/مكثفة (P = 0 فيهما)"
+    Z_algebraic:         "جمع الممانعات جبرياً بدل فيثاغورث"
+    ratio_inverted_transformer: "قلب نسبة التحويل (Ns/Np ↔ Np/Ns) أو نسبة التيار"
+    transformer_energy:  "ظنّ المحولة الرافعة ترفع الاستطاعة"
+    lenz_direction:      "عكس جهة التيار المتحرض (لنز)"
+    flux_vs_rate:        "خلط التدفق بمعدل تغيره (e تتبع dΦ/dt)"
+    work_not_zero:       "ظنّ القوة المغناطيسية تبذل عملاً/تغيّر السرعة"
+    r_T_dependence:      "ظنّ الدور T في الحقل المغناطيسي يتعلق بالسرعة"
+    forget_2_torque:     "أهمل الـ٢ (ذراع/قوتين) في عزم المزدوجة"
+
+constants:
+  g: 10
+  pi_sq: 10
+  pi_approx: 3.14
+
+templates:
+
+# ───────────────────────────── L1 — المغناطيسية (U2C1) ─────────────────────────────
+
+- id: U2.L1.T01
+  title: "التدفق المغناطيسي عبر وشيعة N لفة بزاوية α"
+  chapter: U2C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٨٠–٨١", lesson: "L1 §٥ [أستاذ س٥–س٦]", exam: "خصم سلم ٢٠٢٦ «Δφ = NBS» −١"}
+  vars:
+    N: {set: [50, 100, 200, 500]}
+    B_mT: {set: [2, 4, 5, 10, 20, 50]}
+    S_cm2: {set: [10, 20, 25, 40, 50, 100]}
+    alpha: {set: [0, 37, 60]}
+  compute:
+    cosA: "{0: 1.0, 37: 0.8, 60: 0.5}[alpha]"
+    sinA: "{0: 0.0, 37: 0.6, 60: 0.866}[alpha]"
+    key: "N * B_mT * 1e-3 * S_cm2 * 1e-4 * cosA"
+    atxt: "'يوازي الناظم على مستويها' if alpha == 0 else f'يصنع زاوية {alpha}° مع الناظم على مستويها'"
+  constraints:
+    - "key > 0"
+  stem: "وشيعة مسطحة من {N} لفة مساحة كل منها {S_cm2} cm² موضوعة في حقل مغناطيسي منتظم شدته {B_mT} mT {atxt}. احسب التدفق المغناطيسي عبر الوشيعة."
+  answer: {unit: "Wb", format: sci}
+  options:
+    distractors:
+      - {value: "B_mT * 1e-3 * S_cm2 * 1e-4 * cosA", rule: forget_N, rationale: "أهمل N"}
+      - {value: "N * B_mT * 1e-3 * S_cm2 * 1e-4 * (sinA if alpha != 0 else 0.5)", rule: cos_sin_flux, rationale: "sin بدل cos (الزاوية مع المستوي)"}
+      - {value: "N * B_mT * 1e-3 * S_cm2 * cosA", rule: unit_cm_m, rationale: "لم يحوّل cm² ⇒ m²"}
+  rubric:
+    - {step: "Φ = N·B·S·cos α", points: 5}
+    - {step: "التحويلات والتعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة Wb", points: 1}
+  answer_basis: "Φ = N·B·S·cos α — α بين B⃗ والناظم (الكتاب ص ٨٠)"
+  approved: false
+
+- id: U2.L1.T02
+  title: "الحقل المغناطيسي لسلك مستقيم / وشيعة طويلة"
+  chapter: U2C1
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٧٤–٧٨", lesson: "L1 §٤ جدول عناصر الحقل [أستاذ طرق حل]"}
+  vars:
+    kind: {set: ["wire", "solenoid"]}
+    I: {set: [2, 4, 5, 8, 10, 20]}
+    d_cm: {set: [2, 4, 5, 10, 20]}
+    n_per_cm: {set: [10, 20, 25, 50]}
+  compute:
+    key: "2e-7 * I / (d_cm * 1e-2) if kind == 'wire' else 4 * pi_approx * 1e-7 * n_per_cm * 100 * I"
+    stem_txt: "f'سلك مستقيم طويل يمر فيه تيار شدته {I} A. احسب شدة الحقل المغناطيسي في نقطة تبعد {d_cm} cm عنه.' if kind == 'wire' else f'وشيعة طويلة تحوي {n_per_cm} لفة في كل سنتمتر من طولها يمر فيها تيار شدته {I} A. احسب شدة الحقل المغناطيسي داخلها (π = 3.14).'"
+  stem: "{stem_txt}"
+  answer: {unit: "T", format: sci}
+  options:
+    distractors:
+      - {value: "2e-7 * I / d_cm if kind == 'wire' else 4 * pi_approx * 1e-7 * n_per_cm * I", rule: unit_cm_m, rationale: "لم يحوّل cm ⇒ m"}
+      - {value: "I / (d_cm * 1e-2) * 1e-7 if kind == 'wire' else n_per_cm * 100 * I * 1e-7", rule: forget_mu0, rationale: "ثابت خاطئ (10⁻⁷ بدل 2×10⁻⁷ / أهمل 4π)"}
+      - {value: "2e-7 * I * (d_cm * 1e-2) if kind == 'wire' else 4 * pi_approx * 1e-7 * I / (n_per_cm * 100)", rule: invert_ratio, rationale: "قلب النسبة"}
+  rubric:
+    - {step: "B = 2×10⁻⁷·I/d (سلك) أو B = μ0·n·I (وشيعة)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة T", points: 1}
+  answer_basis: "الكتاب ص ٧٤ (سلك) و ص ٧٨ (وشيعة)"
+  approved: false
+
+- id: U2.L1.T03
+  title: "مفاهيم المغناطيسية — النفوذية، التدفق، أورستد، الحقل الأرضي"
+  chapter: U2C1
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ٦٨–٨٧", lesson: "L1 §١–§٦", exam: "٢٠٢٦ س٢-١ النفوذية (٢٠)"}
+  variants:
+    - stem: "عامل النفوذية المغناطيسية μ لمادة هو:"
+      key: "حاصل قسمة الحقل الكلي بوجود المادة على الحقل الأصلي في الخلاء"
+      distractors:
+        - {text: "حاصل ضرب الحقل الكلي بالحقل الأصلي", rule: mix_formulas}
+        - {text: "الفرق بين الحقل الكلي والأصلي", rule: true_but_partial, rationale: "ذاك B′ حقل المغنطة"}
+        - {text: "مقدار له وحدة التسلا", rule: unit_confusion, rationale: "μ بلا وحدة"}
+    - stem: "يكون التدفق المغناطيسي عبر إطار مستوٍ معدوماً عندما:"
+      key: "توازي خطوط الحقل مستوي الإطار (α = 90° مع الناظم)"
+      distractors:
+        - {text: "تكون خطوط الحقل عمودية على مستوي الإطار", rule: cos_sin_flux, rationale: "هنا التدفق أعظمي"}
+        - {text: "تصنع الخطوط 45° مع الناظم", rule: mix_formulas}
+        - {text: "يكون عدد اللفات صغيراً", rule: true_but_partial}
+    - stem: "أثبتت تجربة أورستد أن:"
+      key: "التيار الكهربائي يولّد حقلاً مغناطيسياً"
+      distractors:
+        - {text: "الشحنات الساكنة تولّد حقلاً مغناطيسياً", rule: mix_formulas}
+        - {text: "الحقل المغناطيسي يولّد تياراً", rule: flux_vs_rate, rationale: "ذاك التحريض (فاراداي) ويلزم تغيّر"}
+        - {text: "المغناطيس يجذب النحاس", rule: mix_formulas}
+    - stem: "يتوقف عامل النفوذية المغناطيسية على:"
+      key: "طبيعة المادة وشدة الحقل الممغنط"
+      distractors:
+        - {text: "طبيعة المادة فقط", rule: true_but_partial}
+        - {text: "درجة الحرارة فقط", rule: mix_formulas}
+        - {text: "حجم العينة", rule: mix_formulas}
+    - stem: "وحدة التدفق المغناطيسي:"
+      key: "الويبر Wb (= T·m²)"
+      distractors:
+        - {text: "التسلا T", rule: unit_confusion}
+        - {text: "الأمبير A", rule: unit_confusion}
+        - {text: "الهنري H", rule: unit_confusion}
+  answer_basis: "الكتاب ص ٦٨–٨٧ [أستاذ س٢ س٥]"
+  approved: false
+
+# ───────────────────────────── L2 — لورنتز/لابلاس (U2C2) ─────────────────────────────
+
+- id: U2.L2.T01
+  title: "قوة لابلاس على ساق مستقيمة"
+  chapter: U2C2
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٩٣–٩٥", lesson: "L2 §٥ [أستاذ س٥] + السكتان", exam: "٢٠٢٦ س٣-٣ (٢٥)"}
+  vars:
+    I: {set: [2, 4, 5, 10]}
+    L_cm: {set: [5, 10, 20, 25, 50]}
+    B_T: {set: [0.1, 0.2, 0.4, 0.5]}
+    theta: {set: [90, 37, 60]}
+  compute:
+    sinT: "{90: 1.0, 37: 0.6, 60: 0.866}[theta]"
+    cosT: "{90: 0.0, 37: 0.8, 60: 0.5}[theta]"
+    key: "I * L_cm * 1e-2 * B_T * sinT"
+    atxt: "'عمودي على الساق' if theta == 90 else f'يصنع مع الساق زاوية {theta}°'"
+  constraints:
+    - "abs(key * 1000 - round(key * 1000)) < 1e-6"
+  stem: "ساق ناقلة مستقيمة طولها {L_cm} cm يمر فيها تيار شدته {I} A موضوعة في حقل مغناطيسي منتظم شدته {B_T} T {atxt}. احسب شدة القوة الكهرطيسية المؤثرة فيها."
+  answer: {unit: "N"}
+  options:
+    distractors:
+      - {value: "I * L_cm * B_T * sinT", rule: unit_cm_m, rationale: "لم يحوّل cm ⇒ m"}
+      - {value: "I * L_cm * 1e-2 * B_T * (cosT if theta != 90 else 0.5)", rule: sin_cos, rationale: "cos بدل sin"}
+      - {value: "I * L_cm * 1e-2 * B_T * sinT * 2", rule: forget_2_torque, rationale: "ضاعف بلا مبرر (خلط بالمزدوجة)"}
+  rubric:
+    - {step: "F = I·L·B·sin θ", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة N", points: 1}
+  answer_basis: "F = I·L·B·sin θ (الكتاب ص ٩٤)"
+  approved: false
+
+- id: U2.L2.T02
+  title: "إلكترون في حقل منتظم — نصف القطر والدور"
+  chapter: U2C2
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ٩١–٩٢، MCQ ص ١٠١", lesson: "L2 البرهان المُرقَّم [أستاذ س٤]"}
+  variants:
+    - stem: "إلكترون يدخل بسرعة v⃗ عمودية على حقل مغناطيسي منتظم B⃗. إذا ضاعفنا شدة الحقل فإن نصف قطر مساره:"
+      key: "ينصّف"
+      distractors:
+        - {text: "يتضاعف", rule: invert_ratio}
+        - {text: "لا يتغير", rule: r_T_dependence}
+        - {text: "يصير أربعة أمثال", rule: forget_sqrt}
+    - stem: "دور حركة إلكترون في حقل مغناطيسي منتظم (v⃗ ⊥ B⃗):"
+      key: "لا يتعلق بسرعة الإلكترون"
+      distractors:
+        - {text: "يتناسب طرداً مع السرعة", rule: r_T_dependence}
+        - {text: "يتناسب عكساً مع السرعة", rule: r_T_dependence}
+        - {text: "يتناسب طرداً مع شدة الحقل", rule: invert_ratio, rationale: "T = 2πme/(eB) عكساً"}
+    - stem: "القوة المغناطيسية المؤثرة في شحنة متحركة في حقل مغناطيسي:"
+      key: "لا تبذل عملاً لأنها عمودية على السرعة دائماً"
+      distractors:
+        - {text: "تزيد قيمة السرعة", rule: work_not_zero}
+        - {text: "تنقص قيمة السرعة", rule: work_not_zero}
+        - {text: "تبذل عملاً موجباً", rule: work_not_zero}
+    - stem: "تكون القوة المغناطيسية على شحنة متحركة معدومة عندما:"
+      key: "تتحرك الشحنة موازيةً لخطوط الحقل"
+      distractors:
+        - {text: "تتحرك عمودياً على الحقل", rule: sin_cos, rationale: "هنا القوة عظمى"}
+        - {text: "تكون الشحنة سالبة", rule: mix_formulas}
+        - {text: "تكون السرعة كبيرة", rule: mix_formulas}
+    - stem: "نصف قطر مسار إلكترون في حقل مغناطيسي منتظم يُعطى بالعلاقة:"
+      key: "r = me·v/(e·B)"
+      distractors:
+        - {text: "r = e·B/(me·v)", rule: invert_ratio}
+        - {text: "r = me·v²/(e·B)", rule: forget_square, rationale: "v زائدة"}
+        - {text: "r = 2π·me/(e·B)", rule: mix_formulas, rationale: "هذه علاقة الدور T"}
+  answer_basis: "r = me·v/(eB) · T = 2πme/(eB) (الكتاب ص ٩١–٩٢)"
+  approved: false
+
+- id: U2.L2.T03
+  title: "عزم المزدوجة الكهرطيسية على إطار"
+  chapter: U2C2
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {book: "ص ٩٧–٩٨", lesson: "L2 §٨ [أستاذ س١١]", exam: "٢٠٢٦ مسألة ٢ الإطار (٤٥)"}
+  vars:
+    N: {set: [10, 20, 50, 100]}
+    I: {set: [0.5, 1, 2, 4]}
+    S_cm2: {set: [20, 50, 100, 200]}
+    B_T: {set: [0.1, 0.2, 0.5]}
+    alpha: {set: [90, 30, 60]}
+  compute:
+    sinA: "{90: 1.0, 30: 0.5, 60: 0.866}[alpha]"
+    cosA: "{90: 0.0, 30: 0.866, 60: 0.5}[alpha]"
+    key: "N * I * S_cm2 * 1e-4 * B_T * sinA"
+    atxt: "'يوازي مستوي الإطار' if alpha == 90 else f'يصنع زاوية {alpha}° مع الناظم على مستوي الإطار'"
+  constraints:
+    - "abs(key * 1e4 - round(key * 1e4)) < 1e-6"
+  stem: "إطار مستطيل من {N} لفة مساحته {S_cm2} cm² يمر فيه تيار {I} A في حقل مغناطيسي منتظم شدته {B_T} T {atxt}. احسب عزم المزدوجة الكهرطيسية المؤثرة فيه."
+  answer: {unit: "N·m"}
+  options:
+    distractors:
+      - {value: "N * I * S_cm2 * 1e-4 * B_T * (cosA if alpha != 90 else 0.5)", rule: cos_sin_flux, rationale: "cos بدل sin (خلط بالتدفق)"}
+      - {value: "I * S_cm2 * 1e-4 * B_T * sinA", rule: forget_N, rationale: "أهمل N"}
+      - {value: "N * I * S_cm2 * B_T * sinA * 1e-2", rule: unit_cm_m, rationale: "تحويل cm² خاطئ"}
+  rubric:
+    - {step: "Γ = N·I·S·B·sin α", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة N·m", points: 1}
+  answer_basis: "Γ = N·I·S·B·sin α (الكتاب ص ٩٧)"
+  approved: false
+
+# ───────────────────────────── L3 — التحريض (U2C3) ─────────────────────────────
+
+- id: U2.L3.T01
+  title: "القوة المحركة المتحرضة من تغير التدفق (فاراداي)"
+  chapter: U2C3
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ١١٠", lesson: "L3 §٢ [أستاذ س٣]"}
+  vars:
+    N: {set: [100, 200, 500, 1000]}
+    dPhi_mWb: {set: [2, 4, 5, 10, 20]}
+    dt_ms: {set: [10, 20, 50, 100, 200]}
+  compute:
+    key: "N * dPhi_mWb * 1e-3 / (dt_ms * 1e-3)"
+  constraints:
+    - "abs(key - round(key, 1)) < 1e-9 and key <= 500"
+  stem: "وشيعة من {N} لفة تغيّر التدفق المغناطيسي عبر كل لفة منها بمقدار {dPhi_mWb} mWb خلال {dt_ms} ms. احسب القيمة المطلقة للقوة المحركة الكهربائية المتحرضة."
+  answer: {unit: "V"}
+  options:
+    distractors:
+      - {value: "dPhi_mWb * 1e-3 / (dt_ms * 1e-3)", rule: forget_N, rationale: "أهمل N"}
+      - {value: "N * dPhi_mWb * 1e-3 * dt_ms * 1e-3", rule: invert_ratio, rationale: "ضرب بالزمن"}
+      - {value: "N * dPhi_mWb * 1e-3", rule: flux_vs_rate, rationale: "أخذ التدفق نفسه لا معدل تغيره"}
+  rubric:
+    - {step: "e = −N·ΔΦ/Δt", points: 5}
+    - {step: "التحويلات والتعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة V", points: 1}
+  answer_basis: "e = −N·ΔΦ/Δt (الكتاب ص ١١٠)"
+  approved: false
+
+- id: U2.L3.T02
+  title: "الطاقة الكهرطيسية المختزنة في وشيعة / القوة المحركة الذاتية"
+  chapter: U2C3
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ١١٨–١٢٠", lesson: "L3 §٦–§٧ [أستاذ س٩–س١١]"}
+  vars:
+    ask: {set: ["E", "e"]}
+    L_mH: {set: [20, 50, 100, 200, 500]}
+    I: {set: [2, 4, 5, 10]}
+    di_dt: {set: [10, 20, 50, 100]}
+  compute:
+    L: "L_mH * 1e-3"
+    key: "0.5 * L * I**2 if ask == 'E' else L * di_dt"
+    qtxt: "f'وشيعة ذاتيتها {L_mH} mH يمر فيها تيار شدته {I} A. احسب الطاقة الكهرطيسية المختزنة فيها.' if ask == 'E' else f'وشيعة ذاتيتها {L_mH} mH يتغير التيار فيها بمعدل {di_dt} A·s⁻¹. احسب القيمة المطلقة للقوة المحركة الذاتية.'"
+    unit: "'J' if ask == 'E' else 'V'"
+  stem: "{qtxt}"
+  answer: {unit: "{unit}", format: auto}
+  options:
+    distractors:
+      - {value: "L * I**2 if ask == 'E' else 0.5 * L * di_dt", rule: forget_half, rationale: "أهمل ½ أو أضافه في غير موضعه"}
+      - {value: "0.5 * L * I if ask == 'E' else L / di_dt", rule: forget_square, rationale: "أهمل التربيع / قسم بدل الضرب"}
+      - {value: "0.5 * L_mH * I**2 if ask == 'E' else L_mH * di_dt", rule: unit_confusion, rationale: "لم يحوّل mH ⇒ H"}
+  rubric:
+    - {step: "EL = ½·L·I² أو e = −L·di/dt", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "EL = ½·L·I² · e = −L·di/dt (الكتاب ص ١١٨–١٢٠)"
+  approved: false
+
+- id: U2.L3.T03
+  title: "مفاهيم التحريض — فاراداي، لنز، المولد، الذاتية"
+  chapter: U2C3
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ١٠٤–١٢٥", lesson: "L3 §١–§٨"}
+  variants:
+    - stem: "تنشأ قوة محركة كهربائية متحرضة في دارة مغلقة عندما:"
+      key: "يتغير التدفق المغناطيسي عبرها مع الزمن"
+      distractors:
+        - {text: "يكون التدفق المغناطيسي عبرها كبيراً وثابتاً", rule: flux_vs_rate}
+        - {text: "توضع في حقل مغناطيسي منتظم ساكنة", rule: flux_vs_rate}
+        - {text: "تكون مقاومتها كبيرة", rule: mix_formulas}
+    - stem: "ينص قانون لنز على أن التيار المتحرض:"
+      key: "يعاكس بأثره السبب الذي ولّده"
+      distractors:
+        - {text: "يعزز السبب الذي ولّده", rule: lenz_direction}
+        - {text: "يكون دائماً بجهة التيار الأصلي", rule: lenz_direction}
+        - {text: "لا يتعلق بجهة تغير التدفق", rule: mix_formulas}
+    - stem: "تكون القوة المحركة المتحرضة في مولد التيار المتناوب عظمى عندما:"
+      key: "يكون التدفق معدوماً (معدل تغيره أعظمي)"
+      distractors:
+        - {text: "يكون التدفق أعظمياً", rule: flux_vs_rate}
+        - {text: "يتوقف الإطار عن الدوران", rule: flux_vs_rate}
+        - {text: "يوازي الناظم خطوط الحقل", rule: cos_sin_flux, rationale: "هنا Φ أعظمي وe = 0"}
+    - stem: "وحدة الذاتية L هي:"
+      key: "الهنري H"
+      distractors:
+        - {text: "الويبر Wb", rule: unit_confusion}
+        - {text: "التسلا T", rule: unit_confusion}
+        - {text: "الفاراد F", rule: unit_confusion}
+    - stem: "عند اقتراب القطب الشمالي لمغناطيس من وجه وشيعة فإن ذلك الوجه يصبح:"
+      key: "شمالياً (يتنافر مع المغناطيس مقاوماً الاقتراب)"
+      distractors:
+        - {text: "جنوبياً (يجذب المغناطيس)", rule: lenz_direction}
+        - {text: "لا قطبية له", rule: mix_formulas}
+        - {text: "شمالياً أو جنوبياً حسب عدد اللفات", rule: mix_formulas}
+  answer_basis: "الكتاب ص ١٠٤–١٢٠ [أستاذ س١–س٨]"
+  approved: false
+
+# ───────────────────────────── L4 — الدارة المهتزة (U2C4) ─────────────────────────────
+
+- id: U2.L4.T01
+  title: "علاقة طومسون — الدور الخاص لدارة LC"
+  chapter: U2C4
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ١٣٠", lesson: "L4 البرهان ١ [أستاذ س٣]", exam: "٢٠٢٦ س٤ (٣٠)"}
+  vars:
+    L_mH: {set: [1, 2, 4, 10, 25, 40, 100]}
+    C_uF: {set: [1, 4, 10, 25, 40, 100, 250]}
+    ask: {set: ["T0", "f0"]}
+  compute:
+    LC: "L_mH * 1e-3 * C_uF * 1e-6"
+    T0: "2 * pi_approx * sqrt(LC)"
+    key: "T0 if ask == 'T0' else 1 / T0"
+    qtxt: "'الدور الخاص T0' if ask == 'T0' else 'التواتر الخاص f0'"
+    unit: "'s' if ask == 'T0' else 'Hz'"
+  constraints:
+    - "abs(sqrt(LC) * 1e5 - round(sqrt(LC) * 1e5)) < 1e-6"
+  stem: "دارة مهتزة مؤلفة من وشيعة مهملة المقاومة ذاتيتها {L_mH} mH ومكثفة سعتها {C_uF} μF. احسب {qtxt} للاهتزازات الكهربائية الحرة غير المتخامدة (π = 3.14)."
+  answer: {unit: "{unit}", format: auto}
+  options:
+    distractors:
+      - {value: "2 * pi_approx * sqrt(L_mH * 1e-3 / (C_uF * 1e-6)) if ask == 'T0' else 1 / (2 * pi_approx * sqrt(L_mH * 1e-3 / (C_uF * 1e-6)))", rule: LC_inverted, rationale: "√(L/C) بدل √(LC)"}
+      - {value: "sqrt(LC) if ask == 'T0' else 1 / sqrt(LC)", rule: forget_2pi, rationale: "أهمل 2π"}
+      - {value: "1 / T0 if ask == 'T0' else T0", rule: invert_ratio, rationale: "قلب الدور بالتواتر"}
+  rubric:
+    - {step: "T0 = 2π√(LC)", points: 5}
+    - {step: "التحويلات والتعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "T0 = 2π√(LC) علاقة طومسون (الكتاب ص ١٣٠)"
+  approved: false
+
+- id: U2.L4.T02
+  title: "الطاقة الكلية في دارة LC والتيار الأعظمي"
+  chapter: U2C4
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {book: "ص ١٣٢–١٣٣", lesson: "L4 البرهان ٢ [أستاذ س٦]", exam: "٢٠٢٦ س٤ (٣٠)"}
+  vars:
+    C_uF: {set: [2, 4, 8, 10, 20, 50]}
+    U: {set: [5, 10, 20, 50, 100]}
+    L_mH: {set: [10, 20, 40, 50, 100, 200]}
+    ask: {set: ["E", "Imax"]}
+  compute:
+    E: "0.5 * C_uF * 1e-6 * U**2"
+    Imax: "sqrt(2 * E / (L_mH * 1e-3))"
+    key: "E if ask == 'E' else Imax"
+    qtxt: "'الطاقة الكلية للدارة' if ask == 'E' else 'الشدة العظمى للتيار'"
+    unit: "'J' if ask == 'E' else 'A'"
+  constraints:
+    - "ask == 'E' or abs(Imax * 100 - round(Imax * 100)) < 1e-6"
+  stem: "مكثفة سعتها {C_uF} μF شُحنت تحت توتر {U} V ثم وُصلت بوشيعة مهملة المقاومة ذاتيتها {L_mH} mH. احسب {qtxt}."
+  answer: {unit: "{unit}", format: auto}
+  options:
+    distractors:
+      - {value: "C_uF * 1e-6 * U**2 if ask == 'E' else sqrt(2 * C_uF * 1e-6 * U**2 / (L_mH * 1e-3))", rule: forget_half, rationale: "أهمل ½ في الطاقة"}
+      - {value: "0.5 * C_uF * 1e-6 * U if ask == 'E' else 2 * E / (L_mH * 1e-3)", rule: forget_square, rationale: "أهمل التربيع/الجذر"}
+      - {value: "0.5 * C_uF * U**2 * 1e-3 if ask == 'E' else sqrt(2 * E / L_mH)", rule: unit_confusion, rationale: "تحويل μF/mH خاطئ"}
+  rubric:
+    - {step: "E = ½·C·U² = ½·L·Imax²", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "E = Qmax²/2C = ½CU² = ½LImax² (الكتاب ص ١٣٣)"
+  approved: false
+
+- id: U2.L4.T03
+  title: "مفاهيم الدارة المهتزة — أشكال التفريغ، تبادل الطاقة، الطور"
+  chapter: U2C4
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ١٢٦–١٣٧", lesson: "L4 §١ §٣ §٤ [أستاذ س١ س٤ س٥]"}
+  variants:
+    - stem: "يكون تفريغ المكثفة عبر وشيعة دورياً غير متخامد عندما تكون المقاومة الأومية للدارة:"
+      key: "مهملة"
+      distractors:
+        - {text: "صغيرة", rule: true_but_partial, rationale: "صغيرة ⇒ متخامد"}
+        - {text: "كبيرة جداً", rule: mix_formulas, rationale: "كبيرة ⇒ لا دوري"}
+        - {text: "أي قيمة", rule: mix_formulas}
+    - stem: "في الدارة المهتزة LC، عندما تكون شحنة المكثفة عظمى فإن شدة التيار في الوشيعة:"
+      key: "معدومة"
+      distractors:
+        - {text: "عظمى", rule: sin_cos, rationale: "i متقدم على q بربع دور"}
+        - {text: "تساوي نصف قيمتها العظمى", rule: mix_formulas}
+        - {text: "لا يمكن تحديدها", rule: mix_formulas}
+    - stem: "تنتقل الطاقة في الدارة المهتزة غير المتخامدة:"
+      key: "من كهربائية في المكثفة إلى كهرطيسية في الوشيعة وبالعكس، ومجموعهما ثابت"
+      distractors:
+        - {text: "من المكثفة إلى الوشيعة حيث تُستهلك", rule: power_in_LC}
+        - {text: "تتناقص باستمرار بفعل جول", rule: true_but_partial, rationale: "ذاك مع مقاومة"}
+        - {text: "تبقى كلها في المكثفة", rule: mix_formulas}
+    - stem: "بمقارنة الدارة المهتزة بالنواس المرن، تقابل الذاتية L:"
+      key: "الكتلة m"
+      distractors:
+        - {text: "ثابت الصلابة k", rule: LC_inverted, rationale: "1/C ↔ k"}
+        - {text: "المطال x", rule: mix_formulas, rationale: "q ↔ x"}
+        - {text: "السرعة v", rule: mix_formulas, rationale: "i ↔ v"}
+    - stem: "يتقدم تابع شدة التيار على تابع الشحنة في الدارة المهتزة بالطور بمقدار:"
+      key: "π/2 (ربع دور)"
+      distractors:
+        - {text: "π (نصف دور)", rule: mix_formulas}
+        - {text: "صفر (توافق بالطور)", rule: mix_formulas}
+        - {text: "2π (دور كامل)", rule: mix_formulas}
+  answer_basis: "الكتاب ص ١٢٨–١٣٣ [أستاذ س١ س٤ س٥]"
+  approved: false
+
+# ───────────────────────────── L5 — التيار المتناوب (U2C5) ─────────────────────────────
+
+- id: U2.L5.T01
+  title: "القيم المنتجة والعظمى والنبض من التابع اللحظي"
+  chapter: U2C5
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ١٤٠–١٤٢", lesson: "L5 §٢ [أستاذ]", exam: "٢٠٢٦ مسألة ٣: u = 120√2·cos(120πt)"}
+  vars:
+    Ueff: {set: [110, 120, 220, 240]}
+    f: {set: [50, 60]}
+    ask: {set: ["Umax", "T", "omega"]}
+  compute:
+    Umax: "Ueff * 1.414"
+    omega: "2 * pi_approx * f"
+    T: "1 / f"
+    key: "{'Umax': Umax, 'T': T, 'omega': omega}[ask]"
+    unit: "{'Umax': 'V', 'T': 's', 'omega': 'rad·s⁻¹'}[ask]"
+    qtxt: "{'Umax': 'القيمة العظمى للتوتر Umax (√2 = 1.414)', 'T': 'الدور T', 'omega': 'النبض ω (π = 3.14)'}[ask]"
+  stem: "منبع توتر متناوب جيبي قيمته المنتجة {Ueff} V وتواتره {f} Hz. احسب {qtxt}."
+  answer: {unit: "{unit}", format: auto}
+  options:
+    distractors:
+      - {value: "{'Umax': Ueff / 1.414, 'T': f, 'omega': f}[ask]", rule: forget_sqrt2, rationale: "قسم على √2 بدل الضرب / خلط f بـT أو ω"}
+      - {value: "{'Umax': Ueff * 2, 'T': 2 * pi_approx / f, 'omega': pi_approx * f}[ask]", rule: forget_2pi, rationale: "خلط 2 بـ√2 / 2π في غير موضعه"}
+      - {value: "{'Umax': Ueff, 'T': 1 / (2 * pi_approx * f), 'omega': 1 / f}[ask]", rule: mix_formulas, rationale: "علاقة مقدار آخر"}
+  rubric:
+    - {step: "Umax = Ueff·√2 · ω = 2πf · T = 1/f", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "Ueff = Umax/√2 (الكتاب ص ١٤١)"
+  approved: false
+
+- id: U2.L5.T02
+  title: "الممانعة الكلية Z لدارة RLC على التسلسل"
+  chapter: U2C5
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {book: "ص ١٥٠–١٥١", lesson: "L5 §٥ القواعد الخمس + فرينل [أستاذ]", exam: "٢٠٢٦ مسألة ٣ (٨٠)"}
+  vars:
+    R: {set: [30, 40, 60, 80, 120]}
+    XL: {set: [40, 60, 80, 100, 120, 160]}
+    XC: {set: [0, 20, 40, 60, 80, 100]}
+  compute:
+    X: "XL - XC"
+    key: "sqrt(R**2 + X**2)"
+    ctxt: "'' if XC == 0 else f' ومكثفة اتساعيتها 1/Cω = {XC} Ω'"
+  constraints:
+    - "X != 0 and abs(key - round(key)) < 1e-9"
+  stem: "دارة على التسلسل تضم مقاومة R = {R} Ω ووشيعة مهملة المقاومة ردّيتها Lω = {XL} Ω{ctxt}. احسب الممانعة الكلية Z للدارة."
+  answer: {unit: "Ω"}
+  options:
+    distractors:
+      - {value: "R + abs(X)", rule: Z_algebraic, rationale: "جمع جبري بدل فيثاغورث"}
+      - {value: "sqrt(R**2 + (XL + XC)**2)", rule: XL_XC_swap, rationale: "جمع Lω و1/Cω بدل طرحهما"}
+      - {value: "sqrt(R**2 + X**2) - R if key - R > 1 else abs(X)", rule: mix_formulas, rationale: "أهمل R"}
+  rubric:
+    - {step: "Z = √(R² + (Lω − 1/Cω)²)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة Ω", points: 1}
+  answer_basis: "Z = √(R² + (Lω − 1/Cω)²) (الكتاب ص ١٥١)"
+  approved: false
+
+- id: U2.L5.T03
+  title: "الاستطاعة المتوسطة وعامل الاستطاعة"
+  chapter: U2C5
+  type: numeric
+  difficulty: 3
+  weight: 10
+  source: {book: "ص ١٤٣–١٤٥، ١٥١", lesson: "L5 §٣ [أستاذ]", exam: "٢٠٢٦ مسألة ٣"}
+  vars:
+    R: {set: [30, 40, 60, 80]}
+    Z: {set: [50, 100]}
+    Ueff: {set: [100, 120, 200, 220]}
+    ask: {set: ["P", "cosphi"]}
+  constraints:
+    - "R < Z"
+  compute:
+    Ieff: "Ueff / Z"
+    P: "R * Ieff**2"
+    cosphi: "R / Z"
+    key: "P if ask == 'P' else cosphi"
+    qtxt: "'الاستطاعة المتوسطة المستهلكة في الدارة' if ask == 'P' else 'عامل الاستطاعة cos φ'"
+    unit: "'W' if ask == 'P' else ''"
+  stem: "دارة RLC على التسلسل مقاومتها R = {R} Ω وممانعتها Z = {Z} Ω مغذّاة بتوتر منتج {Ueff} V. احسب {qtxt}."
+  answer: {unit: "{unit}", format: auto}
+  options:
+    distractors:
+      - {value: "Z * Ieff**2 if ask == 'P' else Z / R", rule: power_in_LC, rationale: "استعمل Z مكان R (الطاقة تُصرف في R فقط) / قلب النسبة"}
+      - {value: "Ueff * Ieff if ask == 'P' else sqrt(1 - (R / Z)**2)", rule: mix_formulas, rationale: "الاستطاعة الظاهرية / sin φ"}
+      - {value: "R * Ieff if ask == 'P' else R / Z * 100", rule: forget_square, rationale: "أهمل التربيع / نسبة مئوية"}
+  rubric:
+    - {step: "Ieff = Ueff/Z ثم P = R·Ieff² (أو cos φ = R/Z)", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "P = Ueff·Ieff·cos φ = R·Ieff² و cos φ = R/Z (الكتاب ص ١٤٥، ١٥١)"
+  approved: false
+
+- id: U2.L5.T04
+  title: "مفاهيم التيار المتناوب — الطور، الممانعات، الطنين، الاستطاعة"
+  chapter: U2C5
+  type: mcq
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ١٤٦–١٥٤", lesson: "L5 §٤ الجدول الذهبي + §٦ الطنين [أستاذ س٣–س٦]"}
+  variants:
+    - stem: "في دارة تحوي وشيعة مهملة المقاومة فقط، يكون التوتر بين طرفيها:"
+      key: "متقدماً بالطور على التيار بربع دور"
+      distractors:
+        - {text: "متأخراً بالطور عن التيار بربع دور", rule: XL_XC_swap, rationale: "هذه المكثفة"}
+        - {text: "على توافق بالطور مع التيار", rule: mix_formulas, rationale: "هذه المقاومة"}
+        - {text: "متقدماً بنصف دور", rule: mix_formulas}
+    - stem: "اتساعية المكثفة 1/(Cω) تنقص عندما:"
+      key: "يزداد تواتر التيار"
+      distractors:
+        - {text: "ينقص تواتر التيار", rule: invert_ratio}
+        - {text: "تنقص سعة المكثفة", rule: invert_ratio}
+        - {text: "يزداد التوتر المطبق", rule: mix_formulas}
+    - stem: "في حالة الطنين الكهربائي في دارة RLC على التسلسل:"
+      key: "Lω = 1/(Cω) وتكون الممانعة أصغر ما يمكن وتساوي R"
+      distractors:
+        - {text: "تكون الممانعة أكبر ما يمكن", rule: mix_formulas}
+        - {text: "ينعدم التوتر بين طرفي الوشيعة والمكثفة كل على حدة", rule: true_but_partial, rationale: "ينعدم مجموعهما الشعاعي فقط"}
+        - {text: "يكون فرق الطور بين u وi يساوي π/2", rule: mix_formulas, rationale: "φ = 0"}
+    - stem: "الاستطاعة المتوسطة المستهلكة في مكثفة مثالية في دارة تيار متناوب:"
+      key: "معدومة لأن cos φ = 0"
+      distractors:
+        - {text: "تساوي Ueff·Ieff", rule: power_in_LC}
+        - {text: "تساوي Ieff²/(Cω)", rule: power_in_LC}
+        - {text: "تساوي نصف الاستطاعة الظاهرية", rule: mix_formulas}
+    - stem: "القيمة المنتجة لتيار متناوب هي شدة التيار المتواصل الذي:"
+      key: "يُحدث في المقاومة نفسها الأثر الحراري نفسه في المدة نفسها"
+      distractors:
+        - {text: "له القيمة العظمى نفسها", rule: forget_sqrt2}
+        - {text: "له القيمة المتوسطة نفسها", rule: mix_formulas, rationale: "متوسط الجيبي صفر"}
+        - {text: "يُحدث الحقل المغناطيسي نفسه", rule: mix_formulas}
+    - stem: "تُعطى الاستطاعة المتوسطة في دارة RLC على التسلسل بالعلاقة:"
+      key: "P = Ueff·Ieff·cos φ = R·Ieff²"
+      distractors:
+        - {text: "P = Ueff·Ieff", rule: mix_formulas, rationale: "الظاهرية"}
+        - {text: "P = Z·Ieff²", rule: power_in_LC}
+        - {text: "P = Umax·Imax", rule: forget_sqrt2}
+  answer_basis: "الكتاب ص ١٤٦–١٥٤ [أستاذ]"
+  approved: false
+
+# ───────────────────────────── L6 — المحوّلات (U2C6) ─────────────────────────────
+
+- id: U2.L6.T01
+  title: "نسبة التحويل — التوتر أو التيار أو عدد اللفات"
+  chapter: U2C6
+  type: numeric
+  difficulty: 2
+  weight: 10
+  source: {book: "ص ١٦٤–١٦٦", lesson: "L6 §٣ [أستاذ]", exam: "٢٠٢٦ س١-٢"}
+  vars:
+    Np: {set: [200, 400, 500, 1000, 2000]}
+    Ns: {set: [50, 100, 200, 400, 1000, 4000]}
+    Up: {set: [110, 220, 240]}
+    Ip: {set: [0.5, 1, 2, 4]}
+    ask: {set: ["Us", "Is"]}
+  constraints:
+    - "Np != Ns"
+    - "abs(key - round(key, 2)) < 1e-9"
+  compute:
+    Us: "Up * Ns / Np"
+    Is: "Ip * Np / Ns"
+    key: "Us if ask == 'Us' else Is"
+    qtxt: "'التوتر المنتج بين طرفي الثانوية Us' if ask == 'Us' else 'شدة التيار المنتجة في الثانوية Is'"
+    unit: "'V' if ask == 'Us' else 'A'"
+    given: "f'يُطبَّق على أوليتها توتر منتج {Up} V' if ask == 'Us' else f'يمر في أوليتها تيار منتج {Ip} A'"
+  stem: "محولة مثالية عدد لفات أوليتها {Np} وثانويتها {Ns}، {given}. احسب {qtxt}."
+  answer: {unit: "{unit}", format: auto}
+  options:
+    distractors:
+      - {value: "Up * Np / Ns if ask == 'Us' else Ip * Ns / Np", rule: ratio_inverted_transformer, rationale: "قلب النسبة"}
+      - {value: "Up if ask == 'Us' else Ip", rule: transformer_energy, rationale: "ظنّ القيمة لا تتغير"}
+      - {value: "Up * Ns / Np * 2 if ask == 'Us' else Ip * Np / Ns / 2", rule: forget_half, rationale: "عامل ٢ بلا مبرر"}
+  rubric:
+    - {step: "Us/Up = Ns/Np = Ip/Is", points: 5}
+    - {step: "التعويض", points: 3}
+    - {step: "النتيجة", points: 1}
+    - {step: "الوحدة", points: 1}
+  answer_basis: "Us/Up = Ns/Np = Ip/Is للمحولة المثالية (الكتاب ص ١٦٤)"
+  approved: false
+
+- id: U2.L6.T02
+  title: "مفاهيم المحوّلة ونقل الطاقة"
+  chapter: U2C6
+  type: mcq
+  difficulty: 1
+  weight: 10
+  source: {book: "ص ١٦٠–١٦٧", lesson: "L6 §١–§٥ [أستاذ]", exam: "٢٠٢٦ س١-٢"}
+  variants:
+    - stem: "تعمل المحولة الكهربائية على:"
+      key: "التيار المتناوب فقط لأن عملها يعتمد على تغير التدفق"
+      distractors:
+        - {text: "التيار المتواصل فقط", rule: flux_vs_rate}
+        - {text: "المستمر والمتناوب معاً", rule: flux_vs_rate}
+        - {text: "المستمر بشرط وجود نواة حديدية", rule: true_but_partial}
+    - stem: "المحولة الرافعة للتوتر:"
+      key: "ترفع التوتر وتخفض شدة التيار بحيث تبقى الاستطاعة ثابتة"
+      distractors:
+        - {text: "ترفع التوتر والاستطاعة معاً", rule: transformer_energy}
+        - {text: "ترفع التوتر وشدة التيار معاً", rule: transformer_energy}
+        - {text: "ترفع التوتر وتخفض التواتر", rule: mix_formulas, rationale: "التواتر لا يتغير"}
+    - stem: "يُرفع التوتر عند نقل الطاقة الكهربائية لمسافات بعيدة من أجل:"
+      key: "تخفيض شدة التيار فتقل الضياعات بفعل جول R·I² في الأسلاك"
+      distractors:
+        - {text: "زيادة سرعة انتقال الطاقة", rule: mix_formulas}
+        - {text: "زيادة الاستطاعة المنقولة", rule: transformer_energy}
+        - {text: "تقليل مقاومة الأسلاك", rule: mix_formulas, rationale: "R ثابتة؛ I هي التي تنقص"}
+    - stem: "تُصنع نواة المحولة من صفائح حديدية معزولة عن بعضها من أجل:"
+      key: "تقليل ضياعات تيارات فوكو"
+      distractors:
+        - {text: "زيادة النفوذية المغناطيسية", rule: true_but_partial, rationale: "النفوذية من الحديد لا من التصفيح"}
+        - {text: "تقليل الضياع بالتخلفية", rule: mix_formulas}
+        - {text: "تقليل مقاومة اللفات", rule: mix_formulas}
+    - stem: "في محولة مثالية عدد لفات ثانويتها ضعف عدد لفات أوليتها فإن شدة التيار في الثانوية:"
+      key: "نصف شدة التيار في الأولية"
+      distractors:
+        - {text: "ضعف شدة التيار في الأولية", rule: ratio_inverted_transformer}
+        - {text: "تساوي شدة التيار في الأولية", rule: transformer_energy}
+        - {text: "ربع شدة التيار في الأولية", rule: forget_sqrt}
+  answer_basis: "الكتاب ص ١٦٣–١٦٤ [أستاذ]"
+  approved: false
+
+review_queue:
+  teacher_questions:
+    - "U2.L1.T02: ثابت الوشيعة الطويلة — نستعمل μ0 = 4π×10⁻⁷ بـπ = 3.14 (12.56×10⁻⁷) أم يُقبل 4π رمزياً؟"
+    - "U2.L5: هل يُعطى Z مباشرة في المسائل الوزارية أم يُطلب حسابه دائماً من R وL وC وω؟"
+    - "U2.L4.T01: عند طلب f0 هل تُقبل الوحدة Hz أم s⁻¹؟"

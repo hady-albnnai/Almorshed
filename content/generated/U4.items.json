@@ -1,0 +1,2319 @@
+{
+ "meta": {
+  "generator": "tools/gen_items.py",
+  "templates": "content/authoring/templates/*.yaml",
+  "templatesVersion": 1,
+  "seed": 2026,
+  "perTemplate": 6,
+  "poolSize": 549,
+  "sampleSize": 100,
+  "constants": {
+   "g": 10,
+   "pi_sq": 10,
+   "pi_approx": 3.14,
+   "c_light": 300000000.0,
+   "h_planck": 6.63e-34,
+   "e_charge": 1.6e-19,
+   "m_e": 9.1e-31,
+   "G_grav": 6.67e-11
+  },
+  "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
+  "approvedByDefault": false
+ },
+ "items": [
+  {
+   "id": 20885,
+   "templateId": "U4.L1.T01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة السوية n = 5.",
+   "options": [
+    "0.544 eV",
+    "−13.6 eV",
+    "−0.544 eV",
+    "2.72 eV"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "energy_sign_bohr",
+    "level_difference",
+    null,
+    "n_not_squared"
+   ],
+   "optionValues": [
+    0.544,
+    -13.6,
+    -0.544,
+    2.7199999999999998
+   ],
+   "solutionSteps": [
+    "(A) خطأ [energy_sign_bohr]: إشارة خاطئة",
+    "(B) خطأ [level_difference]: طاقة سوية بدل الفرق / سوية أخرى",
+    "✓ (C) −0.544 eV",
+    "(D) خطأ [n_not_squared]: n بدل n²"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": -0.544,
+    "unit": "eV",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "En = −13.6/n² · hf = Ep − En",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة eV",
+     "points": 1
+    }
+   ],
+   "answerBasis": "En = −13.6/n² eV (الكتاب ص ٢٠٢)",
+   "source": {
+    "book": "ص ٢٠٠–٢٠٤",
+    "lesson": "U4/L1 §٤ En = −13.6/n² [أستاذ س٦]"
+   }
+  },
+  {
+   "id": 20887,
+   "templateId": "U4.L1.T01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة الفوتون الصادر عند انتقال الإلكترون من السوية n = 2 إلى السوية n = 1.",
+   "options": [
+    "10.2 eV",
+    "−10.2 eV",
+    "6.8 eV",
+    "3.4 eV"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "energy_sign_bohr",
+    "n_not_squared",
+    "level_difference"
+   ],
+   "optionValues": [
+    10.2,
+    -10.2,
+    6.8,
+    3.4
+   ],
+   "solutionSteps": [
+    "✓ (A) 10.2 eV",
+    "(B) خطأ [energy_sign_bohr]: إشارة خاطئة",
+    "(C) خطأ [n_not_squared]: n بدل n²",
+    "(D) خطأ [level_difference]: طاقة سوية بدل الفرق / سوية أخرى"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 10.2,
+    "unit": "eV",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "En = −13.6/n² · hf = Ep − En",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة eV",
+     "points": 1
+    }
+   ],
+   "answerBasis": "En = −13.6/n² eV (الكتاب ص ٢٠٢)",
+   "source": {
+    "book": "ص ٢٠٠–٢٠٤",
+    "lesson": "U4/L1 §٤ En = −13.6/n² [أستاذ س٦]"
+   }
+  },
+  {
+   "id": 20890,
+   "templateId": "U4.L1.T01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة السوية n = 4.",
+   "options": [
+    "−0.85 eV",
+    "0.85 eV",
+    "−13.6 eV",
+    "3.4 eV"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "energy_sign_bohr",
+    "level_difference",
+    "n_not_squared"
+   ],
+   "optionValues": [
+    -0.85,
+    0.85,
+    -13.6,
+    3.4
+   ],
+   "solutionSteps": [
+    "✓ (A) −0.85 eV",
+    "(B) خطأ [energy_sign_bohr]: إشارة خاطئة",
+    "(C) خطأ [level_difference]: طاقة سوية بدل الفرق / سوية أخرى",
+    "(D) خطأ [n_not_squared]: n بدل n²"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": -0.85,
+    "unit": "eV",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "En = −13.6/n² · hf = Ep − En",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة eV",
+     "points": 1
+    }
+   ],
+   "answerBasis": "En = −13.6/n² eV (الكتاب ص ٢٠٢)",
+   "source": {
+    "book": "ص ٢٠٠–٢٠٤",
+    "lesson": "U4/L1 §٤ En = −13.6/n² [أستاذ س٦]"
+   }
+  },
+  {
+   "id": 20914,
+   "templateId": "U4.L1.T01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة الفوتون الصادر عند انتقال الإلكترون من السوية n = 4 إلى السوية n = 2.",
+   "options": [
+    "0.85 eV",
+    "3.4 eV",
+    "−2.55 eV",
+    "2.55 eV"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "level_difference",
+    "n_not_squared",
+    "energy_sign_bohr",
+    null
+   ],
+   "optionValues": [
+    0.85,
+    3.4,
+    -2.55,
+    2.55
+   ],
+   "solutionSteps": [
+    "(A) خطأ [level_difference]: طاقة سوية بدل الفرق / سوية أخرى",
+    "(B) خطأ [n_not_squared]: n بدل n²",
+    "(C) خطأ [energy_sign_bohr]: إشارة خاطئة",
+    "✓ (D) 2.55 eV"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 2.55,
+    "unit": "eV",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "En = −13.6/n² · hf = Ep − En",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة eV",
+     "points": 1
+    }
+   ],
+   "answerBasis": "En = −13.6/n² eV (الكتاب ص ٢٠٢)",
+   "source": {
+    "book": "ص ٢٠٠–٢٠٤",
+    "lesson": "U4/L1 §٤ En = −13.6/n² [أستاذ س٦]"
+   }
+  },
+  {
+   "id": 20927,
+   "templateId": "U4.L1.T01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة السوية n = 2.",
+   "options": [
+    "6.8 eV",
+    "3.4 eV",
+    "−13.6 eV",
+    "−3.4 eV"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "n_not_squared",
+    "energy_sign_bohr",
+    "level_difference",
+    null
+   ],
+   "optionValues": [
+    6.8,
+    3.4,
+    -13.6,
+    -3.4
+   ],
+   "solutionSteps": [
+    "(A) خطأ [n_not_squared]: n بدل n²",
+    "(B) خطأ [energy_sign_bohr]: إشارة خاطئة",
+    "(C) خطأ [level_difference]: طاقة سوية بدل الفرق / سوية أخرى",
+    "✓ (D) −3.4 eV"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": -3.4,
+    "unit": "eV",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "En = −13.6/n² · hf = Ep − En",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة eV",
+     "points": 1
+    }
+   ],
+   "answerBasis": "En = −13.6/n² eV (الكتاب ص ٢٠٢)",
+   "source": {
+    "book": "ص ٢٠٠–٢٠٤",
+    "lesson": "U4/L1 §٤ En = −13.6/n² [أستاذ س٦]"
+   }
+  },
+  {
+   "id": 20996,
+   "templateId": "U4.L1.T02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "يمتص إلكترون ذرة الهيدروجين طاقة عندما:",
+   "options": [
+    "يهبط إلى سوية أقرب من النواة",
+    "يسقط على النواة",
+    "يقفز من سوية دنيا إلى سوية عليا",
+    "يدور ضمن السوية نفسها"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "energy_sign_bohr",
+    "mix_formulas",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [energy_sign_bohr]: خطأ إشارة/اتجاه: ظنّ الطاقة تقل بالابتعاد عن النواة",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (C) يقفز من سوية دنيا إلى سوية عليا",
+    "(D) خطأ [mix_formulas]: مدار مستقر لا إشعاع"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٠٠–٢٠٤ [أستاذ س٦ س٧]",
+   "source": {
+    "book": "ص ١٩٦–٢٠٦",
+    "lesson": "U4/L1 اختبر نفسك س١–س٧"
+   }
+  },
+  {
+   "id": 20997,
+   "templateId": "U4.L1.T02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "نصف قطر المدار المستقر rn في نموذج بور يتناسب مع:",
+   "options": [
+    "n²",
+    "n",
+    "1/n",
+    "1/n²"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "n_not_squared",
+    "invert_ratio",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) n²",
+    "(B) خطأ [n_not_squared]: 13.6/n بدل 13.6/n²",
+    "(C) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "(D) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٠٠–٢٠٤ [أستاذ س٦ س٧]",
+   "source": {
+    "book": "ص ١٩٦–٢٠٦",
+    "lesson": "U4/L1 اختبر نفسك س١–س٧"
+   }
+  },
+  {
+   "id": 20998,
+   "templateId": "U4.L1.T02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "طيف الإصدار لمصباح غازي يكون:",
+   "options": [
+    "خطياً متقطعاً",
+    "عصابات فقط",
+    "لا يعطي طيفاً",
+    "مستمراً"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "mix_formulas",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) خطياً متقطعاً",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٠٠–٢٠٤ [أستاذ س٦ س٧]",
+   "source": {
+    "book": "ص ١٩٦–٢٠٦",
+    "lesson": "U4/L1 اختبر نفسك س١–س٧"
+   }
+  },
+  {
+   "id": 20999,
+   "templateId": "U4.L1.T02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "أكبر طاقة فوتون يمكن أن تصدرها ذرة هيدروجين (من الطاقة الكلية السالبة إلى السوية الأساسية) تقارب:",
+   "options": [
+    "13.6 eV",
+    "3.4 eV",
+    "لا نهائية",
+    "10.2 eV"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "level_difference",
+    "mix_formulas",
+    "level_difference"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) 13.6 eV",
+    "(B) خطأ [level_difference]: أخذ طاقة السوية لا فرق السويتين",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [level_difference]: انتقال 2→1 فقط"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٠٠–٢٠٤ [أستاذ س٦ س٧]",
+   "source": {
+    "book": "ص ١٩٦–٢٠٦",
+    "lesson": "U4/L1 اختبر نفسك س١–س٧"
+   }
+  },
+  {
+   "id": 21000,
+   "templateId": "U4.L1.T02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "كلما ابتعد الإلكترون عن النواة في ذرة الهيدروجين فإن طاقته الكلية:",
+   "options": [
+    "تقل لأنها تبتعد عن النواة",
+    "لا تتغير",
+    "تزداد (تقل سلبية) ويقل مقدار طاقة الارتباط",
+    "تصير موجبة فوراً"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "energy_sign_bohr",
+    "mix_formulas",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [energy_sign_bohr]: خطأ إشارة/اتجاه: ظنّ الطاقة تقل بالابتعاد عن النواة",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (C) تزداد (تقل سلبية) ويقل مقدار طاقة الارتباط",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٠٠–٢٠٤ [أستاذ س٦ س٧]",
+   "source": {
+    "book": "ص ١٩٦–٢٠٦",
+    "lesson": "U4/L1 اختبر نفسك س١–س٧"
+   }
+  },
+  {
+   "id": 21001,
+   "templateId": "U4.L1.T02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "الطاقة الكلية للإلكترون في ذرة الهيدروجين سالبة لأن:",
+   "options": [
+    "الكامنة السالبة أكبر مطلقاً من الحركية الموجبة (طاقة ارتباط)",
+    "الإلكترون شحنته سالبة",
+    "النواة تفقد طاقة",
+    "الحركية سالبة"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "mix_formulas",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) الكامنة السالبة أكبر مطلقاً من الحركية الموجبة (طاقة ارتباط)",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٠٠–٢٠٤ [أستاذ س٦ س٧]",
+   "source": {
+    "book": "ص ١٩٦–٢٠٦",
+    "lesson": "U4/L1 اختبر نفسك س١–س٧"
+   }
+  },
+  {
+   "id": 21002,
+   "templateId": "U4.L2.T01",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 3600 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
+   "options": [
+    "1.27×10¹⁵ m·s⁻¹",
+    "3.24×10⁻²³ m·s⁻¹",
+    "3.56×10⁷ m·s⁻¹",
+    "2.52×10⁷ m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_sqrt",
+    "invert_ratio",
+    null,
+    "forget_half"
+   ],
+   "optionValues": [
+    1265934065934066.0,
+    3.23777701517569e-23,
+    35600000.0,
+    25158836.08132604
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_sqrt]: أهمل الجذر",
+    "(B) خطأ [invert_ratio]: ضرب بالكتلة بدل القسمة",
+    "✓ (C) 3.56×10⁷ m·s⁻¹",
+    "(D) خطأ [forget_half]: أهمل الـ٢ (½mv²)"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 35600000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "½me·v² = e·U ⇒ v = √(2eU/me)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(2eU/me) (الكتاب ص ٢١٥)",
+   "source": {
+    "book": "ص ٢١٤–٢١٦",
+    "lesson": "U4/L2 البرهان ١ v = √(2eU/me) [أستاذ]"
+   }
+  },
+  {
+   "id": 21003,
+   "templateId": "U4.L2.T01",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 2500 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
+   "options": [
+    "8.79×10¹⁴ m·s⁻¹",
+    "2.96×10⁷ m·s⁻¹",
+    "2.1×10⁷ m·s⁻¹",
+    "2.7×10⁻²³ m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "forget_sqrt",
+    null,
+    "forget_half",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    879120879120879.1,
+    29600000.0,
+    20965696.734438367,
+    2.6981475126464084e-23
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_sqrt]: أهمل الجذر",
+    "✓ (B) 2.96×10⁷ m·s⁻¹",
+    "(C) خطأ [forget_half]: أهمل الـ٢ (½mv²)",
+    "(D) خطأ [invert_ratio]: ضرب بالكتلة بدل القسمة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 29600000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "½me·v² = e·U ⇒ v = √(2eU/me)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(2eU/me) (الكتاب ص ٢١٥)",
+   "source": {
+    "book": "ص ٢١٤–٢١٦",
+    "lesson": "U4/L2 البرهان ١ v = √(2eU/me) [أستاذ]"
+   }
+  },
+  {
+   "id": 21004,
+   "templateId": "U4.L2.T01",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 400 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
+   "options": [
+    "1.08×10⁻²³ m·s⁻¹",
+    "1.19×10⁷ m·s⁻¹",
+    "1.41×10¹⁴ m·s⁻¹",
+    "8.39×10⁶ m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "invert_ratio",
+    null,
+    "forget_sqrt",
+    "forget_half"
+   ],
+   "optionValues": [
+    1.0792590050585632e-23,
+    11900000.0,
+    140659340659340.64,
+    8386278.693775346
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: ضرب بالكتلة بدل القسمة",
+    "✓ (B) 1.19×10⁷ m·s⁻¹",
+    "(C) خطأ [forget_sqrt]: أهمل الجذر",
+    "(D) خطأ [forget_half]: أهمل الـ٢ (½mv²)"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 11900000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "½me·v² = e·U ⇒ v = √(2eU/me)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(2eU/me) (الكتاب ص ٢١٥)",
+   "source": {
+    "book": "ص ٢١٤–٢١٦",
+    "lesson": "U4/L2 البرهان ١ v = √(2eU/me) [أستاذ]"
+   }
+  },
+  {
+   "id": 21008,
+   "templateId": "U4.L2.T01",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 900 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
+   "options": [
+    "1.26×10⁷ m·s⁻¹",
+    "1.62×10⁻²³ m·s⁻¹",
+    "3.16×10¹⁴ m·s⁻¹",
+    "1.78×10⁷ m·s⁻¹"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_half",
+    "invert_ratio",
+    "forget_sqrt",
+    null
+   ],
+   "optionValues": [
+    12579418.04066302,
+    1.618888507587845e-23,
+    316483516483516.5,
+    17800000.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_half]: أهمل الـ٢ (½mv²)",
+    "(B) خطأ [invert_ratio]: ضرب بالكتلة بدل القسمة",
+    "(C) خطأ [forget_sqrt]: أهمل الجذر",
+    "✓ (D) 1.78×10⁷ m·s⁻¹"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 17800000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "½me·v² = e·U ⇒ v = √(2eU/me)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(2eU/me) (الكتاب ص ٢١٥)",
+   "source": {
+    "book": "ص ٢١٤–٢١٦",
+    "lesson": "U4/L2 البرهان ١ v = √(2eU/me) [أستاذ]"
+   }
+  },
+  {
+   "id": 21017,
+   "templateId": "U4.L2.T01",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 1600 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
+   "options": [
+    "1.68×10⁷ m·s⁻¹",
+    "2.37×10⁷ m·s⁻¹",
+    "5.63×10¹⁴ m·s⁻¹",
+    "2.16×10⁻²³ m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "forget_half",
+    null,
+    "forget_sqrt",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    16772557.387550691,
+    23700000.0,
+    562637362637362.56,
+    2.1585180101171265e-23
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_half]: أهمل الـ٢ (½mv²)",
+    "✓ (B) 2.37×10⁷ m·s⁻¹",
+    "(C) خطأ [forget_sqrt]: أهمل الجذر",
+    "(D) خطأ [invert_ratio]: ضرب بالكتلة بدل القسمة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 23700000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "½me·v² = e·U ⇒ v = √(2eU/me)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(2eU/me) (الكتاب ص ٢١٥)",
+   "source": {
+    "book": "ص ٢١٤–٢١٦",
+    "lesson": "U4/L2 البرهان ١ v = √(2eU/me) [أستاذ]"
+   }
+  },
+  {
+   "id": 21019,
+   "templateId": "U4.L2.T01",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 100 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
+   "options": [
+    "4.19×10⁶ m·s⁻¹",
+    "5.93×10⁶ m·s⁻¹",
+    "5.4×10⁻²⁴ m·s⁻¹",
+    "3.52×10¹³ m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "forget_half",
+    null,
+    "invert_ratio",
+    "forget_sqrt"
+   ],
+   "optionValues": [
+    4193139.346887673,
+    5930000.0,
+    5.396295025292816e-24,
+    35164835164835.16
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_half]: أهمل الـ٢ (½mv²)",
+    "✓ (B) 5.93×10⁶ m·s⁻¹",
+    "(C) خطأ [invert_ratio]: ضرب بالكتلة بدل القسمة",
+    "(D) خطأ [forget_sqrt]: أهمل الجذر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 5930000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "½me·v² = e·U ⇒ v = √(2eU/me)",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(2eU/me) (الكتاب ص ٢١٥)",
+   "source": {
+    "book": "ص ٢١٤–٢١٦",
+    "lesson": "U4/L2 البرهان ١ v = √(2eU/me) [أستاذ]"
+   }
+  },
+  {
+   "id": 21020,
+   "templateId": "U4.L2.T02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "الأشعة المهبطية في حقل كهربائي منتظم:",
+   "options": [
+    "تتوقف",
+    "تنحرف نحو اللبوس الموجب",
+    "لا تنحرف",
+    "تنحرف نحو اللبوس السالب"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "mix_formulas",
+    "sign_flip"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (B) تنحرف نحو اللبوس الموجب",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [sign_flip]: إشارة معكوسة (قوة/تسارع/سرعة/φ)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢١٤–٢٢٨ [أستاذ ص ٢٢٢]",
+   "source": {
+    "book": "ص ٢١٠–٢٢٨",
+    "lesson": "U4/L2 اختبر نفسك س١–س٣ + الخواص"
+   }
+  },
+  {
+   "id": 21021,
+   "templateId": "U4.L2.T02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "الغرض من تطبيق حقل مغناطيسي مع حقل كهربائي بحيث v0 = E/B على حزمة الإلكترونات:",
+   "options": [
+    "إبقاء حركتها مستقيمة منتظمة",
+    "إيقافها",
+    "زيادة انحرافها",
+    "تسريعها"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "mix_formulas",
+    "work_not_zero"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) إبقاء حركتها مستقيمة منتظمة",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [work_not_zero]: ظنّ القوة المغناطيسية تبذل عملاً/تغيّر السرعة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢١٤–٢٢٨ [أستاذ ص ٢٢٢]",
+   "source": {
+    "book": "ص ٢١٠–٢٢٨",
+    "lesson": "U4/L2 اختبر نفسك س١–س٣ + الخواص"
+   }
+  },
+  {
+   "id": 21022,
+   "templateId": "U4.L2.T02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "شرطا توليد الأشعة المهبطية في أنبوب التفريغ:",
+   "options": [
+    "فراغ كبير فقط دون توتر",
+    "فراغ كبير (10⁻² – 10⁻³ mmHg) وتوتر كبير نسبياً",
+    "ضغط جوي وتوتر صغير",
+    "غاز مضغوط وتسخين شديد"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "true_but_partial",
+    null,
+    "mix_formulas",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [true_but_partial]: خيار صحيح جزئياً حين يكون المفتاح «جميع ما سبق»",
+    "✓ (B) فراغ كبير (10⁻² – 10⁻³ mmHg) وتوتر كبير نسبياً",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢١٤–٢٢٨ [أستاذ ص ٢٢٢]",
+   "source": {
+    "book": "ص ٢١٠–٢٢٨",
+    "lesson": "U4/L2 اختبر نفسك س١–س٣ + الخواص"
+   }
+  },
+  {
+   "id": 21023,
+   "templateId": "U4.L2.T02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "مسار الإلكترون داخل حقل كهربائي منتظم عمودي على سرعته الابتدائية هو:",
+   "options": [
+    "خط مستقيم",
+    "حلزون",
+    "قطع مكافئ",
+    "دائرة"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "mix_formulas",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (C) قطع مكافئ",
+    "(D) خطأ [mix_formulas]: ذاك في الحقل المغناطيسي"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢١٤–٢٢٨ [أستاذ ص ٢٢٢]",
+   "source": {
+    "book": "ص ٢١٠–٢٢٨",
+    "lesson": "U4/L2 اختبر نفسك س١–س٣ + الخواص"
+   }
+  },
+  {
+   "id": 21024,
+   "templateId": "U4.L2.T02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "الفعل الكهرحراري هو انتزاع الإلكترونات من سطح المعدن:",
+   "options": [
+    "بتعريضه لإشعاع ضوئي",
+    "بقذفه بجسيمات",
+    "بتطبيق حقل مغناطيسي",
+    "بتسخينه إلى درجة حرارة مناسبة"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "mix_formulas",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: ذاك الكهرضوئي",
+    "(B) خطأ [mix_formulas]: ذاك مفعول الحت",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) بتسخينه إلى درجة حرارة مناسبة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢١٤–٢٢٨ [أستاذ ص ٢٢٢]",
+   "source": {
+    "book": "ص ٢١٠–٢٢٨",
+    "lesson": "U4/L2 اختبر نفسك س١–س٣ + الخواص"
+   }
+  },
+  {
+   "id": 21025,
+   "templateId": "U4.L3.T01",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يسقط ضوء طاقة فوتونه 4 eV على سطح معدن طاقة انتزاعه Ws = 3 eV. احسب كمون الإيقاف U0 (بالفولت).",
+   "options": [
+    "7 V",
+    "1.6 V",
+    "1 V",
+    "4 V"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "sign_flip",
+    "ev_joule",
+    null,
+    "forget_work_function"
+   ],
+   "optionValues": [
+    7.0,
+    1.6,
+    1.0,
+    4.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [sign_flip]: جمع بدل الطرح",
+    "(B) خطأ [ev_joule]: خلط بتحويل eV/J",
+    "✓ (C) 1 V",
+    "(D) خطأ [forget_work_function]: أهمل Ws"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1.0,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "hf = Ws + Ek_max و e·U0 = Ek_max",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "hf = Ws + ½me·v²max (الكتاب ص ٢٣٦)",
+   "source": {
+    "book": "ص ٢٣٤–٢٣٨",
+    "lesson": "U4/L3 البرهان hf = Ws + ½mv²max [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 21026,
+   "templateId": "U4.L3.T01",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يسقط ضوء طاقة فوتونه 2.5 eV على سطح معدن طاقة انتزاعه Ws = 2 eV. احسب كمون الإيقاف U0 (بالفولت).",
+   "options": [
+    "4.5 V",
+    "0.8 V",
+    "0.5 V",
+    "2.5 V"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "sign_flip",
+    "ev_joule",
+    null,
+    "forget_work_function"
+   ],
+   "optionValues": [
+    4.5,
+    0.8,
+    0.5,
+    2.5
+   ],
+   "solutionSteps": [
+    "(A) خطأ [sign_flip]: جمع بدل الطرح",
+    "(B) خطأ [ev_joule]: خلط بتحويل eV/J",
+    "✓ (C) 0.5 V",
+    "(D) خطأ [forget_work_function]: أهمل Ws"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.5,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "hf = Ws + Ek_max و e·U0 = Ek_max",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "hf = Ws + ½me·v²max (الكتاب ص ٢٣٦)",
+   "source": {
+    "book": "ص ٢٣٤–٢٣٨",
+    "lesson": "U4/L3 البرهان hf = Ws + ½mv²max [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 21027,
+   "templateId": "U4.L3.T01",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يسقط ضوء طاقة فوتونه 5 eV على سطح معدن طاقة انتزاعه Ws = 2.3 eV. احسب الطاقة الحركية العظمى للإلكترونات المنتزعة (بالـeV).",
+   "options": [
+    "5 eV",
+    "7.3 eV",
+    "4.32 eV",
+    "2.7 eV"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_work_function",
+    "sign_flip",
+    "ev_joule",
+    null
+   ],
+   "optionValues": [
+    5.0,
+    7.3,
+    4.32,
+    2.7
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_work_function]: أهمل Ws",
+    "(B) خطأ [sign_flip]: جمع بدل الطرح",
+    "(C) خطأ [ev_joule]: خلط بتحويل eV/J",
+    "✓ (D) 2.7 eV"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 2.7,
+    "unit": "eV",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "hf = Ws + Ek_max و e·U0 = Ek_max",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "hf = Ws + ½me·v²max (الكتاب ص ٢٣٦)",
+   "source": {
+    "book": "ص ٢٣٤–٢٣٨",
+    "lesson": "U4/L3 البرهان hf = Ws + ½mv²max [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 21028,
+   "templateId": "U4.L3.T01",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يسقط ضوء طاقة فوتونه 3 eV على سطح معدن طاقة انتزاعه Ws = 1.5 eV. احسب كمون الإيقاف U0 (بالفولت).",
+   "options": [
+    "4.5 V",
+    "2.4 V",
+    "3 V",
+    "1.5 V"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "sign_flip",
+    "ev_joule",
+    "forget_work_function",
+    null
+   ],
+   "optionValues": [
+    4.5,
+    2.4000000000000004,
+    3.0,
+    1.5
+   ],
+   "solutionSteps": [
+    "(A) خطأ [sign_flip]: جمع بدل الطرح",
+    "(B) خطأ [ev_joule]: خلط بتحويل eV/J",
+    "(C) خطأ [forget_work_function]: أهمل Ws",
+    "✓ (D) 1.5 V"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1.5,
+    "unit": "V",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "hf = Ws + Ek_max و e·U0 = Ek_max",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "hf = Ws + ½me·v²max (الكتاب ص ٢٣٦)",
+   "source": {
+    "book": "ص ٢٣٤–٢٣٨",
+    "lesson": "U4/L3 البرهان hf = Ws + ½mv²max [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 21029,
+   "templateId": "U4.L3.T01",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يسقط ضوء طاقة فوتونه 6 eV على سطح معدن طاقة انتزاعه Ws = 1.5 eV. احسب الطاقة الحركية العظمى للإلكترونات المنتزعة (بالـeV).",
+   "options": [
+    "4.5 eV",
+    "7.2 eV",
+    "6 eV",
+    "7.5 eV"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "ev_joule",
+    "forget_work_function",
+    "sign_flip"
+   ],
+   "optionValues": [
+    4.5,
+    7.2,
+    6.0,
+    7.5
+   ],
+   "solutionSteps": [
+    "✓ (A) 4.5 eV",
+    "(B) خطأ [ev_joule]: خلط بتحويل eV/J",
+    "(C) خطأ [forget_work_function]: أهمل Ws",
+    "(D) خطأ [sign_flip]: جمع بدل الطرح"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 4.5,
+    "unit": "eV",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "hf = Ws + Ek_max و e·U0 = Ek_max",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "hf = Ws + ½me·v²max (الكتاب ص ٢٣٦)",
+   "source": {
+    "book": "ص ٢٣٤–٢٣٨",
+    "lesson": "U4/L3 البرهان hf = Ws + ½mv²max [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 21031,
+   "templateId": "U4.L3.T01",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "يسقط ضوء طاقة فوتونه 2.5 eV على سطح معدن طاقة انتزاعه Ws = 1.5 eV. احسب الطاقة الحركية العظمى للإلكترونات المنتزعة (بالـeV).",
+   "options": [
+    "1 eV",
+    "2.5 eV",
+    "1.6 eV",
+    "4 eV"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_work_function",
+    "ev_joule",
+    "sign_flip"
+   ],
+   "optionValues": [
+    1.0,
+    2.5,
+    1.6,
+    4.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 1 eV",
+    "(B) خطأ [forget_work_function]: أهمل Ws",
+    "(C) خطأ [ev_joule]: خلط بتحويل eV/J",
+    "(D) خطأ [sign_flip]: جمع بدل الطرح"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1.0,
+    "unit": "eV",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "hf = Ws + Ek_max و e·U0 = Ek_max",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "hf = Ws + ½me·v²max (الكتاب ص ٢٣٦)",
+   "source": {
+    "book": "ص ٢٣٤–٢٣٨",
+    "lesson": "U4/L3 البرهان hf = Ws + ½mv²max [أستاذ س٣]"
+   }
+  },
+  {
+   "id": 21032,
+   "templateId": "U4.L3.T02",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "يعمل أنبوب كوليدج بتوتر UAC = 50 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
+   "options": [
+    "2.49×10⁻¹¹ m",
+    "8.29×10⁻²⁰ m",
+    "4.02×10¹⁰ m",
+    "2.49×10⁻⁸ m"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "invert_ratio",
+    "unit_confusion"
+   ],
+   "optionValues": [
+    2.49e-11,
+    8.287500000000001e-20,
+    40221216691.804924,
+    2.4862500000000002e-08
+   ],
+   "solutionSteps": [
+    "✓ (A) 2.49×10⁻¹¹ m",
+    "(B) خطأ [mix_formulas]: أهمل c (حسب 1/f بدل λ)",
+    "(C) خطأ [invert_ratio]: قلب النسبة",
+    "(D) خطأ [unit_confusion]: لم يحوّل kV ⇒ V"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 2.49e-11,
+    "unit": "m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e·UAC = h·fmax = h·c/λmin",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "λmin = h·c/(e·UAC) (الكتاب ص ٢٤٣)",
+   "source": {
+    "book": "ص ٢٤٢–٢٤٣",
+    "lesson": "U4/L3 البرهان λmin = hc/(eUAC) [أستاذ]"
+   }
+  },
+  {
+   "id": 21033,
+   "templateId": "U4.L3.T02",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "يعمل أنبوب كوليدج بتوتر UAC = 100 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
+   "options": [
+    "8.04×10¹⁰ m",
+    "1.24×10⁻⁸ m",
+    "1.24×10⁻¹¹ m",
+    "4.14×10⁻²⁰ m"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "invert_ratio",
+    "unit_confusion",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    80442433383.60985,
+    1.2431250000000001e-08,
+    1.24e-11,
+    4.1437500000000003e-20
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: قلب النسبة",
+    "(B) خطأ [unit_confusion]: لم يحوّل kV ⇒ V",
+    "✓ (C) 1.24×10⁻¹¹ m",
+    "(D) خطأ [mix_formulas]: أهمل c (حسب 1/f بدل λ)"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1.24e-11,
+    "unit": "m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e·UAC = h·fmax = h·c/λmin",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "λmin = h·c/(e·UAC) (الكتاب ص ٢٤٣)",
+   "source": {
+    "book": "ص ٢٤٢–٢٤٣",
+    "lesson": "U4/L3 البرهان λmin = hc/(eUAC) [أستاذ]"
+   }
+  },
+  {
+   "id": 21034,
+   "templateId": "U4.L3.T02",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "يعمل أنبوب كوليدج بتوتر UAC = 40 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
+   "options": [
+    "1.04×10⁻¹⁹ m",
+    "3.11×10⁻⁸ m",
+    "3.11×10⁻¹¹ m",
+    "3.22×10¹⁰ m"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "unit_confusion",
+    null,
+    "invert_ratio"
+   ],
+   "optionValues": [
+    1.0359375e-19,
+    3.1078125e-08,
+    3.11e-11,
+    32176973353.443943
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: أهمل c (حسب 1/f بدل λ)",
+    "(B) خطأ [unit_confusion]: لم يحوّل kV ⇒ V",
+    "✓ (C) 3.11×10⁻¹¹ m",
+    "(D) خطأ [invert_ratio]: قلب النسبة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 3.11e-11,
+    "unit": "m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e·UAC = h·fmax = h·c/λmin",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "λmin = h·c/(e·UAC) (الكتاب ص ٢٤٣)",
+   "source": {
+    "book": "ص ٢٤٢–٢٤٣",
+    "lesson": "U4/L3 البرهان λmin = hc/(eUAC) [أستاذ]"
+   }
+  },
+  {
+   "id": 21037,
+   "templateId": "U4.L3.T02",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "يعمل أنبوب كوليدج بتوتر UAC = 25 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
+   "options": [
+    "2.01×10¹⁰ m",
+    "1.66×10⁻¹⁹ m",
+    "4.97×10⁻⁸ m",
+    "4.97×10⁻¹¹ m"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "invert_ratio",
+    "mix_formulas",
+    "unit_confusion",
+    null
+   ],
+   "optionValues": [
+    20110608345.902462,
+    1.6575000000000001e-19,
+    4.9725000000000004e-08,
+    4.97e-11
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: قلب النسبة",
+    "(B) خطأ [mix_formulas]: أهمل c (حسب 1/f بدل λ)",
+    "(C) خطأ [unit_confusion]: لم يحوّل kV ⇒ V",
+    "✓ (D) 4.97×10⁻¹¹ m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 4.97e-11,
+    "unit": "m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e·UAC = h·fmax = h·c/λmin",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "λmin = h·c/(e·UAC) (الكتاب ص ٢٤٣)",
+   "source": {
+    "book": "ص ٢٤٢–٢٤٣",
+    "lesson": "U4/L3 البرهان λmin = hc/(eUAC) [أستاذ]"
+   }
+  },
+  {
+   "id": 21042,
+   "templateId": "U4.L3.T02",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "يعمل أنبوب كوليدج بتوتر UAC = 10 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
+   "options": [
+    "1.24×10⁻⁷ m",
+    "4.14×10⁻¹⁹ m",
+    "1.24×10⁻¹⁰ m",
+    "8.04×10⁹ m"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "unit_confusion",
+    "mix_formulas",
+    null,
+    "invert_ratio"
+   ],
+   "optionValues": [
+    1.243125e-07,
+    4.14375e-19,
+    1.24e-10,
+    8044243338.360986
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_confusion]: لم يحوّل kV ⇒ V",
+    "(B) خطأ [mix_formulas]: أهمل c (حسب 1/f بدل λ)",
+    "✓ (C) 1.24×10⁻¹⁰ m",
+    "(D) خطأ [invert_ratio]: قلب النسبة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1.24e-10,
+    "unit": "m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e·UAC = h·fmax = h·c/λmin",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "λmin = h·c/(e·UAC) (الكتاب ص ٢٤٣)",
+   "source": {
+    "book": "ص ٢٤٢–٢٤٣",
+    "lesson": "U4/L3 البرهان λmin = hc/(eUAC) [أستاذ]"
+   }
+  },
+  {
+   "id": 21046,
+   "templateId": "U4.L3.T02",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "يعمل أنبوب كوليدج بتوتر UAC = 20 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
+   "options": [
+    "2.07×10⁻¹⁹ m",
+    "6.22×10⁻⁸ m",
+    "1.61×10¹⁰ m",
+    "6.22×10⁻¹¹ m"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "unit_confusion",
+    "invert_ratio",
+    null
+   ],
+   "optionValues": [
+    2.071875e-19,
+    6.215625e-08,
+    16088486676.721972,
+    6.22e-11
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: أهمل c (حسب 1/f بدل λ)",
+    "(B) خطأ [unit_confusion]: لم يحوّل kV ⇒ V",
+    "(C) خطأ [invert_ratio]: قلب النسبة",
+    "✓ (D) 6.22×10⁻¹¹ m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 6.22e-11,
+    "unit": "m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "e·UAC = h·fmax = h·c/λmin",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة m",
+     "points": 1
+    }
+   ],
+   "answerBasis": "λmin = h·c/(e·UAC) (الكتاب ص ٢٤٣)",
+   "source": {
+    "book": "ص ٢٤٢–٢٤٣",
+    "lesson": "U4/L3 البرهان λmin = hc/(eUAC) [أستاذ]"
+   }
+  },
+  {
+   "id": 21047,
+   "templateId": "U4.L3.T03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في الظاهرة الكهرضوئية، زيادة شدة الضوء الساقط (بتواتر ثابت) تؤدي إلى:",
+   "options": [
+    "زيادة السرعة العظمى للإلكترونات",
+    "زيادة عدد الإلكترونات المنتزعة (تيار الإشباع) دون تغيير سرعتها العظمى",
+    "خفض تواتر العتبة",
+    "زيادة كمون الإيقاف"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "intensity_vs_freq",
+    null,
+    "mix_formulas",
+    "intensity_vs_freq"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [intensity_vs_freq]: ظنّ الشدة تحدد السرعة (بل التواتر)",
+    "✓ (B) زيادة عدد الإلكترونات المنتزعة (تيار الإشباع) دون تغيير سرعتها العظمى",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [intensity_vs_freq]: ظنّ الشدة تحدد السرعة (بل التواتر)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٣٤–٢٤٨ [أستاذ س٣]",
+   "source": {
+    "book": "ص ٢٣٠–٢٥٠",
+    "lesson": "U4/L3 جدول المواجهة + الخطأ الشائع ١ [أستاذ س٣ س٨ س٩]",
+    "exam": "٢٠٢٦ س٢ الامتصاص"
+   }
+  },
+  {
+   "id": 21048,
+   "templateId": "U4.L3.T03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "كمون الإيقاف U0 في الظاهرة الكهرضوئية يتعلق بـ:",
+   "options": [
+    "شدة الضوء الساقط",
+    "مساحة سطح المهبط",
+    "المسافة بين المهبط والمصعد",
+    "تواتر الضوء الساقط وطبيعة المعدن فقط"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "intensity_vs_freq",
+    "mix_formulas",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [intensity_vs_freq]: ظنّ الشدة تحدد السرعة (بل التواتر)",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) تواتر الضوء الساقط وطبيعة المعدن فقط"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٣٤–٢٤٨ [أستاذ س٣]",
+   "source": {
+    "book": "ص ٢٣٠–٢٥٠",
+    "lesson": "U4/L3 جدول المواجهة + الخطأ الشائع ١ [أستاذ س٣ س٨ س٩]",
+    "exam": "٢٠٢٦ س٢ الامتصاص"
+   }
+  },
+  {
+   "id": 21049,
+   "templateId": "U4.L3.T03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "كمية حركة الفوتون تُعطى بالعلاقة:",
+   "options": [
+    "p = h·f·c",
+    "p = h/λ = E/c",
+    "p = m·c² ",
+    "p = h·λ"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "mix_formulas",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (B) p = h/λ = E/c",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٣٤–٢٤٨ [أستاذ س٣]",
+   "source": {
+    "book": "ص ٢٣٠–٢٥٠",
+    "lesson": "U4/L3 جدول المواجهة + الخطأ الشائع ١ [أستاذ س٣ س٨ س٩]",
+    "exam": "٢٠٢٦ س٢ الامتصاص"
+   }
+  },
+  {
+   "id": 21050,
+   "templateId": "U4.L3.T03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في أنبوب كوليدج، رفع التوتر UAC بين المهبط والهدف يؤدي إلى:",
+   "options": [
+    "زيادة شدة الأشعة فقط",
+    "زيادة طاقة الأشعة السينية (قساوتها) ونقصان λmin",
+    "لا أثر على الأشعة",
+    "زيادة λmin"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "mix_formulas",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: الشدة من حرارة السلك",
+    "✓ (B) زيادة طاقة الأشعة السينية (قساوتها) ونقصان λmin",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٣٤–٢٤٨ [أستاذ س٣]",
+   "source": {
+    "book": "ص ٢٣٠–٢٥٠",
+    "lesson": "U4/L3 جدول المواجهة + الخطأ الشائع ١ [أستاذ س٣ س٨ س٩]",
+    "exam": "٢٠٢٦ س٢ الامتصاص"
+   }
+  },
+  {
+   "id": 21051,
+   "templateId": "U4.L3.T03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "تزداد النسبة الممتصة من الأشعة السينية في مادة بازدياد:",
+   "options": [
+    "توتر التشغيل",
+    "العدد الذري للمادة وسماكتها وطول موجة الأشعة",
+    "درجة حرارة المادة",
+    "تواتر الأشعة"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "invert_ratio",
+    null,
+    "mix_formulas",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "✓ (B) العدد الذري للمادة وسماكتها وطول موجة الأشعة",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [invert_ratio]: الأقسى أنفذ"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٣٤–٢٤٨ [أستاذ س٣]",
+   "source": {
+    "book": "ص ٢٣٠–٢٥٠",
+    "lesson": "U4/L3 جدول المواجهة + الخطأ الشائع ١ [أستاذ س٣ س٨ س٩]",
+    "exam": "٢٠٢٦ س٢ الامتصاص"
+   }
+  },
+  {
+   "id": 21052,
+   "templateId": "U4.L3.T03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "من خواص حزمة الليزر أنها:",
+   "options": [
+    "وحيدة اللون ومترابطة بالطور وانفراجها صغير",
+    "فوتوناتها مختلفة الطور",
+    "متعددة الألوان كالضوء الأبيض",
+    "تتشتت بسرعة بعد خروجها"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "mix_formulas",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) وحيدة اللون ومترابطة بالطور وانفراجها صغير",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٣٤–٢٤٨ [أستاذ س٣]",
+   "source": {
+    "book": "ص ٢٣٠–٢٥٠",
+    "lesson": "U4/L3 جدول المواجهة + الخطأ الشائع ١ [أستاذ س٣ س٨ س٩]",
+    "exam": "٢٠٢٦ س٢ الامتصاص"
+   }
+  },
+  {
+   "id": 21053,
+   "templateId": "U4.L3.T03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "تفسير أينشتاين للظاهرة الكهرضوئية يقوم على أن الفوتون:",
+   "options": [
+    "يوزع طاقته على عدة إلكترونات",
+    "يقدّم جزءاً من طاقته تدريجياً",
+    "يقدّم كامل طاقته لإلكترون واحد",
+    "يسخّن المعدن فتتحرر الإلكترونات"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "mix_formulas",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [mix_formulas]: الموجية",
+    "✓ (C) يقدّم كامل طاقته لإلكترون واحد",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٣٤–٢٤٨ [أستاذ س٣]",
+   "source": {
+    "book": "ص ٢٣٠–٢٥٠",
+    "lesson": "U4/L3 جدول المواجهة + الخطأ الشائع ١ [أستاذ س٣ س٨ س٩]",
+    "exam": "٢٠٢٦ س٢ الامتصاص"
+   }
+  }
+ ]
+}

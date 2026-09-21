@@ -35,12 +35,21 @@ except ImportError:  # pragma: no cover
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATES = ROOT / "content/authoring/templates/U1.yaml"
+TEMPLATES_DIR = ROOT / "content/authoring/templates"      # كل ملفات *.yaml (U1 · U1b · U2 … U5)
+ITEMS_ASSET = ROOT / "app/assets/content/items.json"       # ما يشحن للتطبيق (كل الوحدات)
 GLOSSARY = ROOT / "app/assets/content/glossary.json"
 PACK = ROOT / "app/assets/content/pack.json"
 OUT_DIR = ROOT / "content/generated"
 
 G, PI2 = 10, 10                         # ثوابت الامتحان (تُقرأ من constants في YAML عند التشغيل)
-CHAPTER_WEIGHTS = {"U1C1": 80, "U1C2": 60, "U1C3": 50}   # أوزان دورة ٢٠٢٥ (docs/23)
+# أوزان الفصول (درجات الظهور بالدورات — docs/20 §١ + docs/23): تحكم حصص العيّنة
+CHAPTER_WEIGHTS = {
+    "U1C1": 80, "U1C2": 60, "U1C3": 50, "U1C4": 40, "U1C5": 40,
+    "U2C1": 40, "U2C2": 70, "U2C3": 30, "U2C4": 55, "U2C5": 80, "U2C6": 25,
+    "U3C1": 40, "U3C2": 50,
+    "U4C1": 30, "U4C2": 25, "U4C3": 40,
+    "U5C1": 15,
+}
 TOL = 0.02
 MINUS = "−"
 FIRST_ID = 20001
@@ -54,11 +63,13 @@ MULT = {0.25: "ربع", 0.5: "نصف", 0.75: "ثلاثة أرباع", 2: "ضعف
 
 # ───────────────────────────── أدوات تنسيق وأرقام ─────────────────────────────
 def fmt(x, nd: int = 4) -> str:
-    """تنسيق عدد بلا أصفار زائدة وبإشارة سالبة مطبعية (−)."""
+    """تنسيق عدد بلا أصفار زائدة وبإشارة سالبة مطبعية (−). الكسور تبقى كسوراً (1/3)."""
     if isinstance(x, str):
         return x
     if isinstance(x, Fraction):
-        x = float(x)
+        if x.denominator == 1:
+            return str(x.numerator).replace("-", MINUS)
+        return f"{x.numerator}/{x.denominator}".replace("-", MINUS)
     if abs(x - round(x)) < 1e-9:
         s = str(int(round(x)))
     else:
@@ -92,6 +103,30 @@ def nice(x) -> bool:
     return len(digits) <= 3
 
 
+SUP = str.maketrans("0123456789-", "⁰¹²³⁴⁵⁶⁷⁸⁹⁻")
+
+
+def fmt_sci(x: float, sig: int = 3) -> str:
+    """صيغة علمية امتحانية: 8.19×10⁻¹⁴ · 2×10⁻³ · 1.5×10¹⁰ (مانتيسا ≤ sig أرقام)."""
+    if x == 0:
+        return "0"
+    e = int(math.floor(math.log10(abs(x))))
+    m = round(x / 10 ** e, sig - 1)
+    if abs(m) >= 10:
+        m, e = m / 10, e + 1
+    ms = fmt(m)
+    return ms if e == 0 else (f"{ms}×10{str(e).translate(SUP)}" if ms not in ("1", "−1") else f"{'−' if m < 0 else ''}10{str(e).translate(SUP)}")
+
+
+def nice_sci(x: float, sig: int = 3) -> bool:
+    """«نظيف» بالصيغة العلمية: المانتيسا تُكتب بـ≤ sig أرقام معنوية."""
+    if x == 0 or not math.isfinite(x):
+        return False
+    e = math.floor(math.log10(abs(x)))
+    m = x / 10 ** e
+    return abs(m - round(m, sig - 1)) < 1e-9 * max(1, abs(m))
+
+
 def isqrt_exact(n: int):
     s = math.isqrt(n)
     return s if s * s == n else None
@@ -111,11 +146,26 @@ def sqrt_str(val) -> str:
     return f"√({p}/{q})"
 
 
+def _pull_square(n: int):
+    """n = a²·b مع b خالٍ من المربعات ⇒ (a, b)."""
+    a, b, k = 1, n, 2
+    while k * k <= b:
+        while b % (k * k) == 0:
+            b //= k * k
+            a *= k
+        k += 1
+    return a, b
+
+
 def ratio_str(r: float, sym: str) -> str:
-    """r·sym بصيغة امتحانية: 2·T0 · T0/2 · √2·T0 · T0/√2 · √3·T0/2 · √(2/3)·T0."""
+    """r·sym بصيغة امتحانية: 2·T0 · T0/2 · √2·T0 · T0/√2 · √3·T0/2 · 2√2·T0/3 · √(2/3)·T0."""
     fr = Fraction(r * r).limit_denominator(10000)
     p, q = fr.numerator, fr.denominator
     sp, sq = isqrt_exact(p), isqrt_exact(q)
+    if sp is None and sq is not None:
+        a, b = _pull_square(p)
+        if a > 1:                                 # √8·T0/3 ⇒ 2√2·T0/3
+            return f"{a}√{b}·{sym}" if sq == 1 else f"{a}√{b}·{sym}/{sq}"
     if sp is not None and sq is not None:
         if sq == 1:
             return sym if sp == 1 else f"{sp}·{sym}"
@@ -306,7 +356,7 @@ class Generator:
         item = {
             "id": self.new_id(),
             "templateId": t["id"],
-            "unit": "U1",
+            "unit": t["chapter"][:2],
             "chapter": t["chapter"],
             "type": t["type"],
             "difficulty": t.get("difficulty", 1),
@@ -328,12 +378,21 @@ class Generator:
             item.update(extra)
         return item
 
-    def numeric(self, t, stem, val, unit, ds, *, prefix=""):
-        """بند رقمي: المفتاح والمشتتات قيم تُنسَّق بالوحدة نفسها."""
-        if not nice(val):
-            return None
-        key = f"{prefix}{fmt(val)} {unit}".strip()
-        dd = [(f"{prefix}{fmt(sig3(v))} {unit}".strip(), rule, rat, float(v)) for v, rule, rat in ds]
+    def numeric(self, t, stem, val, unit, ds, *, prefix="", sci=False, sig=3, round_key=False):
+        """بند رقمي: المفتاح والمشتتات قيم تُنسَّق بالوحدة نفسها (sci: صيغة ×10ⁿ).
+        round_key: يُقرَّب المفتاح إلى sig أرقام معنوية (نتائج الثوابت الفيزيائية h, e, me…)."""
+        if sci:
+            if round_key and val != 0 and math.isfinite(val):
+                val = float(f"{val:.{sig - 1}e}")
+            if not nice_sci(val, sig):
+                return None
+            key = f"{prefix}{fmt_sci(val, sig)} {unit}".strip()
+            dd = [(f"{prefix}{fmt_sci(v, sig)} {unit}".strip(), rule, rat, float(v)) for v, rule, rat in ds]
+        else:
+            if not nice(val):
+                return None
+            key = f"{prefix}{fmt(val)} {unit}".strip()
+            dd = [(f"{prefix}{fmt(sig3(v))} {unit}".strip(), rule, rat, float(v)) for v, rule, rat in ds]
         return self.make(t, stem, key, dd, answer={"value": float(val), "unit": unit})
 
     def new_id(self):
@@ -417,7 +476,7 @@ class Generator:
             return None
         stem = t.get("stem") or t["title"]
         return {
-            "id": self.new_id(), "templateId": t["id"], "unit": "U1", "chapter": t["chapter"],
+            "id": self.new_id(), "templateId": t["id"], "unit": t["chapter"][:2], "chapter": t["chapter"],
             "type": "proof", "difficulty": t.get("difficulty", 3), "weight": t.get("weight", 25),
             "approved": False, "stem": stem, "options": [], "correctIndex": -1,
             "steps": steps, "stepDistractors": t.get("step_distractors", []),
@@ -425,6 +484,118 @@ class Generator:
             "solutionSteps": [f"{s['n']}. {s['text']} ({s.get('points', 0)})" for s in steps],
             "followThrough": [], "answer": None, "answerBasis": t.get("answer_basis"), "source": t.get("source"),
         }
+
+    # ── المحرّك العام: vars/constraints/compute من YAML بلا دالة بايثون (المادة ١٠-ب) ──
+    _EVAL_NS = {
+        "sqrt": math.sqrt, "pi": math.pi, "sin": math.sin, "cos": math.cos, "tan": math.tan,
+        "acos": math.acos, "asin": math.asin, "atan": math.atan, "abs": abs, "log": math.log,
+        "log10": math.log10, "exp": math.exp, "round": round, "min": min, "max": max,
+        "floor": math.floor, "ceil": math.ceil, "int": int, "float": float, "Fraction": Fraction,
+        "radians": math.radians, "degrees": math.degrees,
+        # منسّقات المستودع — تُستعمل داخل compute لبناء نصوص الخيارات
+        "fmt": fmt, "fmt_sci": fmt_sci, "ratio_str": ratio_str, "pi_str": pi_str, "sqrt_str": sqrt_str,
+    }
+
+    def _ns(self, env):
+        ns = dict(self._EVAL_NS)
+        ns.update(self.doc.get("constants") or {})
+        ns["g"], ns["pi_sq"] = G, PI2
+        ns.update(env)
+        return ns
+
+    def _ev(self, expr, env):
+        if not isinstance(expr, str):
+            return expr
+        return eval(expr, {"__builtins__": {}}, self._ns(env))  # noqa: S307 — قوالب المستودع فقط
+
+    def _draw(self, t):
+        env = {}
+        for name, spec in (t.get("vars") or {}).items():
+            if isinstance(spec, dict) and "set" in spec:
+                env[name] = self.rng.choice(spec["set"])
+            elif isinstance(spec, dict) and "range" in spec:
+                lo, hi = spec["range"]
+                step = spec.get("step", 1)
+                n = int(round((hi - lo) / step))
+                env[name] = lo + self.rng.randint(0, n) * step
+            elif isinstance(spec, list):
+                env[name] = self.rng.choice(spec)
+            else:
+                env[name] = spec
+        # القيود تُقيَّم بعد الحساب (قد تشير إلى key)؛ الخطأ أثناء الحساب ⇒ سحب آخر
+        for name, expr in (t.get("compute") or {}).items():
+            try:
+                env[name] = self._ev(expr, env)
+            except (ValueError, ZeroDivisionError, OverflowError, KeyError):
+                return None
+        for c in t.get("constraints") or []:
+            try:
+                if not self._ev(c, env):
+                    return None
+            except (ValueError, ZeroDivisionError, OverflowError, NameError):
+                return None
+        return env
+
+    class _Fmt(dict):
+        """{x} في الجذوع: الأعداد تُنسَّق بـfmt، والنصوص كما هي، و{x:sci} بالصيغة العلمية."""
+
+        def __missing__(self, k):
+            raise KeyError(k)
+
+    def _render(self, text, env):
+        def rep(m):
+            k, spec = m.group(1), m.group(2)
+            if k not in env:
+                return m.group(0)
+            v = env[k]
+            if isinstance(v, bool):
+                return str(v)
+            if isinstance(v, (int, float, Fraction)):
+                if spec == "sci":
+                    return fmt_sci(float(v))
+                if spec == "pi":
+                    return pi_str(v)
+                if spec == "sqrt":
+                    return sqrt_str(v)
+                return fmt(v)
+            return str(v)
+        return re.sub(r"\{([A-Za-z_][A-Za-z0-9_]*)(?::(sci|pi|sqrt))?\}", rep, text)
+
+    def from_compute(self, t):
+        env = self._draw(t)
+        if env is None:
+            return None
+        stem = self._render(t["stem"], env)
+        ans = t.get("answer")
+        ds_spec = (t.get("options") or {}).get("distractors") or t.get("distractors") or []
+        if ans:  # رقمي
+            val = env["key"]
+            ds = []
+            for d in ds_spec:
+                try:
+                    v = self._ev(d["value"], env)
+                except (ValueError, ZeroDivisionError, OverflowError):
+                    continue
+                if isinstance(v, (int, float)) and math.isfinite(v):
+                    ds.append((float(v), d["rule"], self._render(d.get("rationale") or "", env)))
+            unit = self._render(ans.get("unit", ""), env)
+            fmt_mode = ans.get("format")
+            sci = fmt_mode == "sci" or (fmt_mode == "auto" and (abs(val) >= 1e4 or 0 < abs(val) < 1e-2))
+            return self.numeric(t, stem, float(val), unit, ds, prefix=ans.get("prefix", ""), sci=sci, sig=ans.get("sig", 3),
+                                round_key=bool(ans.get("round")))
+        key = self._render(t["options"]["key"], env)
+        ds = []
+        for d in ds_spec:
+            if "text" in d:
+                txt = self._render(d["text"], env)
+            else:
+                try:
+                    v = self._ev(d["value"], env)
+                except (ValueError, ZeroDivisionError, OverflowError):
+                    continue
+                txt = self._render(t["options"].get("value_format", "{v}"), {**env, "v": v})
+            ds.append((txt, d["rule"], self._render(d.get("rationale") or "", env)))
+        return self.make(t, stem, key, ds)
 
     # ── التشغيل ──
     def run_template(self, t, per_template):
@@ -448,6 +619,15 @@ class Generator:
             return out
         if "table" in t and isinstance(t.get("stem"), str):
             return self.from_table(t)
+        if "compute" in t or "vars" in t:
+            out, seen, tries = [], set(), 0
+            while len(out) < per_template and tries < per_template * 60:
+                tries += 1
+                it = self.from_compute(t)
+                if it and norm(it["stem"]) + "|" + it["options"][it["correctIndex"]] not in seen:
+                    seen.add(norm(it["stem"]) + "|" + it["options"][it["correctIndex"]])
+                    out.append(it)
+            return out
         self.report["skipped"].append((tid, "no_solver"))
         return []
 
@@ -1211,7 +1391,8 @@ def verify(item, rules) -> list:
     a = item.get("answer")
     if a:
         symbolic = "π" in o[item["correctIndex"]] or "√" in o[item["correctIndex"]]
-        if not math.isfinite(a["value"]) or (not symbolic and not nice(a["value"])):
+        sci = "×10" in o[item["correctIndex"]] or re.search(r"(^|[\s−-])10[⁰¹²³⁴⁵⁶⁷⁸⁹⁻]", o[item["correctIndex"]]) is not None
+        if not math.isfinite(a["value"]) or (not symbolic and not (nice_sci(a["value"], 4) if sci else nice(a["value"]))):
             errs.append("قيمة المفتاح غير نظيفة")
         for i, v in enumerate(item.get("optionValues", [])):
             if i != item["correctIndex"] and v is not None and close(v, a["value"]):
@@ -1257,6 +1438,23 @@ def load_banned():
     return [b["term"] if isinstance(b, dict) else b for b in banned]
 
 
+def load_docs(paths=None):
+    """يدمج كل ملفات القوالب في وثيقة واحدة (schema.distractor_rules وconstants تُدمَج، templates تُلحَق)."""
+    paths = paths or sorted(TEMPLATES_DIR.glob("*.yaml"))
+    merged = None
+    for p in paths:
+        d = yaml.safe_load(p.read_text(encoding="utf-8"))
+        if merged is None:
+            merged = d
+            merged.setdefault("schema", {}).setdefault("distractor_rules", {})
+            merged.setdefault("constants", {})
+            continue
+        merged["schema"]["distractor_rules"].update((d.get("schema") or {}).get("distractor_rules") or {})
+        merged["constants"].update(d.get("constants") or {})
+        merged["templates"].extend(d.get("templates") or [])
+    return merged
+
+
 def merge_into_pack(items, meta):
     p = json.loads(PACK.read_text(encoding="utf-8"))
     p["items"] = items
@@ -1271,22 +1469,32 @@ def main(argv=None):
     ap.add_argument("--per-template", type=int, default=6, help="عدد البنود لكل قالب محسوب")
     ap.add_argument("--pack", action="store_true", help="دمج العيّنة في pack.json تحت items")
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--u1-only", action="store_true", help="القوالب U1.yaml فقط (سلوك المادة ١٠ الأصلي)")
+    ap.add_argument("--asset", action="store_true", help="كتابة المجمّع الكامل إلى app/assets/content/items.json")
     args = ap.parse_args(argv)
 
-    doc = yaml.safe_load(TEMPLATES.read_text(encoding="utf-8"))
+    doc = yaml.safe_load(TEMPLATES.read_text(encoding="utf-8")) if args.u1_only else load_docs()
     gen = Generator(doc, load_banned(), args.seed)
     pool = gen.generate(args.per_template)
     bad = [(it["templateId"], verify(it, gen.rules)) for it in pool if verify(it, gen.rules)]
     pool = [it for it in pool if not verify(it, gen.rules)]
     smp = sample(pool, args.n, random.Random(args.seed + 1))
-    meta = {"generator": "tools/gen_items.py", "templates": str(TEMPLATES.relative_to(ROOT)),
+    meta = {"generator": "tools/gen_items.py", "templates": str(TEMPLATES.relative_to(ROOT)) if args.u1_only else str(TEMPLATES_DIR.relative_to(ROOT)) + "/*.yaml",
             "templatesVersion": doc["meta"].get("version"), "seed": args.seed, "perTemplate": args.per_template,
             "poolSize": len(pool), "sampleSize": len(smp), "constants": doc.get("constants"),
             "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
             "approvedByDefault": False}
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    (OUT_DIR / "U1.items.json").write_text(json.dumps({"meta": meta, "items": pool}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-    (OUT_DIR / f"U1.sample{args.n}.json").write_text(json.dumps({"meta": meta, "items": smp}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    units = sorted({it["unit"] for it in pool})
+    for u in units:
+        (OUT_DIR / f"{u}.items.json").write_text(json.dumps({"meta": meta, "items": [i for i in pool if i["unit"] == u]}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    if units == ["U1"]:
+        (OUT_DIR / f"U1.sample{args.n}.json").write_text(json.dumps({"meta": meta, "items": smp}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    else:
+        (OUT_DIR / "ALL.items.json").write_text(json.dumps({"meta": meta, "items": pool}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+        (OUT_DIR / f"ALL.sample{args.n}.json").write_text(json.dumps({"meta": meta, "items": smp}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    if args.asset:
+        ITEMS_ASSET.write_text(json.dumps({"meta": meta, "items": pool}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     if args.pack:
         merge_into_pack(smp, meta)
     if not args.quiet:

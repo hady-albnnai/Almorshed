@@ -14,8 +14,9 @@ void main() {
   late GeneratedItemsPack pack;
 
   setUpAll(() {
-    final raw = File('${Directory.current.path}/test/fixtures/items_sample.json')
-        .readAsStringSync();
+    final raw =
+        File('${Directory.current.path}/test/fixtures/items_sample.json')
+            .readAsStringSync();
     pack = GeneratedItemsPack.fromJsonString(raw);
   });
 
@@ -39,19 +40,34 @@ void main() {
       expect(ofKind(ItemKind.proof).proofSteps, hasLength(8));
     });
 
-    test('الأصل الحقيقي assets/content/items_u1.json: ١٠٠ بند كلها غير معتمدة', () {
-      final raw = File('${Directory.current.path}/assets/content/items_u1.json')
+    test('الأصل الحقيقي assets/content/items.json: ١٧ فصلاً كلها غير معتمدة',
+        () {
+      final raw = File('${Directory.current.path}/assets/content/items.json')
           .readAsStringSync();
       final real = GeneratedItemsPack.fromJsonString(raw);
-      expect(real.items, hasLength(100));
+      expect(real.items.length, greaterThanOrEqualTo(500));
       expect(real.visible(reviewMode: false), isEmpty); // قرار ٢٤
-      expect(real.items.every((i) => i.options.length == 4), isTrue);
-      expect(real.items.map((i) => i.chapter).toSet(), {'U1C1', 'U1C2', 'U1C3'});
-      // بندا مسألة بلا مفتاح رقمي (زاوية/رمزي) يعودان إلى الخيارات
-      final modes = real.items.map(answerModeOf).toList();
-      expect(modes.where((m) => m == ItemKind.numeric).length, 31);
-      expect(modes.where((m) => m == ItemKind.mcq).length, 67);
-      expect(modes.where((m) => m == ItemKind.why).length, 2);
+      // غير البرهان: أربعة خيارات دائماً؛ البرهان يحمل خطواته لا خيارات
+      expect(
+        real.items
+            .where((i) => i.kind != ItemKind.proof)
+            .every((i) => i.options.length == 4),
+        isTrue,
+      );
+      expect(real.items.where((i) => i.kind == ItemKind.proof), isNotEmpty);
+      final chapters = real.items.map((i) => i.chapter).toSet();
+      expect(chapters, hasLength(17));
+      expect(chapters, containsAll(chapterTitles.keys));
+      // كل فصل له اسم عربي معروف (لا يظهر المعرّف الخام في الواجهة)
+      for (final c in chapters) {
+        expect(chapterTitleOf(c), isNot(c));
+      }
+      // الأنماط الأربعة كلها حاضرة
+      final modes = real.items.map(answerModeOf).toSet();
+      expect(
+        modes,
+        containsAll([ItemKind.mcq, ItemKind.numeric, ItemKind.why]),
+      );
     });
   });
 
@@ -59,7 +75,8 @@ void main() {
     testWidgets('اختياري: اختيار خاطئ ⇒ الصحيح أخضر + سبب كل خيار + التالي',
         (tester) async {
       final item = ofKind(ItemKind.mcq);
-      await pump(tester, ItemSessionScreen(items: [item, ofKind(ItemKind.numeric)]));
+      await pump(
+          tester, ItemSessionScreen(items: [item, ofKind(ItemKind.numeric)]));
       expect(find.text(item.stem), findsOneWidget);
       expect(find.text('التالي ←'), findsNothing);
       final wrong = (item.correctIndex + 1) % 4;
@@ -101,10 +118,12 @@ void main() {
       expect(find.byIcon(Icons.check_circle), findsOneWidget);
     });
 
-    testWidgets('علّل: مفتاح مضاد ⇒ صفر مع «تعليل مغلوط» · مفتاحان من ثلاثة ⇒ جزئي',
+    testWidgets(
+        'علّل: مفتاح مضاد ⇒ صفر مع «تعليل مغلوط» · مفتاحان من ثلاثة ⇒ جزئي',
         (tester) async {
       final item = ofKind(ItemKind.why);
-      final twin = GeneratedItem.fromJson(<String, dynamic>{...item.raw, 'id': 777});
+      final twin =
+          GeneratedItem.fromJson(<String, dynamic>{...item.raw, 'id': 777});
       await pump(tester, ItemSessionScreen(items: [item, twin]));
       await tester.enterText(
           find.byKey(const Key('why-text')), 'لأن السرعة عظمى هناك');

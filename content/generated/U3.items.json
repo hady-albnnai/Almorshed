@@ -1,0 +1,1993 @@
+{
+ "meta": {
+  "generator": "tools/gen_items.py",
+  "templates": "content/authoring/templates/*.yaml",
+  "templatesVersion": 1,
+  "seed": 2026,
+  "perTemplate": 6,
+  "poolSize": 549,
+  "sampleSize": 100,
+  "constants": {
+   "g": 10,
+   "pi_sq": 10,
+   "pi_approx": 3.14,
+   "c_light": 300000000.0,
+   "h_planck": 6.63e-34,
+   "e_charge": 1.6e-19,
+   "m_e": 9.1e-31,
+   "G_grav": 6.67e-11
+  },
+  "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
+  "approvedByDefault": false
+ },
+ "items": [
+  {
+   "id": 20847,
+   "templateId": "U3.L1.T01",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في تجربة ملد شكّل وتر طوله 60 cm بين نهايتيه المقيدتين 5 مغازل عندما كان تواتر الهزازة 25 Hz. احسب طول الموجة λ.",
+   "options": [
+    "0.24 m",
+    "0.12 m",
+    "24 m",
+    "6 m"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "spindle_is_lambda",
+    "unit_cm_m",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    0.24,
+    0.12,
+    24.0,
+    6.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 0.24 m",
+    "(B) خطأ [spindle_is_lambda]: عدّ المغزل طول موجة كاملة",
+    "(C) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "(D) خطأ [invert_ratio]: قلب النسبة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.24,
+    "unit": "m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "L = n·λ/2 ⇒ λ = 2L/n ثم v = λ·f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "طول المغزل = λ/2 و v = λ·f (الكتاب ص ١٧٥)",
+   "source": {
+    "book": "ص ١٧٤–١٧٨",
+    "lesson": "U3/L1 §٣ المسافات الذهبية + البرهان ٣ [أستاذ]"
+   }
+  },
+  {
+   "id": 20848,
+   "templateId": "U3.L1.T01",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في تجربة ملد شكّل وتر طوله 150 cm بين نهايتيه المقيدتين 2 مغازل عندما كان تواتر الهزازة 25 Hz. احسب سرعة انتشار الموجة على الوتر.",
+   "options": [
+    "0.06 m·s⁻¹",
+    "37.5 m·s⁻¹",
+    "3750 m·s⁻¹",
+    "18.8 m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "invert_ratio",
+    null,
+    "unit_cm_m",
+    "spindle_is_lambda"
+   ],
+   "optionValues": [
+    0.06,
+    37.5,
+    3750.0,
+    18.75
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: قلب النسبة",
+    "✓ (B) 37.5 m·s⁻¹",
+    "(C) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "(D) خطأ [spindle_is_lambda]: عدّ المغزل طول موجة كاملة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 37.5,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "L = n·λ/2 ⇒ λ = 2L/n ثم v = λ·f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "طول المغزل = λ/2 و v = λ·f (الكتاب ص ١٧٥)",
+   "source": {
+    "book": "ص ١٧٤–١٧٨",
+    "lesson": "U3/L1 §٣ المسافات الذهبية + البرهان ٣ [أستاذ]"
+   }
+  },
+  {
+   "id": 20849,
+   "templateId": "U3.L1.T01",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في تجربة ملد شكّل وتر طوله 150 cm بين نهايتيه المقيدتين 2 مغازل عندما كان تواتر الهزازة 25 Hz. احسب طول الموجة λ.",
+   "options": [
+    "150 m",
+    "0.75 m",
+    "6 m",
+    "1.5 m"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "unit_cm_m",
+    "spindle_is_lambda",
+    "invert_ratio",
+    null
+   ],
+   "optionValues": [
+    150.0,
+    0.75,
+    6.0,
+    1.5
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "(B) خطأ [spindle_is_lambda]: عدّ المغزل طول موجة كاملة",
+    "(C) خطأ [invert_ratio]: قلب النسبة",
+    "✓ (D) 1.5 m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1.5,
+    "unit": "m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "L = n·λ/2 ⇒ λ = 2L/n ثم v = λ·f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "طول المغزل = λ/2 و v = λ·f (الكتاب ص ١٧٥)",
+   "source": {
+    "book": "ص ١٧٤–١٧٨",
+    "lesson": "U3/L1 §٣ المسافات الذهبية + البرهان ٣ [أستاذ]"
+   }
+  },
+  {
+   "id": 20850,
+   "templateId": "U3.L1.T01",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في تجربة ملد شكّل وتر طوله 60 cm بين نهايتيه المقيدتين 3 مغازل عندما كان تواتر الهزازة 100 Hz. احسب سرعة انتشار الموجة على الوتر.",
+   "options": [
+    "4000 m·s⁻¹",
+    "0.004 m·s⁻¹",
+    "40 m·s⁻¹",
+    "20 m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "unit_cm_m",
+    "invert_ratio",
+    null,
+    "spindle_is_lambda"
+   ],
+   "optionValues": [
+    4000.0,
+    0.004,
+    40.0,
+    20.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "(B) خطأ [invert_ratio]: قلب النسبة",
+    "✓ (C) 40 m·s⁻¹",
+    "(D) خطأ [spindle_is_lambda]: عدّ المغزل طول موجة كاملة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 40.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "L = n·λ/2 ⇒ λ = 2L/n ثم v = λ·f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "طول المغزل = λ/2 و v = λ·f (الكتاب ص ١٧٥)",
+   "source": {
+    "book": "ص ١٧٤–١٧٨",
+    "lesson": "U3/L1 §٣ المسافات الذهبية + البرهان ٣ [أستاذ]"
+   }
+  },
+  {
+   "id": 20851,
+   "templateId": "U3.L1.T01",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في تجربة ملد شكّل وتر طوله 120 cm بين نهايتيه المقيدتين 3 مغازل عندما كان تواتر الهزازة 50 Hz. احسب سرعة انتشار الموجة على الوتر.",
+   "options": [
+    "4000 m·s⁻¹",
+    "40 m·s⁻¹",
+    "0.016 m·s⁻¹",
+    "20 m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "unit_cm_m",
+    null,
+    "invert_ratio",
+    "spindle_is_lambda"
+   ],
+   "optionValues": [
+    4000.0,
+    40.0,
+    0.016,
+    20.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m",
+    "✓ (B) 40 m·s⁻¹",
+    "(C) خطأ [invert_ratio]: قلب النسبة",
+    "(D) خطأ [spindle_is_lambda]: عدّ المغزل طول موجة كاملة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 40.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "L = n·λ/2 ⇒ λ = 2L/n ثم v = λ·f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "طول المغزل = λ/2 و v = λ·f (الكتاب ص ١٧٥)",
+   "source": {
+    "book": "ص ١٧٤–١٧٨",
+    "lesson": "U3/L1 §٣ المسافات الذهبية + البرهان ٣ [أستاذ]"
+   }
+  },
+  {
+   "id": 20852,
+   "templateId": "U3.L1.T01",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "في تجربة ملد شكّل وتر طوله 90 cm بين نهايتيه المقيدتين 5 مغازل عندما كان تواتر الهزازة 50 Hz. احسب طول الموجة λ.",
+   "options": [
+    "9 m",
+    "0.18 m",
+    "0.36 m",
+    "36 m"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "invert_ratio",
+    "spindle_is_lambda",
+    null,
+    "unit_cm_m"
+   ],
+   "optionValues": [
+    9.0,
+    0.18,
+    0.36,
+    36.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [invert_ratio]: قلب النسبة",
+    "(B) خطأ [spindle_is_lambda]: عدّ المغزل طول موجة كاملة",
+    "✓ (C) 0.36 m",
+    "(D) خطأ [unit_cm_m]: لم يحوّل cm ⇒ m"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 0.36,
+    "unit": "m",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "L = n·λ/2 ⇒ λ = 2L/n ثم v = λ·f",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "طول المغزل = λ/2 و v = λ·f (الكتاب ص ١٧٥)",
+   "source": {
+    "book": "ص ١٧٤–١٧٨",
+    "lesson": "U3/L1 §٣ المسافات الذهبية + البرهان ٣ [أستاذ]"
+   }
+  },
+  {
+   "id": 20853,
+   "templateId": "U3.L1.T02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "وتر متجانس كتلته الخطية 100 g·m⁻¹ مشدود بقوة شدها 10 N. احسب سرعة انتشار الأمواج العرضية على الوتر.",
+   "options": [
+    "100 m·s⁻¹",
+    "0.1 m·s⁻¹",
+    "10 m·s⁻¹",
+    "0.316 m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_sqrt_T",
+    "invert_ratio",
+    null,
+    "unit_confusion"
+   ],
+   "optionValues": [
+    100.0,
+    0.1,
+    10.0,
+    0.31622776601683794
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_sqrt_T]: أهمل الجذر",
+    "(B) خطأ [invert_ratio]: قلب النسبة / نسي الـ٢ في 2L",
+    "✓ (C) 10 m·s⁻¹",
+    "(D) خطأ [unit_confusion]: ترك g·m⁻¹ أو cm"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 10.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = √(FT/μ) ثم f1 = v/2L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(FT/μ) · fn = n·v/(2L) (الكتاب ص ١٧٨)",
+   "source": {
+    "book": "ص ١٧٨–١٧٩",
+    "lesson": "U3/L1 §٥ [أستاذ]"
+   }
+  },
+  {
+   "id": 20854,
+   "templateId": "U3.L1.T02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "وتر متجانس كتلته الخطية 100 g·m⁻¹ مشدود بقوة شدها 90 N. احسب التواتر الأساسي لوتر طوله 100 cm منه.",
+   "options": [
+    "15 Hz",
+    "450 Hz",
+    "0.15 Hz",
+    "30 Hz"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "forget_sqrt_T",
+    "unit_confusion",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    15.0,
+    450.0,
+    0.15,
+    30.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 15 Hz",
+    "(B) خطأ [forget_sqrt_T]: أهمل الجذر",
+    "(C) خطأ [unit_confusion]: ترك g·m⁻¹ أو cm",
+    "(D) خطأ [invert_ratio]: قلب النسبة / نسي الـ٢ في 2L"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 15.0,
+    "unit": "Hz",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = √(FT/μ) ثم f1 = v/2L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(FT/μ) · fn = n·v/(2L) (الكتاب ص ١٧٨)",
+   "source": {
+    "book": "ص ١٧٨–١٧٩",
+    "lesson": "U3/L1 §٥ [أستاذ]"
+   }
+  },
+  {
+   "id": 20855,
+   "templateId": "U3.L1.T02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "وتر متجانس كتلته الخطية 25 g·m⁻¹ مشدود بقوة شدها 10 N. احسب سرعة انتشار الأمواج العرضية على الوتر.",
+   "options": [
+    "400 m·s⁻¹",
+    "0.632 m·s⁻¹",
+    "0.05 m·s⁻¹",
+    "20 m·s⁻¹"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_sqrt_T",
+    "unit_confusion",
+    "invert_ratio",
+    null
+   ],
+   "optionValues": [
+    400.0,
+    0.6324555320336759,
+    0.05,
+    20.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_sqrt_T]: أهمل الجذر",
+    "(B) خطأ [unit_confusion]: ترك g·m⁻¹ أو cm",
+    "(C) خطأ [invert_ratio]: قلب النسبة / نسي الـ٢ في 2L",
+    "✓ (D) 20 m·s⁻¹"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 20.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = √(FT/μ) ثم f1 = v/2L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(FT/μ) · fn = n·v/(2L) (الكتاب ص ١٧٨)",
+   "source": {
+    "book": "ص ١٧٨–١٧٩",
+    "lesson": "U3/L1 §٥ [أستاذ]"
+   }
+  },
+  {
+   "id": 20856,
+   "templateId": "U3.L1.T02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "وتر متجانس كتلته الخطية 25 g·m⁻¹ مشدود بقوة شدها 250 N. احسب سرعة انتشار الأمواج العرضية على الوتر.",
+   "options": [
+    "100 m·s⁻¹",
+    "0.01 m·s⁻¹",
+    "3.16 m·s⁻¹",
+    "10000 m·s⁻¹"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "invert_ratio",
+    "unit_confusion",
+    "forget_sqrt_T"
+   ],
+   "optionValues": [
+    100.0,
+    0.01,
+    3.1622776601683795,
+    10000.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 100 m·s⁻¹",
+    "(B) خطأ [invert_ratio]: قلب النسبة / نسي الـ٢ في 2L",
+    "(C) خطأ [unit_confusion]: ترك g·m⁻¹ أو cm",
+    "(D) خطأ [forget_sqrt_T]: أهمل الجذر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 100.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = √(FT/μ) ثم f1 = v/2L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(FT/μ) · fn = n·v/(2L) (الكتاب ص ١٧٨)",
+   "source": {
+    "book": "ص ١٧٨–١٧٩",
+    "lesson": "U3/L1 §٥ [أستاذ]"
+   }
+  },
+  {
+   "id": 20857,
+   "templateId": "U3.L1.T02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "وتر متجانس كتلته الخطية 4 g·m⁻¹ مشدود بقوة شدها 90 N. احسب سرعة انتشار الأمواج العرضية على الوتر.",
+   "options": [
+    "4.74 m·s⁻¹",
+    "150 m·s⁻¹",
+    "0.0067 m·s⁻¹",
+    "22500 m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "unit_confusion",
+    null,
+    "invert_ratio",
+    "forget_sqrt_T"
+   ],
+   "optionValues": [
+    4.743416490252569,
+    150.0,
+    0.006666666666666667,
+    22500.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_confusion]: ترك g·m⁻¹ أو cm",
+    "✓ (B) 150 m·s⁻¹",
+    "(C) خطأ [invert_ratio]: قلب النسبة / نسي الـ٢ في 2L",
+    "(D) خطأ [forget_sqrt_T]: أهمل الجذر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 150.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = √(FT/μ) ثم f1 = v/2L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(FT/μ) · fn = n·v/(2L) (الكتاب ص ١٧٨)",
+   "source": {
+    "book": "ص ١٧٨–١٧٩",
+    "lesson": "U3/L1 §٥ [أستاذ]"
+   }
+  },
+  {
+   "id": 20858,
+   "templateId": "U3.L1.T02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "numeric",
+   "difficulty": 3,
+   "weight": 10,
+   "approved": false,
+   "stem": "وتر متجانس كتلته الخطية 100 g·m⁻¹ مشدود بقوة شدها 90 N. احسب التواتر الأساسي لوتر طوله 50 cm منه.",
+   "options": [
+    "30 Hz",
+    "60 Hz",
+    "0.3 Hz",
+    "900 Hz"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "invert_ratio",
+    "unit_confusion",
+    "forget_sqrt_T"
+   ],
+   "optionValues": [
+    30.0,
+    60.0,
+    0.3,
+    900.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 30 Hz",
+    "(B) خطأ [invert_ratio]: قلب النسبة / نسي الـ٢ في 2L",
+    "(C) خطأ [unit_confusion]: ترك g·m⁻¹ أو cm",
+    "(D) خطأ [forget_sqrt_T]: أهمل الجذر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 30.0,
+    "unit": "Hz",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = √(FT/μ) ثم f1 = v/2L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = √(FT/μ) · fn = n·v/(2L) (الكتاب ص ١٧٨)",
+   "source": {
+    "book": "ص ١٧٨–١٧٩",
+    "lesson": "U3/L1 §٥ [أستاذ]"
+   }
+  },
+  {
+   "id": 20859,
+   "templateId": "U3.L1.T03",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "المسافة بين عقدتين متتاليتين في موجة مستقرة تساوي:",
+   "options": [
+    "λ",
+    "2λ",
+    "λ/4",
+    "λ/2"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "spindle_is_lambda",
+    "mix_formulas",
+    "half_lambda",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [spindle_is_lambda]: ظنّ طول المغزل = λ (هو λ/2)",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [half_lambda]: λ/4 بدل λ/2 أو العكس",
+    "✓ (D) λ/2"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٧٤–١٧٨ [أستاذ ٢٩ ص ٢٧٩]",
+   "source": {
+    "book": "ص ١٧٠–١٨٠",
+    "lesson": "U3/L1 §٢–§٥"
+   }
+  },
+  {
+   "id": 20860,
+   "templateId": "U3.L1.T03",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "المسافة بين عقدة والبطن الذي يليها مباشرة تساوي:",
+   "options": [
+    "3λ/4",
+    "λ/2",
+    "λ",
+    "λ/4"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "half_lambda",
+    "spindle_is_lambda",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [half_lambda]: λ/4 بدل λ/2 أو العكس",
+    "(C) خطأ [spindle_is_lambda]: ظنّ طول المغزل = λ (هو λ/2)",
+    "✓ (D) λ/4"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٧٤–١٧٨ [أستاذ ٢٩ ص ٢٧٩]",
+   "source": {
+    "book": "ص ١٧٠–١٨٠",
+    "lesson": "U3/L1 §٢–§٥"
+   }
+  },
+  {
+   "id": 20861,
+   "templateId": "U3.L1.T03",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "تنشأ الموجة المستقرة على الوتر نتيجة:",
+   "options": [
+    "تداخل موجتين مختلفتي التواتر",
+    "تداخل الموجة الواردة مع المنعكسة المتساويتين تواتراً وسعة",
+    "امتصاص الموجة عند النهاية المقيدة",
+    "انتشار موجة واحدة بسرعة كبيرة"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "mix_formulas",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (B) تداخل الموجة الواردة مع المنعكسة المتساويتين تواتراً وسعة",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٧٤–١٧٨ [أستاذ ٢٩ ص ٢٧٩]",
+   "source": {
+    "book": "ص ١٧٠–١٨٠",
+    "lesson": "U3/L1 §٢–§٥"
+   }
+  },
+  {
+   "id": 20862,
+   "templateId": "U3.L1.T03",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "بتواتر ثابت للهزازة، يزداد عدد المغازل على الوتر عندما:",
+   "options": [
+    "يزداد طول الوتر أو تنقص قوة الشد",
+    "تزداد قوة الشد",
+    "ينقص طول الوتر",
+    "تزداد سعة الهزازة"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "invert_ratio",
+    "invert_ratio",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) يزداد طول الوتر أو تنقص قوة الشد",
+    "(B) خطأ [invert_ratio]: v↑ ⇒ λ↑ ⇒ n↓",
+    "(C) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٧٤–١٧٨ [أستاذ ٢٩ ص ٢٧٩]",
+   "source": {
+    "book": "ص ١٧٠–١٨٠",
+    "lesson": "U3/L1 §٢–§٥"
+   }
+  },
+  {
+   "id": 20863,
+   "templateId": "U3.L1.T03",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "إذا ضوعفت قوة شد الوتر أربع مرات فإن سرعة انتشار الموجة عليه:",
+   "options": [
+    "تصير أربعة أمثال",
+    "لا تتغير",
+    "تنصّف",
+    "تتضاعف"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "forget_sqrt_T",
+    "mix_formulas",
+    "invert_ratio",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_sqrt_T]: أهمل الجذر في v ∝ √T أو v ∝ √FT",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "✓ (D) تتضاعف"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٧٤–١٧٨ [أستاذ ٢٩ ص ٢٧٩]",
+   "source": {
+    "book": "ص ١٧٠–١٨٠",
+    "lesson": "U3/L1 §٢–§٥"
+   }
+  },
+  {
+   "id": 20864,
+   "templateId": "U3.L1.T03",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "الكتلة الخطية μ لوتر متجانس:",
+   "options": [
+    "تتناسب عكساً مع طوله",
+    "تتناسب طرداً مع طوله",
+    "لا تتغير بتغير طول الوتر",
+    "تتعلق بقوة الشد"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "mix_formulas",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (C) لا تتغير بتغير طول الوتر",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٧٤–١٧٨ [أستاذ ٢٩ ص ٢٧٩]",
+   "source": {
+    "book": "ص ١٧٠–١٨٠",
+    "lesson": "U3/L1 §٢–§٥"
+   }
+  },
+  {
+   "id": 20865,
+   "templateId": "U3.L2.T01",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "مزمار متشابه الطرفين (مفتوح) طوله 40 cm، سرعة الصوت في الهواء 340 m·s⁻¹. احسب تواتر المدروج التالي للأساسي.",
+   "options": [
+    "850 Hz",
+    "638 Hz",
+    "8.5 Hz",
+    "1280 Hz"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "open_closed_swap",
+    "unit_cm_m",
+    "even_harmonic_closed"
+   ],
+   "optionValues": [
+    850.0,
+    637.5,
+    8.5,
+    1275.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 850 Hz",
+    "(B) خطأ [open_closed_swap]: استعمل قانون النوع الآخر",
+    "(C) خطأ [unit_cm_m]: ترك الطول بالسنتيمتر",
+    "(D) خطأ [even_harmonic_closed]: 2f1 للمختلف / أهمل الـ٢ أو ٤"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 850.0,
+    "unit": "Hz",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "المفتوح f = n·v/2L · المغلق f = (2n−1)·v/4L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Hz",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ١٨٨–١٨٩ — المدروج التالي للمختلف 3f1",
+   "source": {
+    "book": "ص ١٨٦–١٩٠",
+    "lesson": "U3/L2 البرهانان + جدول المقارنة [أستاذ]",
+    "exam": "س٣ اختبر نفسك"
+   }
+  },
+  {
+   "id": 20866,
+   "templateId": "U3.L2.T01",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "مزمار مختلف الطرفين (مغلق من أحد طرفيه) طوله 17 cm، سرعة الصوت في الهواء 340 m·s⁻¹. احسب تواتر الصوت الأساسي.",
+   "options": [
+    "50000 Hz",
+    "500 Hz",
+    "1000 Hz",
+    "2000 Hz"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "unit_cm_m",
+    null,
+    "open_closed_swap",
+    "even_harmonic_closed"
+   ],
+   "optionValues": [
+    49999.99999999999,
+    499.99999999999994,
+    999.9999999999999,
+    1999.9999999999998
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_cm_m]: ترك الطول بالسنتيمتر",
+    "✓ (B) 500 Hz",
+    "(C) خطأ [open_closed_swap]: استعمل قانون النوع الآخر",
+    "(D) خطأ [even_harmonic_closed]: 2f1 للمختلف / أهمل الـ٢ أو ٤"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 499.99999999999994,
+    "unit": "Hz",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "المفتوح f = n·v/2L · المغلق f = (2n−1)·v/4L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Hz",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ١٨٨–١٨٩ — المدروج التالي للمختلف 3f1",
+   "source": {
+    "book": "ص ١٨٦–١٩٠",
+    "lesson": "U3/L2 البرهانان + جدول المقارنة [أستاذ]",
+    "exam": "س٣ اختبر نفسك"
+   }
+  },
+  {
+   "id": 20867,
+   "templateId": "U3.L2.T01",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "مزمار مختلف الطرفين (مغلق من أحد طرفيه) طوله 50 cm، سرعة الصوت في الهواء 340 m·s⁻¹. احسب تواتر الصوت الأساسي.",
+   "options": [
+    "340 Hz",
+    "17000 Hz",
+    "170 Hz",
+    "680 Hz"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "open_closed_swap",
+    "unit_cm_m",
+    null,
+    "even_harmonic_closed"
+   ],
+   "optionValues": [
+    340.0,
+    17000.0,
+    170.0,
+    680.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [open_closed_swap]: استعمل قانون النوع الآخر",
+    "(B) خطأ [unit_cm_m]: ترك الطول بالسنتيمتر",
+    "✓ (C) 170 Hz",
+    "(D) خطأ [even_harmonic_closed]: 2f1 للمختلف / أهمل الـ٢ أو ٤"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 170.0,
+    "unit": "Hz",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "المفتوح f = n·v/2L · المغلق f = (2n−1)·v/4L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Hz",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ١٨٨–١٨٩ — المدروج التالي للمختلف 3f1",
+   "source": {
+    "book": "ص ١٨٦–١٩٠",
+    "lesson": "U3/L2 البرهانان + جدول المقارنة [أستاذ]",
+    "exam": "س٣ اختبر نفسك"
+   }
+  },
+  {
+   "id": 20869,
+   "templateId": "U3.L2.T01",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "مزمار مختلف الطرفين (مغلق من أحد طرفيه) طوله 50 cm، سرعة الصوت في الهواء 340 m·s⁻¹. احسب تواتر المدروج التالي للأساسي.",
+   "options": [
+    "340 Hz",
+    "510 Hz",
+    "5.1 Hz",
+    "680 Hz"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "even_harmonic_closed",
+    null,
+    "unit_cm_m",
+    "open_closed_swap"
+   ],
+   "optionValues": [
+    340.0,
+    510.0,
+    5.1,
+    680.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [even_harmonic_closed]: 2f1 للمختلف / أهمل الـ٢ أو ٤",
+    "✓ (B) 510 Hz",
+    "(C) خطأ [unit_cm_m]: ترك الطول بالسنتيمتر",
+    "(D) خطأ [open_closed_swap]: استعمل قانون النوع الآخر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 510.0,
+    "unit": "Hz",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "المفتوح f = n·v/2L · المغلق f = (2n−1)·v/4L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Hz",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ١٨٨–١٨٩ — المدروج التالي للمختلف 3f1",
+   "source": {
+    "book": "ص ١٨٦–١٩٠",
+    "lesson": "U3/L2 البرهانان + جدول المقارنة [أستاذ]",
+    "exam": "س٣ اختبر نفسك"
+   }
+  },
+  {
+   "id": 20870,
+   "templateId": "U3.L2.T01",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "مزمار متشابه الطرفين (مفتوح) طوله 85 cm، سرعة الصوت في الهواء 340 m·s⁻¹. احسب تواتر المدروج التالي للأساسي.",
+   "options": [
+    "4 Hz",
+    "300 Hz",
+    "600 Hz",
+    "400 Hz"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "unit_cm_m",
+    "open_closed_swap",
+    "even_harmonic_closed",
+    null
+   ],
+   "optionValues": [
+    4.0,
+    300.0,
+    600.0,
+    400.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ [unit_cm_m]: ترك الطول بالسنتيمتر",
+    "(B) خطأ [open_closed_swap]: استعمل قانون النوع الآخر",
+    "(C) خطأ [even_harmonic_closed]: 2f1 للمختلف / أهمل الـ٢ أو ٤",
+    "✓ (D) 400 Hz"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 400.0,
+    "unit": "Hz",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "المفتوح f = n·v/2L · المغلق f = (2n−1)·v/4L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Hz",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ١٨٨–١٨٩ — المدروج التالي للمختلف 3f1",
+   "source": {
+    "book": "ص ١٨٦–١٩٠",
+    "lesson": "U3/L2 البرهانان + جدول المقارنة [أستاذ]",
+    "exam": "س٣ اختبر نفسك"
+   }
+  },
+  {
+   "id": 20871,
+   "templateId": "U3.L2.T01",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "مزمار مختلف الطرفين (مغلق من أحد طرفيه) طوله 68 cm، سرعة الصوت في الهواء 340 m·s⁻¹. احسب تواتر الصوت الأساسي.",
+   "options": [
+    "125 Hz",
+    "500 Hz",
+    "12500 Hz",
+    "250 Hz"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "even_harmonic_closed",
+    "unit_cm_m",
+    "open_closed_swap"
+   ],
+   "optionValues": [
+    124.99999999999999,
+    499.99999999999994,
+    12499.999999999998,
+    249.99999999999997
+   ],
+   "solutionSteps": [
+    "✓ (A) 125 Hz",
+    "(B) خطأ [even_harmonic_closed]: 2f1 للمختلف / أهمل الـ٢ أو ٤",
+    "(C) خطأ [unit_cm_m]: ترك الطول بالسنتيمتر",
+    "(D) خطأ [open_closed_swap]: استعمل قانون النوع الآخر"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 124.99999999999999,
+    "unit": "Hz",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "المفتوح f = n·v/2L · المغلق f = (2n−1)·v/4L",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة Hz",
+     "points": 1
+    }
+   ],
+   "answerBasis": "الكتاب ص ١٨٨–١٨٩ — المدروج التالي للمختلف 3f1",
+   "source": {
+    "book": "ص ١٨٦–١٩٠",
+    "lesson": "U3/L2 البرهانان + جدول المقارنة [أستاذ]",
+    "exam": "س٣ اختبر نفسك"
+   }
+  },
+  {
+   "id": 20872,
+   "templateId": "U3.L2.T02",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سرعة الصوت في غاز عند درجة الحرارة المطلقة 273 K تساوي 330 m·s⁻¹. إذا ارتفعت درجة حرارته المطلقة إلى 4 أمثال قيمتها فإن سرعة الصوت فيه تصبح:",
+   "options": [
+    "330 m·s⁻¹ (لا تتغير)",
+    "660 m·s⁻¹",
+    "825 m·s⁻¹",
+    "1320 m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "celsius_kelvin",
+    "forget_sqrt_T"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: ظنّ السرعة لا تتعلق بالحرارة",
+    "✓ (B) 660 m·s⁻¹",
+    "(C) خطأ [celsius_kelvin]: حساب غير جذري",
+    "(D) خطأ [forget_sqrt_T]: ضرب بالنسبة بلا جذر"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "v2/v1 = √(T2/T1) (الكتاب ص ١٩٠)",
+   "source": {
+    "book": "ص ١٩٠",
+    "lesson": "U3/L2 §٥ [أستاذ ٣٤ ص ٢٨٠]"
+   }
+  },
+  {
+   "id": 20873,
+   "templateId": "U3.L2.T02",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سرعة الصوت في غاز عند درجة الحرارة المطلقة 300 K تساوي 330 m·s⁻¹. إذا ارتفعت درجة حرارته المطلقة إلى 9 أمثال قيمتها فإن سرعة الصوت فيه تصبح:",
+   "options": [
+    "330 m·s⁻¹ (لا تتغير)",
+    "2970 m·s⁻¹",
+    "990 m·s⁻¹",
+    "660 m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "forget_sqrt_T",
+    null,
+    "celsius_kelvin"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: ظنّ السرعة لا تتعلق بالحرارة",
+    "(B) خطأ [forget_sqrt_T]: ضرب بالنسبة بلا جذر",
+    "✓ (C) 990 m·s⁻¹",
+    "(D) خطأ [celsius_kelvin]: حساب غير جذري"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "v2/v1 = √(T2/T1) (الكتاب ص ١٩٠)",
+   "source": {
+    "book": "ص ١٩٠",
+    "lesson": "U3/L2 §٥ [أستاذ ٣٤ ص ٢٨٠]"
+   }
+  },
+  {
+   "id": 20874,
+   "templateId": "U3.L2.T02",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سرعة الصوت في غاز عند درجة الحرارة المطلقة 300 K تساوي 340 m·s⁻¹. إذا ارتفعت درجة حرارته المطلقة إلى 4 أمثال قيمتها فإن سرعة الصوت فيه تصبح:",
+   "options": [
+    "340 m·s⁻¹ (لا تتغير)",
+    "1360 m·s⁻¹",
+    "680 m·s⁻¹",
+    "850 m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "forget_sqrt_T",
+    null,
+    "celsius_kelvin"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: ظنّ السرعة لا تتعلق بالحرارة",
+    "(B) خطأ [forget_sqrt_T]: ضرب بالنسبة بلا جذر",
+    "✓ (C) 680 m·s⁻¹",
+    "(D) خطأ [celsius_kelvin]: حساب غير جذري"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "v2/v1 = √(T2/T1) (الكتاب ص ١٩٠)",
+   "source": {
+    "book": "ص ١٩٠",
+    "lesson": "U3/L2 §٥ [أستاذ ٣٤ ص ٢٨٠]"
+   }
+  },
+  {
+   "id": 20875,
+   "templateId": "U3.L2.T02",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سرعة الصوت في غاز عند درجة الحرارة المطلقة 273 K تساوي 340 m·s⁻¹. إذا ارتفعت درجة حرارته المطلقة إلى 4 أمثال قيمتها فإن سرعة الصوت فيه تصبح:",
+   "options": [
+    "1360 m·s⁻¹",
+    "340 m·s⁻¹ (لا تتغير)",
+    "680 m·s⁻¹",
+    "850 m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_sqrt_T",
+    "mix_formulas",
+    null,
+    "celsius_kelvin"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_sqrt_T]: ضرب بالنسبة بلا جذر",
+    "(B) خطأ [mix_formulas]: ظنّ السرعة لا تتعلق بالحرارة",
+    "✓ (C) 680 m·s⁻¹",
+    "(D) خطأ [celsius_kelvin]: حساب غير جذري"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "v2/v1 = √(T2/T1) (الكتاب ص ١٩٠)",
+   "source": {
+    "book": "ص ١٩٠",
+    "lesson": "U3/L2 §٥ [أستاذ ٣٤ ص ٢٨٠]"
+   }
+  },
+  {
+   "id": 20877,
+   "templateId": "U3.L2.T02",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سرعة الصوت في غاز عند درجة الحرارة المطلقة 273 K تساوي 330 m·s⁻¹. إذا ارتفعت درجة حرارته المطلقة إلى 9 أمثال قيمتها فإن سرعة الصوت فيه تصبح:",
+   "options": [
+    "660 m·s⁻¹",
+    "330 m·s⁻¹ (لا تتغير)",
+    "990 m·s⁻¹",
+    "2970 m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "celsius_kelvin",
+    "mix_formulas",
+    null,
+    "forget_sqrt_T"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [celsius_kelvin]: حساب غير جذري",
+    "(B) خطأ [mix_formulas]: ظنّ السرعة لا تتعلق بالحرارة",
+    "✓ (C) 990 m·s⁻¹",
+    "(D) خطأ [forget_sqrt_T]: ضرب بالنسبة بلا جذر"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "v2/v1 = √(T2/T1) (الكتاب ص ١٩٠)",
+   "source": {
+    "book": "ص ١٩٠",
+    "lesson": "U3/L2 §٥ [أستاذ ٣٤ ص ٢٨٠]"
+   }
+  },
+  {
+   "id": 20878,
+   "templateId": "U3.L2.T02",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": false,
+   "stem": "سرعة الصوت في غاز عند درجة الحرارة المطلقة 300 K تساوي 340 m·s⁻¹. إذا ارتفعت درجة حرارته المطلقة إلى 9 أمثال قيمتها فإن سرعة الصوت فيه تصبح:",
+   "options": [
+    "3060 m·s⁻¹",
+    "680 m·s⁻¹",
+    "1020 m·s⁻¹",
+    "340 m·s⁻¹ (لا تتغير)"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_sqrt_T",
+    "celsius_kelvin",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [forget_sqrt_T]: ضرب بالنسبة بلا جذر",
+    "(B) خطأ [celsius_kelvin]: حساب غير جذري",
+    "✓ (C) 1020 m·s⁻¹",
+    "(D) خطأ [mix_formulas]: ظنّ السرعة لا تتعلق بالحرارة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "v2/v1 = √(T2/T1) (الكتاب ص ١٩٠)",
+   "source": {
+    "book": "ص ١٩٠",
+    "lesson": "U3/L2 §٥ [أستاذ ٣٤ ص ٢٨٠]"
+   }
+  },
+  {
+   "id": 20879,
+   "templateId": "U3.L2.T03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "عند النهاية المغلقة لمزمار تتشكل:",
+   "options": [
+    "بطن اهتزاز وبطن ضغط",
+    "عقدة اهتزاز وبطن ضغط",
+    "بطن اهتزاز وعقدة ضغط",
+    "عقدة اهتزاز وعقدة ضغط"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "open_closed_swap",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (B) عقدة اهتزاز وبطن ضغط",
+    "(C) خطأ [open_closed_swap]: هذه النهاية المفتوحة",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٨٤–١٩٠ [أستاذ س١٢–س١٣]",
+   "source": {
+    "book": "ص ١٨٤–١٩٢",
+    "lesson": "U3/L2 §١–§٤ اختبر نفسك س١–س٦"
+   }
+  },
+  {
+   "id": 20880,
+   "templateId": "U3.L2.T03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "مزمار ذو لسان نهايته مغلقة يُعدّ:",
+   "options": [
+    "يصدر المدروجات الفردية فقط",
+    "متشابه الطرفين",
+    "مختلف الطرفين",
+    "لا يصدر صوتاً"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "open_closed_swap",
+    null,
+    "open_closed_swap",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [open_closed_swap]: خلط قانون المزمار المفتوح nv/2L بالمغلق (2n−1)v/4L",
+    "✓ (B) متشابه الطرفين",
+    "(C) خطأ [open_closed_swap]: خلط قانون المزمار المفتوح nv/2L بالمغلق (2n−1)v/4L",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٨٤–١٩٠ [أستاذ س١٢–س١٣]",
+   "source": {
+    "book": "ص ١٨٤–١٩٢",
+    "lesson": "U3/L2 §١–§٤ اختبر نفسك س١–س٦"
+   }
+  },
+  {
+   "id": 20881,
+   "templateId": "U3.L2.T03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "مزمار مختلف الطرفين تواتر صوته الأساسي 200 Hz؛ تواتر المدروج التالي:",
+   "options": [
+    "600 Hz",
+    "400 Hz",
+    "100 Hz",
+    "300 Hz"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "even_harmonic_closed",
+    "invert_ratio",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) 600 Hz",
+    "(B) خطأ [even_harmonic_closed]: أعطى المدروج الثاني 2f1 لمزمار مختلف الطرفين (المسموح 3f1)",
+    "(C) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٨٤–١٩٠ [أستاذ س١٢–س١٣]",
+   "source": {
+    "book": "ص ١٨٤–١٩٢",
+    "lesson": "U3/L2 §١–§٤ اختبر نفسك س١–س٦"
+   }
+  },
+  {
+   "id": 20882,
+   "templateId": "U3.L2.T03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "في تجربة الرنين بالأنبوب والماء، المسافة بين موضعي صوتين شديدين متتاليين تمثل:",
+   "options": [
+    "λ/4",
+    "3λ/4",
+    "λ",
+    "λ/2"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "half_lambda",
+    "mix_formulas",
+    "spindle_is_lambda",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [half_lambda]: ذاك طول الرنين الأول",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [spindle_is_lambda]: ظنّ طول المغزل = λ (هو λ/2)",
+    "✓ (D) λ/2"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٨٤–١٩٠ [أستاذ س١٢–س١٣]",
+   "source": {
+    "book": "ص ١٨٤–١٩٢",
+    "lesson": "U3/L2 §١–§٤ اختبر نفسك س١–س٦"
+   }
+  },
+  {
+   "id": 20883,
+   "templateId": "U3.L2.T03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "لمزمارين لهما الطول نفسه أحدهما مفتوح والآخر مغلق، يكون التواتر الأساسي للمغلق:",
+   "options": [
+    "نصف تواتر المفتوح",
+    "ربع تواتر المفتوح",
+    "ضعف تواتر المفتوح",
+    "يساوي تواتر المفتوح"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "invert_ratio",
+    "open_closed_swap"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) نصف تواتر المفتوح",
+    "(B) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ [invert_ratio]: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "(D) خطأ [open_closed_swap]: خلط قانون المزمار المفتوح nv/2L بالمغلق (2n−1)v/4L"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٨٤–١٩٠ [أستاذ س١٢–س١٣]",
+   "source": {
+    "book": "ص ١٨٤–١٩٢",
+    "lesson": "U3/L2 §١–§٤ اختبر نفسك س١–س٦"
+   }
+  },
+  {
+   "id": 20884,
+   "templateId": "U3.L2.T03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": false,
+   "stem": "تُصنع جدران المزمار من الخشب أو المعدن السميك لكي:",
+   "options": [
+    "تزيد سرعة الصوت",
+    "لا تشارك في الاهتزاز",
+    "تخفّض التواتر",
+    "تضخّم الصوت بالاهتزاز معه"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "mix_formulas",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (B) لا تشارك في الاهتزاز",
+    "(C) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(D) خطأ [mix_formulas]: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ١٨٤–١٩٠ [أستاذ س١٢–س١٣]",
+   "source": {
+    "book": "ص ١٨٤–١٩٢",
+    "lesson": "U3/L2 §١–§٤ اختبر نفسك س١–س٦"
+   }
+  }
+ ]
+}
