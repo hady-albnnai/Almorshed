@@ -418,8 +418,16 @@ void main() {
     List<int> orderOf(int i) => batch.session.optionOrders[qOf(i).id]!;
     String correctText(int i) =>
         qOf(i).options[orderOf(i)[displayCorrectIndex(qOf(i), orderOf(i))]];
-    String wrongText(int i) =>
-        qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
+    String wrongText(int i) {
+      // سليم لكل خلط وعدد خيارات: أول موضع عرض ليس الأصلي الصحيح.
+      // (الصيغة القديمة (correctIndex+1)%4 تخلط فهرساً أصلياً مع موضع عرض
+      // فتصيب الصحيح أحياناً — قنبلة زمنية بحدودها يوم 2026-09-21).
+      final order = orderOf(i);
+      for (final orig in order) {
+        if (orig != qOf(i).correctIndex) return qOf(i).options[orig];
+      }
+      throw StateError('بلا خيار خاطئ');
+    }
 
     await startDailyBatch(tester);
     await tester.tap(find.ancestor(
@@ -447,8 +455,16 @@ void main() {
     List<int> orderOf(int i) => batch.session.optionOrders[qOf(i).id]!;
     String correctText(int i) =>
         qOf(i).options[orderOf(i)[displayCorrectIndex(qOf(i), orderOf(i))]];
-    String wrongText(int i) =>
-        qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
+    String wrongText(int i) {
+      // سليم لكل خلط وعدد خيارات: أول موضع عرض ليس الأصلي الصحيح.
+      // (الصيغة القديمة (correctIndex+1)%4 تخلط فهرساً أصلياً مع موضع عرض
+      // فتصيب الصحيح أحياناً — قنبلة زمنية بحدودها يوم 2026-09-21).
+      final order = orderOf(i);
+      for (final orig in order) {
+        if (orig != qOf(i).correctIndex) return qOf(i).options[orig];
+      }
+      throw StateError('بلا خيار خاطئ');
+    }
 
     await startDailyBatch(tester);
     await tester.tap(find.ancestor(
@@ -477,8 +493,16 @@ void main() {
     List<int> orderOf(int i) => batch.session.optionOrders[qOf(i).id]!;
     String correctText(int i) =>
         qOf(i).options[orderOf(i)[displayCorrectIndex(qOf(i), orderOf(i))]];
-    String wrongText(int i) =>
-        qOf(i).options[orderOf(i)[(qOf(i).correctIndex + 1) % 4]];
+    String wrongText(int i) {
+      // سليم لكل خلط وعدد خيارات: أول موضع عرض ليس الأصلي الصحيح.
+      // (الصيغة القديمة (correctIndex+1)%4 تخلط فهرساً أصلياً مع موضع عرض
+      // فتصيب الصحيح أحياناً — قنبلة زمنية بحدودها يوم 2026-09-21).
+      final order = orderOf(i);
+      for (final orig in order) {
+        if (orig != qOf(i).correctIndex) return qOf(i).options[orig];
+      }
+      throw StateError('بلا خيار خاطئ');
+    }
 
     await startDailyBatch(tester);
     await tester.tap(find.ancestor(

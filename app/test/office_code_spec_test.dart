@@ -34,7 +34,7 @@ void main() {
   });
 
   test('تنسيق الكود ٥-٥-٥ — كما سيدخله الطالب', () {
-    final raw = 'K7M2P9QW4XABCDE';
+    const raw = 'K7M2P9QW4XABCDE';
     final formatted = formatLicenseCode(raw);
     expect(formatted, 'K7M2P-9QW4X-ABCDE');
     expect(dashed.hasMatch(formatted), isTrue);

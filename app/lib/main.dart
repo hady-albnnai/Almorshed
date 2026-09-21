@@ -30,7 +30,6 @@ import 'core/duel/local_duel_flow.dart';
 import 'core/duel/local_link.dart';
 import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
-import 'features/home/home_screen.dart';
 import 'features/review/review_widgets.dart';
 import 'features/shell/app_shell.dart';
 

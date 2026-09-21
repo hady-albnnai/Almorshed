@@ -9,8 +9,6 @@ import '../../core/sync/sync_manager.dart';
 import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../account/account_screen.dart';
-import '../curriculum/curriculum_screen.dart';
-import '../curriculum/lesson_screen.dart';
 import '../duel/duel_screen.dart';
 import '../duel/local_duel_screen.dart';
 import '../home/home_screen.dart';
@@ -343,7 +341,6 @@ class _TrainingTabState extends State<_TrainingTab> {
 
   @override
   Widget build(BuildContext context) {
-    final txt = Theme.of(context).textTheme;
     return Column(
       children: [
         const SizedBox(height: 8),

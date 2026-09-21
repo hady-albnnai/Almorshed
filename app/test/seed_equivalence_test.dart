@@ -68,7 +68,7 @@ void main() {
   test('الرمز المحلي ٣٠ بت يدخل makeSeed فيطابق مسار الغرفة الخادمية', () {
     final tag = scopeTagOf(_scope);
     // رمز محلي 30 بت (٦ محارف Crockford)
-    final code = 0x2ABCDEF & 0x3FFFFFFF;
+    const code = 0x2ABCDEF & 0x3FFFFFFF;
     final encoded = encodeLocalCode(code);
     expect(encoded.length, 6);
     expect(encoded, encodeLocalCode(code), reason: 'الترميز مستقر');
