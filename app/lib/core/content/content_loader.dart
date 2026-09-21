@@ -2,18 +2,24 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
 
+import '../crypto/content_key_vault.dart';
+import '../crypto/content_seal.dart';
 import 'models.dart';
 import 'term_linter.dart';
 
-/// محمّل الحزمة — F2.2 (قرارات ١٣: مخزون مسبق · ٣٠: تشفير لاحق · ٦: نسخة+طبعة).
+/// محمّل الحزمة — F2.2 (قرارات ١٣: مخزون مسبق · ٣٠/٦٧: تشفير pack_seal_v1 ·
+/// ٦: نسخة+طبعة).
 ///
-/// v1 الحالية: يقرأ من assets (لا يزال بلا تشفير — التشفير يُفعَّل في F2.3/F3.1
-/// بمفتاح الجهاز دون تغيير هذه الواجهة).
+/// الواجهة ثابتة (loadGlossary/loadPack): بلا خزنة مفتاح أو بلا K_c ⇒ قراءة
+/// نصية من assets كالسابق (مسار العرض/الحزمة التجريبية — docs/11 §٥)؛
+/// بخزنة فيها K_c ⇒ فكّ pack_seal_v1 من الأصول المشفرة في الذاكرة حصراً.
 class ContentLoader {
-  ContentLoader({AssetRoot? root})
-      : _root = root ?? const AssetRoot.defaults();
+  ContentLoader({AssetRoot? root, ContentKeyVault? keys})
+      : _root = root ?? const AssetRoot.defaults(),
+        _keys = keys;
 
   final AssetRoot _root;
+  final ContentKeyVault? _keys;
 
   Glossary? _glossaryCache;
   ContentPack? _packCache;
@@ -21,7 +27,7 @@ class ContentLoader {
   /// القاموس المعجمي الكامل (444 مدخلاً · 30 BAN · مرادفات SYN).
   Future<Glossary> loadGlossary() async {
     if (_glossaryCache != null) return _glossaryCache!;
-    final raw = await rootBundle.loadString(_root.glossaryPath);
+    final raw = await _loadSource(_root.glossaryPath, _root.sealedGlossaryPath);
     final json = jsonDecode(raw) as Map<String, dynamic>;
     final g = Glossary.fromJson(json);
     _glossaryCache = g;
@@ -31,11 +37,31 @@ class ContentLoader {
   /// حزمة المحتوى + فحص سلامة إلزامي قبل العودة (الفشل المبكر).
   Future<ContentPack> loadPack() async {
     if (_packCache != null) return _packCache!;
-    final raw = await rootBundle.loadString(_root.packPath);
+    final raw = await _loadSource(_root.packPath, _root.sealedPackPath);
     final pack = ContentPack.fromJsonString(raw);
     _assertHealthy(pack);
     _packCache = pack;
     return pack;
+  }
+
+  /// مصدر المتن: نصي بلا مفتاح · مشفر pack_seal_v1 بوجود K_c (قرار ٣٠).
+  ///
+  /// استثناء ContentSealException يمرّ كما هو (عبث/مفتاح خاطئ)؛ ما عداه
+  /// يُغلَّف بفشل مبكر موصوف (قرار ٦: صفر تسامح مع الناقص).
+  Future<String> _loadSource(String plainPath, String sealedPath) async {
+    final kc = await _keys?.read();
+    if (kc == null) return rootBundle.loadString(plainPath);
+    final data = await rootBundle.load(sealedPath);
+    final bytes =
+        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    try {
+      final clear = await ContentSeal.open(bytes, key: kc);
+      return utf8.decode(clear);
+    } on ContentSealException {
+      rethrow;
+    } catch (e) {
+      throw StateError('حزمة مشفرة غير سليمة ($sealedPath): $e');
+    }
   }
 
   /// فحص السلامة — أي خلل بنيوي يُرمى فوراً (قرار ٦: صفر تسامح مع الناقص).
@@ -88,14 +114,25 @@ class ContentLoader {
 }
 
 class AssetRoot {
-  const AssetRoot({required this.glossaryPath, required this.packPath});
+  const AssetRoot({
+    required this.glossaryPath,
+    required this.packPath,
+    this.sealedGlossaryPath = 'assets/content/glossary.json.sealed',
+    this.sealedPackPath = 'assets/content/pack.json.sealed',
+  });
 
   const AssetRoot.defaults()
       : glossaryPath = 'assets/content/glossary.json',
-        packPath = 'assets/content/pack.json';
+        packPath = 'assets/content/pack.json',
+        sealedGlossaryPath = 'assets/content/glossary.json.sealed',
+        sealedPackPath = 'assets/content/pack.json.sealed';
 
   final String glossaryPath;
   final String packPath;
+
+  /// مسارا pack_seal_v1 (يُقرأان حصراً عند وجود K_c — قرار ٣٠).
+  final String sealedGlossaryPath;
+  final String sealedPackPath;
 }
 
 /// القاموس المعجمي المفكوك.

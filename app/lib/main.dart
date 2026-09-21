@@ -7,6 +7,7 @@ import 'core/license/license_store.dart';
 import 'core/xp/streak_service.dart';
 import 'core/content/content_loader.dart';
 import 'core/content/models.dart';
+import 'core/crypto/content_key_vault.dart';
 import 'core/progress/progress_store.dart';
 import 'core/progress/shared_prefs_store.dart';
 import 'core/review/review_mode.dart';
@@ -253,7 +254,9 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
     _licenseFuture = _license.load();
   });
 
-  static Future<ContentPack> _defaultLoadPack() => ContentLoader().loadPack();
+  // قرار ٣٠: بوجود K_c بالخزنة تُقرأ الحزمة مشفرة pack_seal_v1؛ وإلا النصية.
+  static Future<ContentPack> _defaultLoadPack() =>
+      ContentLoader(keys: SecureContentKeyVault()).loadPack();
 
   void _toggleTheme() => setState(() {
     _mode = _mode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;

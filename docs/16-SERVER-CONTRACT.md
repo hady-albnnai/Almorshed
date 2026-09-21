@@ -704,3 +704,59 @@ revoked وRLS تحجب الرخص المسحوبة عن الدوري ⇒ الإ�
 ### ٩.٥ الأخطاء
 `FORBIDDEN 403` · `CODE_FORMAT 422` · `CODE_NOT_FOUND 404` · `GEN_PARTIAL 500`
 (تعارض نادر بعد ٨ محاولات لكل كود) · `BAD_ACTION 422` · `NOT_CONFIGURED 500`.
+
+---
+
+## ١٠. صيغتا pack_seal_v1 و kc_wrap_v1 — تشفير المحتوى (قرار ٣٠ · قرار ٦٧ · F2.2-T1)
+
+> أُضيف 2026-09-21. المرجع المعماري: `docs/11 §٧` (L3). الجانب المحلي منفَّذ:
+> `app/lib/core/crypto/` (content_seal · kc_wrap · device_key_vault · content_key_vault).
+> المتجهات الذهبية: `app/test/fixtures/content_crypto_vectors.json` — مولَّدة
+> ومدقَّقة بـ`node tools/gen_content_crypto_vectors.mjs` (ذات-تحقّق RFC 7748 §6.1
+> + RFC 5869 حالة ١ + فكّ طرفي: يفكّه جهازه ولا يفكه غيره) ونظيرتها Dart في
+> `app/test/content_seal_test.dart` و`app/test/kc_wrap_test.dart` و`app/test/sealed_loader_test.dart`.
+
+### ١٠.١ pack_seal_v1 — ختم ملف محتوى (AES-256-GCM)
+
+| البند | القيمة |
+|---|---|
+| المفتاح `K_c` | 32 بايت عشوائي **لكل إصدار منهاج** — لا يدخل APK إطلاقاً (docs/11 §٧) |
+| الترويسة | ASCII `FCP1` (46 43 50 31) |
+| nonce | 12 بايت عشوائي لكل عملية ختم |
+| AAD | ASCII `fizya-pack-seal-v1` (18 بايت) |
+| السلكي | `FCP1` ‖ nonce(12) ‖ cipherText ‖ mac(16) |
+| الاستعمال | `pack.json` و`glossary.json` يُختمان مستقلّين (nonce مختلف لكل منهما) ويُحمَّلان من `assets/content/*.sealed`؛ الفكّ في الذاكرة حصراً — لا يُكتب المتن المفكوك لمسار قابل للمشاركة |
+
+أي تلاعب (بايت واحد) ⇒ فشل تذكّر GCM ⇒ `ContentSealException('auth')` — وفشل مبكر (قرار ٦).
+
+### ١٠.٢ kc_wrap_v1 — نقل K_c مغلَّفاً لمفتاح الجهاز (نمط sealed-box)
+
+سلسلة التغليف (السيرفر T2 يغلّف — الجهاز وحده يفكّ):
+
+```
+eph_sk, eph_pk  ← زوج X25519 عابر لكل عملية تغليف (RFC 7748)
+shared          = X25519(eph_sk, device_pk) = X25519(device_sk, eph_pk)      // 32B
+info            = ASCII 'fizya-kc-wrap-v1' (16B) ‖ eph_pk(32) ‖ device_pk(32) // 80B
+wrapKey         = HKDF-SHA256(ikm=shared, salt=32×0x00, info=info, L=32)     // RFC 5869
+ct ‖ mac        = AES-256-GCM(wrapKey, nonce12 عشوائي, K_c(32), aad=info)    // 32+16
+wire            = eph_pk(32) ‖ nonce(12) ‖ ct(32) ‖ mac(16)                  // 92B
+```
+
+- ملح HKDF صريح 32 بايت أصفار — بلا غموض «الملح الغائب» في RFC 5869.
+- `info` يدخل HKDF **و** GCM-AAD معاً: تغليف موجَّه لجهاز لا يُعاد توجيهه لجهاز آخر، ولا يُستعمل عبر بروتوكول آخر (الروح نفسها لـHPKE/RFC 9180).
+- الجهاز يولّد زوج X25519 أول تشغيل ويحفظ البذرة بخزنة آمنة
+  (`device_key_vault.dart` — flutter_secure_storage الآن، Keystore مع F4.4 كما لـXpSigner).
+  المفتاح العام 32 بايت هو ما يُرفع عند التفعيل؛ `K_c` بعد الفكّ يُحفظ في
+  `content_key_vault.dart` ولا يُنسخ لأي جهة.
+
+### ١٠.٣ ما ينتظر T2/T3 (الخطوات التاليتان)
+
+1. **T2 خادمي:** `license_activate` (و`heartbeat` للتجديد الصامت) يقبل
+   `device_x25519_pub` (32 بايت) ويعيد `kc_wrapped` (92 بايت) بالتغليف أعلاه —
+   `K_c` يُخزَّن كسر Function (`KC_B64`) لا بقاعدة ولا في العميل.
+2. **T2 أداة:** أداة المكتب/الإصدار يولّد `K_c` جديداً لكل إصدار منهاج ويختم
+   `pack.json`/`glossary.json` بالصيغتين أعلاه (نفس مكتبة Node/Deno).
+3. **T2 متجهات:** توسعة `tools/gen_content_crypto_vectors.mjs` بمشهد تغليف
+   مُعاد على الطرف الخادمي (TS↔Dart بتّياً).
+4. **T3:** شحن `assets/content/*.sealed` بالإنتاج **بعد اعتماد الأستاذ** —
+   والحزمة التجريبية تبقى نصية داخل APK وفق docs/11 §٥.
