@@ -47,8 +47,8 @@ jobs:
       - name: تحليل ساكن
         working-directory: app
         run: |
-          flutter analyze > analyze.out 2>&1
-          status=$?
+          status=0
+          flutter analyze > analyze.out 2>&1 || status=$?
           cat analyze.out
           # كل ملاحظة تُبثّ annotation قابلة للنقر في صفحة التشغيل (نقيّ الرموز اللونية أولاً)
           ANALYZE_STATUS=$status python3 - <<'PY'
