@@ -34961,6 +34961,7 @@
     {
      "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Σ mi·ri²",
       "5/8",
@@ -34974,6 +34975,7 @@
     {
      "step": "الجزء ١ · التعويض: IΔ = 0.5·(0.45)² + 0.5·(1.35)²",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "1.0125",
       "1.35"
@@ -34981,15 +34983,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 3 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "2π·√(IΔ",
       "M·g·d",
@@ -35003,6 +35008,7 @@
     {
      "step": "الجزء ١ · التعويض: T0 = 2π·√(1.0125/(1·10·0.45))",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "1.0125",
       "0.45"
@@ -35010,15 +35016,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 3 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "IΔ/(M·d)",
       "g·(T0/2π)²",
@@ -35033,6 +35042,7 @@
     {
      "step": "الجزء ٢ · التعويض: ℓ = 1.0125/(1·0.45)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "1.0125",
       "0.45"
@@ -35040,15 +35050,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 2.25 m",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "½·IΔ·ω²",
       "نظرية الطاقة",
@@ -35061,11 +35074,13 @@
     },
     {
      "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-     "points": 3
+     "points": 3,
+     "kind": "substitution"
     },
     {
      "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(2·M·g·d",
       "√(8/L",
@@ -35075,17 +35090,20 @@
     {
      "step": "الجزء ٣ · التعويض: ω = √(4.4444)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "4.4444"
      ]
     },
     {
      "step": "الجزء ٣ · النتيجة: √40/3 rad·s⁻¹",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٣ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -35099,6 +35117,7 @@
       {
        "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Σ mi·ri²",
         "5/8",
@@ -35112,6 +35131,7 @@
       {
        "step": "الجزء ١ · التعويض: IΔ = 0.5·(0.45)² + 0.5·(1.35)²",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "1.0125",
         "1.35"
@@ -35119,15 +35139,18 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 3 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       },
       {
        "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "2π·√(IΔ",
         "M·g·d",
@@ -35141,6 +35164,7 @@
       {
        "step": "الجزء ١ · التعويض: T0 = 2π·√(1.0125/(1·10·0.45))",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "1.0125",
         "0.45"
@@ -35148,11 +35172,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 3 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -35177,6 +35203,7 @@
       {
        "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "IΔ/(M·d)",
         "g·(T0/2π)²",
@@ -35191,6 +35218,7 @@
       {
        "step": "الجزء ٢ · التعويض: ℓ = 1.0125/(1·0.45)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "1.0125",
         "0.45"
@@ -35198,11 +35226,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 2.25 m",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -35238,6 +35268,7 @@
       {
        "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "½·IΔ·ω²",
         "نظرية الطاقة",
@@ -35250,11 +35281,13 @@
       },
       {
        "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-       "points": 3
+       "points": 3,
+       "kind": "substitution"
       },
       {
        "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(2·M·g·d",
         "√(8/L",
@@ -35264,17 +35297,20 @@
       {
        "step": "الجزء ٣ · التعويض: ω = √(4.4444)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "4.4444"
        ]
       },
       {
        "step": "الجزء ٣ · النتيجة: √40/3 rad·s⁻¹",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٣ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -35362,6 +35398,7 @@
     {
      "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Σ mi·ri²",
       "5/8",
@@ -35375,6 +35412,7 @@
     {
      "step": "الجزء ١ · التعويض: IΔ = 0.5·(0.8)² + 0.5·(2.4)²",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "3.2",
       "2.4"
@@ -35382,15 +35420,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 4 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "2π·√(IΔ",
       "M·g·d",
@@ -35404,6 +35445,7 @@
     {
      "step": "الجزء ١ · التعويض: T0 = 2π·√(3.2/(1·10·0.8))",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "3.2",
       "0.8"
@@ -35411,15 +35453,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 4 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "IΔ/(M·d)",
       "g·(T0/2π)²",
@@ -35434,6 +35479,7 @@
     {
      "step": "الجزء ٢ · التعويض: ℓ = 3.2/(1·0.8)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "3.2",
       "0.8"
@@ -35441,15 +35487,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 4 m",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "½·IΔ·ω²",
       "نظرية الطاقة",
@@ -35462,11 +35511,13 @@
     },
     {
      "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-     "points": 3
+     "points": 3,
+     "kind": "substitution"
     },
     {
      "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(2·M·g·d",
       "√(8/L",
@@ -35476,17 +35527,20 @@
     {
      "step": "الجزء ٣ · التعويض: ω = √(2.5)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "2.5"
      ]
     },
     {
      "step": "الجزء ٣ · النتيجة: √(5/2) rad·s⁻¹",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٣ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -35500,6 +35554,7 @@
       {
        "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Σ mi·ri²",
         "5/8",
@@ -35513,6 +35568,7 @@
       {
        "step": "الجزء ١ · التعويض: IΔ = 0.5·(0.8)² + 0.5·(2.4)²",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "3.2",
         "2.4"
@@ -35520,15 +35576,18 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 4 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       },
       {
        "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "2π·√(IΔ",
         "M·g·d",
@@ -35542,6 +35601,7 @@
       {
        "step": "الجزء ١ · التعويض: T0 = 2π·√(3.2/(1·10·0.8))",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "3.2",
         "0.8"
@@ -35549,11 +35609,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 4 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -35578,6 +35640,7 @@
       {
        "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "IΔ/(M·d)",
         "g·(T0/2π)²",
@@ -35592,6 +35655,7 @@
       {
        "step": "الجزء ٢ · التعويض: ℓ = 3.2/(1·0.8)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "3.2",
         "0.8"
@@ -35599,11 +35663,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 4 m",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -35639,6 +35705,7 @@
       {
        "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "½·IΔ·ω²",
         "نظرية الطاقة",
@@ -35651,11 +35718,13 @@
       },
       {
        "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-       "points": 3
+       "points": 3,
+       "kind": "substitution"
       },
       {
        "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(2·M·g·d",
         "√(8/L",
@@ -35665,17 +35734,20 @@
       {
        "step": "الجزء ٣ · التعويض: ω = √(2.5)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "2.5"
        ]
       },
       {
        "step": "الجزء ٣ · النتيجة: √(5/2) rad·s⁻¹",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٣ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -35763,6 +35835,7 @@
     {
      "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Σ mi·ri²",
       "5/8",
@@ -35776,6 +35849,7 @@
     {
      "step": "الجزء ١ · التعويض: IΔ = 0.4·(0.2)² + 0.4·(0.6)²",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "0.16",
       "0.6"
@@ -35783,15 +35857,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 2 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "2π·√(IΔ",
       "M·g·d",
@@ -35805,6 +35882,7 @@
     {
      "step": "الجزء ١ · التعويض: T0 = 2π·√(0.16/(0.8·10·0.2))",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "0.16",
       "0.2"
@@ -35812,15 +35890,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 2 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "IΔ/(M·d)",
       "g·(T0/2π)²",
@@ -35835,6 +35916,7 @@
     {
      "step": "الجزء ٢ · التعويض: ℓ = 0.16/(0.8·0.2)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "0.16",
       "0.2"
@@ -35842,15 +35924,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 1 m",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "½·IΔ·ω²",
       "نظرية الطاقة",
@@ -35863,11 +35948,13 @@
     },
     {
      "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-     "points": 3
+     "points": 3,
+     "kind": "substitution"
     },
     {
      "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(2·M·g·d",
       "√(8/L",
@@ -35877,17 +35964,20 @@
     {
      "step": "الجزء ٣ · التعويض: ω = √(20)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "20"
      ]
     },
     {
      "step": "الجزء ٣ · النتيجة: √20 rad·s⁻¹",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٣ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -35901,6 +35991,7 @@
       {
        "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Σ mi·ri²",
         "5/8",
@@ -35914,6 +36005,7 @@
       {
        "step": "الجزء ١ · التعويض: IΔ = 0.4·(0.2)² + 0.4·(0.6)²",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "0.16",
         "0.6"
@@ -35921,15 +36013,18 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 2 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       },
       {
        "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "2π·√(IΔ",
         "M·g·d",
@@ -35943,6 +36038,7 @@
       {
        "step": "الجزء ١ · التعويض: T0 = 2π·√(0.16/(0.8·10·0.2))",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "0.16",
         "0.2"
@@ -35950,11 +36046,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 2 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -35979,6 +36077,7 @@
       {
        "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "IΔ/(M·d)",
         "g·(T0/2π)²",
@@ -35993,6 +36092,7 @@
       {
        "step": "الجزء ٢ · التعويض: ℓ = 0.16/(0.8·0.2)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "0.16",
         "0.2"
@@ -36000,11 +36100,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 1 m",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -36040,6 +36142,7 @@
       {
        "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "½·IΔ·ω²",
         "نظرية الطاقة",
@@ -36052,11 +36155,13 @@
       },
       {
        "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-       "points": 3
+       "points": 3,
+       "kind": "substitution"
       },
       {
        "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(2·M·g·d",
         "√(8/L",
@@ -36066,17 +36171,20 @@
       {
        "step": "الجزء ٣ · التعويض: ω = √(20)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "20"
        ]
       },
       {
        "step": "الجزء ٣ · النتيجة: √20 rad·s⁻¹",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٣ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -36164,6 +36272,7 @@
     {
      "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Σ mi·ri²",
       "5/8",
@@ -36177,6 +36286,7 @@
     {
      "step": "الجزء ١ · التعويض: IΔ = 0.2·(0.8)² + 0.2·(2.4)²",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "1.28",
       "2.4"
@@ -36184,15 +36294,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 4 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "2π·√(IΔ",
       "M·g·d",
@@ -36206,6 +36319,7 @@
     {
      "step": "الجزء ١ · التعويض: T0 = 2π·√(1.28/(0.4·10·0.8))",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "1.28",
       "0.8"
@@ -36213,15 +36327,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 4 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "IΔ/(M·d)",
       "g·(T0/2π)²",
@@ -36236,6 +36353,7 @@
     {
      "step": "الجزء ٢ · التعويض: ℓ = 1.28/(0.4·0.8)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "1.28",
       "0.8"
@@ -36243,15 +36361,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 4 m",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "½·IΔ·ω²",
       "نظرية الطاقة",
@@ -36264,11 +36385,13 @@
     },
     {
      "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-     "points": 3
+     "points": 3,
+     "kind": "substitution"
     },
     {
      "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(2·M·g·d",
       "√(8/L",
@@ -36278,17 +36401,20 @@
     {
      "step": "الجزء ٣ · التعويض: ω = √(5)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "5"
      ]
     },
     {
      "step": "الجزء ٣ · النتيجة: √5 rad·s⁻¹",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٣ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -36302,6 +36428,7 @@
       {
        "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Σ mi·ri²",
         "5/8",
@@ -36315,6 +36442,7 @@
       {
        "step": "الجزء ١ · التعويض: IΔ = 0.2·(0.8)² + 0.2·(2.4)²",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "1.28",
         "2.4"
@@ -36322,15 +36450,18 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 4 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       },
       {
        "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "2π·√(IΔ",
         "M·g·d",
@@ -36344,6 +36475,7 @@
       {
        "step": "الجزء ١ · التعويض: T0 = 2π·√(1.28/(0.4·10·0.8))",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "1.28",
         "0.8"
@@ -36351,11 +36483,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 4 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -36380,6 +36514,7 @@
       {
        "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "IΔ/(M·d)",
         "g·(T0/2π)²",
@@ -36394,6 +36529,7 @@
       {
        "step": "الجزء ٢ · التعويض: ℓ = 1.28/(0.4·0.8)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "1.28",
         "0.8"
@@ -36401,11 +36537,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 4 m",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -36441,6 +36579,7 @@
       {
        "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "½·IΔ·ω²",
         "نظرية الطاقة",
@@ -36453,11 +36592,13 @@
       },
       {
        "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-       "points": 3
+       "points": 3,
+       "kind": "substitution"
       },
       {
        "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(2·M·g·d",
         "√(8/L",
@@ -36467,17 +36608,20 @@
       {
        "step": "الجزء ٣ · التعويض: ω = √(5)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "5"
        ]
       },
       {
        "step": "الجزء ٣ · النتيجة: √5 rad·s⁻¹",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٣ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -36565,6 +36709,7 @@
     {
      "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Σ mi·ri²",
       "5/8",
@@ -36578,6 +36723,7 @@
     {
      "step": "الجزء ١ · التعويض: IΔ = 0.5·(0.45)² + 0.5·(1.35)²",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "1.0125",
       "1.35"
@@ -36585,15 +36731,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 3 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "2π·√(IΔ",
       "M·g·d",
@@ -36607,6 +36756,7 @@
     {
      "step": "الجزء ١ · التعويض: T0 = 2π·√(1.0125/(1·10·0.45))",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "1.0125",
       "0.45"
@@ -36614,15 +36764,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 3 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "IΔ/(M·d)",
       "g·(T0/2π)²",
@@ -36637,6 +36790,7 @@
     {
      "step": "الجزء ٢ · التعويض: ℓ = 1.0125/(1·0.45)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "1.0125",
       "0.45"
@@ -36644,15 +36798,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 2.25 m",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "½·IΔ·ω²",
       "نظرية الطاقة",
@@ -36665,11 +36822,13 @@
     },
     {
      "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-     "points": 3
+     "points": 3,
+     "kind": "substitution"
     },
     {
      "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(2·M·g·d",
       "√(8/L",
@@ -36679,17 +36838,20 @@
     {
      "step": "الجزء ٣ · التعويض: ω = √(8.8889)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "8.8889"
      ]
     },
     {
      "step": "الجزء ٣ · النتيجة: √80/3 rad·s⁻¹",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٣ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -36703,6 +36865,7 @@
       {
        "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Σ mi·ri²",
         "5/8",
@@ -36716,6 +36879,7 @@
       {
        "step": "الجزء ١ · التعويض: IΔ = 0.5·(0.45)² + 0.5·(1.35)²",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "1.0125",
         "1.35"
@@ -36723,15 +36887,18 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 3 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       },
       {
        "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "2π·√(IΔ",
         "M·g·d",
@@ -36745,6 +36912,7 @@
       {
        "step": "الجزء ١ · التعويض: T0 = 2π·√(1.0125/(1·10·0.45))",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "1.0125",
         "0.45"
@@ -36752,11 +36920,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 3 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -36781,6 +36951,7 @@
       {
        "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "IΔ/(M·d)",
         "g·(T0/2π)²",
@@ -36795,6 +36966,7 @@
       {
        "step": "الجزء ٢ · التعويض: ℓ = 1.0125/(1·0.45)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "1.0125",
         "0.45"
@@ -36802,11 +36974,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 2.25 m",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -36842,6 +37016,7 @@
       {
        "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "½·IΔ·ω²",
         "نظرية الطاقة",
@@ -36854,11 +37029,13 @@
       },
       {
        "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-       "points": 3
+       "points": 3,
+       "kind": "substitution"
       },
       {
        "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(2·M·g·d",
         "√(8/L",
@@ -36868,17 +37045,20 @@
       {
        "step": "الجزء ٣ · التعويض: ω = √(8.8889)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "8.8889"
        ]
       },
       {
        "step": "الجزء ٣ · النتيجة: √80/3 rad·s⁻¹",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٣ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -36966,6 +37146,7 @@
     {
      "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Σ mi·ri²",
       "5/8",
@@ -36979,6 +37160,7 @@
     {
      "step": "الجزء ١ · التعويض: IΔ = 0.2·(0.2)² + 0.2·(0.6)²",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "0.08",
       "0.6"
@@ -36986,15 +37168,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 2 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "2π·√(IΔ",
       "M·g·d",
@@ -37008,6 +37193,7 @@
     {
      "step": "الجزء ١ · التعويض: T0 = 2π·√(0.08/(0.4·10·0.2))",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "0.08",
       "0.2"
@@ -37015,15 +37201,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 2 s",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "IΔ/(M·d)",
       "g·(T0/2π)²",
@@ -37038,6 +37227,7 @@
     {
      "step": "الجزء ٢ · التعويض: ℓ = 0.08/(0.4·0.2)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "0.08",
       "0.2"
@@ -37045,15 +37235,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 1 m",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "½·IΔ·ω²",
       "نظرية الطاقة",
@@ -37066,11 +37259,13 @@
     },
     {
      "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-     "points": 3
+     "points": 3,
+     "kind": "substitution"
     },
     {
      "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(2·M·g·d",
       "√(8/L",
@@ -37080,17 +37275,20 @@
     {
      "step": "الجزء ٣ · التعويض: ω = √(20)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "20"
      ]
     },
     {
      "step": "الجزء ٣ · النتيجة: √20 rad·s⁻¹",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٣ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -37104,6 +37302,7 @@
       {
        "step": "الجزء ١ · العلاقة: IΔ = Σ mi·ri² = m·(L/4)² + m·(3L/4)² = (5/8)·m·L²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Σ mi·ri²",
         "5/8",
@@ -37117,6 +37316,7 @@
       {
        "step": "الجزء ١ · التعويض: IΔ = 0.2·(0.2)² + 0.2·(0.6)²",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "0.08",
         "0.6"
@@ -37124,15 +37324,18 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 2 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       },
       {
        "step": "الجزء ١ · العلاقة: T0 = 2π·√(IΔ/(M·g·d)) حيث M = m1 + m2 = 2m",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "2π·√(IΔ",
         "M·g·d",
@@ -37146,6 +37349,7 @@
       {
        "step": "الجزء ١ · التعويض: T0 = 2π·√(0.08/(0.4·10·0.2))",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "0.08",
         "0.2"
@@ -37153,11 +37357,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 2 s",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -37182,6 +37388,7 @@
       {
        "step": "الجزء ٢ · العلاقة: التماثل مع النواس البسيط: T0 = 2π·√(ℓ/g) ⇒ ℓ = IΔ/(M·d) = g·(T0/2π)²",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "IΔ/(M·d)",
         "g·(T0/2π)²",
@@ -37196,6 +37403,7 @@
       {
        "step": "الجزء ٢ · التعويض: ℓ = 0.08/(0.4·0.2)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "0.08",
         "0.2"
@@ -37203,11 +37411,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 1 m",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -37243,6 +37453,7 @@
       {
        "step": "الجزء ٣ · العلاقة: نظرية الطاقة الحركية بين θ1 = θmax وθ2 = 0: ½·IΔ·ω² = M·g·d·(1 − cos θmax)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "½·IΔ·ω²",
         "نظرية الطاقة",
@@ -37255,11 +37466,13 @@
       },
       {
        "step": "الجزء ٣ · التعويض: ω² = 2·M·g·d·(1 − cos θmax)/IΔ",
-       "points": 3
+       "points": 3,
+       "kind": "substitution"
       },
       {
        "step": "الجزء ٣ · العلاقة: ω = √(2·M·g·d·(1 − cos θmax)/IΔ)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(2·M·g·d",
         "√(8/L",
@@ -37269,17 +37482,20 @@
       {
        "step": "الجزء ٣ · التعويض: ω = √(20)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "20"
        ]
       },
       {
        "step": "الجزء ٣ · النتيجة: √20 rad·s⁻¹",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٣ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -37379,6 +37595,7 @@
     {
      "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(R²",
       "Z² = R²",
@@ -37392,6 +37609,7 @@
     {
      "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "60",
       "80"
@@ -37399,15 +37617,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 100 Ω",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff/Z",
       "Ieff = U",
@@ -37421,6 +37642,7 @@
     {
      "step": "الجزء ٢ · التعويض: Ieff = 100/100",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "100",
       "100"
@@ -37428,15 +37650,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 1 A",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "R/Z",
       "P/S",
@@ -37450,6 +37675,7 @@
     {
      "step": "الجزء ٣ · التعويض: cos φ = 60/100",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "60",
       "100"
@@ -37457,11 +37683,13 @@
     },
     {
      "step": "الجزء ٣ · النتيجة: 0.6",
-     "points": 2
+     "points": 2,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff·Ieff·cos",
       "R·Ieff²",
@@ -37476,6 +37704,7 @@
     {
      "step": "الجزء ٤ · التعويض: P = 100·1·0.6",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "100",
       "1"
@@ -37483,11 +37712,13 @@
     },
     {
      "step": "الجزء ٤ · النتيجة: 60 W",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -37501,6 +37732,7 @@
       {
        "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(R²",
         "Z² = R²",
@@ -37514,6 +37746,7 @@
       {
        "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "60",
         "80"
@@ -37521,11 +37754,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 100 Ω",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": [
@@ -37570,6 +37805,7 @@
       {
        "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff/Z",
         "Ieff = U",
@@ -37583,6 +37819,7 @@
       {
        "step": "الجزء ٢ · التعويض: Ieff = 100/100",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "100",
         "100"
@@ -37590,11 +37827,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 1 A",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -37630,6 +37869,7 @@
       {
        "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "R/Z",
         "P/S",
@@ -37643,6 +37883,7 @@
       {
        "step": "الجزء ٣ · التعويض: cos φ = 60/100",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "60",
         "100"
@@ -37650,7 +37891,8 @@
       },
       {
        "step": "الجزء ٣ · النتيجة: 0.6",
-       "points": 2
+       "points": 2,
+       "kind": "result"
       }
      ],
      "options": null,
@@ -37686,6 +37928,7 @@
       {
        "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff·Ieff·cos",
         "R·Ieff²",
@@ -37700,6 +37943,7 @@
       {
        "step": "الجزء ٤ · التعويض: P = 100·1·0.6",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "100",
         "1"
@@ -37707,11 +37951,13 @@
       },
       {
        "step": "الجزء ٤ · النتيجة: 60 W",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٤ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -37811,6 +38057,7 @@
     {
      "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(R²",
       "Z² = R²",
@@ -37824,6 +38071,7 @@
     {
      "step": "الجزء ١ · التعويض: Z = √(40² + 30²)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "40",
       "30"
@@ -37831,15 +38079,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 50 Ω",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff/Z",
       "Ieff = U",
@@ -37853,6 +38104,7 @@
     {
      "step": "الجزء ٢ · التعويض: Ieff = 200/50",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "200",
       "50"
@@ -37860,15 +38112,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 4 A",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "R/Z",
       "P/S",
@@ -37882,6 +38137,7 @@
     {
      "step": "الجزء ٣ · التعويض: cos φ = 40/50",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "40",
       "50"
@@ -37889,11 +38145,13 @@
     },
     {
      "step": "الجزء ٣ · النتيجة: 0.8",
-     "points": 2
+     "points": 2,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff·Ieff·cos",
       "R·Ieff²",
@@ -37908,6 +38166,7 @@
     {
      "step": "الجزء ٤ · التعويض: P = 200·4·0.8",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "200",
       "4"
@@ -37915,11 +38174,13 @@
     },
     {
      "step": "الجزء ٤ · النتيجة: 640 W",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -37933,6 +38194,7 @@
       {
        "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(R²",
         "Z² = R²",
@@ -37946,6 +38208,7 @@
       {
        "step": "الجزء ١ · التعويض: Z = √(40² + 30²)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "40",
         "30"
@@ -37953,11 +38216,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 50 Ω",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": [
@@ -38002,6 +38267,7 @@
       {
        "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff/Z",
         "Ieff = U",
@@ -38015,6 +38281,7 @@
       {
        "step": "الجزء ٢ · التعويض: Ieff = 200/50",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "200",
         "50"
@@ -38022,11 +38289,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 4 A",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -38062,6 +38331,7 @@
       {
        "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "R/Z",
         "P/S",
@@ -38075,6 +38345,7 @@
       {
        "step": "الجزء ٣ · التعويض: cos φ = 40/50",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "40",
         "50"
@@ -38082,7 +38353,8 @@
       },
       {
        "step": "الجزء ٣ · النتيجة: 0.8",
-       "points": 2
+       "points": 2,
+       "kind": "result"
       }
      ],
      "options": null,
@@ -38118,6 +38390,7 @@
       {
        "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff·Ieff·cos",
         "R·Ieff²",
@@ -38132,6 +38405,7 @@
       {
        "step": "الجزء ٤ · التعويض: P = 200·4·0.8",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "200",
         "4"
@@ -38139,11 +38413,13 @@
       },
       {
        "step": "الجزء ٤ · النتيجة: 640 W",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٤ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -38243,6 +38519,7 @@
     {
      "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(R²",
       "Z² = R²",
@@ -38256,6 +38533,7 @@
     {
      "step": "الجزء ١ · التعويض: Z = √(24² + 32²)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "24",
       "32"
@@ -38263,15 +38541,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 40 Ω",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff/Z",
       "Ieff = U",
@@ -38285,6 +38566,7 @@
     {
      "step": "الجزء ٢ · التعويض: Ieff = 160/40",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "160",
       "40"
@@ -38292,15 +38574,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 4 A",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "R/Z",
       "P/S",
@@ -38314,6 +38599,7 @@
     {
      "step": "الجزء ٣ · التعويض: cos φ = 24/40",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "24",
       "40"
@@ -38321,11 +38607,13 @@
     },
     {
      "step": "الجزء ٣ · النتيجة: 0.6",
-     "points": 2
+     "points": 2,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff·Ieff·cos",
       "R·Ieff²",
@@ -38340,6 +38628,7 @@
     {
      "step": "الجزء ٤ · التعويض: P = 160·4·0.6",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "160",
       "4"
@@ -38347,11 +38636,13 @@
     },
     {
      "step": "الجزء ٤ · النتيجة: 384 W",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -38365,6 +38656,7 @@
       {
        "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(R²",
         "Z² = R²",
@@ -38378,6 +38670,7 @@
       {
        "step": "الجزء ١ · التعويض: Z = √(24² + 32²)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "24",
         "32"
@@ -38385,11 +38678,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 40 Ω",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": [
@@ -38434,6 +38729,7 @@
       {
        "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff/Z",
         "Ieff = U",
@@ -38447,6 +38743,7 @@
       {
        "step": "الجزء ٢ · التعويض: Ieff = 160/40",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "160",
         "40"
@@ -38454,11 +38751,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 4 A",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -38494,6 +38793,7 @@
       {
        "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "R/Z",
         "P/S",
@@ -38507,6 +38807,7 @@
       {
        "step": "الجزء ٣ · التعويض: cos φ = 24/40",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "24",
         "40"
@@ -38514,7 +38815,8 @@
       },
       {
        "step": "الجزء ٣ · النتيجة: 0.6",
-       "points": 2
+       "points": 2,
+       "kind": "result"
       }
      ],
      "options": null,
@@ -38550,6 +38852,7 @@
       {
        "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff·Ieff·cos",
         "R·Ieff²",
@@ -38564,6 +38867,7 @@
       {
        "step": "الجزء ٤ · التعويض: P = 160·4·0.6",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "160",
         "4"
@@ -38571,11 +38875,13 @@
       },
       {
        "step": "الجزء ٤ · النتيجة: 384 W",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٤ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -38675,6 +38981,7 @@
     {
      "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(R²",
       "Z² = R²",
@@ -38688,6 +38995,7 @@
     {
      "step": "الجزء ١ · التعويض: Z = √(36² + 48²)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "36",
       "48"
@@ -38695,15 +39003,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 60 Ω",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff/Z",
       "Ieff = U",
@@ -38717,6 +39028,7 @@
     {
      "step": "الجزء ٢ · التعويض: Ieff = 180/60",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "180",
       "60"
@@ -38724,15 +39036,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 3 A",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "R/Z",
       "P/S",
@@ -38746,6 +39061,7 @@
     {
      "step": "الجزء ٣ · التعويض: cos φ = 36/60",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "36",
       "60"
@@ -38753,11 +39069,13 @@
     },
     {
      "step": "الجزء ٣ · النتيجة: 0.6",
-     "points": 2
+     "points": 2,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff·Ieff·cos",
       "R·Ieff²",
@@ -38772,6 +39090,7 @@
     {
      "step": "الجزء ٤ · التعويض: P = 180·3·0.6",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "180",
       "3"
@@ -38779,11 +39098,13 @@
     },
     {
      "step": "الجزء ٤ · النتيجة: 324 W",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -38797,6 +39118,7 @@
       {
        "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(R²",
         "Z² = R²",
@@ -38810,6 +39132,7 @@
       {
        "step": "الجزء ١ · التعويض: Z = √(36² + 48²)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "36",
         "48"
@@ -38817,11 +39140,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 60 Ω",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": [
@@ -38866,6 +39191,7 @@
       {
        "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff/Z",
         "Ieff = U",
@@ -38879,6 +39205,7 @@
       {
        "step": "الجزء ٢ · التعويض: Ieff = 180/60",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "180",
         "60"
@@ -38886,11 +39213,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 3 A",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -38926,6 +39255,7 @@
       {
        "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "R/Z",
         "P/S",
@@ -38939,6 +39269,7 @@
       {
        "step": "الجزء ٣ · التعويض: cos φ = 36/60",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "36",
         "60"
@@ -38946,7 +39277,8 @@
       },
       {
        "step": "الجزء ٣ · النتيجة: 0.6",
-       "points": 2
+       "points": 2,
+       "kind": "result"
       }
      ],
      "options": null,
@@ -38982,6 +39314,7 @@
       {
        "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff·Ieff·cos",
         "R·Ieff²",
@@ -38996,6 +39329,7 @@
       {
        "step": "الجزء ٤ · التعويض: P = 180·3·0.6",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "180",
         "3"
@@ -39003,11 +39337,13 @@
       },
       {
        "step": "الجزء ٤ · النتيجة: 324 W",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٤ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -39107,6 +39443,7 @@
     {
      "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(R²",
       "Z² = R²",
@@ -39120,6 +39457,7 @@
     {
      "step": "الجزء ١ · التعويض: Z = √(48² + 36²)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "48",
       "36"
@@ -39127,15 +39465,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 60 Ω",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff/Z",
       "Ieff = U",
@@ -39149,6 +39490,7 @@
     {
      "step": "الجزء ٢ · التعويض: Ieff = 60/60",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "60",
       "60"
@@ -39156,15 +39498,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 1 A",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "R/Z",
       "P/S",
@@ -39178,6 +39523,7 @@
     {
      "step": "الجزء ٣ · التعويض: cos φ = 48/60",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "48",
       "60"
@@ -39185,11 +39531,13 @@
     },
     {
      "step": "الجزء ٣ · النتيجة: 0.8",
-     "points": 2
+     "points": 2,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff·Ieff·cos",
       "R·Ieff²",
@@ -39204,6 +39552,7 @@
     {
      "step": "الجزء ٤ · التعويض: P = 60·1·0.8",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "60",
       "1"
@@ -39211,11 +39560,13 @@
     },
     {
      "step": "الجزء ٤ · النتيجة: 48 W",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -39229,6 +39580,7 @@
       {
        "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(R²",
         "Z² = R²",
@@ -39242,6 +39594,7 @@
       {
        "step": "الجزء ١ · التعويض: Z = √(48² + 36²)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "48",
         "36"
@@ -39249,11 +39602,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 60 Ω",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": [
@@ -39298,6 +39653,7 @@
       {
        "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff/Z",
         "Ieff = U",
@@ -39311,6 +39667,7 @@
       {
        "step": "الجزء ٢ · التعويض: Ieff = 60/60",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "60",
         "60"
@@ -39318,11 +39675,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 1 A",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -39358,6 +39717,7 @@
       {
        "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "R/Z",
         "P/S",
@@ -39371,6 +39731,7 @@
       {
        "step": "الجزء ٣ · التعويض: cos φ = 48/60",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "48",
         "60"
@@ -39378,7 +39739,8 @@
       },
       {
        "step": "الجزء ٣ · النتيجة: 0.8",
-       "points": 2
+       "points": 2,
+       "kind": "result"
       }
      ],
      "options": null,
@@ -39414,6 +39776,7 @@
       {
        "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff·Ieff·cos",
         "R·Ieff²",
@@ -39428,6 +39791,7 @@
       {
        "step": "الجزء ٤ · التعويض: P = 60·1·0.8",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "60",
         "1"
@@ -39435,11 +39799,13 @@
       },
       {
        "step": "الجزء ٤ · النتيجة: 48 W",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٤ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -39539,6 +39905,7 @@
     {
      "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "√(R²",
       "Z² = R²",
@@ -39552,6 +39919,7 @@
     {
      "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "60",
       "80"
@@ -39559,15 +39927,18 @@
     },
     {
      "step": "الجزء ١ · النتيجة: 100 Ω",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ١ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff/Z",
       "Ieff = U",
@@ -39581,6 +39952,7 @@
     {
      "step": "الجزء ٢ · التعويض: Ieff = 400/100",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "400",
       "100"
@@ -39588,15 +39960,18 @@
     },
     {
      "step": "الجزء ٢ · النتيجة: 4 A",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٢ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     },
     {
      "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "R/Z",
       "P/S",
@@ -39610,6 +39985,7 @@
     {
      "step": "الجزء ٣ · التعويض: cos φ = 60/100",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "60",
       "100"
@@ -39617,11 +39993,13 @@
     },
     {
      "step": "الجزء ٣ · النتيجة: 0.6",
-     "points": 2
+     "points": 2,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
      "points": 5,
+     "kind": "relation",
      "keys": [
       "Ueff·Ieff·cos",
       "R·Ieff²",
@@ -39636,6 +40014,7 @@
     {
      "step": "الجزء ٤ · التعويض: P = 400·4·0.6",
      "points": 3,
+     "kind": "substitution",
      "expect": [
       "400",
       "4"
@@ -39643,11 +40022,13 @@
     },
     {
      "step": "الجزء ٤ · النتيجة: 960 W",
-     "points": 1
+     "points": 1,
+     "kind": "result"
     },
     {
      "step": "الجزء ٤ · الوحدة",
-     "points": 1
+     "points": 1,
+     "kind": "unit"
     }
    ],
    "grading": "parts-v1",
@@ -39661,6 +40042,7 @@
       {
        "step": "الجزء ١ · العلاقة: Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "√(R²",
         "Z² = R²",
@@ -39674,6 +40056,7 @@
       {
        "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "60",
         "80"
@@ -39681,11 +40064,13 @@
       },
       {
        "step": "الجزء ١ · النتيجة: 100 Ω",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ١ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": [
@@ -39730,6 +40115,7 @@
       {
        "step": "الجزء ٢ · العلاقة: تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff/Z",
         "Ieff = U",
@@ -39743,6 +40129,7 @@
       {
        "step": "الجزء ٢ · التعويض: Ieff = 400/100",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "400",
         "100"
@@ -39750,11 +40137,13 @@
       },
       {
        "step": "الجزء ٢ · النتيجة: 4 A",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٢ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,
@@ -39790,6 +40179,7 @@
       {
        "step": "الجزء ٣ · العلاقة: cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "R/Z",
         "P/S",
@@ -39803,6 +40193,7 @@
       {
        "step": "الجزء ٣ · التعويض: cos φ = 60/100",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "60",
         "100"
@@ -39810,7 +40201,8 @@
       },
       {
        "step": "الجزء ٣ · النتيجة: 0.6",
-       "points": 2
+       "points": 2,
+       "kind": "result"
       }
      ],
      "options": null,
@@ -39846,6 +40238,7 @@
       {
        "step": "الجزء ٤ · العلاقة: P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً",
        "points": 5,
+       "kind": "relation",
        "keys": [
         "Ueff·Ieff·cos",
         "R·Ieff²",
@@ -39860,6 +40253,7 @@
       {
        "step": "الجزء ٤ · التعويض: P = 400·4·0.6",
        "points": 3,
+       "kind": "substitution",
        "expect": [
         "400",
         "4"
@@ -39867,11 +40261,13 @@
       },
       {
        "step": "الجزء ٤ · النتيجة: 960 W",
-       "points": 1
+       "points": 1,
+       "kind": "result"
       },
       {
        "step": "الجزء ٤ · الوحدة",
-       "points": 1
+       "points": 1,
+       "kind": "unit"
       }
      ],
      "options": null,

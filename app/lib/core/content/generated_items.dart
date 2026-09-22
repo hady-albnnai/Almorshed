@@ -5,11 +5,12 @@
 /// الأستاذ — الفلتر نفسه المعتمد في F2.4: الوضع العادي يعرض المعتمد فقط،
 /// ووضع المراجعة يفتح الكل بشارة «قيد المراجعة».
 ///
-/// **بنود الأجزاء (`grading: "parts-v1"` — قرار ٦٨) لا تدخل هذا الأصل عمداً:**
-/// المولّد يستثنيها من `--asset` لأن هذه الواجهة لا تعرف تصحيح «سطراً سطراً» بالسلّم بعد.
-/// بوّابة التصحيح = **F-GEN3** (`gradeRubric` لكل سطر + قبول `followThrough` ومتابعة الخطأ)؛
-/// بعدها يُعاد الأصل بـ`python3 tools/gen_items.py --asset --parts-asset` ويمتدّ هذا النموذج لقراءة
-/// `parts` (خيارات لكل جزء، مفتاح رقمي أو نصّي، `unitRequired`، `rubric`) بدل المفتاح المسطّح الواحد.
+/// **بنود الأجزاء (`grading: "parts-v1"` — قرار ٦٨) تدخل هذا الأصل منذ F-GEN3**
+/// (`python3 tools/gen_items.py --asset --parts-asset`): `GeneratedPart` هنا يقرأ
+/// الأجزاء (خيارات لكل جزء، مفتاح رقمي أو نصّي، `unitRequired`، `rubric` مصحَّح
+/// آلياً بحقل `kind`)، وتصحيح «سطراً سطراً» مع متابعة الخطأ في
+/// `core/grading/parts_grading.dart`. وبلا `--parts-asset` يعود الأصل إلى البنود
+/// المسطّحة وحدها — رجوع آمن بكلمة واحدة إن تعطّل مسار السلّم.
 library;
 
 import 'dart:convert';
@@ -56,6 +57,19 @@ class GeneratedItem {
   /// الخام (answer/keys/antiKeys/steps/optionRules/answerBasis…).
   final Map<String, dynamic> raw;
 
+  /// أجزاء المسألة (قرار ٦٨) — فارغ إلا في بنود `grading: parts-v1`.
+  final List<GeneratedPart> parts;
+
+  /// طابع التصحيح: null = مسطّح (خيار واحد) · `parts-v1` = سلّم سطراً سطراً.
+  final String? grading;
+
+  /// بند مسألة بأجزاء: لا مفتاح مسطّح له، وتصحيحه في `core/grading/parts_grading.dart`.
+  bool get isParts => grading == partsGradingKey && parts.isNotEmpty;
+
+  /// مجموع أوزان الأجزاء (يُطابق `weight` وقت البناء — يفحصه المولّد في بايثون).
+  double get partsWeight =>
+      parts.fold<double>(0, (s, p) => s + p.weight);
+
   /// المفتاح الرقمي إن وُجد.
   ({double value, String unit})? get numericAnswer {
     final a = raw['answer'] as Map<String, dynamic>?;
@@ -89,7 +103,182 @@ class GeneratedItem {
             (j['solutionSteps'] as List<dynamic>? ?? const []).cast<String>(),
         weight: (j['weight'] as num? ?? 10).toDouble(),
         raw: j,
+        grading: j['grading'] as String?,
+        parts: _readParts(j),
       );
+}
+
+// ─────────────────────────── المسألة بأجزاء — parts-v1 ───────────────────────────
+
+/// مفتاح طابع بنود الأجزاء كما يكتبه المولّد (`tools/gen_items.py`).
+const String partsGradingKey = 'parts-v1';
+
+/// سطر واحد من سلّم الجزء: `kind` هو ما يُصحَّح به آلياً، و`step` هو ما يُعرض.
+/// • relation   العلاقة المطلوبة (مفاتيح + مفاتيح مضادة) — ٥ في السلم
+/// • substitution التعويض (أرقام `expect` يجب أن تظهر) — ٣
+/// • result     النتيجة العددية — ١
+/// • unit       الوحدة — ١ (تُلغى للمقادير بلا بُعد)
+class GeneratedRubricEntry {
+  const GeneratedRubricEntry({
+    required this.step,
+    required this.kind,
+    required this.points,
+    this.keys = const [],
+    this.antiKeys = const [],
+    this.expect = const [],
+  });
+
+  final String step;
+  final String kind;
+  final double points;
+  final List<String> keys;
+  final List<String> antiKeys;
+  final List<String> expect;
+
+  factory GeneratedRubricEntry.fromJson(Map<String, dynamic> j) =>
+      GeneratedRubricEntry(
+        step: j['step'] as String? ?? '',
+        kind: j['kind'] as String? ?? 'relation',
+        points: (j['points'] as num? ?? 0).toDouble(),
+        keys: (j['keys'] as List<dynamic>? ?? const []).cast<String>(),
+        antiKeys: (j['antiKeys'] as List<dynamic>? ?? const []).cast<String>(),
+        expect: (j['expect'] as List<dynamic>? ?? const []).cast<String>(),
+      );
+}
+
+/// متابعة الخطأ: القيمة المقبولة في هذا الجزء = `scale × (جواب الطالب في
+/// `dependsOn`) ^ power`. يبنيها المولّد من المفتاحين ويثبتها آلياً.
+class GeneratedFollow {
+  const GeneratedFollow({
+    required this.dependsOn,
+    required this.power,
+    required this.scale,
+    required this.tolerance,
+    this.note,
+  });
+
+  final String dependsOn;
+  final double power;
+  final double scale;
+  final double tolerance;
+  final String? note;
+
+  factory GeneratedFollow.fromJson(Map<String, dynamic> j) => GeneratedFollow(
+        dependsOn: '${j['dependsOn']}',
+        power: (j['power'] as num).toDouble(),
+        scale: (j['scale'] as num).toDouble(),
+        tolerance: (j['tolerance'] as num? ?? 0.02).toDouble(),
+        note: j['note'] as String?,
+      );
+}
+
+/// جزء من مسألة: مطلوب + مفتاح + سلّم + (اختيارياً) أربعة خيارات + متابعات.
+class GeneratedPart {
+  const GeneratedPart({
+    required this.n,
+    required this.label,
+    required this.prompt,
+    required this.weight,
+    required this.options,
+    required this.correctIndex,
+    required this.optionValues,
+    required this.solutionSteps,
+    required this.rubric,
+    required this.answerText,
+    required this.answerValue,
+    required this.answerUnit,
+    required this.unitRequired,
+    required this.tolerance,
+    required this.follow,
+  });
+
+  final int n;
+  final String label;
+  final String prompt;
+  final double weight;
+  final List<String> options;
+  final int correctIndex;
+  final List<double?> optionValues;
+  final List<String> solutionSteps;
+  final List<GeneratedRubricEntry> rubric;
+  final String answerText;
+  final double? answerValue;
+  final String answerUnit;
+  final bool unitRequired;
+  final double tolerance;
+  final List<GeneratedFollow> follow;
+
+  /// مجموع درجات مجموعة أسطر من نمط واحد (relation/substitution/result/unit).
+  double groupPoints(String kind) => rubric
+      .where((e) => e.kind == kind)
+      .fold<double>(0, (s, e) => s + e.points);
+
+  List<String> groupKeys(String kind) => [
+        for (final e in rubric)
+          if (e.kind == kind) ...e.keys,
+      ];
+
+  List<String> groupAntiKeys(String kind) => [
+        for (final e in rubric)
+          if (e.kind == kind) ...e.antiKeys,
+      ];
+
+  List<String> groupExpect(String kind) => [
+        for (final e in rubric)
+          if (e.kind == kind) ...e.expect,
+      ];
+
+  bool get hasOptions => options.length == 4;
+
+  factory GeneratedPart.fromJson(Map<String, dynamic> j,
+      {List<GeneratedFollow> follows = const []}) {
+    final a = j['answer'] as Map<String, dynamic>?;
+    return GeneratedPart(
+      n: (j['n'] as num? ?? 0).toInt(),
+      label: '${j['label']}',
+      prompt: j['prompt'] as String? ?? '',
+      weight: (j['weight'] as num? ?? 0).toDouble(),
+      options: (j['options'] as List<dynamic>? ?? const []).cast<String>(),
+      correctIndex: (j['correctIndex'] as num? ?? -1).toInt(),
+      optionValues: (j['optionValues'] as List<dynamic>? ?? const [])
+          .map<double?>((v) => v is num ? v.toDouble() : null)
+          .toList(growable: false),
+      solutionSteps:
+          (j['solutionSteps'] as List<dynamic>? ?? const []).cast<String>(),
+      rubric: (j['rubric'] as List<dynamic>? ?? const [])
+          .cast<Map<String, dynamic>>()
+          .map(GeneratedRubricEntry.fromJson)
+          .toList(growable: false),
+      answerText: a?['text'] as String? ?? '',
+      answerValue: (a?['value'] as num?)?.toDouble(),
+      answerUnit: a?['unit'] as String? ?? '',
+      unitRequired: a?['unitRequired'] as bool? ?? true,
+      tolerance: (a?['tolerance'] as num? ?? 0.02).toDouble(),
+      follow: follows,
+    );
+  }
+}
+
+/// يقرأ الأجزاء ويلصق بها `followThrough` — وهو على مستوى البند لا الجزء:
+/// قائمة `{'part': الوسم, 'accept': [{'dependsOn', 'power', 'scale', …}]}`.
+List<GeneratedPart> _readParts(Map<String, dynamic> j) {
+  // البنود المسطّحة تحمل `followThrough: []` و`rubric` قديمًا — لا تُقرأ هنا
+  // إطلاقاً: بوابة الأجزاء هي `grading` وحدها.
+  if (j['grading'] != partsGradingKey) return const [];
+  final follows = <String, List<GeneratedFollow>>{};
+  for (final e in (j['followThrough'] as List<dynamic>? ?? const [])) {
+    final m = e as Map<String, dynamic>;
+    final accept = (m['accept'] as List<dynamic>? ?? const [])
+        .cast<Map<String, dynamic>>()
+        .map(GeneratedFollow.fromJson)
+        .toList(growable: false);
+    follows['${m['part']}'] = accept;
+  }
+  return (j['parts'] as List<dynamic>? ?? const [])
+      .cast<Map<String, dynamic>>()
+      .map((q) => GeneratedPart.fromJson(q,
+          follows: follows['${q['label']}'] ?? const []))
+      .toList(growable: false);
 }
 
 /// حزمة البنود المولّدة + بياناتها الوصفية.

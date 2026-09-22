@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 
 import '../../core/content/generated_items.dart';
 import '../../core/grading/grading_engine.dart';
+import '../../core/grading/parts_grading.dart';
 import '../../core/util/arabic_number.dart';
 import '../review/review_widgets.dart';
 
 /// نمط الإجابة الفعلي: البند الرقمي بلا مفتاح رقمي (زاوية/رمزي) و«علّل»
 /// بلا مفاتيح والبرهان بلا خطوات يعودون إلى الخيارات الأربعة — لا تخمين.
-ItemKind answerModeOf(GeneratedItem i) => switch (i.kind) {
+ItemKind answerModeOf(GeneratedItem i) => i.isParts
+    // المسألة بأجزاء تُصحَّح بالسلم سطرًا سطرًا (قرار ٦٨)؛ Numeric هنا للمُرشِّحات
+    // ولشاشة المراجعة فقط — الجسم الفعلي هو `_PartsBody`.
+    ? ItemKind.numeric
+    : switch (i.kind) {
       ItemKind.numeric when i.numericAnswer == null => ItemKind.mcq,
       ItemKind.why when i.keys.isEmpty => ItemKind.mcq,
       ItemKind.proof when i.proofSteps.isEmpty => ItemKind.mcq,
@@ -51,6 +56,10 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
   final Map<int, GradeResult> _results = {};
   final Map<int, int> _chosen = {};
 
+  /// بنود الأجزاء (قرار ٦٨): أجوبة الطالب لكل جزء + نتيجة السلّم للعرض.
+  final Map<int, Map<String, PartAnswer>> _partsAnswers = {};
+  final Map<int, PartsGrade> _partsGrades = {};
+
   /// نصّ الإجابة المدخلة قبل التصحيح (رقمي/علّل) — يُعرض بعد التصحيح كما هو.
   final Map<int, String> _typed = {};
 
@@ -71,6 +80,15 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
   double get _points => _results.values.fold<double>(0, (s, r) => s + r.points);
   double get _maxPoints =>
       widget.items.fold<double>(0, (s, i) => s + _maxOf(i));
+
+  void _submitParts(GeneratedItem item, Map<String, PartAnswer> answers) {
+    final g = gradeParts(item, answers);
+    setState(() {
+      _partsAnswers[item.id] = answers;
+      _partsGrades[item.id] = g;
+      _results[item.id] = g.toGrade();
+    });
+  }
 
   double _maxOf(GeneratedItem i) {
     final r = _results[i.id];
@@ -125,12 +143,22 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
                 _KindChip(
                   kind: mode,
                   chapter: item.chapter,
+                  partCount: item.parts.length,
                   pending: !item.approved && ReviewScope.enabledIn(context),
                 ),
                 const SizedBox(height: 8),
                 Text(item.stem, style: txt.titleMedium),
                 const SizedBox(height: 14),
-                switch (mode) {
+                if (item.isParts)
+                  _PartsBody(
+                    key: ValueKey('parts-${item.id}'),
+                    item: item,
+                    initial: _partsAnswers[item.id] ?? const {},
+                    graded: _partsGrades[item.id],
+                    onSubmit: (answers) => _submitParts(item, answers),
+                  )
+                else
+                  switch (mode) {
                   ItemKind.mcq => _McqBody(
                       key: ValueKey('mcq-${item.id}'),
                       item: item,
@@ -177,6 +205,13 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
                 if (result != null) ...[
                   const SizedBox(height: 16),
                   _ResultCard(item: item, result: result),
+                ],
+                if (item.isParts && _partsGrades[item.id] != null) ...[
+                  const SizedBox(height: 10),
+                  _PartsScoreCard(
+                    grade: _partsGrades[item.id]!,
+                    parts: item.parts,
+                  ),
                 ],
               ],
             ),
@@ -256,16 +291,22 @@ class _KindChip extends StatelessWidget {
     required this.kind,
     required this.chapter,
     this.pending = false,
+    this.partCount = 0,
   });
   final ItemKind kind;
   final String chapter;
+
+  /// >٠ ⇒ مسألة بأجزاء (قرار ٦٨) — تغيّر تسمية الرقاقة.
+  final int partCount;
 
   /// وضع المراجعة: البند غير معتمد بعد ⇒ شارة «قيد المراجعة».
   final bool pending;
 
   @override
   Widget build(BuildContext context) {
-    final label = switch (kind) {
+    final label = partCount > 0
+        ? 'مسألة بأجزاء · ${ArabicNumber.from(partCount)} جزء'
+        : switch (kind) {
       ItemKind.mcq => 'اختيار من متعدد',
       ItemKind.numeric => 'حساب — القيمة والوحدة',
       ItemKind.why => 'علّل',
@@ -333,9 +374,13 @@ class _OptionTile extends StatelessWidget {
     required this.text,
     required this.state,
     this.onTap,
+    this.picked = false,
   });
 
   final String letter;
+
+  /// اختيار جارٍ قبل التصحيح (بنود الأجزاء) — يميّز بلا كشف للإجابة.
+  final bool picked;
   final String text;
   final _OptionState state;
   final VoidCallback? onTap;
@@ -346,6 +391,10 @@ class _OptionTile extends StatelessWidget {
     Color? bg;
     Color? border;
     Icon? lead;
+    if (picked && state == _OptionState.idle) {
+      bg = cs.secondaryContainer;
+      border = cs.primary;
+    }
     switch (state) {
       case _OptionState.idle:
         break;
@@ -825,10 +874,14 @@ class _ResultCard extends StatelessWidget {
                   child: Text('▪ $n', style: txt.bodyMedium),
                 ),
             ],
-            if (answerModeOf(item) == ItemKind.mcq &&
+            // F-GEN3: جدول الأسباب كان محجوباً بـ`mode == mcq` وحده — وهو خطأ
+            // في النموذج: كل البنود المسطّحة (رقمي/علّل) تُولَّد بأربعة بدائل
+            // مسوّغة. البرهان وحده استثناءٌ لأن خطواته هي سلّمه لا خياراته.
+            if (answerModeOf(item) != ItemKind.proof &&
                 item.solutionSteps.isNotEmpty) ...[
               const SizedBox(height: 10),
-              Text('📌 لماذا كل خيار؟', style: txt.titleSmall),
+              Text(item.isParts ? '📌 ملخّص الأجزاء' : '📌 لماذا كل خيار؟',
+                  style: txt.titleSmall),
               const SizedBox(height: 4),
               for (final s in item.solutionSteps)
                 Padding(
@@ -839,6 +892,303 @@ class _ResultCard extends StatelessWidget {
             if (item.answerBasis != null && item.answerBasis!.isNotEmpty) ...[
               const SizedBox(height: 8),
               Text('المرجع: ${item.answerBasis}', style: txt.bodySmall),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────── مسألة بأجزاء (قرار ٦٨) ───────────────────────
+
+/// جسم المسألة بأجزاء: بطاقة لكل جزء — المطلوب، ثم خيارات الجزء إن وُجدت
+/// (وضع القرار ٦١ المؤقَّت)، ثم أسطر السلّم الثلاثة، بتسليم واحد للجميع.
+/// بعد التسليم تتحوّل الحقول إلى للقراءة فقط ويظهر [ _PartsScoreCard ].
+class _PartsBody extends StatefulWidget {
+  const _PartsBody({
+    super.key,
+    required this.item,
+    required this.initial,
+    required this.graded,
+    required this.onSubmit,
+  });
+
+  final GeneratedItem item;
+
+  /// ما كتبه الطالب في الجلسة السابقة لهذا البند (للإبقاء عليه بعد التصحيح).
+  final Map<String, PartAnswer> initial;
+
+  /// نتيجة السلّم — غير فارغة بعد التسليم.
+  final PartsGrade? graded;
+  final void Function(Map<String, PartAnswer> answers) onSubmit;
+
+  @override
+  State<_PartsBody> createState() => _PartsBodyState();
+}
+
+class _PartsBodyState extends State<_PartsBody> {
+  static const List<String> _letters = ['أ', 'ب', 'ج', 'د', 'هـ', 'و'];
+
+  final Map<String, TextEditingController> _relation = {};
+  final Map<String, TextEditingController> _subst = {};
+  final Map<String, TextEditingController> _result = {};
+  final Map<String, int> _chosen = {};
+
+  bool get _locked => widget.graded != null;
+
+  @override
+  void initState() {
+    super.initState();
+    _seed();
+  }
+
+  void _seed() {
+    for (final p in widget.item.parts) {
+      final a = widget.initial[p.label];
+      _relation.putIfAbsent(
+          p.label, () => TextEditingController(text: a?.relation ?? ''));
+      _subst.putIfAbsent(
+          p.label, () => TextEditingController(text: a?.substitution ?? ''));
+      _result.putIfAbsent(
+          p.label, () => TextEditingController(text: a?.result ?? ''));
+      if (a?.chosen != null) _chosen[p.label] = a!.chosen!;
+    }
+  }
+
+  @override
+  void didUpdateWidget(_PartsBody old) {
+    super.didUpdateWidget(old);
+    if (old.item.id == widget.item.id) return;
+    _relation.clear();
+    _subst.clear();
+    _result.clear();
+    _chosen.clear();
+    _seed();
+  }
+
+  @override
+  void dispose() {
+    for (final c in _relation.values) {
+      c.dispose();
+    }
+    for (final c in _subst.values) {
+      c.dispose();
+    }
+    for (final c in _result.values) {
+      c.dispose();
+    }
+    super.dispose();
+  }
+
+  void _submitAll() {
+    final out = <String, PartAnswer>{};
+    for (final p in widget.item.parts) {
+      out[p.label] = (
+        relation: _relation[p.label]?.text.trim() ?? '',
+        substitution: _subst[p.label]?.text.trim() ?? '',
+        result: _result[p.label]?.text.trim() ?? '',
+        chosen: p.hasOptions ? _chosen[p.label] : null,
+      );
+    }
+    widget.onSubmit(out);
+  }
+
+  void _pick(GeneratedPart p, int k) {
+    if (_locked) return;
+    // خيار يحمل المفتاح ⇒ تُعبَّأ النتيجة والوحدة تلقائياً (الجزء ٦١ المؤقَّت).
+    setState(() {
+      _chosen[p.label] = k;
+      final v = p.options[k];
+      if (v.isNotEmpty) _result[p.label]!.text = v;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final txt = theme.textTheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          'كل جزء يُصحَّح على حدة وفق السلّم الوزاري: العلاقة ٥ · التعويض ٣ · '
+          'النتيجة ١ · الوحدة ١. ومن يمشِ صحيحاً على خطأه السابق تُقبل '
+          'نتيجته (متابعة الخطأ).',
+          style: txt.bodySmall?.copyWith(height: 1.7),
+          textAlign: TextAlign.center,
+        ),
+        const SizedBox(height: 12),
+        for (final p in widget.item.parts)
+          Card(
+            margin: const EdgeInsets.only(bottom: 10),
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'الجزء ${p.label} — ${_fmt(p.weight)} درجة',
+                    style:
+                        txt.titleSmall?.copyWith(fontWeight: FontWeight.w800),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(p.prompt, style: txt.bodyLarge?.copyWith(height: 1.8)),
+                  if (p.hasOptions) ...[
+                    const SizedBox(height: 8),
+                    for (var k = 0; k < p.options.length; k++)
+                      _OptionTile(
+                        letter: _letters[k],
+                        text: p.options[k],
+                        picked: _chosen[p.label] == k,
+                        state: !_locked
+                            ? _OptionState.idle
+                            : (k == p.correctIndex
+                                ? _OptionState.correct
+                                : (_chosen[p.label] == k
+                                    ? _OptionState.wrong
+                                    : _OptionState.dimmed)),
+                        onTap: _locked ? null : () => _pick(p, k),
+                      ),
+                  ],
+                  const SizedBox(height: 4),
+                  _field(
+                    label: 'العلاقة',
+                    hint: 'القانون أو العلاقة المستخدمة',
+                    ctrl: _relation[p.label]!,
+                    fieldKey: Key('parts-rel-${p.n}'),
+                  ),
+                  _field(
+                    label: 'التعويض',
+                    hint: 'الأرقام المعوّضة في العلاقة',
+                    ctrl: _subst[p.label]!,
+                    fieldKey: Key('parts-sub-${p.n}'),
+                  ),
+                  _field(
+                    label: 'النتيجة والوحدة',
+                    hint: 'النتيجة النهائية بوحدتها فقط — مثال: 0٫48 s',
+                    ctrl: _result[p.label]!,
+                    fieldKey: Key('parts-res-${p.n}'),
+                    numeric: true,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        FilledButton(
+          key: const Key('parts-submit'),
+          onPressed: _locked ? null : _submitAll,
+          style:
+              FilledButton.styleFrom(padding: const EdgeInsets.all(14)),
+          child: Text(_locked ? 'تم التصحيح' : 'تسليم المسألة'),
+        ),
+      ],
+    );
+  }
+
+  Widget _field({
+    required String label,
+    required String hint,
+    required TextEditingController ctrl,
+    required Key fieldKey,
+    bool numeric = false,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8),
+      child: TextField(
+        key: fieldKey,
+        controller: ctrl,
+        readOnly: _locked,
+        textDirection: numeric ? TextDirection.ltr : TextDirection.rtl,
+        keyboardType: numeric
+            ? const TextInputType.numberWithOptions(
+                decimal: true, signed: true)
+            : null,
+        minLines: 1,
+        maxLines: 3,
+        style: const TextStyle(height: 1.7),
+        decoration: InputDecoration(
+          labelText: label,
+          hintText: hint,
+          isDense: true,
+          border: const OutlineInputBorder(),
+        ),
+      ),
+    );
+  }
+}
+
+/// بطاقة السلّم: سطرًا سطرًا — ما أخذه الطالب وما خُصم ولماذا (docs/20 §٢ قاعدة ٦:
+/// الطالب يرى التفصيل، والمصحّح يرى الدرجة).
+class _PartsScoreCard extends StatelessWidget {
+  const _PartsScoreCard({required this.grade, required this.parts});
+
+  final PartsGrade grade;
+  final List<GeneratedPart> parts;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final txt = theme.textTheme;
+    final byLabel = {for (final p in parts) p.label: p};
+    return Card(
+      margin: EdgeInsets.zero,
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('سلّم التصحيح',
+                style:
+                    txt.titleSmall?.copyWith(fontWeight: FontWeight.w800)),
+            const SizedBox(height: 6),
+            for (final s in grade.parts) ...[
+              Row(
+                children: [
+                  Icon(
+                    s.points >= s.maxPoints
+                        ? Icons.check_circle
+                        : (s.points > 0
+                            ? Icons.playlist_add_check
+                            : Icons.cancel),
+                    size: 18,
+                    color: s.points >= s.maxPoints
+                        ? Colors.green
+                        : (s.points > 0 ? Colors.orange : Colors.red),
+                  ),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(
+                      'الجزء ${s.label}: ${_fmt(s.points)} من '
+                      '${_fmt(s.maxPoints)} درجة',
+                      style: txt.titleSmall,
+                    ),
+                  ),
+                  if (s.followThrough)
+                    const Text('FT',
+                        style: TextStyle(
+                            color: Color(0xFFE65100),
+                            fontWeight: FontWeight.w800)),
+                ],
+              ),
+              for (final l in s.lines)
+                Padding(
+                  padding: const EdgeInsets.only(right: 24, top: 2),
+                  child: Text(
+                    '▪ ${l.step}: ${_fmt(l.points)} من ${_fmt(l.maxPoints)}'
+                    '${l.note == null ? '' : ' — ${l.note}'}',
+                    style: txt.bodyMedium?.copyWith(height: 1.7),
+                  ),
+                ),
+              if ((byLabel[s.label]?.answerText ?? '').isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(right: 24, top: 2),
+                  child: Text('المفتاح: ${byLabel[s.label]?.answerText}',
+                      style: txt.bodySmall?.copyWith(
+                          color: const Color(0xFF2E7D32),
+                          fontWeight: FontWeight.w700)),
+                ),
+              const SizedBox(height: 8),
             ],
           ],
         ),

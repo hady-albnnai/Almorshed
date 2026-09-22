@@ -305,20 +305,20 @@ def part_rubric(lines, *, label, key_text=None):
         pts.update(ln.get("points") or {})
         relation = ln.get("relation")
         if relation:
-            out.append({"step": f"{label} · العلاقة: {relation}", "points": pts["relation"],
+            out.append({"step": f"{label} · العلاقة: {relation}", "points": pts["relation"], "kind": "relation",
                         **({"keys": ln["keys"]} if ln.get("keys") else {}),
                         **({"antiKeys": ln["anti_keys"]} if ln.get("anti_keys") else {})})
             total += pts["relation"]
         if ln.get("subst"):
-            out.append({"step": f"{label} · التعويض: {ln['subst']}", "points": pts["substitution"],
+            out.append({"step": f"{label} · التعويض: {ln['subst']}", "points": pts["substitution"], "kind": "substitution",
                         **({"expect": ln["expect"]} if ln.get("expect") else {})})
             total += pts["substitution"]
         if ln.get("result", True):
             out.append({"step": f"{label} · النتيجة: {ln.get('result') or key_text or 'القيمة الصحيحة'}",
-                        "points": pts["result"]})
+                        "points": pts["result"], "kind": "result"})
             total += pts["result"]
         if ln.get("unit", True) and relation:
-            out.append({"step": f"{label} · الوحدة", "points": pts["unit"],
+            out.append({"step": f"{label} · الوحدة", "points": pts["unit"], "kind": "unit",
                         **({"keys": ln.get("unit_keys", [])} if ln.get("unit_keys") else {})})
             total += pts["unit"]
     return out, total
@@ -1795,10 +1795,14 @@ def main(argv=None):
         (OUT_DIR / "ALL.items.json").write_text(json.dumps({"meta": meta, "items": pool}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         (OUT_DIR / f"ALL.sample{args.n}.json").write_text(json.dumps({"meta": meta, "items": smp}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     if args.asset:
-        # بنود الأجزاء تُستثنى من الأصل: التطبيق لا يصحّح السلّم بعد (قنبلة صامتة — docs/14 §١٣)
+        # بنود الأجزاء تدخل الأصل مع `--parts-asset` فقط: تصحيح السلّم في التطبيق
+        # (`core/grading/parts_grading.dart` — F-GEN3/قرار ٦٩). بلا الرافعة يعود
+        # الأصل إلى المسطّح وحده — رجوع آمن بكلمة واحدة.
         ash = pool if args.parts_asset else [i for i in pool if i.get("grading") != GRADING_PARTS]
+        parts_total = sum(1 for i in pool if i.get("grading") == GRADING_PARTS)
+        parts_shipped = sum(1 for i in ash if i.get("grading") == GRADING_PARTS)
         ameta = dict(meta, poolSize=len(ash), sampleSize=min(args.n, len(ash)),
-                     partsPool=len(pool) - len(ash),
+                     partsPool=parts_total, partsShipped=parts_shipped,
                      partsExcluded=not args.parts_asset)
         ITEMS_ASSET.write_text(json.dumps({"meta": ameta, "items": ash}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     if args.pack:
@@ -1814,6 +1818,9 @@ def main(argv=None):
         print(f"parts-v1: {npr} بنداً · أجزاء بلا خيارات (إجابة حرة): {gen.report['parts_no_options']} · "
               f"مرفوض لعدم قابلية التصحيح: {gen.report['parts_ungradable']} · "
               f"سلّم غير متسق مع الوزن (قوالب قديمة): {inc}")
+        if args.asset:
+            print(f"asset: {ITEMS_ASSET.relative_to(ROOT)} · {len(ash)} بنداً · "
+                  f"أجزاء مشحونة: {parts_shipped} · مسطّح: {len(ash) - parts_shipped}")
         for tid, n in gen.report["per_template"].items():
             print(f"  {tid:<16} {n}")
         for tid, why in gen.report["skipped"]:

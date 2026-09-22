@@ -13,7 +13,7 @@
   الرقمي: `answer: {unit, format: sci|auto, sig, round}` + `distractors: [{value, rule, rationale}]`؛ الاختياري: `options.key` + `distractors[].text`؛
   المفاهيمي: `variants[]`. كل `rule` يجب أن تكون موثّقة في `schema.distractor_rules` بأحد الملفات.
 - الدمج في حزمة التطبيق (`app/assets/content/pack.json` قسم `items`): أضف `--pack` — **لا يُنفَّذ قبل اعتماد الأستاذ**.
-- الاختبارات: `python3 -m pytest tools/tests -q`  (٣١ اختباراً — منها تسعة لبنود الأجزاء)
+- الاختبارات: `python3 -m pytest tools/tests -q`  (٣٢ اختباراً — منها عشرة لبنود الأجزاء)
 
 ## بنود الأجزاء `parts-v1` (قرار ٦٨ — المسألة الكاملة)
 
@@ -22,7 +22,9 @@
 - **متابعة الخطأ:** `follow: {depends_on: "١", power: 2}` ⇒ المولّد يحسّب `scale = مفتاح_الجزء / مفتاح_المرجع^power` ويثبّتها؛ و`also:` تقبل طريقاً بديلاً للمصحّح.
 - خيارات الجزء اختيارية: ثلاثة مشتتات موثّقة أو أكثر ⇒ الجزء يُعرض اختياراً (وضع التحدي المؤقَّت — قرار ٦١)؛ أقل ⇒ إجابة حرة (وضع التدريب).
 - القوالب المسطّحة تُشغَّل أولاً ⇒ معرّفات `20001..` ثابتة؛ ثم parts. **لا تزحزح للمراجعة الورقية.**
-- **الأصل لا يشملها:** `--asset` يستثني `parts-v1` (يُبقى `app/assets/content/items.json` = ٥٤٩ بنداً) حتى تُنفَّذ F-GEN3؛ بعدها `--asset --parts-asset`.
+- **الأصل يشحنها الآن (F-GEN3 منفَّذ):** `python3 tools/gen_items.py --asset --parts-asset` ⇒ `app/assets/content/items.json` = **٥٦١ بنداً** (٥٤٩ مسطّحاً + ١٢ أجزاء). وبلا الرافعة يعود الأصل إلى ٥٤٩ — **رجوع آمن بكلمة واحدة** إن تعطّل مسار السلّم، والبنود كلها `approved:false` فلا يراها طالب.
+- **`kind` التزام آلي:** كل سطر في `rubric[]` يحمل `kind` بأحد أربعة (relation · substitution · result · unit) — بها يجمع التطبيق أسطر الجزء ويصحّحها (لا يُستنتج النوع من نصّ الخطوة). يفحصه `tools/tests/test_gen_items.py`.
+- **التصحيح في التطبيق:** `app/lib/core/grading/parts_grading.dart` (`gradeParts`) — العلاقة بمفاتيحها وتُصفَر بـ`antiKeys`؛ التعويض بعدّ أرقام `expect` (بعضها ⇒ نصف)؛ النتيجة بـ±٢٪ مع قبول `followThrough` (متابعة الخطأ)؛ الوحدة لا تُمنح إلا لنتيجة صحيحة. العرض سطرًا سطرًا في `item_session_screen`.
 - التقرير يطبع عدد السلّمات غير المتسقة مع الوزن في القوالب القديمة (`سلّم غير متسق مع الوزن: 24`) — لم تُصلح يدوياً: المادة بيد الأستاذ.
 - كل بند `approved: false`؛ حقول `optionRules/optionValues/solutionSteps` تشرح كل مشتت بقاعدته الموثّقة.
 - القوالب التي تحتاج شكلاً (`needs_figure`) لا تُولَّد بعد: `U1.L1.T20`, `U1.L2.T13`, `U1.L3.T15`.
@@ -35,7 +37,7 @@
 - الأصل: `app/assets/content/items.json` = نسخة `ALL.items.json` (المنهاج كاملاً، ١٧ فصلاً، كلها `approved:false`).
 - النموذج: `app/lib/core/content/generated_items.dart` — `GeneratedItemsPack.visible(reviewMode:)`:
   الطالب يرى **المعتمد فقط** (قرار ٢٤)، والأستاذ في وضع المراجعة يرى الكل.
-- الشاشة: `app/lib/features/training/item_session_screen.dart` (المدخل: التدريب ← «البنود المولّدة من المنهاج»):
+- الشاشة: `app/lib/features/training/item_session_screen.dart` (المدخل: التدريب ← «البنود المولّدة من المنهاج») — **وبنود الأجزاء تُصحَّح في `app/lib/core/grading/parts_grading.dart`** (`gradeParts`) وتُعرض في `_PartsBody` بطاقةً لكل جزء مع «سلّم التصحيح» سطراً سطراً (F-GEN3 · قرار ٦٩):
   اختياري ببطاقات ملوّنة + سبب كل مشتت · رقمي (قيمة + وحدة، ±٢٪ والوحدة درجة مستقلة) ·
   علّل (نص حر بمفاتيح مطبَّعة) · برهان (ترتيب الخطوات بالنقر + إعلان «بلا إشارة»/«بلا φ» ⇒ −٤/−١).
 - بندا `problem` بلا مفتاح رقمي (زاوية/رمزي: 20259، 20267) يُعرضان كخيارات — لا تخمين في التصحيح.

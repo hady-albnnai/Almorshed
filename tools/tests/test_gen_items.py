@@ -261,6 +261,10 @@ def test_parts_weights_and_rubric_are_coherent(all_pool):
         assert sum(r["points"] for r in it["rubric"]) == it["weight"]       # السلّم لا يزيف الوزن
         for p in it["parts"]:
             assert sum(r["points"] for r in p["rubric"]) == p["weight"]
+            # كل سطر مصحَّح آلياً must carry a machine kind (F-GEN3)
+            for r in p["rubric"]:
+                assert r["kind"] in ("relation", "substitution", "result", "unit"), r
+            assert {r["kind"] for r in p["rubric"]} & {"relation", "result"}
             assert p["prompt"] or p["options"]                              # لا جزء بلا مطلوب
             a = p["answer"]
             assert a["value"] is not None or p["options"]                   # لا جزء لا يُصحَّح
@@ -374,17 +378,35 @@ def test_verify_rejects_tampered_parts(all_pool):
     assert any("مسطّح" in e for e in gi.verify_parts(bad3, gen.rules)), gi.verify_parts(bad3, gen.rules)
 
 
-def test_asset_excludes_parts_until_rubric_grading_lands(tmp_path, monkeypatch, capsys):
+def test_parts_reach_the_asset_only_with_the_parts_asset_flag(tmp_path):
     orig = (gi.OUT_DIR, gi.ITEMS_ASSET)
     gi.OUT_DIR, gi.ITEMS_ASSET = tmp_path, tmp_path / "items.json"
     try:
         gi.main(["--quiet", "--asset", "--seed", "2026", "--per-template", "1", "--n", "10"])
         shipped = json.loads((tmp_path / "items.json").read_text(encoding="utf-8"))
         assert shipped["meta"]["partsExcluded"] is True
+        assert shipped["meta"]["partsShipped"] == 0
         assert all(i.get("grading") != gi.GRADING_PARTS for i in shipped["items"])
         assert shipped["meta"]["partsPool"] > 0                       # مذكور في الوصف وإن لم يُشحن
         gi.main(["--quiet", "--asset", "--parts-asset", "--seed", "2026", "--per-template", "1", "--n", "10"])
         shipped2 = json.loads((tmp_path / "items.json").read_text(encoding="utf-8"))
         assert any(i.get("grading") == gi.GRADING_PARTS for i in shipped2["items"])
+        assert shipped2["meta"]["partsExcluded"] is False
+        assert shipped2["meta"]["partsShipped"] > 0
     finally:
         gi.OUT_DIR, gi.ITEMS_ASSET = orig
+
+
+def test_shipped_asset_carries_parts_for_rubric_grading():
+    """F-GEN3 نفّذ بوّابته: الأصل المشحون للتطبيق يحمل بنود الأجزاء، وسلّم
+    التطبيق يقرأها — والباقي ما زال غير معتمد (قرار ٢٤)."""
+    asset = (gi.ROOT / "app" / "assets" / "content" / "items.json")
+    d = json.loads(asset.read_text(encoding="utf-8"))
+    parts = [i for i in d["items"] if i.get("grading") == gi.GRADING_PARTS]
+    assert parts, "الأصل المشحون بلا بنود أجزاء — أعِد: python3 tools/gen_items.py --asset --parts-asset"
+    assert d["meta"]["partsExcluded"] is False
+    assert d["meta"]["partsShipped"] == len(parts)                       # الوصف لا يكذب على المراجعة
+    assert sum(1 for i in d["items"] if i.get("approved")) == 0
+    for it in parts:
+        assert sum(p["weight"] for p in it["parts"]) == it["weight"]
+        assert not it["options"] and it["correctIndex"] == -1

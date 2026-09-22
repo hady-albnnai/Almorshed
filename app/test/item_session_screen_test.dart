@@ -10,6 +10,8 @@ import 'package:fizya_clash/core/training/training_store.dart';
 import 'package:fizya_clash/features/training/item_session_screen.dart';
 import 'package:fizya_clash/features/training/training_screen.dart';
 
+import 'fixtures/parts_item.dart';
+
 void main() {
   late GeneratedItemsPack pack;
 
@@ -47,10 +49,11 @@ void main() {
       final real = GeneratedItemsPack.fromJsonString(raw);
       expect(real.items.length, greaterThanOrEqualTo(500));
       expect(real.visible(reviewMode: false), isEmpty); // قرار ٢٤
-      // غير البرهان: أربعة خيارات دائماً؛ البرهان يحمل خطواته لا خيارات
+      // غير البرهان وغير الأجزاء: أربعة خيارات دائماً؛ البرهان يحمل خطواته لا
+      // خيارات، وبنود الأجزاء تحمل مفاتيحها في أجزائها لا في مفتاح مسطّح.
       expect(
         real.items
-            .where((i) => i.kind != ItemKind.proof)
+            .where((i) => i.kind != ItemKind.proof && !i.isParts)
             .every((i) => i.options.length == 4),
         isTrue,
       );
@@ -68,6 +71,111 @@ void main() {
         modes,
         containsAll([ItemKind.mcq, ItemKind.numeric, ItemKind.why]),
       );
+    });
+
+    test('الأصل الحقيقي: بنود الأجزاء (F-GEN3) مكتملة البنية ومعلَّقة الاعتماد',
+        () {
+      final raw = File('${Directory.current.path}/assets/content/items.json')
+          .readAsStringSync();
+      final real = GeneratedItemsPack.fromJsonString(raw);
+      final parts = real.items.where((i) => i.isParts).toList();
+      expect(parts.length, greaterThanOrEqualTo(2));
+      expect(real.visible(reviewMode: false), isEmpty); // لم يعتمد منها شيء
+      for (final i in parts) {
+        expect(i.options, isEmpty);
+        expect(i.correctIndex, -1);
+        expect(i.parts.length, greaterThanOrEqualTo(2));
+        expect(i.weight, i.partsWeight); // وزن البند = مجموع أوزان أجزائه
+        for (final q in i.parts) {
+          final sum = q.rubric.fold<double>(0, (s, e) => s + e.points);
+          expect(q.weight, sum); // وزن الجزء = مجموع أسطره
+          for (final e in q.rubric) {
+            expect(
+              e.kind,
+              anyOf('relation', 'substitution', 'result', 'unit'),
+              reason: e.step,
+            );
+            expect(e.points, greaterThan(0));
+          }
+          if (q.hasOptions) expect(q.options, hasLength(4));
+        }
+      }
+    });
+
+    test('بند أجزاء: لا مفتاح مسطّح له ونمطه الرقمي للمرشّحات فقط', () {
+      final i = GeneratedItem.fromJson(partsSampleItem());
+      expect(i.isParts, isTrue);
+      expect(answerModeOf(i), ItemKind.numeric);
+      expect(i.numericAnswer, isNull);
+    });
+  });
+
+  group('المسألة بأجزاء (F-GEN3)', () {
+    GeneratedItem partsItem() => GeneratedItem.fromJson(partsSampleItem());
+
+    testWidgets('حقول الأسطر الثلاثة لكل جزء + شارة «مسألة بأجزاء»',
+        (tester) async {
+      await pump(tester, ItemSessionScreen(items: [partsItem()]));
+      expect(find.textContaining('مسألة بأجزاء'), findsOneWidget);
+      for (final k in ['rel', 'sub', 'res']) {
+        for (final n in [1, 2]) {
+          expect(find.byKey(Key('parts-$k-$n')), findsOneWidget);
+        }
+      }
+      expect(find.text('تسليم المسألة'), findsOneWidget);
+      // خيارات الجزء الأول موجودة (وضع القرار ٦١ المؤقَّت) وبلا كشف للإجابة
+      expect(find.text('100 Ω'), findsOneWidget);
+    });
+
+    testWidgets('إجابة كاملة على جزءين ⇒ ٢٠/٢٠ وبطاقة سطرًا سطرًا',
+        (tester) async {
+      await pump(tester, ItemSessionScreen(items: [partsItem()]));
+      await tester.enterText(find.byKey(const Key('parts-rel-1')), fullRelation1);
+      await tester.enterText(
+          find.byKey(const Key('parts-sub-1')), fullSubst1);
+      await tester.enterText(find.byKey(const Key('parts-res-1')), fullResult1);
+      await tester.enterText(find.byKey(const Key('parts-rel-2')), fullRelation2);
+      await tester.enterText(
+          find.byKey(const Key('parts-sub-2')), fullSubst2);
+      await tester.enterText(find.byKey(const Key('parts-res-2')), fullResult2);
+      await tester.ensureVisible(find.byKey(const Key('parts-submit')));
+      await tester.tap(find.byKey(const Key('parts-submit')));
+      await tester.pumpAndSettle();
+      expect(find.text('٢٠ / ٢٠'), findsOneWidget);
+      expect(find.text('سلّم التصحيح'), findsOneWidget);
+      expect(find.textContaining('الجزء ١'), findsWidgets);
+      expect(find.textContaining('لم تُكتب'), findsNothing);
+      // الحقول تُقفل بعد التسليم ويُبدَّل زرّ التسليم
+      expect(find.text('تم التصحيح'), findsOneWidget);
+      expect(find.text('متابعة للخطأ'), findsNothing);
+      expect(find.textContaining('ملخّص الأجزاء'), findsOneWidget);
+    });
+
+    testWidgets('متابعة الخطأ: خيار خاطئ في ١ ونتيجة مبنية عليه في ٢ ⇒ FT',
+        (tester) async {
+      await pump(tester, ItemSessionScreen(items: [partsItem()]));
+      await tester.tap(find.text('140')); // الجزء ١ — مشتت الجمع الجبري
+      await tester.pumpAndSettle();
+      await tester.enterText(find.byKey(const Key('parts-res-2')), '0.428571');
+      await tester.ensureVisible(find.byKey(const Key('parts-submit')));
+      await tester.tap(find.byKey(const Key('parts-submit')));
+      await tester.pumpAndSettle();
+      expect(find.text('٢ / ٢٠'), findsOneWidget);
+      expect(find.textContaining('متابعة للخطأ (FT)'), findsWidgets);
+      expect(find.text('FT'), findsOneWidget);
+    });
+
+    testWidgets('خيار خاطئ في جزء بخيارات ⇒ الصحيح أخضر والمختار أحمر',
+        (tester) async {
+      await pump(tester, ItemSessionScreen(items: [partsItem()]));
+      await tester.tap(find.text('140'));
+      await tester.pumpAndSettle();
+      await tester.ensureVisible(find.byKey(const Key('parts-submit')));
+      await tester.tap(find.byKey(const Key('parts-submit')));
+      await tester.pumpAndSettle();
+      expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
+      expect(find.byIcon(Icons.cancel_outlined), findsOneWidget);
+      expect(find.text('٠ / ٢٠'), findsOneWidget);
     });
   });
 

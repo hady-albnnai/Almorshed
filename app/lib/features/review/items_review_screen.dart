@@ -245,7 +245,8 @@ class _ItemRow extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         subtitle: Text(
-          '${ArabicNumber.from(item.id)} · ${kindTitleOf(answerModeOf(item))}'
+          '${ArabicNumber.from(item.id)} · '
+          '${item.isParts ? 'مسألة بأجزاء' : kindTitleOf(answerModeOf(item))}'
           ' · ${chapterTitleOf(item.chapter)}'
           '${n == null ? '' : ' · ${n.verdict.ar}'}'
           '${n != null && n.text.isNotEmpty ? ' — ${n.text}' : ''}',
