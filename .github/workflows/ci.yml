@@ -82,11 +82,23 @@ jobs:
           import os, pathlib, re
           out = pathlib.Path('test.out').read_text(encoding='utf-8', errors='replace')
           out = re.sub(r'\x1b\[[0-9;]*m', '', out)
-          fails = re.findall(r'^\s*\d+:\d+\s+\+\d+\s+-\d+:\s+(.+?)\s*\[E\]', out, re.M)
-          for name in dict.fromkeys(fails):
-              print(f'::error title=اختبار ساقط::{name}')
-          if os.environ.get('TEST_STATUS') != '0':
-              tail = '\n'.join(out.splitlines()[-40:])
+          lines = out.splitlines()
+          # كل ظهور لعلامة [E]: سطرا السياق + ٣٥ سطرا بعدها (اسم الاختبار + Expected/Actual)
+          seen = 0
+          for i, ln in enumerate(lines):
+              if '[E]' in ln:
+                  seen += 1
+                  block = '\n'.join(lines[max(0, i - 1): min(len(lines), i + 35)])
+                  print(f'::error title=فشل الاختبار #{seen}::{block}')
+          # احتياط: أي «Expected:» تظهر خارج كتل [E]
+          if not seen:
+              for i, ln in enumerate(lines):
+                  if 'Expected:' in ln or 'EXCEPTION CAUGHT' in ln:
+                      block = '\n'.join(lines[max(0, i - 5): min(len(lines), i + 25)])
+                      print(f'::error title=تفاصيل فشل (احتياط)::{block}')
+                      break
+          if os.environ.get('TEST_STATUS') != '0' and not seen:
+              tail = '\n'.join(lines[-40:])
               print(f'::error title=flutter test (الذيل الخام)::{tail}')
           PY
           exit $status
