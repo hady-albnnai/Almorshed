@@ -688,8 +688,19 @@ Settings → API → **Exposed schemas**: المطلوب `public` (وربما `g
 { "action": "stats" }
 // → { ok, stats: { issued, activated, revoked, activeLicenses },
 //     subscribers: [ { code, status, distributor, release_id,
-//                      created_at, activated_at, devices_used } ] }
+//                      created_at, activated_at, devices_used,
+//                      customer, review } ] }        // customer/review: 0013 (POS)
+// نقطة البيع (2026-09-21 — ترحيل 0013): generate يقبل "customer" (اسم الطالب ≤ ٨٠
+// محرفاً، اختياري) ويُخزَّن على الكود ويُعاد في stats؛ وفعل جديد لتسمية كود قائم:
+{ "action": "note", "code": "K7M2P-9QW4X-ABCDE", "customer": "أحمد خالد — 09xx" }
+// → { ok, code }   (CODE_FORMAT 422 · CODE_NOT_FOUND 404) — اسم فارغ يمسح الاسم
 ```
+
+### ٩.٣-ب نقطة البيع داخل التطبيق (F6.1-POS · 2026-09-21)
+لوحة الإدارة المخفية صارت POS فعلياً: زر «بيع اشتراك» ⇒ اسم الطالب ⇒ `generate`
+بـ`count:1, customer` ⇒ بطاقة تسليم (نسخ رسالة جاهزة / واتساب `wa.me`) — ثم بحث
+حر بالكود (بلا شرطات) أو بالاسم، والنقر على صف يفتح `note` لتسمية بيع قديم.
+الاسم لا يغادر المكتب: `activation_codes` RLS سالبة، والتوكن لا يحمله.
 
 ### ٩.٤-ب الإلغاء الكامل (2026-09-14)
 `revoke` يسحب اشتراك المشترك فعلياً: `activation_codes.status='revoked'` **و**

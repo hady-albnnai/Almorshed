@@ -68,6 +68,9 @@ Deno.serve(async (req) => {
       const hard_deadline = String(body.hard_deadline ?? DEFAULT_HARD);
       // 0008: كود مراجعة للأستاذ — التوكن يحمل 'teacher' (قرار ٥٥)
       const review = body.review === true;
+      // 0013 (POS): اسم الزبون — اختياري، نص حر ≤ ٨٠ محرفاً
+      const customerRaw = String(body.customer ?? '').trim().slice(0, 80);
+      const customer = customerRaw.length > 0 ? customerRaw : null;
 
       const issued: string[] = [];
       for (let attempt = 0; attempt < count * 8 && issued.length < count; attempt++) {
@@ -81,6 +84,7 @@ Deno.serve(async (req) => {
             release_id,
             hard_deadline,
             review,
+            customer,
           });
         if (!error) issued.push(code);
         // عند تعارض نادر نعيد المحاولة — وإلا نكمل
@@ -95,9 +99,9 @@ Deno.serve(async (req) => {
         action: 'generate',
         codes: issued,
         distributor,
-        note: `release=${release_id}${review ? ' review' : ''}`,
+        note: `release=${release_id}${review ? ' review' : ''}${customer ? ` customer=${customer}` : ''}`,
       });
-      return json({ ok: true, count: issued.length, codes: issued.map(group5), review });
+      return json({ ok: true, count: issued.length, codes: issued.map(group5), review, customer });
     }
 
     // ── ٣) revoke ── (إلغاء كود أو اشتراك: الرخص كلها تُسحب أيضاً —
@@ -186,7 +190,7 @@ Deno.serve(async (req) => {
       ]);
       const { data: codes, error } = await admin
         .from('activation_codes')
-        .select('code,status,distributor,release_id,created_at,activated_at')
+        .select('code,status,distributor,release_id,created_at,activated_at,customer,review')
         .order('created_at', { ascending: false })
         .limit(500);
       if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
@@ -218,8 +222,26 @@ Deno.serve(async (req) => {
           created_at: c.created_at,
           activated_at: c.activated_at,
           devices_used: used.get(c.code) ?? 0,
+          customer: c.customer ?? null,
+          review: c.review === true,
         })),
       });
+    }
+
+    // ── ٦) note — تحديث اسم الزبون على كود قائم (POS: بيع سابق بلا اسم) ──
+    if (action === 'note') {
+      const code = normalizeCode(body.code);
+      if (!CODE_RE.test(code)) return json({ ok: false, error: 'CODE_FORMAT' }, 422);
+      const customerRaw = String(body.customer ?? '').trim().slice(0, 80);
+      const { data: rows, error } = await admin
+        .from('activation_codes')
+        .update({ customer: customerRaw.length > 0 ? customerRaw : null })
+        .eq('code', code)
+        .select('code');
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      if (!rows || rows.length === 0)
+        return json({ ok: false, error: 'CODE_NOT_FOUND' }, 404);
+      return json({ ok: true, code: group5(code) });
     }
 
     return json({ ok: false, error: 'BAD_ACTION' }, 422);

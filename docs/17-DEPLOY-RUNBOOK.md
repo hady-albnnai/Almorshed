@@ -27,6 +27,8 @@ supabase db push
 ### أ-٣) نشر الدالة
 ```bash
 supabase functions deploy office_codes --no-verify-jwt
+# F6.1-POS (2026-09-21): طبّق الترحيل 0013 أولاً (عمود customer) ثم أعد نشر office_codes
+# supabase db push   أو   SQL Editor ← supabase/migrations/0013_activation_customer.sql
 ```
 > `--no-verify-jwt` إلزامي: المكتب ليس «مستخدم تطبيق» — الحماية بترويسة `x-office-key`.
 

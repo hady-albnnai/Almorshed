@@ -9,6 +9,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/review/review_mode.dart';
 import '../../core/supabase/office_api.dart';
@@ -16,15 +17,19 @@ import '../../core/theme/app_colors.dart';
 import '../../core/util/arabic_number.dart';
 
 class AdminScreen extends StatefulWidget {
-  const AdminScreen({super.key});
+  const AdminScreen({super.key, this.api, this.vault});
+
+  /// حقن للاختبارات (بلا شبكة/خزنة) — null = الحقيقيان.
+  final OfficeApi? api;
+  final OfficeKeyVault? vault;
 
   @override
   State<AdminScreen> createState() => _AdminScreenState();
 }
 
 class _AdminScreenState extends State<AdminScreen> {
-  final OfficeApi _api = OfficeApi();
-  final OfficeKeyVault _vault = OfficeKeyVault();
+  late final OfficeApi _api = widget.api ?? OfficeApi();
+  late final OfficeKeyVault _vault = widget.vault ?? OfficeKeyVault();
 
   bool _loading = true;
   bool _unlocked = false;
@@ -45,6 +50,7 @@ class _AdminScreenState extends State<AdminScreen> {
   );
   List<Subscriber> _subs = const <Subscriber>[];
   String _filter = 'activated'; // activated | issued | revoked | all
+  String _query = ''; // بحث POS: كود أو اسم زبون
 
   @override
   void initState() {
@@ -152,6 +158,162 @@ class _AdminScreenState extends State<AdminScreen> {
     await _refresh();
   }
 
+  /// نقطة البيع (قرار ٣٤): بيع واحد وجهاً لوجه — اسم الزبون ⇒ كود واحد
+  /// يُولَّد لحظياً ⇒ بطاقة تسليم (نسخ / واتساب).
+  Future<void> _sell() async {
+    final customer = await _askCustomer();
+    if (customer == null || !mounted) return;
+    setState(() => _busy = true);
+    try {
+      final codes = await _api.generate(_key, count: 1, customer: customer);
+      if (!mounted) return;
+      await _showSale(codes.first, customer);
+    } on OfficeApiException catch (e) {
+      if (mounted) _toast('فشل البيع: ${e.message}');
+    } catch (_) {
+      if (mounted) _toast('تعذر الاتصال');
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+    await _refresh();
+  }
+
+  Future<String?> _askCustomer({String initial = ''}) async {
+    var value = initial;
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('بيع اشتراك 🧾'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'اسم الطالب (وهاتفه إن شئت) — يبقى عند المكتب فقط.',
+              ),
+              const SizedBox(height: 12),
+              TextFormField(
+                initialValue: initial,
+                autofocus: true,
+                maxLength: 80,
+                textInputAction: TextInputAction.done,
+                onChanged: (v) => value = v,
+                decoration: const InputDecoration(
+                  hintText: 'مثال: أحمد خالد — 09xx',
+                  border: OutlineInputBorder(),
+                ),
+                onFieldSubmitted: (_) => Navigator.of(ctx).pop(true),
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('إلغاء'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('إصدار الكود'),
+          ),
+        ],
+      ),
+    );
+    if (ok != true) return null;
+    final v = value.trim();
+    if (v.isEmpty) {
+      _toast('اكتب اسم الطالب أولاً');
+      return null;
+    }
+    return v;
+  }
+
+  Future<void> _showSale(String code, String customer) async {
+    if (!mounted) return;
+    final msg = AdminSaleMessage.build(code, customer);
+    await showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('تم الإصدار ✅'),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(customer, textAlign: TextAlign.center),
+              const SizedBox(height: 8),
+              SelectableText(
+                code,
+                textAlign: TextAlign.center,
+                textDirection: TextDirection.ltr,
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'الكود صالح لجهازين. سلّمه للطالب الآن.',
+                textAlign: TextAlign.center,
+                style: Theme.of(ctx).textTheme.bodySmall,
+              ),
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text('تم'),
+          ),
+          OutlinedButton.icon(
+            onPressed: () async {
+              await Clipboard.setData(ClipboardData(text: msg));
+              if (ctx.mounted) Navigator.of(ctx).pop();
+              _toast('نُسخت رسالة التسليم');
+            },
+            icon: const Icon(Icons.copy),
+            label: const Text('نسخ الرسالة'),
+          ),
+          FilledButton.icon(
+            onPressed: () async {
+              final uri = Uri.parse(
+                'https://wa.me/?text=${Uri.encodeComponent(msg)}',
+              );
+              final ok = await launchUrl(
+                uri,
+                mode: LaunchMode.externalApplication,
+              );
+              if (!ok) {
+                await Clipboard.setData(ClipboardData(text: msg));
+                _toast('واتساب غير متاح — نُسخت الرسالة');
+              }
+              if (ctx.mounted) Navigator.of(ctx).pop();
+            },
+            icon: const Icon(Icons.send),
+            label: const Text('واتساب'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// تعديل اسم الزبون على كود قائم (بيع قديم بلا اسم).
+  Future<void> _editCustomer(Subscriber s) async {
+    final name = await _askCustomer(initial: s.customer ?? '');
+    if (name == null || !mounted) return;
+    setState(() => _busy = true);
+    try {
+      await _api.note(_key, s.code, name);
+      if (mounted) _toast('حُفظ الاسم');
+    } on OfficeApiException catch (e) {
+      if (mounted) _toast('فشل الحفظ: ${e.message}');
+    } catch (_) {
+      if (mounted) _toast('تعذر الاتصال');
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+    await _refresh();
+  }
+
   Future<void> _generate() async {
     final count = await _askCount();
     if (count == null || !mounted) return;
@@ -232,22 +394,22 @@ class _AdminScreenState extends State<AdminScreen> {
   }
 
   Future<bool?> _confirm(String title, String body) => showDialog<bool>(
-    context: context,
-    builder: (ctx) => AlertDialog(
-      title: Text(title),
-      content: Text(body),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.of(ctx).pop(false),
-          child: const Text('تراجع'),
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(title),
+          content: Text(body),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(ctx).pop(false),
+              child: const Text('تراجع'),
+            ),
+            FilledButton(
+              onPressed: () => Navigator.of(ctx).pop(true),
+              child: const Text('تأكيد الإلغاء'),
+            ),
+          ],
         ),
-        FilledButton(
-          onPressed: () => Navigator.of(ctx).pop(true),
-          child: const Text('تأكيد الإلغاء'),
-        ),
-      ],
-    ),
-  );
+      );
 
   Future<void> _showCodes(List<String> codes) async {
     if (!mounted) return;
@@ -360,9 +522,10 @@ class _AdminScreenState extends State<AdminScreen> {
   // ═════════════ لوحة الإدارة ═════════════
   Widget _buildDashboard() {
     final txt = Theme.of(context).textTheme;
-    final shown = _filter == 'all'
-        ? _subs
-        : _subs.where((s) => s.status == _filter).toList();
+    final shown = _subs
+        .where((s) => _filter == 'all' || s.status == _filter)
+        .where((s) => s.matches(_query))
+        .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -452,19 +615,52 @@ class _AdminScreenState extends State<AdminScreen> {
             ),
           ),
           const SizedBox(height: 10),
-          // ── توليد ──
+          // ── نقطة البيع (قرار ٣٤): بيع واحد باسم الزبون ──
           FilledButton.icon(
-            onPressed: _busy ? null : _generate,
-            icon: const Icon(Icons.qr_code),
-            label: const Text('توليد أكواد للبيع 🎫'),
+            key: const Key('pos_sell'),
+            onPressed: _busy ? null : _sell,
+            icon: const Icon(Icons.point_of_sale),
+            label: const Text('بيع اشتراك — كود باسم الطالب 🧾'),
           ),
           const SizedBox(height: 8),
-          OutlinedButton.icon(
-            onPressed: _busy ? null : _generateReview,
-            icon: const Icon(Icons.rate_review_outlined),
-            label: const Text('كود مراجعة للأستاذ 📝'),
+          Row(
+            children: [
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: _busy ? null : _generate,
+                  icon: const Icon(Icons.qr_code),
+                  label: const Text('دفعة أكواد 🎫'),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                child: OutlinedButton.icon(
+                  onPressed: _busy ? null : _generateReview,
+                  icon: const Icon(Icons.rate_review_outlined),
+                  label: const Text('كود مراجعة 📝'),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 14),
+          // ── بحث: كود أو اسم زبون ──
+          TextField(
+            key: const Key('pos_search'),
+            onChanged: (v) => setState(() => _query = v),
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.search),
+              hintText: 'ابحث بالكود أو باسم الطالب',
+              border: const OutlineInputBorder(),
+              isDense: true,
+              suffixIcon: _query.isEmpty
+                  ? null
+                  : IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () => setState(() => _query = ''),
+                    ),
+            ),
+          ),
+          const SizedBox(height: 8),
           // ── فلترة ──
           Wrap(
             spacing: 8,
@@ -498,6 +694,7 @@ class _AdminScreenState extends State<AdminScreen> {
               _SubscriberTile(
                 subscriber: s,
                 onRevoke: s.status == 'revoked' ? null : () => _revoke(s),
+                onEditCustomer: s.review ? null : () => _editCustomer(s),
               ),
         ],
       ),
@@ -514,6 +711,17 @@ class _AdminScreenState extends State<AdminScreen> {
   Color _danger(BuildContext c) => Theme.of(c).brightness == Brightness.dark
       ? AppColors.dangerDark
       : AppColors.dangerLight;
+}
+
+/// رسالة التسليم الجاهزة للطالب (نسخ/واتساب) — نص ثابت قابل للاختبار.
+class AdminSaleMessage {
+  const AdminSaleMessage._();
+
+  static String build(String code, String customer) => 'أهلاً $customer 👋\n'
+      'كود تفعيل «فيزيا كلاش»:\n'
+      '$code\n'
+      'افتح التطبيق ← أدخل الكود مرة واحدة ← يعمل على جهازين كحد أقصى.\n'
+      'للدعم: مكتب لورانيم.';
 }
 
 class _StatChip extends StatelessWidget {
@@ -534,7 +742,9 @@ class _StatChip extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: Theme.of(context).textTheme.bodyMedium
+        style: Theme.of(context)
+            .textTheme
+            .bodyMedium
             ?.copyWith(color: color ?? cs.onSurface),
       ),
     );
@@ -542,10 +752,15 @@ class _StatChip extends StatelessWidget {
 }
 
 class _SubscriberTile extends StatelessWidget {
-  const _SubscriberTile({required this.subscriber, this.onRevoke});
+  const _SubscriberTile({
+    required this.subscriber,
+    this.onRevoke,
+    this.onEditCustomer,
+  });
 
   final Subscriber subscriber;
   final VoidCallback? onRevoke;
+  final VoidCallback? onEditCustomer;
 
   @override
   Widget build(BuildContext context) {
@@ -554,16 +769,20 @@ class _SubscriberTile extends StatelessWidget {
     final (label, color) = switch (subscriber.status) {
       'activated' => ('مشترك', dark ? AppColors.goldDark : AppColors.goldLight),
       'revoked' => (
-        'ملغى',
-        dark ? AppColors.dangerDark : AppColors.dangerLight,
-      ),
+          'ملغى',
+          dark ? AppColors.dangerDark : AppColors.dangerLight,
+        ),
       _ => ('مصدر', null),
     };
     final date = subscriber.activatedAt ?? subscriber.createdAt ?? '';
     final shortDate = date.length >= 10 ? date.substring(0, 10) : '';
 
+    final who = subscriber.review
+        ? 'مراجعة — الأستاذ'
+        : (subscriber.customer ?? 'بلا اسم — اضغط لإضافته');
     return Card(
       child: ListTile(
+        onTap: onEditCustomer,
         title: Text(
           subscriber.code,
           textDirection: TextDirection.ltr,
@@ -571,6 +790,7 @@ class _SubscriberTile extends StatelessWidget {
         ),
         subtitle: Text(
           [
+            who,
             'أجهزة ${ArabicNumber.from(subscriber.devicesUsed)}/٢',
             if (shortDate.isNotEmpty) 'فعّل $shortDate',
             subscriber.distributor,

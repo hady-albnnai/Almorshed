@@ -34,6 +34,8 @@ class Subscriber {
     required this.devicesUsed,
     this.createdAt,
     this.activatedAt,
+    this.customer,
+    this.review = false,
   });
 
   final String code; // مشكّل ٥-٥-٥
@@ -44,17 +46,37 @@ class Subscriber {
   final String? createdAt;
   final String? activatedAt;
 
+  /// اسم الزبون كما كتبه المكتب عند البيع (0013 — POS). null = بلا اسم.
+  final String? customer;
+
+  /// كود مراجعة للأستاذ (قرار ٥٥) — لا يُحسب زبوناً.
+  final bool review;
+
   bool get active => status == 'activated';
 
+  /// بحث حر بالكود (بلا شرطات، بأي حالة) أو باسم الزبون.
+  bool matches(String query) {
+    final q = query.trim();
+    if (q.isEmpty) return true;
+    final qc = q.toUpperCase().replaceAll(RegExp('[^A-Z0-9]'), '');
+    final cc = code.toUpperCase().replaceAll(RegExp('[^A-Z0-9]'), '');
+    if (qc.isNotEmpty && cc.contains(qc)) return true;
+    return (customer ?? '').contains(q);
+  }
+
   static Subscriber fromJson(Map<String, dynamic> json) => Subscriber(
-    code: json['code'] as String? ?? '',
-    status: json['status'] as String? ?? '',
-    distributor: json['distributor'] as String? ?? '',
-    releaseId: json['release_id'] as String? ?? '',
-    devicesUsed: (json['devices_used'] as num?)?.toInt() ?? 0,
-    createdAt: json['created_at'] as String?,
-    activatedAt: json['activated_at'] as String?,
-  );
+        code: json['code'] as String? ?? '',
+        status: json['status'] as String? ?? '',
+        distributor: json['distributor'] as String? ?? '',
+        releaseId: json['release_id'] as String? ?? '',
+        devicesUsed: (json['devices_used'] as num?)?.toInt() ?? 0,
+        createdAt: json['created_at'] as String?,
+        activatedAt: json['activated_at'] as String?,
+        customer: (json['customer'] as String?)?.trim().isEmpty ?? true
+            ? null
+            : (json['customer'] as String).trim(),
+        review: json['review'] == true,
+      );
 }
 
 /// عدادات المكتب — من فعل stats.
@@ -72,17 +94,17 @@ class OfficeStats {
   final int activeLicenses;
 
   static OfficeStats fromJson(Map<String, dynamic> json) => OfficeStats(
-    issued: (json['issued'] as num?)?.toInt() ?? 0,
-    activated: (json['activated'] as num?)?.toInt() ?? 0,
-    revoked: (json['revoked'] as num?)?.toInt() ?? 0,
-    activeLicenses: (json['activeLicenses'] as num?)?.toInt() ?? 0,
-  );
+        issued: (json['issued'] as num?)?.toInt() ?? 0,
+        activated: (json['activated'] as num?)?.toInt() ?? 0,
+        revoked: (json['revoked'] as num?)?.toInt() ?? 0,
+        activeLicenses: (json['activeLicenses'] as num?)?.toInt() ?? 0,
+      );
 }
 
 /// خزنة مفتاح المكتب — flutter_secure_storage على جهاز المالك حصراً.
 class OfficeKeyVault {
   OfficeKeyVault({FlutterSecureStorage? storage})
-    : _storage = storage ?? const FlutterSecureStorage();
+      : _storage = storage ?? const FlutterSecureStorage();
 
   final FlutterSecureStorage _storage;
 
@@ -160,12 +182,18 @@ class OfficeApi {
     String key, {
     int count = 1,
     bool review = false,
+    String? customer,
   }) async {
-    final json = await _call('generate', <String, dynamic>{
-      'count': count,
-      if (review) 'review': true,
-      if (review) 'distributor': 'مراجعة — الأستاذ',
-    }, key);
+    final json = await _call(
+        'generate',
+        <String, dynamic>{
+          'count': count,
+          if (review) 'review': true,
+          if (review) 'distributor': 'مراجعة — الأستاذ',
+          if (customer != null && customer.trim().isNotEmpty)
+            'customer': customer.trim(),
+        },
+        key);
     return [
       for (final e in (json['codes'] as List<dynamic>?) ?? const [])
         e.toString(),
@@ -175,5 +203,16 @@ class OfficeApi {
   /// إلغاء كود/اشتراك.
   Future<void> revoke(String key, String code) async {
     await _call('revoke', <String, dynamic>{'code': code}, key);
+  }
+
+  /// تحديث اسم الزبون على كود قائم (POS — فعل note).
+  Future<void> note(String key, String code, String customer) async {
+    await _call(
+        'note',
+        <String, dynamic>{
+          'code': code,
+          'customer': customer.trim(),
+        },
+        key);
   }
 }
