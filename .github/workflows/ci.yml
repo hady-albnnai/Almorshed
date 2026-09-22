@@ -82,6 +82,8 @@ jobs:
           import os, pathlib, re
           out = pathlib.Path('test.out').read_text(encoding='utf-8', errors='replace')
           out = re.sub(r'\x1b\[[0-9;]*m', '', out)
+          def esc(t):
+              return str(t).replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
           # توحيد CR/LF (المُنقِّش المضغوط يستعمل \r) ثم فكّ السطور
           out = out.replace('\r\n', '\n').replace('\r', '\n')
           lines = [l for l in out.split('\n') if l != '']
@@ -91,8 +93,8 @@ jobs:
           hit = False
           for i, ln in enumerate(lines):
               if (' -' in ln and ln.rstrip().endswith('[E]')) or 'Expected:' in ln or 'EXCEPTION CAUGHT' in ln or 'Some tests failed' in ln:
-                  block = '\n'.join(lines[max(0, i - 2): min(len(lines), i + 30)])
-                  print(f'::error title=كشف فشل::{block}')
+                  block = '\n'.join(lines[i: min(len(lines), i + 30)])
+                  print(f'::error title=كشف فشل::{esc(block)}')
                   hit = True
           if not hit:
               print(f'::notice title=آخر 25 سطراً بعد التوحيد::' + '\n'.join(lines[-25:]))
@@ -102,17 +104,17 @@ jobs:
               if '[E]' in ln:
                   seen += 1
                   block = '\n'.join(lines[max(0, i - 1): min(len(lines), i + 35)])
-                  print(f'::error title=فشل الاختبار #{seen}::{block}')
+                  print(f'::error title=فشل الاختبار #{seen}::{esc(block)}')
           # احتياط: أي «Expected:» تظهر خارج كتل [E]
           if not seen:
               for i, ln in enumerate(lines):
                   if 'Expected:' in ln or 'EXCEPTION CAUGHT' in ln:
                       block = '\n'.join(lines[max(0, i - 5): min(len(lines), i + 25)])
-                      print(f'::error title=تفاصيل فشل (احتياط)::{block}')
+                      print(f'::error title=تفاصيل فشل (احتياط)::{esc(block)}')
                       break
           if os.environ.get('TEST_STATUS') != '0' and not seen:
               tail = '\n'.join(lines[-40:])
-              print(f'::error title=flutter test (الذيل الخام)::{tail}')
+              print(f'::error title=flutter test (الذيل الخام)::{esc(tail)}')
           PY
           exit $status
 
