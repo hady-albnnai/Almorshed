@@ -18,7 +18,7 @@ class AboutScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final txt = theme.textTheme;
     final isDark = theme.brightness == Brightness.dark;
-    final gold = const Color(0xFFfbbf24);
+    const gold = Color(0xFFfbbf24);
     final muted = isDark ? Colors.white70 : Colors.black54;
     return Scaffold(
       appBar: AppBar(title: const Text('عن التطبيق')),
