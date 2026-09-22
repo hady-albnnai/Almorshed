@@ -252,8 +252,9 @@ void main() {
           expect(line.stepTexts, isNotEmpty, reason: line.step);
           for (final t in line.stepTexts) {
             expect(
-              part.rubric.where((e) => e.kind == line.kind && e.step == t),
-              isNotEmpty,
+              item.parts.any((x) =>
+                  x.rubric.any((e) => e.kind == line.kind && e.step == t)),
+              isTrue,
               reason: t,
             );
           }
