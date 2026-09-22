@@ -1,0 +1,134 @@
+/// F6.3 — شهادة الموسم الموقّعة («بطل دوري فيزيا كلاش» — docs/13 §٦ · docs/14 F6.3).
+///
+/// الشهادة تُصدر نهاية الموسم المُغلق حصراً وتُوقَّع Ed25519 على **حمولة
+/// canonical** بترتيب حقول ثابت (مطابق حرفيًّا لبقية `cert_issue`)، والتحقق
+/// محلي بالمفتاح العام فقط — بلا سرّ بالتطبيق (نفس منطق الترخيص F3.6).
+///
+/// الطبقتان: 🥇 سنتا مشاركة (`gold_two`) · 🥇/🥈 سنة مشاركة واحدة (`silver_one`)
+/// — «سنتان/سنة» كما في سطر F6.3 حرفياً: عدد المواسم التي ظهر فيها الجهاز
+/// في `weekly_totals` عند إصدار شهادة موسم مُغلق.
+///
+/// ⚠️ **تنويه المرونة (قرار ٤٠):** النصّ الحرفيّ غير متوفر في المستودع —
+/// [kFlexibilityNotice40] تبقى فارغة حتى يُسلّمها المالك؛ ولا تُخمَّن أبداً
+/// (قاعدة عدم التخمين). والشهادة لا تُطبع تنويهاً ما لم يكن حرفيًّا.
+library;
+
+import 'dart:convert';
+
+import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
+
+/// عنوان الشهادة — حرفي من docs/13 §٦.
+const String certTitle = 'بطل دوري فيزيا كلاش';
+
+/// نصّ قرار ٤٠ (تنويه المرونة) **حرفيًّا** — بانتظار المالك. فارغ ⇒ لا يُعرض
+/// أي تنويه (لا نصّ بديل ولا صياغة من عندنا).
+const String kFlexibilityNotice40 = '';
+
+/// طبقة الشهادة.
+enum CertTier {
+  /// 🥇 مشاركتان (سنتان).
+  goldTwoYears('gold_two', '🥇 سنتان'),
+
+  /// 🥈 مشاركة واحدة (سنة).
+  silverOneYear('silver_one', '🥈 سنة');
+
+  const CertTier(this.machine, this.label);
+
+  /// القيمة في القاعدة وفي الحمولة (`gold_two`/`silver_one`).
+  final String machine;
+
+  /// النصّ المعروض على الشهادة.
+  final String label;
+
+  static CertTier fromMachine(String raw) => CertTier.values.firstWhere(
+        (t) => t.machine == raw,
+        orElse: () => CertTier.silverOneYear,
+      );
+}
+
+/// شهادة موقّعة قابلة للتحقق محليًّا.
+class Certificate {
+  const Certificate({
+    required this.id,
+    required this.season,
+    required this.tier,
+    required this.years,
+    required this.xp,
+    required this.devicePubkeyB64,
+    required this.issuedAtMs,
+    required this.notice,
+    required this.signatureB64,
+  });
+
+  final String id;
+  final String season;
+  final CertTier tier;
+  final int years;
+  final int xp;
+
+  /// مفتاح الجهة الحاملة (الجهاز) — هوية بلا اسم؛ نفس بذرة الجهاز المعلنة.
+  final String devicePubkeyB64;
+  final int issuedAtMs;
+
+  /// تنويه قرار ٤٠ — نصّ حرفي أو سلسلة فارغة (انظر [kFlexibilityNotice40]).
+  final String notice;
+  final String signatureB64;
+
+  factory Certificate.fromJson(Map<String, dynamic> j) => Certificate(
+        id: j['id'] as String,
+        season: j['season'] as String,
+        tier: CertTier.fromMachine(j['tier'] as String),
+        years: (j['years'] as num).toInt(),
+        xp: (j['xp'] as num).toInt(),
+        devicePubkeyB64: j['device_pubkey_b64'] as String,
+        issuedAtMs: (j['issued_at_ms'] as num).toInt(),
+        notice: j['notice'] as String? ?? '',
+        signatureB64: j['signature'] as String? ?? '',
+      );
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'id': id,
+        'season': season,
+        'tier': tier.machine,
+        'years': years,
+        'xp': xp,
+        'device_pubkey_b64': devicePubkeyB64,
+        'issued_at_ms': issuedAtMs,
+        'notice': notice,
+        'signature': signatureB64,
+      };
+
+  /// الحمولة الموقّعة: نفس المفاتيح بالترتيب نفسه وبدون حقل `signature`
+  /// — يبنيه الطرفان (هنا و`cert_issue`) بالترتيب الحصري أدناه.
+  String get canonicalJson => jsonEncode(<String, dynamic>{
+        'id': id,
+        'season': season,
+        'tier': tier.machine,
+        'years': years,
+        'xp': xp,
+        'device_pubkey_b64': devicePubkeyB64,
+        'issued_at_ms': issuedAtMs,
+        'notice': notice,
+      });
+
+  /// التحقق المحلي: توقيع Ed25519 على [canonicalJson].
+  static bool verify(Certificate cert, {required ed.PublicKey publicKey}) {
+    if (cert.signatureB64.isEmpty) return false;
+    try {
+      final sig = base64Decode(cert.signatureB64);
+      return ed.verify(
+        publicKey,
+        utf8.encode(cert.canonicalJson),
+        sig,
+      );
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// توقيع الحمولة بمفتاح خاص — للتوليد وللاختبارات فقط (الإنتاج يوقّع الخادم).
+  static String signCanonical(Certificate cert, ed.PrivateKey privateKey) =>
+      base64Encode(
+        ed.sign(privateKey, utf8.encode(cert.canonicalJson)),
+      );
+}

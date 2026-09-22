@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'about_screen.dart';
 
 import 'dart:convert' show base64Decode;
 
@@ -167,6 +168,19 @@ class _AccountScreenState extends State<AccountScreen> {
               subtitle: const Text(
                   'تغيّر موبايلك؟ مرّ على مكتبنا وإعادة الربط دقيقة واحدة'),
               trailing: const Chip(label: Text('٢ / ٢')),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              key: const Key('about_entry'),
+              title: const Text('عن التطبيق'),
+              subtitle: const Text('لورانيم تك · الإشراف العلمي · الإصدار'),
+              trailing: const Icon(Icons.info_outline),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => const AboutScreen(),
+                ),
+              ),
             ),
           ),
           const SizedBox(height: 8),
