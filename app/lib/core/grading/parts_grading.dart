@@ -40,6 +40,7 @@ class PartLineScore {
     required this.points,
     required this.maxPoints,
     this.note,
+    this.stepTexts = const [],
   });
 
   final String step;
@@ -47,6 +48,10 @@ class PartLineScore {
   final double points;
   final double maxPoints;
   final String? note;
+
+  /// نصوص بنود السلم بنفس هذا النوع — **حرفيّة كما كتبها المؤلّف** (rubric[].step)،
+  /// تُسرد تحت السطر في البطاقة (مؤجّل §٦.٦-4). لا معنى ولا تقييم هنا: نصّ فقط.
+  final List<String> stepTexts;
 
   bool get lost => points < maxPoints;
   bool get full => !lost;
@@ -135,7 +140,7 @@ PartsGrade gradeParts(GeneratedItem item, Map<String, PartAnswer> answers) {
   var max = 0.0;
   for (final p in parts) {
     final a = answers[p.label] ?? emptyPartAnswer;
-    final lines = <PartLineScore>[];
+    var lines = <PartLineScore>[];
     lines.add(_relationLine(p, a));
     final sub = _substitutionLine(p, a);
     if (sub != null) lines.add(sub);
@@ -144,6 +149,22 @@ PartsGrade gradeParts(GeneratedItem item, Map<String, PartAnswer> answers) {
     final unit = _unitLine(p, a, res);
     if (unit != null) lines.add(unit);
     lines.removeWhere((l) => l.maxPoints <= 0);
+    // إثراء النصوص الحرفيّة في نقطة واحدة: كل سطر يرث بنود rubric بنفس نوعه
+    // بترتيبها في السلم — لا إعادة صياغة ولا تخمين (مؤجّل §٦.٦-4).
+    lines = [
+      for (final l in lines)
+        PartLineScore(
+          step: l.step,
+          kind: l.kind,
+          points: l.points,
+          maxPoints: l.maxPoints,
+          note: l.note,
+          stepTexts: [
+            for (final e in p.rubric)
+              if (e.kind == l.kind) e.step,
+          ],
+        ),
+    ];
     final got = lines.fold<double>(0, (s, l) => s + l.points);
     total += got;
     max += p.weight;

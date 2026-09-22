@@ -1171,7 +1171,7 @@ class _PartsScoreCard extends StatelessWidget {
                             fontWeight: FontWeight.w800)),
                 ],
               ),
-              for (final l in s.lines)
+              for (final l in s.lines) ...[
                 Padding(
                   padding: const EdgeInsets.only(right: 24, top: 2),
                   child: Text(
@@ -1180,6 +1180,18 @@ class _PartsScoreCard extends StatelessWidget {
                     style: txt.bodyMedium?.copyWith(height: 1.7),
                   ),
                 ),
+                for (final t in l.stepTexts)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40, top: 0),
+                    child: Text(
+                      t,
+                      style: txt.bodySmall?.copyWith(
+                        color: theme.hintColor,
+                        height: 1.5,
+                      ),
+                    ),
+                  ),
+              ],
               if ((byLabel[s.label]?.answerText ?? '').isNotEmpty)
                 Padding(
                   padding: const EdgeInsets.only(right: 24, top: 2),

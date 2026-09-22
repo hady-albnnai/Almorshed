@@ -230,5 +230,35 @@ void main() {
       expect(g.parts.last.followThrough, isFalse);
       expect(g.points, 0);
     });
+
+    test('نصوص السلم حرفيّة تحت كل سطر — حتى مع صفر الدرجة (§٦.٦-4)', () {
+      final g = gradeParts(item, const {}); // لا إجابة: السلّم يُعرض كاملاً
+      List<String> textsOf(PartScore s, String kind) =>
+          s.lines.firstWhere((l) => l.kind == kind).stepTexts;
+      // نفس JSON حرفياً — لا إعادة صياغة ولا تخمين
+      expect(textsOf(g.parts.first, 'relation'),
+          ['الجزء ١ · العلاقة: Z = √(R² + X²)']);
+      expect(textsOf(g.parts.first, 'substitution'),
+          ['الجزء ١ · التعويض: Z = √(60² + 80²)']);
+      expect(textsOf(g.parts.first, 'result'), ['الجزء ١ · النتيجة: 100 Ω']);
+      expect(textsOf(g.parts.first, 'unit'), ['الجزء ١ · الوحدة']);
+      expect(textsOf(g.parts.last, 'relation'),
+          ['الجزء ٢ · العلاقة: cos φ = R/Z']);
+      expect(textsOf(g.parts.last, 'unit'),
+          ['الجزء ٢ · الوحدة (مقدار بلا بُعد)']);
+      // أي سطر ظهر في السلّم فكل نصوصه مسجّلة بنوعه في rubric — لا نصّ بلا مصدر
+      for (final part in g.parts) {
+        for (final line in part.lines) {
+          expect(line.stepTexts, isNotEmpty, reason: line.step);
+          for (final t in line.stepTexts) {
+            expect(
+              part.rubric.where((e) => e.kind == line.kind && e.step == t),
+              isNotEmpty,
+              reason: t,
+            );
+          }
+        }
+      }
+    });
   });
 }

@@ -144,6 +144,9 @@ void main() {
       expect(find.text('٢٠ / ٢٠'), findsOneWidget);
       expect(find.text('سلّم التصحيح'), findsOneWidget);
       expect(find.textContaining('الجزء ١'), findsWidgets);
+      // نصّ السلم الحرفيّ يُسرد تحت سطره (مؤجّل §٦.٦-4 — منفَّذ)
+      expect(find.text('الجزء ١ · العلاقة: Z = √(R² + X²)'), findsOneWidget);
+      expect(find.text('الجزء ٢ · الوحدة (مقدار بلا بُعد)'), findsOneWidget);
       expect(find.textContaining('لم تُكتب'), findsNothing);
       // الحقول تُقفل بعد التسليم ويُبدَّل زرّ التسليم
       expect(find.text('تم التصحيح'), findsOneWidget);
