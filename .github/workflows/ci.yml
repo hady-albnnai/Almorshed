@@ -46,7 +46,30 @@ jobs:
 
       - name: تحليل ساكن
         working-directory: app
-        run: flutter analyze
+        run: |
+          flutter analyze > analyze.out 2>&1
+          status=$?
+          cat analyze.out
+          # كل ملاحظة تُبثّ annotation قابلة للنقر في صفحة التشغيل (نقيّ الرموز اللونية أولاً)
+          ANALYZE_STATUS=$status python3 - <<'PY'
+          import os, pathlib, re
+          out = pathlib.Path('analyze.out').read_text(encoding='utf-8', errors='replace')
+          out = re.sub(r'\x1b\[[0-9;]*m', '', out)
+          pat = re.compile(
+              r'^\s*(error|warning|info)\s+•\s+(.*?)\s+•\s+(\S+):(\d+):(\d+)\s+•\s+(\S+)\s*$',
+              re.M,
+          )
+          found = pat.findall(out)
+          for level, msg, path, line, col, code in found:
+              lvl = {'error': 'error', 'warning': 'warning', 'info': 'notice'}[level]
+              print(f'::{lvl} file={path},line={line},col={col},title={code}::{msg}')
+          if not found and os.environ.get('ANALYZE_STATUS') != '0':
+              tail = '\n'.join(out.splitlines()[-30:])
+              print(f'::error title=flutter analyze (نصّ خام, تحقّق من التنسيق)::{tail}')
+          if not found and os.environ.get('ANALYZE_STATUS') == '0':
+              print('::notice title=flutter analyze::No issues found')
+          PY
+          exit $status
 
       - name: الاختبارات (37)
         working-directory: app
