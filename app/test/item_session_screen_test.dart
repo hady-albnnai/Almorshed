@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/content/generated_items.dart';
+import 'package:fizya_clash/core/content/math_text.dart';
 import 'package:fizya_clash/core/content/models.dart';
 import 'package:fizya_clash/core/training/training_store.dart';
 import 'package:fizya_clash/features/training/item_session_screen.dart';
@@ -124,7 +125,9 @@ void main() {
       }
       expect(find.text('تسليم المسألة'), findsOneWidget);
       // خيارات الجزء الأول موجودة (وضع القرار ٦١ المؤقَّت) وبلا كشف للإجابة
-      expect(find.text('100 Ω'), findsOneWidget);
+      // العزل يعمل فعلياً: المعروَّد يحمل علامتَي FSI/PDI حول Ω فلا يطابقه الخام
+      expect(find.text(isolateMath('100 Ω')), findsOneWidget);
+      expect(find.byType(MathText), findsWidgets);
     });
 
     testWidgets('إجابة كاملة على جزءين ⇒ ٢٠/٢٠ وبطاقة سطرًا سطرًا',
@@ -145,8 +148,11 @@ void main() {
       expect(find.text('سلّم التصحيح'), findsOneWidget);
       expect(find.textContaining('الجزء ١'), findsWidgets);
       // نصّ السلم الحرفيّ يُسرد تحت سطره (مؤجّل §٦.٦-4 — منفَّذ)
-      expect(find.text('الجزء ١ · العلاقة: Z = √(R² + X²)'), findsOneWidget);
-      expect(find.text('الجزء ٢ · الوحدة (مقدار بلا بُعد)'), findsOneWidget);
+      expect(find.text(isolateMath('الجزء ١ · العلاقة: Z = √(R² + X²)')),
+          findsOneWidget);
+      expect(
+          find.text(isolateMath('الجزء ٢ · الوحدة (مقدار بلا بُعد)')),
+          findsOneWidget);
       expect(find.textContaining('لم تُكتب'), findsNothing);
       // الحقول تُقفل بعد التسليم ويُبدَّل زرّ التسليم
       expect(find.text('تم التصحيح'), findsOneWidget);
@@ -188,17 +194,17 @@ void main() {
       final item = ofKind(ItemKind.mcq);
       await pump(
           tester, ItemSessionScreen(items: [item, ofKind(ItemKind.numeric)]));
-      expect(find.text(item.stem), findsOneWidget);
+      expect(find.text(isolateMath(item.stem)), findsOneWidget);
       expect(find.text('التالي ←'), findsNothing);
       final wrong = (item.correctIndex + 1) % 4;
-      await tester.tap(find.text(item.options[wrong]));
+      await tester.tap(find.text(isolateMath(item.options[wrong])));
       await tester.pumpAndSettle();
       expect(find.byIcon(Icons.check_circle_outline), findsOneWidget);
       expect(find.byIcon(Icons.cancel_outlined), findsOneWidget);
       expect(find.textContaining('لماذا كل خيار'), findsOneWidget);
       expect(find.text('٠ / ١٠'), findsOneWidget);
       // لا اختيار ثانٍ بعد التصحيح
-      await tester.tap(find.text(item.options[item.correctIndex]));
+      await tester.tap(find.text(isolateMath(item.options[item.correctIndex])));
       await tester.pumpAndSettle();
       expect(find.text('٠ / ١٠'), findsOneWidget);
       await tester.tap(find.text('التالي ←'));
@@ -282,7 +288,7 @@ void main() {
     testWidgets('النتيجة النهائية تجمع الدرجات', (tester) async {
       final item = ofKind(ItemKind.mcq);
       await pump(tester, ItemSessionScreen(items: [item]));
-      await tester.tap(find.text(item.options[item.correctIndex]));
+      await tester.tap(find.text(isolateMath(item.options[item.correctIndex])));
       await tester.pumpAndSettle();
       await tester.tap(find.text('النتيجة'));
       await tester.pumpAndSettle();

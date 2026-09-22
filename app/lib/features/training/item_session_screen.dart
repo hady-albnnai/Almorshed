@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/content/generated_items.dart';
+import '../../core/content/math_text.dart';
 import '../../core/grading/grading_engine.dart';
 import '../../core/grading/parts_grading.dart';
 import '../../core/util/arabic_number.dart';
@@ -147,7 +148,7 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
                   pending: !item.approved && ReviewScope.enabledIn(context),
                 ),
                 const SizedBox(height: 8),
-                Text(item.stem, style: txt.titleMedium),
+                MathText(item.stem, style: txt.titleMedium),
                 const SizedBox(height: 14),
                 if (item.isParts)
                   _PartsBody(
@@ -419,7 +420,7 @@ class _OptionTile extends StatelessWidget {
         ),
         child: ListTile(
           leading: lead ?? CircleAvatar(child: Text(letter)),
-          title: Text(text),
+          title: MathText(text),
           onTap: onTap,
         ),
       ),
@@ -475,8 +476,8 @@ class _NumericBodyState extends State<_NumericBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('إجابتك: ${widget.typed ?? ''}', style: txt.bodyLarge),
-              Text(
+              MathText('إجابتك: ${widget.typed ?? ''}', style: txt.bodyLarge),
+              MathText(
                 'المفتاح: $key',
                 style: txt.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
               ),
@@ -582,15 +583,15 @@ class _WhyBodyState extends State<_WhyBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('إجابتك: ${widget.typed ?? ''}', style: txt.bodyLarge),
+              MathText('إجابتك: ${widget.typed ?? ''}', style: txt.bodyLarge),
               const SizedBox(height: 6),
               Text('مفاتيح السلم:', style: txt.titleSmall),
-              for (final k in widget.item.keys) Text('• $k'),
+              for (final k in widget.item.keys) MathText('• $k'),
               if (widget.item.options.isNotEmpty &&
                   widget.item.correctIndex >= 0)
                 Padding(
                   padding: const EdgeInsets.only(top: 6),
-                  child: Text(
+                  child: MathText(
                     'الصياغة النموذجية: ${widget.item.options[widget.item.correctIndex]}',
                     style:
                         txt.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
@@ -733,7 +734,7 @@ class _ProofBodyState extends State<_ProofBody> {
                 child: ListTile(
                   key: Key('proof-step-$n'),
                   leading: const Icon(Icons.drag_indicator),
-                  title: Text(_stepOf(n)['text'] as String),
+                  title: MathText(_stepOf(n)['text'] as String),
                   onTap: () => setState(() => _picked.add(n)),
                 ),
               ),
@@ -760,7 +761,7 @@ class _ProofBodyState extends State<_ProofBody> {
           const SizedBox(height: 8),
           Text('الترتيب المرجعي بعلامات السلم:', style: txt.titleSmall),
           for (final s in _steps)
-            Text(
+            MathText(
               '${ArabicNumber.from(s['n'] as int)}. ${s['text']} '
               '(${ArabicNumber.from((s['points'] as num).toInt())})',
             ),
@@ -800,7 +801,7 @@ class _PickedStep extends StatelessWidget {
             radius: 13,
             child: Text(ArabicNumber.from(index + 1)),
           ),
-          title: Text(step['text'] as String),
+          title: MathText(step['text'] as String),
           trailing: enabled
               ? IconButton(
                   icon: const Icon(Icons.undo),
@@ -886,12 +887,12 @@ class _ResultCard extends StatelessWidget {
               for (final s in item.solutionSteps)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 2),
-                  child: Text(s, style: txt.bodyMedium),
+                  child: MathText(s, style: txt.bodyMedium),
                 ),
             ],
             if (item.answerBasis != null && item.answerBasis!.isNotEmpty) ...[
               const SizedBox(height: 8),
-              Text('المرجع: ${item.answerBasis}', style: txt.bodySmall),
+              MathText('المرجع: ${item.answerBasis}', style: txt.bodySmall),
             ],
           ],
         ),
@@ -1033,7 +1034,7 @@ class _PartsBodyState extends State<_PartsBody> {
                         txt.titleSmall?.copyWith(fontWeight: FontWeight.w800),
                   ),
                   const SizedBox(height: 6),
-                  Text(p.prompt, style: txt.bodyLarge?.copyWith(height: 1.8)),
+                  MathText(p.prompt, style: txt.bodyLarge?.copyWith(height: 1.8)),
                   if (p.hasOptions) ...[
                     const SizedBox(height: 8),
                     for (var k = 0; k < p.options.length; k++)
@@ -1183,7 +1184,7 @@ class _PartsScoreCard extends StatelessWidget {
                 for (final t in l.stepTexts)
                   Padding(
                     padding: const EdgeInsets.only(right: 40, top: 0),
-                    child: Text(
+                    child: MathText(
                       t,
                       style: txt.bodySmall?.copyWith(
                         color: theme.hintColor,
@@ -1195,7 +1196,7 @@ class _PartsScoreCard extends StatelessWidget {
               if ((byLabel[s.label]?.answerText ?? '').isNotEmpty)
                 Padding(
                   padding: const EdgeInsets.only(right: 24, top: 2),
-                  child: Text('المفتاح: ${byLabel[s.label]?.answerText}',
+                  child: MathText('المفتاح: ${byLabel[s.label]?.answerText}',
                       style: txt.bodySmall?.copyWith(
                           color: const Color(0xFF2E7D32),
                           fontWeight: FontWeight.w700)),
