@@ -30,10 +30,13 @@ void main() {
       final keys = (jsonDecode(c.canonicalJson) as Map<String, dynamic>).keys;
       expect(
         keys.toList(),
-        ['id', 'season', 'tier', 'years', 'xp', 'device_pubkey_b64',
+        ['v', 'id', 'season', 'tier', 'years', 'xp', 'device_pubkey_b64',
          'issued_at_ms', 'notice'],
       );
       expect(c.canonicalJson.contains('signature'), isFalse);
+      // النسخة أول حقل موقّع (F6.3-أمن) — يطابق CERT_PAYLOAD_V بالخادم.
+      expect(c.version, kCertPayloadVersion);
+      expect(c.canonicalJson.startsWith('{"v":$kCertPayloadVersion,'), isTrue);
     });
 
     test('JSON ذهاباً وإياباً متطابق حرفياً', () {
@@ -116,6 +119,66 @@ void main() {
         ),
         returnsNormally,
       );
+    });
+  });
+
+  group('متجه ذهبي متقاطع (Ed25519 مستقل — RFC 8032)', () {
+    // وُلِّد بـnode:crypto (تطبيق ثالث مستقل عن ed25519_edwards وtweetnacl)
+    // على نفس البذرة [1..32] والحمولة الـcanonical بعد إضافة v:1. الغرض:
+    // إثبات أن التطبيق (ed25519_edwards) والخادم (tweetnacl) يتفقان بايتيًّا
+    // مع مرجع خارجي — لا مجرد اتفاقهما مع بعضهما. ثغرة #4 من تدقيق 2026-09-22.
+    const goldenCanonical =
+        '{"v":1,"id":"11111111-2222-3333-4444-555555555555",'
+        '"season":"2026-2027","tier":"gold_two","years":2,"xp":1200,'
+        '"device_pubkey_b64":"ZGV2aWNlLXB1Yg==",'
+        '"issued_at_ms":1790000000000,"notice":""}';
+    const goldenPubB64 = 'ebVWLo/mVPlAeLES6KmLp5AfhTrmlb7X4OORC60ElmQ=';
+    const goldenSigB64 =
+        'cGlFFj1yr2u/zfBkxT4PF/5fhCx9yVYZPLI+Sx5FmZChsrL+'
+        'clNYcqH4S/Sh55FmlEVAtTuG7u43wJiwkWnKCA==';
+
+    test('canonicalJson مطابق حرفيًّا للمرجع الخارجي', () {
+      expect(sample().canonicalJson, goldenCanonical);
+    });
+
+    test('توقيع node:crypto يتحقق بـed25519_edwards (نفس البذرة)', () {
+      final gPk = ed.public(ed.newKeyFromSeed(
+          Uint8List.fromList(List<int>.generate(32, (i) => i + 1))));
+      // المفتاح العام المُصدَّر من التطبيق == مفتاح المرجع الخارجي
+      expect(base64Encode(gPk.bytes), goldenPubB64);
+      // والتوقيع المرجعي (من tweetnacl-متوافق) يتحقق محليًّا
+      final signed = Certificate(
+        id: sample().id,
+        season: sample().season,
+        tier: sample().tier,
+        years: sample().years,
+        xp: sample().xp,
+        devicePubkeyB64: sample().devicePubkeyB64,
+        issuedAtMs: sample().issuedAtMs,
+        notice: sample().notice,
+        signatureB64: goldenSigB64,
+      );
+      expect(Certificate.verify(signed, publicKey: gPk), isTrue);
+    });
+  });
+
+  group('تحدّي الإصدار (إثبات الحيازة — ثغرة #1)', () {
+    test('صيغة التحدّي حرفية ومربوطة بالموسم والمفتاح', () {
+      expect(
+        certChallenge(season: '2026-2027', devicePubkeyB64: 'ABC='),
+        'cert-issue-v1|2026-2027|ABC=',
+      );
+    });
+
+    test('الجهاز يوقّع تحدّيه فيتحقق بمفتاحه العام (نمط verify_xp_events)', () {
+      const season = '2026-2027';
+      final pubB64 = base64Encode(pk.bytes);
+      final challenge = certChallenge(season: season, devicePubkeyB64: pubB64);
+      final sig = base64Encode(ed.sign(sk, utf8.encode(challenge)));
+      expect(ed.verify(pk, utf8.encode(challenge), base64Decode(sig)), isTrue);
+      // تحدٍّ لموسم آخر بنفس التوقيع ⇒ يفشل (الربط يمنع إعادة الاستعمال)
+      final other = certChallenge(season: '2025-2026', devicePubkeyB64: pubB64);
+      expect(ed.verify(pk, utf8.encode(other), base64Decode(sig)), isFalse);
     });
   });
 

@@ -17,6 +17,15 @@ import nacl from 'npm:tweetnacl@1.0.3';
 
 const NOTICE_40 = ''; // ⚠️ نصّ قرار ٤٠ حرفي — بانتظار المالك (لا تخمّن)
 
+// نسخة مخطط الحمولة (أول حقل موقّع) — يطابق kCertPayloadVersion بالتطبيق.
+// رفعُه يبطل التواقيع القديمة صراحةً بدل قبولها بصمت على مخطط مختلف.
+const CERT_PAYLOAD_V = 1;
+
+// F6.3-أمن (2026-09-22): التحدّي الذي يوقّعه الجهاز — يطابق certChallenge()
+// في certificate.dart حرفيًّا. إثبات حيازة المفتاح الخاص، لا مجرد معرفة العام.
+const certChallenge = (season: string, devicePubkeyB64: string) =>
+  `cert-issue-v1|${season}|${devicePubkeyB64}`;
+
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, content-type, apikey',
@@ -30,6 +39,9 @@ const json = (body: unknown, status = 200) =>
 
 const b64FromBytes = (bytes: Uint8Array) =>
   btoa(String.fromCharCode(...bytes));
+
+const b64ToBytes = (b64: string): Uint8Array =>
+  Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS });
@@ -57,8 +69,13 @@ Deno.serve(async (req) => {
     const body = await req.json();
     const pubkeyB64 = String(body.device_pubkey_b64 ?? '');
     const season = String(body.season ?? '');
-    if (!pubkeyB64 || !season) {
+    const challengeSig = String(body.challenge_sig ?? '');
+    if (!pubkeyB64 || !season || !challengeSig) {
       return json({ ok: false, error: 'BAD_REQUEST' }, 400);
+    }
+    // شكل المفتاح العام (Ed25519 خام 32 بايت ⇒ 43 محرف base64 + '=')
+    if (!/^[A-Za-z0-9+/]{43}=$/.test(pubkeyB64)) {
+      return json({ ok: false, error: 'PUBKEY_FORMAT' }, 422);
     }
 
     // ── ١) الموسم مُغلق؟ (F6.3: نهاية الموسم حصراً) ──
@@ -74,13 +91,28 @@ Deno.serve(async (req) => {
       return json({ ok: false, error: 'SEASON_OPEN' }, 409);
     }
 
-    // ── ٢) الجهاز معروف؟ (نفس عقد heartbeat) ──
+    // ── ٢) الجهاز معروف؟ (المفتاح المخزّن هو مرجع التحقق — لا ثقة بالادعاء) ──
     const { data: device } = await admin
       .from('devices')
-      .select('id')
+      .select('id, pubkey_b64')
       .eq('pubkey_b64', pubkeyB64)
       .maybeSingle();
     if (!device) return json({ ok: false, error: 'DEVICE_UNKNOWN' }, 404);
+
+    // ── ٢-ب) إثبات الحيازة: توقيع التحدّي بمفتاح الجهاز الخاص ──
+    // نفس نمط verify_xp_events: التحقق ضد المفتاح المخزّن بالقاعدة لا المُدّعى.
+    // يمنع انتحال جهازٍ آخر بمجرد معرفة مفتاحه العام (وهو ليس سرّاً).
+    let challengeOk = false;
+    try {
+      challengeOk = nacl.sign.detached.verify(
+        new TextEncoder().encode(certChallenge(season, pubkeyB64)),
+        b64ToBytes(challengeSig),
+        b64ToBytes(device.pubkey_b64 as string),
+      );
+    } catch (_) {
+      challengeOk = false;
+    }
+    if (!challengeOk) return json({ ok: false, error: 'BAD_CHALLENGE' }, 403);
 
     // ── ٣) idempotency: شهادة سابقة تُعاد كما هي ──
     const { data: existing } = await admin
@@ -126,8 +158,9 @@ Deno.serve(async (req) => {
       0,
     );
 
-    // ── ٥) الحمولة الـcanonical — الترتيب مطابق لـDart حرفياً ──
+    // ── ٥) الحمولة الـcanonical — الترتيب مطابق لـDart حرفياً (v أولاً) ──
     const payloadObj = {
+      v: CERT_PAYLOAD_V,
       id: crypto.randomUUID(),
       season,
       tier,

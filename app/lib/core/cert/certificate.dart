@@ -20,6 +20,12 @@ import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
 /// عنوان الشهادة — حرفي من docs/13 §٦.
 const String certTitle = 'بطل دوري فيزيا كلاش';
 
+/// نسخة الحمولة الـcanonical (F6.3-أمن 2026-09-22). أول حقل في التوقيع؛ أي
+/// تغيير مستقبلي على شكل الحمولة يرفع هذا الرقم فلا تُقبل التواقيع القديمة
+/// بصمت — والتطبيق يعرف أي مخطط يبني. يجب أن يطابق `CERT_PAYLOAD_V` في
+/// `cert_issue`.
+const int kCertPayloadVersion = 1;
+
 /// نصّ قرار ٤٠ (تنويه المرونة) **حرفيًّا** — بانتظار المالك. فارغ ⇒ لا يُعرض
 /// أي تنويه (لا نصّ بديل ولا صياغة من عندنا).
 const String kFlexibilityNotice40 = '';
@@ -49,6 +55,7 @@ enum CertTier {
 /// شهادة موقّعة قابلة للتحقق محليًّا.
 class Certificate {
   const Certificate({
+    this.version = kCertPayloadVersion,
     required this.id,
     required this.season,
     required this.tier,
@@ -59,6 +66,9 @@ class Certificate {
     required this.notice,
     required this.signatureB64,
   });
+
+  /// نسخة مخطط الحمولة (أول حقل موقّع) — انظر [kCertPayloadVersion].
+  final int version;
 
   final String id;
   final String season;
@@ -75,6 +85,7 @@ class Certificate {
   final String signatureB64;
 
   factory Certificate.fromJson(Map<String, dynamic> j) => Certificate(
+        version: (j['v'] as num?)?.toInt() ?? kCertPayloadVersion,
         id: j['id'] as String,
         season: j['season'] as String,
         tier: CertTier.fromMachine(j['tier'] as String),
@@ -87,6 +98,7 @@ class Certificate {
       );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
+        'v': version,
         'id': id,
         'season': season,
         'tier': tier.machine,
@@ -99,8 +111,9 @@ class Certificate {
       };
 
   /// الحمولة الموقّعة: نفس المفاتيح بالترتيب نفسه وبدون حقل `signature`
-  /// — يبنيه الطرفان (هنا و`cert_issue`) بالترتيب الحصري أدناه.
+  /// — يبنيه الطرفان (هنا و`cert_issue`) بالترتيب الحصري أدناه. `v` أولاً.
   String get canonicalJson => jsonEncode(<String, dynamic>{
+        'v': version,
         'id': id,
         'season': season,
         'tier': tier.machine,
@@ -132,3 +145,15 @@ class Certificate {
         ed.sign(privateKey, utf8.encode(cert.canonicalJson)),
       );
 }
+
+/// F6.3-أمن (2026-09-22): تحدٍّ يثبت أن نداء `cert_issue` صادر عن **حامل**
+/// مفتاح الجهاز الخاص لا مجرد من يعرف مفتاحه العام (المفتاح العام يُرفع في كل
+/// نداء XP/heartbeat فهو ليس سرّاً). العميل يبني هذه السلسلة ويوقّعها بمفتاح
+/// `XpSigner` (نفس مفتاح أحداث XP)، والخادم يعيد بناءها ويتحقق بـEd25519 ضد
+/// `devices.pubkey_b64` — نفس مسار `verify_xp_events` المُبرهَن. يجب أن يطابق
+/// `certChallenge()` في `cert_issue/index.ts` حرفيًّا.
+///
+/// الربط بالموسم والمفتاح يمنع استعمال توقيعٍ لموسم/جهاز آخر؛ وإعادة الإرسال
+/// لا تضرّ (الإصدار idempotent ومقيّد بالجهاز نفسه).
+String certChallenge({required String season, required String devicePubkeyB64}) =>
+    'cert-issue-v1|$season|$devicePubkeyB64';
