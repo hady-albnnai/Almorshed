@@ -73,7 +73,23 @@ jobs:
 
       - name: الاختبارات (37)
         working-directory: app
-        run: flutter test
+        run: |
+          status=0
+          flutter test > test.out 2>&1 || status=$?
+          cat test.out
+          # اسم كل اختبار ساقط + آخر ٤٠ سطراً خاماً (Expected/Actual) — annotation قابلة للنقر
+          TEST_STATUS=$status python3 - <<'PY'
+          import os, pathlib, re
+          out = pathlib.Path('test.out').read_text(encoding='utf-8', errors='replace')
+          out = re.sub(r'\x1b\[[0-9;]*m', '', out)
+          fails = re.findall(r'^\s*\d+:\d+\s+\+\d+\s+-\d+:\s+(.+?)\s*\[E\]', out, re.M)
+          for name in dict.fromkeys(fails):
+              print(f'::error title=اختبار ساقط::{name}')
+          if os.environ.get('TEST_STATUS') != '0':
+              tail = '\n'.join(out.splitlines()[-40:])
+              print(f'::error title=flutter test (الذيل الخام)::{tail}')
+          PY
+          exit $status
 
   apk:
     name: بناء APK للفحص
