@@ -67,12 +67,12 @@ String isolateMath(String text) {
   final out = StringBuffer();
   var first = 0;
   for (final m in _tokenBoundary.allMatches(text)) {
-    final piece = text.substring(first, m.start());
+    final piece = text.substring(first, m.start);
     if (piece.isNotEmpty) {
       out.write(isMathToken(piece) ? '\u{2068}$piece\u{2069}' : piece);
     }
     out.write(m[0]);
-    first = m.end();
+    first = m.end;
   }
   final tail = text.substring(first);
   if (tail.isNotEmpty) {
@@ -127,8 +127,8 @@ class MathText extends StatelessWidget {
     final spans = <InlineSpan>[];
     var first = 0;
     for (final m in _tokenBoundary.allMatches(source)) {
-      _append(spans, source.substring(first, m.start()), m[0]!, render);
-      first = m.end();
+      _append(spans, source.substring(first, m.start), m[0]!, render);
+      first = m.end;
     }
     _append(spans, source.substring(first), '', render);
     return Text.rich(
