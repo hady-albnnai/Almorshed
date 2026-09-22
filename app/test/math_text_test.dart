@@ -128,7 +128,7 @@ Future<void> main() async {
     testWidgets('renderer يُستدعى لكل شريط صيغة بالنصّ الخام', (tester) async {
       Widget render(String f) => Text('«$f»');
       await tester.pumpWidget(
-        _host(MathText('قِس T0 وIΔ هنا', renderer: render)),
+        _host(MathText('قِس T0 و IΔ هنا', renderer: render)),
       );
       expect(find.text('«T0»'), findsOneWidget);
       expect(find.text('«IΔ»'), findsOneWidget);
