@@ -284,6 +284,46 @@ def formula_transforms(key: str):
     return out
 
 
+# ───────────────── المسألة بأجزاء — عقد parts-v1 (قرار ٦٨) ─────────────────
+# الجزء = سؤال مستقل له مفتاحه وسلّمه؛ والسلّم يُبنى **سطراً سطراً** كما يصفه
+# docs/20 §٢ قاعدة ١: لكل سطر رياضي (٥ للعلاقة · ٣ للتعويض · ١ للنتيجة · ١ للوحدة).
+# وزن الجزء = مجموع أسطره، ووزن البند = مجموع أجزائه ⇒ يستحيل أن يختلف السلّم عن الوزن
+# (البلاء الموجود في القوالب القديمة: مسألة ٨٥ درجاتها ٤١).
+LINE_POINTS = {"relation": 5, "substitution": 3, "result": 1, "unit": 1}
+GRADING_PARTS = "parts-v1"
+
+
+def part_rubric(lines, *, label, key_text=None):
+    """[{relation, subst, points{}}] ⇒ سلّم مرقّم الخطوات + وزنه.
+
+    كل سطر يعطي ١–٤ بنوداً حسب المفاتيح الموجودة فيه؛ السطر الذي لا نتيجة عددية له
+    (استنتاج رمزي حصراً) يأخذ العلاقة والتعويض فقط.
+    """
+    out, total = [], 0
+    for ln in lines:
+        pts = dict(LINE_POINTS)
+        pts.update(ln.get("points") or {})
+        relation = ln.get("relation")
+        if relation:
+            out.append({"step": f"{label} · العلاقة: {relation}", "points": pts["relation"],
+                        **({"keys": ln["keys"]} if ln.get("keys") else {}),
+                        **({"antiKeys": ln["anti_keys"]} if ln.get("anti_keys") else {})})
+            total += pts["relation"]
+        if ln.get("subst"):
+            out.append({"step": f"{label} · التعويض: {ln['subst']}", "points": pts["substitution"],
+                        **({"expect": ln["expect"]} if ln.get("expect") else {})})
+            total += pts["substitution"]
+        if ln.get("result", True):
+            out.append({"step": f"{label} · النتيجة: {ln.get('result') or key_text or 'القيمة الصحيحة'}",
+                        "points": pts["result"]})
+            total += pts["result"]
+        if ln.get("unit", True) and relation:
+            out.append({"step": f"{label} · الوحدة", "points": pts["unit"],
+                        **({"keys": ln.get("unit_keys", [])} if ln.get("unit_keys") else {})})
+            total += pts["unit"]
+    return out, total
+
+
 # ───────────────────────────── المولّد ─────────────────────────────
 SOLVERS = {}
 
@@ -309,7 +349,8 @@ class Generator:
         self.seed = seed
         self.next_id = FIRST_ID
         self.by_id = {t["id"]: t for t in doc["templates"]}
-        self.report = {"skipped": [], "short": 0, "banned_hits": [], "per_template": {}}
+        self.report = {"skipped": [], "short": 0, "banned_hits": [], "per_template": {},
+                       "parts_no_options": 0, "parts_ungradable": 0, "rubric_incoherent": 0}
         consts = doc.get("constants") or {}
         global G, PI2
         G, PI2 = consts.get("g", G), consts.get("pi_sq", PI2)
@@ -597,6 +638,184 @@ class Generator:
             ds.append((txt, d["rule"], self._render(d.get("rationale") or "", env)))
         return self.make(t, stem, key, ds)
 
+    # ── المسألة بأجزاء (parts-v1 — قرار ٦٨) ──
+    def _part_key(self, t, p, penv):
+        """مفتاح الجزء ⇒ (نص العرض، القيمة العددية أو None، الوحدة) أو None إن كان السحب غير صالح."""
+        ans = p.get("answer") or {}
+        unit = self._render(p.get("unit", ""), penv)
+        if p.get("text"):                                   # مفتاح رمزي/نصي (√10 · 2π·√(L/g) …)
+            val = None
+            if p.get("value"):
+                try:
+                    v = self._ev(p["value"], penv)
+                except (ValueError, ZeroDivisionError, OverflowError, KeyError, TypeError):
+                    return None
+                if not isinstance(v, (int, float)) or isinstance(v, bool) or not math.isfinite(v):
+                    return None
+                val = float(v)
+            return self._render(p["text"], penv), val, unit
+        try:
+            val = self._ev(p["value"], penv)
+        except (ValueError, ZeroDivisionError, OverflowError, KeyError, TypeError):
+            return None
+        if not isinstance(val, (int, float)) or isinstance(val, bool) or not math.isfinite(val):
+            return None
+        sig, mode = ans.get("sig", 3), ans.get("format", "auto")
+        sci = mode == "sci" or (mode == "auto" and (abs(val) >= 1e4 or 0 < abs(val) < 1e-2))
+        if ans.get("round") and val != 0:
+            val = float(f"{val:.{sig - 1}e}")
+        if sci:
+            if not nice_sci(val, sig):
+                return None
+            return f"{fmt_sci(val, sig)} {unit}".strip(), float(val), unit
+        if not nice(val):
+            return None
+        return f"{fmt(val)} {unit}".strip(), float(val), unit
+
+    def _part_options(self, t, p, penv, key_text, key_val):
+        """أربعة خيارات للجزء (مفتاح + ٣ مشتتات موثّقة)؛ أقل من ثلاثة ⇒ إجابة حرة بلا خيارات."""
+        ds = []
+        for d in p.get("distractors") or []:
+            rule = d.get("rule")
+            if rule not in self.rules:
+                raise ValueError(f"{t['id']}/{p.get('label')}: قاعدة مشتت غير موثّقة: {rule}")
+            if "text" in d:
+                ds.append((self._render(d["text"], penv), rule,
+                           self._render(d.get("rationale") or "", penv), None))
+                continue
+            try:
+                v = float(self._ev(d["value"], penv))
+            except (ValueError, ZeroDivisionError, OverflowError, KeyError, TypeError):
+                continue
+            if not math.isfinite(v):
+                continue
+            txt = self._render(d.get("value_format", "{v}"), {**penv, "v": v})
+            if key_val is None:                             # المفتاح رمزي ⇒ لا مقارنة عددية
+                ds.append((txt, rule, self._render(d.get("rationale") or "", penv), None))
+            else:
+                if not nice(v) and not d.get("allow_rough"):
+                    continue                                # لا نضع للطالب رقماً غير نظيف
+                ds.append((txt, rule, self._render(d.get("rationale") or "", penv), v))
+        chosen, seen, vals = [], {norm(key_text)}, [key_val]
+        for txt, rule, rat, val in ds:
+            if norm(txt) in seen:
+                continue
+            if val is not None and any(close(val, x) for x in vals if x is not None):
+                continue                                    # مشتت ضمن ±٢٪ من المفتاح أو من غيره
+            seen.add(norm(txt))
+            vals.append(val)
+            chosen.append((txt, rule, rat, val))
+            if len(chosen) == 3:
+                break
+        if len(chosen) < 3:
+            self.report["parts_no_options"] += 1              # إجابة حرة — الوضع الأصلي للمسألة
+            return None, -1, [], [], []
+        opts = [(key_text, None, None, key_val)] + chosen
+        self.rng.shuffle(opts)
+        options = [o[0] for o in opts]
+        ci = options.index(key_text)
+        steps = [f"✓ ({'ABCD'[i]}) {o[0]}" if o[1] is None
+                 else f"({'ABCD'[i]}) خطأ [{o[1]}]: {o[2] or self.rules.get(o[1], '')}"
+                 for i, o in enumerate(opts)]
+        return options, ci, [o[1] for o in opts], steps, [o[3] for o in opts]
+
+    @staticmethod
+    def _find_part(parts, ref):
+        for p in parts:
+            if str(p["label"]) == str(ref) or p["n"] == ref:
+                return p
+        return None
+
+    def from_parts(self, t):
+        """قالب بمحور `parts` ⇒ بند واحد لكل سحب، أجزاؤه متسلسلة على البيئة نفسها."""
+        env = self._draw(t)
+        if env is None:
+            return None
+        stem = self._render(t["stem"], env)
+        labels = ["١", "٢", "٣", "٤", "٥", "٦", "٧"]
+        parts, rubric, weight, penv = [], [], 0, dict(env)
+        for i, p in enumerate(t["parts"]):
+            label = str(p.get("label") or labels[i])
+            for k, e in (p.get("compute") or {}).items():
+                try:
+                    penv[k] = self._ev(e, penv)
+                except (ValueError, ZeroDivisionError, OverflowError, KeyError, TypeError):
+                    return None
+            got = self._part_key(t, p, penv)
+            if got is None:
+                return None
+            key_text, key_val, unit = got
+            lines = []
+            for ln in p.get("lines") or []:
+                lines.append({k: (self._render(v, penv) if isinstance(v, str)
+                                  else [self._render(x, penv) for x in v] if isinstance(v, list)
+                                  else v) for k, v in ln.items()})
+            rb, w = part_rubric(lines, label=f"الجزء {label}", key_text=key_text)
+            if not rb:
+                self.report["skipped"].append((t["id"], f"جزء {label} بلا أسطر سلّم"))
+                return None
+            options, ci, orules, osteps, ovals = self._part_options(t, p, penv, key_text, key_val)
+            if key_val is None and not options:
+                self.report["parts_ungradable"] += 1
+                return None                                 # لا قيمة ولا خيارات ⇒ لا تصحيح
+            ans = p.get("answer") or {}
+            part = {
+                "n": i + 1, "label": label,
+                "prompt": self._render(p.get("ask") or "", penv),
+                "weight": w, "rubric": rb,
+                "options": options, "correctIndex": ci, "optionRules": orules, "optionValues": ovals,
+                "solutionSteps": osteps,
+                "answer": {"value": key_val, "unit": unit, "text": key_text,
+                           "tolerance": TOL, "unitRequired": bool(ans.get("unit_required", True))},
+            }
+            parts.append(part)
+            rubric.extend(rb)
+            weight += w
+        for raw, p in zip(t["parts"], parts):                            # متابعة الخطأ (follow-through)
+            fl = raw.get("follow")
+            if not fl:
+                continue
+            dep = self._find_part(parts, fl.get("depends_on"))
+            if dep is None or dep["answer"]["value"] is None or p["answer"]["value"] is None:
+                self.report["skipped"].append((t["id"], f"متابعة الجزء {p['label']}: مرجع غير رقمي"))
+                return None
+            acc, base = [], float(dep["answer"]["value"])
+            for spec in ([fl] if "power" in fl else [fl] + list(fl.get("also") or [])):
+                power, v = float(spec["power"]), float(spec.get("value", p["answer"]["value"]))
+                if base <= 0 and power != int(power):
+                    return None                             # √ لعدد سالب ⇒ السحب مرفوض
+                try:
+                    scale = v / (base ** power)
+                except (ZeroDivisionError, OverflowError, ValueError):
+                    return None
+                if not math.isfinite(scale) or scale == 0:
+                    return None
+                acc.append({"dependsOn": dep["label"], "power": power, "scale": scale,
+                            "tolerance": float(spec.get("tolerance", TOL)),
+                            **({"note": spec["note"]} if spec.get("note") else {})})
+            if len(acc) < 1:
+                return None
+            p["followThrough"] = {"part": p["label"], "accept": acc}
+        text = " ".join([stem] + [p["prompt"] for p in parts]
+                        + [o for p in parts for o in (p["options"] or [])])
+        hits = [b for b in self.banned if b in text]
+        if hits:
+            self.report["banned_hits"].append((t["id"], hits))
+            return None
+        item = {
+            "id": self.new_id(), "templateId": t["id"], "unit": t["chapter"][:2],
+            "chapter": t["chapter"], "type": t.get("type", "problem"),
+            "difficulty": t.get("difficulty", 3), "weight": weight, "approved": False,
+            "stem": stem, "options": [], "correctIndex": -1, "optionRules": [], "optionValues": [],
+            "solutionSteps": [f"{p['label']}) {p['answer']['text']} — {p['weight']} درجة" for p in parts],
+            "followThrough": [p["followThrough"] for p in parts if p.get("followThrough")],
+            "answer": None, "rubric": rubric, "grading": GRADING_PARTS,
+            "parts": parts, "answerBasis": t.get("answer_basis"), "source": t.get("source"),
+        }
+        if t.get("review_notes"):
+            item["reviewNotes"] = list(t["review_notes"])
+        return item
+
     # ── التشغيل ──
     def run_template(self, t, per_template):
         tid = t["id"]
@@ -606,6 +825,18 @@ class Generator:
         if t["type"] == "proof":
             it = self.from_proof(t)
             return [it] if it else []
+        if t.get("parts"):                                   # مسألة بأجزاء — قرار ٦٨
+            out, seen, tries = [], set(), 0
+            while len(out) < per_template and tries < per_template * 80:
+                tries += 1
+                it = self.from_parts(t)
+                if it:
+                    sig = norm(it["stem"]) + "|" + "|".join(
+                        p["answer"]["text"] for p in it["parts"])
+                    if sig not in seen:
+                        seen.add(sig)
+                        out.append(it)
+            return out
         if "variants" in t:
             return self.from_variants(t)
         if tid in SOLVERS:
@@ -632,8 +863,11 @@ class Generator:
         return []
 
     def generate(self, per_template=6):
+        """القوالب المسطّحة أولاً ثم قوالب الأجزاء — حتى تبقى معرّفات البنود القديمة
+        ثابتة كومِتاً بعد كومِت (لا «تزحزح» أرقام 20001.. ⇒ المراجعة الورقية للأستاذ تبقى صالحة)."""
         pool = []
-        for t in self.doc["templates"]:
+        ts = self.doc["templates"]
+        for t in [x for x in ts if not x.get("parts")] + [x for x in ts if x.get("parts")]:
             items = self.run_template(t, per_template)
             self.report["per_template"][t["id"]] = len(items)
             pool.extend(items)
@@ -1372,8 +1606,71 @@ def s_l3_t10(g, t):
 
 
 # ───────────────────────────── تحقق، عيّنة، إخراج ─────────────────────────────
+def verify_parts(item, rules) -> list:
+    """فحص بند أجزاء (parts-v1): أوزان، سلّم، خيارات كل جزء، اتساق متابعة الخطأ."""
+    errs = []
+    parts = item.get("parts") or []
+    if len(parts) < 2:
+        errs.append("أقل من جزأين")
+    if item.get("grading") != GRADING_PARTS:
+        errs.append("بلا طابع parts-v1")
+    if item.get("options") or item.get("correctIndex", -1) != -1:
+        errs.append("بند أجزاء لا يحمل خيارات مسطّحة")
+    if item.get("answer") is not None:
+        errs.append("بند أجزاء لا يحمل مفتاحاً مسطّحاً")
+    if sum(p.get("weight", 0) for p in parts) != item.get("weight"):
+        errs.append("مجموع أوزان الأجزاء ≠ وزن البند")
+    if sum(r.get("points", 0) for r in item.get("rubric") or []) != item.get("weight"):
+        errs.append("مجموع السلّم ≠ وزن البند")
+    by_ref = {}
+    for p in parts:
+        by_ref[str(p.get("label"))] = p
+        by_ref[p.get("n")] = p
+        if not str(p.get("prompt") or "").strip() and not p.get("options"):
+            errs.append(f"الجزء {p.get('label')}: بلا مطلوب وبلا خيارات")
+        if sum(r.get("points", 0) for r in p.get("rubric") or []) != p.get("weight"):
+            errs.append(f"الجزء {p.get('label')}: مجموع سلّمه ≠ وزنه")
+        a = p.get("answer") or {}
+        if a.get("value") is None and not p.get("options"):
+            errs.append(f"الجزء {p.get('label')}: لا قيمة ولا خيارات ⇒ لا يُصحَّح")
+        if a.get("value") is not None and not math.isfinite(a["value"]):
+            errs.append(f"الجزء {p.get('label')}: قيمة غير منتهية")
+        o = p.get("options")
+        if o:
+            if len(o) != 4:
+                errs.append(f"الجزء {p.get('label')}: عدد الخيارات ≠ 4")
+            if len({norm(x) for x in o}) != len(o):
+                errs.append(f"الجزء {p.get('label')}: خياران متطابقان")
+            if not (0 <= p.get("correctIndex", -1) < len(o)):
+                errs.append(f"الجزء {p.get('label')}: correctIndex خارج المجال")
+            for r in p.get("optionRules") or []:
+                if r is not None and r not in rules:
+                    errs.append(f"الجزء {p.get('label')}: قاعدة غير موثّقة {r}")
+            av = a.get("value")
+            ov = p.get("optionValues") or []
+            for i, v in enumerate(ov):
+                if av is None or v is None or i == p.get("correctIndex"):
+                    continue
+                if close(v, av):
+                    errs.append(f"الجزء {p.get('label')}: مشتت ضمن حدود التسامح")
+        f = p.get("followThrough")
+        if f:
+            for acc in f.get("accept") or []:
+                dep = by_ref.get(acc.get("dependsOn"))
+                if dep is None or (dep.get("answer") or {}).get("value") is None:
+                    errs.append(f"الجزء {p.get('label')}: مرجع المتابعة غير رقمي")
+                    continue
+                got = acc["scale"] * float(dep["answer"]["value"]) ** float(acc["power"])
+                want = (p.get("answer") or {}).get("value")
+                if want is None or abs(got - want) > 1e-9 * max(1.0, abs(want)):
+                    errs.append(f"الجزء {p.get('label')}: مقياس المتابعة لا يعيد مفتاح الجزء")
+    return errs
+
+
 def verify(item, rules) -> list:
     errs = []
+    if item.get("grading") == GRADING_PARTS:
+        return verify_parts(item, rules)
     if item["type"] == "proof":
         return errs if item.get("steps") else ["برهان بلا خطوات"]
     o = item["options"]
@@ -1471,6 +1768,8 @@ def main(argv=None):
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--u1-only", action="store_true", help="القوالب U1.yaml فقط (سلوك المادة ١٠ الأصلي)")
     ap.add_argument("--asset", action="store_true", help="كتابة المجمّع الكامل إلى app/assets/content/items.json")
+    ap.add_argument("--parts-asset", action="store_true",
+                    help="ضمّن بنود الأجزاء (parts-v1) إلى الأصل — لا تُشحن قبل تنفيذ التصحيح بالسلّم (docs/14 §١٣)")
     args = ap.parse_args(argv)
 
     doc = yaml.safe_load(TEMPLATES.read_text(encoding="utf-8")) if args.u1_only else load_docs()
@@ -1482,6 +1781,8 @@ def main(argv=None):
     meta = {"generator": "tools/gen_items.py", "templates": str(TEMPLATES.relative_to(ROOT)) if args.u1_only else str(TEMPLATES_DIR.relative_to(ROOT)) + "/*.yaml",
             "templatesVersion": doc["meta"].get("version"), "seed": args.seed, "perTemplate": args.per_template,
             "poolSize": len(pool), "sampleSize": len(smp), "constants": doc.get("constants"),
+            "partsPool": sum(1 for i in pool if i.get("grading") == GRADING_PARTS),
+            "gradingFormats": sorted({i.get("grading") or "flat-v0" for i in pool}),
             "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
             "approvedByDefault": False}
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -1494,14 +1795,25 @@ def main(argv=None):
         (OUT_DIR / "ALL.items.json").write_text(json.dumps({"meta": meta, "items": pool}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
         (OUT_DIR / f"ALL.sample{args.n}.json").write_text(json.dumps({"meta": meta, "items": smp}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     if args.asset:
-        ITEMS_ASSET.write_text(json.dumps({"meta": meta, "items": pool}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+        # بنود الأجزاء تُستثنى من الأصل: التطبيق لا يصحّح السلّم بعد (قنبلة صامتة — docs/14 §١٣)
+        ash = pool if args.parts_asset else [i for i in pool if i.get("grading") != GRADING_PARTS]
+        ameta = dict(meta, poolSize=len(ash), sampleSize=min(args.n, len(ash)),
+                     partsPool=len(pool) - len(ash),
+                     partsExcluded=not args.parts_asset)
+        ITEMS_ASSET.write_text(json.dumps({"meta": ameta, "items": ash}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     if args.pack:
         merge_into_pack(smp, meta)
     if not args.quiet:
         ch = {}
         for it in pool:
             ch[it["chapter"]] = ch.get(it["chapter"], 0) + 1
+        npr = sum(1 for it in pool if it.get("grading") == GRADING_PARTS)
+        inc = sum(1 for it in pool if not it.get("parts") and it.get("rubric")
+                  and sum(r.get("points", 0) for r in it["rubric"]) != it["weight"])
         print(f"pool: {len(pool)} بنداً {ch} · sample: {len(smp)} · rejected: {len(bad)} · short: {gen.report['short']}")
+        print(f"parts-v1: {npr} بنداً · أجزاء بلا خيارات (إجابة حرة): {gen.report['parts_no_options']} · "
+              f"مرفوض لعدم قابلية التصحيح: {gen.report['parts_ungradable']} · "
+              f"سلّم غير متسق مع الوزن (قوالب قديمة): {inc}")
         for tid, n in gen.report["per_template"].items():
             print(f"  {tid:<16} {n}")
         for tid, why in gen.report["skipped"]:

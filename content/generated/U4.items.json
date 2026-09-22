@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 549,
+  "poolSize": 561,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,6 +17,11 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
+  "partsPool": 12,
+  "gradingFormats": [
+   "flat-v0",
+   "parts-v1"
+  ],
   "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
   "approvedByDefault": false
  },

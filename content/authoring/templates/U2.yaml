@@ -15,6 +15,8 @@ meta:
   lessons_covered: [L1-magnetism, L2-magnetic-force-laplace, L3-electromagnetic-induction, L4-oscillating-circuit, L5-alternating-current, L6-transformers]
 
 schema:
+  template_fields_extra:
+    parts: "المسألة الكاملة (قرار ٦٨) — انظر U1.yaml schema.template_fields: أجزاء بـvalue/text + lines (٥/٣/١/١) + follow (متابعة الخطأ scale×x^power)"
   distractor_rules:
     cos_sin_flux:        "خلط cos α (التدفق) بـsin α (العزم) — الزاوية مع الناظم لا مع المستوي"
     forget_N:            "أهمل عدد اللفات N"
@@ -704,6 +706,101 @@ templates:
         - {text: "تساوي شدة التيار في الأولية", rule: transformer_energy}
         - {text: "ربع شدة التيار في الأولية", rule: forget_sqrt}
   answer_basis: "الكتاب ص ١٦٣–١٦٤ [أستاذ]"
+  approved: false
+
+# ───────────────── المسألة الكاملة بأجزاء — قرار ٦٨ (parts-v1) ─────────────────
+# نمط مسألة ٢٠٢٦ الثالثة (التيار المتناوب + فرينل — ٨٠ درجة). كل سطر سلّم يأخذ
+# ٥ للعلاقة و٣ للتعويض و١ للنتيجة و١ للوحدة، والمتابعة تُثبت آلياً: Ieff ∝ 1/Z و
+# P ∝ Ieff (أو ∝ Ieff² من طريقة R·I² — وكلاهما مقبول عند المصحّح «الحل البديل»).
+
+- id: U2.L5.P01
+  title: "دارة R–L–C على التسلسل — مسألة بأجزاء (نمط مسألة ٢٠٢٦ الثالثة)"
+  chapter: U2C5
+  type: problem
+  difficulty: 3
+  source:
+    lesson: "L5 §٤ §٥ §٦ — الجدول الذهبي وقواعد الحل السبعة + مثال محلول ١"
+    book: "ص ١٤٦–١٥٢"
+    exam: "٢٠٢٦ المسألة الثالثة (٨٠ درجة) — البنية فقط ✅؛ المعطيات من عندنا"
+  vars:
+    s: {set: [4, 8, 10, 12, 20, 30], unit: "Ω"}
+    swap: {set: [0, 1]}
+    Ieff: {set: [1, 2, 3, 4], unit: A}
+    nature: {set: [استطالية, سعاتية]}
+  compute:
+    R: "3*s if swap == 0 else 4*s"
+    X: "4*s if swap == 0 else 3*s"
+    Z: "5*s"
+    U: "Ieff*Z"
+    cosf: "R/Z"
+    P: "R*Ieff**2"
+    S: "U*Ieff"
+    phase: >-
+      'التوتر متقدم على التيار بزاوية φ (الوشيعة أعظم: XL > XC)'
+      if nature == 'استطالية'
+      else 'التيار متقدم على التوتر بزاوية φ (المكثفة أعظم: XC > XL)'
+  stem: "دارة مكوّنة من مقاومة R ووشيعة (L، مهملتها المقاومة) ومكثفة C موصولة على التسلسل مع منبع توتر متناوب جيبي. R = {R} Ω و|XL − XC| = {X} Ω وشدة التوتر المنتج Ueff = {U} V، والدارة {nature}: {phase}."
+  parts:
+    - label: "١"
+      ask: "استنتج بالرموز علاقة الممانعة الزولية Z لدارة التسلسل ثم أنشئ مثلث فرينل واحسب قيمتها."
+      unit: "Ω"
+      value: "Z"
+      distractors:
+        - {value: "R + X", rule: Z_algebraic, rationale: "جمع الممانعات جبرياً بدل فيثاغورث"}
+        - {value: "abs(R - X)", rule: Z_algebraic, rationale: "طرح الممانعتين جبرياً بدل المثلث القائم"}
+        - {value: "R", rule: mix_formulas, rationale: "اعتبر الدارة أومية بحتة ⇒ Z = R (أي cos φ = 1 بلا مسوّغ)"}
+        - {value: "X", rule: XL_XC_swap, rationale: "أعطى الممانعة الفعلية وحدها ونسي المقاومة"}
+      lines:
+        - relation: "Z² = R² + (XL − XC)² ⇒ Z = √(R² + (XL − XC)²)"
+          subst: "Z = √({R}² + {X}²)"
+          expect: ["{R}", "{X}"]
+          keys: ["√(R²", "Z² = R²", "فرينل"]
+          anti_keys: ["Z = R + XL − XC", "Z = R + X"]
+    - label: "٢"
+      ask: "احسب الشدة المنتجة Ieff للتيار في الدارة."
+      unit: "A"
+      value: "Ieff"
+      follow: {depends_on: "١", power: -1}          # Ieff = Ueff/Z ⇒ ∝ 1/Z
+      lines:
+        - relation: "تعميم قانون أوم على القيم المنتجة: Ueff = Z·Ieff ⇒ Ieff = Ueff/Z"
+          subst: "Ieff = {U}/{Z}"
+          expect: ["{U}", "{Z}"]
+          keys: ["Ueff/Z", "Ieff = U", "U = Z·I"]
+          anti_keys: ["Ieff = Z/Ueff", "Ieff = Ueff·Z"]
+    - label: "٣"
+      ask: "احسب عامل الاستطاعة cos φ للدارة."
+      unit: ""
+      answer: {unit_required: false}
+      value: "cosf"
+      follow: {depends_on: "١", power: -1}          # cos φ = R/Z ⇒ ∝ 1/Z بـ R ثابت
+      lines:
+        - relation: "cos φ = P/S = R/Z (أو U⃗R / U⃗ من مثلث فرينل)"
+          subst: "cos φ = {R}/{Z}"
+          expect: ["{R}", "{Z}"]
+          keys: ["R/Z", "P/S", "cos φ ="]
+          anti_keys: ["cos φ = Z/R", "cos φ = X/Z"]
+          unit: false
+          points: {relation: 5, substitution: 3, result: 2}   # بلا درجة وحدة: المقدار بلا بُعد ⇒ النتيجة درجتان
+    - label: "٤"
+      ask: "احسب الاستطاعة المتوسطة P المستهلكة في الدارة، وتحقّق منها بطريق ثانية."
+      unit: "W"
+      value: "P"
+      follow:
+        depends_on: "٢"
+        power: 1                                     # P = Ueff·Ieff·cos φ ⇒ ∝ Ieff
+        also:
+          - {power: 2, note: "P = R·Ieff² — الحل البديل مقبول (docs/20 §٢ قاعدة ٦)"}
+      lines:
+        - relation: "P = Ueff·Ieff·cos φ = S·cos φ — و(تحقق) P = R·Ieff² تُصرف في المقاومة حصراً"
+          subst: "P = {U}·{Ieff}·{cosf}"
+          expect: ["{U}", "{Ieff}"]
+          keys: ["Ueff·Ieff·cos", "R·Ieff²", "P = UI cos"]
+          anti_keys: ["P = Ueff·Ieff", "P = S", "الوشيعة والمكثفة تستهلكان"]
+  answer_basis: "الجدول الذهبي (L5 §٤) وقواعد الحل (L5 §٥–٧): Z² = R²+(XL−XC)² · Ueff = Z·Ieff · cos φ = R/Z = P/S · P = Ueff·Ieff·cos φ = R·Ieff² (الصفر في L وC) · الكتاب ص ١٤٦–١٥٢ [أستاذ]"
+  review_notes:
+    - "وزن البند ٤٠ من ٨٠ الوزارية: البقية إنشاء فرينل بالرسم (عناصر محددة) وسؤال الطنين f0 — قالب الرسم معلَّق بـ needs_figure، يُضاف سطران عند اعتماد الأستاذ."
+    - "امتحان ٢٠٢٥/٢٠٢٦: تردد المنبع في المصدر ⚠️ (٦٠ أم ١٢٠ هرتز) ⇒ القالب لا يذكر ω ولا f إطلاقاً؛ يُضاف جزء «التواتر والطنين» بعد التثبيت."
+    - "الجزء ٤ يقبل متابعتين (∝ Ieff و∝ Ieff²) لأن للمصحّح طريقتين؛ لا تُحذف إحداهما بلا قرار من الأستاذ."
   approved: false
 
 review_queue:

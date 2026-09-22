@@ -66,6 +66,16 @@ def test_every_option_has_documented_rule_and_rationale(pool):
     for it in items:
         if it["type"] == "proof":
             continue
+        if it.get("grading") == gi.GRADING_PARTS:      # الأجزاء: خيارات داخل كل جزء
+            for part in it["parts"]:
+                if part["options"]:
+                    assert len(part["options"]) == 4 and len(part["solutionSteps"]) == 4
+                    for i, r in enumerate(part["optionRules"]):
+                        if i == part["correctIndex"]:
+                            assert r is None and part["solutionSteps"][i].startswith("✓")
+                        else:
+                            assert r in gen.rules, r
+            continue
         assert len(it["options"]) == 4
         assert len(it["solutionSteps"]) == 4
         for i, r in enumerate(it["optionRules"]):
@@ -109,6 +119,8 @@ def test_correct_index_is_spread(pool):
     _, items = pool
     counts = [0, 0, 0, 0]
     for it in items:
+        if it.get("grading") == gi.GRADING_PARTS:          # بند أجزاء: لا مفتاح مسطّح يُنتشر
+            continue
         if it["type"] != "proof" and not it["options"][it["correctIndex"]].startswith("جميع"):
             counts[it["correctIndex"]] += 1
     assert min(counts) >= 0.15 * sum(counts), counts
@@ -225,3 +237,154 @@ def test_curriculum_anchor_values(all_pool):
     # U5: هابل 70 × 100 Mpc ⇒ 7000 km/s
     for it in _find(items, "U5.L1.T01", "H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبعد عنا 100 Mpc"):
         assert abs(it["answer"]["value"] - 7000) < 1e-9
+
+
+# ─────────────────────────── المسألة بأجزاء — parts-v1 (قرار ٦٨) ───────────────────────────
+
+def _parts(items):
+    return [i for i in items if i.get("grading") == gi.GRADING_PARTS]
+
+
+def test_parts_templates_exist_in_two_units(all_pool):
+    _, items = all_pool
+    pr = _parts(items)
+    assert pr, "لا بند أجزاء واحد — القوالب لم تُقرأ"
+    assert {i["unit"] for i in pr} >= {"U1", "U2"}
+    assert {i["type"] for i in pr} == {"problem"}
+
+
+def test_parts_weights_and_rubric_are_coherent(all_pool):
+    _, items = all_pool
+    for it in _parts(items):
+        assert len(it["parts"]) >= 2
+        assert sum(p["weight"] for p in it["parts"]) == it["weight"]      # وزن البند = مجموع أجزائه
+        assert sum(r["points"] for r in it["rubric"]) == it["weight"]       # السلّم لا يزيف الوزن
+        for p in it["parts"]:
+            assert sum(r["points"] for r in p["rubric"]) == p["weight"]
+            assert p["prompt"] or p["options"]                              # لا جزء بلا مطلوب
+            a = p["answer"]
+            assert a["value"] is not None or p["options"]                   # لا جزء لا يُصحَّح
+            assert a["unit"] or not a["unitRequired"]
+            if p["options"]:
+                assert a["text"] in p["options"] and p["correctIndex"] == p["options"].index(a["text"])
+
+
+def test_parts_have_no_flat_answer(all_pool):
+    _, items = all_pool
+    for it in _parts(items):
+        assert it["options"] == [] and it["correctIndex"] == -1 and it["answer"] is None
+        assert it["followThrough"] and all(f["part"] for f in it["followThrough"])
+
+
+def test_follow_through_scale_reproduces_the_key(all_pool):
+    gen, items = all_pool
+    for it in _parts(items):
+        by_ref = {str(p["label"]): p for p in it["parts"]}
+        by_ref.update({p["n"]: p for p in it["parts"]})
+        for p in it["parts"]:
+            f = p.get("followThrough")
+            if not f:
+                continue
+            for acc in f["accept"]:
+                dep = by_ref[acc["dependsOn"]]
+                got = acc["scale"] * float(dep["answer"]["value"]) ** float(acc["power"])
+                want = float(p["answer"]["value"])
+                assert abs(got - want) <= 1e-9 * max(1.0, abs(want)), (it["templateId"], p["label"], got, want)
+                # المتابعة معنى حقيقي: خطأ في الجزء السابق ⇒ قيمة مقبولة != المفتاح
+                wrong = acc["scale"] * (float(dep["answer"]["value"]) * 1.5) ** float(acc["power"])
+                assert not gi.close(wrong, want), (it["templateId"], p["label"])
+
+
+def test_parts_items_pass_verify(all_pool):
+    gen, items = all_pool
+    assert [(i["templateId"], gi.verify(i, gen.rules)) for i in _parts(items) if gi.verify(i, gen.rules)] == []
+
+
+def test_parts_do_not_shift_flat_ids(all_pool):
+    """قوالب الأجزاء تُشغَّل آخر القائمة ⇒ معرّفات البنود القديمة لا تتزحزح (مراجعة الأستاذ ورقية)."""
+    gen, items = all_pool
+    flat = [i for i in items if i.get("grading") != gi.GRADING_PARTS]
+    pr = _parts(items)
+    assert max(i["id"] for i in flat) < min(i["id"] for i in pr)
+    assert flat[0]["id"] == gi.FIRST_ID and flat[0]["templateId"] == "U1.L1.T01"
+
+
+@pytest.fixture(scope="module")
+def u1_parts_only():
+    """القالب U1.L3.P01 وحده بمحرّك جديد — السحب المرجعي يتكرر حتمياً (البذرة 2026)."""
+    doc = yaml.safe_load(gi.TEMPLATES.read_text(encoding="utf-8"))
+    gen = gi.Generator(doc, gi.load_banned(), seed=2026)
+    t = [x for x in doc["templates"] if x["id"] == "U1.L3.P01"][0]
+    return gen, gen.run_template(t, 6)
+
+
+def test_exam_anchored_compound_pendulum_values(u1_parts_only):
+    """مسألة ٢٠٢٦ الأولى: L = 0.8 m وm1 = m2 وd = L/4 ⇒ T0 = 2 s · ℓ = 1 m · ω = √10 (docs/20 §٦)."""
+    gen, items = u1_parts_only
+    assert items
+    hit = [it for it in items if "0.8 m" in it["stem"] and "60°" in it["parts"][2]["prompt"]]
+    assert hit, "لم يُولَّد السحب المرجعي (L = 0.8 m، θmax = 60°)"
+    it = hit[0]
+    T0, l_eq, w = (p["answer"]["value"] for p in it["parts"])
+    assert abs(T0 - 2.0) < 1e-9 and abs(l_eq - 1.0) < 1e-9
+    assert it["parts"][2]["answer"]["text"] == "√10 rad·s⁻¹" and abs(w - 10 ** 0.5) < 1e-9
+    assert all(gi.verify(i, gen.rules) == [] for i in items)
+
+
+def test_compound_pendulum_physics_holds_for_every_draw(u1_parts_only):
+    """كل سحب يجب أن يحقق: T0 = √(5L) · ℓ = 1.25·L = T0²/4 · ω² = 8/L عند 60° و16/L عند 90°."""
+    gen, items = u1_parts_only
+    for it in items:
+        L = float(gi.re.search(r"طولها ([\d.]+) m", it["stem"]).group(1))
+        th = int(gi.re.search(r"بزاوية[^0-9]*(\d+)°", it["parts"][2]["prompt"]).group(1))
+        T0, l_eq, w = (p["answer"]["value"] for p in it["parts"])
+        assert abs(T0 - math.sqrt(5 * L)) < 1e-9, it["id"]
+        assert abs(l_eq - 1.25 * L) < 1e-9, it["id"]
+        assert abs(l_eq - T0 * T0 / 4) < 1e-9, it["id"]                  # هوية السلم (ℓ = g(T0/2π)²)
+        assert abs(w * w - (2.0 if th == 90 else 1.0) * 8 / L) < 1e-9, (it["id"], th)
+
+
+def test_ac_chain_consistency(all_pool):
+    """U = Z·I و P = U·I·cos φ = R·I² — الطريقان يجب أن يتفقا عددياً في كل بند مولَّد."""
+    _, items = all_pool
+    for it in _parts(items):
+        if it["templateId"] != "U2.L5.P01":
+            continue
+        Z, I, cosf, P = (p["answer"]["value"] for p in it["parts"])
+        import re as _re
+        U = float(_re.search(r"Ueff = ([\d.]+) V", it["stem"]).group(1))
+        R = float(_re.search(r"R = ([\d.]+) Ω", it["stem"]).group(1))
+        assert abs(U - Z * I) < 1e-6 * max(1.0, U)
+        assert abs(P - U * I * cosf) < 1e-6 * max(1.0, P)
+        assert abs(P - R * I * I) < 1e-6 * max(1.0, P)
+
+
+def test_verify_rejects_tampered_parts(all_pool):
+    gen, items = all_pool
+    good = _parts(items)[0]
+    bad = json.loads(json.dumps(good))
+    bad["parts"][0]["weight"] += 1
+    assert any("أوزان الأجزاء" in e or "الوزن" in e for e in gi.verify_parts(bad, gen.rules)), gi.verify_parts(bad, gen.rules)
+    bad2 = json.loads(json.dumps(good))
+    ft = bad2["parts"][1]["followThrough"]["accept"][0]
+    ft["scale"] *= 1.5
+    assert any("المتابعة" in e for e in gi.verify_parts(bad2, gen.rules)), gi.verify_parts(bad2, gen.rules)
+    bad3 = json.loads(json.dumps(good))
+    bad3["answer"] = {"value": 1.0, "unit": "s", "text": "1 s"}          # مفتاح مسطّح ممنوع على بند أجزاء
+    assert any("مسطّح" in e for e in gi.verify_parts(bad3, gen.rules)), gi.verify_parts(bad3, gen.rules)
+
+
+def test_asset_excludes_parts_until_rubric_grading_lands(tmp_path, monkeypatch, capsys):
+    orig = (gi.OUT_DIR, gi.ITEMS_ASSET)
+    gi.OUT_DIR, gi.ITEMS_ASSET = tmp_path, tmp_path / "items.json"
+    try:
+        gi.main(["--quiet", "--asset", "--seed", "2026", "--per-template", "1", "--n", "10"])
+        shipped = json.loads((tmp_path / "items.json").read_text(encoding="utf-8"))
+        assert shipped["meta"]["partsExcluded"] is True
+        assert all(i.get("grading") != gi.GRADING_PARTS for i in shipped["items"])
+        assert shipped["meta"]["partsPool"] > 0                       # مذكور في الوصف وإن لم يُشحن
+        gi.main(["--quiet", "--asset", "--parts-asset", "--seed", "2026", "--per-template", "1", "--n", "10"])
+        shipped2 = json.loads((tmp_path / "items.json").read_text(encoding="utf-8"))
+        assert any(i.get("grading") == gi.GRADING_PARTS for i in shipped2["items"])
+    finally:
+        gi.OUT_DIR, gi.ITEMS_ASSET = orig
