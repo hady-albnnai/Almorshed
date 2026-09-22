@@ -41,6 +41,8 @@ class GeneratedItem {
     required this.solutionSteps,
     required this.weight,
     required this.raw,
+    this.parts = const [],
+    this.grading,
   });
 
   final int id;
