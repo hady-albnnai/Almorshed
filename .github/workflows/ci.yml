@@ -97,7 +97,11 @@ jobs:
                   print(f'::error title=كشف فشل::{esc(block)}')
                   hit = True
           if not hit:
-              print(f'::notice title=آخر 25 سطراً بعد التوحيد::' + '\n'.join(lines[-25:]))
+              print('::notice title=آخر 25 سطراً بعد التوحيد::' + esc('\n'.join(lines[-25:])))
+          # عدّاد المجموع: آخر سطر الناجح +N: All tests passed → رقم الاختبارات في صفحة التشغيل
+          mt = re.search(r'\+(\d+): All tests passed', out)
+          if mt and not hit:
+              print(f'::notice title=تم اختبار {mt.group(1)} بنجاح ✓::+{mt.group(1)}: All tests passed')
           # كل ظهور لعلامة [E]: سطرا السياق + ٣٥ سطرا بعدها (اسم الاختبار + Expected/Actual)
           seen = 0
           for i, ln in enumerate(lines):
