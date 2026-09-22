@@ -75,14 +75,27 @@ jobs:
         working-directory: app
         run: |
           status=0
-          flutter test > test.out 2>&1 || status=$?
+          flutter test --reporter expanded > test.out 2>&1 || status=$?
           cat test.out
           # اسم كل اختبار ساقط + آخر ٤٠ سطراً خاماً (Expected/Actual) — annotation قابلة للنقر
           TEST_STATUS=$status python3 - <<'PY'
           import os, pathlib, re
           out = pathlib.Path('test.out').read_text(encoding='utf-8', errors='replace')
           out = re.sub(r'\x1b\[[0-9;]*m', '', out)
-          lines = out.splitlines()
+          # توحيد CR/LF (المُنقِّش المضغوط يستعمل \r) ثم فكّ السطور
+          out = out.replace('\r\n', '\n').replace('\r', '\n')
+          lines = [l for l in out.split('\n') if l != '']
+          raw = pathlib.Path('test.out').read_bytes()
+          print(f'::notice title=بنية test.out::bytes={len(raw)} nl={raw.count(bytes([10]))} cr={raw.count(bytes([13]))} lines={len(lines)}')
+          # أي سطر فشل بعد التوحيد: -N: أو [E] أو Expected أو EXCEPTION
+          hit = False
+          for i, ln in enumerate(lines):
+              if (' -' in ln and ln.rstrip().endswith('[E]')) or 'Expected:' in ln or 'EXCEPTION CAUGHT' in ln or 'Some tests failed' in ln:
+                  block = '\n'.join(lines[max(0, i - 2): min(len(lines), i + 30)])
+                  print(f'::error title=كشف فشل::{block}')
+                  hit = True
+          if not hit:
+              print(f'::notice title=آخر 25 سطراً بعد التوحيد::' + '\n'.join(lines[-25:]))
           # كل ظهور لعلامة [E]: سطرا السياق + ٣٥ سطرا بعدها (اسم الاختبار + Expected/Actual)
           seen = 0
           for i, ln in enumerate(lines):
