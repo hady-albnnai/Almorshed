@@ -65,7 +65,7 @@ List<String> mathRuns(String text) => [
 /// نصّ [text] كلُّ شريط صيغة فيه ملفوف بعزّالَي الاتجاه (FSI … PDI).
 String isolateMath(String text) {
   final out = StringBuffer();
-  var first = true;
+  var first = 0;
   for (final m in _tokenBoundary.allMatches(text)) {
     final piece = text.substring(first, m.start());
     if (piece.isNotEmpty) {
@@ -125,7 +125,7 @@ class MathText extends StatelessWidget {
     }
     final render = renderer!;
     final spans = <InlineSpan>[];
-    var first = true;
+    var first = 0;
     for (final m in _tokenBoundary.allMatches(source)) {
       _append(spans, source.substring(first, m.start()), m[0]!, render);
       first = m.end();
