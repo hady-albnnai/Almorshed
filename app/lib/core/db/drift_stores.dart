@@ -160,7 +160,7 @@ class DriftTrainingStore implements TrainingStore {
       for (final m in data.mistakes) {
         await db.into(db.mistakeRows).insert(
               MistakeRowsCompanion.insert(
-                questionId: m.questionId,
+                questionId: Value(m.questionId),
                 chosenIndex: m.chosenIndex,
                 correctIndex: m.correctIndex,
                 atMs: m.atMs,
@@ -173,7 +173,7 @@ class DriftTrainingStore implements TrainingStore {
       for (final c in data.cardStates.values) {
         await db.into(db.cardStateRows).insert(
               CardStateRowsCompanion.insert(
-                cardId: c.cardId,
+                cardId: Value(c.cardId),
                 difficulty: c.difficulty,
                 stability: c.stability,
                 reviews: Value(c.reviews),
@@ -264,7 +264,7 @@ class DriftXpEventStore implements XpEventStore {
       for (final e in events) {
         await db.into(db.xpEventRows).insert(
               XpEventRowsCompanion.insert(
-                seq: e.seq,
+                seq: Value(e.seq),
                 type: e.type,
                 tsMs: e.tsMs,
                 payloadJson: Value(jsonEncode(e.payload)),
