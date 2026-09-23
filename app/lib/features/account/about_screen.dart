@@ -9,9 +9,9 @@ library;
 
 import 'package:flutter/material.dart';
 
-/// الإصدار المعلن — مطابق `pubspec.yaml` (`version: 0.1.0+1`). يُربط
+/// الإصدار المعلن — مطابق `pubspec.yaml` (`version: 1.0.0+1`). يُربط
 /// تلقائياً بـpackage_info عند F8.1 حين تُعتمد حزمة التوزيع.
-const String aboutVersion = '0.1.0+1';
+const String aboutVersion = '1.0.0+1';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});

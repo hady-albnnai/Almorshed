@@ -2,7 +2,7 @@
     <!-- F5.4: النقلية المحلية (TCP نقطة اتصال/شبكة مشتركة) + شبكة سيرفر الدوري -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="fizya_clash"
+        android:label="فيزيا كلاش"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:allowBackup="false"
