@@ -244,6 +244,63 @@ Deno.serve(async (req) => {
       return json({ ok: true, code: group5(code) });
     }
 
+    // ── ٧) season_get — حالة موسم (الافتراضي: الموسم الحالي) ──
+    // F6.6: المكتب يقرأ ما إذا كان الموسم مفتوحاً (ends_on=null) أو مغلقاً.
+    if (action === 'season_get') {
+      const season = String(body.season ?? '').trim();
+      // لا نحسب current_season() هنا (منطق زمني بدمشق) — العميل يمرّره؛ فارغ ⇒ خطأ.
+      if (!season) return json({ ok: false, error: 'SEASON_REQUIRED' }, 422);
+      const { data: row, error } = await admin
+        .from('seasons')
+        .select('name, ends_on')
+        .eq('name', season)
+        .maybeSingle();
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      return json({
+        ok: true,
+        season,
+        exists: !!row,
+        ends_on: (row?.ends_on as string | null) ?? null,
+        // مغلق = ends_on موجود وقد مضى (بتاريخ اليوم UTC — البوابة نفسها في cert_issue).
+        closed: !!row?.ends_on &&
+          new Date(row!.ends_on as string).getTime() <= Date.now(),
+      });
+    }
+
+    // ── ٨) season_set — ضبط/مسح تاريخ نهاية الموسم (بيد المالك، قرار ٣٦) ──
+    // ends_on='YYYY-MM-DD' يضبط الإغلاق · ends_on=null يعيد فتح الموسم.
+    if (action === 'season_set') {
+      const season = String(body.season ?? '').trim();
+      if (!season) return json({ ok: false, error: 'SEASON_REQUIRED' }, 422);
+      const raw = body.ends_on;
+      let endsOn: string | null = null;
+      if (raw !== null && raw !== undefined && String(raw).trim() !== '') {
+        const s = String(raw).trim();
+        // ISO date صارم YYYY-MM-DD — لا وقت، لا صيغ غامضة.
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(s) || Number.isNaN(Date.parse(s)))
+          return json({ ok: false, error: 'DATE_FORMAT' }, 422);
+        endsOn = s;
+      }
+      const { data: row, error } = await admin
+        .from('seasons')
+        .upsert({ name: season, ends_on: endsOn }, { onConflict: 'name' })
+        .select('name, ends_on')
+        .single();
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      await admin.from('office_audit').insert({
+        action: 'season_set',
+        note: `season=${season} ends_on=${endsOn ?? 'null(open)'}`,
+      });
+      return json({
+        ok: true,
+        season,
+        exists: true,
+        ends_on: (row?.ends_on as string | null) ?? null,
+        closed: !!row?.ends_on &&
+          new Date(row!.ends_on as string).getTime() <= Date.now(),
+      });
+    }
+
     return json({ ok: false, error: 'BAD_ACTION' }, 422);
   } catch (e) {
     return json({ ok: false, error: 'INTERNAL', detail: String(e) }, 500);

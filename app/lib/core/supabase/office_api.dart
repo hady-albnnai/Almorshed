@@ -215,4 +215,48 @@ class OfficeApi {
         },
         key);
   }
+
+  /// F6.6 — حالة موسم: مفتوح (ends_on=null) أو مغلق (ends_on مضى).
+  Future<SeasonInfo> seasonInfo(String key, String season) async {
+    final json = await _call('season_get', <String, dynamic>{'season': season}, key);
+    return SeasonInfo.fromJson(json);
+  }
+
+  /// F6.6 — ضبط/مسح نهاية الموسم (قرار ٣٦ — الإغلاق بيد المالك).
+  /// [endsOn] بصيغة 'YYYY-MM-DD' يضبط الإغلاق · null يعيد فتح الموسم.
+  Future<SeasonInfo> setSeasonEnd(String key, String season, String? endsOn) async {
+    final json = await _call(
+        'season_set',
+        <String, dynamic>{'season': season, 'ends_on': endsOn},
+        key);
+    return SeasonInfo.fromJson(json);
+  }
+}
+
+/// حالة موسم (F6.6) كما تعيدها office_codes.
+class SeasonInfo {
+  const SeasonInfo({
+    required this.season,
+    required this.exists,
+    required this.endsOn,
+    required this.closed,
+  });
+
+  final String season;
+
+  /// هل للموسم صفّ في جدول seasons بعد؟ (season_set ينشئه إن لم يوجد).
+  final bool exists;
+
+  /// تاريخ الإغلاق 'YYYY-MM-DD' أو null (الموسم مفتوح).
+  final String? endsOn;
+
+  /// مغلق فعلاً = endsOn موجود وقد مضى (البوابة نفسها في cert_issue).
+  final bool closed;
+
+  factory SeasonInfo.fromJson(Map<String, dynamic> j) => SeasonInfo(
+        season: (j['season'] ?? '').toString(),
+        exists: j['exists'] == true,
+        endsOn: (j['ends_on'] as String?),
+        closed: j['closed'] == true,
+      );
 }

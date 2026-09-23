@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../core/cert/certificate.dart' show currentSeason;
 import '../../core/review/review_mode.dart';
 import '../../core/supabase/office_api.dart';
 import '../../core/theme/app_colors.dart';
@@ -52,6 +53,10 @@ class _AdminScreenState extends State<AdminScreen> {
   String _filter = 'activated'; // activated | issued | revoked | all
   String _query = ''; // بحث POS: كود أو اسم زبون
 
+  // F6.6 — إدارة الموسم (الموسم الحالي محسوب محلياً؛ الحالة من الخادم)
+  final String _season = currentSeason();
+  SeasonInfo? _seasonInfo;
+
   @override
   void initState() {
     super.initState();
@@ -84,6 +89,7 @@ class _AdminScreenState extends State<AdminScreen> {
         _subs = subs;
         _error = '';
       });
+      unawaited(_loadSeason());
       return true;
     } on OfficeApiException catch (e) {
       if (e.forbidden) {
@@ -314,6 +320,80 @@ class _AdminScreenState extends State<AdminScreen> {
     await _refresh();
   }
 
+  /// F6.6 — يقرأ حالة الموسم الحالي (بصمت؛ خطأ الشبكة لا يزعج المكتب).
+  Future<void> _loadSeason() async {
+    try {
+      final info = await _api.seasonInfo(_key, _season);
+      if (mounted) setState(() => _seasonInfo = info);
+    } catch (_) {
+      // صامت — البطاقة تعرض «تعذّر التحميل» ضمنياً ببقاء _seasonInfo=null.
+    }
+  }
+
+  /// F6.6 — ضبط أو مسح نهاية الموسم (قرار ٣٦ — الإغلاق بيد المالك).
+  Future<void> _editSeasonEnd() async {
+    final info = _seasonInfo;
+    final initial = info?.endsOn;
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: initial != null
+          ? (DateTime.tryParse(initial) ?? DateTime.now())
+          : DateTime.now(),
+      firstDate: DateTime(2025),
+      lastDate: DateTime(2035),
+      helpText: 'تاريخ نهاية الموسم $_season',
+    );
+    if (picked == null || !mounted) return;
+    final iso = '${picked.year.toString().padLeft(4, '0')}-'
+        '${picked.month.toString().padLeft(2, '0')}-'
+        '${picked.day.toString().padLeft(2, '0')}';
+    final sure = await _confirm(
+      'إغلاق الموسم $_season بتاريخ $iso؟',
+      'بعد مضيّ هذا التاريخ يصبح إصدار الشهادات مفتوحاً للطلاب المستحقّين. '
+      'يمكنك تغييره أو إعادة الفتح لاحقاً.',
+      confirmLabel: 'حفظ',
+    );
+    if (sure != true || !mounted) return;
+    setState(() => _busy = true);
+    try {
+      final res = await _api.setSeasonEnd(_key, _season, iso);
+      if (mounted) {
+        setState(() => _seasonInfo = res);
+        _toast('نهاية الموسم = $iso');
+      }
+    } on OfficeApiException catch (e) {
+      if (mounted) _toast('فشل الحفظ: ${e.message}');
+    } catch (_) {
+      if (mounted) _toast('تعذر الاتصال');
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  /// F6.6 — إعادة فتح الموسم (مسح ends_on).
+  Future<void> _reopenSeason() async {
+    final sure = await _confirm(
+      'إعادة فتح الموسم $_season؟',
+      'يُلغى تاريخ النهاية ويعود الموسم مفتوحاً — يتوقّف إصدار شهادات جديدة له.',
+      confirmLabel: 'إعادة الفتح',
+    );
+    if (sure != true || !mounted) return;
+    setState(() => _busy = true);
+    try {
+      final res = await _api.setSeasonEnd(_key, _season, null);
+      if (mounted) {
+        setState(() => _seasonInfo = res);
+        _toast('أُعيد فتح الموسم');
+      }
+    } on OfficeApiException catch (e) {
+      if (mounted) _toast('فشل: ${e.message}');
+    } catch (_) {
+      if (mounted) _toast('تعذر الاتصال');
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
   Future<void> _generate() async {
     final count = await _askCount();
     if (count == null || !mounted) return;
@@ -393,7 +473,9 @@ class _AdminScreenState extends State<AdminScreen> {
     return ok == true ? count : null;
   }
 
-  Future<bool?> _confirm(String title, String body) => showDialog<bool>(
+  Future<bool?> _confirm(String title, String body,
+          {String confirmLabel = 'تأكيد الإلغاء'}) =>
+      showDialog<bool>(
         context: context,
         builder: (ctx) => AlertDialog(
           title: Text(title),
@@ -405,7 +487,7 @@ class _AdminScreenState extends State<AdminScreen> {
             ),
             FilledButton(
               onPressed: () => Navigator.of(ctx).pop(true),
-              child: const Text('تأكيد الإلغاء'),
+              child: Text(confirmLabel),
             ),
           ],
         ),
@@ -612,6 +694,70 @@ class _AdminScreenState extends State<AdminScreen> {
                       : 'وضع المراجعة مطفأ — أغلق التطبيق وافتحه',
                 );
               },
+            ),
+          ),
+          const SizedBox(height: 10),
+          // ── F6.6: إدارة الموسم (نهاية الموسم = بوابة الشهادات) ──
+          Card(
+            key: const Key('season_card'),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(Icons.emoji_events_outlined),
+                      const SizedBox(width: 8),
+                      Text('دوري الموسم $_season', style: txt.titleMedium),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Builder(builder: (_) {
+                    final info = _seasonInfo;
+                    if (info == null) {
+                      return Text('… تحميل حالة الموسم',
+                          style: txt.bodySmall);
+                    }
+                    final line = info.endsOn == null
+                        ? 'مفتوح — لا شهادات بعد'
+                        : info.closed
+                            ? 'مغلق منذ ${info.endsOn} — الشهادات متاحة ✅'
+                            : 'ينتهي ${info.endsOn} — الشهادات بعده';
+                    return Text(line,
+                        style: txt.bodyMedium?.copyWith(
+                          color: info.closed ? _gold(context) : null,
+                          fontWeight: FontWeight.w700,
+                        ));
+                  }),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: OutlinedButton.icon(
+                          key: const Key('season_set_end'),
+                          onPressed: _busy ? null : _editSeasonEnd,
+                          icon: const Icon(Icons.event),
+                          label: Text(_seasonInfo?.endsOn == null
+                              ? 'تحديد نهاية الموسم'
+                              : 'تعديل التاريخ'),
+                        ),
+                      ),
+                      if (_seasonInfo?.endsOn != null) ...[
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            key: const Key('season_reopen'),
+                            onPressed: _busy ? null : _reopenSeason,
+                            icon: const Icon(Icons.lock_open),
+                            label: const Text('إعادة الفتح'),
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 10),
