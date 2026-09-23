@@ -73,7 +73,7 @@ void main() {
     expect(pack.units[0].title, 'الوحدة الأولى: الحركة والتحريك');
     expect(pack.units[1].title, 'الوحدة الثانية: الكهرباء والمغناطيسية');
     expect(pack.units[2].title, 'الوحدة الثالثة: الأمواج المستقرة');
-    expect(pack.units[3].title, 'الوحدة الرابعة: الفيزياء الحديثة');
+    expect(pack.units[3].title, 'الوحدة الرابعة: الإلكترونيات والجسم الصلب');
     expect(pack.units[4].title, contains('الفلكية'));
 
     // صفحات الكتاب تصاعدية عبر الحزمة كلها
