@@ -74,14 +74,15 @@ void main() {
       );
     });
 
-    test('الأصل الحقيقي: بنود الأجزاء (F-GEN3) مكتملة البنية ومعلَّقة الاعتماد',
+    test('الأصل الحقيقي: بنود الأجزاء (F-GEN3) مكتملة البنية باعتماد وزاري',
         () {
       final raw = File('${Directory.current.path}/assets/content/items.json')
           .readAsStringSync();
       final real = GeneratedItemsPack.fromJsonString(raw);
       final parts = real.items.where((i) => i.isParts).toList();
       expect(parts.length, greaterThanOrEqualTo(2));
-      expect(real.visible(reviewMode: false), isEmpty); // لم يعتمد منها شيء
+      // dev/self-content: كل البنود معتمدة وزارياً ⇒ كلها مرئية.
+      expect(real.visible(reviewMode: false), hasLength(real.items.length));
       for (final i in parts) {
         expect(i.options, isEmpty);
         expect(i.correctIndex, -1);
