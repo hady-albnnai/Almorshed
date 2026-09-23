@@ -26,11 +26,23 @@ dependencies:
   flutter_secure_storage: ^9.2.2
   # زر واتساب لإرسال ملاحظات الأستاذ (وضع المراجعة — قرار ١٩)
   url_launcher: ^6.3.0
+  # قاعدة محلية علائقية مشفّرة (F3.1 — قرار ٣٠: قاعدة محلية مشفّرة SQLCipher).
+  # Drift: طبقة SQL آمنة نوعياً فوق sqlite3؛ sqlcipher_flutter_libs يوفّر
+  # مكتبة SQLCipher الأصلية (AES-256) على أندرويد بدل sqlite العادي.
+  drift: ^2.20.0
+  sqlite3: ^2.4.0
+  sqlcipher_flutter_libs: ^0.6.4
+  path_provider: ^2.1.0
+  path: ^1.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  # توليد كود Drift (F3.1): drift_dev + build_runner — يُشغَّل على جهاز المالك:
+  #   flutter pub run build_runner build --delete-conflicting-outputs
+  drift_dev: ^2.20.0
+  build_runner: ^2.4.0
 
 flutter:
   uses-material-design: true
