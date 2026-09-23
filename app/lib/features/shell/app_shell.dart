@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../challenge/challenge_screen.dart';
+import '../curriculum/curriculum_review_screen.dart';
 import '../../core/content/models.dart';
 import '../../core/license/license_store.dart';
 import '../../core/progress/progress_store.dart';
@@ -278,7 +279,7 @@ class _ReviewView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
-    // المراجعة: تجميع أقسام 🔑/⚠️/⚖️/🧾 حسب الوحدة — placeholder حتى اكتمال المحتوى
+    // المراجعة: قائمة الوحدات ⇐ صفحة مراجعة الوحدة (أقسام 🔑/🧾/⚖️ لكل فصل).
     return ListView(
       padding: const EdgeInsets.all(14),
       children: [
@@ -298,15 +299,16 @@ class _ReviewView extends StatelessWidget {
                 for (final u in pack.units)
                   ListTile(
                     dense: true,
+                    key: Key('review-unit-${u.id}'),
                     leading: const Icon(Icons.auto_stories_outlined, size: 18),
                     title: Text(u.title, style: txt.bodyMedium),
                     subtitle: Text('${u.chapters.length} دروس', style: txt.bodySmall),
-                    onTap: () {
-                      // TODO: فتح صفحة مراجعة الوحدة
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('مراجعة ${u.title} — قريباً')),
-                      );
-                    },
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => CurriculumReviewScreen(unit: u),
+                      ),
+                    ),
                   ),
               ],
             ),
