@@ -135,6 +135,10 @@ class XpLedgerService {
   Future<String> publicKeyB64() async =>
       base64Encode((await _ensureSigner()).publicKey.bytes);
 
+  /// موقّع الجهاز (نفس مفتاح XP) — يلزم توقيع تحدّي الشهادة (F6.5). محمّل كسولاً
+  /// ومخبّأ؛ لا يخرج المفتاح الخاص من الخزنة الآمنة.
+  Future<XpSigner> signer() => _ensureSigner();
+
   /// الأحداث المحملة (بعد أول عملية) — للعرض والفحص.
   Future<List<XpEvent>> events() => _ensureEvents();
 

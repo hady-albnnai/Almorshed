@@ -20,6 +20,12 @@ import 'package:ed25519_edwards/ed25519_edwards.dart' as ed;
 /// عنوان الشهادة — حرفي من docs/13 §٦.
 const String certTitle = 'بطل دوري فيزيا كلاش';
 
+/// المفتاح العام (Ed25519, base64 خام ٣٢ بايت) المقابل لسرّ الخادم
+/// `CERT_SK_B64` — به يتحقق التطبيق من توقيع الشهادة **محليًّا أوف لاين**
+/// (نفس مبدأ مفتاح التراخيص F3.6). ليس سرًّا؛ يُضمَّن بالتطبيق قصدًا.
+/// ⚠️ إن بدّل المالك بذرة `CERT_SK_B64` وجب تحديث هذا الثابت بمفتاحها العام.
+const String kCertPublicKeyB64 = 'ql3ak+3v4ZeBr94ehL5sv8aUq0BenmSaWcmDqtPgFpk=';
+
 /// نسخة الحمولة الـcanonical (F6.3-أمن 2026-09-22). أول حقل في التوقيع؛ أي
 /// تغيير مستقبلي على شكل الحمولة يرفع هذا الرقم فلا تُقبل التواقيع القديمة
 /// بصمت — والتطبيق يعرف أي مخطط يبني. يجب أن يطابق `CERT_PAYLOAD_V` في
@@ -124,6 +130,17 @@ class Certificate {
         'notice': notice,
       });
 
+  /// التحقق المحلي بالمفتاح العام المضمّن [kCertPublicKeyB64] — أوف لاين.
+  /// الاستعمال الأساسي بالتطبيق: شهادةٌ عائدة من `cert_issue` تُتحقَّق دون شبكة.
+  static bool verifyEmbedded(Certificate cert) {
+    try {
+      final pk = ed.PublicKey(base64Decode(kCertPublicKeyB64));
+      return verify(cert, publicKey: pk);
+    } catch (_) {
+      return false;
+    }
+  }
+
   /// التحقق المحلي: توقيع Ed25519 على [canonicalJson].
   static bool verify(Certificate cert, {required ed.PublicKey publicKey}) {
     if (cert.signatureB64.isEmpty) return false;
@@ -157,3 +174,17 @@ class Certificate {
 /// لا تضرّ (الإصدار idempotent ومقيّد بالجهاز نفسه).
 String certChallenge({required String season, required String devicePubkeyB64}) =>
     'cert-issue-v1|$season|$devicePubkeyB64';
+
+/// اسم الموسم الدراسي الحالي — **مرآة حرفية** لدالة `current_season()` الخادمية
+/// (0011): الموسم يبدأ ١ أيلول بتوقيت دمشق ('Asia/Damascus') وينتهي ٣١ آب،
+/// وصيغته `YYYY-(YYYY+1)` (مثل '2026-2027'). حسابها محليًّا يتجنّب نداء شبكة
+/// إضافيًّا؛ الخادم يبقى المرجع النهائي (يتحقق من `seasons` و`ends_on`).
+///
+/// [nowUtc] لغرض الاختبار — الافتراضي `DateTime.now().toUtc()`.
+String currentSeason([DateTime? nowUtc]) {
+  // تحويل يدوي إلى توقيت دمشق (UTC+3، بلا توقيت صيفي منذ ٢٠٢٢).
+  final utc = (nowUtc ?? DateTime.now().toUtc());
+  final damascus = utc.add(const Duration(hours: 3));
+  final y = damascus.month >= 9 ? damascus.year : damascus.year - 1;
+  return '$y-${y + 1}';
+}

@@ -19,6 +19,7 @@ import 'core/training/training_store.dart';
 import 'core/supabase/activation_api.dart';
 import 'core/supabase/http_xp_sync_api.dart';
 import 'core/supabase/league_api.dart';
+import 'core/supabase/cert_api.dart';
 import 'core/sync/sync_engine.dart';
 import 'core/sync/sync_manager.dart';
 import 'core/sync/sync_store.dart';
@@ -157,6 +158,13 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
 
   /// واجهة الدوري (قراءة RLS للمفعّلين حصراً).
   late final LeagueApi _leagueApi = LeagueApi(transport: _net, auth: _netAuth);
+
+  /// واجهة شهادة الموسم (F6.5) — مُصدِر كسول يوقّع تحدّيه بمفتاح الجهاز (XP).
+  late final LazyCertApi _certApi = LazyCertApi(
+    transport: _net,
+    auth: _netAuth,
+    signerLoader: () => _xpRecorder.signer(),
+  );
 
   /// واجهة المبارزات (F5.3) — نفس النقلية والجلسة المشتركتين.
   late final DuelApi _duelApi = DuelApi(_net);
@@ -352,6 +360,7 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
               openDuel: () => _openDuelFlow(snap.data!),
               openLocalDuel: () => _openLocalDuelFlow(snap.data!),
               devicePubkeyB64: _pubkeyB64 ?? '',
+              certApi: _certApi,
             );
           }
           return CurriculumScreen(

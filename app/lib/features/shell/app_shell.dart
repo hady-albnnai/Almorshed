@@ -4,6 +4,8 @@ import '../challenge/challenge_screen.dart';
 import '../../core/content/models.dart';
 import '../../core/license/license_store.dart';
 import '../../core/progress/progress_store.dart';
+import '../../core/cert/certificate.dart';
+import '../../core/supabase/cert_api.dart';
 import '../../core/supabase/league_api.dart';
 import '../../core/sync/sync_manager.dart';
 import '../../core/training/training_store.dart';
@@ -39,6 +41,7 @@ class AppShell extends StatefulWidget {
     this.openDuel,
     this.openLocalDuel,
     this.devicePubkeyB64 = '',
+    this.certApi,
   });
 
   final ContentPack pack;
@@ -52,6 +55,9 @@ class AppShell extends StatefulWidget {
   final DuelFlowFactory? openDuel;
   final LocalDuelFlowFactory? openLocalDuel;
   final String devicePubkeyB64;
+
+  /// مُصدِر شهادة الموسم (F6.5) — يُمرَّر لشاشة الحساب؛ null = المدخل مخفي.
+  final CertIssuer? certApi;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -74,6 +80,8 @@ class _AppShellState extends State<AppShell> {
               builder: (_) => AccountScreen(
                 licenseStore: widget.licenseStore,
                 devicePubkeyB64: widget.devicePubkeyB64,
+                certApi: widget.certApi,
+                certSeason: widget.certApi == null ? '' : currentSeason(),
               ),
             )),
           ),

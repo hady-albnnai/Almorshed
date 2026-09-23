@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'about_screen.dart';
+import 'certificate_screen.dart';
 
 import 'dart:convert' show base64Decode;
 
 import '../../core/license/license_core.dart';
 import '../../core/license/license_store.dart';
+import '../../core/supabase/cert_api.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/util/arabic_number.dart';
 
@@ -12,12 +14,18 @@ import '../../core/util/arabic_number.dart';
 /// شارة الحالة + إعادة فحص التوقيع المحلي الظاهرة + الانتهاء + لورانيم.
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key, required this.licenseStore,
-      this.devicePubkeyB64 = ''});
+      this.devicePubkeyB64 = '', this.certApi, this.certSeason = ''});
 
   final LicenseStore licenseStore;
 
   /// مفتاح الجهاز العام — لربط الفحص المحلي (F4.4-تحصين). فارغ = فحص أعمى.
   final String devicePubkeyB64;
+
+  /// عميل شهادة الموسم (F6.5) — يُحقن من التركيب. null ⇒ لا يظهر مدخل الشهادة.
+  final CertIssuer? certApi;
+
+  /// الموسم الحالي لشهادة الموسم — يُمرَّر للشاشة. فارغ ⇒ لا يظهر المدخل.
+  final String certSeason;
 
   @override
   State<AccountScreen> createState() => _AccountScreenState();
@@ -170,6 +178,23 @@ class _AccountScreenState extends State<AccountScreen> {
               trailing: const Chip(label: Text('٢ / ٢')),
             ),
           ),
+          if (widget.certApi != null && widget.certSeason.isNotEmpty)
+            Card(
+              child: ListTile(
+                key: const Key('certificate_entry'),
+                title: const Text('شهادة الموسم'),
+                subtitle: const Text('بطل دوري فيزيا كلاش — تُمنح عند نهاية الموسم'),
+                trailing: const Icon(Icons.emoji_events, color: Color(0xFFfbbf24)),
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => CertificateScreen(
+                      season: widget.certSeason,
+                      api: widget.certApi,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           Card(
             child: ListTile(
               key: const Key('about_entry'),
