@@ -10,3 +10,7 @@ build/
 android/.gradle/
 android/local.properties
 *.log
+
+# ملفات مولّدة (build_runner: drift/json) — تُولَّد على جهاز البناء، لا تُتعقَّب (دستور §٥)
+*.g.dart
+*.freezed.dart
