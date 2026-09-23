@@ -1593,7 +1593,7 @@
    "id": 1001,
    "unit": "U1",
    "chapter": "U1C1",
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن دوره الخاص T0. نجعل ثابت صلابة النابض ربع ما كان عليه. دوره الجديد",
    "options": [
     "T0/4",
@@ -1614,7 +1614,7 @@
    "id": 1002,
    "unit": "U1",
    "chapter": "U1C1",
-   "approved": false,
+   "approved": true,
    "stem": "في الحركة التوافقية البسيطة، تكون السرعة معدومة والتسارع أعظمي في",
    "options": [
     "مركز الاهتزاز",
@@ -1633,7 +1633,7 @@
    "id": 1003,
    "unit": "U1",
    "chapter": "U1C1",
-   "approved": false,
+   "approved": true,
    "stem": "«تعلّق كرة بنابض على سطح الأرض ثم يُنقل الجهاز إلى القمر حيث g أصغر ٦ مرات. دوره الخاص:»",
    "options": [
     "لا يتغير",
@@ -1652,7 +1652,7 @@
    "id": 1004,
    "unit": "U1",
    "chapter": "U1C2",
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل دوره T0. نجعل طول سلك الفتل أربعة أمثال. الدور الجديد",
    "options": [
     "4T0",
@@ -1672,7 +1672,7 @@
    "id": 1005,
    "unit": "U1",
    "chapter": "U1C2",
-   "approved": false,
+   "approved": true,
    "stem": "ميقاتية فتل تؤخّر. لتصحيحها",
    "options": [
     "زيادة طول السلك",
@@ -1688,7 +1688,7 @@
    "id": 1006,
    "unit": "U1",
    "chapter": "U1C3",
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب دوره T0. نجعل كتلته ٤ أمثال (الشكل نفسه). دوره",
    "options": [
     "T0",
@@ -1706,7 +1706,7 @@
    "id": 1007,
    "unit": "U1",
    "chapter": "U1C3",
-   "approved": false,
+   "approved": true,
    "stem": "حركة النواس الثقلي تكون جيبية دورانية",
    "options": [
     "دائماً",
@@ -1724,7 +1724,7 @@
    "id": 1008,
    "unit": "U1",
    "chapter": "U1C3",
-   "approved": false,
+   "approved": true,
    "stem": "ميقاتية ثقلية تقدّم ٥ دقائق. التصحيح",
    "options": [
     "خفض القرص  (تكبير الدور)",
@@ -1742,7 +1742,7 @@
    "id": 1009,
    "unit": "U1",
    "chapter": "U1C4",
-   "approved": false,
+   "approved": true,
    "stem": "السائل المثالي",
    "options": [
     "قابل للانضغاط وعديم اللزوجة",
@@ -1758,7 +1758,7 @@
    "id": 1010,
    "unit": "U1",
    "chapter": "U1C4",
-   "approved": false,
+   "approved": true,
    "stem": "خرطوم s1 = 4·s2. سرعة الخروج v2 =",
    "options": [
     "v1/4",
@@ -1776,7 +1776,7 @@
    "id": 1011,
    "unit": "U1",
    "chapter": "U1C5",
-   "approved": false,
+   "approved": true,
    "stem": "صاروخان يتقاربان بسرعة قريبة من c؛ سرعة ضوء الأول بالنسبة للثاني",
    "options": [
     "c",
@@ -1794,7 +1794,7 @@
    "id": 1012,
    "unit": "U1",
    "chapter": "U1C5",
-   "approved": false,
+   "approved": true,
    "stem": "طاقم سفينة بسرعة قريبة من c يشاهد مباراة مدتها ساعة ونصف؛ مراقب أرضي يراها",
    "options": [
     "أطول من ساعة ونصف  (تمدد)",
@@ -1812,7 +1812,7 @@
    "id": 1013,
    "unit": "U2",
    "chapter": "U2C1",
-   "approved": false,
+   "approved": true,
    "stem": "عامل النفوذية μ = Bt/B؛ وحدته",
    "options": [
     "T",
@@ -1828,7 +1828,7 @@
    "id": 1014,
    "unit": "U2",
    "chapter": "U2C1",
-   "approved": false,
+   "approved": true,
    "stem": "قسمنا وشيعة متلاصقة نصفين والتيار نفسه؛ الحقل داخل النصف",
    "options": [
     "يتضاعف",
@@ -1844,7 +1844,7 @@
    "id": 1015,
    "unit": "U2",
    "chapter": "U2C1",
-   "approved": false,
+   "approved": true,
    "stem": "إطار مستوي خطوط B توازي مستويه؛ التدفق",
    "options": [
     "صفر",
@@ -1860,7 +1860,7 @@
    "id": 1016,
    "unit": "U2",
    "chapter": "U2C2",
-   "approved": false,
+   "approved": true,
    "stem": "إلكترون في حقل منتظم v ⊥ B؛ نضاعف v",
    "options": [
     "T يتضاعف",
@@ -1876,7 +1876,7 @@
    "id": 1017,
    "unit": "U2",
    "chapter": "U2C2",
-   "approved": false,
+   "approved": true,
    "stem": "الأشعة (IL⃗, B⃗, F⃗) تشكّل",
    "options": [
     "ثلاثية مباشرة",
@@ -1892,7 +1892,7 @@
    "id": 1018,
    "unit": "U2",
    "chapter": "U2C2",
-   "approved": false,
+   "approved": true,
    "stem": "إطار خطوط B عمودية على مستويه (توازن مستقر)",
    "options": [
     "Γ أعظمي وΦ صفر",
@@ -1908,7 +1908,7 @@
    "id": 1019,
    "unit": "U2",
    "chapter": "U2C2",
-   "approved": false,
+   "approved": true,
    "stem": "لزيادة حساسية الغلفاني",
    "options": [
     "سلك فتل أرفع",
@@ -1924,7 +1924,7 @@
    "id": 1020,
    "unit": "U2",
    "chapter": "U2C3",
-   "approved": false,
+   "approved": true,
    "stem": "لا يضيء مصباح ملف مقابل لملف ببيل ساكنين لأن",
    "options": [
     "التدفق ثابت",
@@ -1940,7 +1940,7 @@
    "id": 1021,
    "unit": "U2",
    "chapter": "U2C3",
-   "approved": false,
+   "approved": true,
    "stem": "لحظة فتح قاطعة دارة وشيعة يتوهج المصباح بشدة لأن",
    "options": [
     "Φ كبير",
@@ -1956,7 +1956,7 @@
    "id": 1022,
    "unit": "U2",
    "chapter": "U2C3",
-   "approved": false,
+   "approved": true,
    "stem": "في المولد الجيبي تكون e عظمى عندما",
    "options": [
     "Φ أعظمي",
@@ -1972,7 +1972,7 @@
    "id": 1023,
    "unit": "U2",
    "chapter": "U2C3",
-   "approved": false,
+   "approved": true,
    "stem": "وحدة الهنري تكافئ",
    "options": [
     "Wb/A",
@@ -1988,7 +1988,7 @@
    "id": 1024,
    "unit": "U2",
    "chapter": "U2C4",
-   "approved": false,
+   "approved": true,
    "stem": "دارة L–C؛ نجعل C أربعة أمثال",
    "options": [
     "T0 ٤ أمثال",
@@ -2004,7 +2004,7 @@
    "id": 1025,
    "unit": "U2",
    "chapter": "U2C4",
-   "approved": false,
+   "approved": true,
    "stem": "في دارة L–C عندما تكون شحنة المكثفة عظمى",
    "options": [
     "i = 0 وEL = 0",
@@ -2022,7 +2022,7 @@
    "id": 1026,
    "unit": "U2",
    "chapter": "U2C4",
-   "approved": false,
+   "approved": true,
    "stem": "دارة R–C ليست مهتزة لأن",
    "options": [
     "R كبيرة",
@@ -2038,7 +2038,7 @@
    "id": 1027,
    "unit": "U2",
    "chapter": "U2C4",
-   "approved": false,
+   "approved": true,
    "stem": "تابع الشدة بالنسبة لتابع الشحنة",
    "options": [
     "متقدم بـπ/2",
@@ -2054,7 +2054,7 @@
    "id": 1028,
    "unit": "U2",
    "chapter": "U2C5",
-   "approved": false,
+   "approved": true,
    "stem": "u = 220√2 cos(100πt): Ueff وf",
    "options": [
     "220 V، 50 Hz",
@@ -2070,7 +2070,7 @@
    "id": 1029,
    "unit": "U2",
    "chapter": "U2C5",
-   "approved": false,
+   "approved": true,
    "stem": "في دارة R–L–C تسلسل عند الطنين",
    "options": [
     "Z أكبر ما يمكن",
@@ -2086,7 +2086,7 @@
    "id": 1030,
    "unit": "U2",
    "chapter": "U2C5",
-   "approved": false,
+   "approved": true,
    "stem": "الوشيعة المثالية في AC",
    "options": [
     "تستهلك LωI²",
@@ -2102,7 +2102,7 @@
    "id": 1031,
    "unit": "U2",
    "chapter": "U2C5",
-   "approved": false,
+   "approved": true,
    "stem": "ندخل نواة حديدية في وشيعة على التسلسل مع مصباح (AC)",
    "options": [
     "تنقص الإضاءة",
@@ -2118,7 +2118,7 @@
    "id": 1032,
    "unit": "U2",
    "chapter": "U2C6",
-   "approved": false,
+   "approved": true,
    "stem": "محولة Np = 400، Ns = 100 على 220 V: Us =",
    "options": [
     "880 V",
@@ -2134,7 +2134,7 @@
    "id": 1033,
    "unit": "U2",
    "chapter": "U2C6",
-   "approved": false,
+   "approved": true,
    "stem": "المحولة لا تغير",
    "options": [
     "التوتر",
@@ -2150,7 +2150,7 @@
    "id": 1034,
    "unit": "U2",
    "chapter": "U2C6",
-   "approved": false,
+   "approved": true,
    "stem": "نصل أولية محولة ببطارية 12 V؛ في الثانوية",
    "options": [
     "توتر مستمر مرفوع",
@@ -2166,7 +2166,7 @@
    "id": 1035,
    "unit": "U2",
    "chapter": "U2C6",
-   "approved": false,
+   "approved": true,
    "stem": "في محولة خافضة مثالية الشدة في الثانوية",
    "options": [
     "أكبر من الأولية",
@@ -2182,7 +2182,7 @@
    "id": 1036,
    "unit": "U3",
    "chapter": "U3C1",
-   "approved": false,
+   "approved": true,
    "stem": "المسافة بين عقدتين متتاليتين 20 cm؛ λ =",
    "options": [
     "20 cm",
@@ -2198,7 +2198,7 @@
    "id": 1037,
    "unit": "U3",
    "chapter": "U3C1",
-   "approved": false,
+   "approved": true,
    "stem": "في الموجة المستقرة الطاقة",
    "options": [
     "تنتقل باتجاه الواردة",
@@ -2216,7 +2216,7 @@
    "id": 1038,
    "unit": "U3",
    "chapter": "U3C1",
-   "approved": false,
+   "approved": true,
    "stem": "نضاعف قوة الشد ٤ أمثال بتواتر ثابت؛ عدد المغازل",
    "options": [
     "٤ أمثال",
@@ -2232,7 +2232,7 @@
    "id": 1039,
    "unit": "U3",
    "chapter": "U3C1",
-   "approved": false,
+   "approved": true,
    "stem": "وتر نهايته طليقة يصدر",
    "options": [
     "كل المدروجات",
@@ -2248,7 +2248,7 @@
    "id": 1040,
    "unit": "U3",
    "chapter": "U3C1",
-   "approved": false,
+   "approved": true,
    "stem": "نقطتان فرق المسير بينهما 3λ/4",
    "options": [
     "ترابع",
@@ -2264,7 +2264,7 @@
    "id": 1041,
    "unit": "U3",
    "chapter": "U3C2",
-   "approved": false,
+   "approved": true,
    "stem": "عند النهاية المغلقة لمزمار",
    "options": [
     "بطن اهتزاز وبطن ضغط",
@@ -2280,7 +2280,7 @@
    "id": 1042,
    "unit": "U3",
    "chapter": "U3C2",
-   "approved": false,
+   "approved": true,
    "stem": "مزمار ذو لسان نهايته مغلقة",
    "options": [
     "متشابه الطرفين",
@@ -2296,7 +2296,7 @@
    "id": 1043,
    "unit": "U3",
    "chapter": "U3C2",
-   "approved": false,
+   "approved": true,
    "stem": "مزمار مختلف الطرفين أساسيه 200 Hz؛ المدروج التالي",
    "options": [
     "400",
@@ -2312,7 +2312,7 @@
    "id": 1044,
    "unit": "U3",
    "chapter": "U3C2",
-   "approved": false,
+   "approved": true,
    "stem": "ترتفع حرارة الغاز ٤ أمثال (بالكلفن)؛ سرعة الصوت",
    "options": [
     "٤ أمثال",
@@ -2328,7 +2328,7 @@
    "id": 1045,
    "unit": "U3",
    "chapter": "U3C2",
-   "approved": false,
+   "approved": true,
    "stem": "المسافة بين صوتين شديدين متتاليين في تجربة الأنبوب تمثل",
    "options": [
     "λ/2",
@@ -2344,7 +2344,7 @@
    "id": 1046,
    "unit": "U4",
    "chapter": "U4C1",
-   "approved": false,
+   "approved": true,
    "stem": "يمتص الإلكترون طاقة عندما",
    "options": [
     "ينتقل ضمن السوية نفسها",
@@ -2360,7 +2360,7 @@
    "id": 1047,
    "unit": "U4",
    "chapter": "U4C1",
-   "approved": false,
+   "approved": true,
    "stem": "rn يتناسب مع",
    "options": [
     "n",
@@ -2376,7 +2376,7 @@
    "id": 1048,
    "unit": "U4",
    "chapter": "U4C1",
-   "approved": false,
+   "approved": true,
    "stem": "طيف مصباح غازي",
    "options": [
     "مستمر",
@@ -2392,7 +2392,7 @@
    "id": 1049,
    "unit": "U4",
    "chapter": "U4C1",
-   "approved": false,
+   "approved": true,
    "stem": "سلسلة بالمر تنتج عن العودة إلى",
    "options": [
     "n=1",
@@ -2408,7 +2408,7 @@
    "id": 1050,
    "unit": "U4",
    "chapter": "U4C1",
-   "approved": false,
+   "approved": true,
    "stem": "أكبر طاقة فوتون يمكن أن تصدره ذرة هيدروجين",
    "options": [
     "10.2 eV",
@@ -2424,7 +2424,7 @@
    "id": 1051,
    "unit": "U4",
    "chapter": "U4C2",
-   "approved": false,
+   "approved": true,
    "stem": "يتحرر الإلكترون من سطح معدن بشكل مؤكد عند",
    "options": [
     "طاقة ≥ Ws",
@@ -2440,7 +2440,7 @@
    "id": 1052,
    "unit": "U4",
    "chapter": "U4C2",
-   "approved": false,
+   "approved": true,
    "stem": "الأشعة المهبطية في حقل كهربائي",
    "options": [
     "تنحرف نحو اللبوس الموجب",
@@ -2456,7 +2456,7 @@
    "id": 1053,
    "unit": "U4",
    "chapter": "U4C2",
-   "approved": false,
+   "approved": true,
    "stem": "الغرض من تطبيق B⃗ مع E⃗ بحيث v0 = E/B",
    "options": [
     "تسريع",
@@ -2472,7 +2472,7 @@
    "id": 1054,
    "unit": "U4",
    "chapter": "U4C2",
-   "approved": false,
+   "approved": true,
    "stem": "شبكة وهلنت تتحكم بـ",
    "options": [
     "لون البقعة",
@@ -2488,7 +2488,7 @@
    "id": 1055,
    "unit": "U4",
    "chapter": "U4C3",
-   "approved": false,
+   "approved": true,
    "stem": "نزيد شدة الضوء (بنفس f) على خلية",
    "options": [
     "يزداد U0",
@@ -2504,7 +2504,7 @@
    "id": 1056,
    "unit": "U4",
    "chapter": "U4C3",
-   "approved": false,
+   "approved": true,
    "stem": "λmin للأشعة السينية تتعلق بـ",
    "options": [
     "مادة الهدف",
@@ -2520,7 +2520,7 @@
    "id": 1057,
    "unit": "U4",
    "chapter": "U4C3",
-   "approved": false,
+   "approved": true,
    "stem": "تزداد نسبة السينية الممتصة بـ",
    "options": [
     "نقصان الثخن",
@@ -2536,7 +2536,7 @@
    "id": 1058,
    "unit": "U4",
    "chapter": "U4C3",
-   "approved": false,
+   "approved": true,
    "stem": "الإصدار المحثوث ينتج فوتوناً",
    "options": [
     "بأي اتجاه",
@@ -2552,7 +2552,7 @@
    "id": 1059,
    "unit": "U5",
    "chapter": "U5C1",
-   "approved": false,
+   "approved": true,
    "stem": "انزياح طيف مجرة نحو الأحمر يعني أنها",
    "options": [
     "تبتعد",
@@ -2568,7 +2568,7 @@
    "id": 1060,
    "unit": "U5",
    "chapter": "U5C1",
-   "approved": false,
+   "approved": true,
    "stem": "مصدر طاقة النجوم",
    "options": [
     "احتراق كيميائي",
@@ -2584,7 +2584,7 @@
    "id": 1061,
    "unit": "U5",
    "chapter": "U5C1",
-   "approved": false,
+   "approved": true,
    "stem": "الثقوب السوداء بالضرورة",
    "options": [
     "ذات نصف قطر هائل",
@@ -2600,7 +2600,7 @@
    "id": 1062,
    "unit": "U5",
    "chapter": "U5C1",
-   "approved": false,
+   "approved": true,
    "stem": "vesc بدلالة السرعة المدارية v1",
    "options": [
     "v1",
@@ -2616,7 +2616,7 @@
    "id": 1063,
    "unit": "U5",
    "chapter": "U5C1",
-   "approved": false,
+   "approved": true,
    "stem": "عمر الكون من هابل ≈",
    "options": [
     "H0",
@@ -3954,5 +3954,9 @@
    "back": "1 pc = 3.26 ly · 1 ly ≈ 9.46×10¹⁵ m",
    "formula": "1 pc = 3.26 ly · 1 ly ≈ 9.46×10¹⁵ m"
   }
- ]
+ ],
+ "meta": {
+  "approvalBasis": "ministry",
+  "approvalNote": "معتمد على فرع dev/self-content: أسئلة المنهاج الوزاري لكل درس — بلا إشراف علمي (راجع BRANCHING.md)."
+ }
 }

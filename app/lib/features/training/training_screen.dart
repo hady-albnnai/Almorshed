@@ -13,7 +13,8 @@ import 'item_session_screen.dart';
 import 'mistakes_screen.dart';
 
 /// F3.3 — بوابة التدريب: دفعة اليوم (بذرة يومية حتمية) + أرشيف أخطائي.
-/// البنك المعتمد حصراً (قرار ٢٤): قبل مصادقة الأستاذ تظهر شاشة الانتظار.
+/// البنك المعتمد حصراً (قرار ٢٤): على فرع dev/self-content المحتوى معتمد وزارياً
+/// (منهاج + دورات + سلالم تصحيح)؛ حزمة بلا أسئلة ⇒ حالة فارغة محايدة.
 class TrainingScreen extends StatefulWidget {
   /// F3.8 — اختياري: null = بلا تسجيل (اختبارات قديمة سليمة).
   final XpRecorder? xpRecorder;
@@ -141,22 +142,22 @@ class _TrainingScreenState extends State<TrainingScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         if (pool == 0) ...[
-                          const Icon(Icons.lock_outline, size: 42),
+                          const Icon(Icons.inbox_outlined, size: 42),
                           const SizedBox(height: 10),
-                          Text('بانتظار مصادقة الأستاذ',
+                          Text('لا أسئلة في هذه الحزمة',
                               style: txt.titleMedium,
                               textAlign: TextAlign.center),
                           const SizedBox(height: 6),
                           Text(
-                            'بانك الأسئلة (${ArabicNumber.from(widget.pack.questions.length)} سؤالاً) '
-                            'محجوب عن التدريب حتى الإقرار بها — قرار ٢٤',
+                            'لم تُحمَّل أسئلة بعد لهذه الحزمة — '
+                            'المحتوى مبنيّ من المنهاج الوزاري وأسئلة الدورات.',
                             style: txt.bodyMedium,
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 12),
                           const FilledButton(
                             onPressed: null,
-                            child: Text('الأسئلة لم تُفتح بعد'),
+                            child: Text('لا أسئلة متاحة'),
                           ),
                         ] else if (state == null) ...[
                           Text(

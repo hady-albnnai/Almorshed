@@ -117,9 +117,10 @@ void main() {
     expect(textOf('U3C2'), contains('f = (2n−1)·v/(4L)'));
     expect(textOf('U4C3'), contains('h·f = Ws + ½·me·v²max'));
 
-    // بوابة الأستاذ: لا سؤال مؤلَّف يُفتح قبل مصادقته (قرار ٢٤)
+    // اعتماد وزاري (dev/self-content): كل الأسئلة مبنيّة من المنهاج الوزاري
+    // وأسئلة الدورات وسلالم التصحيح ⇒ معتمدة (لا بوابة أستاذ). راجع BRANCHING.md.
     expect(pack.questions.length, greaterThanOrEqualTo(60));
-    expect(pack.approvedQuestions, isEmpty);
+    expect(pack.approvedQuestions.length, pack.questions.length);
     for (final q in pack.questions) {
       expect(q.options, hasLength(4), reason: 'Q${q.id}');
       expect(q.correctIndex, inInclusiveRange(0, 3), reason: 'Q${q.id}');

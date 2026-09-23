@@ -43,13 +43,13 @@ void main() {
       expect(ofKind(ItemKind.proof).proofSteps, hasLength(8));
     });
 
-    test('الأصل الحقيقي assets/content/items.json: ١٧ فصلاً كلها غير معتمدة',
-        () {
+    test('الأصل الحقيقي assets/content/items.json: ١٧ فصلاً باعتماد وزاري', () {
       final raw = File('${Directory.current.path}/assets/content/items.json')
           .readAsStringSync();
       final real = GeneratedItemsPack.fromJsonString(raw);
       expect(real.items.length, greaterThanOrEqualTo(500));
-      expect(real.visible(reviewMode: false), isEmpty); // قرار ٢٤
+      // dev/self-content: كل البنود مبنيّة من الدورات وسلالم التصحيح ⇒ معتمدة.
+      expect(real.visible(reviewMode: false), hasLength(real.items.length));
       // غير البرهان وغير الأجزاء: أربعة خيارات دائماً؛ البرهان يحمل خطواته لا
       // خيارات، وبنود الأجزاء تحمل مفاتيحها في أجزائها لا في مفتاح مسطّح.
       expect(
@@ -280,9 +280,11 @@ void main() {
   });
 
   group('الجلسة والبوابة', () {
-    testWidgets('لا بنود معتمدة ⇒ رسالة الانتظار (قرار ٢٤)', (tester) async {
+    testWidgets('لا بنود ⇒ رسالة حالة فارغة محايدة (dev/self-content)',
+        (tester) async {
       await pump(tester, const ItemSessionScreen(items: []));
-      expect(find.textContaining('بانتظار مصادقة الأستاذ'), findsOneWidget);
+      expect(find.textContaining('لا بنود متاحة'), findsOneWidget);
+      expect(find.textContaining('مصادقة الأستاذ'), findsNothing);
     });
 
     testWidgets('النتيجة النهائية تجمع الدرجات', (tester) async {

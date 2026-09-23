@@ -371,13 +371,16 @@ void main() {
     expect(find.byIcon(Icons.menu_book_outlined), findsOneWidget);
   });
 
-  testWidgets('F3.3: البنك المقفول قبل مصادقة الأستاذ (قرار ٢٤)', (tester) async {
-    // fakePack بلا أسئلة ⇒ pool = 0 ⇒ شاشة الانتظار
+  testWidgets('F3.3: حزمة بلا أسئلة ⇒ حالة فارغة محايدة (dev/self-content)',
+      (tester) async {
+    // fakePack بلا أسئلة ⇒ pool = 0 ⇒ شاشة الحالة الفارغة
     await pumpApp(tester);
     await tester.tap(find.byIcon(Icons.quiz_outlined));
     await tester.pumpAndSettle();
-    expect(find.text('بانتظار مصادقة الأستاذ'), findsOneWidget);
-    expect(find.text('الأسئلة لم تُفتح بعد'), findsOneWidget);
+    expect(find.text('لا أسئلة في هذه الحزمة'), findsOneWidget);
+    expect(find.text('لا أسئلة متاحة'), findsOneWidget);
+    // لا أثر لإسناد الأستاذ في الحالة الفارغة
+    expect(find.textContaining('مصادقة الأستاذ'), findsNothing);
   });
 
   // تمهيد مشترك: الدخول للتدريب وبدء دفعة اليوم (تفتيت تشخيصي F3.3)

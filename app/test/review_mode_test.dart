@@ -137,7 +137,7 @@ void main() {
         ),
       ];
       final r = formatReviewReport(notes, now: DateTime(2026, 9, 20));
-      expect(r, contains('مراجعة الأستاذ فداء — 2026-09-20'));
+      expect(r, contains('مراجعة المطوّر — 2026-09-20'));
       expect(r, contains('المجموع: 4 بند'));
       expect(r, contains('✅ صحيح (2): س101، س103')); // مرتّبة
       expect(r, contains('✏️ يحتاج تعديل (1):'));

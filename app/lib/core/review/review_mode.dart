@@ -182,7 +182,7 @@ class ReviewNotesStore {
 String formatReviewReport(
   Iterable<ReviewNote> notes, {
   required DateTime now,
-  String reviewer = 'الأستاذ فداء',
+  String reviewer = 'المطوّر',
 }) {
   final sorted = notes.toList()..sort((a, b) => a.key.compareTo(b.key));
   final ok = sorted.where((n) => n.verdict == ReviewVerdict.ok).toList();

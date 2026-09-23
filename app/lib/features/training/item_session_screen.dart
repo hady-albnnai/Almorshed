@@ -110,7 +110,7 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
           child: Padding(
             padding: EdgeInsets.all(24),
             child: Text(
-              'لا بنود معتمدة بعد — بانتظار مصادقة الأستاذ.',
+              'لا بنود متاحة في هذه الحزمة بعد.',
               textAlign: TextAlign.center,
             ),
           ),
