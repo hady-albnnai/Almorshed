@@ -326,7 +326,6 @@ class _CreditBlock extends StatelessWidget {
     required this.isDark,
     required this.txt,
     required this.badge,
-    this.nameColor,
   });
 
   final String role;
@@ -335,7 +334,6 @@ class _CreditBlock extends StatelessWidget {
   final bool isDark;
   final TextTheme txt;
   final Widget badge;
-  final Color? nameColor;
 
   @override
   Widget build(BuildContext context) {
@@ -354,8 +352,8 @@ class _CreditBlock extends StatelessWidget {
           alignment: alignEnd ? Alignment.centerRight : Alignment.centerLeft,
           child: Text(name,
               maxLines: 1,
-              style: txt.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w800, fontSize: 13, color: nameColor)),
+              style: txt.titleSmall
+                  ?.copyWith(fontWeight: FontWeight.w800, fontSize: 13)),
         ),
       ],
     );

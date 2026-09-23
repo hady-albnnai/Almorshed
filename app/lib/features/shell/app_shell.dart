@@ -185,7 +185,6 @@ class _ManhajTabState extends State<_ManhajTab> {
 
   @override
   Widget build(BuildContext context) {
-    final txt = Theme.of(context).textTheme;
     return Column(
       children: [
         const SizedBox(height: 8),
