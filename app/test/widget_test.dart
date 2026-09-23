@@ -609,8 +609,11 @@ void main() {
     // لا زر تجريبي إطلاقاً
     expect(find.textContaining('تجريبي'), findsNothing);
     expect(find.textContaining('بدون تفعيل'), findsNothing);
-    // سطر الإشراف العلمي
-    expect(find.textContaining('فداء مأمون البني'), findsOneWidget);
+    // الإشراف العلمي أُزيل نهائياً على فرع dev/self-content (راجع BRANCHING.md)
+    expect(find.textContaining('فداء'), findsNothing);
+    expect(find.textContaining('إشراف علمي'), findsNothing);
+    // شارة التطوير (لورانيم تك) باقية
+    expect(find.text('لورانيم تك'), findsOneWidget);
   });
 
   testWidgets('F3.6: تنسيق الكود الحي ٥-٥-٥ كالنموذج', (tester) async {

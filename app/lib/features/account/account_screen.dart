@@ -199,7 +199,7 @@ class _AccountScreenState extends State<AccountScreen> {
             child: ListTile(
               key: const Key('about_entry'),
               title: const Text('عن التطبيق'),
-              subtitle: const Text('لورانيم تك · الإشراف العلمي · الإصدار'),
+              subtitle: const Text('لورانيم تك · الإصدار'),
               trailing: const Icon(Icons.info_outline),
               onTap: () => Navigator.of(context).push(
                 MaterialPageRoute<void>(
@@ -220,7 +220,7 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
           const SizedBox(height: 8),
           Text(
-            '✓ المادة العلمية راجعتها: الأستاذ فداء البني',
+            '✓ المادة وفق المنهاج الوزاري والدورات وسلالم التصحيح',
             style: txt.bodySmall?.copyWith(color: gold),
             textAlign: TextAlign.center,
           ),

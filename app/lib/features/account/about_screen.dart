@@ -1,7 +1,10 @@
 /// F6.4 — شاشة «عن التطبيق» النهائية (قرار ٣٩ · بند ١٣ المُستثنى بقرار المالك
-/// 2026-09-22). الشريط العلوي مطابق لشاشة التفعيل (قرار ٥٧): يمين تطوير ←
-/// لورانيم تك ← الشعار (أو العلامة النصية عند غيابه — docs/13 §٦)، يسار إشراف
-/// علمي ← الأستاذ فداء مأمون البني.
+/// 2026-09-22). الشريط العلوي: تطوير ← لورانيم تك ← الشعار (أو العلامة النصية
+/// عند غيابه — docs/13 §٦).
+///
+/// فرع dev/self-content (2026-09-23): أُزيل سطر «الإشراف العلمي» نهائياً —
+/// التطوير يجري بدون إشراف الأستاذ، والمادة العلمية مبنيّة من المنهاج الوزاري
+/// والدورات وسلالم التصحيح. راجع BRANCHING.md.
 library;
 
 import 'package:flutter/material.dart';
@@ -27,58 +30,33 @@ class AboutScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // ── الشريط العلوي: يمين تطوير / يسار إشراف (قرار 57) ──
-            Row(
+            // ── الشريط العلوي: تطوير ← لورانيم تك (أُزيل عمود الإشراف العلمي
+            //    على فرع dev/self-content — راجع BRANCHING.md) ──
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('تطوير',
-                          style: txt.bodySmall
-                              ?.copyWith(color: muted, fontSize: 11)),
-                      const SizedBox(height: 2),
-                      Text('لورانيم تك',
-                          style: txt.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w800, fontSize: 13)),
-                      const SizedBox(height: 6),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(
-                          'assets/brand/loraneem_tech.png',
-                          width: 44,
-                          height: 44,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => Container(
-                            width: 44,
-                            height: 44,
-                            alignment: Alignment.center,
-                            child: Text('loraneem-tech',
-                                style: txt.bodySmall?.copyWith(
-                                    fontWeight: FontWeight.w900, fontSize: 9)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text('إشراف علمي',
-                          style: txt.bodySmall
-                              ?.copyWith(color: muted, fontSize: 11),
-                          textAlign: TextAlign.end),
-                      const SizedBox(height: 2),
-                      Text('الأستاذ فداء مأمون البني',
-                          style: txt.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              fontSize: 12,
-                              color: gold),
-                          textAlign: TextAlign.end),
-                    ],
+                Text('تطوير',
+                    style: txt.bodySmall?.copyWith(color: muted, fontSize: 11)),
+                const SizedBox(height: 2),
+                Text('لورانيم تك',
+                    style: txt.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800, fontSize: 13)),
+                const SizedBox(height: 6),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    'assets/brand/loraneem_tech.png',
+                    width: 44,
+                    height: 44,
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(
+                      width: 44,
+                      height: 44,
+                      alignment: Alignment.center,
+                      child: Text('loraneem-tech',
+                          style: txt.bodySmall?.copyWith(
+                              fontWeight: FontWeight.w900, fontSize: 9)),
+                    ),
                   ),
                 ),
               ],
@@ -101,7 +79,7 @@ class AboutScreen extends StatelessWidget {
                 textAlign: TextAlign.center),
             const SizedBox(height: 6),
             Text(
-              '✓ المادة العلمية راجعتها: الأستاذ فداء مأمون البني',
+              '✓ المادة وفق المنهاج الوزاري والدورات وسلالم التصحيح',
               style: txt.bodySmall?.copyWith(color: gold),
               textAlign: TextAlign.center,
             ),

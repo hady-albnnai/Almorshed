@@ -11,14 +11,23 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  testWidgets('الشريط العلوي مطابق لقرار ٥٧: تطوير/لورانيم + إشراف/الاستاذ',
+  testWidgets(
+      'الشريط العلوي: تطوير/لورانيم فقط — أُزيل الإشراف العلمي (dev/self-content)',
       (tester) async {
     await pump(tester);
     expect(find.text('عن التطبيق'), findsOneWidget); // العنوان
     expect(find.text('تطوير'), findsOneWidget);
     expect(find.text('لورانيم تك'), findsOneWidget);
-    expect(find.text('إشراف علمي'), findsOneWidget);
-    expect(find.text('الأستاذ فداء مأمون البني'), findsOneWidget);
+    // الإشراف العلمي أُزيل نهائياً على هذا الفرع (راجع BRANCHING.md)
+    expect(find.text('إشراف علمي'), findsNothing);
+    expect(find.textContaining('فداء'), findsNothing);
+    expect(find.textContaining('البني'), findsNothing);
+  });
+
+  testWidgets('سطر مصدر المادة يشير للمنهاج الوزاري لا للأستاذ', (tester) async {
+    await pump(tester);
+    expect(find.textContaining('المنهاج الوزاري'), findsOneWidget);
+    expect(find.textContaining('راجعتها'), findsNothing);
   });
 
   testWidgets('الهوية والإصدار وحقوق النشر', (tester) async {

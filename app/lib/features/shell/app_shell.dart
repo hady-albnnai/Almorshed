@@ -18,7 +18,6 @@ import '../league/league_screen.dart';
 import '../training/cards_screen.dart';
 import '../training/mistakes_screen.dart';
 import '../training/training_screen.dart';
-import '../../core/theme/app_colors.dart';
 
 /// A2 — الهيكل الجديد (قرار 58):
 /// 3 تبويبات سفلية، الافتراضي المنهاج.
@@ -202,21 +201,7 @@ class _ManhajTabState extends State<_ManhajTab> {
             onSelectionChanged: (s) => setState(() => _sub = s.first),
           ),
         ),
-        const SizedBox(height: 6),
-        // سطر الإشراف (قرار 58)
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Text(
-            'بإشراف الأستاذ فداء مأمون البني',
-            style: txt.bodySmall?.copyWith(
-              color: Theme.of(context).brightness == Brightness.dark
-                  ? AppColors.goldDark
-                  : AppColors.goldLight,
-              fontWeight: FontWeight.w600,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
+        // سطر الإشراف (قرار 58) أُزيل على فرع dev/self-content — راجع BRANCHING.md
         const SizedBox(height: 8),
         Expanded(
           child: _sub == 0
