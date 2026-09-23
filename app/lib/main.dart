@@ -10,12 +10,17 @@ import 'core/content/models.dart';
 import 'core/crypto/content_key_vault.dart';
 import 'core/crypto/device_key_vault.dart';
 import 'core/crypto/kc_provision.dart';
+import 'core/db/app_database.dart';
+import 'core/db/drift_stores.dart';
+import 'core/db/legacy_migration.dart';
 import 'core/progress/progress_store.dart';
 import 'core/progress/shared_prefs_store.dart';
 import 'core/review/review_mode.dart';
 import 'core/theme/app_theme.dart';
 import 'core/training/shared_prefs_training_store.dart';
 import 'core/training/training_store.dart';
+import 'core/xp/xp_signer.dart';
+import 'core/xp/xp_store.dart';
 import 'core/supabase/activation_api.dart';
 import 'core/supabase/http_xp_sync_api.dart';
 import 'core/supabase/league_api.dart';
@@ -111,9 +116,29 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
 
   LicenseStore get _license => widget.licenseStore ?? SharedPrefsLicenseStore();
 
+  // F3.1 — قاعدة Drift المشفّرة المشتركة. كسولة (تُفتح عند أول وصول فقط) فلا
+  // تُلمس في الاختبارات التي تحقن المخازن صراحةً — كنمط _contentKeys.
+  AppDatabase? _db;
+  AppDatabase get _database => _db ??= AppDatabase();
+
+  // مخازن Drift الافتراضية للإنتاج (تُبنى مرة واحدة فوق القاعدة المشتركة).
+  DriftProgressStore? _driftProgress;
+  DriftProgressStore get _defaultProgressStore =>
+      _driftProgress ??= DriftProgressStore(_database);
+
+  DriftTrainingStore? _driftTraining;
+  DriftTrainingStore get _defaultTrainingStore =>
+      _driftTraining ??= DriftTrainingStore(_database);
+
   XpRecorder? _sharedRecorder;
+  // الإنتاج: دفتر XP على Drift المشفّر + خزنة المفتاح الآمنة. الاختبارات
+  // تحقن widget.xpRecorder (بالذاكرة) فلا تُفتح القاعدة.
   XpRecorder get _xpRecorder =>
-      widget.xpRecorder ?? (_sharedRecorder ??= XpRecorder.shared());
+      widget.xpRecorder ??
+      (_sharedRecorder ??= XpRecorder(
+        store: DriftXpEventStore(_database),
+        vault: SecureXpKeyVault(),
+      ));
 
   // F4.4 — نقلية الخادم الحقيقية (بناء بلا IO — آمن بالاختبارات)
   late final ActivationApi _activationApi =
@@ -239,7 +264,25 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
   @override
   void initState() {
     super.initState();
+    _migrateLegacyIfNeeded();
     _loadPubkey();
+  }
+
+  /// F3.1 — ترحيل لمرة واحدة من shared_preferences إلى Drift (صامت، لا يحجب
+  /// الإقلاع). يُتخطّى في الاختبارات التي تحقن المخازن (لا قاعدة حقيقية تُفتح).
+  void _migrateLegacyIfNeeded() {
+    final injected = widget.progressStore != null ||
+        widget.trainingStore != null ||
+        widget.xpRecorder != null;
+    if (injected) return; // بيئة اختبار/حقن — لا ترحيل ولا فتح قاعدة.
+    unawaited(
+      LegacyMigration(
+        db: _database,
+        legacyProgress: SharedPrefsProgressStore(),
+        legacyTraining: SharedPrefsTrainingStore(),
+        legacyXp: SharedPrefsXpEventStore(),
+      ).runIfNeeded(),
+    );
   }
 
   Future<void> _loadPubkey() async {
@@ -350,8 +393,8 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
           if (widget.startOnHome) {
             return AppShell(
               pack: snap.data!,
-              progressStore: widget.progressStore ?? SharedPrefsProgressStore(),
-              trainingStore: widget.trainingStore ?? SharedPrefsTrainingStore(),
+              progressStore: widget.progressStore ?? _defaultProgressStore,
+              trainingStore: widget.trainingStore ?? _defaultTrainingStore,
               licenseStore: _license,
               xpRecorder: _xpRecorder,
               onToggleTheme: _toggleTheme,
@@ -366,8 +409,8 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
           return CurriculumScreen(
             pack: snap.data!,
             onToggleTheme: _toggleTheme,
-            progressStore: widget.progressStore ?? SharedPrefsProgressStore(),
-            trainingStore: widget.trainingStore ?? SharedPrefsTrainingStore(),
+            progressStore: widget.progressStore ?? _defaultProgressStore,
+            trainingStore: widget.trainingStore ?? _defaultTrainingStore,
             licenseStore: _license,
             xpRecorder: _xpRecorder,
             devicePubkeyB64: _pubkeyB64 ?? '',
