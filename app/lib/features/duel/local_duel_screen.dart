@@ -10,6 +10,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/content/math_text.dart';
 import '../../core/content/models.dart';
 import '../../core/duel/duel_engine.dart';
 import '../../core/duel/duel_flow.dart';
@@ -552,7 +553,7 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           PendingBadge(questionId: q.id),
-                          Text(q.stem, style: txt.titleMedium),
+                          MathText(q.stem, style: txt.titleMedium),
                           const SizedBox(height: 12),
                           for (var k = 0; k < opts.length; k++)
                             Padding(
@@ -930,7 +931,7 @@ class _OptionTile extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(text, style: Theme.of(context).textTheme.bodyLarge),
+                child: MathText(text, style: Theme.of(context).textTheme.bodyLarge),
               ),
             ],
           ),

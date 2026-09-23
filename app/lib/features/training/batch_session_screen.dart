@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/content/math_text.dart';
 import '../../core/content/models.dart';
 import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
@@ -206,7 +207,7 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
               padding: const EdgeInsets.all(16),
               children: [
                 PendingBadge(questionId: q.id),
-                Text(q.stem, style: txt.titleMedium),
+                MathText(q.stem, style: txt.titleMedium),
                 const SizedBox(height: 14),
                 for (var k = 0; k < order.length; k++)
                   _OptionTile(
@@ -317,7 +318,7 @@ class _OptionTile extends StatelessWidget {
         ),
         child: ListTile(
           leading: lead ?? CircleAvatar(child: Text(letter)),
-          title: Text(text),
+          title: MathText(text),
           onTap: onTap,
           enabled: onTap != null,
         ),

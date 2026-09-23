@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../core/challenge/challenge_builder.dart';
+import '../../core/content/math_text.dart';
 import '../../core/content/models.dart';
 import '../../core/training/batch_builder.dart';
 import '../../core/util/arabic_number.dart';
@@ -383,7 +384,7 @@ class _ChallengeScreenState extends State<ChallengeScreen>
             padding: const EdgeInsets.all(16),
             children: [
               PendingBadge(questionId: q.id),
-              Text(q.stem, style: txt.titleMedium),
+              MathText(q.stem, style: txt.titleMedium),
               const SizedBox(height: 14),
               for (var k = 0; k < order.length; k++)
                 _OptionTile(
@@ -589,7 +590,7 @@ class _OptionTile extends StatelessWidget {
         ),
         child: ListTile(
           leading: lead ?? CircleAvatar(child: Text(letter)),
-          title: Text(text),
+          title: MathText(text),
           onTap: onTap,
           enabled: onTap != null,
         ),
