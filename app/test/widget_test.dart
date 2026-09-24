@@ -615,8 +615,8 @@ void main() {
     // إسناد الإشراف العلمي (الأستاذ فداء) مُعاد على شاشة التفعيل بطلب المالك
     expect(find.textContaining('فداء'), findsOneWidget);
     expect(find.text('إشراف علمي'), findsOneWidget);
-    // شارة التطوير (لورانيم تك) باقية
-    expect(find.text('لورانيم تك'), findsOneWidget);
+    // شعار لورانيم تك يُعرض الآن كبانر (صورة) عريض بدل نص/شارة صغيرة
+    expect(find.byType(Image), findsWidgets);
   });
 
   testWidgets('F3.6: تنسيق الكود الحي ٥-٥-٥ كالنموذج', (tester) async {

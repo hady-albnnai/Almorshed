@@ -10,15 +10,14 @@ import '../../core/license/license_store.dart';
 import '../../core/supabase/activation_api.dart';
 import '../../core/theme/app_colors.dart';
 
-/// A1 — شاشة التفعيل (قرار 57):
-/// أعلى يمين: تطوير → لورانيم تك → الشعار
-/// أعلى يسار: إشراف علمي → الأستاذ فداء مأمون البني
-/// تحتهما حقل الكود (٥-٥-٥ Crockford) + زر تفعيل
+/// A1 — شاشة التفعيل:
+/// أعلى: بانر «لورانيم تك» العريض + سطر «إشراف علمي: الأستاذ فداء مأمون البني»
+/// تحته حقل الكود (٥-٥-٥ Crockford) + زر تفعيل
 /// أسفل: حقوق النشر محفوظة
 /// بلا وضع تجريبي وبلا دخول بلا تفعيل (قرار 53).
 ///
-/// ملاحظة (2026-09-24): عمود «الإشراف العلمي» (الأستاذ فداء) مُعاد على شاشة
-/// التفعيل بطلب المالك — بعد أن كان أُزيل مؤقتاً على فرع dev/self-content.
+/// ملاحظة (2026-09-24): إسناد «الإشراف العلمي» (الأستاذ فداء) مُعاد بطلب المالك،
+/// وشعار لورانيم يُعرض كبانر عريض (بدل الشارة الدائرية الصغيرة التي كانت تقصّه).
 class ActivationGate extends StatefulWidget {
   const ActivationGate({
     super.key,
@@ -197,53 +196,47 @@ class _ActivationGateState extends State<ActivationGate> {
       body: SafeArea(
         child: Column(
           children: [
-            // ── الشريط العلوي: يمين تطوير / يسار إشراف (قرار 57) ──
-            // تصميم متوازن: كل جهة = شارة دائرية + سطر دور + سطر اسم بإيقاع
-            // أحجام موحّد؛ الاسم يتقلّص بلا كسر (FittedBox) على الشاشات الضيّقة.
+            // ── الشريط العلوي: بانر لورانيم تك (عريض) + سطر الإشراف العلمي ──
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: Column(
                 children: [
-                  // يمين — تطوير
-                  Expanded(
-                    child: _CreditBlock(
-                      role: 'تطوير',
-                      name: 'لورانيم تك',
-                      alignEnd: false,
-                      isDark: isDark,
-                      txt: txt,
-                      badge: ClipOval(
-                        child: Image.asset(
-                          'assets/brand/loraneem_tech.png',
-                          width: 40,
-                          height: 40,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => _FallbackBadge(
-                            icon: Icons.memory,
-                            isDark: isDark,
-                            line: line,
-                          ),
-                        ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'assets/brand/loraneem_tech.png',
+                      width: double.infinity,
+                      fit: BoxFit.contain,
+                      errorBuilder: (_, __, ___) => _FallbackBadge(
+                        icon: Icons.memory,
+                        isDark: isDark,
+                        line: line,
                       ),
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  // يسار — إشراف علمي
-                  Expanded(
-                    child: _CreditBlock(
-                      role: 'إشراف علمي',
-                      name: 'الأستاذ فداء مأمون البني',
-                      alignEnd: true,
-                      isDark: isDark,
-                      txt: txt,
-                      nameColor: gold,
-                      badge: CircleAvatar(
-                        radius: 20,
-                        backgroundColor: gold.withValues(alpha: 0.15),
-                        child: Icon(Icons.school_outlined, size: 22, color: gold),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.school_outlined, size: 18, color: gold),
+                      const SizedBox(width: 6),
+                      Text('إشراف علمي',
+                          style: txt.bodySmall?.copyWith(
+                              color: isDark
+                                  ? AppColors.darkTxt2
+                                  : AppColors.lightTxt2,
+                              fontSize: 12)),
+                      const SizedBox(width: 6),
+                      Flexible(
+                        child: Text('الأستاذ فداء مأمون البني',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: txt.titleSmall?.copyWith(
+                                fontWeight: FontWeight.w800,
+                                fontSize: 13,
+                                color: gold)),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
@@ -345,59 +338,6 @@ class _ActivationGateState extends State<ActivationGate> {
 }
 
 /// كتلة إسناد متوازنة: شارة دائرية + دور + اسم (بمحاذاة جهة، بلا كسر سطر).
-class _CreditBlock extends StatelessWidget {
-  const _CreditBlock({
-    required this.role,
-    required this.name,
-    required this.alignEnd,
-    required this.isDark,
-    required this.txt,
-    required this.badge,
-    this.nameColor,
-  });
-
-  final String role;
-  final String name;
-  final bool alignEnd;
-  final bool isDark;
-  final TextTheme txt;
-  final Widget badge;
-  final Color? nameColor;
-
-  @override
-  Widget build(BuildContext context) {
-    final muted = isDark ? AppColors.darkTxt2 : AppColors.lightTxt2;
-    final labels = Column(
-      crossAxisAlignment:
-          alignEnd ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(role,
-            style: txt.bodySmall?.copyWith(color: muted, fontSize: 11)),
-        const SizedBox(height: 2),
-        // FittedBox يمنع كسر الاسم إلى سطرين على الشاشات الضيّقة.
-        FittedBox(
-          fit: BoxFit.scaleDown,
-          alignment: alignEnd ? Alignment.centerRight : Alignment.centerLeft,
-          child: Text(name,
-              maxLines: 1,
-              style: txt.titleSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 13,
-                  color: nameColor)),
-        ),
-      ],
-    );
-    final children = alignEnd
-        ? [Expanded(child: labels), const SizedBox(width: 8), badge]
-        : [badge, const SizedBox(width: 8), Expanded(child: labels)];
-    return Row(
-      mainAxisSize: MainAxisSize.max,
-      children: children,
-    );
-  }
-}
-
 /// بديل الشعار عند غيابه — دائرة موحّدة القياس مع أيقونة.
 class _FallbackBadge extends StatelessWidget {
   const _FallbackBadge({

@@ -41,21 +41,19 @@ class AboutScreen extends StatelessWidget {
                 Text('لورانيم تك',
                     style: txt.titleSmall?.copyWith(
                         fontWeight: FontWeight.w800, fontSize: 13)),
-                const SizedBox(height: 6),
+                const SizedBox(height: 8),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(12),
                   child: Image.asset(
                     'assets/brand/loraneem_tech.png',
-                    width: 44,
-                    height: 44,
-                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    fit: BoxFit.contain,
                     errorBuilder: (_, __, ___) => Container(
-                      width: 44,
-                      height: 44,
+                      height: 60,
                       alignment: Alignment.center,
                       child: Text('loraneem-tech',
                           style: txt.bodySmall?.copyWith(
-                              fontWeight: FontWeight.w900, fontSize: 9)),
+                              fontWeight: FontWeight.w900, fontSize: 12)),
                     ),
                   ),
                 ),
