@@ -1,5 +1,6 @@
 // خطوة ٢ — أداة توليد الأكواد المستقلّة: بوابة المفتاح + التوليد.
-// بلا شبكة: OfficeApi وهمي وخزنة بالذاكرة (نفس نمط admin_pos_screen_test).
+// بلا شبكة: OfficeApi وهمي وخزنة بالذاكرة (نفس نمط admin_pos_screen_test:
+// مفاتيح Key + شاشة كبيرة كي تظهر اللوحة كلها بلا تمرير).
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fizya_clash/core/supabase/office_api.dart';
@@ -39,70 +40,66 @@ class _FakeApi extends OfficeApi {
   }
 }
 
-Widget _wrap(Widget child) => MaterialApp(
-      home: Directionality(textDirection: TextDirection.rtl, child: child),
-    );
-
 void main() {
+  Future<void> pump(WidgetTester tester, OfficeConsoleScreen screen) async {
+    // شاشة طويلة كي تظهر اللوحة كلها بلا تمرير (نمط admin_pos_screen_test).
+    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.devicePixelRatio = 2.0;
+    addTearDown(tester.view.reset);
+    await tester.pumpWidget(MaterialApp(
+      home: Directionality(textDirection: TextDirection.rtl, child: screen),
+    ));
+    await tester.pumpAndSettle();
+  }
+
   testWidgets('بلا مفتاح: تظهر بوابة الإدخال ثم الدخول يفتح الكونسول',
       (tester) async {
     final api = _FakeApi();
-    await tester.pumpWidget(_wrap(OfficeConsoleScreen(
-      api: api,
-      vault: _FakeVault(null),
-    )));
+    await pump(
+        tester, OfficeConsoleScreen(api: api, vault: _FakeVault(null)));
+
+    expect(find.byKey(const Key('office-login')), findsOneWidget);
+    expect(find.byKey(const Key('office-generate')), findsNothing);
+
+    await tester.enterText(
+        find.byKey(const Key('office-key-field')), 'OFFICE-KEY-123');
+    await tester.tap(find.byKey(const Key('office-login')));
     await tester.pumpAndSettle();
 
-    expect(find.text('حفظ ودخول'), findsOneWidget);
-    expect(find.text('توليد ونسخ / واتساب'), findsNothing);
-
-    await tester.enterText(find.byType(TextField).first, 'OFFICE-KEY-123');
-    await tester.tap(find.text('حفظ ودخول'));
-    await tester.pumpAndSettle();
-
-    // بعد التحقّق تظهر الإحصاءات والكونسول
+    // بعد التحقّق يظهر الكونسول والإحصاءات
+    expect(find.byKey(const Key('office-generate')), findsOneWidget);
     expect(find.textContaining('صُدر: 7'), findsOneWidget);
-    expect(find.text('توليد ونسخ / واتساب'), findsOneWidget);
   });
 
   testWidgets('مع مفتاح محفوظ: التوليد يستدعي generate ويعرض الأكواد',
       (tester) async {
     final api = _FakeApi();
-    await tester.pumpWidget(_wrap(OfficeConsoleScreen(
-      api: api,
-      vault: _FakeVault('SAVED-KEY'),
-    )));
-    await tester.pumpAndSettle();
+    await pump(
+        tester, OfficeConsoleScreen(api: api, vault: _FakeVault('SAVED-KEY')));
 
-    // الكونسول مباشرة (لا بوابة)
-    expect(find.text('توليد ونسخ / واتساب'), findsOneWidget);
+    expect(find.byKey(const Key('office-generate')), findsOneWidget);
 
-    // العدد = 3
-    await tester.enterText(
-        find.widgetWithText(TextField, 'العدد (١–١٠٠)'), '3');
-    await tester.tap(find.text('توليد ونسخ / واتساب'));
+    await tester.enterText(find.byKey(const Key('office-count')), '3');
+    await tester.tap(find.byKey(const Key('office-generate')));
     await tester.pumpAndSettle();
 
     expect(api.genCount, 1);
     expect(api.lastCount, 3);
-    expect(find.text('أُصدرت 3 أكواد ✅'), findsOneWidget);
     expect(find.text('AAAAA-BBBBB-1000'), findsOneWidget);
+    expect(find.byType(AlertDialog), findsOneWidget);
   });
 
   testWidgets('العدد خارج المدى (0) يُرفض بلا استدعاء الخادم', (tester) async {
     final api = _FakeApi();
-    await tester.pumpWidget(_wrap(OfficeConsoleScreen(
-      api: api,
-      vault: _FakeVault('SAVED-KEY'),
-    )));
-    await tester.pumpAndSettle();
+    await pump(
+        tester, OfficeConsoleScreen(api: api, vault: _FakeVault('SAVED-KEY')));
 
-    await tester.enterText(
-        find.widgetWithText(TextField, 'العدد (١–١٠٠)'), '0');
-    await tester.tap(find.text('توليد ونسخ / واتساب'));
-    await tester.pumpAndSettle();
+    await tester.enterText(find.byKey(const Key('office-count')), '0');
+    await tester.tap(find.byKey(const Key('office-generate')));
+    await tester.pump(); // بناء
+    await tester.pump(const Duration(milliseconds: 400)); // ظهور السناك-بار
 
     expect(api.genCount, 0);
-    expect(find.textContaining('العدد بين'), findsOneWidget); // سناك-بار
+    expect(find.textContaining('العدد بين'), findsOneWidget);
   });
 }

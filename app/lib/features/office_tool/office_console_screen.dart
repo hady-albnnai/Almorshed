@@ -146,16 +146,13 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
     }
     final customer = _customerController.text.trim();
     setState(() => _busy = true);
+    List<String>? codes;
     try {
-      final codes = await _api.generate(
+      codes = await _api.generate(
         k,
         count: count,
         customer: customer.isEmpty ? null : customer,
       );
-      if (!mounted) return;
-      await _showCodes(codes, customer);
-      _customerController.clear();
-      await _refresh();
     } on OfficeApiException catch (e) {
       _toast(e.status == 401 ? 'مفتاح غير صحيح' : 'فشل التوليد: ${e.message}');
     } catch (_) {
@@ -163,6 +160,11 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
     } finally {
       if (mounted) setState(() => _busy = false);
     }
+    // الحوار يُفتح بعد إطفاء المؤشّر (حتى لا يبقى أنيميشن دائم يعلّق الاختبارات).
+    if (codes == null || !mounted) return;
+    await _showCodes(codes, customer);
+    _customerController.clear();
+    await _refresh();
   }
 
   static String _saleMessage(String code, String customer) {
@@ -297,6 +299,7 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
         ),
         const SizedBox(height: 20),
         TextField(
+          key: const Key('office-key-field'),
           controller: _keyController,
           obscureText: _obscureKey,
           autocorrect: false,
@@ -313,6 +316,7 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
         ),
         const SizedBox(height: 16),
         FilledButton.icon(
+          key: const Key('office-login'),
           onPressed: _busy ? null : _saveKey,
           icon: _busy
               ? const SizedBox(
@@ -365,6 +369,7 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
                 Text('توليد أكواد جديدة', style: txt.titleSmall),
                 const SizedBox(height: 12),
                 TextField(
+                  key: const Key('office-count'),
                   controller: _countController,
                   keyboardType: TextInputType.number,
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -375,6 +380,7 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
                 ),
                 const SizedBox(height: 12),
                 TextField(
+                  key: const Key('office-customer'),
                   controller: _customerController,
                   decoration: const InputDecoration(
                     labelText: 'اسم الزبون (اختياري)',
@@ -384,6 +390,7 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
                 ),
                 const SizedBox(height: 14),
                 FilledButton.icon(
+                  key: const Key('office-generate'),
                   onPressed: _busy ? null : _generate,
                   icon: _busy
                       ? const SizedBox(
