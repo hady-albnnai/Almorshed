@@ -612,9 +612,9 @@ void main() {
     // لا زر تجريبي إطلاقاً
     expect(find.textContaining('تجريبي'), findsNothing);
     expect(find.textContaining('بدون تفعيل'), findsNothing);
-    // الإشراف العلمي أُزيل نهائياً على فرع dev/self-content (راجع BRANCHING.md)
-    expect(find.textContaining('فداء'), findsNothing);
-    expect(find.textContaining('إشراف علمي'), findsNothing);
+    // إسناد الإشراف العلمي (الأستاذ فداء) مُعاد على شاشة التفعيل بطلب المالك
+    expect(find.textContaining('فداء'), findsOneWidget);
+    expect(find.text('إشراف علمي'), findsOneWidget);
     // شارة التطوير (لورانيم تك) باقية
     expect(find.text('لورانيم تك'), findsOneWidget);
   });

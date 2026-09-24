@@ -11,14 +11,14 @@ import '../../core/supabase/activation_api.dart';
 import '../../core/theme/app_colors.dart';
 
 /// A1 — شاشة التفعيل (قرار 57):
-/// أعلى: تطوير → لورانيم تك → الشعار
-/// تحته حقل الكود (٥-٥-٥ Crockford) + زر تفعيل
+/// أعلى يمين: تطوير → لورانيم تك → الشعار
+/// أعلى يسار: إشراف علمي → الأستاذ فداء مأمون البني
+/// تحتهما حقل الكود (٥-٥-٥ Crockford) + زر تفعيل
 /// أسفل: حقوق النشر محفوظة
 /// بلا وضع تجريبي وبلا دخول بلا تفعيل (قرار 53).
 ///
-/// فرع dev/self-content (2026-09-23): أُزيل عمود «الإشراف العلمي» (الأستاذ فداء)
-/// نهائياً — التطوير بدون إشراف، المادة من المنهاج الوزاري والدورات. راجع
-/// BRANCHING.md.
+/// ملاحظة (2026-09-24): عمود «الإشراف العلمي» (الأستاذ فداء) مُعاد على شاشة
+/// التفعيل بطلب المالك — بعد أن كان أُزيل مؤقتاً على فرع dev/self-content.
 class ActivationGate extends StatefulWidget {
   const ActivationGate({
     super.key,
@@ -190,35 +190,62 @@ class _ActivationGateState extends State<ActivationGate> {
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final gold = isDark ? AppColors.goldDark : AppColors.goldLight;
     final line = isDark ? AppColors.darkLine : AppColors.lightLine;
 
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            // ── الشريط العلوي: تطوير ← لورانيم تك (أُزيل عمود الإشراف العلمي
-            //    على فرع dev/self-content — راجع BRANCHING.md) ──
+            // ── الشريط العلوي: يمين تطوير / يسار إشراف (قرار 57) ──
+            // تصميم متوازن: كل جهة = شارة دائرية + سطر دور + سطر اسم بإيقاع
+            // أحجام موحّد؛ الاسم يتقلّص بلا كسر (FittedBox) على الشاشات الضيّقة.
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 14, 16, 0),
-              child: _CreditBlock(
-                role: 'تطوير',
-                name: 'لورانيم تك',
-                alignEnd: false,
-                isDark: isDark,
-                txt: txt,
-                badge: ClipOval(
-                  child: Image.asset(
-                    'assets/brand/loraneem_tech.png',
-                    width: 40,
-                    height: 40,
-                    fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => _FallbackBadge(
-                      icon: Icons.memory,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  // يمين — تطوير
+                  Expanded(
+                    child: _CreditBlock(
+                      role: 'تطوير',
+                      name: 'لورانيم تك',
+                      alignEnd: false,
                       isDark: isDark,
-                      line: line,
+                      txt: txt,
+                      badge: ClipOval(
+                        child: Image.asset(
+                          'assets/brand/loraneem_tech.png',
+                          width: 40,
+                          height: 40,
+                          fit: BoxFit.cover,
+                          errorBuilder: (_, __, ___) => _FallbackBadge(
+                            icon: Icons.memory,
+                            isDark: isDark,
+                            line: line,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  const SizedBox(width: 12),
+                  // يسار — إشراف علمي
+                  Expanded(
+                    child: _CreditBlock(
+                      role: 'إشراف علمي',
+                      name: 'الأستاذ فداء مأمون البني',
+                      alignEnd: true,
+                      isDark: isDark,
+                      txt: txt,
+                      nameColor: gold,
+                      badge: CircleAvatar(
+                        radius: 20,
+                        backgroundColor: gold.withValues(alpha: 0.15),
+                        child: Icon(Icons.school_outlined, size: 22, color: gold),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             // ── المحتوى الأوسط ──
@@ -326,6 +353,7 @@ class _CreditBlock extends StatelessWidget {
     required this.isDark,
     required this.txt,
     required this.badge,
+    this.nameColor,
   });
 
   final String role;
@@ -334,6 +362,7 @@ class _CreditBlock extends StatelessWidget {
   final bool isDark;
   final TextTheme txt;
   final Widget badge;
+  final Color? nameColor;
 
   @override
   Widget build(BuildContext context) {
@@ -352,8 +381,10 @@ class _CreditBlock extends StatelessWidget {
           alignment: alignEnd ? Alignment.centerRight : Alignment.centerLeft,
           child: Text(name,
               maxLines: 1,
-              style: txt.titleSmall
-                  ?.copyWith(fontWeight: FontWeight.w800, fontSize: 13)),
+              style: txt.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 13,
+                  color: nameColor)),
         ),
       ],
     );
