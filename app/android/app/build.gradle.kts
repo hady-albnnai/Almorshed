@@ -68,6 +68,24 @@ android {
             )
         }
     }
+
+    // نكهتان (قرار المالك): تطبيق الطالب «فيزيا كلاش» + أداة المكتب المستقلّة
+    // «أكواد لورانيم» بمعرّف حزمة مختلف حتى تُنصَّب جنبه لا بدله.
+    //   الطالب: flutter build apk --flavor student
+    //   المكتب: flutter build apk --flavor office -t lib/office_main.dart
+    flavorDimensions += "app"
+    productFlavors {
+        create("student") {
+            dimension = "app"
+            // يرث applicationId الافتراضي (com.loraneemtech.fizya_clash)
+            resValue("string", "app_name", "فيزيا كلاش")
+        }
+        create("office") {
+            dimension = "app"
+            applicationId = "com.loraneemtech.fizya_clash.office"
+            resValue("string", "app_name", "أكواد لورانيم")
+        }
+    }
 }
 
 kotlin {
