@@ -17,7 +17,9 @@ import '../account/account_screen.dart';
 import '../duel/duel_screen.dart';
 import '../duel/local_duel_screen.dart';
 import '../league/league_screen.dart';
+import '../../core/content/generated_items.dart';
 import '../training/cards_screen.dart';
+import '../training/item_session_screen.dart';
 import '../training/mistakes_screen.dart';
 import '../training/training_screen.dart';
 
@@ -465,65 +467,146 @@ class _ExamsView extends StatelessWidget {
   }
 }
 
-class _UnitTrainingView extends StatelessWidget {
-  const _UnitTrainingView({required this.pack, required this.trainingStore, this.xpRecorder});
+class _UnitTrainingView extends StatefulWidget {
+  const _UnitTrainingView(
+      {required this.pack, required this.trainingStore, this.xpRecorder});
   final ContentPack pack;
   final TrainingStore trainingStore;
   final XpRecorder? xpRecorder;
 
   @override
+  State<_UnitTrainingView> createState() => _UnitTrainingViewState();
+}
+
+class _UnitTrainingViewState extends State<_UnitTrainingView> {
+  // تُحمَّل مرة واحدة (٥٦١ بند مسائل/تمارين معتمدة من المنهاج الوزاري).
+  Future<GeneratedItemsPack>? _itemsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _itemsFuture = GeneratedItemsPack.loadAsset();
+  }
+
+  void _open(String title, List<GeneratedItem> items) {
+    if (items.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('لا مسائل لهذه الوحدة بعد')),
+      );
+      return;
+    }
+    Navigator.of(context).push(MaterialPageRoute<void>(
+      builder: (_) => ItemSessionScreen(items: items, title: title),
+    ));
+  }
+
+  void _push(Widget screen) {
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => screen));
+  }
+
+  @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
-    return ListView(
-      padding: const EdgeInsets.all(14),
-      children: [
-        Text('اختر وحدة للتدريب', style: txt.titleLarge),
-        const SizedBox(height: 8),
-        for (final u in pack.units)
-          Card(
-            child: ListTile(
-              leading: const Text('📝', style: TextStyle(fontSize: 20)),
-              title: Text(u.title),
-              subtitle: Text('${u.chapters.length} دروس'),
-              trailing: const Icon(Icons.chevron_left),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
-                builder: (_) => TrainingScreen(pack: pack, trainingStore: trainingStore, xpRecorder: xpRecorder),
-              )),
+    return FutureBuilder<GeneratedItemsPack>(
+      future: _itemsFuture,
+      builder: (context, snap) {
+        final items = snap.data?.visible ?? const <GeneratedItem>[];
+        List<GeneratedItem> forUnit(String unitId) => [
+              for (final it in items)
+                if ((it.raw['unit'] as String?) == unitId) it
+            ];
+        final loading = snap.connectionState == ConnectionState.waiting;
+        return ListView(
+          padding: const EdgeInsets.all(14),
+          children: [
+            Text('مسائل وتمارين — أنماط الامتحان', style: txt.titleLarge),
+            const SizedBox(height: 4),
+            Text(
+              'حساب بالوحدة · علّل · برهان مرتّب — تصحيح فوري بسلّم الوزارة',
+              style: txt.bodySmall,
             ),
-          ),
-        Card(
-          child: ListTile(
-            leading: const Text('🔀', style: TextStyle(fontSize: 20)),
-            title: const Text('مختلط — من كل الوحدات'),
-            trailing: const Icon(Icons.chevron_left),
-            onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
-              builder: (_) => TrainingScreen(pack: pack, trainingStore: trainingStore, xpRecorder: xpRecorder),
-            )),
-          ),
-        ),
-        const SizedBox(height: 12),
-        Card(
-          child: ListTile(
-            leading: const Icon(Icons.style_outlined),
-            title: const Text('بطاقات اليوم'),
-            subtitle: const Text('مراجعة متباعدة — FSRS'),
-            trailing: const Icon(Icons.chevron_left),
-            onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
-              builder: (_) => CardsScreen(pack: pack, trainingStore: trainingStore, xpRecorder: xpRecorder),
-            )),
-          ),
-        ),
-        Card(
-          child: ListTile(
-            leading: const Icon(Icons.error_outline),
-            title: const Text('أخطائي'),
-            trailing: const Icon(Icons.chevron_left),
-            onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
-              builder: (_) => MistakesScreen(pack: pack, trainingStore: trainingStore, xpRecorder: xpRecorder),
-            )),
-          ),
-        ),
-      ],
+            const SizedBox(height: 10),
+            if (loading)
+              const Padding(
+                padding: EdgeInsets.all(28),
+                child: Center(child: CircularProgressIndicator()),
+              )
+            else ...[
+              for (final u in widget.pack.units)
+                _unitProblemsCard(u.id, u.title, forUnit(u.id).length,
+                    () => _open(u.title, forUnit(u.id))),
+              Card(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                child: ListTile(
+                  leading: const Text('🔀', style: TextStyle(fontSize: 20)),
+                  title: const Text('مختلط — من كل الوحدات'),
+                  subtitle: Text('${ArabicNumber.from(items.length)} بند'),
+                  trailing: const Icon(Icons.chevron_left),
+                  enabled: items.isNotEmpty,
+                  onTap: items.isEmpty
+                      ? null
+                      : () => _open('تدريب مختلط', items),
+                ),
+              ),
+            ],
+            const SizedBox(height: 18),
+            Text('أدوات المذاكرة', style: txt.titleLarge),
+            const SizedBox(height: 8),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.today_outlined),
+                title: const Text('دفعة اليوم'),
+                subtitle: const Text('أسئلة اليوم — عادلة للجميع بالبذرة اليومية'),
+                trailing: const Icon(Icons.chevron_left),
+                onTap: () => _push(TrainingScreen(
+                    pack: widget.pack,
+                    trainingStore: widget.trainingStore,
+                    xpRecorder: widget.xpRecorder)),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.style_outlined),
+                title: const Text('بطاقات اليوم'),
+                subtitle: const Text('مراجعة متباعدة — FSRS'),
+                trailing: const Icon(Icons.chevron_left),
+                onTap: () => _push(CardsScreen(
+                    pack: widget.pack,
+                    trainingStore: widget.trainingStore,
+                    xpRecorder: widget.xpRecorder)),
+              ),
+            ),
+            Card(
+              child: ListTile(
+                leading: const Icon(Icons.error_outline),
+                title: const Text('أخطائي'),
+                trailing: const Icon(Icons.chevron_left),
+                onTap: () => _push(MistakesScreen(
+                    pack: widget.pack,
+                    trainingStore: widget.trainingStore,
+                    xpRecorder: widget.xpRecorder)),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _unitProblemsCard(
+      String unitId, String title, int count, VoidCallback onTap) {
+    return Card(
+      child: ListTile(
+        leading: const Text('📝', style: TextStyle(fontSize: 20)),
+        title: Text(title),
+        subtitle: Text(count > 0
+            ? '${ArabicNumber.from(count)} مسألة وتمرين'
+            : 'قيد الإعداد'),
+        trailing: const Icon(Icons.chevron_left),
+        enabled: count > 0,
+        onTap: count > 0 ? onTap : null,
+      ),
     );
   }
 }

@@ -271,6 +271,8 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
           const SizedBox(height: 8),
           TextField(
             controller: _ipCtrl,
+            autocorrect: false,
+            enableSuggestions: false,
             textDirection: TextDirection.ltr,
             textAlign: TextAlign.center,
             keyboardType: TextInputType.number,
@@ -287,6 +289,8 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
           const SizedBox(height: 10),
           TextField(
             controller: _codeCtrl,
+            autocorrect: false,
+            enableSuggestions: false,
             textDirection: TextDirection.ltr,
             textAlign: TextAlign.center,
             textCapitalization: TextCapitalization.characters,

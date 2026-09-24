@@ -479,6 +479,8 @@ class _NumericBodyState extends State<_NumericBody> {
               child: TextField(
                 key: const Key('numeric-value'),
                 controller: _value,
+                autocorrect: false,
+                enableSuggestions: false,
                 keyboardType: const TextInputType.numberWithOptions(
                   decimal: true,
                   signed: true,
@@ -497,6 +499,8 @@ class _NumericBodyState extends State<_NumericBody> {
               child: TextField(
                 key: const Key('numeric-unit'),
                 controller: _unit,
+                autocorrect: false,
+                enableSuggestions: false,
                 textDirection: TextDirection.ltr,
                 decoration: const InputDecoration(
                   labelText: 'الوحدة',
@@ -591,6 +595,8 @@ class _WhyBodyState extends State<_WhyBody> {
         TextField(
           key: const Key('why-text'),
           controller: _text,
+          autocorrect: false,
+          enableSuggestions: false,
           minLines: 2,
           maxLines: 5,
           decoration: const InputDecoration(
@@ -1083,6 +1089,8 @@ class _PartsBodyState extends State<_PartsBody> {
         key: fieldKey,
         controller: ctrl,
         readOnly: _locked,
+        autocorrect: false,
+        enableSuggestions: false,
         textDirection: numeric ? TextDirection.ltr : TextDirection.rtl,
         keyboardType: numeric
             ? const TextInputType.numberWithOptions(

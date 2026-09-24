@@ -248,6 +248,8 @@ class _DuelScreenState extends State<DuelScreen> {
           const SizedBox(height: 8),
           TextField(
             controller: _codeCtrl,
+            autocorrect: false,
+            enableSuggestions: false,
             textDirection: TextDirection.ltr,
             textAlign: TextAlign.center,
             textCapitalization: TextCapitalization.characters,
