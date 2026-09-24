@@ -40,9 +40,29 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^4.0.0
   # توليد كود Drift (F3.1): drift_dev + build_runner — يُشغَّل على جهاز المالك:
-  #   flutter pub run build_runner build --delete-conflicting-outputs
+  #   dart run build_runner build --delete-conflicting-outputs
   drift_dev: ^2.20.0
   build_runner: ^2.4.0
+  # توليد أيقونة المشغّل (بند ٤): أيقونة تكيّفية لأندرويد 12+ + قديمة + monochrome.
+  # يُشغَّل مرة على جهاز المالك:  dart run flutter_launcher_icons
+  flutter_launcher_icons: ^0.14.3
+
+# ── إعداد أيقونة المشغّل (فيزيا كلاش — الخيار «ج»: برق ذهبي داخل ذرّة خضراء) ──
+# المفهوم: ذرّة بمدارات خضراء (#2DD4A7) + برق ذهبي (#FBBF24 = «كلاش»/XP) على
+# خلفية داكنة (#04222B). الأصول في assets/brand/. لإعادة التوليد بعد أي تعديل:
+#   dart run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: false
+  # الأيقونة القديمة (أندرويد < 8): الصورة الكاملة بخلفيتها المدمجة
+  image_path: "assets/brand/app_icon.png"
+  min_sdk_android: 21
+  # الأيقونة التكيّفية (أندرويد 8+): خلفية لونية صلبة + طبقة أمامية شفافة
+  adaptive_icon_background: "#04222B"
+  adaptive_icon_foreground: "assets/brand/icon_foreground.png"
+  # الأيقونة أحادية اللون (أندرويد 13+ «الأيقونات المُوحّدة بالثيم»)
+  adaptive_icon_monochrome: "assets/brand/icon_monochrome.png"
+  remove_alpha_ios: true
 
 flutter:
   uses-material-design: true
