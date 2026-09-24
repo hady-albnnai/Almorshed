@@ -388,81 +388,21 @@ class _ReviewView extends StatelessWidget {
 }
 
 // ── تبويب التدريب ────────────────────────────────────────────────
-class _TrainingTab extends StatefulWidget {
-  const _TrainingTab({required this.pack, required this.trainingStore, required this.xpRecorder});
+// تبويب التدريب: المسائل والتمارين بالوحدة + أدوات المذاكرة. أُزيل التبويب
+// الفرعي «أسئلة الدورات» (كان أزراراً وهمية «المرحلة B») حتى يجهز محتواه.
+class _TrainingTab extends StatelessWidget {
+  const _TrainingTab(
+      {required this.pack, required this.trainingStore, required this.xpRecorder});
   final ContentPack pack;
   final TrainingStore trainingStore;
   final XpRecorder? xpRecorder;
 
   @override
-  State<_TrainingTab> createState() => _TrainingTabState();
-}
-
-class _TrainingTabState extends State<_TrainingTab> {
-  int _sub = 1; // 0=أسئلة الدورات، 1=تدريب بالوحدة (افتراضي حسب الاستخدام)
-
-  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 14),
-          child: SegmentedButton<int>(
-            segments: const [
-              ButtonSegment(value: 0, label: Text('أسئلة الدورات')),
-              ButtonSegment(value: 1, label: Text('تدريب بالوحدة')),
-            ],
-            selected: {_sub},
-            onSelectionChanged: (s) => setState(() => _sub = s.first),
-          ),
-        ),
-        const SizedBox(height: 12),
-        Expanded(
-          child: _sub == 0 ? _ExamsView(pack: widget.pack) : _UnitTrainingView(pack: widget.pack, trainingStore: widget.trainingStore, xpRecorder: widget.xpRecorder),
-        ),
-      ],
-    );
-  }
-}
-
-class _ExamsView extends StatelessWidget {
-  const _ExamsView({required this.pack});
-  final ContentPack pack;
-
-  @override
-  Widget build(BuildContext context) {
-    final txt = Theme.of(context).textTheme;
-    return ListView(
-      padding: const EdgeInsets.all(14),
-      children: [
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('أسئلة الدورات', style: txt.titleLarge),
-                const SizedBox(height: 8),
-                Text('أوراق 2022 — 2026 مع سلالمها، مصنفة بالسنة وبالوحدة.', style: txt.bodyMedium),
-                const SizedBox(height: 12),
-                for (final y in const ['2026', '2023', '2022'])
-                  ListTile(
-                    leading: const Icon(Icons.article_outlined),
-                    title: Text('دورة $y'),
-                    subtitle: const Text('عرض الأسئلة والمسائل مع السلم الوزاري'),
-                    trailing: const Icon(Icons.chevron_left),
-                    onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('أسئلة $y — تُنقل في المرحلة B')),
-                    ),
-                  ),
-                const SizedBox(height: 8),
-                Text('المرحلة B ستنقل النص الكامل لكل ورقة إلى التطبيق.', style: txt.bodySmall),
-              ],
-            ),
-          ),
-        ),
-      ],
+    return _UnitTrainingView(
+      pack: pack,
+      trainingStore: trainingStore,
+      xpRecorder: xpRecorder,
     );
   }
 }
@@ -621,37 +561,41 @@ class _ChallengesTab extends StatelessWidget {
   final DuelFlowFactory? openDuel;
   final LocalDuelFlowFactory? openLocalDuel;
 
+  void _push(BuildContext context, Widget screen) {
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (_) => screen));
+  }
+
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
     return ListView(
       padding: const EdgeInsets.all(14),
       children: [
-        Text('التحديات', style: txt.titleLarge),
+        // ── العب الآن ──
+        Text('العب الآن', style: txt.titleLarge),
         const SizedBox(height: 8),
         Card(
           child: ListTile(
             leading: const Text('⚔️', style: TextStyle(fontSize: 22)),
             title: const Text('تحدي اليوم'),
-            subtitle: const Text('10 أسئلة بوقت محدود — النقاط تقلّ مع البطء'),
+            subtitle: const Text('١٠ أسئلة بوقت محدود — النقاط تقلّ مع البطء'),
             trailing: const Icon(Icons.chevron_left),
-            onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(
-              builder: (_) => ChallengeScreen(
-                pack: pack,
-                xpRecorder: xpRecorder,
-              ),
-            )),
+            onTap: () => _push(
+                context, ChallengeScreen(pack: pack, xpRecorder: xpRecorder)),
           ),
         ),
         Card(
           child: ListTile(
             leading: const Text('📡', style: TextStyle(fontSize: 22)),
             title: const Text('مبارزة محلية — بلا نت'),
-            subtitle: const Text('عبر نقطة الاتصال'),
+            subtitle: const Text('تحدَّ صديقك عبر نقطة الاتصال'),
+            trailing: const Icon(Icons.chevron_left),
             enabled: openLocalDuel != null,
             onTap: openLocalDuel == null
                 ? null
-                : () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => LocalDuelScreen(pack: pack, flowFactory: openLocalDuel!))),
+                : () => _push(context,
+                    LocalDuelScreen(pack: pack, flowFactory: openLocalDuel!)),
           ),
         ),
         Card(
@@ -659,12 +603,18 @@ class _ChallengesTab extends StatelessWidget {
             leading: const Text('🌐', style: TextStyle(fontSize: 22)),
             title: const Text('مبارزة عن بعد'),
             subtitle: const Text('تحدَّ صديقك برمز الغرفة'),
+            trailing: const Icon(Icons.chevron_left),
             enabled: openDuel != null,
             onTap: openDuel == null
                 ? null
-                : () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => DuelScreen(pack: pack, flowFactory: openDuel!))),
+                : () => _push(
+                    context, DuelScreen(pack: pack, flowFactory: openDuel!)),
           ),
         ),
+        const SizedBox(height: 18),
+        // ── ترتيبك ──
+        Text('ترتيبك', style: txt.titleLarge),
+        const SizedBox(height: 8),
         if (fetchLeague != null)
           Card(
             child: ListTile(
@@ -672,40 +622,83 @@ class _ChallengesTab extends StatelessWidget {
               title: const Text('لوحة الموسم'),
               subtitle: const Text('ترتيب تراكمي طوال العام — بلا مجموعات'),
               trailing: const Icon(Icons.chevron_left),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => LeagueScreen(fetch: fetchLeague!))),
+              onTap: () =>
+                  _push(context, LeagueScreen(fetch: fetchLeague!)),
             ),
           ),
         Card(
           child: Padding(
-            padding: const EdgeInsets.all(14),
+            padding: const EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text('نقاطي — كيف تُحسب؟', style: txt.titleMedium),
-                const SizedBox(height: 8),
-                // A5 — قرار ٦٠: فصل حاسم بين نقاط التعلّم (شخصية) ونقاط الترتيب (التحديات)
-                const Text('التدريب والبطاقات = نقاط تعلّم شخصية، بلا سقف وبلا جوائز — لا تدخل الترتيب. التحديات وحدها هي نقاط الترتيب الأسبوعي، والفوز فقط يُكافَأ.'),
-                const SizedBox(height: 6),
-                FutureBuilder<int>(
-                  future: xpRecorder.ledger.arenaTotalXp(),
-                  builder: (_, snap) => Text(
-                    'نقاط الترتيب (التحديات): ${snap.data ?? 0}',
-                    style: txt.titleSmall,
-                  ),
+                Text('نقاطي', style: txt.titleMedium),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Expanded(
+                      child: FutureBuilder<int>(
+                        future: xpRecorder.ledger.arenaTotalXp(),
+                        builder: (_, snap) => _pointsBox(
+                          context,
+                          '${snap.data ?? 0}',
+                          'نقاط الترتيب',
+                          Icons.emoji_events_outlined,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: FutureBuilder<int>(
+                        future: xpRecorder.ledger.verifiedTotalXp(),
+                        builder: (_, snap) => _pointsBox(
+                          context,
+                          '${snap.data ?? 0}',
+                          'نقاط التعلّم',
+                          Icons.school_outlined,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                FutureBuilder<int>(
-                  future: xpRecorder.ledger.verifiedTotalXp(),
-                  builder: (_, snap) => Text(
-                    'نقاط التعلّم الموثقة: ${snap.data ?? 0}',
-                    style: txt.bodySmall,
-                  ),
+                const SizedBox(height: 12),
+                // A5 — قرار ٦٠: فصل نقاط التعلّم (شخصية) عن نقاط الترتيب (التحديات).
+                Text(
+                  'التحديات وحدها تدخل الترتيب الأسبوعي (الفوز يُكافأ). '
+                  'التدريب والبطاقات نقاط تعلّم شخصية — بلا سقف وبلا ترتيب.',
+                  style: txt.bodySmall,
                 ),
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _pointsBox(
+      BuildContext context, String value, String label, IconData icon) {
+    final cs = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+      decoration: BoxDecoration(
+        color: cs.surfaceContainerHighest.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: Theme.of(context).dividerColor),
+      ),
+      child: Column(
+        children: [
+          Icon(icon, color: cs.primary),
+          const SizedBox(height: 6),
+          Text(value,
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall
+                  ?.copyWith(fontWeight: FontWeight.w900)),
+          const SizedBox(height: 2),
+          Text(label, style: Theme.of(context).textTheme.bodySmall),
+        ],
+      ),
     );
   }
 }
