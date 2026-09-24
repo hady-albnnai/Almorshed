@@ -42,6 +42,20 @@ function generateOne(): string {
 
 const group5 = (code: string) => code.match(/.{1,5}/g)?.join('-') ?? code;
 
+// تفصيل خطأ قابل للقراءة (كائن خطأ Postgres لا ينفكّ عبر String()).
+const errStr = (e: unknown): string => {
+  if (e instanceof Error) return e.message;
+  if (e && typeof e === 'object') {
+    const o = e as Record<string, unknown>;
+    const parts = ['message', 'code', 'details', 'hint']
+      .map((k) => (o[k] != null ? `${k}=${o[k]}` : null))
+      .filter(Boolean);
+    if (parts.length) return parts.join(' | ');
+    try { return JSON.stringify(e); } catch { /* ignore */ }
+  }
+  return String(e);
+};
+
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') return new Response('ok', { headers: CORS });
   if (req.method !== 'POST') return json({ ok: false, error: 'METHOD' }, 405);
@@ -114,7 +128,7 @@ Deno.serve(async (req) => {
         .update({ status: 'revoked' })
         .eq('code', code)
         .select('code');
-      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: errStr(error) }, 500);
       if (!rows || rows.length === 0)
         return json({ ok: false, error: 'CODE_NOT_FOUND' }, 404);
       await admin.from('licenses').update({ revoked: true }).eq('code', code);
@@ -138,7 +152,7 @@ Deno.serve(async (req) => {
         q = q.eq('status', status);
       }
       const { data: codes, error } = await q;
-      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: errStr(error) }, 500);
       const list = (codes ?? []).map((c) => c.code);
       const used = new Map<string, number>();
       if (list.length > 0) {
@@ -193,7 +207,7 @@ Deno.serve(async (req) => {
         .select('code,status,distributor,release_id,created_at,activated_at,customer,review')
         .order('created_at', { ascending: false })
         .limit(500);
-      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: errStr(error) }, 500);
       const list = (codes ?? []).map((c) => c.code);
       const used = new Map<string, number>();
       if (list.length > 0) {
@@ -238,7 +252,7 @@ Deno.serve(async (req) => {
         .update({ customer: customerRaw.length > 0 ? customerRaw : null })
         .eq('code', code)
         .select('code');
-      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: errStr(error) }, 500);
       if (!rows || rows.length === 0)
         return json({ ok: false, error: 'CODE_NOT_FOUND' }, 404);
       return json({ ok: true, code: group5(code) });
@@ -255,7 +269,7 @@ Deno.serve(async (req) => {
         .select('name, ends_on')
         .eq('name', season)
         .maybeSingle();
-      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: errStr(error) }, 500);
       return json({
         ok: true,
         season,
@@ -286,7 +300,7 @@ Deno.serve(async (req) => {
         .upsert({ name: season, ends_on: endsOn }, { onConflict: 'name' })
         .select('name, ends_on')
         .single();
-      if (error) return json({ ok: false, error: 'INTERNAL', detail: String(error) }, 500);
+      if (error) return json({ ok: false, error: 'INTERNAL', detail: errStr(error) }, 500);
       await admin.from('office_audit').insert({
         action: 'season_set',
         note: `season=${season} ends_on=${endsOn ?? 'null(open)'}`,
@@ -303,6 +317,6 @@ Deno.serve(async (req) => {
 
     return json({ ok: false, error: 'BAD_ACTION' }, 422);
   } catch (e) {
-    return json({ ok: false, error: 'INTERNAL', detail: String(e) }, 500);
+    return json({ ok: false, error: 'INTERNAL', detail: errStr(e) }, 500);
   }
 });
