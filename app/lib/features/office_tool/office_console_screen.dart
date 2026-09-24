@@ -44,7 +44,15 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
   final _keyController = TextEditingController();
   final _countController = TextEditingController(text: '1');
   final _customerController = TextEditingController();
+  final _searchController = TextEditingController();
   bool _obscureKey = true;
+
+  // قائمة الأكواد المُصدَرة (لمن ولّدنا) — تأتي من stats.subscribers.
+  List<Subscriber> _subs = const <Subscriber>[];
+  String _query = '';
+
+  List<Subscriber> get _filteredSubs =>
+      [for (final s in _subs) if (s.matches(_query)) s];
 
   @override
   void initState() {
@@ -57,6 +65,7 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
     _keyController.dispose();
     _countController.dispose();
     _customerController.dispose();
+    _searchController.dispose();
     super.dispose();
   }
 
@@ -79,12 +88,13 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
     }
     setState(() => _busy = true);
     try {
-      final (stats, _) = await _api.stats(k); // تحقّق فعلي من صحّة المفتاح
+      final (stats, subs) = await _api.stats(k); // تحقّق فعلي من صحّة المفتاح
       await _vault.write(k);
       if (!mounted) return;
       setState(() {
         _key = k;
         _stats = stats;
+        _subs = subs;
         _keyController.clear();
       });
       _toast('تم الدخول ✅');
@@ -124,8 +134,13 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
     if (k == null) return;
     setState(() => _busy = true);
     try {
-      final (stats, _) = await _api.stats(k);
-      if (mounted) setState(() => _stats = stats);
+      final (stats, subs) = await _api.stats(k);
+      if (mounted) {
+        setState(() {
+          _stats = stats;
+          _subs = subs;
+        });
+      }
     } on OfficeApiException catch (e) {
       _toast('تعذّر تحديث الإحصاءات: ${e.message}');
     } catch (_) {
@@ -208,12 +223,26 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
               for (final c in codes)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 4),
-                  child: SelectableText(
-                    c,
-                    textAlign: TextAlign.center,
-                    textDirection: TextDirection.ltr,
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.w900),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: SelectableText(
+                          c,
+                          textAlign: TextAlign.center,
+                          textDirection: TextDirection.ltr,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.w900),
+                        ),
+                      ),
+                      IconButton(
+                        tooltip: 'نسخ الكود',
+                        icon: const Icon(Icons.copy),
+                        onPressed: () async {
+                          await Clipboard.setData(ClipboardData(text: c));
+                          if (ctx.mounted) _toast('نُسخ الكود');
+                        },
+                      ),
+                    ],
                   ),
                 ),
             ],
@@ -229,8 +258,8 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
               await Clipboard.setData(ClipboardData(text: shareText));
               if (ctx.mounted) _toast('نُسخت الرسالة');
             },
-            icon: const Icon(Icons.copy),
-            label: const Text('نسخ'),
+            icon: const Icon(Icons.description),
+            label: const Text('نسخ الرسالة'),
           ),
           FilledButton.icon(
             onPressed: () async {
@@ -404,7 +433,133 @@ class _OfficeConsoleScreenState extends State<OfficeConsoleScreen> {
             ),
           ),
         ),
+        const SizedBox(height: 14),
+        // ── الأكواد المُصدَرة: لمن ولّدنا (اسم الزبون + الحالة + التاريخ) ──
+        Card(
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text('الأكواد المُصدَرة (${_filteredSubs.length})',
+                          style: txt.titleSmall),
+                    ),
+                    IconButton(
+                      tooltip: 'تحديث',
+                      onPressed: _busy ? null : _refresh,
+                      icon: const Icon(Icons.refresh),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  key: const Key('office-search'),
+                  controller: _searchController,
+                  onChanged: (v) => setState(() => _query = v),
+                  decoration: const InputDecoration(
+                    labelText: 'بحث بالكود أو اسم الزبون',
+                    prefixIcon: Icon(Icons.search),
+                    isDense: true,
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                if (_filteredSubs.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    child: Text(
+                      _subs.isEmpty ? 'لا أكواد بعد' : 'لا نتائج للبحث',
+                      textAlign: TextAlign.center,
+                      style: txt.bodySmall,
+                    ),
+                  )
+                else
+                  for (final s in _filteredSubs) _subTile(s),
+              ],
+            ),
+          ),
+        ),
       ],
+    );
+  }
+
+  String _fmtDate(String? iso) =>
+      (iso == null || iso.isEmpty) ? '' : iso.split('T').first;
+
+  Widget _subTile(Subscriber s) {
+    final cs = Theme.of(context).colorScheme;
+    final (String label, Color color) = switch (s.status) {
+      'activated' => ('مُفعّل', Colors.green),
+      'revoked' => ('ملغى', cs.error),
+      _ => ('غير مفعّل', cs.outline),
+    };
+    final who = (s.customer == null || s.customer!.trim().isEmpty)
+        ? (s.review ? 'مراجعة — الأستاذ' : 'بلا اسم')
+        : s.customer!;
+    final meta = <String>[
+      if (_fmtDate(s.createdAt).isNotEmpty) 'تاريخ: ${_fmtDate(s.createdAt)}',
+      if (s.devicesUsed > 0) 'أجهزة: ${s.devicesUsed}',
+    ].join('   •   ');
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Theme.of(context).dividerColor),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(who,
+                    style: const TextStyle(fontWeight: FontWeight.w700)),
+              ),
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.15),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(label,
+                    style: TextStyle(
+                        color: color,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Row(
+            children: [
+              Expanded(
+                child: SelectableText(
+                  s.code,
+                  textDirection: TextDirection.ltr,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w900, letterSpacing: 1),
+                ),
+              ),
+              IconButton(
+                visualDensity: VisualDensity.compact,
+                tooltip: 'نسخ الكود',
+                icon: const Icon(Icons.copy, size: 18),
+                onPressed: () async {
+                  await Clipboard.setData(ClipboardData(text: s.code));
+                  _toast('نُسخ الكود');
+                },
+              ),
+            ],
+          ),
+          if (meta.isNotEmpty)
+            Text(meta, style: Theme.of(context).textTheme.bodySmall),
+        ],
+      ),
     );
   }
 
