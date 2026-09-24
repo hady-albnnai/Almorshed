@@ -27,6 +27,11 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
+    // مطلوب لـAGP الحديث حتى يُسمح بـresValue داخل النكهات (اسم التطبيق لكل نكهة).
+    buildFeatures {
+        resValues = true
+    }
+
     defaultConfig {
         applicationId = "com.loraneemtech.fizya_clash"
         // You can update the following values to match your application needs.
