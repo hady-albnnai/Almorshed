@@ -38,6 +38,7 @@ import 'core/duel/local_duel_flow.dart';
 import 'core/duel/local_link.dart';
 import 'features/activation/activation_gate.dart';
 import 'features/curriculum/curriculum_screen.dart';
+import 'features/splash/animated_splash.dart';
 import 'features/review/review_widgets.dart';
 import 'features/shell/app_shell.dart';
 
@@ -424,9 +425,11 @@ class _FizyaClashAppState extends State<FizyaClashApp> {
 class _Splash extends StatelessWidget {
   const _Splash();
 
+  // بند ٤ب: شاشة بداية متحركة أصلية (ذرّة + برق «كلاش») بدل الدوّارة.
+  // تُعرض أثناء التحميل الحقيقي وتحترم «تقليل الحركة».
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    return const AnimatedSplash();
   }
 }
 
