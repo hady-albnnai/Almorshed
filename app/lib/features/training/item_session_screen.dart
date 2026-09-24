@@ -285,7 +285,6 @@ class _KindChip extends StatelessWidget {
   const _KindChip({
     required this.kind,
     required this.chapter,
-    this.pending = false,
     this.partCount = 0,
   });
   final ItemKind kind;
@@ -293,9 +292,6 @@ class _KindChip extends StatelessWidget {
 
   /// >٠ ⇒ مسألة بأجزاء (قرار ٦٨) — تغيّر تسمية الرقاقة.
   final int partCount;
-
-  /// وضع المراجعة: البند غير معتمد بعد ⇒ شارة «قيد المراجعة».
-  final bool pending;
 
   @override
   Widget build(BuildContext context) {
@@ -313,13 +309,6 @@ class _KindChip extends StatelessWidget {
       children: [
         Chip(label: Text(label), visualDensity: VisualDensity.compact),
         Chip(label: Text(ch), visualDensity: VisualDensity.compact),
-        if (pending)
-          const Chip(
-            label: Text('قيد المراجعة'),
-            visualDensity: VisualDensity.compact,
-            backgroundColor: Color(0x40F5C518),
-            side: BorderSide(color: Color(0xFFF5C518)),
-          ),
       ],
     );
   }
