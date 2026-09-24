@@ -46,7 +46,7 @@ class AboutScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(12),
                   child: Image.asset(
                     'assets/brand/loraneem_tech.png',
-                    width: double.infinity,
+                    height: 96,
                     fit: BoxFit.contain,
                     errorBuilder: (_, __, ___) => Container(
                       height: 60,
