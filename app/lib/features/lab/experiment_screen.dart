@@ -258,6 +258,7 @@ class _ExperimentScreenState extends State<ExperimentScreen>
                       t: _simTime,
                       gold: gold,
                       running: _running,
+                      dark: Theme.of(context).brightness == Brightness.dark,
                     ),
                   ),
                 ),
@@ -273,6 +274,7 @@ class _ExperimentScreenState extends State<ExperimentScreen>
                     t: 0,
                     gold: gold,
                     running: false,
+                    dark: Theme.of(context).brightness == Brightness.dark,
                   ),
                 ),
               ),
@@ -451,6 +453,7 @@ class _ExperimentPainter extends CustomPainter {
     required this.t,
     required this.gold,
     required this.running,
+    required this.dark,
   });
 
   final LabExperiment exp;
@@ -459,166 +462,374 @@ class _ExperimentPainter extends CustomPainter {
   final double t;
   final Color gold;
   final bool running;
+  final bool dark;
+
+  Color get _ink => dark ? Colors.white : const Color(0xFF1A2233);
+  Color get _metal => dark ? const Color(0xFFB7C0D8) : const Color(0xFF64748B);
 
   @override
   void paint(Canvas canvas, Size size) {
-    final line = Paint()
-      ..color = Colors.grey
-      ..strokeWidth = 2.5
-      ..style = PaintingStyle.stroke;
-    final fill = Paint()..color = gold.withValues(alpha: .30);
-    final border = Paint()
-      ..color = gold
-      ..strokeWidth = 2.5
-      ..style = PaintingStyle.stroke;
-
+    _panel(canvas, size);
     switch (exp.id) {
       case 'torsion':
-        _paintTorsion(canvas, size, line, fill, border);
+        _paintTorsion(canvas, size);
       case 'gravity':
-        _paintGravity(canvas, size, line, fill, border);
+        _paintGravity(canvas, size);
       case 'lc':
-        _paintLc(canvas, size, line, fill, border);
+        _paintLc(canvas, size);
       case 'string':
-        _paintString(canvas, size, line, border);
+        _paintString(canvas, size);
       default:
-        _paintPhoto(canvas, size, line, fill, border);
+        _paintPhoto(canvas, size);
     }
   }
 
-  /// ساق أفقية تدور حول مركزها بزاوية θ (منظر علوي) + السلك كنقطة.
-  void _paintTorsion(
-      Canvas c, Size s, Paint line, Paint fill, Paint border) {
-    final ctr = Offset(s.width / 2, s.height / 2);
-    c.drawCircle(ctr, 6, fill);
-    c.drawCircle(ctr, 6, border);
-    final half = math.min(s.width, s.height) * 0.42;
-    final dx = math.cos(q) * half;
-    final dy = math.sin(q) * half;
-    c.drawLine(ctr - Offset(dx, dy), ctr + Offset(dx, dy), border);
-    // خط المرجع (θ = 0)
-    final dash = Paint()
-      ..color = Colors.grey.withValues(alpha: .5)
-      ..strokeWidth = 1;
-    c.drawLine(Offset(ctr.dx - half, ctr.dy), Offset(ctr.dx + half, ctr.dy), dash);
-  }
-
-  /// خيط من نقطة تعليق علوية وكرة عند الزاوية θ عن الشاقول.
-  void _paintGravity(
-      Canvas c, Size s, Paint line, Paint fill, Paint border) {
-    final pivot = Offset(s.width / 2, 12);
-    final len = s.height - 40;
-    final bob = pivot + Offset(math.sin(q) * len, math.cos(q) * len);
-    c.drawLine(Offset(pivot.dx - 30, pivot.dy), Offset(pivot.dx + 30, pivot.dy), line);
-    c.drawLine(pivot, bob, line);
-    c.drawCircle(bob, 14, fill);
-    c.drawCircle(bob, 14, border);
-    final dash = Paint()
-      ..color = Colors.grey.withValues(alpha: .5)
-      ..strokeWidth = 1;
-    c.drawLine(pivot, Offset(pivot.dx, pivot.dy + len), dash);
-  }
-
-  /// مكثفة (لبوسان بشحنة ±q) ووشيعة، مع شريط يمثل q/Qmax.
-  void _paintLc(Canvas c, Size s, Paint line, Paint fill, Paint border) {
-    final left = 30.0, right = s.width - 30.0, top = 30.0, bottom = s.height - 30.0;
-    // الإطار
-    c.drawLine(Offset(left, top), Offset(right, top), line);
-    c.drawLine(Offset(left, bottom), Offset(right, bottom), line);
-    c.drawLine(Offset(left, top), Offset(left, (top + bottom) / 2 - 10), line);
-    c.drawLine(Offset(left, (top + bottom) / 2 + 10), Offset(left, bottom), line);
-    // لبوسا المكثفة
-    c.drawLine(Offset(left - 14, (top + bottom) / 2 - 10), Offset(left + 14, (top + bottom) / 2 - 10), border);
-    c.drawLine(Offset(left - 14, (top + bottom) / 2 + 10), Offset(left + 14, (top + bottom) / 2 + 10), border);
-    // الوشيعة (٤ حلقات) على الضلع الأيمن
-    final coil = Path()..moveTo(right, top);
-    final h = (bottom - top) / 4;
-    for (var i = 0; i < 4; i++) {
-      coil.arcToPoint(Offset(right, top + h * (i + 1)),
-          radius: Radius.circular(h / 2), clockwise: false);
-    }
-    c.drawPath(coil, line);
-    // شريط الشحنة: طوله ∝ q (موجب لأعلى، سالب لأسفل)
-    final mid = Offset(s.width / 2, (top + bottom) / 2);
-    final len = q.clamp(-1.0, 1.0).toDouble() * (bottom - top) / 2 * 0.9;
-    c.drawRect(
-      Rect.fromPoints(Offset(mid.dx - 10, mid.dy), Offset(mid.dx + 10, mid.dy - len)),
-      fill,
+  // خلفية المختبر: تدرّج + شبكة قياس خفيفة + إطار.
+  void _panel(Canvas c, Size s) {
+    final rect = Offset.zero & s;
+    final rr = RRect.fromRectAndRadius(rect, const Radius.circular(16));
+    c.drawRRect(
+      rr,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: dark
+              ? const [Color(0xFF121A2B), Color(0xFF0A0F1A)]
+              : const [Color(0xFFF4F7FF), Color(0xFFE6ECF8)],
+        ).createShader(rect),
     );
-    c.drawLine(Offset(mid.dx - 16, mid.dy), Offset(mid.dx + 16, mid.dy), border);
+    c.save();
+    c.clipRRect(rr);
+    final grid = Paint()
+      ..color = _ink.withValues(alpha: 0.05)
+      ..strokeWidth = 1;
+    for (double x = 0; x < s.width; x += 22) {
+      c.drawLine(Offset(x, 0), Offset(x, s.height), grid);
+    }
+    for (double y = 0; y < s.height; y += 22) {
+      c.drawLine(Offset(0, y), Offset(s.width, y), grid);
+    }
+    c.restore();
+    c.drawRRect(
+      rr,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5
+        ..color = gold.withValues(alpha: 0.25),
+    );
   }
 
-  /// موجة مستقرة y(x) = sin(nπx/L)·cos(ωt) إن كان f مدروجاً — وإلا اهتزاز مشوّش.
-  void _paintString(Canvas c, Size s, Paint line, Paint border) {
+  Paint _glow(Color col, double blur, double w) => Paint()
+    ..color = col
+    ..strokeWidth = w
+    ..style = PaintingStyle.stroke
+    ..strokeCap = StrokeCap.round
+    ..maskFilter = MaskFilter.blur(BlurStyle.normal, blur);
+
+  void _dash(Canvas c, Offset a, Offset b) {
+    final paint = Paint()
+      ..color = _ink.withValues(alpha: 0.28)
+      ..strokeWidth = 1;
+    const n = 18;
+    for (var i = 0; i < n; i += 2) {
+      c.drawLine(
+          Offset.lerp(a, b, i / n)!, Offset.lerp(a, b, (i + 1) / n)!, paint);
+    }
+  }
+
+  Shader _sphere(Offset ctr, double r, Color col) => RadialGradient(
+        center: const Alignment(-0.4, -0.4),
+        colors: [Colors.white, col, Color.lerp(col, Colors.black, 0.35)!],
+        stops: const [0.0, 0.55, 1.0],
+      ).createShader(Rect.fromCircle(center: ctr, radius: r));
+
+  // ── نواس الفتل (منظر علوي): ساق تدور + كتلتان طرفيّتان + توهّج + أثر حركة ──
+  void _paintTorsion(Canvas c, Size s) {
+    final ctr = Offset(s.width / 2, s.height / 2);
+    final half = math.min(s.width, s.height) * 0.40;
+    _dash(c, ctr - Offset(half, 0), ctr + Offset(half, 0));
+    if (running) {
+      for (final f in const [0.85, 0.6]) {
+        _rod(c, ctr, half, q * f, gold.withValues(alpha: 0.10), 5);
+      }
+    }
+    _rod(c, ctr, half, q, gold, 7);
+    c.drawCircle(ctr, 9, Paint()..shader = _sphere(ctr, 9, _metal));
+    c.drawCircle(
+        ctr,
+        9,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..color = gold
+          ..strokeWidth = 2);
+  }
+
+  void _rod(Canvas c, Offset ctr, double half, double ang, Color col, double w) {
+    final d = Offset(math.cos(ang) * half, math.sin(ang) * half);
+    final a = ctr - d, b = ctr + d;
+    c.drawLine(a, b, _glow(col.withValues(alpha: 0.5), 6, w + 3));
+    c.drawLine(
+        a,
+        b,
+        Paint()
+          ..color = col
+          ..strokeWidth = w
+          ..strokeCap = StrokeCap.round);
+    for (final e in [a, b]) {
+      c.drawCircle(e, w + 3, Paint()..shader = _sphere(e, w + 3, col));
+    }
+  }
+
+  // ── نواس ثقلي: حامل سقف + خيط + كرة لامعة + قوس المدى + ظل ──
+  void _paintGravity(Canvas c, Size s) {
+    final pivot = Offset(s.width / 2, 18);
+    final len = s.height - 50;
+    c.drawRRect(
+      RRect.fromRectAndRadius(
+          Rect.fromCenter(center: Offset(pivot.dx, 10), width: 70, height: 9),
+          const Radius.circular(3)),
+      Paint()..color = _metal,
+    );
+    // قوس المدى ±maxInitial
+    final amp = exp.maxInitial;
+    final arc = Path();
+    for (var i = 0; i <= 40; i++) {
+      final a = -amp + 2 * amp * i / 40;
+      final p = pivot + Offset(math.sin(a) * len, math.cos(a) * len);
+      i == 0 ? arc.moveTo(p.dx, p.dy) : arc.lineTo(p.dx, p.dy);
+    }
+    c.drawPath(arc, _glow(gold.withValues(alpha: 0.22), 3, 2));
+    _dash(c, pivot, Offset(pivot.dx, pivot.dy + len));
+    final bob = pivot + Offset(math.sin(q) * len, math.cos(q) * len);
+    c.drawLine(
+        pivot,
+        bob,
+        Paint()
+          ..color = _metal
+          ..strokeWidth = 2);
+    c.drawCircle(pivot, 4, Paint()..color = gold);
+    c.drawCircle(
+        bob + const Offset(2, 4),
+        15,
+        Paint()
+          ..color = Colors.black.withValues(alpha: 0.18)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4));
+    c.drawCircle(bob, 15, Paint()..shader = _sphere(bob, 15, gold));
+    c.drawCircle(
+        bob,
+        15,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..color = gold.withValues(alpha: 0.5)
+          ..strokeWidth = 1.2);
+  }
+
+  // ── دارة LC: لبوسان بشحنة متوهّجة (±) + وشيعة + تيّار متحرّك يشتدّ عند q=0 ──
+  void _paintLc(Canvas c, Size s) {
+    final left = 34.0, right = s.width - 34, top = 28.0, bottom = s.height - 28;
+    final midY = (top + bottom) / 2;
+    final qmax = exp.maxInitial == 0 ? 1.0 : exp.maxInitial;
+    final norm = (q / qmax).clamp(-1.0, 1.0).toDouble();
+    final current = math.sqrt((1 - norm * norm).clamp(0.0, 1.0));
+
+    final wire = Paint()
+      ..color = _metal
+      ..strokeWidth = 3
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
+    c.drawLine(Offset(left, top), Offset(right, top), wire);
+    c.drawLine(Offset(left, bottom), Offset(right, bottom), wire);
+    c.drawLine(Offset(left, top), Offset(left, midY - 16), wire);
+    c.drawLine(Offset(left, midY + 16), Offset(left, bottom), wire);
+    // الوشيعة (يمين)
+    final coil = Path()..moveTo(right, top);
+    const segs = 5;
+    final segH = (bottom - top) / segs;
+    for (var i = 0; i < segs; i++) {
+      coil.arcToPoint(Offset(right, top + segH * (i + 1)),
+          radius: Radius.circular(segH / 2), clockwise: false);
+    }
+    c.drawPath(coil, wire);
+    // لبوسا المكثفة
+    final plate = Paint()
+      ..color = _ink
+      ..strokeWidth = 4
+      ..strokeCap = StrokeCap.round;
+    c.drawLine(Offset(left - 16, midY - 16), Offset(left + 16, midY - 16), plate);
+    c.drawLine(Offset(left - 16, midY + 16), Offset(left + 16, midY + 16), plate);
+    // توهّج الشحنة (أحمر=+ ، أزرق=−) بشدّة ∝ |q|
+    final pos = norm >= 0;
+    final a = 0.12 + 0.65 * norm.abs();
+    c.drawCircle(
+        Offset(left, midY - 24),
+        8,
+        Paint()
+          ..color = (pos ? Colors.redAccent : Colors.blueAccent).withValues(alpha: a)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5));
+    c.drawCircle(
+        Offset(left, midY + 24),
+        8,
+        Paint()
+          ..color = (pos ? Colors.blueAccent : Colors.redAccent).withValues(alpha: a)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 5));
+    // تيّار متحرّك متوهّج حول الحلقة
+    if (running && current > 0.02) {
+      final loop = Path()
+        ..moveTo(left, midY + 16)
+        ..lineTo(left, bottom)
+        ..lineTo(right, bottom)
+        ..lineTo(right, top)
+        ..lineTo(left, top)
+        ..lineTo(left, midY - 16);
+      final metrics = loop.computeMetrics().toList();
+      if (metrics.isNotEmpty) {
+        final metric = metrics.first;
+        final total = metric.length;
+        final base = (t * 70) % (total / 8);
+        final glow = Paint()
+          ..color = gold.withValues(alpha: 0.25 + 0.7 * current)
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3);
+        for (var k = 0; k < 8; k++) {
+          final tan = metric.getTangentForOffset((base + k * total / 8) % total);
+          if (tan != null) c.drawCircle(tan.position, 3.0 + 2 * current, glow);
+        }
+      }
+    }
+  }
+
+  // ── موجة مستقرة: وتر متوهّج + مغلّف السعة + عقد وبطون نابضة ──
+  void _paintString(Canvas c, Size s) {
     final n = StringWaveExperiment.spindles(params);
     final y0 = s.height / 2;
-    c.drawLine(Offset(16, y0 - 30), Offset(16, y0 + 30), line);
-    c.drawLine(Offset(s.width - 16, y0 - 30), Offset(s.width - 16, y0 + 30), line);
-    final w = s.width - 32;
-    final amp =
-        (s.height / 2 - 12) * (q.abs() > 0 ? q.clamp(-1.0, 1.0).toDouble() : 0.6);
-    final path = Path();
-    for (var i = 0; i <= 120; i++) {
-      final x = i / 120.0;
+    final w = s.width - 40;
+    final post = Paint()
+      ..color = _metal
+      ..strokeWidth = 4
+      ..strokeCap = StrokeCap.round;
+    c.drawLine(Offset(20, y0 - 34), Offset(20, y0 + 34), post);
+    c.drawLine(Offset(s.width - 20, y0 - 34), Offset(s.width - 20, y0 + 34), post);
+    final ampMax = s.height / 2 - 14;
+    final inst = (q.abs() > 0 ? q.clamp(-1.0, 1.0).toDouble() : 0.55);
+    final amp = ampMax * inst;
+
+    Offset at(double x) {
       double y;
       if (n != null) {
         y = math.sin(n * math.pi * x) * amp;
       } else {
-        // بلا طنين: موجة جارية باهتة (تقريب بصري)
         final lam = StringWaveExperiment.wavelength(params) / params['L']!;
-        y = math.sin(2 * math.pi * x / lam) * amp * 0.35;
+        y = math.sin(2 * math.pi * x / lam - t * 6) * amp * 0.35;
       }
-      final pt = Offset(16 + x * w, y0 - y);
-      if (i == 0) {
-        path.moveTo(pt.dx, pt.dy);
-      } else {
-        path.lineTo(pt.dx, pt.dy);
+      return Offset(20 + x * w, y0 - y);
+    }
+
+    // مغلّف السعة (خافت)
+    if (n != null) {
+      for (final sgn in const [1.0, -1.0]) {
+        final env = Path();
+        for (var i = 0; i <= 120; i++) {
+          final x = i / 120.0;
+          final p = Offset(20 + x * w,
+              y0 - sgn * math.sin(n * math.pi * x).abs() * ampMax * 0.9);
+          i == 0 ? env.moveTo(p.dx, p.dy) : env.lineTo(p.dx, p.dy);
+        }
+        c.drawPath(
+            env,
+            Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = 1
+              ..color = gold.withValues(alpha: 0.16));
       }
     }
-    c.drawPath(path, border);
-    // العقد
+    // الوتر
+    final path = Path();
+    for (var i = 0; i <= 120; i++) {
+      final p = at(i / 120.0);
+      i == 0 ? path.moveTo(p.dx, p.dy) : path.lineTo(p.dx, p.dy);
+    }
+    c.drawPath(path, _glow(gold.withValues(alpha: 0.4), 6, 4));
+    c.drawPath(
+        path,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2.5
+          ..color = gold
+          ..strokeCap = StrokeCap.round);
+    // العقد والبطون
     if (n != null) {
       for (var k = 0; k <= n; k++) {
-        c.drawCircle(Offset(16 + k / n * w, y0), 3.5, Paint()..color = gold);
+        c.drawCircle(Offset(20 + k / n * w, y0), 3.5,
+            Paint()..color = _ink.withValues(alpha: 0.7));
+      }
+      for (var k = 0; k < n; k++) {
+        final pa = at((k + 0.5) / n);
+        c.drawCircle(
+            pa,
+            4 + 2 * inst.abs(),
+            Paint()
+              ..color = gold.withValues(alpha: 0.5)
+              ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3));
       }
     }
   }
 
-  /// مهبط + أسهم فوتونات؛ إلكترونات تخرج فقط إن hf > Ws.
-  void _paintPhoto(
-      Canvas c, Size s, Paint line, Paint fill, Paint border) {
-    final plateX = s.width * 0.28;
-    c.drawRect(Rect.fromLTWH(plateX - 8, 20, 8, s.height - 40), fill);
-    c.drawRect(Rect.fromLTWH(plateX - 8, 20, 8, s.height - 40), border);
-    // فوتونات (متموجة) قادمة من اليمين
+  // ── الأثر الكهرضوئي: لوح معدني + فوتونات ملوّنة متحرّكة (لون ∝ λ) + إلكترونات ──
+  void _paintPhoto(Canvas c, Size s) {
+    final plateX = s.width * 0.30;
+    final plateRect = Rect.fromLTWH(plateX - 10, 18, 10, s.height - 36);
+    c.drawRect(
+      plateRect,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [_metal, Color.lerp(_metal, Colors.black, 0.4)!],
+        ).createShader(plateRect),
+    );
     final lam = params['lambda']!;
-    final hue = ((700 - lam) / 500 * 270).clamp(0.0, 300.0).toDouble();
-    final photon = Paint()
-      ..color = HSVColor.fromAHSV(1, hue, 0.8, 0.95).toColor()
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke;
-    for (var r = 0; r < 3; r++) {
-      final y = 40.0 + r * (s.height - 80) / 2;
-      final p = Path()..moveTo(s.width - 20, y);
-      for (var i = 1; i <= 24; i++) {
-        final x = s.width - 20 - i * (s.width - plateX - 30) / 24;
-        p.lineTo(x, y + math.sin(i / 24 * 8 * math.pi) * 5);
+    final hue = ((700 - lam) / 400 * 270).clamp(0.0, 300.0).toDouble();
+    final pcol = HSVColor.fromAHSV(1, hue, 0.85, 0.98).toColor();
+    final phase = running ? (t * 4) % 1.0 : 0.35;
+    final startX = s.width - 16;
+    final endX = plateX + 2;
+    for (var r = 0; r < 4; r++) {
+      final y = 30.0 + r * (s.height - 60) / 3;
+      final headX = startX - phase * (startX - endX);
+      final p = Path()..moveTo(startX, y);
+      for (var i = 1; i <= 30; i++) {
+        final x = startX - i * (startX - headX) / 30;
+        p.lineTo(x, y + math.sin(i / 30 * 6 * math.pi) * 5);
       }
-      c.drawPath(p, photon);
+      c.drawPath(
+          p,
+          Paint()
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2
+            ..color = pcol.withValues(alpha: 0.85)
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 1.5));
+      c.drawCircle(Offset(headX, y), 3, Paint()..color = pcol);
     }
-    // إلكترونات خارجة (يسار اللوح) إن تحقق الانتزاع
+    // إلكترونات خارجة إن hf > Ws
     if (PhotoelectricExperiment.emits(params)) {
       final ek = PhotoelectricExperiment.ekEv(params);
-      final reach = (20 + ek * 30).clamp(20.0, plateX - 30).toDouble();
-      for (var r = 0; r < 3; r++) {
-        final y = 46.0 + r * (s.height - 80) / 2;
-        c.drawLine(Offset(plateX - 10, y), Offset(plateX - 10 - reach, y), border);
-        c.drawCircle(Offset(plateX - 10 - reach, y), 4, Paint()..color = gold);
+      final reach = (plateX - 26).clamp(20.0, s.width).toDouble();
+      final ePhase = running ? (t * (0.5 + ek)) % 1.0 : 0.5;
+      for (var r = 0; r < 4; r++) {
+        final y = 34.0 + r * (s.height - 60) / 3;
+        final ex = (plateX - 12) - ePhase * reach;
+        c.drawLine(Offset(plateX - 12, y), Offset(ex, y),
+            _glow(gold.withValues(alpha: 0.5), 4, 2));
+        c.drawCircle(Offset(ex, y), 4, Paint()..shader = _sphere(Offset(ex, y), 4, gold));
       }
     }
   }
 
   @override
   bool shouldRepaint(covariant _ExperimentPainter old) =>
-      old.q != q || old.running != running || old.params != params;
+      old.q != q ||
+      old.t != t ||
+      old.running != running ||
+      old.params != params ||
+      old.dark != dark;
 }

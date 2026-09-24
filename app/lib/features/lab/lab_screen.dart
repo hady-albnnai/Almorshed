@@ -52,6 +52,16 @@ class _LabScreenState extends State<LabScreen> {
           : ListView(
               padding: const EdgeInsets.all(14),
               children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10, right: 4, left: 4),
+                  child: Text(
+                    'تجارب تفاعلية بمحاكاة فيزيائية حقيقية — غيّر الوسائط، '
+                    'توقّع، شغّل، ولاحظ الحركة بنفسك.',
+                    style: txt.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+                ),
                 Card(
                   child: ListTile(
                     leading: const Icon(Icons.school_outlined),
