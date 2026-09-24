@@ -12,7 +12,6 @@ import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/cert/certificate.dart' show currentSeason;
-import '../../core/review/review_mode.dart';
 import '../../core/supabase/office_api.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/util/arabic_number.dart';
@@ -39,10 +38,6 @@ class _AdminScreenState extends State<AdminScreen> {
   String _key = '';
   bool _busy = false;
 
-  // وضع المراجعة (F2.4/F6.2) — يُفعَّل على جهاز الأستاذ قبل التسليم
-  final ReviewModeStore _reviewStore = ReviewModeStore();
-  bool _reviewOn = false;
-
   OfficeStats _stats = const OfficeStats(
     issued: 0,
     activated: 0,
@@ -64,7 +59,6 @@ class _AdminScreenState extends State<AdminScreen> {
   }
 
   Future<void> _bootstrap() async {
-    _reviewOn = await _reviewStore.isEnabled();
     final saved = await _vault.read();
     if (saved == null) {
       setState(() => _loading = false);
@@ -141,29 +135,6 @@ class _AdminScreenState extends State<AdminScreen> {
   }
 
   /// قرار ٥٥: كود واحد موسوم «مراجعة» — على جهاز الأستاذ تفتح ٥ نقرات
-  /// وضع المراجعة بدل لوحة الإدارة. يُرسل له بواتساب مع التطبيق.
-  Future<void> _generateReview() async {
-    final sure = await _confirm(
-      'كود مراجعة للأستاذ؟',
-      'كود تفعيل عادي (٣٠ يوماً، جهاز واحد) لكنه يفتح وضع المراجعة على '
-          'جهازه بخمس نقرات على الترحيب. لا يُعطى لطالب.',
-    );
-    if (sure != true || !mounted) return;
-    setState(() => _busy = true);
-    try {
-      final codes = await _api.generate(_key, count: 1, review: true);
-      if (!mounted) return;
-      await _showCodes(codes);
-    } on OfficeApiException catch (e) {
-      if (mounted) _toast('فشل التوليد: ${e.message}');
-    } catch (_) {
-      if (mounted) _toast('تعذر الاتصال');
-    } finally {
-      if (mounted) setState(() => _busy = false);
-    }
-    await _refresh();
-  }
-
   /// نقطة البيع (قرار ٣٤): بيع واحد وجهاً لوجه — اسم الزبون ⇒ كود واحد
   /// يُولَّد لحظياً ⇒ بطاقة تسليم (نسخ / واتساب).
   Future<void> _sell() async {
@@ -674,29 +645,6 @@ class _AdminScreenState extends State<AdminScreen> {
             ),
           ),
           const SizedBox(height: 10),
-          // ── وضع المراجعة (جهاز الأستاذ) ──
-          Card(
-            child: SwitchListTile(
-              title: const Text('وضع المراجعة (للأستاذ)'),
-              subtitle: const Text(
-                'لهذا الجهاز فقط (لتجربتك). الأستاذ يحصل عليه بـ«كود مراجعة» '
-                'أدناه ثم ٥ نقرات على الترحيب. يسري بعد إعادة التشغيل.',
-              ),
-              secondary: const Icon(Icons.rate_review_outlined),
-              value: _reviewOn,
-              onChanged: (v) async {
-                await _reviewStore.setEnabled(v);
-                if (!mounted) return;
-                setState(() => _reviewOn = v);
-                _toast(
-                  v
-                      ? 'وضع المراجعة مفعّل — أغلق التطبيق وافتحه'
-                      : 'وضع المراجعة مطفأ — أغلق التطبيق وافتحه',
-                );
-              },
-            ),
-          ),
-          const SizedBox(height: 10),
           // ── F6.6: إدارة الموسم (نهاية الموسم = بوابة الشهادات) ──
           Card(
             key: const Key('season_card'),
@@ -776,14 +724,6 @@ class _AdminScreenState extends State<AdminScreen> {
                   onPressed: _busy ? null : _generate,
                   icon: const Icon(Icons.qr_code),
                   label: const Text('دفعة أكواد 🎫'),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: OutlinedButton.icon(
-                  onPressed: _busy ? null : _generateReview,
-                  icon: const Icon(Icons.rate_review_outlined),
-                  label: const Text('كود مراجعة 📝'),
                 ),
               ),
             ],

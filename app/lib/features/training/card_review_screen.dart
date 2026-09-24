@@ -9,7 +9,6 @@ import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../../core/xp/xp_ledger.dart';
 import '../../core/util/arabic_number.dart';
-import '../review/review_widgets.dart';
 
 /// F3.4 — جلسة مراجعة البطاقات: كشف/استرجاع + ٣ أزرار تقييم (قرار ٤٢)
 /// + شاشة الإتمام (+١٥). التصفح صريح — نفس درس بق القفز الموثق F3.3.
@@ -135,17 +134,9 @@ class _CardReviewScreenState extends State<CardReviewScreen> {
         title: Text(
           'بطاقة ${ArabicNumber.from(_current + 1)} من ${ArabicNumber.from(_day.queue.length)}',
         ),
-        actions: [
-          ReviewNoteButton(
-            kind: 'c',
-            itemId: '${card.id}',
-            preview: card.front,
-          ),
-        ],
       ),
       body: Column(
         children: [
-          const ReviewBanner(),
           LinearProgressIndicator(value: _day.doneCount / _day.queue.length),
           Expanded(
             child: ListView(

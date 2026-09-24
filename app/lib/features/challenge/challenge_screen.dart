@@ -9,7 +9,6 @@ import '../../core/training/batch_builder.dart';
 import '../../core/util/arabic_number.dart';
 import '../../core/xp/challenge_points.dart';
 import '../../core/xp/streak_service.dart';
-import '../review/review_widgets.dart';
 
 /// A5 — تحدي اليوم (قرار ٦٠): ١٠ أسئلة، مؤقّت لكل سؤال، نقاط تناقصية
 /// مع الزمن، و**مغادرة التطبيق = إنهاء التحدي واحتسابه**.
@@ -334,7 +333,6 @@ class _ChallengeScreenState extends State<ChallengeScreen>
 
     return Column(
       children: [
-        const ReviewBanner(),
         // شريط المهلة — يتناقص حيّاً مع النقاط المتاحة
         Padding(
           padding: const EdgeInsets.fromLTRB(16, 12, 16, 4),
@@ -383,7 +381,6 @@ class _ChallengeScreenState extends State<ChallengeScreen>
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
-              PendingBadge(questionId: q.id),
               MathText(q.stem, style: txt.titleMedium),
               const SizedBox(height: 14),
               for (var k = 0; k < order.length; k++)

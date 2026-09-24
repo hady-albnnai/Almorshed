@@ -5,7 +5,6 @@ import '../../core/content/math_text.dart';
 import '../../core/grading/grading_engine.dart';
 import '../../core/grading/parts_grading.dart';
 import '../../core/util/arabic_number.dart';
-import '../review/review_widgets.dart';
 
 /// نمط الإجابة الفعلي: البند الرقمي بلا مفتاح رقمي (زاوية/رمزي) و«علّل»
 /// بلا مفاتيح والبرهان بلا خطوات يعودون إلى الخيارات الأربعة — لا تخمين.
@@ -129,13 +128,9 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
         title: Text(
           'بند ${ArabicNumber.from(_current + 1)} من ${ArabicNumber.from(_total)}',
         ),
-        actions: [
-          ReviewNoteButton(kind: 'g', itemId: '${item.id}', preview: item.stem),
-        ],
       ),
       body: Column(
         children: [
-          const ReviewBanner(),
           LinearProgressIndicator(value: _results.length / _total),
           Expanded(
             child: ListView(
@@ -145,7 +140,6 @@ class _ItemSessionScreenState extends State<ItemSessionScreen> {
                   kind: mode,
                   chapter: item.chapter,
                   partCount: item.parts.length,
-                  pending: !item.approved && ReviewScope.enabledIn(context),
                 ),
                 const SizedBox(height: 8),
                 MathText(item.stem, style: txt.titleMedium),

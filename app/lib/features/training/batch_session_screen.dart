@@ -6,7 +6,6 @@ import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
-import '../review/review_widgets.dart';
 
 /// F3.3 — جلسة دفعة اليوم: سؤال/خيارات + تصحيح فوري بخطوات الحل + النتيجة.
 /// الحتمية: الجلسة تعيد بناء الخلط من dateKey المحفوظ — أي فتح يعرض نفسه.
@@ -194,19 +193,14 @@ class _BatchSessionScreenState extends State<BatchSessionScreen> {
         title: Text(
           'سؤال ${ArabicNumber.from(i + 1)} من ${ArabicNumber.from(_total)}',
         ),
-        actions: [
-          ReviewNoteButton(kind: 'q', itemId: '${q.id}', preview: q.stem),
-        ],
       ),
       body: Column(
         children: [
-          const ReviewBanner(),
           LinearProgressIndicator(value: _answered / _total),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                PendingBadge(questionId: q.id),
                 MathText(q.stem, style: txt.titleMedium),
                 const SizedBox(height: 14),
                 for (var k = 0; k < order.length; k++)

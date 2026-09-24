@@ -310,10 +310,9 @@ class GeneratedItemsPack {
     return GeneratedItemsPack.fromJsonString(raw);
   }
 
-  /// ما يُعرض للطالب: المعتمد فقط، أو الكل في وضع المراجعة (F2.4).
-  List<GeneratedItem> visible({required bool reviewMode}) => reviewMode
-      ? items
-      : items.where((i) => i.approved).toList(growable: false);
+  /// ما يُعرض للطالب: المعتمد فقط.
+  List<GeneratedItem> get visible =>
+      items.where((i) => i.approved).toList(growable: false);
 }
 
 /// أسماء فصول المنهاج الوزاري السبعة عشر (U1C1…U5C1) — تُشارَك بين

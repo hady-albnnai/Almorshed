@@ -6,7 +6,6 @@ import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import '../../core/util/arabic_number.dart';
 import '../../core/content/generated_items.dart';
-import '../review/review_widgets.dart';
 import 'cards_screen.dart';
 import 'batch_session_screen.dart';
 import 'item_session_screen.dart';
@@ -94,10 +93,8 @@ class _TrainingScreenState extends State<TrainingScreen> {
     await _openSession(state);
   }
 
-  /// المادة ١٢ — جلسة البنود المولّدة: المعتمد فقط، أو الكل في وضع
-  /// المراجعة (F2.4) حتى يرى الأستاذ الأنماط الأربعة بسياقها.
+  /// المادة ١٢ — جلسة البنود المولّدة: المعتمد فقط.
   Future<void> _openItems() async {
-    final reviewMode = ReviewScope.enabledIn(context);
     final navigator = Navigator.of(context);
     final messenger = ScaffoldMessenger.of(context);
     final GeneratedItemsPack pack;
@@ -113,7 +110,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
     if (!mounted) return;
     await navigator.push(MaterialPageRoute<void>(
       builder: (_) => ItemSessionScreen(
-        items: pack.visible(reviewMode: reviewMode),
+        items: pack.visible,
       ),
     ));
   }

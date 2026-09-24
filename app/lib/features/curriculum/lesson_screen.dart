@@ -10,7 +10,6 @@ import '../../core/tts/flutter_tts_speaker.dart';
 import '../../core/tts/speaker.dart';
 import '../../core/util/arabic_number.dart';
 import '../lab/experiment_screen.dart';
-import '../review/review_widgets.dart';
 
 /// شاشة القراءة — فقرة واحدة لكل شاشة (قرار نمط القراءة · F3.2):
 /// «التالي» + «📌 خلاصة الفقرة» + TTS «اسمعني» + فهرس حر قابل للطي + «انتهى الدرس».
@@ -153,12 +152,6 @@ class _LessonScreenState extends State<LessonScreen> {
           overflow: TextOverflow.ellipsis,
         ),
         actions: [
-          if (!_finished)
-            ReviewNoteButton(
-              kind: 'p',
-              itemId: _paragraph.id,
-              preview: _paragraph.text,
-            ),
           if (!_finished && _speaker != null)
             IconButton(
               tooltip: _speaking ? 'إيقاف النطق' : 'اسمعني — نطق الفقرة',

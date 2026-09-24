@@ -37,8 +37,7 @@ void main() {
     test('يقرأ العيّنة: الأنماط الأربعة + فلتر الاعتماد (F2.4)', () {
       expect(pack.items, hasLength(5));
       expect(pack.items.map((i) => i.kind).toSet(), ItemKind.values.toSet());
-      expect(pack.visible(reviewMode: false), hasLength(4));
-      expect(pack.visible(reviewMode: true), hasLength(5));
+      expect(pack.visible, hasLength(4));
       expect(ofKind(ItemKind.numeric).numericAnswer!.unit, 's');
       expect(ofKind(ItemKind.proof).proofSteps, hasLength(8));
     });
@@ -49,7 +48,7 @@ void main() {
       final real = GeneratedItemsPack.fromJsonString(raw);
       expect(real.items.length, greaterThanOrEqualTo(500));
       // dev/self-content: كل البنود مبنيّة من الدورات وسلالم التصحيح ⇒ معتمدة.
-      expect(real.visible(reviewMode: false), hasLength(real.items.length));
+      expect(real.visible, hasLength(real.items.length));
       // غير البرهان وغير الأجزاء: أربعة خيارات دائماً؛ البرهان يحمل خطواته لا
       // خيارات، وبنود الأجزاء تحمل مفاتيحها في أجزائها لا في مفتاح مسطّح.
       expect(
@@ -82,7 +81,7 @@ void main() {
       final parts = real.items.where((i) => i.isParts).toList();
       expect(parts.length, greaterThanOrEqualTo(2));
       // dev/self-content: كل البنود معتمدة وزارياً ⇒ كلها مرئية.
-      expect(real.visible(reviewMode: false), hasLength(real.items.length));
+      expect(real.visible, hasLength(real.items.length));
       for (final i in parts) {
         expect(i.options, isEmpty);
         expect(i.correctIndex, -1);

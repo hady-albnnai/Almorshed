@@ -21,11 +21,6 @@ import '../duel/duel_screen.dart';
 import '../duel/local_duel_screen.dart';
 import '../lab/lab_screen.dart';
 import '../admin/admin_screen.dart';
-import '../review/review_notes_screen.dart';
-import '../review/items_review_screen.dart';
-import '../../core/content/generated_items.dart';
-import '../../core/review/review_mode.dart';
-import '../review/review_widgets.dart';
 import '../training/cards_screen.dart';
 import '../training/training_screen.dart';
 
@@ -45,7 +40,6 @@ class HomeScreen extends StatefulWidget {
     this.fetchLeague,
     this.openDuel,
     this.openLocalDuel,
-    this.loadGeneratedItems,
   });
 
   final ContentPack pack;
@@ -66,10 +60,6 @@ class HomeScreen extends StatefulWidget {
 
   /// F5.4 — مصنع المبارزة المحلية بلا نت (null = البطاقة معطلة).
   final LocalDuelFlowFactory? openLocalDuel;
-
-  /// المادة ١٣ — محمّل البنود المولّدة لفهرس مراجعة الأستاذ (حقن للاختبارات؛
-  /// null = الأصل `assets/content/items.json`).
-  final Future<GeneratedItemsPack> Function()? loadGeneratedItems;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -163,66 +153,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     if (_adminTaps >= 5) {
       _adminTaps = 0;
       _lastAdminTap = null;
-      // قرار ٥٥: على جهاز بكود مراجعة، الخمس نقرات = مفتاح وضع المراجعة
-      // (لا لوحة إدارة ولا مفتاح مكتب على جهاز الأستاذ إطلاقاً).
-      if (_license?.isTeacher == true) {
-        unawaited(_toggleReviewMode());
-        return;
-      }
       Navigator.of(context)
           .push(MaterialPageRoute<void>(builder: (_) => const AdminScreen()));
-    }
-  }
-
-  Future<void> _toggleReviewMode() async {
-    final store = ReviewModeStore();
-    final on = await store.isEnabled();
-    if (!mounted) return;
-    final go = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(on ? 'إطفاء وضع المراجعة؟' : 'تشغيل وضع المراجعة؟'),
-        content: Text(
-          on
-              ? 'سيعود التطبيق كما يراه الطالب. ملاحظاتك المحفوظة لا تُمسح.'
-              : 'سيظهر كل المحتوى — حتى غير المعتمد — بشارة «قيد المراجعة»، '
-                    'مع زر ✏️ لتسجيل ملاحظة على أي سؤال أو بطاقة أو فقرة. '
-                    'يسري بعد إغلاق التطبيق وفتحه.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: const Text('إلغاء'),
-          ),
-          FilledButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: Text(on ? 'إطفاء' : 'تشغيل'),
-          ),
-        ],
-      ),
-    );
-    if (go != true) return;
-    await store.setEnabled(!on);
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          on
-              ? 'أُطفئ وضع المراجعة — أغلق التطبيق وافتحه'
-              : 'شُغّل وضع المراجعة — أغلق التطبيق وافتحه',
-        ),
-      ),
-    );
-  }
-
-  /// المادة ١٣ — البنود المولّدة لوضع المراجعة؛ null عند تعذر التحميل.
-  Future<GeneratedItemsPack?> _loadGeneratedOrNull() async {
-    try {
-      final load =
-          widget.loadGeneratedItems ?? () => GeneratedItemsPack.loadAsset();
-      return await load();
-    } catch (_) {
-      return null;
     }
   }
 
@@ -247,57 +179,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         child: ListView(
           padding: const EdgeInsets.all(14),
           children: [
-            // ── وضع المراجعة (جهاز الأستاذ فقط): شريط + مدخل الملاحظات ──
-            if (ReviewScope.enabledIn(context)) ...[
-              const ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                child: ReviewBanner(),
-              ),
-              const SizedBox(height: 8),
-              FilledButton.tonalIcon(
-                onPressed: () async {
-                  final notes = ReviewScope.maybeOf(context)!.notes;
-                  final navigator = Navigator.of(context);
-                  final generated = await _loadGeneratedOrNull();
-                  await navigator.push(
-                    MaterialPageRoute<void>(
-                      builder: (_) => ReviewNotesScreen(
-                        pack: widget.pack,
-                        notes: notes,
-                        generatedItems: generated,
-                      ),
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.edit_note),
-                label: const Text('ملاحظاتي — إرسال للمطوّر 📝'),
-              ),
-              const SizedBox(height: 8),
-              // المادة ١٣ — فهرس البنود المولّدة (١٠٠ بند U1) لحكم الأستاذ
-              OutlinedButton.icon(
-                key: const Key('items-review-entry'),
-                onPressed: () async {
-                  final notes = ReviewScope.maybeOf(context)!.notes;
-                  final navigator = Navigator.of(context);
-                  final messenger = ScaffoldMessenger.of(context);
-                  final items = await _loadGeneratedOrNull();
-                  if (items == null) {
-                    messenger.showSnackBar(const SnackBar(
-                        content: Text('تعذر تحميل البنود المولّدة')));
-                    return;
-                  }
-                  await navigator.push(
-                    MaterialPageRoute<void>(
-                      builder: (_) =>
-                          ItemsReviewScreen(pack: items, notes: notes),
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.fact_check_outlined),
-                label: const Text('مراجعة البنود المولّدة (المنهاج كاملاً)'),
-              ),
-              const SizedBox(height: 12),
-            ],
             // ── بطاقة الترحيب (النموذج: تدرّج + شارة + سلسلة + تقدم) ──
             Container(
               padding: const EdgeInsets.all(16),

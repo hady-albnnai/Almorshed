@@ -18,7 +18,6 @@ import '../../core/duel/local_duel_flow.dart';
 import '../../core/duel/local_link.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/util/arabic_number.dart';
-import '../review/review_widgets.dart';
 
 /// مصنع تدفق مبارزة محلية — يحضّره main.dart بلا سيرفر.
 typedef LocalDuelFlowFactory = LocalDuelFlow Function();
@@ -453,8 +452,6 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
       appBar: AppBar(
         title: const Text('مبارزة محلية ⚔️'),
         actions: [
-          if (q != null)
-            ReviewNoteButton(kind: 'q', itemId: '${q.id}', preview: q.stem),
           IconButton(
             tooltip: 'إنهاء',
             onPressed: () => Navigator.of(context).pop(),
@@ -552,7 +549,6 @@ class _LocalDuelScreenState extends State<LocalDuelScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PendingBadge(questionId: q.id),
                           MathText(q.stem, style: txt.titleMedium),
                           const SizedBox(height: 12),
                           for (var k = 0; k < opts.length; k++)
