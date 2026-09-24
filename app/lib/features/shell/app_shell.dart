@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../challenge/challenge_screen.dart';
 import '../curriculum/curriculum_review_screen.dart';
+import '../curriculum/unit_screen.dart';
 import '../../core/content/models.dart';
+import '../../core/util/arabic_number.dart';
 import '../../core/license/license_store.dart';
 import '../../core/progress/progress_store.dart';
 import '../../core/cert/certificate.dart';
@@ -14,7 +16,6 @@ import '../../core/xp/streak_service.dart';
 import '../account/account_screen.dart';
 import '../duel/duel_screen.dart';
 import '../duel/local_duel_screen.dart';
-import '../home/home_screen.dart';
 import '../league/league_screen.dart';
 import '../training/cards_screen.dart';
 import '../training/mistakes_screen.dart';
@@ -99,14 +100,7 @@ class _AppShellState extends State<AppShell> {
             pack: widget.pack,
             progressStore: widget.progressStore,
             trainingStore: widget.trainingStore,
-            licenseStore: widget.licenseStore,
             xpRecorder: widget.xpRecorder,
-            onToggleTheme: widget.onToggleTheme,
-            syncManager: widget.syncManager,
-            fetchLeague: widget.fetchLeague,
-            openDuel: widget.openDuel,
-            openLocalDuel: widget.openLocalDuel,
-            devicePubkeyB64: widget.devicePubkeyB64,
           ),
           _TrainingTab(
             pack: widget.pack,
@@ -154,27 +148,13 @@ class _ManhajTab extends StatefulWidget {
     required this.pack,
     required this.progressStore,
     required this.trainingStore,
-    required this.licenseStore,
     required this.xpRecorder,
-    required this.onToggleTheme,
-    this.syncManager,
-    this.fetchLeague,
-    this.openDuel,
-    this.openLocalDuel,
-    this.devicePubkeyB64 = '',
   });
 
   final ContentPack pack;
   final ProgressStore progressStore;
   final TrainingStore trainingStore;
-  final LicenseStore licenseStore;
   final XpRecorder xpRecorder;
-  final VoidCallback onToggleTheme;
-  final SyncManager? syncManager;
-  final Future<LeagueView> Function()? fetchLeague;
-  final DuelFlowFactory? openDuel;
-  final LocalDuelFlowFactory? openLocalDuel;
-  final String devicePubkeyB64;
 
   @override
   State<_ManhajTab> createState() => _ManhajTabState();
@@ -209,14 +189,7 @@ class _ManhajTabState extends State<_ManhajTab> {
                   pack: widget.pack,
                   progressStore: widget.progressStore,
                   trainingStore: widget.trainingStore,
-                  licenseStore: widget.licenseStore,
                   xpRecorder: widget.xpRecorder,
-                  onToggleTheme: widget.onToggleTheme,
-                  syncManager: widget.syncManager,
-                  fetchLeague: widget.fetchLeague,
-                  openDuel: widget.openDuel,
-                  openLocalDuel: widget.openLocalDuel,
-                  devicePubkeyB64: widget.devicePubkeyB64,
                 )
               : _ReviewView(pack: widget.pack),
         ),
@@ -225,49 +198,142 @@ class _ManhajTabState extends State<_ManhajTab> {
   }
 }
 
-class _LessonsView extends StatelessWidget {
+// المنهاج فقط: قائمة الوحدات الخمس ⇐ الفصول ⇐ الدرس (والتجربة داخل الدرس).
+// أُزيلت لوحة HomeScreen المكتظّة (تدريب/بطاقات/تحديات/مبارزات/المختبر/فكرة
+// اليوم) من هذا التبويب — كلٌّ في تبويبه (التدريب/التحديات). المختبر داخل الدرس.
+class _LessonsView extends StatefulWidget {
   const _LessonsView({
     required this.pack,
     required this.progressStore,
     required this.trainingStore,
-    required this.licenseStore,
     required this.xpRecorder,
-    required this.onToggleTheme,
-    this.syncManager,
-    this.fetchLeague,
-    this.openDuel,
-    this.openLocalDuel,
-    this.devicePubkeyB64 = '',
   });
 
   final ContentPack pack;
   final ProgressStore progressStore;
   final TrainingStore trainingStore;
-  final LicenseStore licenseStore;
   final XpRecorder xpRecorder;
-  final VoidCallback onToggleTheme;
-  final SyncManager? syncManager;
-  final Future<LeagueView> Function()? fetchLeague;
-  final DuelFlowFactory? openDuel;
-  final LocalDuelFlowFactory? openLocalDuel;
-  final String devicePubkeyB64;
+
+  @override
+  State<_LessonsView> createState() => _LessonsViewState();
+}
+
+class _LessonsViewState extends State<_LessonsView> {
+  ReadProgress _progress = const ReadProgress();
+
+  @override
+  void initState() {
+    super.initState();
+    _reload();
+  }
+
+  Future<void> _reload() async {
+    final p = await widget.progressStore.load();
+    if (!mounted) return;
+    setState(() => _progress = p);
+  }
 
   @override
   Widget build(BuildContext context) {
-    // نعيد استخدام HomeScreen كمحتوى تبويب الدروس للحفاظ على كل البطاقات
-    // الحالية (واصل الدرس، تدريب سريع، بطاقات، تحديات، فكرة اليوم) داخل
-    // تبويب المنهاج افتراضياً — النقل الكامل للتبويبات يتم تدريجياً بلا كسر اختبارات.
-    return HomeScreen(
-      pack: pack,
-      progressStore: progressStore,
-      trainingStore: trainingStore,
-      licenseStore: licenseStore,
-      xpRecorder: xpRecorder,
-      onToggleTheme: onToggleTheme,
-      syncManager: syncManager,
-      fetchLeague: fetchLeague,
-      openDuel: openDuel,
-      openLocalDuel: openLocalDuel,
+    final txt = Theme.of(context).textTheme;
+    final completed = _progress.completedIds;
+    return ListView(
+      padding: const EdgeInsets.all(14),
+      children: [
+        Text('الوحدات الخمس', style: txt.titleLarge),
+        const SizedBox(height: 6),
+        for (var i = 0; i < widget.pack.units.length; i++)
+          _UnitCard(
+            index: i,
+            unit: widget.pack.units[i],
+            completedIds: completed,
+            progressStore: widget.progressStore,
+            xpRecorder: widget.xpRecorder,
+            trainingStore: widget.trainingStore,
+            onReturned: _reload,
+          ),
+      ],
+    );
+  }
+}
+
+class _UnitCard extends StatelessWidget {
+  const _UnitCard({
+    required this.index,
+    required this.unit,
+    required this.completedIds,
+    required this.progressStore,
+    required this.onReturned,
+    required this.xpRecorder,
+    this.trainingStore,
+  });
+
+  final int index;
+  final Unit unit;
+  final Set<String> completedIds;
+  final ProgressStore progressStore;
+  final VoidCallback onReturned;
+  final XpRecorder? xpRecorder;
+  final TrainingStore? trainingStore;
+
+  @override
+  Widget build(BuildContext context) {
+    final txt = Theme.of(context).textTheme;
+    final hasChapters = unit.chapters.isNotEmpty;
+    final percent = unitPercent(unit, completedIds);
+    final note = hasChapters
+        ? '${ArabicNumber.from(unit.chapters.length)} فصل — '
+            'ص${ArabicNumber.from(unit.chapters.first.page)} '
+            'إلى ص${ArabicNumber.from(unit.chapters.last.page)}'
+        : 'قيد الإعداد — تصل مع تحديث المحتوى';
+    return Card(
+      margin: const EdgeInsets.only(bottom: 10),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(14),
+        onTap: hasChapters
+            ? () => Navigator.of(context)
+                .push(MaterialPageRoute<void>(
+                  builder: (_) => UnitScreen(
+                    unit: unit,
+                    progressStore: progressStore,
+                    xpRecorder: xpRecorder,
+                    trainingStore: trainingStore,
+                  ),
+                ))
+                .then((_) => onReturned())
+            : null,
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      '${ArabicNumber.from(index + 1)} · ${unit.title}',
+                      style: txt.titleMedium,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Text('${ArabicNumber.from(percent)}٪',
+                      style: txt.bodyMedium
+                          ?.copyWith(fontWeight: FontWeight.w700)),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: LinearProgressIndicator(
+                  value: percent / 100,
+                  minHeight: 7,
+                  borderRadius: const BorderRadius.all(Radius.circular(6)),
+                ),
+              ),
+              Text(note, style: txt.bodyMedium),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
