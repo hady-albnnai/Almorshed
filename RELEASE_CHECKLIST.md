@@ -17,10 +17,12 @@
 - [ ] 👤 تشغيل مولّد الأيقونات على الجهاز: `dart run flutter_launcher_icons`.
 
 ## 2. توقيع الإصدار (release signing)
-- [ ] 🤖 إعداد `build.gradle.kts` ليقرأ التوقيع من `key.properties` (مُتجاهَل في Git).
-- [ ] 🤖 إضافة `android/key.properties` و`*.jks` إلى `.gitignore`.
-- [ ] 👤 إنشاء مفتاح التوقيع (keystore) على الجهاز (`keytool`) — **سرّي، لا يُرفع**.
-- [ ] 👤 ملء `android/key.properties` بمسار المفتاح وكلماته.
+- [x] 🤖 إعداد `build.gradle.kts` ليقرأ التوقيع من `key.properties` (مُتجاهَل في Git)
+      مع تراجع آمن إلى debug إن غاب الملف.
+- [x] 🤖 `.gitignore` يتجاهل `key.properties` و`*.jks` و`*.keystore` (كان موجوداً).
+- [x] 🤖 قالب `android/key.properties.example` (يُرفع) يوضّح القيم الأربع.
+- [ ] 👤 نسخ القالب إلى `android/key.properties` وملؤه بمفتاحك (عندك توقيع جاهز).
+      المكان بالضبط: `C:\Users\ASUS\Almorshed\app\android\key.properties`.
 
 ## 3. اكتمال الميزات
 - [x] 🤖 توصيل تبويب «المراجعة» (كان placeholder «قريباً»).

@@ -1,0 +1,18 @@
+# قالب توقيع الإصدار — انسخه إلى key.properties (في نفس المجلد: android/)
+# ثم املأ القيم بمفتاحك. الملف الحقيقي key.properties مُتجاهَل في Git ولا يُرفع.
+#
+#   انسخ:   copy key.properties.example key.properties     (Windows)
+#
+# المكان بالضبط: C:\Users\ASUS\Almorshed\app\android\key.properties
+#
+# القيم الأربع:
+#   storeFile     = مسار ملف مفتاحك (.jks أو .keystore). يُفضَّل مسار مطلق،
+#                   أو ضع الملف داخل android/ واكتب اسمه فقط.
+#   storePassword = كلمة مرور المتجر (keystore password).
+#   keyAlias      = الاسم المستعار للمفتاح (alias) داخل الـkeystore.
+#   keyPassword   = كلمة مرور المفتاح (قد تساوي storePassword).
+
+storeFile=C:\\Users\\ASUS\\keys\\almorshed-release.jks
+storePassword=ضع_كلمة_مرور_المتجر
+keyAlias=ضع_اسم_المفتاح
+keyPassword=ضع_كلمة_مرور_المفتاح
