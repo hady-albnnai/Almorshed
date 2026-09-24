@@ -24,6 +24,12 @@
 - [ ] 👤 نسخ القالب إلى `android/key.properties` وملؤه بمفتاحك (عندك توقيع جاهز).
       المكان بالضبط: `C:\Users\ASUS\Almorshed\app\android\key.properties`.
 
+> ✅ **مُنجَز (2026-09-24):** المالك ملأ `key.properties` بمفتاح `loraneem.jks`،
+> ونجح `flutter build appbundle --release` بإنتاج `app-release.aab` موقّعاً.
+> ملاحظة مهمة: يجب أن يكون مسار الـkeystore بحروف **لاتينية** (لا عربية) —
+> نُقل المفتاح إلى `D:\Hady\keys\loraneem.jks` لأن Gradle/Java لا يقرأ المسارات
+> العربية في ملفات الإعداد.
+
 ## 3. اكتمال الميزات
 - [x] 🤖 توصيل تبويب «المراجعة» (كان placeholder «قريباً»).
 - [x] 🤖 إزالة إسناد الإشراف العلمي (فرع dev/self-content).
@@ -36,7 +42,7 @@
 - [ ] 👤 اختبار على شاشات مختلفة الأحجام.
 
 ## 5. متجر Play (المالك)
-- [ ] 👤 بناء حزمة الإصدار: `flutter build appbundle --release`.
+- [x] 👤 بناء حزمة الإصدار: `flutter build appbundle --release` → `app-release.aab` (2026-09-24).
 - [ ] 👤 إنشاء بطاقة المتجر (وصف، لقطات شاشة، أيقونة عالية الدقة 512px).
 - [ ] 👤 سياسة الخصوصية (التطبيق يعمل أوف-لاين — بيان بسيط).
 - [ ] 👤 رفع AAB على Play Console والنشر.
