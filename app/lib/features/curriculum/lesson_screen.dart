@@ -109,10 +109,6 @@ class _LessonScreenState extends State<LessonScreen> {
   int get _total => _chapter.paragraphs.length;
   Paragraph get _paragraph => _chapter.paragraphs[_idx];
 
-  Color _gold(BuildContext c) => Theme.of(c).brightness == Brightness.dark
-      ? AppColors.goldDark
-      : AppColors.goldLight;
-
   /// F3.1: تسجيل إتمام الفصل في مخزن التقدم (مع الحفاظ على موضع القارئ).
   Future<void> _markCompleted() async {
     final p = await widget.progressStore.load();
@@ -190,14 +186,28 @@ class _LessonScreenState extends State<LessonScreen> {
                     },
                   ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
-                  child: Align(
-                    alignment: AlignmentDirectional.centerStart,
-                    child: Text(
-                      'فقرة ${ArabicNumber.from(_idx + 1)} من '
-                      '${ArabicNumber.from(_total)}',
-                      style: txt.bodyMedium,
-                    ),
+                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'فقرة ${ArabicNumber.from(_idx + 1)} من '
+                        '${ArabicNumber.from(_total)}',
+                        style: txt.bodySmall,
+                      ),
+                      const SizedBox(height: 8),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: LinearProgressIndicator(
+                          value: _total == 0 ? 0.0 : (_idx + 1) / _total,
+                          minHeight: 6,
+                          backgroundColor: Theme.of(context)
+                              .colorScheme
+                              .surfaceContainerHighest,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 Expanded(
@@ -211,10 +221,16 @@ class _LessonScreenState extends State<LessonScreen> {
                         // حتى لا نكرر نفس نص الخلاصة مرتين → فشل findsOneWidget
                         if (_paragraph.summary.contains(' — '))
                           Padding(
-                            padding: const EdgeInsets.only(bottom: 10),
+                            padding: const EdgeInsets.only(bottom: 12),
                             child: Text(
                               _paragraph.summary.split(' — ').first.trim(),
-                              style: txt.titleSmall?.copyWith(fontWeight: FontWeight.w800, color: Theme.of(context).colorScheme.secondary),
+                              style: TextStyle(
+                                fontFamily: 'Alexandria',
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
+                                height: 1.5,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
                             ),
                           ),
                         Text(_paragraph.text, style: txt.bodyLarge),
@@ -244,29 +260,26 @@ class _LessonScreenState extends State<LessonScreen> {
                     ),
                   ),
                 ),
-                Card(
+                Container(
                   margin: const EdgeInsets.symmetric(horizontal: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14),
-                    side: BorderSide(
-                      color: _gold(context).withValues(alpha: .45),
-                    ),
+                  padding: const EdgeInsets.all(14),
+                  decoration: BoxDecoration(
+                    color:
+                        Theme.of(context).colorScheme.surfaceContainerHighest,
+                    borderRadius: BorderRadius.circular(16),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '📌 خلاصة الفقرة',
-                          style: txt.titleMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.secondary,
-                          ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '📌 خلاصة الفقرة',
+                        style: txt.titleMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
                         ),
-                        const SizedBox(height: 4),
-                        Text(_paragraph.summary, style: txt.bodyMedium),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(_paragraph.summary, style: txt.bodyMedium),
+                    ],
                   ),
                 ),
                 SafeArea(

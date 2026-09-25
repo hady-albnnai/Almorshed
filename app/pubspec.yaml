@@ -69,4 +69,18 @@ flutter:
   assets:
     - assets/brand/
     - assets/content/
-  # خطا Cairo وTajawal يُعلَنان هنا في F0.3 بعد وضع ملفاتهما (app/BUILD.md §الخطوط)
+  fonts:
+    # العناوين/الهوية — Alexandria (خط متغيّر، محور الوزن Thin..Black)
+    - family: Alexandria
+      fonts:
+        - asset: assets/fonts/Alexandria.ttf
+    # النص — IBM Plex Sans Arabic (أوزان ثابتة)
+    - family: IBMPlexSansArabic
+      fonts:
+        - asset: assets/fonts/IBMPlexSansArabic-Regular.ttf
+        - asset: assets/fonts/IBMPlexSansArabic-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/IBMPlexSansArabic-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/IBMPlexSansArabic-Bold.ttf
+          weight: 700

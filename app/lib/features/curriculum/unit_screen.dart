@@ -50,6 +50,9 @@ class _UnitScreenState extends State<UnitScreen> {
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
     final done = _progress.completedIds;
+    final unitNo = widget.unit.id.replaceAll(RegExp(r'[^0-9]'), '');
+    final shortTitle = widget.unit.title
+        .replaceFirst(RegExp(r'^الوحدة[^:：]*[:：]\s*'), '');
     return Scaffold(
       appBar: AppBar(title: Text(widget.unit.title)),
       body: widget.unit.chapters.isEmpty
@@ -57,11 +60,28 @@ class _UnitScreenState extends State<UnitScreen> {
               child:
                   Text('لا فصول بعد — قيد الإعداد', style: txt.bodyMedium))
           : ListView(
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 26),
               children: [
+                Text('الوحدة ${ArabicNumber.from(int.tryParse(unitNo) ?? 1)}',
+                    style: TextStyle(
+                      fontFamily: 'Alexandria',
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12,
+                      letterSpacing: 0.3,
+                      color: Theme.of(context).colorScheme.primary,
+                    )),
+                const SizedBox(height: 4),
+                Text(shortTitle, style: txt.headlineSmall),
+                const SizedBox(height: 4),
+                Text(
+                    '${ArabicNumber.from(widget.unit.chapters.length)} دروس • '
+                    'اختر فصلًا للبدء',
+                    style: txt.bodyMedium),
+                const SizedBox(height: 18),
                 for (var i = 0; i < widget.unit.chapters.length; i++)
                   _ChapterCard(
                     index: i,
+                    unitNo: unitNo,
                     xpRecorder: widget.xpRecorder,
                     trainingStore: widget.trainingStore,
                     chapter: widget.unit.chapters[i],
@@ -79,6 +99,7 @@ class _UnitScreenState extends State<UnitScreen> {
 class _ChapterCard extends StatelessWidget {
   const _ChapterCard({
     required this.index,
+    required this.unitNo,
     required this.chapter,
     required this.completed,
     required this.progress,
@@ -90,6 +111,7 @@ class _ChapterCard extends StatelessWidget {
 
   final TrainingStore? trainingStore;
   final int index;
+  final String unitNo;
   final Chapter chapter;
   final bool completed;
   final ChapterProgress? progress;
@@ -97,71 +119,122 @@ class _ChapterCard extends StatelessWidget {
   final VoidCallback onReturned;
   final XpRecorder? xpRecorder;
 
+  void _openLesson(BuildContext context) => Navigator.of(context)
+      .push(MaterialPageRoute<void>(
+        builder: (_) => LessonScreen(
+          chapter: chapter,
+          progressStore: progressStore,
+          xpRecorder: xpRecorder,
+          trainingStore: trainingStore,
+        ),
+      ))
+      .then((_) => onReturned());
 
   @override
   Widget build(BuildContext context) {
     final txt = Theme.of(context).textTheme;
-    return Card(
-      margin: const EdgeInsets.only(bottom: 10),
-      child: Padding(
-        padding: const EdgeInsets.all(14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              '${completed ? '✓ ' : ''}'
-              'الفصل ${ArabicNumber.from(index + 1)}: ${chapter.title} · '
-              'ص${ArabicNumber.from(chapter.page)}',
-              style: txt.titleMedium,
-            ),
-            const SizedBox(height: 8),
-            Text('${ArabicNumber.from(chapter.paragraphs.length)} فقرات',
-                style: txt.bodyMedium),
-            // شارات التجارب (قرار المالك ٢٠٢٦-٠٩-١٦): تفتح التجربة مباشرة —
-            // نفس الشاشة التي تظهر بموضعها داخل الدرس (لا تكرار محتوى، قرار ٣٧)
-            for (final exp in _experimentsOf(chapter))
-              Padding(
-                padding: const EdgeInsets.only(top: 8),
-                child: ActionChip(
-                  key: Key('unit-exp-${exp.id}'),
-                  avatar: const Text('🧪'),
-                  label: Text('تجربة: ${exp.title}'),
-                  onPressed: () => Navigator.of(context)
-                      .push(
-                        MaterialPageRoute<void>(
-                          builder: (_) => ExperimentScreen(
-                            experiment: exp,
-                            trainingStore:
-                                trainingStore ?? InMemoryTrainingStore(),
-                            xpRecorder: xpRecorder,
+    final scheme = Theme.of(context).colorScheme;
+    final started = !completed && (progress?.cursor ?? 0) > 0;
+    final subtitle = chapter.paragraphs.isEmpty
+        ? 'قيد الإعداد'
+        : completed
+            ? 'مكتمل ✓'
+            : started
+                ? 'متابعة القراءة'
+                : 'شرح • أمثلة • تدريب';
+    final experiments = _experimentsOf(chapter);
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Material(
+            color: scheme.surface,
+            borderRadius: BorderRadius.circular(17),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(17),
+              onTap:
+                  chapter.paragraphs.isEmpty ? null : () => _openLesson(context),
+              child: Ink(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(17),
+                  border: Border.all(color: scheme.outline),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      // شارة الترقيم U.C — مثل «١.٢»
+                      Container(
+                        width: 52,
+                        height: 52,
+                        decoration: BoxDecoration(
+                          color: completed
+                              ? scheme.primary
+                              : scheme.surfaceContainerHighest,
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                          completed
+                              ? '✓'
+                              : '${ArabicNumber.from(int.tryParse(unitNo) ?? 1)}'
+                                  '.${ArabicNumber.from(index + 1)}',
+                          style: TextStyle(
+                            fontFamily: 'Alexandria',
+                            fontWeight: FontWeight.w700,
+                            fontSize: completed ? 22 : 17,
+                            color: completed ? Colors.white : scheme.onSurface,
                           ),
                         ),
-                      )
-                      .then((_) => onReturned()),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(chapter.title,
+                                style: txt.titleMedium, maxLines: 2,
+                                overflow: TextOverflow.ellipsis),
+                            const SizedBox(height: 4),
+                            Text(subtitle, style: txt.bodySmall),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text('←',
+                          style: TextStyle(
+                              fontSize: 22, color: scheme.onSurfaceVariant)),
+                    ],
+                  ),
                 ),
               ),
-            const SizedBox(height: 10),
-            FilledButton(
-              onPressed: chapter.paragraphs.isEmpty
-                  ? null
-                  : () => Navigator.of(context)
-                      .push(
-                        MaterialPageRoute<void>(
-                            builder: (_) => LessonScreen(
-                                  chapter: chapter,
-                                  progressStore: progressStore,
-                                  xpRecorder: xpRecorder,
-                                  trainingStore: trainingStore,
-                                )),
-                      )
-                      .then((_) => onReturned()),
-              // F3.1: متابعة إن لم يكتمل وله موضع محفوظ — وإلا «ابدأ القراءة»
-              child: Text(!completed && (progress?.cursor ?? 0) > 0
-                  ? 'متابعة القراءة'
-                  : 'ابدأ القراءة'),
             ),
-          ],
-        ),
+          ),
+          // شارات التجارب: تفتح التجربة مباشرة (قرار المالك ٢٠٢٦-٠٩-١٦، ٣٧)
+          for (final exp in experiments)
+            Padding(
+              padding: const EdgeInsets.only(top: 8, right: 8),
+              child: ActionChip(
+                key: Key('unit-exp-${exp.id}'),
+                avatar: const Text('🧪'),
+                label: Text('تجربة: ${exp.title}'),
+                onPressed: () => Navigator.of(context)
+                    .push(
+                      MaterialPageRoute<void>(
+                        builder: (_) => ExperimentScreen(
+                          experiment: exp,
+                          trainingStore:
+                              trainingStore ?? InMemoryTrainingStore(),
+                          xpRecorder: xpRecorder,
+                        ),
+                      ),
+                    )
+                    .then((_) => onReturned()),
+              ),
+            ),
+        ],
       ),
     );
   }

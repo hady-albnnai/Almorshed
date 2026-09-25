@@ -1,48 +1,77 @@
 import 'package:flutter/material.dart';
 
-/// رموز الهوية البصرية — docs/13-DESIGN-IDENTITY.md (كل القيم مقيسة WCAG).
-/// ⚠️ ممنوع أي لون خارج هذا الملف (قرار ٤٧ — انضباط دلالي):
-/// ذهبي=نقاط XP حصراً · بنفسجي=دوري فيزيا كلاش حصراً · أحمر=خطأ حصراً · أخضر نجاح=توثيق حصراً.
+/// الهوية البصرية الدافئة (طراز «لُورانيم | مختبر الفيزياء»).
+/// ورق كريمي + أخضر غابة (الحبر) + برتقالي طوبي (لمسة) + أخضر مريمية.
+/// ملاحظة: قرار docs/13 (الانضباط اللوني لفيزيا كلاش) رُفع بأمر المالك 2026-09-25.
+/// الأسماء القديمة (brand/gold/violet…) محفوظة كأسماء بديلة مُعاد ربطها
+/// حتى لا تنكسر الشاشات التي لم تُحدَّث بعد.
 abstract final class AppColors {
-  // ═══ الوضع الداكن (الافتراضي — docs/13 §٢) ═══
-  static const darkBg = Color(0xFF0B1220); // بحري عميق — ليس أسود
-  static const darkCard = Color(0xFF16223A);
-  static const darkCard2 = Color(0xFF1C2B47);
-  static const darkTxt = Color(0xFFE8EEF7); // 13.60:1 على البطاقة ✓
-  static const darkTxt2 = Color(0xFF9DB0C9); // 7.17:1 ✓
-  static const darkLine = Color(0xFF243350);
+  // ═══ رموز الطراز الدافئ — فاتح ═══
+  static const ink = Color(0xFF132722); // أخضر غابة — نص وأسطح داكنة
+  static const paper = Color(0xFFF3F0E7); // خلفية كريمية
+  static const card = Color(0xFFFFFDF7); // بطاقة شبه بيضاء
+  static const accent = Color(0xFFDD6E42); // برتقالي طوبي — اللمسة
+  static const sage = Color(0xFF9FBD9A); // أخضر مريمية
+  static const sageTint = Color(0xFFE4EADC); // خلفية شارة/بطاقة متابعة
+  static const muted = Color(0xFF66736E); // نص ثانوي
+  static const line = Color(0xFFDCD8CC); // حدود خفيفة على الورق
 
-  // ═══ الوضع الفاتح (docs/13 §٣ — مقيس على #FFFFFF) ═══
-  static const lightBg = Color(0xFFEEF3F9);
-  static const lightCard = Color(0xFFFFFFFF);
-  static const lightTxt = Color(0xFF17233A); // 15.70:1 ✓
-  static const lightTxt2 = Color(0xFF44546E); // 7.67:1 ✓
-  static const lightLine = Color(0xFFD5E0EC);
+  // ═══ رموز الطراز الدافئ — داكن ═══
+  static const inkD = Color(0xFFE9EEE8); // النص بالداكن
+  static const paperD = Color(0xFF13231F); // خلفية داكنة
+  static const cardD = Color(0xFF1B2E28); // بطاقة داكنة
+  static const card2D = Color(0xFF294038); // بطاقة/شارة داكنة أعمق
+  static const mutedD = Color(0xFFA3B0AA);
+  static const lineD = Color(0xFF2C3E38);
 
-  // ═══ رموز الهوية: نسخة الداكن / نسخة الفاتح ═══
-  static const brandDark = Color(0xFF2DD4A7); // 8.37:1 ✓
-  static const brandLight = Color(0xFF0A8063); // 4.91:1 ✓
-  static const brand2Dark = Color(0xFF38BDF8); // 7.40:1 ✓
-  static const brand2Light = Color(0xFF0369A1); // 5.93:1 ✓
-  static const goldDark = Color(0xFFFBBF24); // نقاط XP — 9.50:1 ✓
-  static const goldLight = Color(0xFFA16207); // 4.92:1 ✓
-  static const violetDark = Color(0xFFA78BFA); // الدوري — 5.83:1 ✓
-  static const violetLight = Color(0xFF6D28D9); // 7.10:1 ✓
-  static const dangerDark = Color(0xFFF87171); // 5.73:1 ✓
-  static const dangerLight = Color(0xFFDC2626); // 4.83:1 ✓
-  static const okDark = Color(0xFF34D399); // 8.25:1 ✓
-  static const okLight = Color(0xFF047857); // 5.48:1 ✓
+  // ألوان دلالية دافئة (نجاح/خطأ) — من مسحة الطراز نفسه
+  static const okLightC = Color(0xFF538065);
+  static const okBgLight = Color(0xFFE2EFE4);
+  static const okDarkC = Color(0xFF7FB08D);
+  static const errLightC = Color(0xFFBB5A45);
+  static const errBgLight = Color(0xFFF6E3DE);
+  static const errDarkC = Color(0xFFD98266);
 
-  // شارات دوري فيزيا كلاش (docs/13 §٤)
-  static const leagueBronze = Color(0xFFD97706);
-  static const leagueSilver = Color(0xFFCBD5E1);
-  static const leagueGold = Color(0xFFFBBF24);
-  static const leagueDiamond = Color(0xFF38BDF8);
+  // ═══════════════════════════════════════════════════════════════
+  // أسماء متوافقة مع الكود القديم (مُعاد ربطها للطراز الدافئ)
+  // ═══════════════════════════════════════════════════════════════
+  static const darkBg = paperD;
+  static const darkCard = cardD;
+  static const darkCard2 = card2D;
+  static const darkTxt = inkD;
+  static const darkTxt2 = mutedD;
+  static const darkLine = lineD;
 
-  /// ⚡ قاعدة docs/13 الصارمة: نص زر CTA داكن على الأخضر دائماً وبالوضعين
-  /// (الأبيض على الأخضر يفشل 1.89:1 — الداكن 8.33:1 ✓)
-  static const onCta = Color(0xFF04222B);
+  static const lightBg = paper;
+  static const lightCard = card;
+  static const lightTxt = ink;
+  static const lightTxt2 = muted;
+  static const lightLine = line;
+
+  // اللمسة (كانت brand/gold/violet…) → البرتقالي الطوبي
+  static const brandDark = accent;
+  static const brandLight = accent;
+  static const brand2Dark = sage;
+  static const brand2Light = Color(0xFF6F8F6A); // مريمية أغمق للفاتح
+  static const goldDark = accent;
+  static const goldLight = accent;
+  static const violetDark = accent;
+  static const violetLight = accent;
+
+  static const dangerDark = errDarkC;
+  static const dangerLight = errLightC;
+  static const okDark = okDarkC;
+  static const okLight = okLightC;
+
+  // شارات الدوري (تبويب التحدي — يُبحث فيه لاحقاً؛ نُبقيها كما هي)
+  static const leagueBronze = Color(0xFFB5764B);
+  static const leagueSilver = Color(0xFFB9BEB2);
+  static const leagueGold = accent;
+  static const leagueDiamond = sage;
+
+  /// نص زرّ CTA: الزرّ الأساسي أصبح حبريّاً (ink) فالنص عليه ورقيّ.
+  static const onCta = paper;
   static const ctaGradient = LinearGradient(
-    colors: [Color(0xFF2DD4A7), Color(0xFF22B8CF)],
+    colors: [Color(0xFFE07E52), Color(0xFFDD6E42)],
   );
 }

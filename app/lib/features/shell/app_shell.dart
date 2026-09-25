@@ -4,6 +4,7 @@ import '../challenge/challenge_screen.dart';
 import '../curriculum/curriculum_review_screen.dart';
 import '../curriculum/unit_screen.dart';
 import '../../core/content/models.dart';
+import '../../core/theme/app_colors.dart';
 import '../../core/util/arabic_number.dart';
 import '../../core/license/license_store.dart';
 import '../../core/progress/progress_store.dart';
@@ -235,26 +236,381 @@ class _LessonsViewState extends State<_LessonsView> {
     setState(() => _progress = p);
   }
 
+  void _openUnit(Unit unit) {
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(
+          builder: (_) => UnitScreen(
+            unit: unit,
+            progressStore: widget.progressStore,
+            xpRecorder: widget.xpRecorder,
+            trainingStore: widget.trainingStore,
+          ),
+        ))
+        .then((_) => _reload());
+  }
+
   @override
   Widget build(BuildContext context) {
-    final txt = Theme.of(context).textTheme;
     final completed = _progress.completedIds;
+    final units = widget.pack.units;
+
+    final allChapters = [for (final u in units) ...u.chapters];
+    final totalChapters = allChapters.length;
+    final doneChapters =
+        allChapters.where((c) => completed.contains(c.id)).length;
+    final overall =
+        totalChapters == 0 ? 0 : (doneChapters * 100 / totalChapters).round();
+
+    // الوحدة/الفصل «التالي» = أول فصل غير مكتمل.
+    Unit? nextUnit;
+    Chapter? nextChapter;
+    for (final u in units) {
+      for (final c in u.chapters) {
+        if (!completed.contains(c.id)) {
+          nextUnit = u;
+          nextChapter = c;
+          break;
+        }
+      }
+      if (nextChapter != null) break;
+    }
+    final nu = nextUnit;
+    final nc = nextChapter;
+
     return ListView(
-      padding: const EdgeInsets.all(14),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 28),
       children: [
-        Text('الوحدات الخمس', style: txt.titleLarge),
-        const SizedBox(height: 6),
-        for (var i = 0; i < widget.pack.units.length; i++)
+        _Hero(
+          started: doneChapters > 0,
+          onStart: () {
+            if (nu != null) _openUnit(nu);
+          },
+        ),
+        const SizedBox(height: 26),
+        _StatsRow(
+          lessons: totalChapters,
+          units: units.length,
+          percent: overall,
+        ),
+        if (nu != null && nc != null) ...[
+          const SizedBox(height: 14),
+          _ContinueCard(
+            unit: nu,
+            chapter: nc,
+            fresh: doneChapters == 0,
+            onTap: () => _openUnit(nu),
+          ),
+        ],
+        const SizedBox(height: 30),
+        Text('خريطة المنهج',
+            style: TextStyle(
+              fontFamily: 'Alexandria',
+              fontWeight: FontWeight.w600,
+              fontSize: 12,
+              letterSpacing: 0.4,
+              color: AppColors.accent,
+            )),
+        const SizedBox(height: 4),
+        Text('الوحدات الدراسية',
+            style: Theme.of(context).textTheme.headlineSmall),
+        const SizedBox(height: 16),
+        // شبكة «مجلّة»: الوحدة الأولى بطاقة كبيرة، والبقية شبكة ثنائية.
+        if (units.isNotEmpty)
           _UnitCard(
-            index: i,
-            unit: widget.pack.units[i],
+            index: 0,
+            big: true,
+            unit: units.first,
             completedIds: completed,
             progressStore: widget.progressStore,
             xpRecorder: widget.xpRecorder,
             trainingStore: widget.trainingStore,
             onReturned: _reload,
           ),
+        const SizedBox(height: 12),
+        for (var i = 1; i < units.length; i += 2)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: _UnitCard(
+                    index: i,
+                    unit: units[i],
+                    completedIds: completed,
+                    progressStore: widget.progressStore,
+                    xpRecorder: widget.xpRecorder,
+                    trainingStore: widget.trainingStore,
+                    onReturned: _reload,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: i + 1 < units.length
+                      ? _UnitCard(
+                          index: i + 1,
+                          unit: units[i + 1],
+                          completedIds: completed,
+                          progressStore: widget.progressStore,
+                          xpRecorder: widget.xpRecorder,
+                          trainingStore: widget.trainingStore,
+                          onReturned: _reload,
+                        )
+                      : const SizedBox.shrink(),
+                ),
+              ],
+            ),
+          ),
       ],
+    );
+  }
+}
+
+/// قسم البطل — العنوان الكبير + بطاقة الفلَك الزخرفية + الأزرار.
+class _Hero extends StatelessWidget {
+  const _Hero({required this.started, required this.onStart});
+  final bool started;
+  final VoidCallback onStart;
+
+  @override
+  Widget build(BuildContext context) {
+    final txt = Theme.of(context).textTheme;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('منهج الفيزياء • بكالوريا ٢٠٢٧',
+            style: TextStyle(
+              fontFamily: 'Alexandria',
+              fontWeight: FontWeight.w600,
+              fontSize: 12,
+              letterSpacing: 0.3,
+              color: AppColors.accent,
+            )),
+        const SizedBox(height: 14),
+        RichText(
+          text: TextSpan(
+            style: txt.displayLarge,
+            children: [
+              const TextSpan(text: 'افهم الفكرة.\n'),
+              TextSpan(
+                  text: 'ثم جرّبها.',
+                  style: TextStyle(color: AppColors.accent)),
+            ],
+          ),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          'شرح مركّز، براهين مرتّبة، ومسائل مصمّمة على نمط الامتحان — '
+          'في مكان واحد يحفظ تقدّمك.',
+          style: txt.bodyMedium?.copyWith(fontSize: 15),
+        ),
+        const SizedBox(height: 22),
+        Center(child: _OrbitCard()),
+        const SizedBox(height: 22),
+        FilledButton(
+          onPressed: onStart,
+          child: Text(started ? 'تابع رحلتك ←' : 'ابدأ من أول درس ←'),
+        ),
+      ],
+    );
+  }
+}
+
+/// بطاقة الفلَك الزخرفية (حبريّة، حلقات + صيغة) — بلا حركة (خفيفة وآمنة).
+class _OrbitCard extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    final base = dark ? AppColors.card2D : AppColors.ink;
+    return Container(
+      height: 230,
+      width: double.infinity,
+      constraints: const BoxConstraints(maxWidth: 420),
+      decoration: BoxDecoration(
+        color: base,
+        borderRadius: const BorderRadius.vertical(
+          top: Radius.elliptical(240, 150),
+          bottom: Radius.circular(22),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.18),
+            blurRadius: 40,
+            offset: const Offset(0, 20),
+          ),
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          _ring(180, AppColors.sage.withValues(alpha: 0.28)),
+          _ring(120, AppColors.sage.withValues(alpha: 0.22)),
+          Container(
+            width: 66,
+            height: 66,
+            decoration: const BoxDecoration(
+                color: AppColors.accent, shape: BoxShape.circle),
+            alignment: Alignment.center,
+            child: const Text('φ',
+                style: TextStyle(
+                    fontFamily: 'Alexandria',
+                    fontWeight: FontWeight.w800,
+                    fontSize: 30,
+                    color: Colors.white)),
+          ),
+          Positioned(
+            bottom: 26,
+            child: Column(
+              children: [
+                const Text('T₀ = 2π √(m / k)',
+                    textDirection: TextDirection.ltr,
+                    style: TextStyle(
+                        fontFamily: 'Alexandria',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 19,
+                        color: Colors.white)),
+                const SizedBox(height: 4),
+                Text('كل قانون له حكاية',
+                    style: TextStyle(color: AppColors.sage, fontSize: 12)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _ring(double size, Color color) => Positioned(
+        top: 20,
+        child: Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(color: color),
+          ),
+        ),
+      );
+}
+
+/// صفّ الإحصاءات الثلاثي (بفواصل) — الأرقام باللمسة الطوبية.
+class _StatsRow extends StatelessWidget {
+  const _StatsRow(
+      {required this.lessons, required this.units, required this.percent});
+  final int lessons;
+  final int units;
+  final int percent;
+
+  @override
+  Widget build(BuildContext context) {
+    final line = Theme.of(context).colorScheme.outline;
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surface,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: line),
+      ),
+      child: Row(
+        children: [
+          _stat(context, '${ArabicNumber.from(lessons)}', 'درسًا مشروحًا'),
+          _divider(line),
+          _stat(context, '${ArabicNumber.from(units)}', 'وحدات'),
+          _divider(line),
+          _stat(context, '${ArabicNumber.from(percent)}٪', 'الإنجاز'),
+        ],
+      ),
+    );
+  }
+
+  Widget _divider(Color line) =>
+      Container(width: 1, height: 46, color: line);
+
+  Widget _stat(BuildContext context, String value, String label) => Expanded(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 8),
+          child: Column(
+            children: [
+              Text(value,
+                  style: const TextStyle(
+                      fontFamily: 'Alexandria',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24,
+                      color: AppColors.accent)),
+              const SizedBox(height: 4),
+              Text(label,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodySmall),
+            ],
+          ),
+        ),
+      );
+}
+
+/// بطاقة «تابع من حيث وقفت».
+class _ContinueCard extends StatelessWidget {
+  const _ContinueCard(
+      {required this.unit,
+      required this.chapter,
+      required this.fresh,
+      required this.onTap});
+  final Unit unit;
+  final Chapter chapter;
+  final bool fresh;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final tint = Theme.of(context).colorScheme.surfaceContainerHighest;
+    final unitNo = unit.id.replaceAll(RegExp(r'[^0-9]'), '');
+    final chNo = (unit.chapters.indexOf(chapter) + 1);
+    return Material(
+      color: tint,
+      borderRadius: BorderRadius.circular(18),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(18),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                    color: AppColors.ink,
+                    borderRadius: BorderRadius.circular(14)),
+                alignment: Alignment.center,
+                child: Text(
+                    '${ArabicNumber.from(int.tryParse(unitNo) ?? 1)}.${ArabicNumber.from(chNo)}',
+                    style: const TextStyle(
+                        fontFamily: 'Alexandria',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 15,
+                        color: Colors.white)),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(chapter.title,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.titleMedium),
+                    const SizedBox(height: 4),
+                    Text(
+                        '${fresh ? 'ابدأ رحلتك من هنا' : 'تابع رحلتك'} • '
+                        '${ArabicNumber.from(chapter.paragraphs.length)} فقرة',
+                        style: Theme.of(context).textTheme.bodySmall),
+                  ],
+                ),
+              ),
+              const Text('←', style: TextStyle(fontSize: 22)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
@@ -268,6 +624,7 @@ class _UnitCard extends StatelessWidget {
     required this.onReturned,
     required this.xpRecorder,
     this.trainingStore,
+    this.big = false,
   });
 
   final int index;
@@ -277,62 +634,121 @@ class _UnitCard extends StatelessWidget {
   final VoidCallback onReturned;
   final XpRecorder? xpRecorder;
   final TrainingStore? trainingStore;
+  final bool big;
+
+  // اسم مختصر للوحدة بلا بادئة «الوحدة الأولى: ».
+  String get _shortTitle =>
+      unit.title.replaceFirst(RegExp(r'^الوحدة[^:：]*[:：]\s*'), '');
+
+  void _open(BuildContext context) => Navigator.of(context)
+      .push(MaterialPageRoute<void>(
+        builder: (_) => UnitScreen(
+          unit: unit,
+          progressStore: progressStore,
+          xpRecorder: xpRecorder,
+          trainingStore: trainingStore,
+        ),
+      ))
+      .then((_) => onReturned());
 
   @override
   Widget build(BuildContext context) {
-    final txt = Theme.of(context).textTheme;
     final hasChapters = unit.chapters.isNotEmpty;
     final percent = unitPercent(unit, completedIds);
-    final note = hasChapters
-        ? '${ArabicNumber.from(unit.chapters.length)} فصل — '
-            'ص${ArabicNumber.from(unit.chapters.first.page)} '
-            'إلى ص${ArabicNumber.from(unit.chapters.last.page)}'
-        : 'قيد الإعداد — تصل مع تحديث المحتوى';
-    return Card(
-      margin: const EdgeInsets.only(bottom: 10),
+    final dark = Theme.of(context).brightness == Brightness.dark;
+    final line = Theme.of(context).colorScheme.outline;
+
+    final bg = big
+        ? (dark ? AppColors.card2D : AppColors.ink)
+        : Theme.of(context).colorScheme.surface;
+    final onBg = big ? Colors.white : Theme.of(context).colorScheme.onSurface;
+    final onBgMuted = big
+        ? AppColors.sage
+        : Theme.of(context).colorScheme.onSurfaceVariant;
+
+    return Material(
+      color: bg,
+      borderRadius: BorderRadius.circular(22),
       child: InkWell(
-        borderRadius: BorderRadius.circular(14),
-        onTap: hasChapters
-            ? () => Navigator.of(context)
-                .push(MaterialPageRoute<void>(
-                  builder: (_) => UnitScreen(
-                    unit: unit,
-                    progressStore: progressStore,
-                    xpRecorder: xpRecorder,
-                    trainingStore: trainingStore,
+        borderRadius: BorderRadius.circular(22),
+        onTap: hasChapters ? () => _open(context) : null,
+        child: Ink(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(22),
+            border: big ? null : Border.all(color: line),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(22),
+            child: Padding(
+                  padding: EdgeInsets.all(big ? 22 : 16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: big ? 40 : 34,
+                            height: big ? 40 : 34,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: onBg.withValues(alpha: 0.4)),
+                            ),
+                            alignment: Alignment.center,
+                            child: Text('←',
+                                style: TextStyle(
+                                    color: onBg, fontSize: big ? 18 : 15)),
+                          ),
+                          const Spacer(),
+                          Text('${ArabicNumber.from(percent)}٪',
+                              style: TextStyle(
+                                  fontFamily: 'Alexandria',
+                                  fontWeight: FontWeight.w700,
+                                  color: onBg)),
+                        ],
+                      ),
+                      SizedBox(height: big ? 22 : 16),
+                      Text('الوحدة ${ArabicNumber.from(index + 1)}',
+                          style: TextStyle(
+                            fontFamily: 'Alexandria',
+                            fontWeight: FontWeight.w600,
+                            fontSize: 11.5,
+                            color: AppColors.accent,
+                          )),
+                      const SizedBox(height: 6),
+                      Text(
+                        _shortTitle,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontFamily: 'Alexandria',
+                          fontWeight: FontWeight.w700,
+                          fontSize: big ? 22 : 16,
+                          height: 1.5,
+                          color: onBg,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        hasChapters
+                            ? '${ArabicNumber.from(unit.chapters.length)} دروس'
+                            : 'قيد الإعداد',
+                        style: TextStyle(color: onBgMuted, fontSize: 12.5),
+                      ),
+                      SizedBox(height: big ? 26 : 14),
+                      if (hasChapters)
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: LinearProgressIndicator(
+                            value: percent / 100,
+                            minHeight: 6,
+                            backgroundColor: onBg.withValues(alpha: 0.15),
+                            color: AppColors.accent,
+                          ),
+                        ),
+                      if (big) const SizedBox(height: 8),
+                    ],
                   ),
-                ))
-                .then((_) => onReturned())
-            : null,
-        child: Padding(
-          padding: const EdgeInsets.all(14),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      '${ArabicNumber.from(index + 1)} · ${unit.title}',
-                      style: txt.titleMedium,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text('${ArabicNumber.from(percent)}٪',
-                      style: txt.bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.w700)),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: LinearProgressIndicator(
-                  value: percent / 100,
-                  minHeight: 7,
-                  borderRadius: const BorderRadius.all(Radius.circular(6)),
-                ),
-              ),
-              Text(note, style: txt.bodyMedium),
-            ],
+            ),
           ),
         ),
       ),
