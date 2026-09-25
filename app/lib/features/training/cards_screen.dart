@@ -115,7 +115,7 @@ class _CardsScreenState extends State<CardsScreen> {
                     title: Text(
                         'مجموع البطاقات: ${ArabicNumber.from(total)}'),
                     subtitle: const Text(
-                        'تكرار متباعد FSRS — كل بطاقة تُستدعى وقت نسيانها '
+                        'تكرار متباعد — كل بطاقة تُستدعى وقت نسيانها '
                         'تقريباً (سقف ٢٠ يومياً · ٦ جديدة)'),
                   ),
                 ),
@@ -138,7 +138,7 @@ class _CardsScreenState extends State<CardsScreen> {
             Text('✓ أنهيت بطاقات اليوم! +١٥ نقطة',
                 style: txt.titleMedium, textAlign: TextAlign.center),
             const SizedBox(height: 6),
-            Text('المراجعة القادمة غداً حسب جدول FSRS',
+            Text('المراجعة القادمة غداً — كل بطاقة في وقتها',
                 style: txt.bodyMedium, textAlign: TextAlign.center),
           ],
         );

@@ -330,7 +330,8 @@ class _LessonsViewState extends State<_LessonsView> {
         for (var i = 1; i < units.length; i += 2)
           Padding(
             padding: const EdgeInsets.only(bottom: 12),
-            child: Row(
+            child: IntrinsicHeight(
+              child: Row(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Expanded(
@@ -359,6 +360,7 @@ class _LessonsViewState extends State<_LessonsView> {
                       : const SizedBox.shrink(),
                 ),
               ],
+              ),
             ),
           ),
       ],
@@ -925,7 +927,7 @@ class _UnitTrainingViewState extends State<_UnitTrainingView> {
               child: ListTile(
                 leading: const Icon(Icons.style_outlined),
                 title: const Text('بطاقات اليوم'),
-                subtitle: const Text('مراجعة متباعدة — FSRS'),
+                subtitle: const Text('مراجعة متباعدة — كل بطاقة في وقتها'),
                 trailing: const Icon(Icons.chevron_left),
                 onTap: () => _push(CardsScreen(
                     pack: widget.pack,

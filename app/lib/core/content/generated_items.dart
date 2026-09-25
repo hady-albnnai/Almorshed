@@ -17,6 +17,14 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
 
+/// وسوم داخلية من المولّد (مثل `[invert_ratio]` / `[forget_sqrt]`) — تُزال من
+/// خطوات الحل قبل العرض للطالب (عيب أن تظهر أسماء برمجية في الشرح).
+final RegExp _internalTagRe = RegExp(r'\s*\[[a-z][a-z0-9_]*\]');
+
+List<String> _cleanSteps(List<dynamic>? raw) => (raw ?? const [])
+    .map((e) => e.toString().replaceAll(_internalTagRe, '').trim())
+    .toList(growable: false);
+
 /// نمط البند — يحدّد واجهة الإجابة وطريقة التصحيح.
 enum ItemKind { mcq, numeric, why, proof }
 
@@ -101,8 +109,7 @@ class GeneratedItem {
         stem: j['stem'] as String,
         options: (j['options'] as List<dynamic>? ?? const []).cast<String>(),
         correctIndex: j['correctIndex'] as int? ?? -1,
-        solutionSteps:
-            (j['solutionSteps'] as List<dynamic>? ?? const []).cast<String>(),
+        solutionSteps: _cleanSteps(j['solutionSteps'] as List<dynamic>?),
         weight: (j['weight'] as num? ?? 10).toDouble(),
         raw: j,
         grading: j['grading'] as String?,
@@ -245,8 +252,7 @@ class GeneratedPart {
       optionValues: (j['optionValues'] as List<dynamic>? ?? const [])
           .map<double?>((v) => v is num ? v.toDouble() : null)
           .toList(growable: false),
-      solutionSteps:
-          (j['solutionSteps'] as List<dynamic>? ?? const []).cast<String>(),
+      solutionSteps: _cleanSteps(j['solutionSteps'] as List<dynamic>?),
       rubric: (j['rubric'] as List<dynamic>? ?? const [])
           .cast<Map<String, dynamic>>()
           .map(GeneratedRubricEntry.fromJson)

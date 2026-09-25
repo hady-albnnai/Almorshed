@@ -212,7 +212,7 @@ class _TrainingScreenState extends State<TrainingScreen> {
                     leading: const Icon(Icons.style_outlined),
                     title: const Text('مراجعة البطاقات'),
                     subtitle: const Text(
-                        'طابور FSRS — سقف ٢٠ يومياً + ٦ جديدة'),
+                        'طابور المراجعة — سقف ٢٠ يومياً + ٦ جديدة'),
                     trailing: const Icon(Icons.chevron_left),
                     onTap: () async {
                       await Navigator.of(context).push(MaterialPageRoute<void>(

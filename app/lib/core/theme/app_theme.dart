@@ -132,8 +132,8 @@ abstract final class AppTheme {
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          backgroundColor: ink, // الزرّ الأساسي حبريّ (كما الويب)
-          foregroundColor: onInk,
+          backgroundColor: AppColors.accent, // الزرّ الأساسي طوبيّ (لون الويب)
+          foregroundColor: Colors.white,
           minimumSize: const Size.fromHeight(54),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
@@ -143,8 +143,8 @@ abstract final class AppTheme {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: ink,
-          foregroundColor: onInk,
+          backgroundColor: AppColors.accent,
+          foregroundColor: Colors.white,
           elevation: 0,
           minimumSize: const Size.fromHeight(54),
           shape:

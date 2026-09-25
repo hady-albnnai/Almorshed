@@ -106,7 +106,7 @@ class _CardReviewScreenState extends State<CardReviewScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                'المراجعة القادمة غداً — جدول FSRS يوقظ كل بطاقة وقتها',
+                'المراجعة القادمة غداً — نذكّرك بكل بطاقة في وقتها',
                 style: txt.bodyMedium,
                 textAlign: TextAlign.center,
               ),
