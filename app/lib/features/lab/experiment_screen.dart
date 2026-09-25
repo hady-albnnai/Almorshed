@@ -464,8 +464,8 @@ class _ExperimentPainter extends CustomPainter {
   final bool running;
   final bool dark;
 
-  Color get _ink => dark ? Colors.white : const Color(0xFF1A2233);
-  Color get _metal => dark ? const Color(0xFFB7C0D8) : const Color(0xFF64748B);
+  Color get _ink => dark ? const Color(0xFFE9EEE8) : const Color(0xFF132722);
+  Color get _metal => dark ? const Color(0xFFC7C0B2) : const Color(0xFF8A8272);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -495,8 +495,8 @@ class _ExperimentPainter extends CustomPainter {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: dark
-              ? const [Color(0xFF121A2B), Color(0xFF0A0F1A)]
-              : const [Color(0xFFF4F7FF), Color(0xFFE6ECF8)],
+              ? const [Color(0xFF1B2E28), Color(0xFF10201B)]
+              : const [Color(0xFFFFFDF7), Color(0xFFE9E4D6)],
         ).createShader(rect),
     );
     c.save();
