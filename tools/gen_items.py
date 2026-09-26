@@ -393,7 +393,7 @@ class Generator:
             if rule is None:
                 steps.append(f"✓ ({letter}) {txt}")
             else:
-                steps.append(f"({letter}) خطأ [{rule}]: {rat or self.rules.get(rule, '')}")
+                steps.append(f"({letter}) خطأ: {rat or self.rules.get(rule, '')}")
         item = {
             "id": self.new_id(),
             "templateId": t["id"],
@@ -715,7 +715,7 @@ class Generator:
         options = [o[0] for o in opts]
         ci = options.index(key_text)
         steps = [f"✓ ({'ABCD'[i]}) {o[0]}" if o[1] is None
-                 else f"({'ABCD'[i]}) خطأ [{o[1]}]: {o[2] or self.rules.get(o[1], '')}"
+                 else f"({'ABCD'[i]}) خطأ: {o[2] or self.rules.get(o[1], '')}"
                  for i, o in enumerate(opts)]
         return options, ci, [o[1] for o in opts], steps, [o[3] for o in opts]
 
