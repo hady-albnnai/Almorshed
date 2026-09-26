@@ -45,6 +45,10 @@ class _ExperimentScreenState extends State<ExperimentScreen>
   double _accumulator = 0.0;
   final PeriodMeter _meter = PeriodMeter();
 
+  /// عيّنات (زمن، إزاحة) لراسم الإشارة الحي — سجلّ دوّار محدود الطول.
+  final List<Offset> _trace = <Offset>[];
+  static const int _traceMax = 900;
+
   int _stage = 0; // 0 توقّع · 1 لاحظ/اشرح
   int? _prediction;
 
@@ -90,6 +94,10 @@ class _ExperimentScreenState extends State<ExperimentScreen>
       _simTime += simDt;
       _state = _exp.step(_state, _p);
       _meter.feed(_simTime, _state.q);
+      _trace.add(Offset(_simTime, _state.q));
+    }
+    if (_trace.length > _traceMax) {
+      _trace.removeRange(0, _trace.length - _traceMax);
     }
     if (mounted) setState(() {});
   }
@@ -116,6 +124,7 @@ class _ExperimentScreenState extends State<ExperimentScreen>
       _simTime = 0.0;
       _accumulator = 0.0;
       _meter.reset();
+      _trace.clear();
     });
   }
 
@@ -128,6 +137,7 @@ class _ExperimentScreenState extends State<ExperimentScreen>
       _simTime = 0.0;
       _accumulator = 0.0;
       _meter.reset();
+      _trace.clear();
     });
   }
 
@@ -135,6 +145,7 @@ class _ExperimentScreenState extends State<ExperimentScreen>
     setState(() {
       _p = {..._p, id: v};
       _meter.reset();
+      _trace.clear();
     });
   }
 
@@ -279,6 +290,24 @@ class _ExperimentScreenState extends State<ExperimentScreen>
                 ),
               ),
             if (dyn) ...[
+              const SizedBox(height: 10),
+              // راسم إشارة حيّ q(t) — أثر المتذبذب المنزاح زمنياً (طراز أوسيلوسكوب)
+              SizedBox(
+                height: 88,
+                child: CustomPaint(
+                  key: const Key('exp-scope'),
+                  painter: _ScopePainter(
+                    trace: _trace,
+                    now: _simTime,
+                    amp: _exp.maxInitial,
+                    label: _exp.measuredLabel,
+                    gold: gold,
+                    running: _running,
+                    dark: Theme.of(context).brightness == Brightness.dark,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
               Text(
                 _running
                     ? 'المحاكاة تعمل — RK4 خطوة ١/٢٤٠ ث'
@@ -911,5 +940,153 @@ class _ExperimentPainter extends CustomPainter {
       old.t != t ||
       old.running != running ||
       old.params != params ||
+      old.dark != dark;
+}
+
+/// راسم إشارة حيّ (طراز أوسيلوسكوب) يرسم أثر الإزاحة q(t) عبر الزمن.
+///
+/// يعرض السجلّ الدوّار للعيّنات المُغذّاة من حلقة المحاكاة: محور زمن أفقي في
+/// المنتصف، شبكة خفيفة، الموجة مطبَّعة بالمطال الأعظم، ونقطة playhead على اليمين.
+class _ScopePainter extends CustomPainter {
+  _ScopePainter({
+    required this.trace,
+    required this.now,
+    required this.amp,
+    required this.label,
+    required this.gold,
+    required this.running,
+    required this.dark,
+  });
+
+  final List<Offset> trace; // (زمن، إزاحة)
+  final double now;
+  final double amp;
+  final String label;
+  final Color gold;
+  final bool running;
+  final bool dark;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Color panel = dark ? const Color(0xFF15231F) : const Color(0xFFFFFDF7);
+    final Color line = dark
+        ? const Color(0x22F0F5EF)
+        : const Color(0x22132722);
+    final Color axis = dark
+        ? const Color(0x55F0F5EF)
+        : const Color(0x55132722);
+    final Color textCol = dark
+        ? const Color(0xFFA3B0AA)
+        : const Color(0xFF66736E);
+
+    final rrect = RRect.fromRectAndRadius(
+      Offset.zero & size,
+      const Radius.circular(16),
+    );
+    canvas.drawRRect(rrect, Paint()..color = panel);
+    canvas.save();
+    canvas.clipRRect(rrect);
+
+    final double midY = size.height / 2;
+    final double half = size.height * 0.40;
+
+    // شبكة عمودية (٦ أقسام)
+    final gridPaint = Paint()
+      ..color = line
+      ..strokeWidth = 1;
+    for (int i = 1; i < 6; i++) {
+      final x = size.width * i / 6;
+      canvas.drawLine(Offset(x, 0), Offset(x, size.height), gridPaint);
+    }
+    // خطّا ±مطال + محور الزمن
+    canvas.drawLine(Offset(0, midY - half), Offset(size.width, midY - half),
+        gridPaint);
+    canvas.drawLine(Offset(0, midY + half), Offset(size.width, midY + half),
+        gridPaint);
+    canvas.drawLine(
+      Offset(0, midY),
+      Offset(size.width, midY),
+      Paint()
+        ..color = axis
+        ..strokeWidth = 1,
+    );
+
+    // الموجة
+    final double a = amp.abs() < 1e-9 ? 1.0 : amp.abs();
+    if (trace.length >= 2) {
+      final double t0 = trace.first.dx;
+      final double t1 = trace.last.dx;
+      final double span = (t1 - t0).abs() < 1e-9 ? 1.0 : (t1 - t0);
+      final path = Path();
+      for (int i = 0; i < trace.length; i++) {
+        final p = trace[i];
+        final double x = ((p.dx - t0) / span) * size.width;
+        final double y = midY - (p.dy / a).clamp(-1.0, 1.0) * half;
+        if (i == 0) {
+          path.moveTo(x, y);
+        } else {
+          path.lineTo(x, y);
+        }
+      }
+      // هالة خفيفة
+      canvas.drawPath(
+        path,
+        Paint()
+          ..color = gold.withValues(alpha: 0.28)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 5
+          ..strokeCap = StrokeCap.round
+          ..strokeJoin = StrokeJoin.round
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3),
+      );
+      canvas.drawPath(
+        path,
+        Paint()
+          ..color = gold
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2.2
+          ..strokeJoin = StrokeJoin.round
+          ..strokeCap = StrokeCap.round,
+      );
+
+      // playhead على آخر عيّنة
+      final last = trace.last;
+      final double lx = size.width;
+      final double ly = midY - (last.dy / a).clamp(-1.0, 1.0) * half;
+      canvas.drawCircle(Offset(lx - 3, ly), 3.2, Paint()..color = gold);
+      if (running) {
+        canvas.drawCircle(
+          Offset(lx - 3, ly),
+          6,
+          Paint()..color = gold.withValues(alpha: 0.30),
+        );
+      }
+    }
+
+    // عنوان صغير
+    final tp = TextPainter(
+      text: TextSpan(
+        text: label,
+        style: TextStyle(color: textCol, fontSize: 10, height: 1.0),
+      ),
+      textDirection: TextDirection.rtl,
+    )..layout(maxWidth: size.width - 16);
+    tp.paint(canvas, Offset(size.width - tp.width - 8, 6));
+
+    canvas.restore();
+    canvas.drawRRect(
+      rrect,
+      Paint()
+        ..color = line
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _ScopePainter old) =>
+      old.now != now ||
+      old.running != running ||
+      old.trace.length != trace.length ||
       old.dark != dark;
 }
