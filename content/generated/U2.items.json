@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 678,
+  "poolSize": 707,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 129,
+  "partsPool": 158,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -20634,6 +20634,3870 @@
    "reviewNotes": [
     "ΔΦ صغير ⇒ صيغة علمية؛ e وI مقرَّبان إلى ٣ أرقام.",
     "سلسلة متابعة كاملة: e يتبع ΔΦ و I يتبع e."
+   ]
+  },
+  {
+   "id": 23076,
+   "templateId": "U2.L4.P02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة مهتزة مثالية (LC): وشيعة L = 0.1 H ومكثفة C = 40 µF شُحنت حتى توتر أعظمي Um = 20 V ثم تُركت تتذبذب دون ضياع.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8×10⁻³ J — 10 درجة",
+    "٢) 8×10⁻⁴ C — 10 درجة",
+    "٣) 0.4 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 4.47213595499958,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·C·Um²",
+      "½C·Um²"
+     ],
+     "antiKeys": [
+      "E = ½·C·Um",
+      "E = C·Um²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E = ½·0·20²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8×10⁻³ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qmax = C·Um",
+      "C·Um"
+     ],
+     "antiKeys": [
+      "Qmax = C/Um",
+      "Qmax = Um/C"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qmax = 0·20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 8×10⁻⁴ C",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Imax = √(2E/L)",
+      "E = ½L·Imax²"
+     ],
+     "antiKeys": [
+      "Imax = 2E/L",
+      "Imax = √(E/L)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Imax = √(2·0.008/0.1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.008",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.4 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الكلية E المخزّنة في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·C·Um²",
+        "½C·Um²"
+       ],
+       "antiKeys": [
+        "E = ½·C·Um",
+        "E = C·Um²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E = ½·0·20²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8×10⁻³ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.008,
+      "unit": "J",
+      "text": "8×10⁻³ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الشحنة العظمى Qmax على المكثفة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qmax = C·Um",
+        "C·Um"
+       ],
+       "antiKeys": [
+        "Qmax = C/Um",
+        "Qmax = Um/C"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qmax = 0·20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 8×10⁻⁴ C",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0008,
+      "unit": "C",
+      "text": "8×10⁻⁴ C",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التيار الأعظمي Imax في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Imax = √(2E/L)",
+        "E = ½L·Imax²"
+       ],
+       "antiKeys": [
+        "Imax = 2E/L",
+        "Imax = √(E/L)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Imax = √(2·0.008/0.1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.008",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.4 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.4,
+      "unit": "A",
+      "text": "0.4 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 4.47213595499958,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة LC (طاقة): E = ½C·Um² · Qmax = C·Um · Imax = √(2E/L). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — الدارة المهتزة والطاقة",
+    "book": "E = ½·C·Um² = ½·L·Imax² · Qmax = C·Um · Imax = √(2E/L)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الطاقة بالقوة ٠٫٥ (Imax ∝ √E)."
+   ]
+  },
+  {
+   "id": 23077,
+   "templateId": "U2.L4.P02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة مهتزة مثالية (LC): وشيعة L = 0.4 H ومكثفة C = 40 µF شُحنت حتى توتر أعظمي Um = 10 V ثم تُركت تتذبذب دون ضياع.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻³ J — 10 درجة",
+    "٢) 4×10⁻⁴ C — 10 درجة",
+    "٣) 0.1 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 2.23606797749979,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·C·Um²",
+      "½C·Um²"
+     ],
+     "antiKeys": [
+      "E = ½·C·Um",
+      "E = C·Um²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E = ½·0·10²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻³ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qmax = C·Um",
+      "C·Um"
+     ],
+     "antiKeys": [
+      "Qmax = C/Um",
+      "Qmax = Um/C"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qmax = 0·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4×10⁻⁴ C",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Imax = √(2E/L)",
+      "E = ½L·Imax²"
+     ],
+     "antiKeys": [
+      "Imax = 2E/L",
+      "Imax = √(E/L)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Imax = √(2·0.002/0.4)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.002",
+      "0.4"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.1 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الكلية E المخزّنة في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·C·Um²",
+        "½C·Um²"
+       ],
+       "antiKeys": [
+        "E = ½·C·Um",
+        "E = C·Um²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E = ½·0·10²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻³ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.002,
+      "unit": "J",
+      "text": "2×10⁻³ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الشحنة العظمى Qmax على المكثفة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qmax = C·Um",
+        "C·Um"
+       ],
+       "antiKeys": [
+        "Qmax = C/Um",
+        "Qmax = Um/C"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qmax = 0·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4×10⁻⁴ C",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0004,
+      "unit": "C",
+      "text": "4×10⁻⁴ C",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التيار الأعظمي Imax في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Imax = √(2E/L)",
+        "E = ½L·Imax²"
+       ],
+       "antiKeys": [
+        "Imax = 2E/L",
+        "Imax = √(E/L)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Imax = √(2·0.002/0.4)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.002",
+        "0.4"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.1 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.1,
+      "unit": "A",
+      "text": "0.1 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 2.23606797749979,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة LC (طاقة): E = ½C·Um² · Qmax = C·Um · Imax = √(2E/L). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — الدارة المهتزة والطاقة",
+    "book": "E = ½·C·Um² = ½·L·Imax² · Qmax = C·Um · Imax = √(2E/L)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الطاقة بالقوة ٠٫٥ (Imax ∝ √E)."
+   ]
+  },
+  {
+   "id": 23079,
+   "templateId": "U2.L4.P02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة مهتزة مثالية (LC): وشيعة L = 1 H ومكثفة C = 40 µF شُحنت حتى توتر أعظمي Um = 10 V ثم تُركت تتذبذب دون ضياع.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻³ J — 10 درجة",
+    "٢) 4×10⁻⁴ C — 10 درجة",
+    "٣) 0.0632 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.4131949617798671,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·C·Um²",
+      "½C·Um²"
+     ],
+     "antiKeys": [
+      "E = ½·C·Um",
+      "E = C·Um²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E = ½·0·10²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻³ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qmax = C·Um",
+      "C·Um"
+     ],
+     "antiKeys": [
+      "Qmax = C/Um",
+      "Qmax = Um/C"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qmax = 0·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4×10⁻⁴ C",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Imax = √(2E/L)",
+      "E = ½L·Imax²"
+     ],
+     "antiKeys": [
+      "Imax = 2E/L",
+      "Imax = √(E/L)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Imax = √(2·0.002/1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.002",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.0632 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الكلية E المخزّنة في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·C·Um²",
+        "½C·Um²"
+       ],
+       "antiKeys": [
+        "E = ½·C·Um",
+        "E = C·Um²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E = ½·0·10²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻³ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.002,
+      "unit": "J",
+      "text": "2×10⁻³ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الشحنة العظمى Qmax على المكثفة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qmax = C·Um",
+        "C·Um"
+       ],
+       "antiKeys": [
+        "Qmax = C/Um",
+        "Qmax = Um/C"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qmax = 0·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4×10⁻⁴ C",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0004,
+      "unit": "C",
+      "text": "4×10⁻⁴ C",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التيار الأعظمي Imax في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Imax = √(2E/L)",
+        "E = ½L·Imax²"
+       ],
+       "antiKeys": [
+        "Imax = 2E/L",
+        "Imax = √(E/L)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Imax = √(2·0.002/1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.002",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.0632 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0632,
+      "unit": "A",
+      "text": "0.0632 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.4131949617798671,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة LC (طاقة): E = ½C·Um² · Qmax = C·Um · Imax = √(2E/L). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — الدارة المهتزة والطاقة",
+    "book": "E = ½·C·Um² = ½·L·Imax² · Qmax = C·Um · Imax = √(2E/L)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الطاقة بالقوة ٠٫٥ (Imax ∝ √E)."
+   ]
+  },
+  {
+   "id": 23081,
+   "templateId": "U2.L4.P02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة مهتزة مثالية (LC): وشيعة L = 1 H ومكثفة C = 100 µF شُحنت حتى توتر أعظمي Um = 20 V ثم تُركت تتذبذب دون ضياع.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻² J — 10 درجة",
+    "٢) 2×10⁻³ C — 10 درجة",
+    "٣) 0.2 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.4142135623730951,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·C·Um²",
+      "½C·Um²"
+     ],
+     "antiKeys": [
+      "E = ½·C·Um",
+      "E = C·Um²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E = ½·0.0001·20²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻² J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qmax = C·Um",
+      "C·Um"
+     ],
+     "antiKeys": [
+      "Qmax = C/Um",
+      "Qmax = Um/C"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qmax = 0.0001·20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2×10⁻³ C",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Imax = √(2E/L)",
+      "E = ½L·Imax²"
+     ],
+     "antiKeys": [
+      "Imax = 2E/L",
+      "Imax = √(E/L)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Imax = √(2·0.02/1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.02",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.2 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الكلية E المخزّنة في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·C·Um²",
+        "½C·Um²"
+       ],
+       "antiKeys": [
+        "E = ½·C·Um",
+        "E = C·Um²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E = ½·0.0001·20²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻² J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.02,
+      "unit": "J",
+      "text": "2×10⁻² J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الشحنة العظمى Qmax على المكثفة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qmax = C·Um",
+        "C·Um"
+       ],
+       "antiKeys": [
+        "Qmax = C/Um",
+        "Qmax = Um/C"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qmax = 0.0001·20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2×10⁻³ C",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.002,
+      "unit": "C",
+      "text": "2×10⁻³ C",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التيار الأعظمي Imax في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Imax = √(2E/L)",
+        "E = ½L·Imax²"
+       ],
+       "antiKeys": [
+        "Imax = 2E/L",
+        "Imax = √(E/L)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Imax = √(2·0.02/1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.02",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.2 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.2,
+      "unit": "A",
+      "text": "0.2 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.4142135623730951,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة LC (طاقة): E = ½C·Um² · Qmax = C·Um · Imax = √(2E/L). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — الدارة المهتزة والطاقة",
+    "book": "E = ½·C·Um² = ½·L·Imax² · Qmax = C·Um · Imax = √(2E/L)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الطاقة بالقوة ٠٫٥ (Imax ∝ √E)."
+   ]
+  },
+  {
+   "id": 23082,
+   "templateId": "U2.L4.P02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة مهتزة مثالية (LC): وشيعة L = 1 H ومكثفة C = 10 µF شُحنت حتى توتر أعظمي Um = 20 V ثم تُركت تتذبذب دون ضياع.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻³ J — 10 درجة",
+    "٢) 2×10⁻⁴ C — 10 درجة",
+    "٣) 0.0632 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.4131949617798671,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·C·Um²",
+      "½C·Um²"
+     ],
+     "antiKeys": [
+      "E = ½·C·Um",
+      "E = C·Um²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E = ½·0·20²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻³ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qmax = C·Um",
+      "C·Um"
+     ],
+     "antiKeys": [
+      "Qmax = C/Um",
+      "Qmax = Um/C"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qmax = 0·20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2×10⁻⁴ C",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Imax = √(2E/L)",
+      "E = ½L·Imax²"
+     ],
+     "antiKeys": [
+      "Imax = 2E/L",
+      "Imax = √(E/L)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Imax = √(2·0.002/1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.002",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.0632 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الكلية E المخزّنة في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·C·Um²",
+        "½C·Um²"
+       ],
+       "antiKeys": [
+        "E = ½·C·Um",
+        "E = C·Um²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E = ½·0·20²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻³ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.002,
+      "unit": "J",
+      "text": "2×10⁻³ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الشحنة العظمى Qmax على المكثفة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qmax = C·Um",
+        "C·Um"
+       ],
+       "antiKeys": [
+        "Qmax = C/Um",
+        "Qmax = Um/C"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qmax = 0·20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2×10⁻⁴ C",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0002,
+      "unit": "C",
+      "text": "2×10⁻⁴ C",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التيار الأعظمي Imax في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Imax = √(2E/L)",
+        "E = ½L·Imax²"
+       ],
+       "antiKeys": [
+        "Imax = 2E/L",
+        "Imax = √(E/L)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Imax = √(2·0.002/1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.002",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.0632 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0632,
+      "unit": "A",
+      "text": "0.0632 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.4131949617798671,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة LC (طاقة): E = ½C·Um² · Qmax = C·Um · Imax = √(2E/L). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — الدارة المهتزة والطاقة",
+    "book": "E = ½·C·Um² = ½·L·Imax² · Qmax = C·Um · Imax = √(2E/L)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الطاقة بالقوة ٠٫٥ (Imax ∝ √E)."
+   ]
+  },
+  {
+   "id": 23083,
+   "templateId": "U2.L4.P02",
+   "unit": "U2",
+   "chapter": "U2C4",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة مهتزة مثالية (LC): وشيعة L = 0.4 H ومكثفة C = 40 µF شُحنت حتى توتر أعظمي Um = 20 V ثم تُركت تتذبذب دون ضياع.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8×10⁻³ J — 10 درجة",
+    "٢) 8×10⁻⁴ C — 10 درجة",
+    "٣) 0.2 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 2.23606797749979,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·C·Um²",
+      "½C·Um²"
+     ],
+     "antiKeys": [
+      "E = ½·C·Um",
+      "E = C·Um²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E = ½·0·20²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8×10⁻³ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qmax = C·Um",
+      "C·Um"
+     ],
+     "antiKeys": [
+      "Qmax = C/Um",
+      "Qmax = Um/C"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qmax = 0·20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 8×10⁻⁴ C",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Imax = √(2E/L)",
+      "E = ½L·Imax²"
+     ],
+     "antiKeys": [
+      "Imax = 2E/L",
+      "Imax = √(E/L)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Imax = √(2·0.008/0.4)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.008",
+      "0.4"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.2 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الكلية E المخزّنة في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·C·Um²",
+        "½C·Um²"
+       ],
+       "antiKeys": [
+        "E = ½·C·Um",
+        "E = C·Um²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E = ½·0·20²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8×10⁻³ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.008,
+      "unit": "J",
+      "text": "8×10⁻³ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الشحنة العظمى Qmax على المكثفة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qmax = C·Um",
+        "C·Um"
+       ],
+       "antiKeys": [
+        "Qmax = C/Um",
+        "Qmax = Um/C"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qmax = 0·20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 8×10⁻⁴ C",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0008,
+      "unit": "C",
+      "text": "8×10⁻⁴ C",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التيار الأعظمي Imax في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Imax = √(2E/L)",
+        "E = ½L·Imax²"
+       ],
+       "antiKeys": [
+        "Imax = 2E/L",
+        "Imax = √(E/L)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Imax = √(2·0.008/0.4)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.008",
+        "0.4"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.2 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.2,
+      "unit": "A",
+      "text": "0.2 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 2.23606797749979,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة LC (طاقة): E = ½C·Um² · Qmax = C·Um · Imax = √(2E/L). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — الدارة المهتزة والطاقة",
+    "book": "E = ½·C·Um² = ½·L·Imax² · Qmax = C·Um · Imax = √(2E/L)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الطاقة بالقوة ٠٫٥ (Imax ∝ √E)."
+   ]
+  },
+  {
+   "id": 23498,
+   "templateId": "U2.L2.P02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقلان مستقيمان طويلان متوازيان يفصلهما d = 0.5 m، يمرّ فيهما تياران I1 = 10 A وI2 = 5 A في المنحى نفسه. نعتبر طولاً مشتركاً ℓ = 1 m، ونأخذ μ0 = 4π×10⁻⁷.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁵ N·m⁻¹ — 10 درجة",
+    "٢) 2×10⁻⁵ N — 10 درجة",
+    "٣) 10⁻⁵ N·m⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ = μ0·I1·I2/(2πd)",
+      "2×10⁻⁷·I1·I2/d"
+     ],
+     "antiKeys": [
+      "F/ℓ = μ0·I1·I2·d/(2π)",
+      "F/ℓ = μ0·I1/(2πd)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·10·5/0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "5",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁵ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = (F/ℓ)·ℓ",
+      "(F/ℓ)·ℓ"
+     ],
+     "antiKeys": [
+      "F = (F/ℓ)/ℓ",
+      "F = F/ℓ"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 0·1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2×10⁻⁵ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ ∝ 1/d",
+      "(F/ℓ)' = ½·(F/ℓ)"
+     ],
+     "antiKeys": [
+      "(F/ℓ)' = 2·(F/ℓ)",
+      "(F/ℓ)' = (F/ℓ)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·10·5/(2·0.5)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "5",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 10⁻⁵ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب القوة لكل واحدة طول F/ℓ المتبادلة بين الناقلين.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ = μ0·I1·I2/(2πd)",
+        "2×10⁻⁷·I1·I2/d"
+       ],
+       "antiKeys": [
+        "F/ℓ = μ0·I1·I2·d/(2π)",
+        "F/ℓ = μ0·I1/(2πd)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·10·5/0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "5",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁵ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2e-05,
+      "unit": "N·m⁻¹",
+      "text": "2×10⁻⁵ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة الكلية F المؤثّرة على الطول ℓ = 1 m.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = (F/ℓ)·ℓ",
+        "(F/ℓ)·ℓ"
+       ],
+       "antiKeys": [
+        "F = (F/ℓ)/ℓ",
+        "F = F/ℓ"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 0·1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2×10⁻⁵ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2e-05,
+      "unit": "N",
+      "text": "2×10⁻⁵ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة لكل واحدة طول الجديدة إذا ضوعف البعد بين الناقلين (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ ∝ 1/d",
+        "(F/ℓ)' = ½·(F/ℓ)"
+       ],
+       "antiKeys": [
+        "(F/ℓ)' = 2·(F/ℓ)",
+        "(F/ℓ)' = (F/ℓ)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·10·5/(2·0.5)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "5",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 10⁻⁵ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1e-05,
+      "unit": "N·m⁻¹",
+      "text": "10⁻⁵ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقلان المتوازيان: F/ℓ = μ0·I1·I2/(2πd) · F = (F/ℓ)·ℓ · مضاعفة d ⇒ نصف القوة. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية والتأثير المتبادل",
+    "book": "F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d · F = (F/ℓ)·ℓ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الجزء ١ (F ∝ F/ℓ)؛ الجزء ٣ متابعة عليه بسلّم ٠٫٥ (∝ 1/d)."
+   ]
+  },
+  {
+   "id": 23499,
+   "templateId": "U2.L2.P02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقلان مستقيمان طويلان متوازيان يفصلهما d = 0.1 m، يمرّ فيهما تياران I1 = 10 A وI2 = 10 A في المنحى نفسه. نعتبر طولاً مشتركاً ℓ = 2 m، ونأخذ μ0 = 4π×10⁻⁷.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁴ N·m⁻¹ — 10 درجة",
+    "٢) 4×10⁻⁴ N — 10 درجة",
+    "٣) 10⁻⁴ N·m⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ = μ0·I1·I2/(2πd)",
+      "2×10⁻⁷·I1·I2/d"
+     ],
+     "antiKeys": [
+      "F/ℓ = μ0·I1·I2·d/(2π)",
+      "F/ℓ = μ0·I1/(2πd)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·10·10/0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "10",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁴ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = (F/ℓ)·ℓ",
+      "(F/ℓ)·ℓ"
+     ],
+     "antiKeys": [
+      "F = (F/ℓ)/ℓ",
+      "F = F/ℓ"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 0.0002·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0002",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4×10⁻⁴ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ ∝ 1/d",
+      "(F/ℓ)' = ½·(F/ℓ)"
+     ],
+     "antiKeys": [
+      "(F/ℓ)' = 2·(F/ℓ)",
+      "(F/ℓ)' = (F/ℓ)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·10·10/(2·0.1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "10",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 10⁻⁴ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب القوة لكل واحدة طول F/ℓ المتبادلة بين الناقلين.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ = μ0·I1·I2/(2πd)",
+        "2×10⁻⁷·I1·I2/d"
+       ],
+       "antiKeys": [
+        "F/ℓ = μ0·I1·I2·d/(2π)",
+        "F/ℓ = μ0·I1/(2πd)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·10·10/0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "10",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁴ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0002,
+      "unit": "N·m⁻¹",
+      "text": "2×10⁻⁴ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة الكلية F المؤثّرة على الطول ℓ = 2 m.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = (F/ℓ)·ℓ",
+        "(F/ℓ)·ℓ"
+       ],
+       "antiKeys": [
+        "F = (F/ℓ)/ℓ",
+        "F = F/ℓ"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 0.0002·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0002",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4×10⁻⁴ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0004,
+      "unit": "N",
+      "text": "4×10⁻⁴ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة لكل واحدة طول الجديدة إذا ضوعف البعد بين الناقلين (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ ∝ 1/d",
+        "(F/ℓ)' = ½·(F/ℓ)"
+       ],
+       "antiKeys": [
+        "(F/ℓ)' = 2·(F/ℓ)",
+        "(F/ℓ)' = (F/ℓ)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·10·10/(2·0.1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "10",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 10⁻⁴ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0001,
+      "unit": "N·m⁻¹",
+      "text": "10⁻⁴ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقلان المتوازيان: F/ℓ = μ0·I1·I2/(2πd) · F = (F/ℓ)·ℓ · مضاعفة d ⇒ نصف القوة. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية والتأثير المتبادل",
+    "book": "F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d · F = (F/ℓ)·ℓ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الجزء ١ (F ∝ F/ℓ)؛ الجزء ٣ متابعة عليه بسلّم ٠٫٥ (∝ 1/d)."
+   ]
+  },
+  {
+   "id": 23500,
+   "templateId": "U2.L2.P02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقلان مستقيمان طويلان متوازيان يفصلهما d = 0.5 m، يمرّ فيهما تياران I1 = 10 A وI2 = 5 A في المنحى نفسه. نعتبر طولاً مشتركاً ℓ = 2 m، ونأخذ μ0 = 4π×10⁻⁷.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁵ N·m⁻¹ — 10 درجة",
+    "٢) 4×10⁻⁵ N — 10 درجة",
+    "٣) 10⁻⁵ N·m⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ = μ0·I1·I2/(2πd)",
+      "2×10⁻⁷·I1·I2/d"
+     ],
+     "antiKeys": [
+      "F/ℓ = μ0·I1·I2·d/(2π)",
+      "F/ℓ = μ0·I1/(2πd)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·10·5/0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "5",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁵ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = (F/ℓ)·ℓ",
+      "(F/ℓ)·ℓ"
+     ],
+     "antiKeys": [
+      "F = (F/ℓ)/ℓ",
+      "F = F/ℓ"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 0·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4×10⁻⁵ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ ∝ 1/d",
+      "(F/ℓ)' = ½·(F/ℓ)"
+     ],
+     "antiKeys": [
+      "(F/ℓ)' = 2·(F/ℓ)",
+      "(F/ℓ)' = (F/ℓ)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·10·5/(2·0.5)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "5",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 10⁻⁵ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب القوة لكل واحدة طول F/ℓ المتبادلة بين الناقلين.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ = μ0·I1·I2/(2πd)",
+        "2×10⁻⁷·I1·I2/d"
+       ],
+       "antiKeys": [
+        "F/ℓ = μ0·I1·I2·d/(2π)",
+        "F/ℓ = μ0·I1/(2πd)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·10·5/0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "5",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁵ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2e-05,
+      "unit": "N·m⁻¹",
+      "text": "2×10⁻⁵ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة الكلية F المؤثّرة على الطول ℓ = 2 m.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = (F/ℓ)·ℓ",
+        "(F/ℓ)·ℓ"
+       ],
+       "antiKeys": [
+        "F = (F/ℓ)/ℓ",
+        "F = F/ℓ"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 0·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4×10⁻⁵ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4e-05,
+      "unit": "N",
+      "text": "4×10⁻⁵ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة لكل واحدة طول الجديدة إذا ضوعف البعد بين الناقلين (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ ∝ 1/d",
+        "(F/ℓ)' = ½·(F/ℓ)"
+       ],
+       "antiKeys": [
+        "(F/ℓ)' = 2·(F/ℓ)",
+        "(F/ℓ)' = (F/ℓ)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·10·5/(2·0.5)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "5",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 10⁻⁵ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1e-05,
+      "unit": "N·m⁻¹",
+      "text": "10⁻⁵ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقلان المتوازيان: F/ℓ = μ0·I1·I2/(2πd) · F = (F/ℓ)·ℓ · مضاعفة d ⇒ نصف القوة. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية والتأثير المتبادل",
+    "book": "F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d · F = (F/ℓ)·ℓ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الجزء ١ (F ∝ F/ℓ)؛ الجزء ٣ متابعة عليه بسلّم ٠٫٥ (∝ 1/d)."
+   ]
+  },
+  {
+   "id": 23501,
+   "templateId": "U2.L2.P02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقلان مستقيمان طويلان متوازيان يفصلهما d = 0.1 m، يمرّ فيهما تياران I1 = 2 A وI2 = 5 A في المنحى نفسه. نعتبر طولاً مشتركاً ℓ = 1 m، ونأخذ μ0 = 4π×10⁻⁷.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁵ N·m⁻¹ — 10 درجة",
+    "٢) 2×10⁻⁵ N — 10 درجة",
+    "٣) 10⁻⁵ N·m⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ = μ0·I1·I2/(2πd)",
+      "2×10⁻⁷·I1·I2/d"
+     ],
+     "antiKeys": [
+      "F/ℓ = μ0·I1·I2·d/(2π)",
+      "F/ℓ = μ0·I1/(2πd)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·2·5/0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2",
+      "5",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁵ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = (F/ℓ)·ℓ",
+      "(F/ℓ)·ℓ"
+     ],
+     "antiKeys": [
+      "F = (F/ℓ)/ℓ",
+      "F = F/ℓ"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 0·1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2×10⁻⁵ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ ∝ 1/d",
+      "(F/ℓ)' = ½·(F/ℓ)"
+     ],
+     "antiKeys": [
+      "(F/ℓ)' = 2·(F/ℓ)",
+      "(F/ℓ)' = (F/ℓ)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·2·5/(2·0.1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2",
+      "5",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 10⁻⁵ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب القوة لكل واحدة طول F/ℓ المتبادلة بين الناقلين.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ = μ0·I1·I2/(2πd)",
+        "2×10⁻⁷·I1·I2/d"
+       ],
+       "antiKeys": [
+        "F/ℓ = μ0·I1·I2·d/(2π)",
+        "F/ℓ = μ0·I1/(2πd)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·2·5/0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2",
+        "5",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁵ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2e-05,
+      "unit": "N·m⁻¹",
+      "text": "2×10⁻⁵ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة الكلية F المؤثّرة على الطول ℓ = 1 m.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = (F/ℓ)·ℓ",
+        "(F/ℓ)·ℓ"
+       ],
+       "antiKeys": [
+        "F = (F/ℓ)/ℓ",
+        "F = F/ℓ"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 0·1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2×10⁻⁵ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2e-05,
+      "unit": "N",
+      "text": "2×10⁻⁵ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة لكل واحدة طول الجديدة إذا ضوعف البعد بين الناقلين (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ ∝ 1/d",
+        "(F/ℓ)' = ½·(F/ℓ)"
+       ],
+       "antiKeys": [
+        "(F/ℓ)' = 2·(F/ℓ)",
+        "(F/ℓ)' = (F/ℓ)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·2·5/(2·0.1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2",
+        "5",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 10⁻⁵ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1e-05,
+      "unit": "N·m⁻¹",
+      "text": "10⁻⁵ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقلان المتوازيان: F/ℓ = μ0·I1·I2/(2πd) · F = (F/ℓ)·ℓ · مضاعفة d ⇒ نصف القوة. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية والتأثير المتبادل",
+    "book": "F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d · F = (F/ℓ)·ℓ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الجزء ١ (F ∝ F/ℓ)؛ الجزء ٣ متابعة عليه بسلّم ٠٫٥ (∝ 1/d)."
+   ]
+  },
+  {
+   "id": 23502,
+   "templateId": "U2.L2.P02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقلان مستقيمان طويلان متوازيان يفصلهما d = 0.2 m، يمرّ فيهما تياران I1 = 10 A وI2 = 2 A في المنحى نفسه. نعتبر طولاً مشتركاً ℓ = 2 m، ونأخذ μ0 = 4π×10⁻⁷.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁵ N·m⁻¹ — 10 درجة",
+    "٢) 4×10⁻⁵ N — 10 درجة",
+    "٣) 10⁻⁵ N·m⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ = μ0·I1·I2/(2πd)",
+      "2×10⁻⁷·I1·I2/d"
+     ],
+     "antiKeys": [
+      "F/ℓ = μ0·I1·I2·d/(2π)",
+      "F/ℓ = μ0·I1/(2πd)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·10·2/0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "2",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁵ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = (F/ℓ)·ℓ",
+      "(F/ℓ)·ℓ"
+     ],
+     "antiKeys": [
+      "F = (F/ℓ)/ℓ",
+      "F = F/ℓ"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 0·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4×10⁻⁵ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ ∝ 1/d",
+      "(F/ℓ)' = ½·(F/ℓ)"
+     ],
+     "antiKeys": [
+      "(F/ℓ)' = 2·(F/ℓ)",
+      "(F/ℓ)' = (F/ℓ)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·10·2/(2·0.2)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "2",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 10⁻⁵ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب القوة لكل واحدة طول F/ℓ المتبادلة بين الناقلين.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ = μ0·I1·I2/(2πd)",
+        "2×10⁻⁷·I1·I2/d"
+       ],
+       "antiKeys": [
+        "F/ℓ = μ0·I1·I2·d/(2π)",
+        "F/ℓ = μ0·I1/(2πd)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·10·2/0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "2",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁵ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2e-05,
+      "unit": "N·m⁻¹",
+      "text": "2×10⁻⁵ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة الكلية F المؤثّرة على الطول ℓ = 2 m.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = (F/ℓ)·ℓ",
+        "(F/ℓ)·ℓ"
+       ],
+       "antiKeys": [
+        "F = (F/ℓ)/ℓ",
+        "F = F/ℓ"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 0·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4×10⁻⁵ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4e-05,
+      "unit": "N",
+      "text": "4×10⁻⁵ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة لكل واحدة طول الجديدة إذا ضوعف البعد بين الناقلين (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ ∝ 1/d",
+        "(F/ℓ)' = ½·(F/ℓ)"
+       ],
+       "antiKeys": [
+        "(F/ℓ)' = 2·(F/ℓ)",
+        "(F/ℓ)' = (F/ℓ)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·10·2/(2·0.2)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "2",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 10⁻⁵ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1e-05,
+      "unit": "N·m⁻¹",
+      "text": "10⁻⁵ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقلان المتوازيان: F/ℓ = μ0·I1·I2/(2πd) · F = (F/ℓ)·ℓ · مضاعفة d ⇒ نصف القوة. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية والتأثير المتبادل",
+    "book": "F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d · F = (F/ℓ)·ℓ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الجزء ١ (F ∝ F/ℓ)؛ الجزء ٣ متابعة عليه بسلّم ٠٫٥ (∝ 1/d)."
+   ]
+  },
+  {
+   "id": 23503,
+   "templateId": "U2.L2.P02",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقلان مستقيمان طويلان متوازيان يفصلهما d = 0.1 m، يمرّ فيهما تياران I1 = 5 A وI2 = 10 A في المنحى نفسه. نعتبر طولاً مشتركاً ℓ = 2 m، ونأخذ μ0 = 4π×10⁻⁷.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10⁻⁴ N·m⁻¹ — 10 درجة",
+    "٢) 2×10⁻⁴ N — 10 درجة",
+    "٣) 5×10⁻⁵ N·m⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ = μ0·I1·I2/(2πd)",
+      "2×10⁻⁷·I1·I2/d"
+     ],
+     "antiKeys": [
+      "F/ℓ = μ0·I1·I2·d/(2π)",
+      "F/ℓ = μ0·I1/(2πd)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·5·10/0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5",
+      "10",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10⁻⁴ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = (F/ℓ)·ℓ",
+      "(F/ℓ)·ℓ"
+     ],
+     "antiKeys": [
+      "F = (F/ℓ)/ℓ",
+      "F = F/ℓ"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 0.0001·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0001",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2×10⁻⁴ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F/ℓ ∝ 1/d",
+      "(F/ℓ)' = ½·(F/ℓ)"
+     ],
+     "antiKeys": [
+      "(F/ℓ)' = 2·(F/ℓ)",
+      "(F/ℓ)' = (F/ℓ)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·5·10/(2·0.1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5",
+      "10",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 5×10⁻⁵ N·m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب القوة لكل واحدة طول F/ℓ المتبادلة بين الناقلين.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ = μ0·I1·I2/(2πd)",
+        "2×10⁻⁷·I1·I2/d"
+       ],
+       "antiKeys": [
+        "F/ℓ = μ0·I1·I2·d/(2π)",
+        "F/ℓ = μ0·I1/(2πd)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F/ℓ = 2×10⁻⁷·5·10/0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5",
+        "10",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10⁻⁴ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0001,
+      "unit": "N·m⁻¹",
+      "text": "10⁻⁴ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة الكلية F المؤثّرة على الطول ℓ = 2 m.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = (F/ℓ)·ℓ",
+        "(F/ℓ)·ℓ"
+       ],
+       "antiKeys": [
+        "F = (F/ℓ)/ℓ",
+        "F = F/ℓ"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 0.0001·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0001",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2×10⁻⁴ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0002,
+      "unit": "N",
+      "text": "2×10⁻⁴ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة لكل واحدة طول الجديدة إذا ضوعف البعد بين الناقلين (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F/ℓ ∝ 1/d",
+        "(F/ℓ)' = ½·(F/ℓ)"
+       ],
+       "antiKeys": [
+        "(F/ℓ)' = 2·(F/ℓ)",
+        "(F/ℓ)' = (F/ℓ)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: (F/ℓ)' = 2×10⁻⁷·5·10/(2·0.1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5",
+        "10",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 5×10⁻⁵ N·m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5e-05,
+      "unit": "N·m⁻¹",
+      "text": "5×10⁻⁵ N·m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقلان المتوازيان: F/ℓ = μ0·I1·I2/(2πd) · F = (F/ℓ)·ℓ · مضاعفة d ⇒ نصف القوة. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية والتأثير المتبادل",
+    "book": "F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d · F = (F/ℓ)·ℓ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الجزء ١ (F ∝ F/ℓ)؛ الجزء ٣ متابعة عليه بسلّم ٠٫٥ (∝ 1/d)."
    ]
   }
  ]

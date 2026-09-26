@@ -1329,3 +1329,309 @@ templates:
       - "قيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام (أساس تجربة e/m — طومسون)."
       - "الجزء ٢ متابعة على السرعة (r ∝ v)؛ الجزء ٣ مستقل (الدور لا يعتمد v)."
     approved: false
+
+  # ── ٢٢) نواس الفتل (U1C2) — مسألة عكسية: ثابت الفتل من الدور · التواتر · عزم الإرجاع ──
+  - id: U1.L2.P02
+    title: "نواس الفتل — مسألة عكسية بأجزاء (ثابت الفتل من الدور)"
+    chapter: U1C2
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L2 — نواس الفتل"
+      book: "T0 = 2π√(I/C) ⇒ C = 4π²·I/T0² · f = 1/T0 · Γ = C·θ"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      I: {set: [0.1, 0.4, 1.0], unit: "kg·m²"}
+      T0v: {set: [1, 2, 4], unit: s}
+      theta: {set: [0.1, 0.2, 0.5], unit: rad}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      C: "4*pi_sq*I/T0v**2"
+      f: "1/T0v"
+      Gamma: "4*pi_sq*I/T0v**2*theta"
+    stem: "قرص عزم عطالته حول محور الفتل I = {I} kg·m² معلّق بسلك، فقيس دور اهتزاز الفتل T0 = {T0v} s. نأخذ π² = 10."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز ثابت الفتل C بدلالة I وT0، ثم احسب قيمته."
+        unit: "N·m·rad⁻¹"
+        value: "C"
+        answer: {format: auto}
+        lines:
+          - relation: "من T0 = 2π√(I/C) ⇒ C = 4π²·I/T0²"
+            subst: "C = 4·10·{I}/{T0v}²"
+            expect: ["{I}", "{T0v}"]
+            keys: ["C = 4π²·I/T0²", "T0 = 2π√(I/C)"]
+            anti_keys: ["C = I·T0²/(4π²)", "C = 4π²·T0²/I"]
+      - label: "٢"
+        ask: "احسب تواتر نواس الفتل f."
+        unit: "Hz"
+        value: "f"
+        answer: {format: auto}
+        lines:
+          - relation: "التواتر مقلوب الدور: f = 1/T0"
+            subst: "f = 1/{T0v}"
+            expect: ["{T0v}"]
+            keys: ["f = 1/T0", "1/T0"]
+            anti_keys: ["f = T0", "f = 2π/T0"]
+      - label: "٣"
+        ask: "احسب عزم الإرجاع Γ عند إدارة القرص زاوية θ = {theta} rad."
+        unit: "N·m"
+        value: "Gamma"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "قانون الفتل: Γ = C·θ"
+            subst: "Γ = {C}·{theta}"
+            expect: ["{C}", "{theta}"]
+            keys: ["Γ = C·θ", "C·θ"]
+            anti_keys: ["Γ = C/θ", "Γ = θ/C"]
+    answer_basis: "نواس الفتل (عكسي): C = 4π²·I/T0² · f = 1/T0 · Γ = C·θ. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "الجزء ٣ متابعة على الجزء ١ (Γ ∝ C)."
+    approved: false
+
+  # ── ٢٣) الدارة المهتزة LC (U2C4) — الطاقة: الطاقة الكلية · الشحنة العظمى · التيار الأعظمي ──
+  - id: U2.L4.P02
+    title: "الدارة المهتزة (LC) — مسألة طاقة بأجزاء (الطاقة الكلية · الشحنة · التيار الأعظمي)"
+    chapter: U2C4
+    type: problem
+    difficulty: 4
+    source:
+      lesson: "L4 — الدارة المهتزة والطاقة"
+      book: "E = ½·C·Um² = ½·L·Imax² · Qmax = C·Um · Imax = √(2E/L)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      L: {set: [0.1, 0.4, 1.0], unit: H}
+      Cu: {set: [10, 40, 100], unit: "µF"}
+      Um: {set: [10, 20], unit: V}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      C: "Cu*1e-6"
+      E: "0.5*Cu*1e-6*Um**2"
+      Qmax: "Cu*1e-6*Um"
+      Imax: "sqrt(2*(0.5*Cu*1e-6*Um**2)/L)"
+    stem: "دارة مهتزة مثالية (LC): وشيعة L = {L} H ومكثفة C = {Cu} µF شُحنت حتى توتر أعظمي Um = {Um} V ثم تُركت تتذبذب دون ضياع."
+    parts:
+      - label: "١"
+        ask: "احسب الطاقة الكلية E المخزّنة في الدارة."
+        unit: "J"
+        value: "E"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "الطاقة الكلية = الطاقة الكهربائية العظمى في المكثفة: E = ½·C·Um²"
+            subst: "E = ½·{C}·{Um}²"
+            expect: ["{Um}"]
+            keys: ["E = ½·C·Um²", "½C·Um²"]
+            anti_keys: ["E = ½·C·Um", "E = C·Um²"]
+      - label: "٢"
+        ask: "احسب الشحنة العظمى Qmax على المكثفة."
+        unit: "C"
+        value: "Qmax"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "الشحنة العظمى عند التوتر الأعظمي: Qmax = C·Um"
+            subst: "Qmax = {C}·{Um}"
+            expect: ["{Um}"]
+            keys: ["Qmax = C·Um", "C·Um"]
+            anti_keys: ["Qmax = C/Um", "Qmax = Um/C"]
+      - label: "٣"
+        ask: "احسب التيار الأعظمي Imax في الوشيعة."
+        unit: "A"
+        value: "Imax"
+        answer: {format: auto, round: true, sig: 3}
+        follow: {depends_on: "١", power: 0.5}
+        lines:
+          - relation: "عند مرور كل الطاقة إلى الوشيعة: E = ½·L·Imax² ⇒ Imax = √(2E/L)"
+            subst: "Imax = √(2·{E}/{L})"
+            expect: ["{E}", "{L}"]
+            keys: ["Imax = √(2E/L)", "E = ½L·Imax²"]
+            anti_keys: ["Imax = 2E/L", "Imax = √(E/L)"]
+    answer_basis: "الدارة LC (طاقة): E = ½C·Um² · Qmax = C·Um · Imax = √(2E/L). سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "الجزء ٣ متابعة على الطاقة بالقوة ٠٫٥ (Imax ∝ √E)."
+    approved: false
+
+  # ── ٢٤) الأثر الكهرضوئي (U4C3) — العتبة: طول موجة العتبة · تواتر العتبة · الطاقة الحركية ──
+  - id: U4.L3.P02
+    title: "الأثر الكهرضوئي — مسألة عتبة بأجزاء (طول موجة العتبة · تواتر العتبة · الطاقة الحركية)"
+    chapter: U4C3
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L3 — الأثر الكهرضوئي"
+      book: "λ0 = h·c/W0 (1240 eV·nm) · f0 = W0/h · Ek = h·c/λ − W0"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      W0: {set: [2, 4, 5], unit: eV}
+      lam: {set: [200, 248, 310, 400, 620], unit: nm}
+    constants_used: {g: 10, pi_sq: 10}
+    constraints:
+      - "1240/lam > W0 + 0.05"
+    compute:
+      lam0: "1240/W0"
+      f0: "W0*e_charge/h_planck"
+      Ek: "1240/lam - W0"
+    stem: "معدن تابع شغله W0 = {W0} eV. يُضاء بضوء أحادي طول موجته λ = {lam} nm. نأخذ h·c = 1240 eV·nm."
+    parts:
+      - label: "١"
+        ask: "احسب طول موجة العتبة λ0 لهذا المعدن."
+        unit: "nm"
+        value: "lam0"
+        answer: {format: auto}
+        lines:
+          - relation: "عند العتبة تُصرف كل طاقة الفوتون في الانتزاع: λ0 = h·c/W0"
+            subst: "λ0 = 1240/{W0}"
+            expect: ["{W0}"]
+            keys: ["λ0 = h·c/W0", "1240/W0"]
+            anti_keys: ["λ0 = W0/(h·c)", "λ0 = h·c·W0"]
+      - label: "٢"
+        ask: "احسب تواتر العتبة f0."
+        unit: "Hz"
+        value: "f0"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: -1}
+        lines:
+          - relation: "تواتر العتبة: f0 = W0/h = c/λ0"
+            subst: "f0 = {W0}·1.6×10⁻¹⁹/6.63×10⁻³⁴"
+            expect: ["{W0}"]
+            keys: ["f0 = W0/h", "c/λ0"]
+            anti_keys: ["f0 = h/W0", "f0 = λ0/c"]
+      - label: "٣"
+        ask: "احسب الطاقة الحركية العظمى Ek للإلكترونات المنتزعة بالضوء λ = {lam} nm."
+        unit: "eV"
+        value: "Ek"
+        answer: {format: auto, round: true, sig: 3}
+        lines:
+          - relation: "معادلة أينشتاين: Ek = h·c/λ − W0"
+            subst: "Ek = 1240/{lam} − {W0}"
+            expect: ["{lam}", "{W0}"]
+            keys: ["Ek = h·c/λ − W0", "1240/λ − W0"]
+            anti_keys: ["Ek = W0 − h·c/λ", "Ek = h·c/λ + W0"]
+    answer_basis: "الأثر الكهرضوئي (عتبة): λ0 = h·c/W0 · f0 = W0/h · Ek = h·c/λ − W0. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "قيد λ < λ0 يضمن انتزاعاً؛ λ0 وW0 مختاران لأرقام نظيفة."
+      - "الجزء ٢ متابعة على λ0 بالقوة −١ (f0 = c/λ0)."
+    approved: false
+
+  # ── ٢٥) المزمار المفتوح (U3C2) — التواتر الأساسي · طول الموجة الأساسي · التوافقي n ──
+  - id: U3.L2.P02
+    title: "المزمار المفتوح — مسألة بأجزاء (الأساسي · طول الموجة · التوافقي n)"
+    chapter: U3C2
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L2 — الأمواج الصوتية المستقرة في الأعمدة الهوائية"
+      book: "مزمار مفتوح الطرفين: f1 = v/(2L) · λ1 = 2L · fn = n·v/(2L) (كل التوافقيات)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      v: {set: [340], unit: "m·s⁻¹"}
+      L: {set: [0.5, 0.85, 1.7], unit: m}
+      n: {set: [2, 3], unit: ""}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      f1: "v/(2*L)"
+      lam1: "2*L"
+      fn: "n*v/(2*L)"
+    stem: "مزمار مفتوح الطرفين طوله L = {L} m، سرعة الصوت في الهواء v = {v} m·s⁻¹."
+    parts:
+      - label: "١"
+        ask: "احسب التواتر الأساسي f1 للمزمار المفتوح."
+        unit: "Hz"
+        value: "f1"
+        answer: {format: auto}
+        lines:
+          - relation: "المزمار المفتوح: بطنان عند الطرفين ⇒ f1 = v/(2L)"
+            subst: "f1 = {v}/(2·{L})"
+            expect: ["{v}", "{L}"]
+            keys: ["f1 = v/(2L)", "v/(2L)"]
+            anti_keys: ["f1 = v/(4L)", "f1 = 2L/v"]
+      - label: "٢"
+        ask: "احسب طول الموجة الأساسي λ1."
+        unit: "m"
+        value: "lam1"
+        answer: {format: auto}
+        lines:
+          - relation: "طول الموجة الأساسي في المزمار المفتوح: λ1 = 2L"
+            subst: "λ1 = 2·{L}"
+            expect: ["{L}"]
+            keys: ["λ1 = 2L", "2L"]
+            anti_keys: ["λ1 = 4L", "λ1 = L/2"]
+      - label: "٣"
+        ask: "احسب تواتر التوافقي رقم n = {n}، أي fn."
+        unit: "Hz"
+        value: "fn"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "المزمار المفتوح يحوي كل التوافقيات: fn = n·f1"
+            subst: "fn = {n}·{f1}"
+            expect: ["{n}", "{f1}"]
+            keys: ["fn = n·f1", "n·f1"]
+            anti_keys: ["fn = (2n−1)·f1", "fn = f1/n"]
+    answer_basis: "المزمار المفتوح: f1 = v/(2L) · λ1 = 2L · fn = n·f1. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "خلاف المزمار المغلق (توافقيات فردية فقط) — هنا كل التوافقيات موجودة."
+      - "الجزء ٣ متابعة على الأساسي (fn ∝ f1)."
+    approved: false
+
+  # ── ٢٦) الناقلان المتوازيان (U2C2) — القوة لكل واحدة طول · القوة الكلية · أثر مضاعفة البعد ──
+  - id: U2.L2.P02
+    title: "قوة التأثير المتبادل بين ناقلين متوازيين — مسألة بأجزاء"
+    chapter: U2C2
+    type: problem
+    difficulty: 4
+    source:
+      lesson: "L2 — القوة المغناطيسية والتأثير المتبادل"
+      book: "F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d · F = (F/ℓ)·ℓ"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      I1: {set: [2, 5, 10], unit: A}
+      I2: {set: [2, 5, 10], unit: A}
+      d: {set: [0.1, 0.2, 0.5], unit: m}
+      l: {set: [1, 2], unit: m}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      fPerL: "2e-7*I1*I2/d"
+      F: "2e-7*I1*I2/d*l"
+      fPerL2: "2e-7*I1*I2/(2*d)"
+    stem: "ناقلان مستقيمان طويلان متوازيان يفصلهما d = {d} m، يمرّ فيهما تياران I1 = {I1} A وI2 = {I2} A في المنحى نفسه. نعتبر طولاً مشتركاً ℓ = {l} m، ونأخذ μ0 = 4π×10⁻⁷."
+    parts:
+      - label: "١"
+        ask: "احسب القوة لكل واحدة طول F/ℓ المتبادلة بين الناقلين."
+        unit: "N·m⁻¹"
+        value: "fPerL"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "قوة التأثير المتبادل لكل واحدة طول: F/ℓ = μ0·I1·I2/(2π·d) = 2×10⁻⁷·I1·I2/d"
+            subst: "F/ℓ = 2×10⁻⁷·{I1}·{I2}/{d}"
+            expect: ["{I1}", "{I2}", "{d}"]
+            keys: ["F/ℓ = μ0·I1·I2/(2πd)", "2×10⁻⁷·I1·I2/d"]
+            anti_keys: ["F/ℓ = μ0·I1·I2·d/(2π)", "F/ℓ = μ0·I1/(2πd)"]
+      - label: "٢"
+        ask: "احسب القوة الكلية F المؤثّرة على الطول ℓ = {l} m."
+        unit: "N"
+        value: "F"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "القوة الكلية = القوة لكل واحدة طول × الطول: F = (F/ℓ)·ℓ"
+            subst: "F = {fPerL}·{l}"
+            expect: ["{fPerL}", "{l}"]
+            keys: ["F = (F/ℓ)·ℓ", "(F/ℓ)·ℓ"]
+            anti_keys: ["F = (F/ℓ)/ℓ", "F = F/ℓ"]
+      - label: "٣"
+        ask: "احسب القوة لكل واحدة طول الجديدة إذا ضوعف البعد بين الناقلين (2d)."
+        unit: "N·m⁻¹"
+        value: "fPerL2"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "بما أن F/ℓ ∝ 1/d، فمضاعفة البعد تجعل القوة نصف قيمتها: (F/ℓ)' = ½·(F/ℓ)"
+            subst: "(F/ℓ)' = 2×10⁻⁷·{I1}·{I2}/(2·{d})"
+            expect: ["{I1}", "{I2}", "{d}"]
+            keys: ["F/ℓ ∝ 1/d", "(F/ℓ)' = ½·(F/ℓ)"]
+            anti_keys: ["(F/ℓ)' = 2·(F/ℓ)", "(F/ℓ)' = (F/ℓ)"]
+    answer_basis: "الناقلان المتوازيان: F/ℓ = μ0·I1·I2/(2πd) · F = (F/ℓ)·ℓ · مضاعفة d ⇒ نصف القوة. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "الجزء ٢ متابعة على الجزء ١ (F ∝ F/ℓ)؛ الجزء ٣ متابعة عليه بسلّم ٠٫٥ (∝ 1/d)."
+    approved: false
