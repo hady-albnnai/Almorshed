@@ -598,6 +598,15 @@ class Generator:
                     return pi_str(v)
                 if spec == "sqrt":
                     return sqrt_str(v)
+                # افتراضي: القيم المتطرّفة تُعرض علمياً حتى لا تنهار إلى «0»
+                # (طاقة فوتون ~1e-19)، ولا تُشوَّه كعدد عملاق (عدد فوتونات ~1e16)،
+                # ولا تظهر بذيل عشري طويل (سرعة ~2.78e7). القيم الصحيحة الكبيرة
+                # (كنصف قطر كوكب 6400000) تبقى عادية حتى لا تنكسر الجذوع/الفاحص.
+                fv = float(v)
+                if fv != 0 and math.isfinite(fv):
+                    is_int = abs(fv - round(fv)) < 1e-9
+                    if abs(fv) < 1e-4 or abs(fv) >= 1e10 or (abs(fv) >= 1e4 and not is_int):
+                        return fmt_sci(fv)
                 return fmt(v)
             return str(v)
         return re.sub(r"\{([A-Za-z_][A-Za-z0-9_]*)(?::(sci|pi|sqrt))?\}", rep, text)
