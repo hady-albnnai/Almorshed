@@ -148,3 +148,192 @@ templates:
       - "L بالهنري وC بالميكروفاراد في الجذع؛ الحساب يحوّل C إلى فاراد داخلياً."
       - "الجزء ٢ متابعة خطأ على الجزء ١ بالقوة −١ (f0 ∝ 1/T0)."
     approved: false
+
+  # ── ٣) النواس الثقلي البسيط (U1C3) — دور · تواتر · عدد الاهتزازات ──
+  - id: U1.L3.P02
+    title: "النواس الثقلي البسيط — مسألة بأجزاء (دور · تواتر · عدد الاهتزازات)"
+    chapter: U1C3
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L3 — النواس الثقلي البسيط"
+      book: "النواس البسيط (سعة صغيرة): T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      L: {set: [0.25, 1.0, 2.25, 4.0], unit: m}
+      dt: {set: [10, 30, 60], unit: s}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      T0: "2*sqrt(pi_sq*L/g)"
+      f: "1/T0"
+      N: "dt/T0"
+    stem: "نواس ثقلي بسيط طول خيطه L = {L} m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز علاقة الدور الخاص T0 للنواس البسيط بدلالة L وg، ثم احسب قيمته العددية."
+        unit: "s"
+        value: "T0"
+        answer: {format: auto}
+        lines:
+          - relation: "دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)"
+            subst: "T0 = 2π·√({L}/10)"
+            expect: ["{L}"]
+            keys: ["2π·√(L/g)", "T0 = 2π√(L/g)"]
+            anti_keys: ["T0 = 2π·√(g/L)", "T0 = 2π·(L/g)"]
+      - label: "٢"
+        ask: "احسب تواتر النواس f."
+        unit: "Hz"
+        value: "f"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: -1}   # f = 1/T0 ⇒ ∝ 1/T0
+        lines:
+          - relation: "التواتر هو مقلوب الدور: f = 1/T0"
+            subst: "f = 1/{T0}"
+            expect: ["{T0}"]
+            keys: ["f = 1/T0", "1/T0"]
+            anti_keys: ["f = T0", "f = 2π/T0"]
+      - label: "٣"
+        ask: "احسب عدد الاهتزازات الكاملة N التي ينجزها النواس خلال مدة Δt = {dt} s."
+        unit: ""
+        value: "N"
+        answer: {format: auto, unit_required: false}
+        follow: {depends_on: "١", power: -1}   # N = Δt/T0 ⇒ ∝ 1/T0
+        lines:
+          - relation: "عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0"
+            subst: "N = {dt}/{T0}"
+            expect: ["{dt}", "{T0}"]
+            keys: ["N = Δt/T0", "Δt/T0"]
+            anti_keys: ["N = T0/Δt", "N = Δt·T0"]
+            unit: false
+    answer_basis: "النواس الثقلي البسيط: T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "N مقدار بلا واحدة ⇒ سطره بلا درجة وحدة (٩ درجات للجزء)."
+      - "الجزءان ٢ و٣ متابعة خطأ على الجزء ١ بالقوة −١."
+    approved: false
+
+  # ── ٤) تفريغ خزّان — تورشيلي والاستمرارية (U1C4) — سرعة · تدفق · سرعة المقطع ──
+  - id: U1.L4.P01
+    title: "تفريغ خزّان (تورشيلي + الاستمرارية) — مسألة بأجزاء"
+    chapter: U1C4
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L4 — ميكانيك الموائع"
+      book: "تورشيلي: v = √(2gh) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      h: {set: [0.2, 0.8, 1.25, 5.0], unit: m}
+      s1cm: {set: [2, 5, 10], unit: "cm²"}
+      s2cm: {set: [4, 10, 20], unit: "cm²"}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      v1: "sqrt(2*g*h)"
+      s1: "s1cm*1e-4"
+      s2: "s2cm*1e-4"
+      Qv: "s1*v1"
+      v2: "Qv/s2"
+    stem: "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = {s1cm} cm² تقع على عمق h = {h} m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = {s2cm} cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز سرعة خروج السائل v1 من الفتحة (علاقة تورشيلي)، ثم احسب قيمتها."
+        unit: "m·s⁻¹"
+        value: "v1"
+        answer: {format: auto}
+        lines:
+          - relation: "تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)"
+            subst: "v1 = √(2·10·{h})"
+            expect: ["{h}"]
+            keys: ["√(2gh)", "v1 = √(2·g·h)"]
+            anti_keys: ["v1 = √(g·h)", "v1 = 2·g·h"]
+      - label: "٢"
+        ask: "احسب التدفق الحجمي Qv الخارج من الفتحة."
+        unit: "m³·s⁻¹"
+        value: "Qv"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}    # Qv = s1·v1 ⇒ ∝ v1
+        lines:
+          - relation: "التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)"
+            subst: "Qv = {s1}·{v1}"
+            expect: ["{s1}", "{v1}"]
+            keys: ["Qv = s·v", "s1·v1"]
+            anti_keys: ["Qv = v1/s1", "Qv = s1/v1"]
+      - label: "٣"
+        ask: "احسب سرعة السائل v2 داخل الأنبوب ذي المقطع s2."
+        unit: "m·s⁻¹"
+        value: "v2"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}    # v2 = Qv/s2 ⇒ ∝ Qv
+        lines:
+          - relation: "انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2"
+            subst: "v2 = {Qv}/{s2}"
+            expect: ["{Qv}", "{s2}"]
+            keys: ["s1·v1 = s2·v2", "الاستمرارية", "Qv/s2"]
+            anti_keys: ["v2 = s2·v1/s1", "v2 = Qv·s2"]
+    answer_basis: "تورشيلي v = √(2gh) (برنولي بين السطح والفتحة) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "المساحات بالسنتيمتر المربّع في الجذع وتُحوَّل إلى m² داخلياً (×10⁻⁴)."
+      - "الجزء ٢ متابعة على الأول والجزء ٣ متابعة على الثاني (بالقوة ١)."
+    approved: false
+
+  # ── ٥) موجة مستقرة على وتر مثبّت الطرفين (U3C1) — سرعة · تواتر · طول الموجة ──
+  - id: U3.L1.P01
+    title: "موجة مستقرة على وتر مثبّت الطرفين — مسألة بأجزاء"
+    chapter: U3C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — الأمواج المستقرة على وتر"
+      book: "v = √(F/μ) · التواترات الخاصة f_n = n·v/(2L) · λ_n = 2L/n"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      F: {set: [10, 40, 90], unit: N}
+      mug: {set: [1, 4], unit: "g·m⁻¹"}
+      L: {set: [0.5, 1.0, 1.5], unit: m}
+      n: {set: [1, 2, 3], unit: ""}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      mu: "mug*1e-3"
+      v: "sqrt(F/mu)"
+      fn: "n*v/(2*L)"
+      lam: "2*L/n"
+    stem: "وتر مشدود مثبّت من طرفيه طوله L = {L} m وكتلته الطولية μ = {mug} g·m⁻¹، مشدود بقوة توتر F = {F} N. نُهزّه فيتشكّل عليه نظام موجات مستقرة بالمدروج (الرنين) رقم n = {n}."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز سرعة انتشار الموجة v على الوتر، ثم احسب قيمتها."
+        unit: "m·s⁻¹"
+        value: "v"
+        answer: {format: auto}
+        lines:
+          - relation: "سرعة انتشار الموجة المستعرضة على وتر: v = √(F/μ)"
+            subst: "v = √({F}/{mu})"
+            expect: ["{F}", "{mu}"]
+            keys: ["√(F/μ)", "v = √(F/µ)"]
+            anti_keys: ["v = √(μ/F)", "v = F/μ"]
+      - label: "٢"
+        ask: "احسب التواتر الموافق للمدروج رقم n = {n}."
+        unit: "Hz"
+        value: "fn"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}    # f_n = n·v/(2L) ⇒ ∝ v
+        lines:
+          - relation: "التواترات الخاصة لوتر مثبّت الطرفين: f_n = n·v/(2L)"
+            subst: "f_n = {n}·{v}/(2·{L})"
+            expect: ["{v}", "{L}"]
+            keys: ["n·v/(2L)", "f_n = nv/2L"]
+            anti_keys: ["f_n = n·v/(4L)", "f_n = v/(2L)"]
+      - label: "٣"
+        ask: "احسب طول الموجة λ الموافق لهذا المدروج."
+        unit: "m"
+        value: "lam"
+        answer: {format: auto}
+        lines:
+          - relation: "طول موجة المدروج n على وتر مثبّت الطرفين: λ_n = 2L/n"
+            subst: "λ_n = 2·{L}/{n}"
+            expect: ["{L}", "{n}"]
+            keys: ["2L/n", "λ_n = 2L/n"]
+            anti_keys: ["λ_n = L/n", "λ_n = 4L/n"]
+    answer_basis: "الوتر المثبّت الطرفين: v = √(F/μ) · f_n = n·v/(2L) · λ_n = 2L/n. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "μ بالغرام لكل متر في الجذع وتُحوَّل إلى kg·m⁻¹ داخلياً (×10⁻³)."
+      - "الجزء ٢ متابعة على الأول (f_n ∝ v)؛ الجزء ٣ مستقل عن سرعة الطالب."
+    approved: false

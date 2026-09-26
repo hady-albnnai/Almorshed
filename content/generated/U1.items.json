@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 573,
+  "poolSize": 591,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 24,
+  "partsPool": 42,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -27891,6 +27891,3930 @@
    "reviewNotes": [
     "القيم مختارة لأرقام نظيفة (T0 ∈ {1,2,4} s تقريباً)؛ السحب غير النظيف يُرفض تلقائياً.",
     "الجزء ٢ متابعة خطأ على الجزء ١ بالقوة −٢ (a_max ∝ 1/T0²)."
+   ]
+  },
+  {
+   "id": 21101,
+   "templateId": "U1.L3.P02",
+   "unit": "U1",
+   "chapter": "U1C3",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 29,
+   "approved": false,
+   "stem": "نواس ثقلي بسيط طول خيطه L = 0.25 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1 s — 10 درجة",
+    "٢) 1 Hz — 10 درجة",
+    "٣) 30 — 9 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 30.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "2π·√(L/g)",
+      "T0 = 2π√(L/g)"
+     ],
+     "antiKeys": [
+      "T0 = 2π·√(g/L)",
+      "T0 = 2π·(L/g)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: T0 = 2π·√(0.25/10)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.25"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = 1/T0",
+      "1/T0"
+     ],
+     "antiKeys": [
+      "f = T0",
+      "f = 2π/T0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f = 1/1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "N = Δt/T0",
+      "Δt/T0"
+     ],
+     "antiKeys": [
+      "N = T0/Δt",
+      "N = Δt·T0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: N = 30/1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "30",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 30",
+     "points": 1,
+     "kind": "result"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز علاقة الدور الخاص T0 للنواس البسيط بدلالة L وg، ثم احسب قيمته العددية.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "2π·√(L/g)",
+        "T0 = 2π√(L/g)"
+       ],
+       "antiKeys": [
+        "T0 = 2π·√(g/L)",
+        "T0 = 2π·(L/g)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: T0 = 2π·√(0.25/10)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.25"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "s",
+      "text": "1 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب تواتر النواس f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = 1/T0",
+        "1/T0"
+       ],
+       "antiKeys": [
+        "f = T0",
+        "f = 2π/T0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f = 1/1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "Hz",
+      "text": "1 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عدد الاهتزازات الكاملة N التي ينجزها النواس خلال مدة Δt = 30 s.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "N = Δt/T0",
+        "Δt/T0"
+       ],
+       "antiKeys": [
+        "N = T0/Δt",
+        "N = Δt·T0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: N = 30/1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "30",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 30",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 30.0,
+      "unit": "",
+      "text": "30",
+      "tolerance": 0.02,
+      "unitRequired": false
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 30.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النواس الثقلي البسيط: T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — النواس الثقلي البسيط",
+    "book": "النواس البسيط (سعة صغيرة): T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "N مقدار بلا واحدة ⇒ سطره بلا درجة وحدة (٩ درجات للجزء).",
+    "الجزءان ٢ و٣ متابعة خطأ على الجزء ١ بالقوة −١."
+   ]
+  },
+  {
+   "id": 21102,
+   "templateId": "U1.L3.P02",
+   "unit": "U1",
+   "chapter": "U1C3",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 29,
+   "approved": false,
+   "stem": "نواس ثقلي بسيط طول خيطه L = 4 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4 s — 10 درجة",
+    "٢) 0.25 Hz — 10 درجة",
+    "٣) 7.5 — 9 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 30.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "2π·√(L/g)",
+      "T0 = 2π√(L/g)"
+     ],
+     "antiKeys": [
+      "T0 = 2π·√(g/L)",
+      "T0 = 2π·(L/g)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: T0 = 2π·√(4/10)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = 1/T0",
+      "1/T0"
+     ],
+     "antiKeys": [
+      "f = T0",
+      "f = 2π/T0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f = 1/4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.25 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "N = Δt/T0",
+      "Δt/T0"
+     ],
+     "antiKeys": [
+      "N = T0/Δt",
+      "N = Δt·T0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: N = 30/4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "30",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 7.5",
+     "points": 1,
+     "kind": "result"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز علاقة الدور الخاص T0 للنواس البسيط بدلالة L وg، ثم احسب قيمته العددية.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "2π·√(L/g)",
+        "T0 = 2π√(L/g)"
+       ],
+       "antiKeys": [
+        "T0 = 2π·√(g/L)",
+        "T0 = 2π·(L/g)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: T0 = 2π·√(4/10)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.0,
+      "unit": "s",
+      "text": "4 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب تواتر النواس f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = 1/T0",
+        "1/T0"
+       ],
+       "antiKeys": [
+        "f = T0",
+        "f = 2π/T0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f = 1/4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.25 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.25,
+      "unit": "Hz",
+      "text": "0.25 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عدد الاهتزازات الكاملة N التي ينجزها النواس خلال مدة Δt = 30 s.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "N = Δt/T0",
+        "Δt/T0"
+       ],
+       "antiKeys": [
+        "N = T0/Δt",
+        "N = Δt·T0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: N = 30/4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "30",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 7.5",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.5,
+      "unit": "",
+      "text": "7.5",
+      "tolerance": 0.02,
+      "unitRequired": false
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 30.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النواس الثقلي البسيط: T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — النواس الثقلي البسيط",
+    "book": "النواس البسيط (سعة صغيرة): T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "N مقدار بلا واحدة ⇒ سطره بلا درجة وحدة (٩ درجات للجزء).",
+    "الجزءان ٢ و٣ متابعة خطأ على الجزء ١ بالقوة −١."
+   ]
+  },
+  {
+   "id": 21103,
+   "templateId": "U1.L3.P02",
+   "unit": "U1",
+   "chapter": "U1C3",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 29,
+   "approved": false,
+   "stem": "نواس ثقلي بسيط طول خيطه L = 1 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2 s — 10 درجة",
+    "٢) 0.5 Hz — 10 درجة",
+    "٣) 30 — 9 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 60.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "2π·√(L/g)",
+      "T0 = 2π√(L/g)"
+     ],
+     "antiKeys": [
+      "T0 = 2π·√(g/L)",
+      "T0 = 2π·(L/g)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: T0 = 2π·√(1/10)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = 1/T0",
+      "1/T0"
+     ],
+     "antiKeys": [
+      "f = T0",
+      "f = 2π/T0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f = 1/2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.5 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "N = Δt/T0",
+      "Δt/T0"
+     ],
+     "antiKeys": [
+      "N = T0/Δt",
+      "N = Δt·T0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: N = 60/2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "60",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 30",
+     "points": 1,
+     "kind": "result"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز علاقة الدور الخاص T0 للنواس البسيط بدلالة L وg، ثم احسب قيمته العددية.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "2π·√(L/g)",
+        "T0 = 2π√(L/g)"
+       ],
+       "antiKeys": [
+        "T0 = 2π·√(g/L)",
+        "T0 = 2π·(L/g)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: T0 = 2π·√(1/10)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "s",
+      "text": "2 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب تواتر النواس f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = 1/T0",
+        "1/T0"
+       ],
+       "antiKeys": [
+        "f = T0",
+        "f = 2π/T0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f = 1/2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.5 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.5,
+      "unit": "Hz",
+      "text": "0.5 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عدد الاهتزازات الكاملة N التي ينجزها النواس خلال مدة Δt = 60 s.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "N = Δt/T0",
+        "Δt/T0"
+       ],
+       "antiKeys": [
+        "N = T0/Δt",
+        "N = Δt·T0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: N = 60/2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "60",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 30",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 30.0,
+      "unit": "",
+      "text": "30",
+      "tolerance": 0.02,
+      "unitRequired": false
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 60.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النواس الثقلي البسيط: T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — النواس الثقلي البسيط",
+    "book": "النواس البسيط (سعة صغيرة): T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "N مقدار بلا واحدة ⇒ سطره بلا درجة وحدة (٩ درجات للجزء).",
+    "الجزءان ٢ و٣ متابعة خطأ على الجزء ١ بالقوة −١."
+   ]
+  },
+  {
+   "id": 21104,
+   "templateId": "U1.L3.P02",
+   "unit": "U1",
+   "chapter": "U1C3",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 29,
+   "approved": false,
+   "stem": "نواس ثقلي بسيط طول خيطه L = 1 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2 s — 10 درجة",
+    "٢) 0.5 Hz — 10 درجة",
+    "٣) 15 — 9 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 30.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "2π·√(L/g)",
+      "T0 = 2π√(L/g)"
+     ],
+     "antiKeys": [
+      "T0 = 2π·√(g/L)",
+      "T0 = 2π·(L/g)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: T0 = 2π·√(1/10)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = 1/T0",
+      "1/T0"
+     ],
+     "antiKeys": [
+      "f = T0",
+      "f = 2π/T0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f = 1/2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.5 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "N = Δt/T0",
+      "Δt/T0"
+     ],
+     "antiKeys": [
+      "N = T0/Δt",
+      "N = Δt·T0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: N = 30/2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "30",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 15",
+     "points": 1,
+     "kind": "result"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز علاقة الدور الخاص T0 للنواس البسيط بدلالة L وg، ثم احسب قيمته العددية.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "2π·√(L/g)",
+        "T0 = 2π√(L/g)"
+       ],
+       "antiKeys": [
+        "T0 = 2π·√(g/L)",
+        "T0 = 2π·(L/g)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: T0 = 2π·√(1/10)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "s",
+      "text": "2 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب تواتر النواس f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = 1/T0",
+        "1/T0"
+       ],
+       "antiKeys": [
+        "f = T0",
+        "f = 2π/T0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f = 1/2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.5 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.5,
+      "unit": "Hz",
+      "text": "0.5 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عدد الاهتزازات الكاملة N التي ينجزها النواس خلال مدة Δt = 30 s.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "N = Δt/T0",
+        "Δt/T0"
+       ],
+       "antiKeys": [
+        "N = T0/Δt",
+        "N = Δt·T0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: N = 30/2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "30",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 15",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 15.0,
+      "unit": "",
+      "text": "15",
+      "tolerance": 0.02,
+      "unitRequired": false
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 30.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النواس الثقلي البسيط: T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — النواس الثقلي البسيط",
+    "book": "النواس البسيط (سعة صغيرة): T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "N مقدار بلا واحدة ⇒ سطره بلا درجة وحدة (٩ درجات للجزء).",
+    "الجزءان ٢ و٣ متابعة خطأ على الجزء ١ بالقوة −١."
+   ]
+  },
+  {
+   "id": 21109,
+   "templateId": "U1.L3.P02",
+   "unit": "U1",
+   "chapter": "U1C3",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 29,
+   "approved": false,
+   "stem": "نواس ثقلي بسيط طول خيطه L = 0.25 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1 s — 10 درجة",
+    "٢) 1 Hz — 10 درجة",
+    "٣) 60 — 9 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 60.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "2π·√(L/g)",
+      "T0 = 2π√(L/g)"
+     ],
+     "antiKeys": [
+      "T0 = 2π·√(g/L)",
+      "T0 = 2π·(L/g)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: T0 = 2π·√(0.25/10)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.25"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = 1/T0",
+      "1/T0"
+     ],
+     "antiKeys": [
+      "f = T0",
+      "f = 2π/T0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f = 1/1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "N = Δt/T0",
+      "Δt/T0"
+     ],
+     "antiKeys": [
+      "N = T0/Δt",
+      "N = Δt·T0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: N = 60/1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "60",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 60",
+     "points": 1,
+     "kind": "result"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز علاقة الدور الخاص T0 للنواس البسيط بدلالة L وg، ثم احسب قيمته العددية.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "2π·√(L/g)",
+        "T0 = 2π√(L/g)"
+       ],
+       "antiKeys": [
+        "T0 = 2π·√(g/L)",
+        "T0 = 2π·(L/g)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: T0 = 2π·√(0.25/10)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.25"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "s",
+      "text": "1 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب تواتر النواس f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = 1/T0",
+        "1/T0"
+       ],
+       "antiKeys": [
+        "f = T0",
+        "f = 2π/T0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f = 1/1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "Hz",
+      "text": "1 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عدد الاهتزازات الكاملة N التي ينجزها النواس خلال مدة Δt = 60 s.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "N = Δt/T0",
+        "Δt/T0"
+       ],
+       "antiKeys": [
+        "N = T0/Δt",
+        "N = Δt·T0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: N = 60/1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "60",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 60",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 60.0,
+      "unit": "",
+      "text": "60",
+      "tolerance": 0.02,
+      "unitRequired": false
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 60.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النواس الثقلي البسيط: T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — النواس الثقلي البسيط",
+    "book": "النواس البسيط (سعة صغيرة): T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "N مقدار بلا واحدة ⇒ سطره بلا درجة وحدة (٩ درجات للجزء).",
+    "الجزءان ٢ و٣ متابعة خطأ على الجزء ١ بالقوة −١."
+   ]
+  },
+  {
+   "id": 21112,
+   "templateId": "U1.L3.P02",
+   "unit": "U1",
+   "chapter": "U1C3",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 29,
+   "approved": false,
+   "stem": "نواس ثقلي بسيط طول خيطه L = 1 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2 s — 10 درجة",
+    "٢) 0.5 Hz — 10 درجة",
+    "٣) 5 — 9 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 10.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "2π·√(L/g)",
+      "T0 = 2π√(L/g)"
+     ],
+     "antiKeys": [
+      "T0 = 2π·√(g/L)",
+      "T0 = 2π·(L/g)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: T0 = 2π·√(1/10)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = 1/T0",
+      "1/T0"
+     ],
+     "antiKeys": [
+      "f = T0",
+      "f = 2π/T0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f = 1/2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.5 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "N = Δt/T0",
+      "Δt/T0"
+     ],
+     "antiKeys": [
+      "N = T0/Δt",
+      "N = Δt·T0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: N = 10/2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 5",
+     "points": 1,
+     "kind": "result"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز علاقة الدور الخاص T0 للنواس البسيط بدلالة L وg، ثم احسب قيمته العددية.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: دور النواس الثقلي البسيط للسعات الصغيرة: T0 = 2π·√(L/g)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "2π·√(L/g)",
+        "T0 = 2π√(L/g)"
+       ],
+       "antiKeys": [
+        "T0 = 2π·√(g/L)",
+        "T0 = 2π·(L/g)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: T0 = 2π·√(1/10)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "s",
+      "text": "2 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب تواتر النواس f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر هو مقلوب الدور: f = 1/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = 1/T0",
+        "1/T0"
+       ],
+       "antiKeys": [
+        "f = T0",
+        "f = 2π/T0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f = 1/2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.5 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.5,
+      "unit": "Hz",
+      "text": "0.5 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عدد الاهتزازات الكاملة N التي ينجزها النواس خلال مدة Δt = 10 s.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عدد الاهتزازات الكاملة خلال المدة Δt: N = Δt/T0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "N = Δt/T0",
+        "Δt/T0"
+       ],
+       "antiKeys": [
+        "N = T0/Δt",
+        "N = Δt·T0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: N = 10/2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 5",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "",
+      "text": "5",
+      "tolerance": 0.02,
+      "unitRequired": false
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 10.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النواس الثقلي البسيط: T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — النواس الثقلي البسيط",
+    "book": "النواس البسيط (سعة صغيرة): T0 = 2π√(L/g) · f = 1/T0 · N = Δt/T0",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "N مقدار بلا واحدة ⇒ سطره بلا درجة وحدة (٩ درجات للجزء).",
+    "الجزءان ٢ و٣ متابعة خطأ على الجزء ١ بالقوة −١."
+   ]
+  },
+  {
+   "id": 21113,
+   "templateId": "U1.L4.P01",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 5 cm² تقع على عمق h = 0.2 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 10 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2 m·s⁻¹ — 10 درجة",
+    "٢) 10⁻³ m³·s⁻¹ — 10 درجة",
+    "٣) 1 m·s⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.0005,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 1000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "√(2gh)",
+      "v1 = √(2·g·h)"
+     ],
+     "antiKeys": [
+      "v1 = √(g·h)",
+      "v1 = 2·g·h"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v1 = √(2·10·0.2)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qv = s·v",
+      "s1·v1"
+     ],
+     "antiKeys": [
+      "Qv = v1/s1",
+      "Qv = s1/v1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qv = 0.0005·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0005",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10⁻³ m³·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "s1·v1 = s2·v2",
+      "الاستمرارية",
+      "Qv/s2"
+     ],
+     "antiKeys": [
+      "v2 = s2·v1/s1",
+      "v2 = Qv·s2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: v2 = 0.001/0.001",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.001",
+      "0.001"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز سرعة خروج السائل v1 من الفتحة (علاقة تورشيلي)، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "√(2gh)",
+        "v1 = √(2·g·h)"
+       ],
+       "antiKeys": [
+        "v1 = √(g·h)",
+        "v1 = 2·g·h"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v1 = √(2·10·0.2)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "m·s⁻¹",
+      "text": "2 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التدفق الحجمي Qv الخارج من الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qv = s·v",
+        "s1·v1"
+       ],
+       "antiKeys": [
+        "Qv = v1/s1",
+        "Qv = s1/v1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qv = 0.0005·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0005",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10⁻³ m³·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.001,
+      "unit": "m³·s⁻¹",
+      "text": "10⁻³ m³·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.0005,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب سرعة السائل v2 داخل الأنبوب ذي المقطع s2.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "s1·v1 = s2·v2",
+        "الاستمرارية",
+        "Qv/s2"
+       ],
+       "antiKeys": [
+        "v2 = s2·v1/s1",
+        "v2 = Qv·s2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: v2 = 0.001/0.001",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.001",
+        "0.001"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "m·s⁻¹",
+      "text": "1 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 1000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "تورشيلي v = √(2gh) (برنولي بين السطح والفتحة) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع",
+    "book": "تورشيلي: v = √(2gh) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "المساحات بالسنتيمتر المربّع في الجذع وتُحوَّل إلى m² داخلياً (×10⁻⁴).",
+    "الجزء ٢ متابعة على الأول والجزء ٣ متابعة على الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21114,
+   "templateId": "U1.L4.P01",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 10 cm² تقع على عمق h = 0.2 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 4 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2 m·s⁻¹ — 10 درجة",
+    "٢) 2×10⁻³ m³·s⁻¹ — 10 درجة",
+    "٣) 5 m·s⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.001,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 2500.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "√(2gh)",
+      "v1 = √(2·g·h)"
+     ],
+     "antiKeys": [
+      "v1 = √(g·h)",
+      "v1 = 2·g·h"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v1 = √(2·10·0.2)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qv = s·v",
+      "s1·v1"
+     ],
+     "antiKeys": [
+      "Qv = v1/s1",
+      "Qv = s1/v1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qv = 0.001·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.001",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2×10⁻³ m³·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "s1·v1 = s2·v2",
+      "الاستمرارية",
+      "Qv/s2"
+     ],
+     "antiKeys": [
+      "v2 = s2·v1/s1",
+      "v2 = Qv·s2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: v2 = 0.002/0.0004",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.002",
+      "0.0004"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 5 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز سرعة خروج السائل v1 من الفتحة (علاقة تورشيلي)، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "√(2gh)",
+        "v1 = √(2·g·h)"
+       ],
+       "antiKeys": [
+        "v1 = √(g·h)",
+        "v1 = 2·g·h"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v1 = √(2·10·0.2)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "m·s⁻¹",
+      "text": "2 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التدفق الحجمي Qv الخارج من الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qv = s·v",
+        "s1·v1"
+       ],
+       "antiKeys": [
+        "Qv = v1/s1",
+        "Qv = s1/v1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qv = 0.001·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.001",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2×10⁻³ m³·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.002,
+      "unit": "m³·s⁻¹",
+      "text": "2×10⁻³ m³·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.001,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب سرعة السائل v2 داخل الأنبوب ذي المقطع s2.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "s1·v1 = s2·v2",
+        "الاستمرارية",
+        "Qv/s2"
+       ],
+       "antiKeys": [
+        "v2 = s2·v1/s1",
+        "v2 = Qv·s2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: v2 = 0.002/0.0004",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.002",
+        "0.0004"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 5 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "m·s⁻¹",
+      "text": "5 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 2500.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "تورشيلي v = √(2gh) (برنولي بين السطح والفتحة) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع",
+    "book": "تورشيلي: v = √(2gh) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "المساحات بالسنتيمتر المربّع في الجذع وتُحوَّل إلى m² داخلياً (×10⁻⁴).",
+    "الجزء ٢ متابعة على الأول والجزء ٣ متابعة على الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21115,
+   "templateId": "U1.L4.P01",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 5 cm² تقع على عمق h = 0.8 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 20 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4 m·s⁻¹ — 10 درجة",
+    "٢) 2×10⁻³ m³·s⁻¹ — 10 درجة",
+    "٣) 1 m·s⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.0005,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 500.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "√(2gh)",
+      "v1 = √(2·g·h)"
+     ],
+     "antiKeys": [
+      "v1 = √(g·h)",
+      "v1 = 2·g·h"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v1 = √(2·10·0.8)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.8"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qv = s·v",
+      "s1·v1"
+     ],
+     "antiKeys": [
+      "Qv = v1/s1",
+      "Qv = s1/v1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qv = 0.0005·4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0005",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2×10⁻³ m³·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "s1·v1 = s2·v2",
+      "الاستمرارية",
+      "Qv/s2"
+     ],
+     "antiKeys": [
+      "v2 = s2·v1/s1",
+      "v2 = Qv·s2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: v2 = 0.002/0.002",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.002",
+      "0.002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز سرعة خروج السائل v1 من الفتحة (علاقة تورشيلي)، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "√(2gh)",
+        "v1 = √(2·g·h)"
+       ],
+       "antiKeys": [
+        "v1 = √(g·h)",
+        "v1 = 2·g·h"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v1 = √(2·10·0.8)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.8"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.0,
+      "unit": "m·s⁻¹",
+      "text": "4 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التدفق الحجمي Qv الخارج من الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qv = s·v",
+        "s1·v1"
+       ],
+       "antiKeys": [
+        "Qv = v1/s1",
+        "Qv = s1/v1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qv = 0.0005·4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0005",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2×10⁻³ m³·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.002,
+      "unit": "m³·s⁻¹",
+      "text": "2×10⁻³ m³·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.0005,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب سرعة السائل v2 داخل الأنبوب ذي المقطع s2.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "s1·v1 = s2·v2",
+        "الاستمرارية",
+        "Qv/s2"
+       ],
+       "antiKeys": [
+        "v2 = s2·v1/s1",
+        "v2 = Qv·s2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: v2 = 0.002/0.002",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.002",
+        "0.002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "m·s⁻¹",
+      "text": "1 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 500.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "تورشيلي v = √(2gh) (برنولي بين السطح والفتحة) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع",
+    "book": "تورشيلي: v = √(2gh) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "المساحات بالسنتيمتر المربّع في الجذع وتُحوَّل إلى m² داخلياً (×10⁻⁴).",
+    "الجزء ٢ متابعة على الأول والجزء ٣ متابعة على الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21116,
+   "templateId": "U1.L4.P01",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 10 cm² تقع على عمق h = 0.8 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 20 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4 m·s⁻¹ — 10 درجة",
+    "٢) 4×10⁻³ m³·s⁻¹ — 10 درجة",
+    "٣) 2 m·s⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.001,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 500.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "√(2gh)",
+      "v1 = √(2·g·h)"
+     ],
+     "antiKeys": [
+      "v1 = √(g·h)",
+      "v1 = 2·g·h"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v1 = √(2·10·0.8)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.8"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qv = s·v",
+      "s1·v1"
+     ],
+     "antiKeys": [
+      "Qv = v1/s1",
+      "Qv = s1/v1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qv = 0.001·4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.001",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4×10⁻³ m³·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "s1·v1 = s2·v2",
+      "الاستمرارية",
+      "Qv/s2"
+     ],
+     "antiKeys": [
+      "v2 = s2·v1/s1",
+      "v2 = Qv·s2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: v2 = 0.004/0.002",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.004",
+      "0.002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز سرعة خروج السائل v1 من الفتحة (علاقة تورشيلي)، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "√(2gh)",
+        "v1 = √(2·g·h)"
+       ],
+       "antiKeys": [
+        "v1 = √(g·h)",
+        "v1 = 2·g·h"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v1 = √(2·10·0.8)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.8"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.0,
+      "unit": "m·s⁻¹",
+      "text": "4 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التدفق الحجمي Qv الخارج من الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qv = s·v",
+        "s1·v1"
+       ],
+       "antiKeys": [
+        "Qv = v1/s1",
+        "Qv = s1/v1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qv = 0.001·4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.001",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4×10⁻³ m³·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.004,
+      "unit": "m³·s⁻¹",
+      "text": "4×10⁻³ m³·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.001,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب سرعة السائل v2 داخل الأنبوب ذي المقطع s2.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "s1·v1 = s2·v2",
+        "الاستمرارية",
+        "Qv/s2"
+       ],
+       "antiKeys": [
+        "v2 = s2·v1/s1",
+        "v2 = Qv·s2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: v2 = 0.004/0.002",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.004",
+        "0.002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "m·s⁻¹",
+      "text": "2 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 500.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "تورشيلي v = √(2gh) (برنولي بين السطح والفتحة) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع",
+    "book": "تورشيلي: v = √(2gh) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "المساحات بالسنتيمتر المربّع في الجذع وتُحوَّل إلى m² داخلياً (×10⁻⁴).",
+    "الجزء ٢ متابعة على الأول والجزء ٣ متابعة على الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21117,
+   "templateId": "U1.L4.P01",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 5 cm² تقع على عمق h = 5 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 4 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10 m·s⁻¹ — 10 درجة",
+    "٢) 5×10⁻³ m³·s⁻¹ — 10 درجة",
+    "٣) 12.5 m·s⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.0005,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 2500.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "√(2gh)",
+      "v1 = √(2·g·h)"
+     ],
+     "antiKeys": [
+      "v1 = √(g·h)",
+      "v1 = 2·g·h"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v1 = √(2·10·5)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qv = s·v",
+      "s1·v1"
+     ],
+     "antiKeys": [
+      "Qv = v1/s1",
+      "Qv = s1/v1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qv = 0.0005·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0005",
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5×10⁻³ m³·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "s1·v1 = s2·v2",
+      "الاستمرارية",
+      "Qv/s2"
+     ],
+     "antiKeys": [
+      "v2 = s2·v1/s1",
+      "v2 = Qv·s2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: v2 = 0.005/0.0004",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.005",
+      "0.0004"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 12.5 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز سرعة خروج السائل v1 من الفتحة (علاقة تورشيلي)، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "√(2gh)",
+        "v1 = √(2·g·h)"
+       ],
+       "antiKeys": [
+        "v1 = √(g·h)",
+        "v1 = 2·g·h"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v1 = √(2·10·5)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "m·s⁻¹",
+      "text": "10 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التدفق الحجمي Qv الخارج من الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qv = s·v",
+        "s1·v1"
+       ],
+       "antiKeys": [
+        "Qv = v1/s1",
+        "Qv = s1/v1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qv = 0.0005·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0005",
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5×10⁻³ m³·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.005,
+      "unit": "m³·s⁻¹",
+      "text": "5×10⁻³ m³·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.0005,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب سرعة السائل v2 داخل الأنبوب ذي المقطع s2.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "s1·v1 = s2·v2",
+        "الاستمرارية",
+        "Qv/s2"
+       ],
+       "antiKeys": [
+        "v2 = s2·v1/s1",
+        "v2 = Qv·s2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: v2 = 0.005/0.0004",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.005",
+        "0.0004"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 12.5 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 12.5,
+      "unit": "m·s⁻¹",
+      "text": "12.5 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 2500.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "تورشيلي v = √(2gh) (برنولي بين السطح والفتحة) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع",
+    "book": "تورشيلي: v = √(2gh) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "المساحات بالسنتيمتر المربّع في الجذع وتُحوَّل إلى m² داخلياً (×10⁻⁴).",
+    "الجزء ٢ متابعة على الأول والجزء ٣ متابعة على الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21119,
+   "templateId": "U1.L4.P01",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 5 cm² تقع على عمق h = 0.2 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 4 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2 m·s⁻¹ — 10 درجة",
+    "٢) 10⁻³ m³·s⁻¹ — 10 درجة",
+    "٣) 2.5 m·s⁻¹ — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.0005,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 2500.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "√(2gh)",
+      "v1 = √(2·g·h)"
+     ],
+     "antiKeys": [
+      "v1 = √(g·h)",
+      "v1 = 2·g·h"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v1 = √(2·10·0.2)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Qv = s·v",
+      "s1·v1"
+     ],
+     "antiKeys": [
+      "Qv = v1/s1",
+      "Qv = s1/v1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Qv = 0.0005·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0005",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10⁻³ m³·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "s1·v1 = s2·v2",
+      "الاستمرارية",
+      "Qv/s2"
+     ],
+     "antiKeys": [
+      "v2 = s2·v1/s1",
+      "v2 = Qv·s2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: v2 = 0.001/0.0004",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.001",
+      "0.0004"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.5 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز سرعة خروج السائل v1 من الفتحة (علاقة تورشيلي)، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تطبيق علاقة برنولي بين السطح الحر والفتحة (تورشيلي): v1 = √(2·g·h)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "√(2gh)",
+        "v1 = √(2·g·h)"
+       ],
+       "antiKeys": [
+        "v1 = √(g·h)",
+        "v1 = 2·g·h"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v1 = √(2·10·0.2)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "m·s⁻¹",
+      "text": "2 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التدفق الحجمي Qv الخارج من الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التدفق الحجمي عبر مقطع: Qv = s1·v1 (بعد تحويل s1 إلى m²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Qv = s·v",
+        "s1·v1"
+       ],
+       "antiKeys": [
+        "Qv = v1/s1",
+        "Qv = s1/v1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Qv = 0.0005·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0005",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10⁻³ m³·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.001,
+      "unit": "m³·s⁻¹",
+      "text": "10⁻³ m³·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.0005,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب سرعة السائل v2 داخل الأنبوب ذي المقطع s2.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: انحفاظ التدفق (الاستمرارية): s1·v1 = s2·v2 ⇒ v2 = Qv/s2",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "s1·v1 = s2·v2",
+        "الاستمرارية",
+        "Qv/s2"
+       ],
+       "antiKeys": [
+        "v2 = s2·v1/s1",
+        "v2 = Qv·s2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: v2 = 0.001/0.0004",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.001",
+        "0.0004"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.5 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.5,
+      "unit": "m·s⁻¹",
+      "text": "2.5 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 2500.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "تورشيلي v = √(2gh) (برنولي بين السطح والفتحة) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع",
+    "book": "تورشيلي: v = √(2gh) · التدفق Qv = s·v · الاستمرارية s1·v1 = s2·v2",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "المساحات بالسنتيمتر المربّع في الجذع وتُحوَّل إلى m² داخلياً (×10⁻⁴).",
+    "الجزء ٢ متابعة على الأول والجزء ٣ متابعة على الثاني (بالقوة ١)."
    ]
   }
  ]
