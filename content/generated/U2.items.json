@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 648,
+  "poolSize": 678,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 99,
+  "partsPool": 129,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -18654,6 +18654,1986 @@
    },
    "reviewNotes": [
     "سلسلة متابعة كاملة: العزم يتبع القوة والعزم الكلي يتبع عزم اللفّة."
+   ]
+  },
+  {
+   "id": 23053,
+   "templateId": "U2.L3.P02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وشيعة مسطّحة عدد لفّاتها N = 500، مساحة كل لفّة S = 200 cm²، موضوعة في حقل مغناطيسي عمودي على مستواها. يزول الحقل من B = 0.2 T إلى الصفر خلال Δt = 0.2 s، والوشيعة مغلقة على مقاومة R = 10 Ω.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4×10⁻³ Wb — 10 درجة",
+    "٢) 10 V — 10 درجة",
+    "٣) 1 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2500.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔΦ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "ΔΦ = B/S",
+      "ΔΦ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔΦ = 0.2·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4×10⁻³ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = N·ΔΦ/Δt",
+      "N·ΔΦ/Δt"
+     ],
+     "antiKeys": [
+      "e = ΔΦ/(N·Δt)",
+      "e = N·ΔΦ·Δt"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: e = 500·0.004/0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: I = 10/10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب تغيّر التدفق المغناطيسي ΔΦ عبر لفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔΦ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "ΔΦ = B/S",
+        "ΔΦ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔΦ = 0.2·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4×10⁻³ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.004,
+      "unit": "Wb",
+      "text": "4×10⁻³ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المحركة الحثية الوسطى e المتولّدة في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = N·ΔΦ/Δt",
+        "N·ΔΦ/Δt"
+       ],
+       "antiKeys": [
+        "e = ΔΦ/(N·Δt)",
+        "e = N·ΔΦ·Δt"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: e = 500·0.004/0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "V",
+      "text": "10 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2500.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الحثّي I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: I = 10/10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "A",
+      "text": "1 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التحريض: ΔΦ = B·S · e = N·ΔΦ/Δt (فارادي) · I = e/R (أوم). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "ΔΦ = B·S · قانون فارادي e = N·ΔΦ/Δt · قانون أوم I = e/R",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "ΔΦ صغير ⇒ صيغة علمية؛ e وI مقرَّبان إلى ٣ أرقام.",
+    "سلسلة متابعة كاملة: e يتبع ΔΦ و I يتبع e."
+   ]
+  },
+  {
+   "id": 23054,
+   "templateId": "U2.L3.P02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وشيعة مسطّحة عدد لفّاتها N = 200، مساحة كل لفّة S = 100 cm²، موضوعة في حقل مغناطيسي عمودي على مستواها. يزول الحقل من B = 0.5 T إلى الصفر خلال Δt = 0.5 s، والوشيعة مغلقة على مقاومة R = 20 Ω.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 5×10⁻³ Wb — 10 درجة",
+    "٢) 2 V — 10 درجة",
+    "٣) 0.1 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 400.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.05,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔΦ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "ΔΦ = B/S",
+      "ΔΦ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔΦ = 0.5·0.01",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 5×10⁻³ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = N·ΔΦ/Δt",
+      "N·ΔΦ/Δt"
+     ],
+     "antiKeys": [
+      "e = ΔΦ/(N·Δt)",
+      "e = N·ΔΦ·Δt"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: e = 200·0.005/0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: I = 2/20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.1 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب تغيّر التدفق المغناطيسي ΔΦ عبر لفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔΦ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "ΔΦ = B/S",
+        "ΔΦ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔΦ = 0.5·0.01",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 5×10⁻³ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.005,
+      "unit": "Wb",
+      "text": "5×10⁻³ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المحركة الحثية الوسطى e المتولّدة في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = N·ΔΦ/Δt",
+        "N·ΔΦ/Δt"
+       ],
+       "antiKeys": [
+        "e = ΔΦ/(N·Δt)",
+        "e = N·ΔΦ·Δt"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: e = 200·0.005/0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "V",
+      "text": "2 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 400.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الحثّي I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: I = 2/20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.1 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.1,
+      "unit": "A",
+      "text": "0.1 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.05,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التحريض: ΔΦ = B·S · e = N·ΔΦ/Δt (فارادي) · I = e/R (أوم). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "ΔΦ = B·S · قانون فارادي e = N·ΔΦ/Δt · قانون أوم I = e/R",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "ΔΦ صغير ⇒ صيغة علمية؛ e وI مقرَّبان إلى ٣ أرقام.",
+    "سلسلة متابعة كاملة: e يتبع ΔΦ و I يتبع e."
+   ]
+  },
+  {
+   "id": 23055,
+   "templateId": "U2.L3.P02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وشيعة مسطّحة عدد لفّاتها N = 200، مساحة كل لفّة S = 200 cm²، موضوعة في حقل مغناطيسي عمودي على مستواها. يزول الحقل من B = 0.2 T إلى الصفر خلال Δt = 0.1 s، والوشيعة مغلقة على مقاومة R = 10 Ω.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4×10⁻³ Wb — 10 درجة",
+    "٢) 8 V — 10 درجة",
+    "٣) 0.8 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔΦ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "ΔΦ = B/S",
+      "ΔΦ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔΦ = 0.2·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4×10⁻³ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = N·ΔΦ/Δt",
+      "N·ΔΦ/Δt"
+     ],
+     "antiKeys": [
+      "e = ΔΦ/(N·Δt)",
+      "e = N·ΔΦ·Δt"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: e = 200·0.004/0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 8 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: I = 8/10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.8 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب تغيّر التدفق المغناطيسي ΔΦ عبر لفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔΦ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "ΔΦ = B/S",
+        "ΔΦ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔΦ = 0.2·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4×10⁻³ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.004,
+      "unit": "Wb",
+      "text": "4×10⁻³ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المحركة الحثية الوسطى e المتولّدة في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = N·ΔΦ/Δt",
+        "N·ΔΦ/Δt"
+       ],
+       "antiKeys": [
+        "e = ΔΦ/(N·Δt)",
+        "e = N·ΔΦ·Δt"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: e = 200·0.004/0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 8 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8.0,
+      "unit": "V",
+      "text": "8 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الحثّي I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: I = 8/10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.8 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.8,
+      "unit": "A",
+      "text": "0.8 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التحريض: ΔΦ = B·S · e = N·ΔΦ/Δt (فارادي) · I = e/R (أوم). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "ΔΦ = B·S · قانون فارادي e = N·ΔΦ/Δt · قانون أوم I = e/R",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "ΔΦ صغير ⇒ صيغة علمية؛ e وI مقرَّبان إلى ٣ أرقام.",
+    "سلسلة متابعة كاملة: e يتبع ΔΦ و I يتبع e."
+   ]
+  },
+  {
+   "id": 23056,
+   "templateId": "U2.L3.P02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وشيعة مسطّحة عدد لفّاتها N = 200، مساحة كل لفّة S = 50 cm²، موضوعة في حقل مغناطيسي عمودي على مستواها. يزول الحقل من B = 0.5 T إلى الصفر خلال Δt = 0.2 s، والوشيعة مغلقة على مقاومة R = 10 Ω.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2.5×10⁻³ Wb — 10 درجة",
+    "٢) 2.5 V — 10 درجة",
+    "٣) 0.25 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔΦ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "ΔΦ = B/S",
+      "ΔΦ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔΦ = 0.5·0.005",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2.5×10⁻³ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = N·ΔΦ/Δt",
+      "N·ΔΦ/Δt"
+     ],
+     "antiKeys": [
+      "e = ΔΦ/(N·Δt)",
+      "e = N·ΔΦ·Δt"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: e = 200·0.0025/0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.5 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: I = 2.5/10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.25 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب تغيّر التدفق المغناطيسي ΔΦ عبر لفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔΦ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "ΔΦ = B/S",
+        "ΔΦ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔΦ = 0.5·0.005",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2.5×10⁻³ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0025,
+      "unit": "Wb",
+      "text": "2.5×10⁻³ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المحركة الحثية الوسطى e المتولّدة في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = N·ΔΦ/Δt",
+        "N·ΔΦ/Δt"
+       ],
+       "antiKeys": [
+        "e = ΔΦ/(N·Δt)",
+        "e = N·ΔΦ·Δt"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: e = 200·0.0025/0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.5 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.5,
+      "unit": "V",
+      "text": "2.5 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الحثّي I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: I = 2.5/10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.25 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.25,
+      "unit": "A",
+      "text": "0.25 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التحريض: ΔΦ = B·S · e = N·ΔΦ/Δt (فارادي) · I = e/R (أوم). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "ΔΦ = B·S · قانون فارادي e = N·ΔΦ/Δt · قانون أوم I = e/R",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "ΔΦ صغير ⇒ صيغة علمية؛ e وI مقرَّبان إلى ٣ أرقام.",
+    "سلسلة متابعة كاملة: e يتبع ΔΦ و I يتبع e."
+   ]
+  },
+  {
+   "id": 23057,
+   "templateId": "U2.L3.P02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وشيعة مسطّحة عدد لفّاتها N = 100، مساحة كل لفّة S = 200 cm²، موضوعة في حقل مغناطيسي عمودي على مستواها. يزول الحقل من B = 0.2 T إلى الصفر خلال Δt = 0.2 s، والوشيعة مغلقة على مقاومة R = 5 Ω.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4×10⁻³ Wb — 10 درجة",
+    "٢) 2 V — 10 درجة",
+    "٣) 0.4 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 500.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.2,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔΦ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "ΔΦ = B/S",
+      "ΔΦ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔΦ = 0.2·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4×10⁻³ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = N·ΔΦ/Δt",
+      "N·ΔΦ/Δt"
+     ],
+     "antiKeys": [
+      "e = ΔΦ/(N·Δt)",
+      "e = N·ΔΦ·Δt"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: e = 100·0.004/0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: I = 2/5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.4 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب تغيّر التدفق المغناطيسي ΔΦ عبر لفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔΦ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "ΔΦ = B/S",
+        "ΔΦ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔΦ = 0.2·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4×10⁻³ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.004,
+      "unit": "Wb",
+      "text": "4×10⁻³ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المحركة الحثية الوسطى e المتولّدة في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = N·ΔΦ/Δt",
+        "N·ΔΦ/Δt"
+       ],
+       "antiKeys": [
+        "e = ΔΦ/(N·Δt)",
+        "e = N·ΔΦ·Δt"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: e = 100·0.004/0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "V",
+      "text": "2 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 500.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الحثّي I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: I = 2/5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.4 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.4,
+      "unit": "A",
+      "text": "0.4 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.2,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التحريض: ΔΦ = B·S · e = N·ΔΦ/Δt (فارادي) · I = e/R (أوم). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "ΔΦ = B·S · قانون فارادي e = N·ΔΦ/Δt · قانون أوم I = e/R",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "ΔΦ صغير ⇒ صيغة علمية؛ e وI مقرَّبان إلى ٣ أرقام.",
+    "سلسلة متابعة كاملة: e يتبع ΔΦ و I يتبع e."
+   ]
+  },
+  {
+   "id": 23058,
+   "templateId": "U2.L3.P02",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وشيعة مسطّحة عدد لفّاتها N = 500، مساحة كل لفّة S = 200 cm²، موضوعة في حقل مغناطيسي عمودي على مستواها. يزول الحقل من B = 0.5 T إلى الصفر خلال Δt = 0.2 s، والوشيعة مغلقة على مقاومة R = 20 Ω.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10⁻² Wb — 10 درجة",
+    "٢) 25 V — 10 درجة",
+    "٣) 1.25 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2500.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.05,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔΦ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "ΔΦ = B/S",
+      "ΔΦ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔΦ = 0.5·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10⁻² Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = N·ΔΦ/Δt",
+      "N·ΔΦ/Δt"
+     ],
+     "antiKeys": [
+      "e = ΔΦ/(N·Δt)",
+      "e = N·ΔΦ·Δt"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: e = 500·0.01/0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 25 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: I = 25/20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.25 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب تغيّر التدفق المغناطيسي ΔΦ عبر لفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔΦ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "ΔΦ = B/S",
+        "ΔΦ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔΦ = 0.5·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10⁻² Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.01,
+      "unit": "Wb",
+      "text": "10⁻² Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المحركة الحثية الوسطى e المتولّدة في الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = N·ΔΦ/Δt",
+        "N·ΔΦ/Δt"
+       ],
+       "antiKeys": [
+        "e = ΔΦ/(N·Δt)",
+        "e = N·ΔΦ·Δt"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: e = 500·0.01/0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 25 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 25.0,
+      "unit": "V",
+      "text": "25 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2500.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الحثّي I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قانون أوم: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: I = 25/20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.25 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "A",
+      "text": "1.25 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.05,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التحريض: ΔΦ = B·S · e = N·ΔΦ/Δt (فارادي) · I = e/R (أوم). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "ΔΦ = B·S · قانون فارادي e = N·ΔΦ/Δt · قانون أوم I = e/R",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "ΔΦ صغير ⇒ صيغة علمية؛ e وI مقرَّبان إلى ٣ أرقام.",
+    "سلسلة متابعة كاملة: e يتبع ΔΦ و I يتبع e."
    ]
   }
  ]

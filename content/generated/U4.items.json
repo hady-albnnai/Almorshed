@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 648,
+  "poolSize": 678,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 99,
+  "partsPool": 129,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -6993,6 +6993,1854 @@
    "reviewNotes": [
     "قيد E > W0 يضمن انتزاعاً فعلياً (طاقة حركية موجبة).",
     "الجزء ٣ متابعة على الثاني (U0 عددياً = Ek)؛ القيم مقرَّبة إلى ٣ أرقام."
+   ]
+  },
+  {
+   "id": 23059,
+   "templateId": "U4.L2.P02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (e = 1.6×10⁻¹⁹ C، m = 9.1×10⁻³¹ kg) يُسرَّع من السكون بفرق كمون U = 1000 V، ثم يدخل عمودياً حقلاً مغناطيسياً منتظماً B = 0.002 T. نهمل التأثيرات النسبية.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.88×10⁷ m·s⁻¹ — 10 درجة",
+    "٢) 5.33×10⁻² m — 10 درجة",
+    "٣) 1.79×10⁻⁸ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.8351063829787234e-09,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(2eU/m)",
+      "e·U = ½mv²"
+     ],
+     "antiKeys": [
+      "v = √(eU/m)",
+      "v = 2eU/m"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·1000/9.1×10⁻³¹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.88×10⁷ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "r = m·v/(e·B)",
+      "e·v·B = m·v²/r"
+     ],
+     "antiKeys": [
+      "r = e·B/(m·v)",
+      "r = m·v·e·B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·18752289.2375/(1.6×10⁻¹⁹·0.002)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "18752289.2375",
+      "0.002"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5.33×10⁻² m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2πm/(eB)",
+      "2π·m/(e·B)"
+     ],
+     "antiKeys": [
+      "T = 2π·e·B/m",
+      "T = m/(2π·e·B)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.002)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.79×10⁻⁸ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة الإلكترون v عند دخوله الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(2eU/m)",
+        "e·U = ½mv²"
+       ],
+       "antiKeys": [
+        "v = √(eU/m)",
+        "v = 2eU/m"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·1000/9.1×10⁻³¹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.88×10⁷ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 18800000.0,
+      "unit": "m·s⁻¹",
+      "text": "1.88×10⁷ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب نصف قطر المسار الدائري r للإلكترون في الحقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "r = m·v/(e·B)",
+        "e·v·B = m·v²/r"
+       ],
+       "antiKeys": [
+        "r = e·B/(m·v)",
+        "r = m·v·e·B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·18752289.2375/(1.6×10⁻¹⁹·0.002)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "18752289.2375",
+        "0.002"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5.33×10⁻² m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0533,
+      "unit": "m",
+      "text": "5.33×10⁻² m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.8351063829787234e-09,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور دوران الإلكترون T في الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2πm/(eB)",
+        "2π·m/(e·B)"
+       ],
+       "antiKeys": [
+        "T = 2π·e·B/m",
+        "T = m/(2π·e·B)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.002)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.79×10⁻⁸ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.79e-08,
+      "unit": "s",
+      "text": "1.79×10⁻⁸ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الإلكترون في حقلين: v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — الإلكترون في حقلين كهربائي ومغناطيسي",
+    "book": "v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام (أساس تجربة e/m — طومسون).",
+    "الجزء ٢ متابعة على السرعة (r ∝ v)؛ الجزء ٣ مستقل (الدور لا يعتمد v)."
+   ]
+  },
+  {
+   "id": 23060,
+   "templateId": "U4.L2.P02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (e = 1.6×10⁻¹⁹ C، m = 9.1×10⁻³¹ kg) يُسرَّع من السكون بفرق كمون U = 500 V، ثم يدخل عمودياً حقلاً مغناطيسياً منتظماً B = 0.005 T. نهمل التأثيرات النسبية.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.33×10⁷ m·s⁻¹ — 10 درجة",
+    "٢) 1.51×10⁻² m — 10 درجة",
+    "٣) 7.15×10⁻⁹ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.1353383458646617e-09,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(2eU/m)",
+      "e·U = ½mv²"
+     ],
+     "antiKeys": [
+      "v = √(eU/m)",
+      "v = 2eU/m"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·500/9.1×10⁻³¹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.33×10⁷ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "r = m·v/(e·B)",
+      "e·v·B = m·v²/r"
+     ],
+     "antiKeys": [
+      "r = e·B/(m·v)",
+      "r = m·v·e·B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·13259870.8826/(1.6×10⁻¹⁹·0.005)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "13259870.8826",
+      "0.005"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.51×10⁻² m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2πm/(eB)",
+      "2π·m/(e·B)"
+     ],
+     "antiKeys": [
+      "T = 2π·e·B/m",
+      "T = m/(2π·e·B)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.005)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.005"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 7.15×10⁻⁹ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة الإلكترون v عند دخوله الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(2eU/m)",
+        "e·U = ½mv²"
+       ],
+       "antiKeys": [
+        "v = √(eU/m)",
+        "v = 2eU/m"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·500/9.1×10⁻³¹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.33×10⁷ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 13300000.0,
+      "unit": "m·s⁻¹",
+      "text": "1.33×10⁷ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب نصف قطر المسار الدائري r للإلكترون في الحقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "r = m·v/(e·B)",
+        "e·v·B = m·v²/r"
+       ],
+       "antiKeys": [
+        "r = e·B/(m·v)",
+        "r = m·v·e·B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·13259870.8826/(1.6×10⁻¹⁹·0.005)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "13259870.8826",
+        "0.005"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.51×10⁻² m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0151,
+      "unit": "m",
+      "text": "1.51×10⁻² m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.1353383458646617e-09,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور دوران الإلكترون T في الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2πm/(eB)",
+        "2π·m/(e·B)"
+       ],
+       "antiKeys": [
+        "T = 2π·e·B/m",
+        "T = m/(2π·e·B)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.005)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.005"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 7.15×10⁻⁹ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.15e-09,
+      "unit": "s",
+      "text": "7.15×10⁻⁹ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الإلكترون في حقلين: v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — الإلكترون في حقلين كهربائي ومغناطيسي",
+    "book": "v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام (أساس تجربة e/m — طومسون).",
+    "الجزء ٢ متابعة على السرعة (r ∝ v)؛ الجزء ٣ مستقل (الدور لا يعتمد v)."
+   ]
+  },
+  {
+   "id": 23061,
+   "templateId": "U4.L2.P02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (e = 1.6×10⁻¹⁹ C، m = 9.1×10⁻³¹ kg) يُسرَّع من السكون بفرق كمون U = 1000 V، ثم يدخل عمودياً حقلاً مغناطيسياً منتظماً B = 0.005 T. نهمل التأثيرات النسبية.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.88×10⁷ m·s⁻¹ — 10 درجة",
+    "٢) 2.13×10⁻² m — 10 درجة",
+    "٣) 7.15×10⁻⁹ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.1329787234042552e-09,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(2eU/m)",
+      "e·U = ½mv²"
+     ],
+     "antiKeys": [
+      "v = √(eU/m)",
+      "v = 2eU/m"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·1000/9.1×10⁻³¹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.88×10⁷ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "r = m·v/(e·B)",
+      "e·v·B = m·v²/r"
+     ],
+     "antiKeys": [
+      "r = e·B/(m·v)",
+      "r = m·v·e·B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·18752289.2375/(1.6×10⁻¹⁹·0.005)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "18752289.2375",
+      "0.005"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.13×10⁻² m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2πm/(eB)",
+      "2π·m/(e·B)"
+     ],
+     "antiKeys": [
+      "T = 2π·e·B/m",
+      "T = m/(2π·e·B)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.005)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.005"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 7.15×10⁻⁹ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة الإلكترون v عند دخوله الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(2eU/m)",
+        "e·U = ½mv²"
+       ],
+       "antiKeys": [
+        "v = √(eU/m)",
+        "v = 2eU/m"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·1000/9.1×10⁻³¹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.88×10⁷ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 18800000.0,
+      "unit": "m·s⁻¹",
+      "text": "1.88×10⁷ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب نصف قطر المسار الدائري r للإلكترون في الحقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "r = m·v/(e·B)",
+        "e·v·B = m·v²/r"
+       ],
+       "antiKeys": [
+        "r = e·B/(m·v)",
+        "r = m·v·e·B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·18752289.2375/(1.6×10⁻¹⁹·0.005)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "18752289.2375",
+        "0.005"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.13×10⁻² m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0213,
+      "unit": "m",
+      "text": "2.13×10⁻² m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.1329787234042552e-09,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور دوران الإلكترون T في الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2πm/(eB)",
+        "2π·m/(e·B)"
+       ],
+       "antiKeys": [
+        "T = 2π·e·B/m",
+        "T = m/(2π·e·B)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.005)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.005"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 7.15×10⁻⁹ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.15e-09,
+      "unit": "s",
+      "text": "7.15×10⁻⁹ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الإلكترون في حقلين: v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — الإلكترون في حقلين كهربائي ومغناطيسي",
+    "book": "v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام (أساس تجربة e/m — طومسون).",
+    "الجزء ٢ متابعة على السرعة (r ∝ v)؛ الجزء ٣ مستقل (الدور لا يعتمد v)."
+   ]
+  },
+  {
+   "id": 23063,
+   "templateId": "U4.L2.P02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (e = 1.6×10⁻¹⁹ C، m = 9.1×10⁻³¹ kg) يُسرَّع من السكون بفرق كمون U = 200 V، ثم يدخل عمودياً حقلاً مغناطيسياً منتظماً B = 0.002 T. نهمل التأثيرات النسبية.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8.39×10⁶ m·s⁻¹ — 10 درجة",
+    "٢) 2.38×10⁻² m — 10 درجة",
+    "٣) 1.79×10⁻⁸ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.836710369487485e-09,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(2eU/m)",
+      "e·U = ½mv²"
+     ],
+     "antiKeys": [
+      "v = √(eU/m)",
+      "v = 2eU/m"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·200/9.1×10⁻³¹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8.39×10⁶ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "r = m·v/(e·B)",
+      "e·v·B = m·v²/r"
+     ],
+     "antiKeys": [
+      "r = e·B/(m·v)",
+      "r = m·v·e·B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·8386278.6938/(1.6×10⁻¹⁹·0.002)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "8386278.6938",
+      "0.002"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.38×10⁻² m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2πm/(eB)",
+      "2π·m/(e·B)"
+     ],
+     "antiKeys": [
+      "T = 2π·e·B/m",
+      "T = m/(2π·e·B)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.002)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.79×10⁻⁸ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة الإلكترون v عند دخوله الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(2eU/m)",
+        "e·U = ½mv²"
+       ],
+       "antiKeys": [
+        "v = √(eU/m)",
+        "v = 2eU/m"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·200/9.1×10⁻³¹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8.39×10⁶ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8390000.0,
+      "unit": "m·s⁻¹",
+      "text": "8.39×10⁶ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب نصف قطر المسار الدائري r للإلكترون في الحقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "r = m·v/(e·B)",
+        "e·v·B = m·v²/r"
+       ],
+       "antiKeys": [
+        "r = e·B/(m·v)",
+        "r = m·v·e·B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·8386278.6938/(1.6×10⁻¹⁹·0.002)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "8386278.6938",
+        "0.002"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.38×10⁻² m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0238,
+      "unit": "m",
+      "text": "2.38×10⁻² m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.836710369487485e-09,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور دوران الإلكترون T في الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2πm/(eB)",
+        "2π·m/(e·B)"
+       ],
+       "antiKeys": [
+        "T = 2π·e·B/m",
+        "T = m/(2π·e·B)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.002)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.79×10⁻⁸ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.79e-08,
+      "unit": "s",
+      "text": "1.79×10⁻⁸ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الإلكترون في حقلين: v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — الإلكترون في حقلين كهربائي ومغناطيسي",
+    "book": "v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام (أساس تجربة e/m — طومسون).",
+    "الجزء ٢ متابعة على السرعة (r ∝ v)؛ الجزء ٣ مستقل (الدور لا يعتمد v)."
+   ]
+  },
+  {
+   "id": 23068,
+   "templateId": "U4.L2.P02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (e = 1.6×10⁻¹⁹ C، m = 9.1×10⁻³¹ kg) يُسرَّع من السكون بفرق كمون U = 500 V، ثم يدخل عمودياً حقلاً مغناطيسياً منتظماً B = 0.002 T. نهمل التأثيرات النسبية.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.33×10⁷ m·s⁻¹ — 10 درجة",
+    "٢) 3.77×10⁻² m — 10 درجة",
+    "٣) 1.79×10⁻⁸ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.8345864661654132e-09,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(2eU/m)",
+      "e·U = ½mv²"
+     ],
+     "antiKeys": [
+      "v = √(eU/m)",
+      "v = 2eU/m"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·500/9.1×10⁻³¹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.33×10⁷ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "r = m·v/(e·B)",
+      "e·v·B = m·v²/r"
+     ],
+     "antiKeys": [
+      "r = e·B/(m·v)",
+      "r = m·v·e·B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·13259870.8826/(1.6×10⁻¹⁹·0.002)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "13259870.8826",
+      "0.002"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.77×10⁻² m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2πm/(eB)",
+      "2π·m/(e·B)"
+     ],
+     "antiKeys": [
+      "T = 2π·e·B/m",
+      "T = m/(2π·e·B)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.002)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.79×10⁻⁸ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة الإلكترون v عند دخوله الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(2eU/m)",
+        "e·U = ½mv²"
+       ],
+       "antiKeys": [
+        "v = √(eU/m)",
+        "v = 2eU/m"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·500/9.1×10⁻³¹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.33×10⁷ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 13300000.0,
+      "unit": "m·s⁻¹",
+      "text": "1.33×10⁷ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب نصف قطر المسار الدائري r للإلكترون في الحقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "r = m·v/(e·B)",
+        "e·v·B = m·v²/r"
+       ],
+       "antiKeys": [
+        "r = e·B/(m·v)",
+        "r = m·v·e·B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·13259870.8826/(1.6×10⁻¹⁹·0.002)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "13259870.8826",
+        "0.002"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.77×10⁻² m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0377,
+      "unit": "m",
+      "text": "3.77×10⁻² m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.8345864661654132e-09,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور دوران الإلكترون T في الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2πm/(eB)",
+        "2π·m/(e·B)"
+       ],
+       "antiKeys": [
+        "T = 2π·e·B/m",
+        "T = m/(2π·e·B)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.002)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.79×10⁻⁸ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.79e-08,
+      "unit": "s",
+      "text": "1.79×10⁻⁸ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الإلكترون في حقلين: v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — الإلكترون في حقلين كهربائي ومغناطيسي",
+    "book": "v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام (أساس تجربة e/m — طومسون).",
+    "الجزء ٢ متابعة على السرعة (r ∝ v)؛ الجزء ٣ مستقل (الدور لا يعتمد v)."
+   ]
+  },
+  {
+   "id": 23069,
+   "templateId": "U4.L2.P02",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (e = 1.6×10⁻¹⁹ C، m = 9.1×10⁻³¹ kg) يُسرَّع من السكون بفرق كمون U = 200 V، ثم يدخل عمودياً حقلاً مغناطيسياً منتظماً B = 0.005 T. نهمل التأثيرات النسبية.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8.39×10⁶ m·s⁻¹ — 10 درجة",
+    "٢) 9.54×10⁻³ m — 10 درجة",
+    "٣) 7.15×10⁻⁹ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.137067938021454e-09,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(2eU/m)",
+      "e·U = ½mv²"
+     ],
+     "antiKeys": [
+      "v = √(eU/m)",
+      "v = 2eU/m"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·200/9.1×10⁻³¹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8.39×10⁶ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "r = m·v/(e·B)",
+      "e·v·B = m·v²/r"
+     ],
+     "antiKeys": [
+      "r = e·B/(m·v)",
+      "r = m·v·e·B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·8386278.6938/(1.6×10⁻¹⁹·0.005)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "8386278.6938",
+      "0.005"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 9.54×10⁻³ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2πm/(eB)",
+      "2π·m/(e·B)"
+     ],
+     "antiKeys": [
+      "T = 2π·e·B/m",
+      "T = m/(2π·e·B)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.005)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.005"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 7.15×10⁻⁹ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة الإلكترون v عند دخوله الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: من e·U = ½·m·v² ⇒ v = √(2·e·U/m)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(2eU/m)",
+        "e·U = ½mv²"
+       ],
+       "antiKeys": [
+        "v = √(eU/m)",
+        "v = 2eU/m"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(2·1.6×10⁻¹⁹·200/9.1×10⁻³¹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8.39×10⁶ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8390000.0,
+      "unit": "m·s⁻¹",
+      "text": "8.39×10⁶ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب نصف قطر المسار الدائري r للإلكترون في الحقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "r = m·v/(e·B)",
+        "e·v·B = m·v²/r"
+       ],
+       "antiKeys": [
+        "r = e·B/(m·v)",
+        "r = m·v·e·B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: r = 9.1×10⁻³¹·8386278.6938/(1.6×10⁻¹⁹·0.005)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "8386278.6938",
+        "0.005"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 9.54×10⁻³ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.00954,
+      "unit": "m",
+      "text": "9.54×10⁻³ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.137067938021454e-09,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور دوران الإلكترون T في الحقل المغناطيسي.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2πm/(eB)",
+        "2π·m/(e·B)"
+       ],
+       "antiKeys": [
+        "T = 2π·e·B/m",
+        "T = m/(2π·e·B)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·0.005)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.005"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 7.15×10⁻⁹ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.15e-09,
+      "unit": "s",
+      "text": "7.15×10⁻⁹ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الإلكترون في حقلين: v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L2 — الإلكترون في حقلين كهربائي ومغناطيسي",
+    "book": "v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام (أساس تجربة e/m — طومسون).",
+    "الجزء ٢ متابعة على السرعة (r ∝ v)؛ الجزء ٣ مستقل (الدور لا يعتمد v)."
    ]
   }
  ]

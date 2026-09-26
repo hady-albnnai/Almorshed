@@ -1020,3 +1020,312 @@ templates:
     review_notes:
       - "الجزء ٢ متابعة على الأول (f ∝ 1/T0)؛ الجزء ٣ مستقل (قانون الفتل)."
     approved: false
+
+  # ── ١٧) المتذبذب المرن (U1C1) — النبض الخاص · السرعة العظمى · التسارع الأعظمي ──
+  - id: U1.L1.P02
+    title: "المتذبذب المرن — مسألة بأجزاء (النبض · السرعة العظمى · التسارع الأعظمي)"
+    chapter: U1C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — الحركة التوافقية البسيطة"
+      book: "ω0 = √(k/m) · v_max = ω0·Xm · a_max = ω0²·Xm"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      k: {set: [40, 90, 160], unit: "N·m⁻¹"}
+      m: {set: [0.1, 0.4, 0.9, 1.6], unit: kg}
+      Xm: {set: [0.05, 0.1, 0.2], unit: m}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      w0: "sqrt(k/m)"
+      vmax: "sqrt(k/m)*Xm"
+      amax: "(k/m)*Xm"
+    stem: "متذبذب توافقي أفقي (كتلة m = {m} kg، نابض ثابت مرونته k = {k} N·m⁻¹) يهتز بسعة Xm = {Xm} m دون احتكاك."
+    parts:
+      - label: "١"
+        ask: "احسب النبض الخاص ω0 للمتذبذب."
+        unit: "rad·s⁻¹"
+        value: "w0"
+        answer: {format: auto}
+        lines:
+          - relation: "من m·x″ + k·x = 0 ⇒ النبض الخاص ω0 = √(k/m)"
+            subst: "ω0 = √({k}/{m})"
+            expect: ["{k}", "{m}"]
+            keys: ["ω0 = √(k/m)", "√(k/m)"]
+            anti_keys: ["ω0 = √(m/k)", "ω0 = k/m"]
+      - label: "٢"
+        ask: "احسب السرعة العظمى v_max التي تبلغها الكتلة."
+        unit: "m·s⁻¹"
+        value: "vmax"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "السرعة العظمى في الحركة التوافقية: v_max = ω0·Xm"
+            subst: "v_max = {w0}·{Xm}"
+            expect: ["{w0}", "{Xm}"]
+            keys: ["v_max = ω0·Xm", "ω0·Xm"]
+            anti_keys: ["v_max = ω0²·Xm", "v_max = Xm/ω0"]
+      - label: "٣"
+        ask: "احسب التسارع الأعظمي a_max."
+        unit: "m·s⁻²"
+        value: "amax"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 2}
+        lines:
+          - relation: "التسارع الأعظمي: a_max = ω0²·Xm = (k/m)·Xm"
+            subst: "a_max = ({k}/{m})·{Xm}"
+            expect: ["{amax}"]
+            keys: ["a_max = ω0²·Xm", "(k/m)·Xm"]
+            anti_keys: ["a_max = ω0·Xm", "a_max = (m/k)·Xm"]
+    answer_basis: "المتذبذب المرن: ω0 = √(k/m) · v_max = ω0·Xm · a_max = ω0²·Xm. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "v_max ∝ ω0 (قوة ١) و a_max ∝ ω0² (قوة ٢) — متابعة خطأ على الجزء ١."
+    approved: false
+
+  # ── ١٨) النواس الثقلي (U1C3) — إيجاد الطول من الدور · التواتر · عدد الاهتزازات ──
+  - id: U1.L3.P03
+    title: "النواس الثقلي البسيط — مسألة عكسية بأجزاء (إيجاد الطول من الدور)"
+    chapter: U1C3
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L3 — النواس الثقلي البسيط"
+      book: "T0 = 2π√(L/g) ⇒ L = g·T0²/(4π²) · f = 1/T0 · N = Δt/T0"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      T0v: {set: [1, 2, 4], unit: s}
+      dt: {set: [30, 60, 120], unit: s}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      L: "g*T0v**2/(4*pi_sq)"
+      f: "1/T0v"
+      N: "dt/T0v"
+    stem: "قيس دور نواس ثقلي بسيط فوُجد T0 = {T0v} s في مكان g = 10 m·s⁻². نأخذ π² = 10."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز طول خيط النواس L بدلالة T0 وg، ثم احسب قيمته."
+        unit: "m"
+        value: "L"
+        answer: {format: auto}
+        lines:
+          - relation: "من T0 = 2π√(L/g) ⇒ L = g·T0²/(4π²)"
+            subst: "L = 10·{T0v}²/(4·10)"
+            expect: ["{T0v}"]
+            keys: ["L = g·T0²/(4π²)", "T0 = 2π√(L/g)"]
+            anti_keys: ["L = 4π²·g·T0²", "L = g·T0/(4π²)"]
+      - label: "٢"
+        ask: "احسب تواتر النواس f."
+        unit: "Hz"
+        value: "f"
+        answer: {format: auto}
+        lines:
+          - relation: "التواتر مقلوب الدور: f = 1/T0"
+            subst: "f = 1/{T0v}"
+            expect: ["{T0v}"]
+            keys: ["f = 1/T0", "1/T0"]
+            anti_keys: ["f = T0", "f = 2π/T0"]
+      - label: "٣"
+        ask: "احسب عدد الاهتزازات الكاملة N خلال Δt = {dt} s."
+        unit: ""
+        value: "N"
+        answer: {format: auto, unit_required: false}
+        follow: {depends_on: "٢", power: 1}
+        lines:
+          - relation: "عدد الاهتزازات: N = Δt/T0 = Δt·f"
+            subst: "N = {dt}·{f}"
+            expect: ["{dt}", "{f}"]
+            keys: ["N = Δt·f", "N = Δt/T0"]
+            anti_keys: ["N = T0/Δt", "N = f/Δt"]
+            unit: false
+    answer_basis: "النواس البسيط (عكسي): L = g·T0²/(4π²) · f = 1/T0 · N = Δt·f. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "T0 معطى في الجذع؛ الجزء ٣ متابعة على الجزء ٢ (N = Δt·f ∝ f)."
+    approved: false
+
+  # ── ١٩) الوتر المشدود (U3C1) — سرعة الموجة · التواتر الأساسي · التوافقي n ──
+  - id: U3.L1.P02
+    title: "الوتر المشدود (تجربة ملد) — مسألة بأجزاء (سرعة الموجة · الأساسي · التوافقي n)"
+    chapter: U3C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — الأمواج المستقرة على وتر"
+      book: "v = √(F/μ) · f1 = v/(2L) · fn = n·f1"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      F: {set: [4, 16, 100], unit: N}
+      mu: {set: [0.01, 0.04, 0.25], unit: "kg·m⁻¹"}
+      L: {set: [0.5, 1.0, 2.0], unit: m}
+      n: {set: [2, 3, 4], unit: ""}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      v: "sqrt(F/mu)"
+      f1: "sqrt(F/mu)/(2*L)"
+      fn: "n*sqrt(F/mu)/(2*L)"
+    stem: "وتر مشدود طوله L = {L} m، كتلته الطولية μ = {mu} kg·m⁻¹، مشدود بقوة F = {F} N بين مسندين ثابتين."
+    parts:
+      - label: "١"
+        ask: "احسب سرعة انتشار الموجة v على الوتر."
+        unit: "m·s⁻¹"
+        value: "v"
+        answer: {format: auto}
+        lines:
+          - relation: "سرعة الموجة المستعرضة على وتر: v = √(F/μ)"
+            subst: "v = √({F}/{mu})"
+            expect: ["{F}", "{mu}"]
+            keys: ["v = √(F/μ)", "√(F/μ)"]
+            anti_keys: ["v = √(μ/F)", "v = F/μ"]
+      - label: "٢"
+        ask: "احسب التواتر الأساسي f1 (التوافقي الأول)."
+        unit: "Hz"
+        value: "f1"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)"
+            subst: "f1 = {v}/(2·{L})"
+            expect: ["{v}", "{L}"]
+            keys: ["f1 = v/(2L)", "v/(2L)"]
+            anti_keys: ["f1 = 2L·v", "f1 = v/L"]
+      - label: "٣"
+        ask: "احسب تواتر التوافقي رقم n = {n} أي fn."
+        unit: "Hz"
+        value: "fn"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}
+        lines:
+          - relation: "التوافقيات على وتر بطرفين ثابتين: fn = n·f1"
+            subst: "fn = {n}·{f1}"
+            expect: ["{n}", "{f1}"]
+            keys: ["fn = n·f1", "n·f1"]
+            anti_keys: ["fn = f1/n", "fn = n·v"]
+    answer_basis: "الوتر المشدود: v = √(F/μ) · f1 = v/(2L) · fn = n·f1. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "القيم مختارة بحيث F/μ مربّع كامل ⇒ v نظيفة؛ السحب غير النظيف يُرفض تلقائياً."
+      - "سلسلة متابعة: f1 ∝ v و fn ∝ f1."
+    approved: false
+
+  # ── ٢٠) التحريض الكهرطيسي (U2C3) — التدفق · القوة المحركة الحثية · التيار ──
+  - id: U2.L3.P02
+    title: "التحريض الكهرطيسي (فارادي) — مسألة بأجزاء (التدفق · القوة المحركة · التيار)"
+    chapter: U2C3
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L3 — التحريض الكهرطيسي"
+      book: "ΔΦ = B·S · قانون فارادي e = N·ΔΦ/Δt · قانون أوم I = e/R"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      N: {set: [100, 200, 500], unit: ""}
+      B: {set: [0.2, 0.5], unit: T}
+      Scm: {set: [50, 100, 200], unit: "cm²"}
+      dt: {set: [0.1, 0.2, 0.5], unit: s}
+      R: {set: [5, 10, 20], unit: "Ω"}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      S: "Scm*1e-4"
+      dPhi: "B*Scm*1e-4"
+      e: "N*B*Scm*1e-4/dt"
+      I: "N*B*Scm*1e-4/dt/R"
+    stem: "وشيعة مسطّحة عدد لفّاتها N = {N}، مساحة كل لفّة S = {Scm} cm²، موضوعة في حقل مغناطيسي عمودي على مستواها. يزول الحقل من B = {B} T إلى الصفر خلال Δt = {dt} s، والوشيعة مغلقة على مقاومة R = {R} Ω."
+    parts:
+      - label: "١"
+        ask: "احسب تغيّر التدفق المغناطيسي ΔΦ عبر لفّة واحدة."
+        unit: "Wb"
+        value: "dPhi"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "التدفق عبر لفّة عمودية على الحقل: ΔΦ = B·S"
+            subst: "ΔΦ = {B}·{S}"
+            expect: ["{B}"]
+            keys: ["ΔΦ = B·S", "B·S"]
+            anti_keys: ["ΔΦ = B/S", "ΔΦ = S/B"]
+      - label: "٢"
+        ask: "احسب القوة المحركة الحثية الوسطى e المتولّدة في الوشيعة."
+        unit: "V"
+        value: "e"
+        answer: {format: auto, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "قانون فارادي (القيمة المطلقة): e = N·ΔΦ/Δt"
+            subst: "e = {N}·{dPhi}/{dt}"
+            expect: ["{N}", "{dt}"]
+            keys: ["e = N·ΔΦ/Δt", "N·ΔΦ/Δt"]
+            anti_keys: ["e = ΔΦ/(N·Δt)", "e = N·ΔΦ·Δt"]
+      - label: "٣"
+        ask: "احسب شدّة التيار الحثّي I في الدارة."
+        unit: "A"
+        value: "I"
+        answer: {format: auto, round: true, sig: 3}
+        follow: {depends_on: "٢", power: 1}
+        lines:
+          - relation: "قانون أوم: I = e/R"
+            subst: "I = {e}/{R}"
+            expect: ["{R}"]
+            keys: ["I = e/R", "e/R"]
+            anti_keys: ["I = e·R", "I = R/e"]
+    answer_basis: "التحريض: ΔΦ = B·S · e = N·ΔΦ/Δt (فارادي) · I = e/R (أوم). سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "ΔΦ صغير ⇒ صيغة علمية؛ e وI مقرَّبان إلى ٣ أرقام."
+      - "سلسلة متابعة كاملة: e يتبع ΔΦ و I يتبع e."
+    approved: false
+
+  # ── ٢١) e/m الإلكترون (U4C2) — السرعة · نصف قطر المسار · دور الدوران ──
+  - id: U4.L2.P02
+    title: "انحراف إلكترون في حقل مغناطيسي — مسألة بأجزاء (السرعة · نصف القطر · الدور)"
+    chapter: U4C2
+    type: problem
+    difficulty: 4
+    source:
+      lesson: "L2 — الإلكترون في حقلين كهربائي ومغناطيسي"
+      book: "v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      U: {set: [200, 500, 1000], unit: V}
+      B: {set: [0.002, 0.005], unit: T}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      v: "sqrt(2*e_charge*U/m_e)"
+      r: "m_e*sqrt(2*e_charge*U/m_e)/(e_charge*B)"
+      Tc: "2*pi*m_e/(e_charge*B)"
+    stem: "إلكترون (e = 1.6×10⁻¹⁹ C، m = 9.1×10⁻³¹ kg) يُسرَّع من السكون بفرق كمون U = {U} V، ثم يدخل عمودياً حقلاً مغناطيسياً منتظماً B = {B} T. نهمل التأثيرات النسبية."
+    parts:
+      - label: "١"
+        ask: "احسب سرعة الإلكترون v عند دخوله الحقل المغناطيسي."
+        unit: "m·s⁻¹"
+        value: "v"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "من e·U = ½·m·v² ⇒ v = √(2·e·U/m)"
+            subst: "v = √(2·1.6×10⁻¹⁹·{U}/9.1×10⁻³¹)"
+            expect: ["{U}"]
+            keys: ["v = √(2eU/m)", "e·U = ½mv²"]
+            anti_keys: ["v = √(eU/m)", "v = 2eU/m"]
+      - label: "٢"
+        ask: "احسب نصف قطر المسار الدائري r للإلكترون في الحقل."
+        unit: "m"
+        value: "r"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "توازن قوة لورنتز والقوة النابذة: e·v·B = m·v²/r ⇒ r = m·v/(e·B)"
+            subst: "r = 9.1×10⁻³¹·{v}/(1.6×10⁻¹⁹·{B})"
+            expect: ["{v}", "{B}"]
+            keys: ["r = m·v/(e·B)", "e·v·B = m·v²/r"]
+            anti_keys: ["r = e·B/(m·v)", "r = m·v·e·B"]
+      - label: "٣"
+        ask: "احسب دور دوران الإلكترون T في الحقل المغناطيسي."
+        unit: "s"
+        value: "Tc"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "دور الدوران مستقل عن السرعة: T = 2π·m/(e·B)"
+            subst: "T = 2π·9.1×10⁻³¹/(1.6×10⁻¹⁹·{B})"
+            expect: ["{B}"]
+            keys: ["T = 2πm/(eB)", "2π·m/(e·B)"]
+            anti_keys: ["T = 2π·e·B/m", "T = m/(2π·e·B)"]
+    answer_basis: "الإلكترون في حقلين: v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B). سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "قيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام (أساس تجربة e/m — طومسون)."
+      - "الجزء ٢ متابعة على السرعة (r ∝ v)؛ الجزء ٣ مستقل (الدور لا يعتمد v)."
+    approved: false

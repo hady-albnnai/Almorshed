@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 648,
+  "poolSize": 678,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 99,
+  "partsPool": 129,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -4857,6 +4857,2010 @@
    },
    "reviewNotes": [
     "الجزء ٢ متابعة على الأول (λ1 ∝ 1/f1)؛ الجزء ٣ متابعة على الأول (f3 = 3f1)."
+   ]
+  },
+  {
+   "id": 23046,
+   "templateId": "U3.L1.P02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وتر مشدود طوله L = 0.5 m، كتلته الطولية μ = 0.04 kg·m⁻¹، مشدود بقوة F = 100 N بين مسندين ثابتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 50 m·s⁻¹ — 10 درجة",
+    "٢) 50 Hz — 10 درجة",
+    "٣) 150 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 3.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(F/μ)",
+      "√(F/μ)"
+     ],
+     "antiKeys": [
+      "v = √(μ/F)",
+      "v = F/μ"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(100/0.04)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "0.04"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 50 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f1 = v/(2L)",
+      "v/(2L)"
+     ],
+     "antiKeys": [
+      "f1 = 2L·v",
+      "f1 = v/L"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f1 = 50/(2·0.5)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 50 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fn = n·f1",
+      "n·f1"
+     ],
+     "antiKeys": [
+      "fn = f1/n",
+      "fn = n·v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fn = 3·50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 150 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة انتشار الموجة v على الوتر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(F/μ)",
+        "√(F/μ)"
+       ],
+       "antiKeys": [
+        "v = √(μ/F)",
+        "v = F/μ"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(100/0.04)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "0.04"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 50 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "m·s⁻¹",
+      "text": "50 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التواتر الأساسي f1 (التوافقي الأول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f1 = v/(2L)",
+        "v/(2L)"
+       ],
+       "antiKeys": [
+        "f1 = 2L·v",
+        "f1 = v/L"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f1 = 50/(2·0.5)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 50 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "Hz",
+      "text": "50 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر التوافقي رقم n = 3 أي fn.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fn = n·f1",
+        "n·f1"
+       ],
+       "antiKeys": [
+        "fn = f1/n",
+        "fn = n·v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fn = 3·50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 150 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 150.0,
+      "unit": "Hz",
+      "text": "150 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 3.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوتر المشدود: v = √(F/μ) · f1 = v/(2L) · fn = n·f1. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الأمواج المستقرة على وتر",
+    "book": "v = √(F/μ) · f1 = v/(2L) · fn = n·f1",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مختارة بحيث F/μ مربّع كامل ⇒ v نظيفة؛ السحب غير النظيف يُرفض تلقائياً.",
+    "سلسلة متابعة: f1 ∝ v و fn ∝ f1."
+   ]
+  },
+  {
+   "id": 23048,
+   "templateId": "U3.L1.P02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وتر مشدود طوله L = 1 m، كتلته الطولية μ = 0.04 kg·m⁻¹، مشدود بقوة F = 100 N بين مسندين ثابتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 50 m·s⁻¹ — 10 درجة",
+    "٢) 25 Hz — 10 درجة",
+    "٣) 50 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 2.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(F/μ)",
+      "√(F/μ)"
+     ],
+     "antiKeys": [
+      "v = √(μ/F)",
+      "v = F/μ"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(100/0.04)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "0.04"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 50 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f1 = v/(2L)",
+      "v/(2L)"
+     ],
+     "antiKeys": [
+      "f1 = 2L·v",
+      "f1 = v/L"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f1 = 50/(2·1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 25 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fn = n·f1",
+      "n·f1"
+     ],
+     "antiKeys": [
+      "fn = f1/n",
+      "fn = n·v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fn = 2·25",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2",
+      "25"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 50 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة انتشار الموجة v على الوتر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(F/μ)",
+        "√(F/μ)"
+       ],
+       "antiKeys": [
+        "v = √(μ/F)",
+        "v = F/μ"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(100/0.04)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "0.04"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 50 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "m·s⁻¹",
+      "text": "50 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التواتر الأساسي f1 (التوافقي الأول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f1 = v/(2L)",
+        "v/(2L)"
+       ],
+       "antiKeys": [
+        "f1 = 2L·v",
+        "f1 = v/L"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f1 = 50/(2·1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 25 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 25.0,
+      "unit": "Hz",
+      "text": "25 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر التوافقي رقم n = 2 أي fn.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fn = n·f1",
+        "n·f1"
+       ],
+       "antiKeys": [
+        "fn = f1/n",
+        "fn = n·v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fn = 2·25",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2",
+        "25"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 50 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "Hz",
+      "text": "50 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 2.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوتر المشدود: v = √(F/μ) · f1 = v/(2L) · fn = n·f1. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الأمواج المستقرة على وتر",
+    "book": "v = √(F/μ) · f1 = v/(2L) · fn = n·f1",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مختارة بحيث F/μ مربّع كامل ⇒ v نظيفة؛ السحب غير النظيف يُرفض تلقائياً.",
+    "سلسلة متابعة: f1 ∝ v و fn ∝ f1."
+   ]
+  },
+  {
+   "id": 23049,
+   "templateId": "U3.L1.P02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وتر مشدود طوله L = 2 m، كتلته الطولية μ = 0.25 kg·m⁻¹، مشدود بقوة F = 16 N بين مسندين ثابتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8 m·s⁻¹ — 10 درجة",
+    "٢) 2 Hz — 10 درجة",
+    "٣) 6 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.25,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 3.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(F/μ)",
+      "√(F/μ)"
+     ],
+     "antiKeys": [
+      "v = √(μ/F)",
+      "v = F/μ"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(16/0.25)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "16",
+      "0.25"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f1 = v/(2L)",
+      "v/(2L)"
+     ],
+     "antiKeys": [
+      "f1 = 2L·v",
+      "f1 = v/L"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f1 = 8/(2·2)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "8",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fn = n·f1",
+      "n·f1"
+     ],
+     "antiKeys": [
+      "fn = f1/n",
+      "fn = n·v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fn = 3·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 6 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة انتشار الموجة v على الوتر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(F/μ)",
+        "√(F/μ)"
+       ],
+       "antiKeys": [
+        "v = √(μ/F)",
+        "v = F/μ"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(16/0.25)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "16",
+        "0.25"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8.0,
+      "unit": "m·s⁻¹",
+      "text": "8 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التواتر الأساسي f1 (التوافقي الأول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f1 = v/(2L)",
+        "v/(2L)"
+       ],
+       "antiKeys": [
+        "f1 = 2L·v",
+        "f1 = v/L"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f1 = 8/(2·2)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "8",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "Hz",
+      "text": "2 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.25,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر التوافقي رقم n = 3 أي fn.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fn = n·f1",
+        "n·f1"
+       ],
+       "antiKeys": [
+        "fn = f1/n",
+        "fn = n·v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fn = 3·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 6 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.0,
+      "unit": "Hz",
+      "text": "6 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 3.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوتر المشدود: v = √(F/μ) · f1 = v/(2L) · fn = n·f1. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الأمواج المستقرة على وتر",
+    "book": "v = √(F/μ) · f1 = v/(2L) · fn = n·f1",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مختارة بحيث F/μ مربّع كامل ⇒ v نظيفة؛ السحب غير النظيف يُرفض تلقائياً.",
+    "سلسلة متابعة: f1 ∝ v و fn ∝ f1."
+   ]
+  },
+  {
+   "id": 23050,
+   "templateId": "U3.L1.P02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وتر مشدود طوله L = 2 m، كتلته الطولية μ = 0.25 kg·m⁻¹، مشدود بقوة F = 100 N بين مسندين ثابتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 20 m·s⁻¹ — 10 درجة",
+    "٢) 5 Hz — 10 درجة",
+    "٣) 20 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.25,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(F/μ)",
+      "√(F/μ)"
+     ],
+     "antiKeys": [
+      "v = √(μ/F)",
+      "v = F/μ"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(100/0.25)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "0.25"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 20 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f1 = v/(2L)",
+      "v/(2L)"
+     ],
+     "antiKeys": [
+      "f1 = 2L·v",
+      "f1 = v/L"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f1 = 20/(2·2)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fn = n·f1",
+      "n·f1"
+     ],
+     "antiKeys": [
+      "fn = f1/n",
+      "fn = n·v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fn = 4·5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4",
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 20 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة انتشار الموجة v على الوتر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(F/μ)",
+        "√(F/μ)"
+       ],
+       "antiKeys": [
+        "v = √(μ/F)",
+        "v = F/μ"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(100/0.25)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "0.25"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 20 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "m·s⁻¹",
+      "text": "20 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التواتر الأساسي f1 (التوافقي الأول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f1 = v/(2L)",
+        "v/(2L)"
+       ],
+       "antiKeys": [
+        "f1 = 2L·v",
+        "f1 = v/L"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f1 = 20/(2·2)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "Hz",
+      "text": "5 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.25,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر التوافقي رقم n = 4 أي fn.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fn = n·f1",
+        "n·f1"
+       ],
+       "antiKeys": [
+        "fn = f1/n",
+        "fn = n·v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fn = 4·5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4",
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 20 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "Hz",
+      "text": "20 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوتر المشدود: v = √(F/μ) · f1 = v/(2L) · fn = n·f1. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الأمواج المستقرة على وتر",
+    "book": "v = √(F/μ) · f1 = v/(2L) · fn = n·f1",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مختارة بحيث F/μ مربّع كامل ⇒ v نظيفة؛ السحب غير النظيف يُرفض تلقائياً.",
+    "سلسلة متابعة: f1 ∝ v و fn ∝ f1."
+   ]
+  },
+  {
+   "id": 23051,
+   "templateId": "U3.L1.P02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وتر مشدود طوله L = 1 m، كتلته الطولية μ = 0.25 kg·m⁻¹، مشدود بقوة F = 100 N بين مسندين ثابتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 20 m·s⁻¹ — 10 درجة",
+    "٢) 10 Hz — 10 درجة",
+    "٣) 40 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(F/μ)",
+      "√(F/μ)"
+     ],
+     "antiKeys": [
+      "v = √(μ/F)",
+      "v = F/μ"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(100/0.25)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "0.25"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 20 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f1 = v/(2L)",
+      "v/(2L)"
+     ],
+     "antiKeys": [
+      "f1 = 2L·v",
+      "f1 = v/L"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f1 = 20/(2·1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fn = n·f1",
+      "n·f1"
+     ],
+     "antiKeys": [
+      "fn = f1/n",
+      "fn = n·v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fn = 4·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4",
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 40 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة انتشار الموجة v على الوتر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(F/μ)",
+        "√(F/μ)"
+       ],
+       "antiKeys": [
+        "v = √(μ/F)",
+        "v = F/μ"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(100/0.25)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "0.25"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 20 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "m·s⁻¹",
+      "text": "20 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التواتر الأساسي f1 (التوافقي الأول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f1 = v/(2L)",
+        "v/(2L)"
+       ],
+       "antiKeys": [
+        "f1 = 2L·v",
+        "f1 = v/L"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f1 = 20/(2·1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "Hz",
+      "text": "10 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر التوافقي رقم n = 4 أي fn.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fn = n·f1",
+        "n·f1"
+       ],
+       "antiKeys": [
+        "fn = f1/n",
+        "fn = n·v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fn = 4·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4",
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 40 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 40.0,
+      "unit": "Hz",
+      "text": "40 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوتر المشدود: v = √(F/μ) · f1 = v/(2L) · fn = n·f1. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الأمواج المستقرة على وتر",
+    "book": "v = √(F/μ) · f1 = v/(2L) · fn = n·f1",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مختارة بحيث F/μ مربّع كامل ⇒ v نظيفة؛ السحب غير النظيف يُرفض تلقائياً.",
+    "سلسلة متابعة: f1 ∝ v و fn ∝ f1."
+   ]
+  },
+  {
+   "id": 23052,
+   "templateId": "U3.L1.P02",
+   "unit": "U3",
+   "chapter": "U3C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "وتر مشدود طوله L = 1 m، كتلته الطولية μ = 0.04 kg·m⁻¹، مشدود بقوة F = 16 N بين مسندين ثابتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 20 m·s⁻¹ — 10 درجة",
+    "٢) 10 Hz — 10 درجة",
+    "٣) 40 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(F/μ)",
+      "√(F/μ)"
+     ],
+     "antiKeys": [
+      "v = √(μ/F)",
+      "v = F/μ"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v = √(16/0.04)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "16",
+      "0.04"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 20 m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f1 = v/(2L)",
+      "v/(2L)"
+     ],
+     "antiKeys": [
+      "f1 = 2L·v",
+      "f1 = v/L"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: f1 = 20/(2·1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fn = n·f1",
+      "n·f1"
+     ],
+     "antiKeys": [
+      "fn = f1/n",
+      "fn = n·v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fn = 4·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4",
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 40 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب سرعة انتشار الموجة v على الوتر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: سرعة الموجة المستعرضة على وتر: v = √(F/μ)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(F/μ)",
+        "√(F/μ)"
+       ],
+       "antiKeys": [
+        "v = √(μ/F)",
+        "v = F/μ"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v = √(16/0.04)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "16",
+        "0.04"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 20 m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "m·s⁻¹",
+      "text": "20 m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التواتر الأساسي f1 (التوافقي الأول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: التواتر الأساسي (طرفان ثابتان): f1 = v/(2L)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f1 = v/(2L)",
+        "v/(2L)"
+       ],
+       "antiKeys": [
+        "f1 = 2L·v",
+        "f1 = v/L"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: f1 = 20/(2·1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "Hz",
+      "text": "10 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر التوافقي رقم n = 4 أي fn.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التوافقيات على وتر بطرفين ثابتين: fn = n·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fn = n·f1",
+        "n·f1"
+       ],
+       "antiKeys": [
+        "fn = f1/n",
+        "fn = n·v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fn = 4·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4",
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 40 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 40.0,
+      "unit": "Hz",
+      "text": "40 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوتر المشدود: v = √(F/μ) · f1 = v/(2L) · fn = n·f1. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الأمواج المستقرة على وتر",
+    "book": "v = √(F/μ) · f1 = v/(2L) · fn = n·f1",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مختارة بحيث F/μ مربّع كامل ⇒ v نظيفة؛ السحب غير النظيف يُرفض تلقائياً.",
+    "سلسلة متابعة: f1 ∝ v و fn ∝ f1."
    ]
   }
  ]
