@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 10,
-  "poolSize": 1026,
+  "poolSize": 1072,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 289,
+  "partsPool": 335,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -65589,6 +65589,6406 @@
    "reviewNotes": [
     "β مختار لعامل لورنتز نظيف (β=0.6 ⇒ γ=1.25)؛ غير النظيف يُرفض تلقائياً.",
     "الجزء ٢ متابعة على γ (E ∝ γ)."
+   ]
+  },
+  {
+   "id": 36094,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 1 kg معلّقة بنابض شاقولي ثابت مرونته k = 100 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.02 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.1 m — 10 درجة",
+    "٢) 2 N — 10 درجة",
+    "٣) 0.02 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.01,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 1·10/100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.1 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 100·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "0.02"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·2·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.02"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.02 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 1·10/100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.1 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.1,
+      "unit": "m",
+      "text": "0.1 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 100·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "0.02"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "N",
+      "text": "2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·2·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.02"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.02 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.02,
+      "unit": "J",
+      "text": "0.02 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.01,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36095,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 2 kg معلّقة بنابض شاقولي ثابت مرونته k = 40 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.1 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.5 m — 10 درجة",
+    "٢) 4 N — 10 درجة",
+    "٣) 0.2 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.05000000000000001,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 2·10/40",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2",
+      "40"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.5 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 40·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "40",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·4·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.2 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 2·10/40",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2",
+        "40"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.5 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.5,
+      "unit": "m",
+      "text": "0.5 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 40·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "40",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.0,
+      "unit": "N",
+      "text": "4 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·4·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.2 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.20000000000000004,
+      "unit": "J",
+      "text": "0.2 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.05000000000000001,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36096,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 0.2 kg معلّقة بنابض شاقولي ثابت مرونته k = 50 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.1 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.04 m — 10 درجة",
+    "٢) 5 N — 10 درجة",
+    "٣) 0.25 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.05000000000000001,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 0.2·10/50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.04 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 50·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·5·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.25 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 0.2·10/50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.04 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.04,
+      "unit": "m",
+      "text": "0.04 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 50·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "N",
+      "text": "5 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·5·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.25 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.25000000000000006,
+      "unit": "J",
+      "text": "0.25 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.05000000000000001,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36097,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 0.4 kg معلّقة بنابض شاقولي ثابت مرونته k = 50 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.02 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.08 m — 10 درجة",
+    "٢) 1 N — 10 درجة",
+    "٣) 0.01 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.01,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 0.4·10/50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.4",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.08 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 50·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50",
+      "0.02"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·1·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.02"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.01 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 0.4·10/50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.4",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.08 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.08,
+      "unit": "m",
+      "text": "0.08 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 50·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50",
+        "0.02"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "N",
+      "text": "1 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·1·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.02"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.01 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.01,
+      "unit": "J",
+      "text": "0.01 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.01,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36099,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 0.4 kg معلّقة بنابض شاقولي ثابت مرونته k = 20 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.1 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.2 m — 10 درجة",
+    "٢) 2 N — 10 درجة",
+    "٣) 0.1 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.05000000000000001,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 0.4·10/20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.4",
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.2 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 20·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·2·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.1 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 0.4·10/20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.4",
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.2 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.2,
+      "unit": "m",
+      "text": "0.2 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 20·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "N",
+      "text": "2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·2·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.1 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.10000000000000002,
+      "unit": "J",
+      "text": "0.1 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.05000000000000001,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36100,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 0.5 kg معلّقة بنابض شاقولي ثابت مرونته k = 40 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.05 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.125 m — 10 درجة",
+    "٢) 2 N — 10 درجة",
+    "٣) 0.05 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.025000000000000005,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 0.5·10/40",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5",
+      "40"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.125 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 40·0.05",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "40",
+      "0.05"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·2·0.05",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.05"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.05 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 0.5·10/40",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5",
+        "40"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.125 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.125,
+      "unit": "m",
+      "text": "0.125 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 40·0.05",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "40",
+        "0.05"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "N",
+      "text": "2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·2·0.05",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.05"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.05 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.05000000000000001,
+      "unit": "J",
+      "text": "0.05 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.025000000000000005,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36101,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 2 kg معلّقة بنابض شاقولي ثابت مرونته k = 50 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.1 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.4 m — 10 درجة",
+    "٢) 5 N — 10 درجة",
+    "٣) 0.25 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.05000000000000001,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 2·10/50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.4 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 50·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·5·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.25 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 2·10/50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.4 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.4,
+      "unit": "m",
+      "text": "0.4 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 50·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "N",
+      "text": "5 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·5·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.25 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.25000000000000006,
+      "unit": "J",
+      "text": "0.25 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.05000000000000001,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36102,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 0.2 kg معلّقة بنابض شاقولي ثابت مرونته k = 20 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.05 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.1 m — 10 درجة",
+    "٢) 1 N — 10 درجة",
+    "٣) 0.025 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.025000000000000005,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 0.2·10/20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.1 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 20·0.05",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "0.05"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·1·0.05",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.05"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.025 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 0.2·10/20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.1 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.1,
+      "unit": "m",
+      "text": "0.1 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 20·0.05",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "0.05"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "N",
+      "text": "1 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·1·0.05",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.05"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.025 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.025000000000000005,
+      "unit": "J",
+      "text": "0.025 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.025000000000000005,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36103,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 1 kg معلّقة بنابض شاقولي ثابت مرونته k = 50 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.02 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.2 m — 10 درجة",
+    "٢) 1 N — 10 درجة",
+    "٣) 0.01 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.01,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 1·10/50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.2 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 50·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50",
+      "0.02"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·1·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.02"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.01 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 1·10/50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.2 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.2,
+      "unit": "m",
+      "text": "0.2 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 50·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50",
+        "0.02"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "N",
+      "text": "1 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·1·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.02"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.01 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.01,
+      "unit": "J",
+      "text": "0.01 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.01,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36105,
+   "templateId": "U1.L1.P03",
+   "unit": "U1",
+   "chapter": "U1C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "كتلة m = 0.4 kg معلّقة بنابض شاقولي ثابت مرونته k = 20 N·m⁻¹. تُزاح عن توازنها بسعة Xm = 0.05 m. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.2 m — 10 درجة",
+    "٢) 1 N — 10 درجة",
+    "٣) 0.025 J — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.025000000000000005,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δl = m·g/k",
+      "k·Δl = m·g"
+     ],
+     "antiKeys": [
+      "Δl = k/(m·g)",
+      "Δl = m·g·k"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Δl = 0.4·10/20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.4",
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.2 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = k·Xm",
+      "k·Xm"
+     ],
+     "antiKeys": [
+      "F = k/Xm",
+      "F = Xm/k"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: F = 20·0.05",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "0.05"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = ½·k·Xm²",
+      "½·F·Xm"
+     ],
+     "antiKeys": [
+      "E = k·Xm²",
+      "E = ½·k·Xm"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: E = ½·1·0.05",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.05"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.025 J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب استطالة النابض عند وضع التوازن Δl.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δl = m·g/k",
+        "k·Δl = m·g"
+       ],
+       "antiKeys": [
+        "Δl = k/(m·g)",
+        "Δl = m·g·k"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Δl = 0.4·10/20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.4",
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.2 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.2,
+      "unit": "m",
+      "text": "0.2 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب القوة المرجعة العظمى F عند السعة Xm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: القوة المرجعة للنابض: F = k·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = k·Xm",
+        "k·Xm"
+       ],
+       "antiKeys": [
+        "F = k/Xm",
+        "F = Xm/k"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: F = 20·0.05",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "0.05"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "N",
+      "text": "1 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الميكانيكية الكلية E للمتذبذب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = ½·k·Xm²",
+        "½·F·Xm"
+       ],
+       "antiKeys": [
+        "E = k·Xm²",
+        "E = ½·k·Xm"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: E = ½·1·0.05",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.05"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.025 J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.025000000000000005,
+      "unit": "J",
+      "text": "0.025 J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.025000000000000005,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الحركة التوافقية البسيطة",
+    "book": "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+   ]
+  },
+  {
+   "id": 36106,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 200 cm³ وكثافته ρ = 2000 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁴ m³ — 10 درجة",
+    "٢) 2 N — 10 درجة",
+    "٣) 4 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 20000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 200·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁴ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.0002·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.0002"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 2000·0.0002·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2000",
+      "0.0002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 200·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁴ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0002,
+      "unit": "m³",
+      "text": "2×10⁻⁴ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.0002·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.0002"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "N",
+      "text": "2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 2000·0.0002·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2000",
+        "0.0002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.0,
+      "unit": "N",
+      "text": "4 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 20000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+   ]
+  },
+  {
+   "id": 36107,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 500 cm³ وكثافته ρ = 8000 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 5×10⁻⁴ m³ — 10 درجة",
+    "٢) 5 N — 10 درجة",
+    "٣) 40 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 80000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 500·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 5×10⁻⁴ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.0005·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.0005"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 8000·0.0005·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "8000",
+      "0.0005"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 40 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 500·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 5×10⁻⁴ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0005,
+      "unit": "m³",
+      "text": "5×10⁻⁴ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.0005·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.0005"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "N",
+      "text": "5 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 8000·0.0005·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "8000",
+        "0.0005"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 40 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 40.0,
+      "unit": "N",
+      "text": "40 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 80000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+   ]
+  },
+  {
+   "id": 36108,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 500 cm³ وكثافته ρ = 11300 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 5×10⁻⁴ m³ — 10 درجة",
+    "٢) 5 N — 10 درجة",
+    "٣) 56.5 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 113000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 500·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 5×10⁻⁴ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.0005·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.0005"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 11300·0.0005·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "11300",
+      "0.0005"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 56.5 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 500·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 5×10⁻⁴ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0005,
+      "unit": "m³",
+      "text": "5×10⁻⁴ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.0005·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.0005"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "N",
+      "text": "5 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 11300·0.0005·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "11300",
+        "0.0005"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 56.5 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 56.5,
+      "unit": "N",
+      "text": "56.5 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 113000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+   ]
+  },
+  {
+   "id": 36110,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 500 cm³ وكثافته ρ = 2700 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 5×10⁻⁴ m³ — 10 درجة",
+    "٢) 5 N — 10 درجة",
+    "٣) 13.5 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 27000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 500·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 5×10⁻⁴ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.0005·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.0005"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 2700·0.0005·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2700",
+      "0.0005"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 13.5 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 500·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 5×10⁻⁴ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0005,
+      "unit": "m³",
+      "text": "5×10⁻⁴ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.0005·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.0005"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "N",
+      "text": "5 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 2700·0.0005·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2700",
+        "0.0005"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 13.5 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 13.5,
+      "unit": "N",
+      "text": "13.5 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 27000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+   ]
+  },
+  {
+   "id": 36111,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 100 cm³ وكثافته ρ = 8000 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10⁻⁴ m³ — 10 درجة",
+    "٢) 1 N — 10 درجة",
+    "٣) 8 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 80000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 100·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10⁻⁴ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.0001·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.0001"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 8000·0.0001·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "8000",
+      "0.0001"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 8 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 100·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10⁻⁴ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0001,
+      "unit": "m³",
+      "text": "10⁻⁴ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.0001·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.0001"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "N",
+      "text": "1 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 8000·0.0001·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "8000",
+        "0.0001"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 8 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8.0,
+      "unit": "N",
+      "text": "8 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 80000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+   ]
+  },
+  {
+   "id": 36112,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 1000 cm³ وكثافته ρ = 11300 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10⁻³ m³ — 10 درجة",
+    "٢) 10 N — 10 درجة",
+    "٣) 113 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 113000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 1000·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10⁻³ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.001·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.001"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 11300·0.001·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "11300",
+      "0.001"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 113 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 1000·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10⁻³ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.001,
+      "unit": "m³",
+      "text": "10⁻³ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.001·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.001"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "N",
+      "text": "10 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 11300·0.001·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "11300",
+        "0.001"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 113 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 113.0,
+      "unit": "N",
+      "text": "113 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 113000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+   ]
+  },
+  {
+   "id": 36113,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 200 cm³ وكثافته ρ = 8000 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁴ m³ — 10 درجة",
+    "٢) 2 N — 10 درجة",
+    "٣) 16 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 80000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 200·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁴ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.0002·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.0002"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 8000·0.0002·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "8000",
+      "0.0002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 16 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 200·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁴ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0002,
+      "unit": "m³",
+      "text": "2×10⁻⁴ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.0002·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.0002"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "N",
+      "text": "2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 8000·0.0002·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "8000",
+        "0.0002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 16 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 16.0,
+      "unit": "N",
+      "text": "16 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 80000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+   ]
+  },
+  {
+   "id": 36116,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 100 cm³ وكثافته ρ = 2700 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10⁻⁴ m³ — 10 درجة",
+    "٢) 1 N — 10 درجة",
+    "٣) 2.7 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 26999.999999999996,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 100·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10⁻⁴ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.0001·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.0001"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 2700·0.0001·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2700",
+      "0.0001"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.7 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 100·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10⁻⁴ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0001,
+      "unit": "m³",
+      "text": "10⁻⁴ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.0001·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.0001"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "N",
+      "text": "1 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 2700·0.0001·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2700",
+        "0.0001"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.7 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.6999999999999997,
+      "unit": "N",
+      "text": "2.7 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 26999.999999999996,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+   ]
+  },
+  {
+   "id": 36117,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 1000 cm³ وكثافته ρ = 2000 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10⁻³ m³ — 10 درجة",
+    "٢) 10 N — 10 درجة",
+    "٣) 20 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 20000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 1000·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10⁻³ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.001·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.001"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 2000·0.001·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2000",
+      "0.001"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 20 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 1000·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10⁻³ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.001,
+      "unit": "m³",
+      "text": "10⁻³ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.001·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.001"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "N",
+      "text": "10 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 2000·0.001·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2000",
+        "0.001"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 20 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "N",
+      "text": "20 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 20000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+   ]
+  },
+  {
+   "id": 36124,
+   "templateId": "U1.L4.P03",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسم حجمه V = 200 cm³ وكثافته ρ = 11300 kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = 1000 kg·m⁻³. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁴ m³ — 10 درجة",
+    "٢) 2 N — 10 درجة",
+    "٣) 22.6 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10000.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 112999.99999999999,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "1 cm³ = 10⁻⁶ m³",
+      "V = Vcm·10⁻⁶"
+     ],
+     "antiKeys": [
+      "1 cm³ = 10⁻³ m³",
+      "V = Vcm·10⁻³"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: V = 200·10⁻⁶",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁴ m³",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Fb = ρ_س·V·g",
+      "وزن السائل المزاح"
+     ],
+     "antiKeys": [
+      "Fb = ρ_جسم·V·g",
+      "Fb = ρ_س·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Fb = 1000·0.0002·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.0002"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "W = ρ_جسم·V·g",
+      "m·g"
+     ],
+     "antiKeys": [
+      "W = ρ_س·V·g",
+      "W = ρ_جسم·g/V"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: W = 11300·0.0002·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "11300",
+      "0.0002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 22.6 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "حوّل حجم الجسم إلى المتر المكعّب V.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "1 cm³ = 10⁻⁶ m³",
+        "V = Vcm·10⁻⁶"
+       ],
+       "antiKeys": [
+        "1 cm³ = 10⁻³ m³",
+        "V = Vcm·10⁻³"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: V = 200·10⁻⁶",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁴ m³",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0002,
+      "unit": "m³",
+      "text": "2×10⁻⁴ m³",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Fb = ρ_س·V·g",
+        "وزن السائل المزاح"
+       ],
+       "antiKeys": [
+        "Fb = ρ_جسم·V·g",
+        "Fb = ρ_س·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Fb = 1000·0.0002·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.0002"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "N",
+      "text": "2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب وزن الجسم الحقيقي W في الهواء.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: وزن الجسم: W = m·g = ρ_جسم·V·g",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "W = ρ_جسم·V·g",
+        "m·g"
+       ],
+       "antiKeys": [
+        "W = ρ_س·V·g",
+        "W = ρ_جسم·g/V"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: W = 11300·0.0002·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "11300",
+        "0.0002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 22.6 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 22.599999999999998,
+      "unit": "N",
+      "text": "22.6 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 112999.99999999999,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الدافعة)",
+    "book": "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
    ]
   }
  ]

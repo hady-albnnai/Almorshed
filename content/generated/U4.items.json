@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 10,
-  "poolSize": 1026,
+  "poolSize": 1072,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 289,
+  "partsPool": 335,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -13523,6 +13523,1968 @@
    "reviewNotes": [
     "قيد ni > nf يضمن انبعاثاً (طاقة موجبة).",
     "سلسلة متابعة: λ ∝ 1/ΔE و f ∝ 1/λ."
+   ]
+  },
+  {
+   "id": 36151,
+   "templateId": "U4.L3.P03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "أنبوب أشعّة سينية يعمل بفرق كمون تسريع U = 30 kV. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 30 keV — 10 درجة",
+    "٢) 4.13×10⁻² nm — 10 درجة",
+    "٣) 7.26×10¹⁸ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.239,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 2.9983800000000006e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Emax = e·U",
+      "e·U"
+     ],
+     "antiKeys": [
+      "Emax = U/e",
+      "Emax = e/U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Emax = 30 keV",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "30"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 30 keV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λmin = h·c/(e·U)",
+      "1240/U"
+     ],
+     "antiKeys": [
+      "λmin = e·U/(h·c)",
+      "λmin = h·c·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λmin = 1240/(30×1000)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "30"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4.13×10⁻² nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fmax = c/λmin",
+      "c/λmin"
+     ],
+     "antiKeys": [
+      "fmax = λmin/c",
+      "fmax = c·λmin"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.0413×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0413"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 7.26×10¹⁸ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية العظمى للإلكترونات Emax بوحدة keV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Emax = e·U",
+        "e·U"
+       ],
+       "antiKeys": [
+        "Emax = U/e",
+        "Emax = e/U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Emax = 30 keV",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "30"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 30 keV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 30.0,
+      "unit": "keV",
+      "text": "30 keV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأدنى للأشعّة السينية λmin بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λmin = h·c/(e·U)",
+        "1240/U"
+       ],
+       "antiKeys": [
+        "λmin = e·U/(h·c)",
+        "λmin = h·c·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λmin = 1240/(30×1000)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "30"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4.13×10⁻² nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0413,
+      "unit": "nm",
+      "text": "4.13×10⁻² nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.239,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التواتر الأعظمي للأشعّة السينية fmax.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fmax = c/λmin",
+        "c/λmin"
+       ],
+       "antiKeys": [
+        "fmax = λmin/c",
+        "fmax = c·λmin"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.0413×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0413"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 7.26×10¹⁸ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.26e+18,
+      "unit": "Hz",
+      "text": "7.26×10¹⁸ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 2.9983800000000006e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الأشعّة السينية: Emax = e·U · λmin = h·c/(e·U) · fmax = c/λmin. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — الأشعّة السينية",
+    "book": "طاقة قصوى Emax = e·U · حدّ ديّان-هنت λmin = h·c/(e·U) = 1240/U(V) nm · fmax = c/λmin",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة: λmin ∝ 1/Emax و fmax ∝ 1/λmin."
+   ]
+  },
+  {
+   "id": 36152,
+   "templateId": "U4.L3.P03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "أنبوب أشعّة سينية يعمل بفرق كمون تسريع U = 10 kV. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10 keV — 10 درجة",
+    "٢) 1.24×10⁻¹ nm — 10 درجة",
+    "٣) 2.42×10¹⁸ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.24,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.0008e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Emax = e·U",
+      "e·U"
+     ],
+     "antiKeys": [
+      "Emax = U/e",
+      "Emax = e/U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Emax = 10 keV",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10 keV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λmin = h·c/(e·U)",
+      "1240/U"
+     ],
+     "antiKeys": [
+      "λmin = e·U/(h·c)",
+      "λmin = h·c·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λmin = 1240/(10×1000)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.24×10⁻¹ nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fmax = c/λmin",
+      "c/λmin"
+     ],
+     "antiKeys": [
+      "fmax = λmin/c",
+      "fmax = c·λmin"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.124×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.124"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.42×10¹⁸ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية العظمى للإلكترونات Emax بوحدة keV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Emax = e·U",
+        "e·U"
+       ],
+       "antiKeys": [
+        "Emax = U/e",
+        "Emax = e/U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Emax = 10 keV",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10 keV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "keV",
+      "text": "10 keV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأدنى للأشعّة السينية λmin بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λmin = h·c/(e·U)",
+        "1240/U"
+       ],
+       "antiKeys": [
+        "λmin = e·U/(h·c)",
+        "λmin = h·c·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λmin = 1240/(10×1000)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.24×10⁻¹ nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.124,
+      "unit": "nm",
+      "text": "1.24×10⁻¹ nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.24,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التواتر الأعظمي للأشعّة السينية fmax.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fmax = c/λmin",
+        "c/λmin"
+       ],
+       "antiKeys": [
+        "fmax = λmin/c",
+        "fmax = c·λmin"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.124×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.124"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.42×10¹⁸ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.42e+18,
+      "unit": "Hz",
+      "text": "2.42×10¹⁸ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.0008e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الأشعّة السينية: Emax = e·U · λmin = h·c/(e·U) · fmax = c/λmin. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — الأشعّة السينية",
+    "book": "طاقة قصوى Emax = e·U · حدّ ديّان-هنت λmin = h·c/(e·U) = 1240/U(V) nm · fmax = c/λmin",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة: λmin ∝ 1/Emax و fmax ∝ 1/λmin."
+   ]
+  },
+  {
+   "id": 36153,
+   "templateId": "U4.L3.P03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "أنبوب أشعّة سينية يعمل بفرق كمون تسريع U = 20 kV. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 20 keV — 10 درجة",
+    "٢) 6.2×10⁻² nm — 10 درجة",
+    "٣) 4.84×10¹⁸ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.24,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.0008e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Emax = e·U",
+      "e·U"
+     ],
+     "antiKeys": [
+      "Emax = U/e",
+      "Emax = e/U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Emax = 20 keV",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 20 keV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λmin = h·c/(e·U)",
+      "1240/U"
+     ],
+     "antiKeys": [
+      "λmin = e·U/(h·c)",
+      "λmin = h·c·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λmin = 1240/(20×1000)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 6.2×10⁻² nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fmax = c/λmin",
+      "c/λmin"
+     ],
+     "antiKeys": [
+      "fmax = λmin/c",
+      "fmax = c·λmin"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.062×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.062"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4.84×10¹⁸ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية العظمى للإلكترونات Emax بوحدة keV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Emax = e·U",
+        "e·U"
+       ],
+       "antiKeys": [
+        "Emax = U/e",
+        "Emax = e/U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Emax = 20 keV",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 20 keV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "keV",
+      "text": "20 keV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأدنى للأشعّة السينية λmin بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λmin = h·c/(e·U)",
+        "1240/U"
+       ],
+       "antiKeys": [
+        "λmin = e·U/(h·c)",
+        "λmin = h·c·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λmin = 1240/(20×1000)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 6.2×10⁻² nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.062,
+      "unit": "nm",
+      "text": "6.2×10⁻² nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.24,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التواتر الأعظمي للأشعّة السينية fmax.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fmax = c/λmin",
+        "c/λmin"
+       ],
+       "antiKeys": [
+        "fmax = λmin/c",
+        "fmax = c·λmin"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.062×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.062"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4.84×10¹⁸ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.84e+18,
+      "unit": "Hz",
+      "text": "4.84×10¹⁸ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.0008e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الأشعّة السينية: Emax = e·U · λmin = h·c/(e·U) · fmax = c/λmin. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — الأشعّة السينية",
+    "book": "طاقة قصوى Emax = e·U · حدّ ديّان-هنت λmin = h·c/(e·U) = 1240/U(V) nm · fmax = c/λmin",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة: λmin ∝ 1/Emax و fmax ∝ 1/λmin."
+   ]
+  },
+  {
+   "id": 36154,
+   "templateId": "U4.L3.P03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "أنبوب أشعّة سينية يعمل بفرق كمون تسريع U = 50 kV. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 50 keV — 10 درجة",
+    "٢) 2.48×10⁻² nm — 10 درجة",
+    "٣) 1.21×10¹⁹ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.24,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.0008e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Emax = e·U",
+      "e·U"
+     ],
+     "antiKeys": [
+      "Emax = U/e",
+      "Emax = e/U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Emax = 50 keV",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 50 keV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λmin = h·c/(e·U)",
+      "1240/U"
+     ],
+     "antiKeys": [
+      "λmin = e·U/(h·c)",
+      "λmin = h·c·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λmin = 1240/(50×1000)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.48×10⁻² nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fmax = c/λmin",
+      "c/λmin"
+     ],
+     "antiKeys": [
+      "fmax = λmin/c",
+      "fmax = c·λmin"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.0248×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0248"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.21×10¹⁹ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية العظمى للإلكترونات Emax بوحدة keV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Emax = e·U",
+        "e·U"
+       ],
+       "antiKeys": [
+        "Emax = U/e",
+        "Emax = e/U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Emax = 50 keV",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 50 keV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "keV",
+      "text": "50 keV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأدنى للأشعّة السينية λmin بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λmin = h·c/(e·U)",
+        "1240/U"
+       ],
+       "antiKeys": [
+        "λmin = e·U/(h·c)",
+        "λmin = h·c·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λmin = 1240/(50×1000)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.48×10⁻² nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0248,
+      "unit": "nm",
+      "text": "2.48×10⁻² nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.24,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التواتر الأعظمي للأشعّة السينية fmax.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fmax = c/λmin",
+        "c/λmin"
+       ],
+       "antiKeys": [
+        "fmax = λmin/c",
+        "fmax = c·λmin"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.0248×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0248"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.21×10¹⁹ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.21e+19,
+      "unit": "Hz",
+      "text": "1.21×10¹⁹ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.0008e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الأشعّة السينية: Emax = e·U · λmin = h·c/(e·U) · fmax = c/λmin. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — الأشعّة السينية",
+    "book": "طاقة قصوى Emax = e·U · حدّ ديّان-هنت λmin = h·c/(e·U) = 1240/U(V) nm · fmax = c/λmin",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة: λmin ∝ 1/Emax و fmax ∝ 1/λmin."
+   ]
+  },
+  {
+   "id": 36156,
+   "templateId": "U4.L3.P03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "أنبوب أشعّة سينية يعمل بفرق كمون تسريع U = 15 kV. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 15 keV — 10 درجة",
+    "٢) 8.27×10⁻² nm — 10 درجة",
+    "٣) 3.63×10¹⁸ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.2405,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.0020099999999994e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Emax = e·U",
+      "e·U"
+     ],
+     "antiKeys": [
+      "Emax = U/e",
+      "Emax = e/U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Emax = 15 keV",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "15"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 15 keV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λmin = h·c/(e·U)",
+      "1240/U"
+     ],
+     "antiKeys": [
+      "λmin = e·U/(h·c)",
+      "λmin = h·c·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λmin = 1240/(15×1000)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "15"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 8.27×10⁻² nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fmax = c/λmin",
+      "c/λmin"
+     ],
+     "antiKeys": [
+      "fmax = λmin/c",
+      "fmax = c·λmin"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.0827×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0827"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3.63×10¹⁸ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية العظمى للإلكترونات Emax بوحدة keV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Emax = e·U",
+        "e·U"
+       ],
+       "antiKeys": [
+        "Emax = U/e",
+        "Emax = e/U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Emax = 15 keV",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "15"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 15 keV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 15.0,
+      "unit": "keV",
+      "text": "15 keV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأدنى للأشعّة السينية λmin بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λmin = h·c/(e·U)",
+        "1240/U"
+       ],
+       "antiKeys": [
+        "λmin = e·U/(h·c)",
+        "λmin = h·c·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λmin = 1240/(15×1000)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "15"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 8.27×10⁻² nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0827,
+      "unit": "nm",
+      "text": "8.27×10⁻² nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.2405,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التواتر الأعظمي للأشعّة السينية fmax.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fmax = c/λmin",
+        "c/λmin"
+       ],
+       "antiKeys": [
+        "fmax = λmin/c",
+        "fmax = c·λmin"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.0827×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0827"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3.63×10¹⁸ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.63e+18,
+      "unit": "Hz",
+      "text": "3.63×10¹⁸ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.0020099999999994e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الأشعّة السينية: Emax = e·U · λmin = h·c/(e·U) · fmax = c/λmin. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — الأشعّة السينية",
+    "book": "طاقة قصوى Emax = e·U · حدّ ديّان-هنت λmin = h·c/(e·U) = 1240/U(V) nm · fmax = c/λmin",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة: λmin ∝ 1/Emax و fmax ∝ 1/λmin."
+   ]
+  },
+  {
+   "id": 36163,
+   "templateId": "U4.L3.P03",
+   "unit": "U4",
+   "chapter": "U4C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "أنبوب أشعّة سينية يعمل بفرق كمون تسريع U = 40 kV. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 40 keV — 10 درجة",
+    "٢) 3.1×10⁻² nm — 10 درجة",
+    "٣) 9.68×10¹⁸ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1.24,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.0008e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Emax = e·U",
+      "e·U"
+     ],
+     "antiKeys": [
+      "Emax = U/e",
+      "Emax = e/U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Emax = 40 keV",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "40"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 40 keV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λmin = h·c/(e·U)",
+      "1240/U"
+     ],
+     "antiKeys": [
+      "λmin = e·U/(h·c)",
+      "λmin = h·c·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λmin = 1240/(40×1000)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "40"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.1×10⁻² nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "fmax = c/λmin",
+      "c/λmin"
+     ],
+     "antiKeys": [
+      "fmax = λmin/c",
+      "fmax = c·λmin"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.031×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.031"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 9.68×10¹⁸ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية العظمى للإلكترونات Emax بوحدة keV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Emax = e·U",
+        "e·U"
+       ],
+       "antiKeys": [
+        "Emax = U/e",
+        "Emax = e/U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Emax = 40 keV",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "40"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 40 keV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 40.0,
+      "unit": "keV",
+      "text": "40 keV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأدنى للأشعّة السينية λmin بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λmin = h·c/(e·U)",
+        "1240/U"
+       ],
+       "antiKeys": [
+        "λmin = e·U/(h·c)",
+        "λmin = h·c·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λmin = 1240/(40×1000)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "40"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.1×10⁻² nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.031,
+      "unit": "nm",
+      "text": "3.1×10⁻² nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1.24,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التواتر الأعظمي للأشعّة السينية fmax.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: fmax = c/λmin",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "fmax = c/λmin",
+        "c/λmin"
+       ],
+       "antiKeys": [
+        "fmax = λmin/c",
+        "fmax = c·λmin"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: fmax = 3×10⁸/(0.031×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.031"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 9.68×10¹⁸ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 9.68e+18,
+      "unit": "Hz",
+      "text": "9.68×10¹⁸ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.0008e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الأشعّة السينية: Emax = e·U · λmin = h·c/(e·U) · fmax = c/λmin. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L3 — الأشعّة السينية",
+    "book": "طاقة قصوى Emax = e·U · حدّ ديّان-هنت λmin = h·c/(e·U) = 1240/U(V) nm · fmax = c/λmin",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة: λmin ∝ 1/Emax و fmax ∝ 1/λmin."
    ]
   }
  ]

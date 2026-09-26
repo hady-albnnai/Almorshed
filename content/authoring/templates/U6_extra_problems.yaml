@@ -2065,3 +2065,306 @@ templates:
     review_notes:
       - "سلسلة متابعة: v يتبع g(h) بالقوة ٠٫٥ و T يتبع v بالقوة −١."
     approved: false
+
+  # ── ٣٤) المتذبذب المرن الشاقولي (U1C1) — الاستطالة عند التوازن · القوة · الطاقة ──
+  - id: U1.L1.P03
+    title: "المتذبذب المرن الشاقولي — مسألة بأجزاء (الاستطالة عند التوازن · القوة · الطاقة)"
+    chapter: U1C1
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L1 — الحركة التوافقية البسيطة"
+      book: "عند التوازن: Δl = m·g/k · القوة المرجعة F = k·Xm · الطاقة E = ½·k·Xm² = ½·F·Xm"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      k: {set: [20, 40, 50, 100], unit: "N·m⁻¹"}
+      m: {set: [0.2, 0.4, 0.5, 1.0, 2.0], unit: kg}
+      Xm: {set: [0.02, 0.05, 0.1], unit: m}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      dl: "m*g/k"
+      F: "k*Xm"
+      E: "0.5*k*Xm**2"
+    stem: "كتلة m = {m} kg معلّقة بنابض شاقولي ثابت مرونته k = {k} N·m⁻¹. تُزاح عن توازنها بسعة Xm = {Xm} m. نأخذ g = 10 m·s⁻²."
+    parts:
+      - label: "١"
+        ask: "احسب استطالة النابض عند وضع التوازن Δl."
+        unit: "m"
+        value: "dl"
+        answer: {format: auto}
+        lines:
+          - relation: "عند التوازن يوازن وزنُ الكتلةِ قوةَ النابض: k·Δl = m·g ⇒ Δl = m·g/k"
+            subst: "Δl = {m}·10/{k}"
+            expect: ["{m}", "{k}"]
+            keys: ["Δl = m·g/k", "k·Δl = m·g"]
+            anti_keys: ["Δl = k/(m·g)", "Δl = m·g·k"]
+      - label: "٢"
+        ask: "احسب القوة المرجعة العظمى F عند السعة Xm."
+        unit: "N"
+        value: "F"
+        answer: {format: auto}
+        lines:
+          - relation: "القوة المرجعة للنابض: F = k·Xm"
+            subst: "F = {k}·{Xm}"
+            expect: ["{k}", "{Xm}"]
+            keys: ["F = k·Xm", "k·Xm"]
+            anti_keys: ["F = k/Xm", "F = Xm/k"]
+      - label: "٣"
+        ask: "احسب الطاقة الميكانيكية الكلية E للمتذبذب."
+        unit: "J"
+        value: "E"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}
+        lines:
+          - relation: "الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm² = ½·F·Xm"
+            subst: "E = ½·{F}·{Xm}"
+            expect: ["{Xm}"]
+            keys: ["E = ½·k·Xm²", "½·F·Xm"]
+            anti_keys: ["E = k·Xm²", "E = ½·k·Xm"]
+    answer_basis: "المتذبذب المرن الشاقولي: Δl = m·g/k · F = k·Xm · E = ½·k·Xm² = ½·F·Xm. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "الجزء ٣ متابعة على القوة (E = ½·F·Xm ∝ F)."
+    approved: false
+
+  # ── ٣٥) دافعة أرخميدس (U1C4) — الحجم · قوة الدفع · الوزن ──
+  - id: U1.L4.P03
+    title: "دافعة أرخميدس — مسألة بأجزاء (الحجم · قوة الدفع · الوزن)"
+    chapter: U1C4
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L4 — ميكانيك الموائع (الدافعة)"
+      book: "دافعة أرخميدس: Fb = ρ_سائل·V·g · وزن الجسم W = ρ_جسم·V·g · الوزن الظاهري = W − Fb"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      rhoL: {set: [1000], unit: "kg·m⁻³"}
+      rhoO: {set: [2000, 2700, 8000, 11300], unit: "kg·m⁻³"}
+      Vcm: {set: [100, 200, 500, 1000], unit: "cm³"}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      V: "Vcm*1e-6"
+      Fb: "rhoL*g*Vcm*1e-6"
+      W: "rhoO*g*Vcm*1e-6"
+    stem: "جسم حجمه V = {Vcm} cm³ وكثافته ρ = {rhoO} kg·m⁻³، غُمر كاملاً في سائل كثافته ρ_س = {rhoL} kg·m⁻³. نأخذ g = 10 m·s⁻²."
+    parts:
+      - label: "١"
+        ask: "حوّل حجم الجسم إلى المتر المكعّب V."
+        unit: "m³"
+        value: "V"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "تحويل الوحدات: 1 cm³ = 10⁻⁶ m³ ⇒ V = Vcm·10⁻⁶"
+            subst: "V = {Vcm}·10⁻⁶"
+            expect: ["{Vcm}"]
+            keys: ["1 cm³ = 10⁻⁶ m³", "V = Vcm·10⁻⁶"]
+            anti_keys: ["1 cm³ = 10⁻³ m³", "V = Vcm·10⁻³"]
+      - label: "٢"
+        ask: "احسب قوة الدفع (دافعة أرخميدس) Fb المؤثّرة في الجسم."
+        unit: "N"
+        value: "Fb"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "دافعة أرخميدس تساوي وزن السائل المزاح: Fb = ρ_س·V·g"
+            subst: "Fb = {rhoL}·{V}·10"
+            expect: ["{rhoL}", "{V}"]
+            keys: ["Fb = ρ_س·V·g", "وزن السائل المزاح"]
+            anti_keys: ["Fb = ρ_جسم·V·g", "Fb = ρ_س·g/V"]
+      - label: "٣"
+        ask: "احسب وزن الجسم الحقيقي W في الهواء."
+        unit: "N"
+        value: "W"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "وزن الجسم: W = m·g = ρ_جسم·V·g"
+            subst: "W = {rhoO}·{V}·10"
+            expect: ["{rhoO}", "{V}"]
+            keys: ["W = ρ_جسم·V·g", "m·g"]
+            anti_keys: ["W = ρ_س·V·g", "W = ρ_جسم·g/V"]
+    answer_basis: "أرخميدس: V = Vcm·10⁻⁶ · Fb = ρ_س·V·g · W = ρ_جسم·V·g (والوزن الظاهري = W − Fb). سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "الجزءان ٢ و٣ متابعة على الحجم V (كلاهما ∝ V)."
+    approved: false
+
+  # ── ٣٦) القوة المحركة الحثّية بالحركة (U2C3) — e = B·L·v · التيار · قوة الكبح ──
+  - id: U2.L3.P03
+    title: "القوة المحركة الحثّية بالحركة (قضيب على سكّتين) — مسألة بأجزاء"
+    chapter: U2C3
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L3 — التحريض الكهرطيسي"
+      book: "قوة محركة بالحركة e = B·L·v · التيار I = e/R · قوة لابلاس الكابحة F = B·I·L"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      B: {set: [0.2, 0.5], unit: T}
+      L: {set: [0.2, 0.5, 1.0], unit: m}
+      v: {set: [2, 5, 10], unit: "m·s⁻¹"}
+      R: {set: [2, 5, 10], unit: "Ω"}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      e: "B*L*v"
+      I: "B*L*v/R"
+      F: "B*(B*L*v/R)*L"
+    stem: "قضيب موصل طوله L = {L} m ينزلق بسرعة ثابتة v = {v} m·s⁻¹ على سكّتين أفقيتين في حقل مغناطيسي منتظم عمودي B = {B} T، والدارة مغلقة على مقاومة R = {R} Ω."
+    parts:
+      - label: "١"
+        ask: "احسب القوة المحركة الحثّية e المتولّدة في القضيب."
+        unit: "V"
+        value: "e"
+        answer: {format: auto}
+        lines:
+          - relation: "القوة المحركة بالحركة: e = B·L·v"
+            subst: "e = {B}·{L}·{v}"
+            expect: ["{B}", "{L}", "{v}"]
+            keys: ["e = B·L·v", "B·L·v"]
+            anti_keys: ["e = B·L/v", "e = B·v/L"]
+      - label: "٢"
+        ask: "احسب شدّة التيار الحثّي I في الدارة."
+        unit: "A"
+        value: "I"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "قانون أوم: I = e/R"
+            subst: "I = {e}/{R}"
+            expect: ["{R}"]
+            keys: ["I = e/R", "e/R"]
+            anti_keys: ["I = e·R", "I = R/e"]
+      - label: "٣"
+        ask: "احسب شدّة قوة لابلاس الكابحة F المؤثّرة في القضيب."
+        unit: "N"
+        value: "F"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}
+        lines:
+          - relation: "قوة لابلاس على القضيب حامل التيار: F = B·I·L"
+            subst: "F = {B}·{I}·{L}"
+            expect: ["{B}", "{L}"]
+            keys: ["F = B·I·L", "B·I·L"]
+            anti_keys: ["F = B·I/L", "F = I·L/B"]
+    answer_basis: "القضيب المنزلق: e = B·L·v · I = e/R · F = B·I·L. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "سلسلة متابعة كاملة: I ∝ e و F ∝ I."
+    approved: false
+
+  # ── ٣٧) توزّع الطاقة في الدارة LC (U2C4) — الطاقة الكلية · الكهربائية · المغناطيسية ──
+  - id: U2.L4.P03
+    title: "توزّع الطاقة في الدارة المهتزّة (LC) — مسألة بأجزاء (عند q = Qmax/2)"
+    chapter: U2C4
+    type: problem
+    difficulty: 4
+    source:
+      lesson: "L4 — الدارة المهتزة والطاقة"
+      book: "E = ½·C·Um² · عند q = Qmax/2: E_C = q²/(2C) = E/4 · E_L = E − E_C = (3/4)·E"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      L: {set: [0.1, 0.4, 1.0], unit: H}
+      Cu: {set: [10, 40, 100], unit: "µF"}
+      Um: {set: [10, 20], unit: V}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      Etot: "0.5*Cu*1e-6*Um**2"
+      EC: "0.25*(0.5*Cu*1e-6*Um**2)"
+      EL: "0.75*(0.5*Cu*1e-6*Um**2)"
+    stem: "دارة مهتزة مثالية (LC): L = {L} H، C = {Cu} µF، شُحنت حتى Um = {Um} V. ندرس اللحظة التي تصبح فيها شحنة المكثفة q = Qmax/2."
+    parts:
+      - label: "١"
+        ask: "احسب الطاقة الكلية E المخزّنة في الدارة."
+        unit: "J"
+        value: "Etot"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "الطاقة الكلية: E = ½·C·Um²"
+            subst: "E = ½·{Cu}×10⁻⁶·{Um}²"
+            expect: ["{Um}"]
+            keys: ["E = ½·C·Um²", "½C·Um²"]
+            anti_keys: ["E = ½·C·Um", "E = C·Um²"]
+      - label: "٢"
+        ask: "احسب الطاقة الكهربائية E_C المخزّنة في المكثفة عند q = Qmax/2."
+        unit: "J"
+        value: "EC"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "E_C = q²/(2C) وعند q = Qmax/2: E_C = (Qmax/2)²/(2C) = E/4"
+            subst: "E_C = {Etot}/4"
+            expect: ["{Etot}"]
+            keys: ["E_C = q²/(2C)", "E_C = E/4"]
+            anti_keys: ["E_C = E/2", "E_C = E"]
+      - label: "٣"
+        ask: "احسب الطاقة المغناطيسية E_L المخزّنة في الوشيعة في اللحظة نفسها."
+        unit: "J"
+        value: "EL"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "حفظ الطاقة: E_L = E − E_C = E − E/4 = (3/4)·E"
+            subst: "E_L = (3/4)·{Etot}"
+            expect: ["{Etot}"]
+            keys: ["E_L = E − E_C", "(3/4)·E"]
+            anti_keys: ["E_L = E/4", "E_L = E/2"]
+    answer_basis: "طاقة LC عند q=Qmax/2: E = ½C·Um² · E_C = E/4 · E_L = (3/4)·E. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "الجزءان ٢ و٣ متابعة على الطاقة الكلية (E_C = E/4 · E_L = 3E/4)."
+    approved: false
+
+  # ── ٣٨) الأشعّة السينية (U4C3) — الطاقة العظمى · طول الموجة الأدنى · التواتر الأعظمي ──
+  - id: U4.L3.P03
+    title: "الأشعّة السينية (أنبوب كوليدج) — مسألة بأجزاء (الطاقة العظمى · λ الأدنى · f الأعظمي)"
+    chapter: U4C3
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L3 — الأشعّة السينية"
+      book: "طاقة قصوى Emax = e·U · حدّ ديّان-هنت λmin = h·c/(e·U) = 1240/U(V) nm · fmax = c/λmin"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      Ukv: {set: [10, 15, 20, 30, 40, 50], unit: kV}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      Emax: "Ukv"
+      lammin: "1.24/Ukv"
+      fmax: "3e8/((1.24/Ukv)*1e-9)"
+    stem: "أنبوب أشعّة سينية يعمل بفرق كمون تسريع U = {Ukv} kV. نأخذ h·c = 1240 eV·nm."
+    parts:
+      - label: "١"
+        ask: "احسب الطاقة الحركية العظمى للإلكترونات Emax بوحدة keV."
+        unit: "keV"
+        value: "Emax"
+        answer: {format: auto}
+        lines:
+          - relation: "تكتسب الإلكترونات كامل طاقة التسريع: Emax = e·U (عددياً بالـkeV = U بالـkV)"
+            subst: "Emax = {Ukv} keV"
+            expect: ["{Ukv}"]
+            keys: ["Emax = e·U", "e·U"]
+            anti_keys: ["Emax = U/e", "Emax = e/U"]
+      - label: "٢"
+        ask: "احسب طول الموجة الأدنى للأشعّة السينية λmin بوحدة nm."
+        unit: "nm"
+        value: "lammin"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: -1}
+        lines:
+          - relation: "حدّ ديّان-هنت: كامل الطاقة يتحوّل إلى فوتون واحد ⇒ λmin = h·c/(e·U)"
+            subst: "λmin = 1240/({Ukv}×1000)"
+            expect: ["{Ukv}"]
+            keys: ["λmin = h·c/(e·U)", "1240/U"]
+            anti_keys: ["λmin = e·U/(h·c)", "λmin = h·c·e·U"]
+      - label: "٣"
+        ask: "احسب التواتر الأعظمي للأشعّة السينية fmax."
+        unit: "Hz"
+        value: "fmax"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: -1}
+        lines:
+          - relation: "العلاقة بين التواتر وطول الموجة: fmax = c/λmin"
+            subst: "fmax = 3×10⁸/({lammin}×10⁻⁹)"
+            expect: ["{lammin}"]
+            keys: ["fmax = c/λmin", "c/λmin"]
+            anti_keys: ["fmax = λmin/c", "fmax = c·λmin"]
+    answer_basis: "الأشعّة السينية: Emax = e·U · λmin = h·c/(e·U) · fmax = c/λmin. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "سلسلة متابعة: λmin ∝ 1/Emax و fmax ∝ 1/λmin."
+    approved: false
