@@ -1763,7 +1763,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--seed", type=int, default=2026)
     ap.add_argument("--n", type=int, default=100, help="حجم العيّنة")
-    ap.add_argument("--per-template", type=int, default=10, help="عدد البنود لكل قالب محسوب (رُفع إلى 10 لزيادة كمية المسائل/التمارين — طلب المالك)")
+    ap.add_argument("--per-template", type=int, default=50, help="عدد البنود لكل قالب محسوب (رُفع إلى 50 لتغطية كل الاحتمالات — طلب المالك؛ القالب يعطي أقصى تركيباته الفريدة إن قلّت عن 50)")
     ap.add_argument("--pack", action="store_true", help="دمج العيّنة في pack.json تحت items")
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--u1-only", action="store_true", help="القوالب U1.yaml فقط (سلوك المادة ١٠ الأصلي)")

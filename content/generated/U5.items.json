@@ -4,8 +4,8 @@
   "templates": "content/authoring/templates/*.yaml",
   "templatesVersion": 1,
   "seed": 2026,
-  "perTemplate": 10,
-  "poolSize": 1072,
+  "perTemplate": 50,
+  "poolSize": 2773,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 335,
+  "partsPool": 830,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -27,7 +27,7 @@
  },
  "items": [
   {
-   "id": 25144,
+   "id": 77087,
    "templateId": "U5.L1.T01",
    "unit": "U5",
    "chapter": "U5C1",
@@ -35,35 +35,35 @@
    "difficulty": 2,
    "weight": 10,
    "approved": true,
-   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 7000 km·s⁻¹. احسب بعدها عنا.",
+   "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 34000 km·s⁻¹. احسب بعدها عنا.",
    "options": [
-    "490000 Mpc",
-    "6930 Mpc",
-    "100000 Mpc",
-    "100 Mpc"
+    "500000 Mpc",
+    "2310000 Mpc",
+    "33900 Mpc",
+    "500 Mpc"
    ],
    "correctIndex": 3,
    "optionRules": [
+    "unit_confusion",
     "hubble_inverted",
     "mix_formulas",
-    "unit_confusion",
     null
    ],
    "optionValues": [
-    490000.0,
-    6930.0,
-    100000.0,
-    100.0
+    500000.0,
+    2312000.0,
+    33932.0,
+    500.0
    ],
    "solutionSteps": [
-    "(A) خطأ: قلب العلاقة",
-    "(B) خطأ: جمع/طرح بدل الضرب/القسمة",
-    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
-    "✓ (D) 100 Mpc"
+    "(A) خطأ: ضرب بـ1000 بلا داعٍ",
+    "(B) خطأ: قلب العلاقة",
+    "(C) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "✓ (D) 500 Mpc"
    ],
    "followThrough": [],
    "answer": {
-    "value": 100.0,
+    "value": 500.0,
     "unit": "Mpc",
     "tolerance": 0.02
    },
@@ -92,7 +92,7 @@
    }
   },
   {
-   "id": 25145,
+   "id": 77089,
    "templateId": "U5.L1.T01",
    "unit": "U5",
    "chapter": "U5C1",
@@ -100,31 +100,31 @@
    "difficulty": 2,
    "weight": 10,
    "approved": true,
-   "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 680 km·s⁻¹. احسب بعدها عنا.",
+   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 700 km·s⁻¹. احسب بعدها عنا.",
    "options": [
-    "612 Mpc",
-    "10000 Mpc",
     "10 Mpc",
-    "46200 Mpc"
+    "49000 Mpc",
+    "10000 Mpc",
+    "630 Mpc"
    ],
-   "correctIndex": 2,
+   "correctIndex": 0,
    "optionRules": [
-    "mix_formulas",
-    "unit_confusion",
     null,
-    "hubble_inverted"
+    "hubble_inverted",
+    "unit_confusion",
+    "mix_formulas"
    ],
    "optionValues": [
-    612.0,
-    10000.0,
     10.0,
-    46240.0
+    49000.0,
+    10000.0,
+    630.0
    ],
    "solutionSteps": [
-    "(A) خطأ: جمع/طرح بدل الضرب/القسمة",
-    "(B) خطأ: ضرب بـ1000 بلا داعٍ",
-    "✓ (C) 10 Mpc",
-    "(D) خطأ: قلب العلاقة"
+    "✓ (A) 10 Mpc",
+    "(B) خطأ: قلب العلاقة",
+    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
+    "(D) خطأ: جمع/طرح بدل الضرب/القسمة"
    ],
    "followThrough": [],
    "answer": {
@@ -157,7 +157,7 @@
    }
   },
   {
-   "id": 25146,
+   "id": 77090,
    "templateId": "U5.L1.T01",
    "unit": "U5",
    "chapter": "U5C1",
@@ -165,142 +165,12 @@
    "difficulty": 2,
    "weight": 10,
    "approved": true,
-   "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 3400 km·s⁻¹. احسب بعدها عنا.",
-   "options": [
-    "50 Mpc",
-    "50000 Mpc",
-    "231000 Mpc",
-    "3330 Mpc"
-   ],
-   "correctIndex": 0,
-   "optionRules": [
-    null,
-    "unit_confusion",
-    "hubble_inverted",
-    "mix_formulas"
-   ],
-   "optionValues": [
-    50.0,
-    50000.0,
-    231200.0,
-    3332.0
-   ],
-   "solutionSteps": [
-    "✓ (A) 50 Mpc",
-    "(B) خطأ: ضرب بـ1000 بلا داعٍ",
-    "(C) خطأ: قلب العلاقة",
-    "(D) خطأ: جمع/طرح بدل الضرب/القسمة"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 50.0,
-    "unit": "Mpc",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "v = H0·d",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
-   "source": {
-    "book": "ص ٢٦٠–٢٦٢",
-    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25149,
-   "templateId": "U5.L1.T01",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 3500 km·s⁻¹. احسب بعدها عنا.",
-   "options": [
-    "50000 Mpc",
-    "3430 Mpc",
-    "50 Mpc",
-    "245000 Mpc"
-   ],
-   "correctIndex": 2,
-   "optionRules": [
-    "unit_confusion",
-    "mix_formulas",
-    null,
-    "hubble_inverted"
-   ],
-   "optionValues": [
-    50000.0,
-    3430.0,
-    50.0,
-    245000.0
-   ],
-   "solutionSteps": [
-    "(A) خطأ: ضرب بـ1000 بلا داعٍ",
-    "(B) خطأ: جمع/طرح بدل الضرب/القسمة",
-    "✓ (C) 50 Mpc",
-    "(D) خطأ: قلب العلاقة"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 50.0,
-    "unit": "Mpc",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "v = H0·d",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
-   "source": {
-    "book": "ص ٢٦٠–٢٦٢",
-    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25150,
-   "templateId": "U5.L1.T01",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 13600 km·s⁻¹. احسب بعدها عنا.",
+   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 14000 km·s⁻¹. احسب بعدها عنا.",
    "options": [
     "200 Mpc",
     "200000 Mpc",
-    "13500 Mpc",
-    "925000 Mpc"
+    "13900 Mpc",
+    "980000 Mpc"
    ],
    "correctIndex": 0,
    "optionRules": [
@@ -312,8 +182,8 @@
    "optionValues": [
     200.0,
     200000.0,
-    13532.0,
-    924800.0
+    13930.0,
+    980000.0
    ],
    "solutionSteps": [
     "✓ (A) 200 Mpc",
@@ -352,7 +222,267 @@
    }
   },
   {
-   "id": 25151,
+   "id": 77091,
+   "templateId": "U5.L1.T01",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 7000 km·s⁻¹. احسب بعدها عنا.",
+   "options": [
+    "490000 Mpc",
+    "100 Mpc",
+    "6930 Mpc",
+    "100000 Mpc"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "hubble_inverted",
+    null,
+    "mix_formulas",
+    "unit_confusion"
+   ],
+   "optionValues": [
+    490000.0,
+    100.0,
+    6930.0,
+    100000.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب العلاقة",
+    "✓ (B) 100 Mpc",
+    "(C) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "(D) خطأ: ضرب بـ1000 بلا داعٍ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 100.0,
+    "unit": "Mpc",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = H0·d",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
+   "source": {
+    "book": "ص ٢٦٠–٢٦٢",
+    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 77092,
+   "templateId": "U5.L1.T01",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبعد عنا 10 Mpc. احسب سرعة ابتعادها.",
+   "options": [
+    "0.143 km·s⁻¹",
+    "80 km·s⁻¹",
+    "700000 km·s⁻¹",
+    "700 km·s⁻¹"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "hubble_inverted",
+    "mix_formulas",
+    "unit_confusion",
+    null
+   ],
+   "optionValues": [
+    0.14285714285714285,
+    80.0,
+    700000.0,
+    700.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب العلاقة",
+    "(B) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
+    "✓ (D) 700 km·s⁻¹"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 700.0,
+    "unit": "km·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = H0·d",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
+   "source": {
+    "book": "ص ٢٦٠–٢٦٢",
+    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 77094,
+   "templateId": "U5.L1.T01",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 13600 km·s⁻¹. احسب بعدها عنا.",
+   "options": [
+    "200 Mpc",
+    "925000 Mpc",
+    "200000 Mpc",
+    "13500 Mpc"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "hubble_inverted",
+    "unit_confusion",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    200.0,
+    924800.0,
+    200000.0,
+    13532.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 200 Mpc",
+    "(B) خطأ: قلب العلاقة",
+    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
+    "(D) خطأ: جمع/طرح بدل الضرب/القسمة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 200.0,
+    "unit": "Mpc",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = H0·d",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
+   "source": {
+    "book": "ص ٢٦٠–٢٦٢",
+    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 77098,
+   "templateId": "U5.L1.T01",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 3500 km·s⁻¹. احسب بعدها عنا.",
+   "options": [
+    "245000 Mpc",
+    "50 Mpc",
+    "50000 Mpc",
+    "3430 Mpc"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "hubble_inverted",
+    null,
+    "unit_confusion",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    245000.0,
+    50.0,
+    50000.0,
+    3430.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب العلاقة",
+    "✓ (B) 50 Mpc",
+    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
+    "(D) خطأ: جمع/طرح بدل الضرب/القسمة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 50.0,
+    "unit": "Mpc",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = H0·d",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
+   "source": {
+    "book": "ص ٢٦٠–٢٦٢",
+    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 77100,
    "templateId": "U5.L1.T01",
    "unit": "U5",
    "chapter": "U5C1",
@@ -363,27 +493,27 @@
    "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 6800 km·s⁻¹. احسب بعدها عنا.",
    "options": [
     "462000 Mpc",
-    "100000 Mpc",
     "6730 Mpc",
+    "100000 Mpc",
     "100 Mpc"
    ],
    "correctIndex": 3,
    "optionRules": [
     "hubble_inverted",
-    "unit_confusion",
     "mix_formulas",
+    "unit_confusion",
     null
    ],
    "optionValues": [
     462400.0,
-    100000.0,
     6732.0,
+    100000.0,
     100.0
    ],
    "solutionSteps": [
     "(A) خطأ: قلب العلاقة",
-    "(B) خطأ: ضرب بـ1000 بلا داعٍ",
-    "(C) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "(B) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
     "✓ (D) 100 Mpc"
    ],
    "followThrough": [],
@@ -417,202 +547,7 @@
    }
   },
   {
-   "id": 25153,
-   "templateId": "U5.L1.T01",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 14000 km·s⁻¹. احسب بعدها عنا.",
-   "options": [
-    "200 Mpc",
-    "13900 Mpc",
-    "980000 Mpc",
-    "200000 Mpc"
-   ],
-   "correctIndex": 0,
-   "optionRules": [
-    null,
-    "mix_formulas",
-    "hubble_inverted",
-    "unit_confusion"
-   ],
-   "optionValues": [
-    200.0,
-    13930.0,
-    980000.0,
-    200000.0
-   ],
-   "solutionSteps": [
-    "✓ (A) 200 Mpc",
-    "(B) خطأ: جمع/طرح بدل الضرب/القسمة",
-    "(C) خطأ: قلب العلاقة",
-    "(D) خطأ: ضرب بـ1000 بلا داعٍ"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 200.0,
-    "unit": "Mpc",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "v = H0·d",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
-   "source": {
-    "book": "ص ٢٦٠–٢٦٢",
-    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25157,
-   "templateId": "U5.L1.T01",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 34000 km·s⁻¹. احسب بعدها عنا.",
-   "options": [
-    "500 Mpc",
-    "33900 Mpc",
-    "500000 Mpc",
-    "2310000 Mpc"
-   ],
-   "correctIndex": 0,
-   "optionRules": [
-    null,
-    "mix_formulas",
-    "unit_confusion",
-    "hubble_inverted"
-   ],
-   "optionValues": [
-    500.0,
-    33932.0,
-    500000.0,
-    2312000.0
-   ],
-   "solutionSteps": [
-    "✓ (A) 500 Mpc",
-    "(B) خطأ: جمع/طرح بدل الضرب/القسمة",
-    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
-    "(D) خطأ: قلب العلاقة"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 500.0,
-    "unit": "Mpc",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "v = H0·d",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
-   "source": {
-    "book": "ص ٢٦٠–٢٦٢",
-    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25159,
-   "templateId": "U5.L1.T01",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 35000 km·s⁻¹. احسب بعدها عنا.",
-   "options": [
-    "500 Mpc",
-    "2450000 Mpc",
-    "500000 Mpc",
-    "34900 Mpc"
-   ],
-   "correctIndex": 0,
-   "optionRules": [
-    null,
-    "hubble_inverted",
-    "unit_confusion",
-    "mix_formulas"
-   ],
-   "optionValues": [
-    500.0,
-    2450000.0,
-    500000.0,
-    34930.0
-   ],
-   "solutionSteps": [
-    "✓ (A) 500 Mpc",
-    "(B) خطأ: قلب العلاقة",
-    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
-    "(D) خطأ: جمع/طرح بدل الضرب/القسمة"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 500.0,
-    "unit": "Mpc",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "v = H0·d",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
-   "source": {
-    "book": "ص ٢٦٠–٢٦٢",
-    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25165,
+   "id": 77104,
    "templateId": "U5.L1.T01",
    "unit": "U5",
    "chapter": "U5C1",
@@ -622,29 +557,29 @@
    "approved": true,
    "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبعد عنا 10 Mpc. احسب سرعة ابتعادها.",
    "options": [
-    "78 km·s⁻¹",
+    "0.147 km·s⁻¹",
     "680 km·s⁻¹",
-    "680000 km·s⁻¹",
-    "0.147 km·s⁻¹"
+    "78 km·s⁻¹",
+    "680000 km·s⁻¹"
    ],
    "correctIndex": 1,
    "optionRules": [
-    "mix_formulas",
+    "hubble_inverted",
     null,
-    "unit_confusion",
-    "hubble_inverted"
+    "mix_formulas",
+    "unit_confusion"
    ],
    "optionValues": [
-    78.0,
+    0.14705882352941177,
     680.0,
-    680000.0,
-    0.14705882352941177
+    78.0,
+    680000.0
    ],
    "solutionSteps": [
-    "(A) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "(A) خطأ: قلب العلاقة",
     "✓ (B) 680 km·s⁻¹",
-    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
-    "(D) خطأ: قلب العلاقة"
+    "(C) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "(D) خطأ: ضرب بـ1000 بلا داعٍ"
    ],
    "followThrough": [],
    "answer": {
@@ -677,303 +612,238 @@
    }
   },
   {
-   "id": 25166,
-   "templateId": "U5.L1.T02",
+   "id": 77109,
+   "templateId": "U5.L1.T01",
    "unit": "U5",
    "chapter": "U5C1",
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
    "approved": true,
-   "stem": "خط طيفي طول موجته في المختبر 656 nm يُرصد في طيف مجرة عند 656 + 2 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 680 km·s⁻¹. احسب بعدها عنا.",
    "options": [
-    "9.15×10⁵ m·s⁻¹",
-    "3.05×10⁻³ m·s⁻¹",
-    "9.84×10¹⁰ m·s⁻¹",
-    "9.15×10² m·s⁻¹"
-   ],
-   "correctIndex": 0,
-   "optionRules": [
-    null,
-    "mix_formulas",
-    "invert_ratio",
-    "unit_confusion"
-   ],
-   "optionValues": [
-    915000.0,
-    0.003048780487804878,
-    98400000000.0,
-    914.6341463414634
-   ],
-   "solutionSteps": [
-    "✓ (A) 9.15×10⁵ m·s⁻¹",
-    "(B) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
-    "(C) خطأ: قلب النسبة",
-    "(D) خطأ: تحويل nm خاطئ"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 915000.0,
-    "unit": "m·s⁻¹",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
-   "source": {
-    "book": "ص ٢٥٩–٢٦٠",
-    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
-   }
-  },
-  {
-   "id": 25167,
-   "templateId": "U5.L1.T02",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "خط طيفي طول موجته في المختبر 600 nm يُرصد في طيف مجرة عند 600 + 8 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
-   "options": [
-    "1.33×10⁻² m·s⁻¹",
-    "2.25×10¹⁰ m·s⁻¹",
-    "4×10⁶ m·s⁻¹",
-    "4×10³ m·s⁻¹"
-   ],
-   "correctIndex": 2,
-   "optionRules": [
-    "mix_formulas",
-    "invert_ratio",
-    null,
-    "unit_confusion"
-   ],
-   "optionValues": [
-    0.013333333333333334,
-    22500000000.0,
-    4000000.0,
-    4000.0
-   ],
-   "solutionSteps": [
-    "(A) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
-    "(B) خطأ: قلب النسبة",
-    "✓ (C) 4×10⁶ m·s⁻¹",
-    "(D) خطأ: تحويل nm خاطئ"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 4000000.0,
-    "unit": "m·s⁻¹",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
-   "source": {
-    "book": "ص ٢٥٩–٢٦٠",
-    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
-   }
-  },
-  {
-   "id": 25168,
-   "templateId": "U5.L1.T02",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 2 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
-   "options": [
-    "5×10⁻³ m·s⁻¹",
-    "1.5×10³ m·s⁻¹",
-    "1.5×10⁶ m·s⁻¹",
-    "6×10¹⁰ m·s⁻¹"
-   ],
-   "correctIndex": 2,
-   "optionRules": [
-    "mix_formulas",
-    "unit_confusion",
-    null,
-    "invert_ratio"
-   ],
-   "optionValues": [
-    0.005,
-    1500.0,
-    1500000.0,
-    60000000000.0
-   ],
-   "solutionSteps": [
-    "(A) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
-    "(B) خطأ: تحويل nm خاطئ",
-    "✓ (C) 1.5×10⁶ m·s⁻¹",
-    "(D) خطأ: قلب النسبة"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 1500000.0,
-    "unit": "m·s⁻¹",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
-   "source": {
-    "book": "ص ٢٥٩–٢٦٠",
-    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
-   }
-  },
-  {
-   "id": 25169,
-   "templateId": "U5.L1.T02",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 4 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
-   "options": [
-    "3×10⁶ m·s⁻¹",
-    "3×10³ m·s⁻¹",
-    "10⁻² m·s⁻¹",
-    "3×10¹⁰ m·s⁻¹"
-   ],
-   "correctIndex": 0,
-   "optionRules": [
-    null,
-    "unit_confusion",
-    "mix_formulas",
-    "invert_ratio"
-   ],
-   "optionValues": [
-    3000000.0,
-    3000.0,
-    0.01,
-    30000000000.0
-   ],
-   "solutionSteps": [
-    "✓ (A) 3×10⁶ m·s⁻¹",
-    "(B) خطأ: تحويل nm خاطئ",
-    "(C) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
-    "(D) خطأ: قلب النسبة"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 3000000.0,
-    "unit": "m·s⁻¹",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
-   "source": {
-    "book": "ص ٢٥٩–٢٦٠",
-    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
-   }
-  },
-  {
-   "id": 25170,
-   "templateId": "U5.L1.T02",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 10 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
-   "options": [
-    "1.2×10¹⁰ m·s⁻¹",
-    "7.5×10³ m·s⁻¹",
-    "2.5×10⁻² m·s⁻¹",
-    "7.5×10⁶ m·s⁻¹"
+    "46200 Mpc",
+    "10000 Mpc",
+    "612 Mpc",
+    "10 Mpc"
    ],
    "correctIndex": 3,
    "optionRules": [
-    "invert_ratio",
+    "hubble_inverted",
     "unit_confusion",
     "mix_formulas",
     null
    ],
    "optionValues": [
-    12000000000.0,
-    7500.0,
-    0.025,
-    7500000.0
+    46240.0,
+    10000.0,
+    612.0,
+    10.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب العلاقة",
+    "(B) خطأ: ضرب بـ1000 بلا داعٍ",
+    "(C) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "✓ (D) 10 Mpc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 10.0,
+    "unit": "Mpc",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = H0·d",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
+   "source": {
+    "book": "ص ٢٦٠–٢٦٢",
+    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 77115,
+   "templateId": "U5.L1.T01",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 3400 km·s⁻¹. احسب بعدها عنا.",
+   "options": [
+    "50000 Mpc",
+    "3330 Mpc",
+    "231000 Mpc",
+    "50 Mpc"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "unit_confusion",
+    "mix_formulas",
+    "hubble_inverted",
+    null
+   ],
+   "optionValues": [
+    50000.0,
+    3332.0,
+    231200.0,
+    50.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: ضرب بـ1000 بلا داعٍ",
+    "(B) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "(C) خطأ: قلب العلاقة",
+    "✓ (D) 50 Mpc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 50.0,
+    "unit": "Mpc",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = H0·d",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
+   "source": {
+    "book": "ص ٢٦٠–٢٦٢",
+    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 77142,
+   "templateId": "U5.L1.T01",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 35000 km·s⁻¹. احسب بعدها عنا.",
+   "options": [
+    "2450000 Mpc",
+    "34900 Mpc",
+    "500000 Mpc",
+    "500 Mpc"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "hubble_inverted",
+    "mix_formulas",
+    "unit_confusion",
+    null
+   ],
+   "optionValues": [
+    2450000.0,
+    34930.0,
+    500000.0,
+    500.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب العلاقة",
+    "(B) خطأ: جمع/طرح بدل الضرب/القسمة",
+    "(C) خطأ: ضرب بـ1000 بلا داعٍ",
+    "✓ (D) 500 Mpc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 500.0,
+    "unit": "Mpc",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "v = H0·d",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = H0·d (الكتاب ص ٢٦١)",
+   "source": {
+    "book": "ص ٢٦٠–٢٦٢",
+    "lesson": "U5/L1 §٤ v = H0·d [كتاب أولاً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 78886,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 500 nm يُرصد في طيف مجرة عند 500 + 8 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "1.88×10¹⁰ m·s⁻¹",
+    "4.8×10³ m·s⁻¹",
+    "4.8×10⁶ m·s⁻¹",
+    "1.6×10⁻² m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "invert_ratio",
+    "unit_confusion",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    18750000000.0,
+    4800.0,
+    4800000.0,
+    0.016
    ],
    "solutionSteps": [
     "(A) خطأ: قلب النسبة",
     "(B) خطأ: تحويل nm خاطئ",
-    "(C) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
-    "✓ (D) 7.5×10⁶ m·s⁻¹"
+    "✓ (C) 4.8×10⁶ m·s⁻¹",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
    ],
    "followThrough": [],
    "answer": {
-    "value": 7500000.0,
+    "value": 4800000.0,
     "unit": "m·s⁻¹",
     "tolerance": 0.02
    },
@@ -1002,7 +872,137 @@
    }
   },
   {
-   "id": 25172,
+   "id": 78887,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 600 nm يُرصد في طيف مجرة عند 600 + 5 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "2.5×10³ m·s⁻¹",
+    "8.33×10⁻³ m·s⁻¹",
+    "2.5×10⁶ m·s⁻¹",
+    "3.6×10¹⁰ m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "unit_confusion",
+    "mix_formulas",
+    null,
+    "invert_ratio"
+   ],
+   "optionValues": [
+    2500.0,
+    0.008333333333333333,
+    2500000.0,
+    36000000000.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: تحويل nm خاطئ",
+    "(B) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "✓ (C) 2.5×10⁶ m·s⁻¹",
+    "(D) خطأ: قلب النسبة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 2500000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78888,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 500 nm يُرصد في طيف مجرة عند 500 + 4 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "3.75×10¹⁰ m·s⁻¹",
+    "8×10⁻³ m·s⁻¹",
+    "2.4×10⁶ m·s⁻¹",
+    "2.4×10³ m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "invert_ratio",
+    "mix_formulas",
+    null,
+    "unit_confusion"
+   ],
+   "optionValues": [
+    37500000000.0,
+    0.008,
+    2400000.0,
+    2400.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب النسبة",
+    "(B) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "✓ (C) 2.4×10⁶ m·s⁻¹",
+    "(D) خطأ: تحويل nm خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 2400000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78889,
    "templateId": "U5.L1.T02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -1012,29 +1012,29 @@
    "approved": true,
    "stem": "خط طيفي طول موجته في المختبر 656 nm يُرصد في طيف مجرة عند 656 + 4 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
+    "1.83×10⁶ m·s⁻¹",
     "4.92×10¹⁰ m·s⁻¹",
     "6.1×10⁻³ m·s⁻¹",
-    "1.83×10³ m·s⁻¹",
-    "1.83×10⁶ m·s⁻¹"
+    "1.83×10³ m·s⁻¹"
    ],
-   "correctIndex": 3,
+   "correctIndex": 0,
    "optionRules": [
+    null,
     "invert_ratio",
     "mix_formulas",
-    "unit_confusion",
-    null
+    "unit_confusion"
    ],
    "optionValues": [
+    1830000.0,
     49200000000.0,
     0.006097560975609756,
-    1829.2682926829268,
-    1830000.0
+    1829.2682926829268
    ],
    "solutionSteps": [
-    "(A) خطأ: قلب النسبة",
-    "(B) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
-    "(C) خطأ: تحويل nm خاطئ",
-    "✓ (D) 1.83×10⁶ m·s⁻¹"
+    "✓ (A) 1.83×10⁶ m·s⁻¹",
+    "(B) خطأ: قلب النسبة",
+    "(C) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "(D) خطأ: تحويل nm خاطئ"
    ],
    "followThrough": [],
    "answer": {
@@ -1067,7 +1067,332 @@
    }
   },
   {
-   "id": 25173,
+   "id": 78890,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 500 nm يُرصد في طيف مجرة عند 500 + 1 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "6×10⁵ m·s⁻¹",
+    "2×10⁻³ m·s⁻¹",
+    "1.5×10¹¹ m·s⁻¹",
+    "6×10² m·s⁻¹"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "mix_formulas",
+    "invert_ratio",
+    "unit_confusion"
+   ],
+   "optionValues": [
+    600000.0,
+    0.002,
+    150000000000.0,
+    600.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 6×10⁵ m·s⁻¹",
+    "(B) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "(C) خطأ: قلب النسبة",
+    "(D) خطأ: تحويل nm خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 600000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78892,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 656 nm يُرصد في طيف مجرة عند 656 + 5 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "3.94×10¹⁰ m·s⁻¹",
+    "7.62×10⁻³ m·s⁻¹",
+    "2.29×10⁶ m·s⁻¹",
+    "2.29×10³ m·s⁻¹"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "invert_ratio",
+    "mix_formulas",
+    null,
+    "unit_confusion"
+   ],
+   "optionValues": [
+    39360000000.0,
+    0.007621951219512195,
+    2290000.0,
+    2286.5853658536585
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب النسبة",
+    "(B) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "✓ (C) 2.29×10⁶ m·s⁻¹",
+    "(D) خطأ: تحويل nm خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 2290000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78893,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 5 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "3.75×10⁶ m·s⁻¹",
+    "2.4×10¹⁰ m·s⁻¹",
+    "3.75×10³ m·s⁻¹",
+    "1.25×10⁻² m·s⁻¹"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "invert_ratio",
+    "unit_confusion",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    3750000.0,
+    24000000000.0,
+    3750.0,
+    0.0125
+   ],
+   "solutionSteps": [
+    "✓ (A) 3.75×10⁶ m·s⁻¹",
+    "(B) خطأ: قلب النسبة",
+    "(C) خطأ: تحويل nm خاطئ",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 3750000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78894,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 656 nm يُرصد في طيف مجرة عند 656 + 1 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "4.57×10⁵ m·s⁻¹",
+    "1.97×10¹¹ m·s⁻¹",
+    "4.57×10² m·s⁻¹",
+    "1.52×10⁻³ m·s⁻¹"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "invert_ratio",
+    "unit_confusion",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    457000.0,
+    196800000000.0,
+    457.3170731707317,
+    0.001524390243902439
+   ],
+   "solutionSteps": [
+    "✓ (A) 4.57×10⁵ m·s⁻¹",
+    "(B) خطأ: قلب النسبة",
+    "(C) خطأ: تحويل nm خاطئ",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 457000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78895,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 656 nm يُرصد في طيف مجرة عند 656 + 10 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "1.52×10⁻² m·s⁻¹",
+    "4.57×10³ m·s⁻¹",
+    "1.97×10¹⁰ m·s⁻¹",
+    "4.57×10⁶ m·s⁻¹"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "unit_confusion",
+    "invert_ratio",
+    null
+   ],
+   "optionValues": [
+    0.01524390243902439,
+    4573.170731707317,
+    19680000000.0,
+    4570000.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "(B) خطأ: تحويل nm خاطئ",
+    "(C) خطأ: قلب النسبة",
+    "✓ (D) 4.57×10⁶ m·s⁻¹"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 4570000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78896,
    "templateId": "U5.L1.T02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -1078,27 +1403,27 @@
    "stem": "خط طيفي طول موجته في المختبر 500 nm يُرصد في طيف مجرة عند 500 + 2 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
     "7.5×10¹⁰ m·s⁻¹",
-    "1.2×10³ m·s⁻¹",
     "4×10⁻³ m·s⁻¹",
+    "1.2×10³ m·s⁻¹",
     "1.2×10⁶ m·s⁻¹"
    ],
    "correctIndex": 3,
    "optionRules": [
     "invert_ratio",
-    "unit_confusion",
     "mix_formulas",
+    "unit_confusion",
     null
    ],
    "optionValues": [
     75000000000.0,
-    1200.0,
     0.004,
+    1200.0,
     1200000.0
    ],
    "solutionSteps": [
     "(A) خطأ: قلب النسبة",
-    "(B) خطأ: تحويل nm خاطئ",
-    "(C) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "(B) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "(C) خطأ: تحويل nm خاطئ",
     "✓ (D) 1.2×10⁶ m·s⁻¹"
    ],
    "followThrough": [],
@@ -1132,7 +1457,7 @@
    }
   },
   {
-   "id": 25175,
+   "id": 78898,
    "templateId": "U5.L1.T02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -1140,96 +1465,31 @@
    "difficulty": 2,
    "weight": 10,
    "approved": true,
-   "stem": "خط طيفي طول موجته في المختبر 656 nm يُرصد في طيف مجرة عند 656 + 5 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
-   "options": [
-    "3.94×10¹⁰ m·s⁻¹",
-    "7.62×10⁻³ m·s⁻¹",
-    "2.29×10³ m·s⁻¹",
-    "2.29×10⁶ m·s⁻¹"
-   ],
-   "correctIndex": 3,
-   "optionRules": [
-    "invert_ratio",
-    "mix_formulas",
-    "unit_confusion",
-    null
-   ],
-   "optionValues": [
-    39360000000.0,
-    0.007621951219512195,
-    2286.5853658536585,
-    2290000.0
-   ],
-   "solutionSteps": [
-    "(A) خطأ: قلب النسبة",
-    "(B) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
-    "(C) خطأ: تحويل nm خاطئ",
-    "✓ (D) 2.29×10⁶ m·s⁻¹"
-   ],
-   "followThrough": [],
-   "answer": {
-    "value": 2290000.0,
-    "unit": "m·s⁻¹",
-    "tolerance": 0.02
-   },
-   "rubric": [
-    {
-     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
-     "points": 5
-    },
-    {
-     "step": "التعويض",
-     "points": 3
-    },
-    {
-     "step": "النتيجة",
-     "points": 1
-    },
-    {
-     "step": "الوحدة",
-     "points": 1
-    }
-   ],
-   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
-   "source": {
-    "book": "ص ٢٥٩–٢٦٠",
-    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
-   }
-  },
-  {
-   "id": 25176,
-   "templateId": "U5.L1.T02",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "numeric",
-   "difficulty": 2,
-   "weight": 10,
-   "approved": true,
-   "stem": "خط طيفي طول موجته في المختبر 500 nm يُرصد في طيف مجرة عند 500 + 5 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 4 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
     "3×10⁶ m·s⁻¹",
     "3×10³ m·s⁻¹",
-    "10⁻² m·s⁻¹",
-    "3×10¹⁰ m·s⁻¹"
+    "3×10¹⁰ m·s⁻¹",
+    "10⁻² m·s⁻¹"
    ],
    "correctIndex": 0,
    "optionRules": [
     null,
     "unit_confusion",
-    "mix_formulas",
-    "invert_ratio"
+    "invert_ratio",
+    "mix_formulas"
    ],
    "optionValues": [
     3000000.0,
     3000.0,
-    0.01,
-    30000000000.0
+    30000000000.0,
+    0.01
    ],
    "solutionSteps": [
     "✓ (A) 3×10⁶ m·s⁻¹",
     "(B) خطأ: تحويل nm خاطئ",
-    "(C) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
-    "(D) خطأ: قلب النسبة"
+    "(C) خطأ: قلب النسبة",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
    ],
    "followThrough": [],
    "answer": {
@@ -1262,7 +1522,7 @@
    }
   },
   {
-   "id": 25179,
+   "id": 78900,
    "templateId": "U5.L1.T02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -1270,35 +1530,35 @@
    "difficulty": 2,
    "weight": 10,
    "approved": true,
-   "stem": "خط طيفي طول موجته في المختبر 500 nm يُرصد في طيف مجرة عند 500 + 1 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "stem": "خط طيفي طول موجته في المختبر 600 nm يُرصد في طيف مجرة عند 600 + 1 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
-    "6×10² m·s⁻¹",
-    "1.5×10¹¹ m·s⁻¹",
-    "6×10⁵ m·s⁻¹",
-    "2×10⁻³ m·s⁻¹"
+    "1.67×10⁻³ m·s⁻¹",
+    "5×10² m·s⁻¹",
+    "1.8×10¹¹ m·s⁻¹",
+    "5×10⁵ m·s⁻¹"
    ],
-   "correctIndex": 2,
+   "correctIndex": 3,
    "optionRules": [
+    "mix_formulas",
     "unit_confusion",
     "invert_ratio",
-    null,
-    "mix_formulas"
+    null
    ],
    "optionValues": [
-    600.0,
-    150000000000.0,
-    600000.0,
-    0.002
+    0.0016666666666666668,
+    500.0,
+    180000000000.0,
+    500000.0
    ],
    "solutionSteps": [
-    "(A) خطأ: تحويل nm خاطئ",
-    "(B) خطأ: قلب النسبة",
-    "✓ (C) 6×10⁵ m·s⁻¹",
-    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
+    "(A) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "(B) خطأ: تحويل nm خاطئ",
+    "(C) خطأ: قلب النسبة",
+    "✓ (D) 5×10⁵ m·s⁻¹"
    ],
    "followThrough": [],
    "answer": {
-    "value": 600000.0,
+    "value": 500000.0,
     "unit": "m·s⁻¹",
     "tolerance": 0.02
    },
@@ -1327,7 +1587,787 @@
    }
   },
   {
-   "id": 25180,
+   "id": 78901,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 8 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "2×10⁻² m·s⁻¹",
+    "6×10⁶ m·s⁻¹",
+    "6×10³ m·s⁻¹",
+    "1.5×10¹⁰ m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "unit_confusion",
+    "invert_ratio"
+   ],
+   "optionValues": [
+    0.02,
+    6000000.0,
+    6000.0,
+    15000000000.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "✓ (B) 6×10⁶ m·s⁻¹",
+    "(C) خطأ: تحويل nm خاطئ",
+    "(D) خطأ: قلب النسبة"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 6000000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78902,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 656 nm يُرصد في طيف مجرة عند 656 + 2 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "9.84×10¹⁰ m·s⁻¹",
+    "9.15×10² m·s⁻¹",
+    "3.05×10⁻³ m·s⁻¹",
+    "9.15×10⁵ m·s⁻¹"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "invert_ratio",
+    "unit_confusion",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    98400000000.0,
+    914.6341463414634,
+    0.003048780487804878,
+    915000.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب النسبة",
+    "(B) خطأ: تحويل nm خاطئ",
+    "(C) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "✓ (D) 9.15×10⁵ m·s⁻¹"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 915000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78903,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 600 nm يُرصد في طيف مجرة عند 600 + 2 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "10³ m·s⁻¹",
+    "10⁶ m·s⁻¹",
+    "9×10¹⁰ m·s⁻¹",
+    "3.33×10⁻³ m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "unit_confusion",
+    null,
+    "invert_ratio",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    1000.0,
+    1000000.0,
+    90000000000.0,
+    0.0033333333333333335
+   ],
+   "solutionSteps": [
+    "(A) خطأ: تحويل nm خاطئ",
+    "✓ (B) 10⁶ m·s⁻¹",
+    "(C) خطأ: قلب النسبة",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1000000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78909,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 656 nm يُرصد في طيف مجرة عند 656 + 8 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "1.22×10⁻² m·s⁻¹",
+    "3.66×10⁶ m·s⁻¹",
+    "2.46×10¹⁰ m·s⁻¹",
+    "3.66×10³ m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
+    "invert_ratio",
+    "unit_confusion"
+   ],
+   "optionValues": [
+    0.012195121951219513,
+    3660000.0,
+    24600000000.0,
+    3658.5365853658536
+   ],
+   "solutionSteps": [
+    "(A) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "✓ (B) 3.66×10⁶ m·s⁻¹",
+    "(C) خطأ: قلب النسبة",
+    "(D) خطأ: تحويل nm خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 3660000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78915,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 500 nm يُرصد في طيف مجرة عند 500 + 10 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "6×10⁶ m·s⁻¹",
+    "6×10³ m·s⁻¹",
+    "1.5×10¹⁰ m·s⁻¹",
+    "2×10⁻² m·s⁻¹"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "unit_confusion",
+    "invert_ratio",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    6000000.0,
+    6000.0,
+    15000000000.0,
+    0.02
+   ],
+   "solutionSteps": [
+    "✓ (A) 6×10⁶ m·s⁻¹",
+    "(B) خطأ: تحويل nm خاطئ",
+    "(C) خطأ: قلب النسبة",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 6000000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78916,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 600 nm يُرصد في طيف مجرة عند 600 + 8 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "4×10³ m·s⁻¹",
+    "2.25×10¹⁰ m·s⁻¹",
+    "1.33×10⁻² m·s⁻¹",
+    "4×10⁶ m·s⁻¹"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "unit_confusion",
+    "invert_ratio",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    4000.0,
+    22500000000.0,
+    0.013333333333333334,
+    4000000.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: تحويل nm خاطئ",
+    "(B) خطأ: قلب النسبة",
+    "(C) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "✓ (D) 4×10⁶ m·s⁻¹"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 4000000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78924,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 1 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "7.5×10² m·s⁻¹",
+    "7.5×10⁵ m·s⁻¹",
+    "1.2×10¹¹ m·s⁻¹",
+    "2.5×10⁻³ m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "unit_confusion",
+    null,
+    "invert_ratio",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    750.0,
+    750000.0,
+    120000000000.0,
+    0.0025
+   ],
+   "solutionSteps": [
+    "(A) خطأ: تحويل nm خاطئ",
+    "✓ (B) 7.5×10⁵ m·s⁻¹",
+    "(C) خطأ: قلب النسبة",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 750000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78925,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 500 nm يُرصد في طيف مجرة عند 500 + 5 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "3×10⁶ m·s⁻¹",
+    "3×10¹⁰ m·s⁻¹",
+    "3×10³ m·s⁻¹",
+    "10⁻² m·s⁻¹"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "invert_ratio",
+    "unit_confusion",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    3000000.0,
+    30000000000.0,
+    3000.0,
+    0.01
+   ],
+   "solutionSteps": [
+    "✓ (A) 3×10⁶ m·s⁻¹",
+    "(B) خطأ: قلب النسبة",
+    "(C) خطأ: تحويل nm خاطئ",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 3000000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78933,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 2 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "6×10¹⁰ m·s⁻¹",
+    "1.5×10⁶ m·s⁻¹",
+    "1.5×10³ m·s⁻¹",
+    "5×10⁻³ m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "invert_ratio",
+    null,
+    "unit_confusion",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    60000000000.0,
+    1500000.0,
+    1500.0,
+    0.005
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب النسبة",
+    "✓ (B) 1.5×10⁶ m·s⁻¹",
+    "(C) خطأ: تحويل nm خاطئ",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 1500000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78934,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 10 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "2.5×10⁻² m·s⁻¹",
+    "7.5×10³ m·s⁻¹",
+    "1.2×10¹⁰ m·s⁻¹",
+    "7.5×10⁶ m·s⁻¹"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "unit_confusion",
+    "invert_ratio",
+    null
+   ],
+   "optionValues": [
+    0.025,
+    7500.0,
+    12000000000.0,
+    7500000.0
+   ],
+   "solutionSteps": [
+    "(A) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "(B) خطأ: تحويل nm خاطئ",
+    "(C) خطأ: قلب النسبة",
+    "✓ (D) 7.5×10⁶ m·s⁻¹"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 7500000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78942,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 600 nm يُرصد في طيف مجرة عند 600 + 4 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "2×10⁶ m·s⁻¹",
+    "4.5×10¹⁰ m·s⁻¹",
+    "6.67×10⁻³ m·s⁻¹",
+    "2×10³ m·s⁻¹"
+   ],
+   "correctIndex": 0,
+   "optionRules": [
+    null,
+    "invert_ratio",
+    "mix_formulas",
+    "unit_confusion"
+   ],
+   "optionValues": [
+    2000000.0,
+    45000000000.0,
+    0.006666666666666667,
+    2000.0
+   ],
+   "solutionSteps": [
+    "✓ (A) 2×10⁶ m·s⁻¹",
+    "(B) خطأ: قلب النسبة",
+    "(C) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc",
+    "(D) خطأ: تحويل nm خاطئ"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 2000000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 78985,
+   "templateId": "U5.L1.T02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "numeric",
+   "difficulty": 2,
+   "weight": 10,
+   "approved": true,
+   "stem": "خط طيفي طول موجته في المختبر 600 nm يُرصد في طيف مجرة عند 600 + 10 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
+   "options": [
+    "5×10³ m·s⁻¹",
+    "5×10⁶ m·s⁻¹",
+    "1.8×10¹⁰ m·s⁻¹",
+    "1.67×10⁻² m·s⁻¹"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "unit_confusion",
+    null,
+    "invert_ratio",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    5000.0,
+    5000000.0,
+    18000000000.0,
+    0.016666666666666666
+   ],
+   "solutionSteps": [
+    "(A) خطأ: تحويل nm خاطئ",
+    "✓ (B) 5×10⁶ m·s⁻¹",
+    "(C) خطأ: قلب النسبة",
+    "(D) خطأ: حسب النسبة Δλ/λ ونسي الضرب بـc"
+   ],
+   "followThrough": [],
+   "answer": {
+    "value": 5000000.0,
+    "unit": "m·s⁻¹",
+    "tolerance": 0.02
+   },
+   "rubric": [
+    {
+     "step": "Δλ/λ = v/c ⇒ v = c·Δλ/λ",
+     "points": 5
+    },
+    {
+     "step": "التعويض",
+     "points": 3
+    },
+    {
+     "step": "النتيجة",
+     "points": 1
+    },
+    {
+     "step": "الوحدة",
+     "points": 1
+    }
+   ],
+   "answerBasis": "v = c·Δλ/λ (الكتاب ص ٢٦٠)",
+   "source": {
+    "book": "ص ٢٥٩–٢٦٠",
+    "lesson": "U5/L1 البرهان Δλ/λ = v/c"
+   }
+  },
+  {
+   "id": 81886,
    "templateId": "U5.L1.T03",
    "unit": "U5",
    "chapter": "U5C1",
@@ -1337,15 +2377,323 @@
    "approved": true,
    "stem": "انزياح طيف مجرة نحو الأحمر يعني أن المجرة:",
    "options": [
-    "تبتعد عنا",
-    "ساكنة",
     "تدور حول نفسها",
-    "تقترب منا"
+    "تقترب منا",
+    "تبتعد عنا",
+    "ساكنة"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "mix_formulas",
+    "blue_red_swap",
+    null,
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ: خلط الانزياح الأحمر (ابتعاد) بالأزرق (اقتراب)",
+    "✓ (C) تبتعد عنا",
+    "(D) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
+   "source": {
+    "book": "ص ٢٥٤–٢٦٨",
+    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 81887,
+   "templateId": "U5.L1.T03",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": true,
+   "stem": "مصدر طاقة النجوم هو:",
+   "options": [
+    "انشطار نووي",
+    "التقلص الثقالي فقط",
+    "احتراق كيميائي",
+    "اندماج نوى الهيدروجين إلى هيليوم مع نقص في الكتلة"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "mix_formulas",
+    "true_but_partial",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ: خيار صحيح جزئياً حين يكون المفتاح «جميع ما سبق»",
+    "(C) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) اندماج نوى الهيدروجين إلى هيليوم مع نقص في الكتلة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
+   "source": {
+    "book": "ص ٢٥٤–٢٦٨",
+    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 81888,
+   "templateId": "U5.L1.T03",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": true,
+   "stem": "الثقوب السوداء بالضرورة:",
+   "options": [
+    "ذات كتلة هائلة",
+    "ذات نصف قطر هائل",
+    "ساخنة جداً",
+    "ذات كتلة حجمية هائلة"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "true_but_partial",
+    "mix_formulas",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ: خيار صحيح جزئياً حين يكون المفتاح «جميع ما سبق»",
+    "(B) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) ذات كتلة حجمية هائلة"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
+   "source": {
+    "book": "ص ٢٥٤–٢٦٨",
+    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 81889,
+   "templateId": "U5.L1.T03",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": true,
+   "stem": "سرعة الإفلات vesc بدلالة السرعة المدارية v1 على السطح نفسه:",
+   "options": [
+    "2·v1",
+    "v1/√2",
+    "√2·v1",
+    "v1"
+   ],
+   "correctIndex": 2,
+   "optionRules": [
+    "forget_sqrt",
+    "invert_ratio",
+    null,
+    "escape_orbital_swap"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ: أهمل الجذر التربيعي (T0 ∝ m/k بدل √)",
+    "(B) خطأ: قلب النسبة (خلط T0 مع ω0 أو m مع k)",
+    "✓ (C) √2·v1",
+    "(D) خطأ: خلط سرعة الإفلات √(2GM/R) بالمدارية √(GM/R)"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
+   "source": {
+    "book": "ص ٢٥٤–٢٦٨",
+    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 81890,
+   "templateId": "U5.L1.T03",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": true,
+   "stem": "يُقدَّر عمر الكون انطلاقاً من قانون هابل بـ:",
+   "options": [
+    "H0",
+    "c/H0",
+    "H0·c",
+    "1/H0"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
+    "hubble_inverted",
+    "mix_formulas",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ: قلب v = H0·d",
+    "(B) خطأ: هذا بعد لا زمن",
+    "(C) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) 1/H0"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
+   "source": {
+    "book": "ص ٢٥٤–٢٦٨",
+    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 81891,
+   "templateId": "U5.L1.T03",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": true,
+   "stem": "سرعة الإفلات من سطح جرم كتلته M ونصف قطره R تُعطى بـ:",
+   "options": [
+    "vesc = √(2GM/R)",
+    "vesc = 2GM/R",
+    "vesc = √(GM/R)",
+    "vesc = √(2GM/R²)"
    ],
    "correctIndex": 0,
    "optionRules": [
     null,
+    "forget_sqrt",
+    "forget_2_escape",
+    "mix_formulas"
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "✓ (A) vesc = √(2GM/R)",
+    "(B) خطأ: أهمل الجذر التربيعي (T0 ∝ m/k بدل √)",
+    "(C) خطأ: أهمل الـ٢ تحت الجذر في سرعة الإفلات",
+    "(D) خطأ: خلط بـg"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
+   "source": {
+    "book": "ص ٢٥٤–٢٦٨",
+    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 81892,
+   "templateId": "U5.L1.T03",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": true,
+   "stem": "إذا انكمش نجم إلى ثقب أسود مع ثبات كتلته فإن قوة جذبه لكوكب يدور حوله على البعد نفسه:",
+   "options": [
+    "تنصّف",
+    "تزداد كثيراً فيبتلعه",
+    "تنعدم",
+    "لا تتغير"
+   ],
+   "correctIndex": 3,
+   "optionRules": [
     "mix_formulas",
+    "mix_formulas",
+    "mix_formulas",
+    null
+   ],
+   "optionValues": [
+    null,
+    null,
+    null,
+    null
+   ],
+   "solutionSteps": [
+    "(A) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(B) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(C) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (D) لا تتغير"
+   ],
+   "followThrough": [],
+   "answer": null,
+   "rubric": null,
+   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
+   "source": {
+    "book": "ص ٢٥٤–٢٦٨",
+    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
+   }
+  },
+  {
+   "id": 81893,
+   "templateId": "U5.L1.T03",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "mcq",
+   "difficulty": 1,
+   "weight": 10,
+   "approved": true,
+   "stem": "من الأسس الفيزيائية لنظرية الانفجار الأعظم:",
+   "options": [
+    "دوران الأرض حول الشمس",
+    "إشعاع خلفية راديوي ضعيف منتظم من جميع الاتجاهات",
+    "ثبات أبعاد المجرات",
+    "انزياح طيوف المجرات نحو الأزرق"
+   ],
+   "correctIndex": 1,
+   "optionRules": [
+    "mix_formulas",
+    null,
     "mix_formulas",
     "blue_red_swap"
    ],
@@ -1356,8 +2704,8 @@
     null
    ],
    "solutionSteps": [
-    "✓ (A) تبتعد عنا",
-    "(B) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "(A) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
+    "✓ (B) إشعاع خلفية راديوي ضعيف منتظم من جميع الاتجاهات",
     "(C) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
     "(D) خطأ: خلط الانزياح الأحمر (ابتعاد) بالأزرق (اقتراب)"
    ],
@@ -1371,645 +2719,7 @@
    }
   },
   {
-   "id": 25181,
-   "templateId": "U5.L1.T03",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "mcq",
-   "difficulty": 1,
-   "weight": 10,
-   "approved": true,
-   "stem": "مصدر طاقة النجوم هو:",
-   "options": [
-    "اندماج نوى الهيدروجين إلى هيليوم مع نقص في الكتلة",
-    "احتراق كيميائي",
-    "التقلص الثقالي فقط",
-    "انشطار نووي"
-   ],
-   "correctIndex": 0,
-   "optionRules": [
-    null,
-    "mix_formulas",
-    "true_but_partial",
-    "mix_formulas"
-   ],
-   "optionValues": [
-    null,
-    null,
-    null,
-    null
-   ],
-   "solutionSteps": [
-    "✓ (A) اندماج نوى الهيدروجين إلى هيليوم مع نقص في الكتلة",
-    "(B) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
-    "(C) خطأ: خيار صحيح جزئياً حين يكون المفتاح «جميع ما سبق»",
-    "(D) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
-   ],
-   "followThrough": [],
-   "answer": null,
-   "rubric": null,
-   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
-   "source": {
-    "book": "ص ٢٥٤–٢٦٨",
-    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25182,
-   "templateId": "U5.L1.T03",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "mcq",
-   "difficulty": 1,
-   "weight": 10,
-   "approved": true,
-   "stem": "الثقوب السوداء بالضرورة:",
-   "options": [
-    "ذات نصف قطر هائل",
-    "ذات كتلة حجمية هائلة",
-    "ذات كتلة هائلة",
-    "ساخنة جداً"
-   ],
-   "correctIndex": 1,
-   "optionRules": [
-    "mix_formulas",
-    null,
-    "true_but_partial",
-    "mix_formulas"
-   ],
-   "optionValues": [
-    null,
-    null,
-    null,
-    null
-   ],
-   "solutionSteps": [
-    "(A) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
-    "✓ (B) ذات كتلة حجمية هائلة",
-    "(C) خطأ: خيار صحيح جزئياً حين يكون المفتاح «جميع ما سبق»",
-    "(D) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
-   ],
-   "followThrough": [],
-   "answer": null,
-   "rubric": null,
-   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
-   "source": {
-    "book": "ص ٢٥٤–٢٦٨",
-    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25183,
-   "templateId": "U5.L1.T03",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "mcq",
-   "difficulty": 1,
-   "weight": 10,
-   "approved": true,
-   "stem": "سرعة الإفلات vesc بدلالة السرعة المدارية v1 على السطح نفسه:",
-   "options": [
-    "√2·v1",
-    "v1",
-    "2·v1",
-    "v1/√2"
-   ],
-   "correctIndex": 0,
-   "optionRules": [
-    null,
-    "escape_orbital_swap",
-    "forget_sqrt",
-    "invert_ratio"
-   ],
-   "optionValues": [
-    null,
-    null,
-    null,
-    null
-   ],
-   "solutionSteps": [
-    "✓ (A) √2·v1",
-    "(B) خطأ: خلط سرعة الإفلات √(2GM/R) بالمدارية √(GM/R)",
-    "(C) خطأ: أهمل الجذر التربيعي (T0 ∝ m/k بدل √)",
-    "(D) خطأ: قلب النسبة (خلط T0 مع ω0 أو m مع k)"
-   ],
-   "followThrough": [],
-   "answer": null,
-   "rubric": null,
-   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
-   "source": {
-    "book": "ص ٢٥٤–٢٦٨",
-    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25184,
-   "templateId": "U5.L1.T03",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "mcq",
-   "difficulty": 1,
-   "weight": 10,
-   "approved": true,
-   "stem": "يُقدَّر عمر الكون انطلاقاً من قانون هابل بـ:",
-   "options": [
-    "H0",
-    "1/H0",
-    "H0·c",
-    "c/H0"
-   ],
-   "correctIndex": 1,
-   "optionRules": [
-    "hubble_inverted",
-    null,
-    "mix_formulas",
-    "mix_formulas"
-   ],
-   "optionValues": [
-    null,
-    null,
-    null,
-    null
-   ],
-   "solutionSteps": [
-    "(A) خطأ: قلب v = H0·d",
-    "✓ (B) 1/H0",
-    "(C) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
-    "(D) خطأ: هذا بعد لا زمن"
-   ],
-   "followThrough": [],
-   "answer": null,
-   "rubric": null,
-   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
-   "source": {
-    "book": "ص ٢٥٤–٢٦٨",
-    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25185,
-   "templateId": "U5.L1.T03",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "mcq",
-   "difficulty": 1,
-   "weight": 10,
-   "approved": true,
-   "stem": "سرعة الإفلات من سطح جرم كتلته M ونصف قطره R تُعطى بـ:",
-   "options": [
-    "vesc = √(2GM/R²)",
-    "vesc = 2GM/R",
-    "vesc = √(GM/R)",
-    "vesc = √(2GM/R)"
-   ],
-   "correctIndex": 3,
-   "optionRules": [
-    "mix_formulas",
-    "forget_sqrt",
-    "forget_2_escape",
-    null
-   ],
-   "optionValues": [
-    null,
-    null,
-    null,
-    null
-   ],
-   "solutionSteps": [
-    "(A) خطأ: خلط بـg",
-    "(B) خطأ: أهمل الجذر التربيعي (T0 ∝ m/k بدل √)",
-    "(C) خطأ: أهمل الـ٢ تحت الجذر في سرعة الإفلات",
-    "✓ (D) vesc = √(2GM/R)"
-   ],
-   "followThrough": [],
-   "answer": null,
-   "rubric": null,
-   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
-   "source": {
-    "book": "ص ٢٥٤–٢٦٨",
-    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25186,
-   "templateId": "U5.L1.T03",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "mcq",
-   "difficulty": 1,
-   "weight": 10,
-   "approved": true,
-   "stem": "إذا انكمش نجم إلى ثقب أسود مع ثبات كتلته فإن قوة جذبه لكوكب يدور حوله على البعد نفسه:",
-   "options": [
-    "تنصّف",
-    "لا تتغير",
-    "تنعدم",
-    "تزداد كثيراً فيبتلعه"
-   ],
-   "correctIndex": 1,
-   "optionRules": [
-    "mix_formulas",
-    null,
-    "mix_formulas",
-    "mix_formulas"
-   ],
-   "optionValues": [
-    null,
-    null,
-    null,
-    null
-   ],
-   "solutionSteps": [
-    "(A) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
-    "✓ (B) لا تتغير",
-    "(C) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
-    "(D) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
-   ],
-   "followThrough": [],
-   "answer": null,
-   "rubric": null,
-   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
-   "source": {
-    "book": "ص ٢٥٤–٢٦٨",
-    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 25187,
-   "templateId": "U5.L1.T03",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "mcq",
-   "difficulty": 1,
-   "weight": 10,
-   "approved": true,
-   "stem": "من الأسس الفيزيائية لنظرية الانفجار الأعظم:",
-   "options": [
-    "إشعاع خلفية راديوي ضعيف منتظم من جميع الاتجاهات",
-    "دوران الأرض حول الشمس",
-    "انزياح طيوف المجرات نحو الأزرق",
-    "ثبات أبعاد المجرات"
-   ],
-   "correctIndex": 0,
-   "optionRules": [
-    null,
-    "mix_formulas",
-    "blue_red_swap",
-    "mix_formulas"
-   ],
-   "optionValues": [
-    null,
-    null,
-    null,
-    null
-   ],
-   "solutionSteps": [
-    "✓ (A) إشعاع خلفية راديوي ضعيف منتظم من جميع الاتجاهات",
-    "(B) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)",
-    "(C) خطأ: خلط الانزياح الأحمر (ابتعاد) بالأزرق (اقتراب)",
-    "(D) خطأ: علاقة صحيحة لكنها لمقدار آخر من الدرس نفسه (أسئلة تمييز العلاقة)"
-   ],
-   "followThrough": [],
-   "answer": null,
-   "rubric": null,
-   "answerBasis": "الكتاب ص ٢٥٤–٢٦٨",
-   "source": {
-    "book": "ص ٢٥٤–٢٦٨",
-    "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
-   }
-  },
-  {
-   "id": 28134,
-   "templateId": "U5.L1.P01",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "problem",
-   "difficulty": 3,
-   "weight": 30,
-   "approved": true,
-   "stem": "قمر اصطناعي يدور في مدار دائري منخفض قرب سطح كوكب نصف قطره R = 1600000 m، تسارع الجاذبية عند سطحه g0 = 10 m·s⁻². نأخذ π² = 10 ونهمل ارتفاع المدار أمام R.",
-   "options": [],
-   "correctIndex": -1,
-   "optionRules": [],
-   "optionValues": [],
-   "solutionSteps": [
-    "١) 4×10³ m·s⁻¹ — 10 درجة",
-    "٢) 5.66×10³ m·s⁻¹ — 10 درجة",
-    "٣) 2.53×10³ s — 10 درجة"
-   ],
-   "followThrough": [
-    {
-     "part": "٢",
-     "accept": [
-      {
-       "dependsOn": "١",
-       "power": 1.0,
-       "scale": 1.415,
-       "tolerance": 0.02
-      }
-     ]
-    },
-    {
-     "part": "٣",
-     "accept": [
-      {
-       "dependsOn": "١",
-       "power": -1.0,
-       "scale": 10120000.0,
-       "tolerance": 0.02
-      }
-     ]
-    }
-   ],
-   "answer": null,
-   "rubric": [
-    {
-     "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
-     "points": 5,
-     "kind": "relation",
-     "keys": [
-      "v_o = √(g0·R)",
-      "g0 = v_o²/R"
-     ],
-     "antiKeys": [
-      "v_o = √(g0/R)",
-      "v_o = g0·R"
-     ]
-    },
-    {
-     "step": "الجزء ١ · التعويض: v_o = √(10·1600000)",
-     "points": 3,
-     "kind": "substitution",
-     "expect": [
-      "1600000"
-     ]
-    },
-    {
-     "step": "الجزء ١ · النتيجة: 4×10³ m·s⁻¹",
-     "points": 1,
-     "kind": "result"
-    },
-    {
-     "step": "الجزء ١ · الوحدة",
-     "points": 1,
-     "kind": "unit"
-    },
-    {
-     "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
-     "points": 5,
-     "kind": "relation",
-     "keys": [
-      "v_e = √(2·g0·R)",
-      "√2·v_o"
-     ],
-     "antiKeys": [
-      "v_e = 2·v_o",
-      "v_e = v_o/√2"
-     ]
-    },
-    {
-     "step": "الجزء ٢ · التعويض: v_e = √2·4000",
-     "points": 3,
-     "kind": "substitution",
-     "expect": [
-      "4000"
-     ]
-    },
-    {
-     "step": "الجزء ٢ · النتيجة: 5.66×10³ m·s⁻¹",
-     "points": 1,
-     "kind": "result"
-    },
-    {
-     "step": "الجزء ٢ · الوحدة",
-     "points": 1,
-     "kind": "unit"
-    },
-    {
-     "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
-     "points": 5,
-     "kind": "relation",
-     "keys": [
-      "T = 2πR/v_o",
-      "المحيط/السرعة"
-     ],
-     "antiKeys": [
-      "T = 2πv_o/R",
-      "T = πR/v_o"
-     ]
-    },
-    {
-     "step": "الجزء ٣ · التعويض: T = 2π·1600000/4000",
-     "points": 3,
-     "kind": "substitution",
-     "expect": [
-      "1600000",
-      "4000"
-     ]
-    },
-    {
-     "step": "الجزء ٣ · النتيجة: 2.53×10³ s",
-     "points": 1,
-     "kind": "result"
-    },
-    {
-     "step": "الجزء ٣ · الوحدة",
-     "points": 1,
-     "kind": "unit"
-    }
-   ],
-   "grading": "parts-v1",
-   "parts": [
-    {
-     "n": 1,
-     "label": "١",
-     "prompt": "استنتج بالرموز السرعة المدارية v_o للقمر قرب السطح، ثم احسب قيمتها.",
-     "weight": 10,
-     "rubric": [
-      {
-       "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
-       "points": 5,
-       "kind": "relation",
-       "keys": [
-        "v_o = √(g0·R)",
-        "g0 = v_o²/R"
-       ],
-       "antiKeys": [
-        "v_o = √(g0/R)",
-        "v_o = g0·R"
-       ]
-      },
-      {
-       "step": "الجزء ١ · التعويض: v_o = √(10·1600000)",
-       "points": 3,
-       "kind": "substitution",
-       "expect": [
-        "1600000"
-       ]
-      },
-      {
-       "step": "الجزء ١ · النتيجة: 4×10³ m·s⁻¹",
-       "points": 1,
-       "kind": "result"
-      },
-      {
-       "step": "الجزء ١ · الوحدة",
-       "points": 1,
-       "kind": "unit"
-      }
-     ],
-     "options": null,
-     "correctIndex": -1,
-     "optionRules": [],
-     "optionValues": [],
-     "solutionSteps": [],
-     "answer": {
-      "value": 4000.0,
-      "unit": "m·s⁻¹",
-      "text": "4×10³ m·s⁻¹",
-      "tolerance": 0.02,
-      "unitRequired": true
-     }
-    },
-    {
-     "n": 2,
-     "label": "٢",
-     "prompt": "احسب سرعة الإفلات v_e من سطح الكوكب.",
-     "weight": 10,
-     "rubric": [
-      {
-       "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
-       "points": 5,
-       "kind": "relation",
-       "keys": [
-        "v_e = √(2·g0·R)",
-        "√2·v_o"
-       ],
-       "antiKeys": [
-        "v_e = 2·v_o",
-        "v_e = v_o/√2"
-       ]
-      },
-      {
-       "step": "الجزء ٢ · التعويض: v_e = √2·4000",
-       "points": 3,
-       "kind": "substitution",
-       "expect": [
-        "4000"
-       ]
-      },
-      {
-       "step": "الجزء ٢ · النتيجة: 5.66×10³ m·s⁻¹",
-       "points": 1,
-       "kind": "result"
-      },
-      {
-       "step": "الجزء ٢ · الوحدة",
-       "points": 1,
-       "kind": "unit"
-      }
-     ],
-     "options": null,
-     "correctIndex": -1,
-     "optionRules": [],
-     "optionValues": [],
-     "solutionSteps": [],
-     "answer": {
-      "value": 5660.0,
-      "unit": "m·s⁻¹",
-      "text": "5.66×10³ m·s⁻¹",
-      "tolerance": 0.02,
-      "unitRequired": true
-     },
-     "followThrough": {
-      "part": "٢",
-      "accept": [
-       {
-        "dependsOn": "١",
-        "power": 1.0,
-        "scale": 1.415,
-        "tolerance": 0.02
-       }
-      ]
-     }
-    },
-    {
-     "n": 3,
-     "label": "٣",
-     "prompt": "احسب دور القمر T في مداره المنخفض.",
-     "weight": 10,
-     "rubric": [
-      {
-       "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
-       "points": 5,
-       "kind": "relation",
-       "keys": [
-        "T = 2πR/v_o",
-        "المحيط/السرعة"
-       ],
-       "antiKeys": [
-        "T = 2πv_o/R",
-        "T = πR/v_o"
-       ]
-      },
-      {
-       "step": "الجزء ٣ · التعويض: T = 2π·1600000/4000",
-       "points": 3,
-       "kind": "substitution",
-       "expect": [
-        "1600000",
-        "4000"
-       ]
-      },
-      {
-       "step": "الجزء ٣ · النتيجة: 2.53×10³ s",
-       "points": 1,
-       "kind": "result"
-      },
-      {
-       "step": "الجزء ٣ · الوحدة",
-       "points": 1,
-       "kind": "unit"
-      }
-     ],
-     "options": null,
-     "correctIndex": -1,
-     "optionRules": [],
-     "optionValues": [],
-     "solutionSteps": [],
-     "answer": {
-      "value": 2530.0,
-      "unit": "s",
-      "text": "2.53×10³ s",
-      "tolerance": 0.02,
-      "unitRequired": true
-     },
-     "followThrough": {
-      "part": "٣",
-      "accept": [
-       {
-        "dependsOn": "١",
-        "power": -1.0,
-        "scale": 10120000.0,
-        "tolerance": 0.02
-       }
-      ]
-     }
-    }
-   ],
-   "answerBasis": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
-   "source": {
-    "lesson": "L1 — الفيزياء الفلكية",
-    "book": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o",
-    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
-   },
-   "reviewNotes": [
-    "v_e وT مقرَّبان إلى ٣ أرقام معنوية بالصيغة العلمية (بسماحية ٢٪).",
-    "الجزءان ٢ و٣ متابعة على الأول (v_e ∝ v_o · T ∝ 1/v_o)."
-   ]
-  },
-  {
-   "id": 28137,
+   "id": 115036,
    "templateId": "U5.L1.P01",
    "unit": "U5",
    "chapter": "U5C1",
@@ -2339,7 +3049,7 @@
    ]
   },
   {
-   "id": 28140,
+   "id": 115037,
    "templateId": "U5.L1.P01",
    "unit": "U5",
    "chapter": "U5C1",
@@ -2669,23 +3379,23 @@
    ]
   },
   {
-   "id": 35294,
-   "templateId": "U5.L1.P02",
+   "id": 115038,
+   "templateId": "U5.L1.P01",
    "unit": "U5",
    "chapter": "U5C1",
    "type": "problem",
-   "difficulty": 4,
+   "difficulty": 3,
    "weight": 30,
    "approved": true,
-   "stem": "قمر اصطناعي يدور دائرياً حول كوكب نصف قطره R = 6400000 m، تسارع الجاذبية على سطحه g0 = 10 m·s⁻²، على ارتفاع يساوي 1 أمثال نصف القطر (h = 1·R). نأخذ π² = 10.",
+   "stem": "قمر اصطناعي يدور في مدار دائري منخفض قرب سطح كوكب نصف قطره R = 1600000 m، تسارع الجاذبية عند سطحه g0 = 10 m·s⁻². نأخذ π² = 10 ونهمل ارتفاع المدار أمام R.",
    "options": [],
    "correctIndex": -1,
    "optionRules": [],
    "optionValues": [],
    "solutionSteps": [
-    "١) 2.5 m·s⁻² — 10 درجة",
+    "١) 4×10³ m·s⁻¹ — 10 درجة",
     "٢) 5.66×10³ m·s⁻¹ — 10 درجة",
-    "٣) 1.43×10⁴ s — 10 درجة"
+    "٣) 2.53×10³ s — 10 درجة"
    ],
    "followThrough": [
     {
@@ -2693,8 +3403,8 @@
      "accept": [
       {
        "dependsOn": "١",
-       "power": 0.5,
-       "scale": 3579.6983113106053,
+       "power": 1.0,
+       "scale": 1.415,
        "tolerance": 0.02
       }
      ]
@@ -2703,9 +3413,9 @@
      "part": "٣",
      "accept": [
       {
-       "dependsOn": "٢",
+       "dependsOn": "١",
        "power": -1.0,
-       "scale": 80938000.0,
+       "scale": 10120000.0,
        "tolerance": 0.02
       }
      ]
@@ -2714,28 +3424,28 @@
    "answer": null,
    "rubric": [
     {
-     "step": "الجزء ١ · العلاقة: تناقص الجاذبية مع الارتفاع: g(h) = g0·R²/(R+h)² = g0/(1+k)²",
+     "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
      "points": 5,
      "kind": "relation",
      "keys": [
-      "g(h) = g0·R²/(R+h)²",
-      "g0/(1+k)²"
+      "v_o = √(g0·R)",
+      "g0 = v_o²/R"
      ],
      "antiKeys": [
-      "g(h) = g0·(R+h)²/R²",
-      "g(h) = g0·R/(R+h)"
+      "v_o = √(g0/R)",
+      "v_o = g0·R"
      ]
     },
     {
-     "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 1)²",
+     "step": "الجزء ١ · التعويض: v_o = √(10·1600000)",
      "points": 3,
      "kind": "substitution",
      "expect": [
-      "1"
+      "1600000"
      ]
     },
     {
-     "step": "الجزء ١ · النتيجة: 2.5 m·s⁻²",
+     "step": "الجزء ١ · النتيجة: 4×10³ m·s⁻¹",
      "points": 1,
      "kind": "result"
     },
@@ -2745,24 +3455,24 @@
      "kind": "unit"
     },
     {
-     "step": "الجزء ٢ · العلاقة: من مساواة الجاذبية بالقوة النابذة: v = √(g(h)·(R+h))",
+     "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
      "points": 5,
      "kind": "relation",
      "keys": [
-      "v = √(g(h)·(R+h))",
-      "g(h) = v²/(R+h)"
+      "v_e = √(2·g0·R)",
+      "√2·v_o"
      ],
      "antiKeys": [
-      "v = g(h)·(R+h)",
-      "v = √(g(h)/(R+h))"
+      "v_e = 2·v_o",
+      "v_e = v_o/√2"
      ]
     },
     {
-     "step": "الجزء ٢ · التعويض: v = √(2.5·(R + 1·R))",
+     "step": "الجزء ٢ · التعويض: v_e = √2·4000",
      "points": 3,
      "kind": "substitution",
      "expect": [
-      "2.5"
+      "4000"
      ]
     },
     {
@@ -2776,28 +3486,29 @@
      "kind": "unit"
     },
     {
-     "step": "الجزء ٣ · العلاقة: الدور المداري: T = 2π·(R+h)/v",
+     "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
      "points": 5,
      "kind": "relation",
      "keys": [
-      "T = 2π·(R+h)/v",
-      "2π(R+h)/v"
+      "T = 2πR/v_o",
+      "المحيط/السرعة"
      ],
      "antiKeys": [
-      "T = v/(2π(R+h))",
-      "T = 2π·v·(R+h)"
+      "T = 2πv_o/R",
+      "T = πR/v_o"
      ]
     },
     {
-     "step": "الجزء ٣ · التعويض: T = 2π·(R + 1·R)/5656.8542",
+     "step": "الجزء ٣ · التعويض: T = 2π·1600000/4000",
      "points": 3,
      "kind": "substitution",
      "expect": [
-      "5656.8542"
+      "1600000",
+      "4000"
      ]
     },
     {
-     "step": "الجزء ٣ · النتيجة: 1.43×10⁴ s",
+     "step": "الجزء ٣ · النتيجة: 2.53×10³ s",
      "points": 1,
      "kind": "result"
     },
@@ -2812,32 +3523,32 @@
     {
      "n": 1,
      "label": "١",
-     "prompt": "احسب تسارع الجاذبية g(h) على ارتفاع القمر.",
+     "prompt": "استنتج بالرموز السرعة المدارية v_o للقمر قرب السطح، ثم احسب قيمتها.",
      "weight": 10,
      "rubric": [
       {
-       "step": "الجزء ١ · العلاقة: تناقص الجاذبية مع الارتفاع: g(h) = g0·R²/(R+h)² = g0/(1+k)²",
+       "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
        "points": 5,
        "kind": "relation",
        "keys": [
-        "g(h) = g0·R²/(R+h)²",
-        "g0/(1+k)²"
+        "v_o = √(g0·R)",
+        "g0 = v_o²/R"
        ],
        "antiKeys": [
-        "g(h) = g0·(R+h)²/R²",
-        "g(h) = g0·R/(R+h)"
+        "v_o = √(g0/R)",
+        "v_o = g0·R"
        ]
       },
       {
-       "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 1)²",
+       "step": "الجزء ١ · التعويض: v_o = √(10·1600000)",
        "points": 3,
        "kind": "substitution",
        "expect": [
-        "1"
+        "1600000"
        ]
       },
       {
-       "step": "الجزء ١ · النتيجة: 2.5 m·s⁻²",
+       "step": "الجزء ١ · النتيجة: 4×10³ m·s⁻¹",
        "points": 1,
        "kind": "result"
       },
@@ -2853,9 +3564,9 @@
      "optionValues": [],
      "solutionSteps": [],
      "answer": {
-      "value": 2.5,
-      "unit": "m·s⁻²",
-      "text": "2.5 m·s⁻²",
+      "value": 4000.0,
+      "unit": "m·s⁻¹",
+      "text": "4×10³ m·s⁻¹",
       "tolerance": 0.02,
       "unitRequired": true
      }
@@ -2863,28 +3574,28 @@
     {
      "n": 2,
      "label": "٢",
-     "prompt": "احسب السرعة المدارية v للقمر.",
+     "prompt": "احسب سرعة الإفلات v_e من سطح الكوكب.",
      "weight": 10,
      "rubric": [
       {
-       "step": "الجزء ٢ · العلاقة: من مساواة الجاذبية بالقوة النابذة: v = √(g(h)·(R+h))",
+       "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
        "points": 5,
        "kind": "relation",
        "keys": [
-        "v = √(g(h)·(R+h))",
-        "g(h) = v²/(R+h)"
+        "v_e = √(2·g0·R)",
+        "√2·v_o"
        ],
        "antiKeys": [
-        "v = g(h)·(R+h)",
-        "v = √(g(h)/(R+h))"
+        "v_e = 2·v_o",
+        "v_e = v_o/√2"
        ]
       },
       {
-       "step": "الجزء ٢ · التعويض: v = √(2.5·(R + 1·R))",
+       "step": "الجزء ٢ · التعويض: v_e = √2·4000",
        "points": 3,
        "kind": "substitution",
        "expect": [
-        "2.5"
+        "4000"
        ]
       },
       {
@@ -2915,8 +3626,8 @@
       "accept": [
        {
         "dependsOn": "١",
-        "power": 0.5,
-        "scale": 3579.6983113106053,
+        "power": 1.0,
+        "scale": 1.415,
         "tolerance": 0.02
        }
       ]
@@ -2925,32 +3636,33 @@
     {
      "n": 3,
      "label": "٣",
-     "prompt": "احسب دور القمر T حول الكوكب.",
+     "prompt": "احسب دور القمر T في مداره المنخفض.",
      "weight": 10,
      "rubric": [
       {
-       "step": "الجزء ٣ · العلاقة: الدور المداري: T = 2π·(R+h)/v",
+       "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
        "points": 5,
        "kind": "relation",
        "keys": [
-        "T = 2π·(R+h)/v",
-        "2π(R+h)/v"
+        "T = 2πR/v_o",
+        "المحيط/السرعة"
        ],
        "antiKeys": [
-        "T = v/(2π(R+h))",
-        "T = 2π·v·(R+h)"
+        "T = 2πv_o/R",
+        "T = πR/v_o"
        ]
       },
       {
-       "step": "الجزء ٣ · التعويض: T = 2π·(R + 1·R)/5656.8542",
+       "step": "الجزء ٣ · التعويض: T = 2π·1600000/4000",
        "points": 3,
        "kind": "substitution",
        "expect": [
-        "5656.8542"
+        "1600000",
+        "4000"
        ]
       },
       {
-       "step": "الجزء ٣ · النتيجة: 1.43×10⁴ s",
+       "step": "الجزء ٣ · النتيجة: 2.53×10³ s",
        "points": 1,
        "kind": "result"
       },
@@ -2966,9 +3678,9 @@
      "optionValues": [],
      "solutionSteps": [],
      "answer": {
-      "value": 14300.0,
+      "value": 2530.0,
       "unit": "s",
-      "text": "1.43×10⁴ s",
+      "text": "2.53×10³ s",
       "tolerance": 0.02,
       "unitRequired": true
      },
@@ -2976,27 +3688,28 @@
       "part": "٣",
       "accept": [
        {
-        "dependsOn": "٢",
+        "dependsOn": "١",
         "power": -1.0,
-        "scale": 80938000.0,
+        "scale": 10120000.0,
         "tolerance": 0.02
        }
       ]
      }
     }
    ],
-   "answerBasis": "القمر على ارتفاع: g(h) = g0/(1+k)² · v = √(g(h)·(R+h)) · T = 2π(R+h)/v. سلم ٥/٣/١/١ لكل سطر.",
+   "answerBasis": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
    "source": {
-    "lesson": "L1 — الفلك والجاذبية",
-    "book": "g(h) = g0·R²/(R+h)² · v = √(g(h)·(R+h)) · T = 2π·(R+h)/v",
+    "lesson": "L1 — الفيزياء الفلكية",
+    "book": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o",
     "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
    },
    "reviewNotes": [
-    "سلسلة متابعة: v يتبع g(h) بالقوة ٠٫٥ و T يتبع v بالقوة −١."
+    "v_e وT مقرَّبان إلى ٣ أرقام معنوية بالصيغة العلمية (بسماحية ٢٪).",
+    "الجزءان ٢ و٣ متابعة على الأول (v_e ∝ v_o · T ∝ 1/v_o)."
    ]
   },
   {
-   "id": 35295,
+   "id": 175444,
    "templateId": "U5.L1.P02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -3323,7 +4036,7 @@
    ]
   },
   {
-   "id": 35296,
+   "id": 175445,
    "templateId": "U5.L1.P02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -3650,7 +4363,334 @@
    ]
   },
   {
-   "id": 35298,
+   "id": 175446,
+   "templateId": "U5.L1.P02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "قمر اصطناعي يدور دائرياً حول كوكب نصف قطره R = 6400000 m، تسارع الجاذبية على سطحه g0 = 10 m·s⁻²، على ارتفاع يساوي 3 أمثال نصف القطر (h = 3·R). نأخذ π² = 10.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.625 m·s⁻² — 10 درجة",
+    "٢) 4×10³ m·s⁻¹ — 10 درجة",
+    "٣) 4.05×10⁴ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 5059.6442562694065,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 162000000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تناقص الجاذبية مع الارتفاع: g(h) = g0·R²/(R+h)² = g0/(1+k)²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "g(h) = g0·R²/(R+h)²",
+      "g0/(1+k)²"
+     ],
+     "antiKeys": [
+      "g(h) = g0·(R+h)²/R²",
+      "g(h) = g0·R/(R+h)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 3)²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.625 m·s⁻²",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من مساواة الجاذبية بالقوة النابذة: v = √(g(h)·(R+h))",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(g(h)·(R+h))",
+      "g(h) = v²/(R+h)"
+     ],
+     "antiKeys": [
+      "v = g(h)·(R+h)",
+      "v = √(g(h)/(R+h))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: v = √(0.625·(R + 3·R))",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.625"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4×10³ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الدور المداري: T = 2π·(R+h)/v",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2π·(R+h)/v",
+      "2π(R+h)/v"
+     ],
+     "antiKeys": [
+      "T = v/(2π(R+h))",
+      "T = 2π·v·(R+h)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·(R + 3·R)/4000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4000"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4.05×10⁴ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب تسارع الجاذبية g(h) على ارتفاع القمر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تناقص الجاذبية مع الارتفاع: g(h) = g0·R²/(R+h)² = g0/(1+k)²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "g(h) = g0·R²/(R+h)²",
+        "g0/(1+k)²"
+       ],
+       "antiKeys": [
+        "g(h) = g0·(R+h)²/R²",
+        "g(h) = g0·R/(R+h)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 3)²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.625 m·s⁻²",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.625,
+      "unit": "m·s⁻²",
+      "text": "0.625 m·s⁻²",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب السرعة المدارية v للقمر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من مساواة الجاذبية بالقوة النابذة: v = √(g(h)·(R+h))",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(g(h)·(R+h))",
+        "g(h) = v²/(R+h)"
+       ],
+       "antiKeys": [
+        "v = g(h)·(R+h)",
+        "v = √(g(h)/(R+h))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: v = √(0.625·(R + 3·R))",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.625"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4×10³ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4000.0,
+      "unit": "m·s⁻¹",
+      "text": "4×10³ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 5059.6442562694065,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور القمر T حول الكوكب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الدور المداري: T = 2π·(R+h)/v",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2π·(R+h)/v",
+        "2π(R+h)/v"
+       ],
+       "antiKeys": [
+        "T = v/(2π(R+h))",
+        "T = 2π·v·(R+h)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·(R + 3·R)/4000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4000"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4.05×10⁴ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 40500.0,
+      "unit": "s",
+      "text": "4.05×10⁴ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 162000000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "القمر على ارتفاع: g(h) = g0/(1+k)² · v = √(g(h)·(R+h)) · T = 2π(R+h)/v. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الفلك والجاذبية",
+    "book": "g(h) = g0·R²/(R+h)² · v = √(g(h)·(R+h)) · T = 2π·(R+h)/v",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة: v يتبع g(h) بالقوة ٠٫٥ و T يتبع v بالقوة −١."
+   ]
+  },
+  {
+   "id": 175448,
    "templateId": "U5.L1.P02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -3977,334 +5017,7 @@
    ]
   },
   {
-   "id": 35299,
-   "templateId": "U5.L1.P02",
-   "unit": "U5",
-   "chapter": "U5C1",
-   "type": "problem",
-   "difficulty": 4,
-   "weight": 30,
-   "approved": true,
-   "stem": "قمر اصطناعي يدور دائرياً حول كوكب نصف قطره R = 6400000 m، تسارع الجاذبية على سطحه g0 = 10 m·s⁻²، على ارتفاع يساوي 2 أمثال نصف القطر (h = 2·R). نأخذ π² = 10.",
-   "options": [],
-   "correctIndex": -1,
-   "optionRules": [],
-   "optionValues": [],
-   "solutionSteps": [
-    "١) 1.11 m·s⁻² — 10 درجة",
-    "٢) 4.62×10³ m·s⁻¹ — 10 درجة",
-    "٣) 2.63×10⁴ s — 10 درجة"
-   ],
-   "followThrough": [
-    {
-     "part": "٢",
-     "accept": [
-      {
-       "dependsOn": "١",
-       "power": 0.5,
-       "scale": 4385.109940376546,
-       "tolerance": 0.02
-      }
-     ]
-    },
-    {
-     "part": "٣",
-     "accept": [
-      {
-       "dependsOn": "٢",
-       "power": -1.0,
-       "scale": 121506000.0,
-       "tolerance": 0.02
-      }
-     ]
-    }
-   ],
-   "answer": null,
-   "rubric": [
-    {
-     "step": "الجزء ١ · العلاقة: تناقص الجاذبية مع الارتفاع: g(h) = g0·R²/(R+h)² = g0/(1+k)²",
-     "points": 5,
-     "kind": "relation",
-     "keys": [
-      "g(h) = g0·R²/(R+h)²",
-      "g0/(1+k)²"
-     ],
-     "antiKeys": [
-      "g(h) = g0·(R+h)²/R²",
-      "g(h) = g0·R/(R+h)"
-     ]
-    },
-    {
-     "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 2)²",
-     "points": 3,
-     "kind": "substitution",
-     "expect": [
-      "2"
-     ]
-    },
-    {
-     "step": "الجزء ١ · النتيجة: 1.11 m·s⁻²",
-     "points": 1,
-     "kind": "result"
-    },
-    {
-     "step": "الجزء ١ · الوحدة",
-     "points": 1,
-     "kind": "unit"
-    },
-    {
-     "step": "الجزء ٢ · العلاقة: من مساواة الجاذبية بالقوة النابذة: v = √(g(h)·(R+h))",
-     "points": 5,
-     "kind": "relation",
-     "keys": [
-      "v = √(g(h)·(R+h))",
-      "g(h) = v²/(R+h)"
-     ],
-     "antiKeys": [
-      "v = g(h)·(R+h)",
-      "v = √(g(h)/(R+h))"
-     ]
-    },
-    {
-     "step": "الجزء ٢ · التعويض: v = √(1.1111·(R + 2·R))",
-     "points": 3,
-     "kind": "substitution",
-     "expect": [
-      "1.1111"
-     ]
-    },
-    {
-     "step": "الجزء ٢ · النتيجة: 4.62×10³ m·s⁻¹",
-     "points": 1,
-     "kind": "result"
-    },
-    {
-     "step": "الجزء ٢ · الوحدة",
-     "points": 1,
-     "kind": "unit"
-    },
-    {
-     "step": "الجزء ٣ · العلاقة: الدور المداري: T = 2π·(R+h)/v",
-     "points": 5,
-     "kind": "relation",
-     "keys": [
-      "T = 2π·(R+h)/v",
-      "2π(R+h)/v"
-     ],
-     "antiKeys": [
-      "T = v/(2π(R+h))",
-      "T = 2π·v·(R+h)"
-     ]
-    },
-    {
-     "step": "الجزء ٣ · التعويض: T = 2π·(R + 2·R)/4618.8022",
-     "points": 3,
-     "kind": "substitution",
-     "expect": [
-      "4618.8022"
-     ]
-    },
-    {
-     "step": "الجزء ٣ · النتيجة: 2.63×10⁴ s",
-     "points": 1,
-     "kind": "result"
-    },
-    {
-     "step": "الجزء ٣ · الوحدة",
-     "points": 1,
-     "kind": "unit"
-    }
-   ],
-   "grading": "parts-v1",
-   "parts": [
-    {
-     "n": 1,
-     "label": "١",
-     "prompt": "احسب تسارع الجاذبية g(h) على ارتفاع القمر.",
-     "weight": 10,
-     "rubric": [
-      {
-       "step": "الجزء ١ · العلاقة: تناقص الجاذبية مع الارتفاع: g(h) = g0·R²/(R+h)² = g0/(1+k)²",
-       "points": 5,
-       "kind": "relation",
-       "keys": [
-        "g(h) = g0·R²/(R+h)²",
-        "g0/(1+k)²"
-       ],
-       "antiKeys": [
-        "g(h) = g0·(R+h)²/R²",
-        "g(h) = g0·R/(R+h)"
-       ]
-      },
-      {
-       "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 2)²",
-       "points": 3,
-       "kind": "substitution",
-       "expect": [
-        "2"
-       ]
-      },
-      {
-       "step": "الجزء ١ · النتيجة: 1.11 m·s⁻²",
-       "points": 1,
-       "kind": "result"
-      },
-      {
-       "step": "الجزء ١ · الوحدة",
-       "points": 1,
-       "kind": "unit"
-      }
-     ],
-     "options": null,
-     "correctIndex": -1,
-     "optionRules": [],
-     "optionValues": [],
-     "solutionSteps": [],
-     "answer": {
-      "value": 1.11,
-      "unit": "m·s⁻²",
-      "text": "1.11 m·s⁻²",
-      "tolerance": 0.02,
-      "unitRequired": true
-     }
-    },
-    {
-     "n": 2,
-     "label": "٢",
-     "prompt": "احسب السرعة المدارية v للقمر.",
-     "weight": 10,
-     "rubric": [
-      {
-       "step": "الجزء ٢ · العلاقة: من مساواة الجاذبية بالقوة النابذة: v = √(g(h)·(R+h))",
-       "points": 5,
-       "kind": "relation",
-       "keys": [
-        "v = √(g(h)·(R+h))",
-        "g(h) = v²/(R+h)"
-       ],
-       "antiKeys": [
-        "v = g(h)·(R+h)",
-        "v = √(g(h)/(R+h))"
-       ]
-      },
-      {
-       "step": "الجزء ٢ · التعويض: v = √(1.1111·(R + 2·R))",
-       "points": 3,
-       "kind": "substitution",
-       "expect": [
-        "1.1111"
-       ]
-      },
-      {
-       "step": "الجزء ٢ · النتيجة: 4.62×10³ m·s⁻¹",
-       "points": 1,
-       "kind": "result"
-      },
-      {
-       "step": "الجزء ٢ · الوحدة",
-       "points": 1,
-       "kind": "unit"
-      }
-     ],
-     "options": null,
-     "correctIndex": -1,
-     "optionRules": [],
-     "optionValues": [],
-     "solutionSteps": [],
-     "answer": {
-      "value": 4620.0,
-      "unit": "m·s⁻¹",
-      "text": "4.62×10³ m·s⁻¹",
-      "tolerance": 0.02,
-      "unitRequired": true
-     },
-     "followThrough": {
-      "part": "٢",
-      "accept": [
-       {
-        "dependsOn": "١",
-        "power": 0.5,
-        "scale": 4385.109940376546,
-        "tolerance": 0.02
-       }
-      ]
-     }
-    },
-    {
-     "n": 3,
-     "label": "٣",
-     "prompt": "احسب دور القمر T حول الكوكب.",
-     "weight": 10,
-     "rubric": [
-      {
-       "step": "الجزء ٣ · العلاقة: الدور المداري: T = 2π·(R+h)/v",
-       "points": 5,
-       "kind": "relation",
-       "keys": [
-        "T = 2π·(R+h)/v",
-        "2π(R+h)/v"
-       ],
-       "antiKeys": [
-        "T = v/(2π(R+h))",
-        "T = 2π·v·(R+h)"
-       ]
-      },
-      {
-       "step": "الجزء ٣ · التعويض: T = 2π·(R + 2·R)/4618.8022",
-       "points": 3,
-       "kind": "substitution",
-       "expect": [
-        "4618.8022"
-       ]
-      },
-      {
-       "step": "الجزء ٣ · النتيجة: 2.63×10⁴ s",
-       "points": 1,
-       "kind": "result"
-      },
-      {
-       "step": "الجزء ٣ · الوحدة",
-       "points": 1,
-       "kind": "unit"
-      }
-     ],
-     "options": null,
-     "correctIndex": -1,
-     "optionRules": [],
-     "optionValues": [],
-     "solutionSteps": [],
-     "answer": {
-      "value": 26300.0,
-      "unit": "s",
-      "text": "2.63×10⁴ s",
-      "tolerance": 0.02,
-      "unitRequired": true
-     },
-     "followThrough": {
-      "part": "٣",
-      "accept": [
-       {
-        "dependsOn": "٢",
-        "power": -1.0,
-        "scale": 121506000.0,
-        "tolerance": 0.02
-       }
-      ]
-     }
-    }
-   ],
-   "answerBasis": "القمر على ارتفاع: g(h) = g0/(1+k)² · v = √(g(h)·(R+h)) · T = 2π(R+h)/v. سلم ٥/٣/١/١ لكل سطر.",
-   "source": {
-    "lesson": "L1 — الفلك والجاذبية",
-    "book": "g(h) = g0·R²/(R+h)² · v = √(g(h)·(R+h)) · T = 2π·(R+h)/v",
-    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
-   },
-   "reviewNotes": [
-    "سلسلة متابعة: v يتبع g(h) بالقوة ٠٫٥ و T يتبع v بالقوة −١."
-   ]
-  },
-  {
-   "id": 35309,
+   "id": 175450,
    "templateId": "U5.L1.P02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -4631,7 +5344,7 @@
    ]
   },
   {
-   "id": 35311,
+   "id": 175452,
    "templateId": "U5.L1.P02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -4958,7 +5671,7 @@
    ]
   },
   {
-   "id": 35314,
+   "id": 175453,
    "templateId": "U5.L1.P02",
    "unit": "U5",
    "chapter": "U5C1",
@@ -4966,15 +5679,15 @@
    "difficulty": 4,
    "weight": 30,
    "approved": true,
-   "stem": "قمر اصطناعي يدور دائرياً حول كوكب نصف قطره R = 6400000 m، تسارع الجاذبية على سطحه g0 = 10 m·s⁻²، على ارتفاع يساوي 3 أمثال نصف القطر (h = 3·R). نأخذ π² = 10.",
+   "stem": "قمر اصطناعي يدور دائرياً حول كوكب نصف قطره R = 6400000 m، تسارع الجاذبية على سطحه g0 = 10 m·s⁻²، على ارتفاع يساوي 2 أمثال نصف القطر (h = 2·R). نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
    "optionRules": [],
    "optionValues": [],
    "solutionSteps": [
-    "١) 0.625 m·s⁻² — 10 درجة",
-    "٢) 4×10³ m·s⁻¹ — 10 درجة",
-    "٣) 4.05×10⁴ s — 10 درجة"
+    "١) 1.11 m·s⁻² — 10 درجة",
+    "٢) 4.62×10³ m·s⁻¹ — 10 درجة",
+    "٣) 2.63×10⁴ s — 10 درجة"
    ],
    "followThrough": [
     {
@@ -4983,7 +5696,7 @@
       {
        "dependsOn": "١",
        "power": 0.5,
-       "scale": 5059.6442562694065,
+       "scale": 4385.109940376546,
        "tolerance": 0.02
       }
      ]
@@ -4994,7 +5707,7 @@
       {
        "dependsOn": "٢",
        "power": -1.0,
-       "scale": 162000000.0,
+       "scale": 121506000.0,
        "tolerance": 0.02
       }
      ]
@@ -5016,15 +5729,15 @@
      ]
     },
     {
-     "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 3)²",
+     "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 2)²",
      "points": 3,
      "kind": "substitution",
      "expect": [
-      "3"
+      "2"
      ]
     },
     {
-     "step": "الجزء ١ · النتيجة: 0.625 m·s⁻²",
+     "step": "الجزء ١ · النتيجة: 1.11 m·s⁻²",
      "points": 1,
      "kind": "result"
     },
@@ -5047,15 +5760,15 @@
      ]
     },
     {
-     "step": "الجزء ٢ · التعويض: v = √(0.625·(R + 3·R))",
+     "step": "الجزء ٢ · التعويض: v = √(1.1111·(R + 2·R))",
      "points": 3,
      "kind": "substitution",
      "expect": [
-      "0.625"
+      "1.1111"
      ]
     },
     {
-     "step": "الجزء ٢ · النتيجة: 4×10³ m·s⁻¹",
+     "step": "الجزء ٢ · النتيجة: 4.62×10³ m·s⁻¹",
      "points": 1,
      "kind": "result"
     },
@@ -5078,15 +5791,15 @@
      ]
     },
     {
-     "step": "الجزء ٣ · التعويض: T = 2π·(R + 3·R)/4000",
+     "step": "الجزء ٣ · التعويض: T = 2π·(R + 2·R)/4618.8022",
      "points": 3,
      "kind": "substitution",
      "expect": [
-      "4000"
+      "4618.8022"
      ]
     },
     {
-     "step": "الجزء ٣ · النتيجة: 4.05×10⁴ s",
+     "step": "الجزء ٣ · النتيجة: 2.63×10⁴ s",
      "points": 1,
      "kind": "result"
     },
@@ -5118,15 +5831,15 @@
        ]
       },
       {
-       "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 3)²",
+       "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 2)²",
        "points": 3,
        "kind": "substitution",
        "expect": [
-        "3"
+        "2"
        ]
       },
       {
-       "step": "الجزء ١ · النتيجة: 0.625 m·s⁻²",
+       "step": "الجزء ١ · النتيجة: 1.11 m·s⁻²",
        "points": 1,
        "kind": "result"
       },
@@ -5142,9 +5855,9 @@
      "optionValues": [],
      "solutionSteps": [],
      "answer": {
-      "value": 0.625,
+      "value": 1.11,
       "unit": "m·s⁻²",
-      "text": "0.625 m·s⁻²",
+      "text": "1.11 m·s⁻²",
       "tolerance": 0.02,
       "unitRequired": true
      }
@@ -5169,15 +5882,15 @@
        ]
       },
       {
-       "step": "الجزء ٢ · التعويض: v = √(0.625·(R + 3·R))",
+       "step": "الجزء ٢ · التعويض: v = √(1.1111·(R + 2·R))",
        "points": 3,
        "kind": "substitution",
        "expect": [
-        "0.625"
+        "1.1111"
        ]
       },
       {
-       "step": "الجزء ٢ · النتيجة: 4×10³ m·s⁻¹",
+       "step": "الجزء ٢ · النتيجة: 4.62×10³ m·s⁻¹",
        "points": 1,
        "kind": "result"
       },
@@ -5193,9 +5906,9 @@
      "optionValues": [],
      "solutionSteps": [],
      "answer": {
-      "value": 4000.0,
+      "value": 4620.0,
       "unit": "m·s⁻¹",
-      "text": "4×10³ m·s⁻¹",
+      "text": "4.62×10³ m·s⁻¹",
       "tolerance": 0.02,
       "unitRequired": true
      },
@@ -5205,7 +5918,7 @@
        {
         "dependsOn": "١",
         "power": 0.5,
-        "scale": 5059.6442562694065,
+        "scale": 4385.109940376546,
         "tolerance": 0.02
        }
       ]
@@ -5231,15 +5944,15 @@
        ]
       },
       {
-       "step": "الجزء ٣ · التعويض: T = 2π·(R + 3·R)/4000",
+       "step": "الجزء ٣ · التعويض: T = 2π·(R + 2·R)/4618.8022",
        "points": 3,
        "kind": "substitution",
        "expect": [
-        "4000"
+        "4618.8022"
        ]
       },
       {
-       "step": "الجزء ٣ · النتيجة: 4.05×10⁴ s",
+       "step": "الجزء ٣ · النتيجة: 2.63×10⁴ s",
        "points": 1,
        "kind": "result"
       },
@@ -5255,9 +5968,9 @@
      "optionValues": [],
      "solutionSteps": [],
      "answer": {
-      "value": 40500.0,
+      "value": 26300.0,
       "unit": "s",
-      "text": "4.05×10⁴ s",
+      "text": "2.63×10⁴ s",
       "tolerance": 0.02,
       "unitRequired": true
      },
@@ -5267,7 +5980,334 @@
        {
         "dependsOn": "٢",
         "power": -1.0,
-        "scale": 162000000.0,
+        "scale": 121506000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "القمر على ارتفاع: g(h) = g0/(1+k)² · v = √(g(h)·(R+h)) · T = 2π(R+h)/v. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — الفلك والجاذبية",
+    "book": "g(h) = g0·R²/(R+h)² · v = √(g(h)·(R+h)) · T = 2π·(R+h)/v",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة: v يتبع g(h) بالقوة ٠٫٥ و T يتبع v بالقوة −١."
+   ]
+  },
+  {
+   "id": 175454,
+   "templateId": "U5.L1.P02",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "قمر اصطناعي يدور دائرياً حول كوكب نصف قطره R = 6400000 m، تسارع الجاذبية على سطحه g0 = 10 m·s⁻²، على ارتفاع يساوي 1 أمثال نصف القطر (h = 1·R). نأخذ π² = 10.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2.5 m·s⁻² — 10 درجة",
+    "٢) 5.66×10³ m·s⁻¹ — 10 درجة",
+    "٣) 1.43×10⁴ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 3579.6983113106053,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 80938000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: تناقص الجاذبية مع الارتفاع: g(h) = g0·R²/(R+h)² = g0/(1+k)²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "g(h) = g0·R²/(R+h)²",
+      "g0/(1+k)²"
+     ],
+     "antiKeys": [
+      "g(h) = g0·(R+h)²/R²",
+      "g(h) = g0·R/(R+h)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 1)²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2.5 m·s⁻²",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من مساواة الجاذبية بالقوة النابذة: v = √(g(h)·(R+h))",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v = √(g(h)·(R+h))",
+      "g(h) = v²/(R+h)"
+     ],
+     "antiKeys": [
+      "v = g(h)·(R+h)",
+      "v = √(g(h)/(R+h))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: v = √(2.5·(R + 1·R))",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2.5"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5.66×10³ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الدور المداري: T = 2π·(R+h)/v",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2π·(R+h)/v",
+      "2π(R+h)/v"
+     ],
+     "antiKeys": [
+      "T = v/(2π(R+h))",
+      "T = 2π·v·(R+h)"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·(R + 1·R)/5656.8542",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5656.8542"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.43×10⁴ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب تسارع الجاذبية g(h) على ارتفاع القمر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: تناقص الجاذبية مع الارتفاع: g(h) = g0·R²/(R+h)² = g0/(1+k)²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "g(h) = g0·R²/(R+h)²",
+        "g0/(1+k)²"
+       ],
+       "antiKeys": [
+        "g(h) = g0·(R+h)²/R²",
+        "g(h) = g0·R/(R+h)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: g(h) = 10/(1 + 1)²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2.5 m·s⁻²",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.5,
+      "unit": "m·s⁻²",
+      "text": "2.5 m·s⁻²",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب السرعة المدارية v للقمر.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من مساواة الجاذبية بالقوة النابذة: v = √(g(h)·(R+h))",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v = √(g(h)·(R+h))",
+        "g(h) = v²/(R+h)"
+       ],
+       "antiKeys": [
+        "v = g(h)·(R+h)",
+        "v = √(g(h)/(R+h))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: v = √(2.5·(R + 1·R))",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2.5"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5.66×10³ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5660.0,
+      "unit": "m·s⁻¹",
+      "text": "5.66×10³ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 3579.6983113106053,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور القمر T حول الكوكب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الدور المداري: T = 2π·(R+h)/v",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2π·(R+h)/v",
+        "2π(R+h)/v"
+       ],
+       "antiKeys": [
+        "T = v/(2π(R+h))",
+        "T = 2π·v·(R+h)"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·(R + 1·R)/5656.8542",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5656.8542"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.43×10⁴ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 14300.0,
+      "unit": "s",
+      "text": "1.43×10⁴ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 80938000.0,
         "tolerance": 0.02
        }
       ]
