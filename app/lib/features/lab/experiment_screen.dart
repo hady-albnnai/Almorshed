@@ -49,6 +49,11 @@ class _ExperimentScreenState extends State<ExperimentScreen>
   final List<Offset> _trace = <Offset>[];
   static const int _traceMax = 900;
 
+  /// أعظم سرعة معمّمة مرصودة في هذه الحركة (عند نقطة التوازن تكون كل الطاقة
+  /// حركية) ⇒ تُستعمل مرجعاً لنسبة الطاقة الحركية: KE/E = (dq/dqMax)².
+  double _dqMax = 0.0;
+  double _keFraction = 0.0; // 0 = كل الطاقة كامنة · 1 = كل الطاقة حركية
+
   int _stage = 0; // 0 توقّع · 1 لاحظ/اشرح
   int? _prediction;
 
@@ -95,10 +100,16 @@ class _ExperimentScreenState extends State<ExperimentScreen>
       _state = _exp.step(_state, _p);
       _meter.feed(_simTime, _state.q);
       _trace.add(Offset(_simTime, _state.q));
+      final v = _state.dq.abs();
+      if (v > _dqMax) _dqMax = v;
     }
     if (_trace.length > _traceMax) {
       _trace.removeRange(0, _trace.length - _traceMax);
     }
+    // نسبة الطاقة الحركية آنياً — عند التوازن (dq=dqMax) كلها حركية، وعند
+    // نقطة الرجوع (dq=0) كلها كامنة. رجوع آمن للصفر قبل بدء الحركة.
+    final r = _dqMax <= 1e-9 ? 0.0 : (_state.dq.abs() / _dqMax);
+    _keFraction = (r * r).clamp(0.0, 1.0);
     if (mounted) setState(() {});
   }
 
@@ -125,6 +136,8 @@ class _ExperimentScreenState extends State<ExperimentScreen>
       _accumulator = 0.0;
       _meter.reset();
       _trace.clear();
+      _dqMax = 0.0;
+      _keFraction = 0.0;
     });
   }
 
@@ -138,6 +151,8 @@ class _ExperimentScreenState extends State<ExperimentScreen>
       _accumulator = 0.0;
       _meter.reset();
       _trace.clear();
+      _dqMax = 0.0;
+      _keFraction = 0.0;
     });
   }
 
@@ -146,6 +161,8 @@ class _ExperimentScreenState extends State<ExperimentScreen>
       _p = {..._p, id: v};
       _meter.reset();
       _trace.clear();
+      _dqMax = 0.0;
+      _keFraction = 0.0;
     });
   }
 
@@ -303,6 +320,22 @@ class _ExperimentScreenState extends State<ExperimentScreen>
                     label: _exp.measuredLabel,
                     gold: gold,
                     running: _running,
+                    dark: Theme.of(context).brightness == Brightness.dark,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              // شريط تحوّل الطاقة (طراز PhET) — يُظهر ما لا يُرى: انتقال الطاقة
+              // بين الحركية والكامنة خلال الاهتزاز. LC = كهربائية/مغناطيسية.
+              SizedBox(
+                height: 26,
+                child: CustomPaint(
+                  key: const Key('exp-energy'),
+                  painter: _EnergyBarPainter(
+                    keFraction: _keFraction,
+                    kineticLabel: _exp.id == 'lc' ? 'مغناطيسية' : 'حركية',
+                    potentialLabel: _exp.id == 'lc' ? 'كهربائية' : 'كامنة',
+                    gold: gold,
                     dark: Theme.of(context).brightness == Brightness.dark,
                   ),
                 ),
@@ -1088,5 +1121,97 @@ class _ScopePainter extends CustomPainter {
       old.now != now ||
       old.running != running ||
       old.trace.length != trace.length ||
+      old.dark != dark;
+}
+
+/// شريط تحوّل الطاقة (طراز PhET) — قسمان متكاملان: الطاقة الحركية والكامنة،
+/// مجموعهما ثابت (حفظ الطاقة). يترجم `keFraction` (0..1) إلى عرضين نسبيّين.
+class _EnergyBarPainter extends CustomPainter {
+  _EnergyBarPainter({
+    required this.keFraction,
+    required this.kineticLabel,
+    required this.potentialLabel,
+    required this.gold,
+    required this.dark,
+  });
+
+  final double keFraction; // نسبة الطاقة الحركية 0..1
+  final String kineticLabel;
+  final String potentialLabel;
+  final Color gold;
+  final bool dark;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final double ke = keFraction.clamp(0.0, 1.0);
+    final double pe = 1.0 - ke;
+    final Color kineticCol = const Color(0xFF9FBD9A); // أخضر مريمي (طاقة حركية)
+    final Color potentialCol = gold; // طوبي (طاقة كامنة)
+    final Color track = dark ? const Color(0x22F0F5EF) : const Color(0x22132722);
+    final Color textCol = dark ? const Color(0xFFE9EEE8) : const Color(0xFF132722);
+
+    final rrect = RRect.fromRectAndRadius(
+      Offset.zero & size,
+      const Radius.circular(13),
+    );
+    canvas.save();
+    canvas.clipRRect(rrect);
+    canvas.drawRRect(rrect, Paint()..color = track);
+
+    // الطاقة الحركية من اليسار، الكامنة من اليمين (تلتقيان عند الحدّ).
+    final double keW = size.width * ke;
+    if (keW > 0.5) {
+      canvas.drawRect(
+        Rect.fromLTWH(0, 0, keW, size.height),
+        Paint()..color = kineticCol.withValues(alpha: 0.92),
+      );
+    }
+    if (keW < size.width - 0.5) {
+      canvas.drawRect(
+        Rect.fromLTWH(keW, 0, size.width - keW, size.height),
+        Paint()..color = potentialCol.withValues(alpha: 0.92),
+      );
+    }
+
+    // النصوص: نسبة مئوية + الاسم على كل جانب.
+    void label(String s, double centerX, TextAlign align) {
+      final tp = TextPainter(
+        text: TextSpan(
+          text: s,
+          style: TextStyle(
+            color: textCol,
+            fontSize: 10,
+            fontWeight: FontWeight.w700,
+            height: 1.0,
+          ),
+        ),
+        textDirection: TextDirection.rtl,
+        textAlign: align,
+      )..layout(maxWidth: size.width);
+      tp.paint(canvas, Offset(centerX - tp.width / 2, (size.height - tp.height) / 2));
+    }
+
+    final int kePct = (ke * 100).round();
+    // الحركية على اليسار إن اتّسعت، والكامنة على اليمين.
+    if (keW > 44) label('$kineticLabel ${kePct}٪', keW / 2, TextAlign.center);
+    if (size.width - keW > 44) {
+      label('$potentialLabel ${100 - kePct}٪', keW + (size.width - keW) / 2,
+          TextAlign.center);
+    }
+
+    canvas.restore();
+    canvas.drawRRect(
+      rrect,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1
+        ..color = track,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _EnergyBarPainter old) =>
+      old.keFraction != keFraction ||
+      old.kineticLabel != kineticLabel ||
       old.dark != dark;
 }
