@@ -399,14 +399,21 @@ def test_parts_reach_the_asset_only_with_the_parts_asset_flag(tmp_path):
 
 def test_shipped_asset_carries_parts_for_rubric_grading():
     """F-GEN3 نفّذ بوّابته: الأصل المشحون للتطبيق يحمل بنود الأجزاء، وسلّم
-    التطبيق يقرأها — والباقي ما زال غير معتمد (قرار ٢٤)."""
+    التطبيق يقرأها. فرع dev/self-content يُبنى بـ`--approve` (قرار المالك
+    2026-09-23: المتابعة بلا إشراف الأستاذ) ⇒ الأصل المشحون معتمد كاملاً حتى
+    تظهر المسائل للطالب. `meta.approvedByDefault` يعكس السياسة بلا كذب."""
     asset = (gi.ROOT / "app" / "assets" / "content" / "items.json")
     d = json.loads(asset.read_text(encoding="utf-8"))
     parts = [i for i in d["items"] if i.get("grading") == gi.GRADING_PARTS]
-    assert parts, "الأصل المشحون بلا بنود أجزاء — أعِد: python3 tools/gen_items.py --asset --parts-asset"
+    assert parts, "الأصل المشحون بلا بنود أجزاء — أعِد: python3 tools/gen_items.py --asset --parts-asset --approve"
     assert d["meta"]["partsExcluded"] is False
     assert d["meta"]["partsShipped"] == len(parts)                       # الوصف لا يكذب على المراجعة
-    assert sum(1 for i in d["items"] if i.get("approved")) == 0
+    approved = sum(1 for i in d["items"] if i.get("approved"))
+    # الاعتماد وسياسته متطابقان: إمّا الكل معتمد (approvedByDefault) أو لا أحد.
+    if d["meta"].get("approvedByDefault"):
+        assert approved == len(d["items"])
+    else:
+        assert approved == 0
     for it in parts:
         assert sum(p["weight"] for p in it["parts"]) == it["weight"]
         assert not it["options"] and it["correctIndex"] == -1

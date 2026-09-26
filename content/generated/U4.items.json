@@ -23,7 +23,7 @@
    "parts-v1"
   ],
   "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
-  "approvedByDefault": false
+  "approvedByDefault": true
  },
  "items": [
   {
@@ -34,7 +34,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة السوية n = 5.",
    "options": [
     "0.544 eV",
@@ -99,7 +99,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة الفوتون الصادر عند انتقال الإلكترون من السوية n = 2 إلى السوية n = 1.",
    "options": [
     "10.2 eV",
@@ -164,7 +164,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة السوية n = 4.",
    "options": [
     "−0.85 eV",
@@ -229,7 +229,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة الفوتون الصادر عند انتقال الإلكترون من السوية n = 4 إلى السوية n = 2.",
    "options": [
     "0.85 eV",
@@ -294,7 +294,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين تُعطى طاقة السوية n بالعلاقة En = −13.6/n² (eV). احسب طاقة السوية n = 2.",
    "options": [
     "6.8 eV",
@@ -359,7 +359,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يمتص إلكترون ذرة الهيدروجين طاقة عندما:",
    "options": [
     "يهبط إلى سوية أقرب من النواة",
@@ -403,7 +403,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نصف قطر المدار المستقر rn في نموذج بور يتناسب مع:",
    "options": [
     "n²",
@@ -447,7 +447,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "طيف الإصدار لمصباح غازي يكون:",
    "options": [
     "خطياً متقطعاً",
@@ -491,7 +491,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "أكبر طاقة فوتون يمكن أن تصدرها ذرة هيدروجين (من الطاقة الكلية السالبة إلى السوية الأساسية) تقارب:",
    "options": [
     "13.6 eV",
@@ -535,7 +535,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "كلما ابتعد الإلكترون عن النواة في ذرة الهيدروجين فإن طاقته الكلية:",
    "options": [
     "تقل لأنها تبتعد عن النواة",
@@ -579,7 +579,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الطاقة الكلية للإلكترون في ذرة الهيدروجين سالبة لأن:",
    "options": [
     "الكامنة السالبة أكبر مطلقاً من الحركية الموجبة (طاقة ارتباط)",
@@ -623,7 +623,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 3600 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
    "options": [
     "1.27×10¹⁵ m·s⁻¹",
@@ -688,7 +688,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 2500 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
    "options": [
     "8.79×10¹⁴ m·s⁻¹",
@@ -753,7 +753,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 400 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
    "options": [
     "1.08×10⁻²³ m·s⁻¹",
@@ -818,7 +818,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 900 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
    "options": [
     "1.26×10⁷ m·s⁻¹",
@@ -883,7 +883,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 1600 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
    "options": [
     "1.68×10⁷ m·s⁻¹",
@@ -948,7 +948,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُسرَّع إلكترون من السكون بفرق كمون U = 100 V (e = 1.6×10⁻¹⁹ C، me = 9.1×10⁻³¹ kg). احسب سرعته عند وصوله إلى المصعد (نُهمل الأثر النسبي).",
    "options": [
     "4.19×10⁶ m·s⁻¹",
@@ -1013,7 +1013,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الأشعة المهبطية في حقل كهربائي منتظم:",
    "options": [
     "تتوقف",
@@ -1057,7 +1057,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الغرض من تطبيق حقل مغناطيسي مع حقل كهربائي بحيث v0 = E/B على حزمة الإلكترونات:",
    "options": [
     "إبقاء حركتها مستقيمة منتظمة",
@@ -1101,7 +1101,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "شرطا توليد الأشعة المهبطية في أنبوب التفريغ:",
    "options": [
     "فراغ كبير فقط دون توتر",
@@ -1145,7 +1145,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مسار الإلكترون داخل حقل كهربائي منتظم عمودي على سرعته الابتدائية هو:",
    "options": [
     "خط مستقيم",
@@ -1189,7 +1189,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الفعل الكهرحراري هو انتزاع الإلكترونات من سطح المعدن:",
    "options": [
     "بتعريضه لإشعاع ضوئي",
@@ -1233,7 +1233,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يسقط ضوء طاقة فوتونه 4 eV على سطح معدن طاقة انتزاعه Ws = 3 eV. احسب كمون الإيقاف U0 (بالفولت).",
    "options": [
     "7 V",
@@ -1298,7 +1298,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يسقط ضوء طاقة فوتونه 2.5 eV على سطح معدن طاقة انتزاعه Ws = 2 eV. احسب كمون الإيقاف U0 (بالفولت).",
    "options": [
     "4.5 V",
@@ -1363,7 +1363,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يسقط ضوء طاقة فوتونه 5 eV على سطح معدن طاقة انتزاعه Ws = 2.3 eV. احسب الطاقة الحركية العظمى للإلكترونات المنتزعة (بالـeV).",
    "options": [
     "5 eV",
@@ -1428,7 +1428,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يسقط ضوء طاقة فوتونه 3 eV على سطح معدن طاقة انتزاعه Ws = 1.5 eV. احسب كمون الإيقاف U0 (بالفولت).",
    "options": [
     "4.5 V",
@@ -1493,7 +1493,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يسقط ضوء طاقة فوتونه 6 eV على سطح معدن طاقة انتزاعه Ws = 1.5 eV. احسب الطاقة الحركية العظمى للإلكترونات المنتزعة (بالـeV).",
    "options": [
     "4.5 eV",
@@ -1558,7 +1558,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يسقط ضوء طاقة فوتونه 2.5 eV على سطح معدن طاقة انتزاعه Ws = 1.5 eV. احسب الطاقة الحركية العظمى للإلكترونات المنتزعة (بالـeV).",
    "options": [
     "1 eV",
@@ -1623,7 +1623,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يعمل أنبوب كوليدج بتوتر UAC = 50 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
    "options": [
     "2.49×10⁻¹¹ m",
@@ -1688,7 +1688,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يعمل أنبوب كوليدج بتوتر UAC = 100 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
    "options": [
     "8.04×10¹⁰ m",
@@ -1753,7 +1753,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يعمل أنبوب كوليدج بتوتر UAC = 40 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
    "options": [
     "1.04×10⁻¹⁹ m",
@@ -1818,7 +1818,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يعمل أنبوب كوليدج بتوتر UAC = 25 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
    "options": [
     "2.01×10¹⁰ m",
@@ -1883,7 +1883,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يعمل أنبوب كوليدج بتوتر UAC = 10 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
    "options": [
     "1.24×10⁻⁷ m",
@@ -1948,7 +1948,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يعمل أنبوب كوليدج بتوتر UAC = 20 kV (h = 6.63×10⁻³⁴ J·s، c = 3×10⁸ m·s⁻¹، e = 1.6×10⁻¹⁹ C). احسب أصغر طول موجة للأشعة السينية الصادرة.",
    "options": [
     "2.07×10⁻¹⁹ m",
@@ -2013,7 +2013,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في الظاهرة الكهرضوئية، زيادة شدة الضوء الساقط (بتواتر ثابت) تؤدي إلى:",
    "options": [
     "زيادة السرعة العظمى للإلكترونات",
@@ -2058,7 +2058,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "كمون الإيقاف U0 في الظاهرة الكهرضوئية يتعلق بـ:",
    "options": [
     "شدة الضوء الساقط",
@@ -2103,7 +2103,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "كمية حركة الفوتون تُعطى بالعلاقة:",
    "options": [
     "p = h·f·c",
@@ -2148,7 +2148,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في أنبوب كوليدج، رفع التوتر UAC بين المهبط والهدف يؤدي إلى:",
    "options": [
     "زيادة شدة الأشعة فقط",
@@ -2193,7 +2193,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تزداد النسبة الممتصة من الأشعة السينية في مادة بازدياد:",
    "options": [
     "توتر التشغيل",
@@ -2238,7 +2238,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "من خواص حزمة الليزر أنها:",
    "options": [
     "وحيدة اللون ومترابطة بالطور وانفراجها صغير",
@@ -2283,7 +2283,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تفسير أينشتاين للظاهرة الكهرضوئية يقوم على أن الفوتون:",
    "options": [
     "يوزع طاقته على عدة إلكترونات",
@@ -2328,7 +2328,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 4 إلى السوية n_f = 1 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -2631,7 +2631,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 3 إلى السوية n_f = 2 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -2934,7 +2934,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 2 إلى السوية n_f = 1 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -3237,7 +3237,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 4 إلى السوية n_f = 2 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -3540,7 +3540,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 3 إلى السوية n_f = 1 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -3843,7 +3843,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "إلكترون (شحنته e = 1.6×10⁻¹⁹ C وكتلته m = 9.1×10⁻³¹ kg) ينطلق من المهبط بسرعة مهملة ويُسرَّع بفرق كمون U = 1000 V قبل أن يصطدم بالمصعد. نهمل التأثيرات النسبية.",
    "options": [],
    "correctIndex": -1,
@@ -4171,7 +4171,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "إلكترون (شحنته e = 1.6×10⁻¹⁹ C وكتلته m = 9.1×10⁻³¹ kg) ينطلق من المهبط بسرعة مهملة ويُسرَّع بفرق كمون U = 200 V قبل أن يصطدم بالمصعد. نهمل التأثيرات النسبية.",
    "options": [],
    "correctIndex": -1,
@@ -4499,7 +4499,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "إلكترون (شحنته e = 1.6×10⁻¹⁹ C وكتلته m = 9.1×10⁻³¹ kg) ينطلق من المهبط بسرعة مهملة ويُسرَّع بفرق كمون U = 500 V قبل أن يصطدم بالمصعد. نهمل التأثيرات النسبية.",
    "options": [],
    "correctIndex": -1,
@@ -4827,7 +4827,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "إلكترون (شحنته e = 1.6×10⁻¹⁹ C وكتلته m = 9.1×10⁻³¹ kg) ينطلق من المهبط بسرعة مهملة ويُسرَّع بفرق كمون U = 100 V قبل أن يصطدم بالمصعد. نهمل التأثيرات النسبية.",
    "options": [],
    "correctIndex": -1,
@@ -5155,7 +5155,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "يُضاء سطح معدن عمله الوسطي (تابع الشغل) W0 = 3 eV بضوء أحادي اللون طول موجته λ = 400 nm. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -5463,7 +5463,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "يُضاء سطح معدن عمله الوسطي (تابع الشغل) W0 = 2 eV بضوء أحادي اللون طول موجته λ = 300 nm. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -5771,7 +5771,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "يُضاء سطح معدن عمله الوسطي (تابع الشغل) W0 = 2 eV بضوء أحادي اللون طول موجته λ = 200 nm. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -6079,7 +6079,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "يُضاء سطح معدن عمله الوسطي (تابع الشغل) W0 = 2 eV بضوء أحادي اللون طول موجته λ = 400 nm. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -6387,7 +6387,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "يُضاء سطح معدن عمله الوسطي (تابع الشغل) W0 = 4 eV بضوء أحادي اللون طول موجته λ = 300 nm. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,
@@ -6695,7 +6695,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "يُضاء سطح معدن عمله الوسطي (تابع الشغل) W0 = 3 eV بضوء أحادي اللون طول موجته λ = 300 nm. نأخذ h·c = 1240 eV·nm.",
    "options": [],
    "correctIndex": -1,

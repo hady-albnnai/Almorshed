@@ -23,7 +23,7 @@
    "parts-v1"
   ],
   "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
-  "approvedByDefault": false
+  "approvedByDefault": true
  },
  "items": [
   {
@@ -34,7 +34,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تتناسب شدة قوة الإرجاع في النواس المرن غير المتخامد:",
    "options": [
     "طرداً مع الجذر التربيعي لكتلة الجسم المهتز",
@@ -91,7 +91,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تتجه قوة الإرجاع في النواس المرن غير المتخامد دوماً:",
    "options": [
     "نحو مركز الاهتزاز",
@@ -148,7 +148,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تزداد شدة قوة الإرجاع في النواس المرن بازدياد:",
    "options": [
     "مطاله x",
@@ -205,7 +205,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يتناسب دور النواس المرن غير المتخامد:",
    "options": [
     "عكساً مع الجذر التربيعي لكتلة الجسم المهتز",
@@ -262,7 +262,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند حركة نواس مرن غير متخامد وفي مركز الاهتزاز يكون:",
    "options": [
     "a = 0 · v = 0 · Ek = Ep",
@@ -322,7 +322,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند حركة نواس مرن غير متخامد وفي الموضعين الطرفيين يكون:",
    "options": [
     "a = 0 · v = 0 · Ep = E",
@@ -382,7 +382,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عندما يمر الجسم في مركز الاهتزاز فإن الهزازة التوافقية البسيطة:",
    "options": [
     "تنعدم السرعة والتسارع ويقف الجسم",
@@ -442,7 +442,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في مركز الاهتزاز تكون الطاقة الميكانيكية للنواس المرن غير المتخامد مساوية:",
    "options": [
     "للطاقة الحركية العظمى",
@@ -507,7 +507,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في الموضعين الطرفيين تكون الطاقة الميكانيكية (الكلية) مساوية:",
    "options": [
     "الطاقة الحركية",
@@ -572,7 +572,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عندما تنعدم الطاقة الحركية لنواس مرن غير متخامد تكون طاقته الكامنة المرونية:",
    "options": [
     "تتناقص حتى تنعدم",
@@ -637,7 +637,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عندما تنعدم الطاقة الكامنة المرونية لنواس مرن غير متخامد تكون طاقته الحركية:",
    "options": [
     "تتناقص حتى تنعدم",
@@ -702,7 +702,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عندما يتحرك الجسم من نقطة مطالها x = +XmaX/2 إلى مركز الاهتزاز فإن:",
    "options": [
     "الطاقة الميكانيكية تزداد",
@@ -767,7 +767,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "بالاقتراب من مركز الاهتزاز في الهزازة التوافقية البسيطة وبإهمال القوى المبددة للطاقة:",
    "options": [
     "تتحول الطاقة الكامنة المرونية إلى طاقة حركية",
@@ -832,7 +832,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس المرن غير المتخامد وبازدياد القيمة المطلقة للمطال:",
    "options": [
     "تتحول الطاقة الكامنة إلى حركية",
@@ -897,7 +897,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تُمثَّل الطاقة الميكانيكية لنواس مرن غير متخامد بيانياً بدلالة مطاله:",
    "options": [
     "بمنحنٍ جيبي متناوب",
@@ -962,7 +962,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تُمثَّل الطاقة الكامنة المرونية لنواس مرن غير متخامد بيانياً بدلالة مطاله:",
    "options": [
     "بقطع مكافئ ذروته المبدأ O",
@@ -1027,7 +1027,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تكون الطاقة الحركية للنواس المرن غير المتخامد:",
    "options": [
     "معدومة في الموضعين الطرفيين وتساوي الطاقة الميكانيكية في مركز الاهتزاز",
@@ -1092,7 +1092,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُعطى ثابت صلابة النابض بالعلاقة:",
    "options": [
     "k = m·ω0²",
@@ -1165,7 +1165,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "دور النواس المرن غير المتخامد يُعطى بالعلاقة:",
    "options": [
     "T0 = 2π√(m/k)",
@@ -1238,7 +1238,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يعبّر الزمن اللازم لإنجاز هزة واحدة عن:",
    "options": [
     "تواتر الحركة f",
@@ -1303,7 +1303,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يعبّر عدد الهزات التي ينجزها النواس خلال واحدة الزمن عن:",
    "options": [
     "سعة الحركة XmaX",
@@ -1368,7 +1368,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يعبّر البعد الجبري لمركز عطالة الجسم الصلب عن مركز الاهتزاز عن:",
    "options": [
     "الطور الابتدائي φ",
@@ -1433,7 +1433,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند وصل النهاية السفلية للنابض المرن بجسم صلب يستطيل النابض ويتوقف مركز العطالة في مركز الاهتزاز، وتُسمّى هذه الاستطالة:",
    "options": [
     "المطال x",
@@ -1498,7 +1498,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس المرن غير المتخامد يكون:",
    "options": [
     "النابض مرن",
@@ -1564,7 +1564,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يتحرك الجسم الصلب إلى جانبي نقطة ثابتة تُسمّى مركز الاهتزاز، لذا فإن حركته:",
    "options": [
     "حركة اهتزازية",
@@ -1629,7 +1629,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "حركة النواس المرن غير المتخامد هي حركة:",
    "options": [
     "جيبية توافقية",
@@ -1695,7 +1695,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند تمثيل الحركة التوافقية البسيطة بشعاع فرينل فإن شعاع فرينل:",
    "options": [
     "يدور بسرعة زاوية ثابتة تساوي النبض الخاص ω0",
@@ -1760,7 +1760,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند تمثيل الحركة التوافقية البسيطة بشعاع فرينل فإن طويلة شعاع فرينل:",
    "options": [
     "ثابتة وتساوي سعة الحركة XmaX",
@@ -1825,7 +1825,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند تمثيل الحركة التوافقية البسيطة بشعاع فرينل فإن الزاوية التي يصنعها حامل الشعاع مع المحور في اللحظة t = 0 هي:",
    "options": [
     "النبض الخاص ω0",
@@ -1890,7 +1890,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند انفصال الجسم الصلب عن النابض الشاقولي وهو في المطال الأعظمي الموجب (الأسفل) تكون حركته:",
    "options": [
     "حركة توافقية بسيطة بالنابض نفسه",
@@ -1955,7 +1955,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند انفصال الجسم الصلب عن النابض الشاقولي وهو في مركز الاهتزاز متحركاً بالاتجاه السالب (نحو الأعلى) تكون حركته:",
    "options": [
     "قذف شاقولي نحو الأعلى متسارع في الصعود ومتباطئ في الهبوط",
@@ -2020,7 +2020,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس ثابت صلابة النابض k في الجملة الدولية بواحدة:",
    "options": [
     "m·N⁻¹",
@@ -2072,7 +2072,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس النبض الخاص ω0 في الجملة الدولية بواحدة:",
    "options": [
     "rad·s⁻¹",
@@ -2124,7 +2124,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس قوة الإرجاع F في الجملة الدولية بواحدة:",
    "options": [
     "N",
@@ -2176,7 +2176,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس الطاقة الميكانيكية E في الجملة الدولية بواحدة:",
    "options": [
     "W",
@@ -2228,7 +2228,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس الدور الخاص T0 في الجملة الدولية بواحدة:",
    "options": [
     "s",
@@ -2280,7 +2280,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند سكون مركز عطالة الجسم الصلب فإن محصلة القوى الخارجية المؤثرة فيه ΣF⃗ هي:",
    "options": [
     "−k·x⃗",
@@ -2341,7 +2341,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند سكون النواس المرن الشاقولي غير المتخامد تؤثر في النابض قوة شد Fs0 تساوي:",
    "options": [
     "k·(x0 + x)",
@@ -2402,7 +2402,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يخضع النابض في النواس المرن الشاقولي غير المتخامد في حالة الحركة لقوة شد Fs هي:",
    "options": [
     "−k·(x0 + x)",
@@ -2463,7 +2463,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مقدار استطالة النابض المرن الشاقولي في حالة الحركة هو:",
    "options": [
     "x",
@@ -2524,7 +2524,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن أفقي مؤلف من نابض وجسم صلب؛ نؤثر في الجسم بقوة شد فيستطيل النابض بالمقدار:",
    "options": [
     "x (لا استطالة سكونية في النواس الأفقي)",
@@ -2585,7 +2585,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يخضع الجسم الصلب في النواس المرن الشاقولي غير المتخامد في حالة السكون لتأثير القوى الخارجية:",
    "options": [
     "قوة الثقل w⃗ وقوة توتر النابض F⃗s وقوة الإرجاع F⃗",
@@ -2646,7 +2646,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يخضع الجسم الصلب في النواس المرن الأفقي غير المتخامد في حالة الحركة لتأثير القوى الخارجية:",
    "options": [
     "قوة توتر النابض F⃗s فقط",
@@ -2707,7 +2707,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد دوره T0 ونبضه ω0. نجعل كتلة الجسم 3·m وثابت صلابة النابض 4·k وسعة الاهتزاز 1·XmaX. يصبح T0′:",
    "options": [
     "√3·T0",
@@ -2772,7 +2772,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد دوره T0 ونبضه ω0. نجعل كتلة الجسم 3·m وثابت صلابة النابض 1·k وسعة الاهتزاز 0.5·XmaX. يصبح ω0′:",
    "options": [
     "√3·ω0",
@@ -2837,7 +2837,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد دوره T0 ونبضه ω0. نجعل كتلة الجسم 4·m وثابت صلابة النابض 4·k وسعة الاهتزاز 0.5·XmaX. يصبح ω0′:",
    "options": [
     "√2·ω0",
@@ -2902,7 +2902,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد دوره T0 ونبضه ω0. نجعل كتلة الجسم 2·m وثابت صلابة النابض 4·k وسعة الاهتزاز 1·XmaX. يصبح ω0′:",
    "options": [
     "ω0/√2",
@@ -2967,7 +2967,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد دوره T0 ونبضه ω0. نجعل كتلة الجسم 0.5·m وثابت صلابة النابض 4·k وسعة الاهتزاز 2·XmaX. يصبح ω0′:",
    "options": [
     "8·ω0",
@@ -3032,7 +3032,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد دوره T0 ونبضه ω0. نجعل كتلة الجسم 2·m وثابت صلابة النابض 0.25·k وسعة الاهتزاز 1·XmaX. يصبح ω0′:",
    "options": [
     "2√2·ω0",
@@ -3097,7 +3097,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ينجز 20 هزة خلال 4 s. احسب الدور الخاص T0.",
    "options": [
     "0.1 s",
@@ -3175,7 +3175,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ينجز 8 هزات خلال 10 s. احسب النبض الخاص ω0.",
    "options": [
     "5π/2 rad·s⁻¹",
@@ -3253,7 +3253,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد دوره الخاص T0 = 0.5 s. الزمن اللازم لإنجاز 10 هزات كاملة:",
    "options": [
     "2.5 s",
@@ -3331,7 +3331,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ينجز 10 هزات خلال 8 s. احسب النبض الخاص ω0.",
    "options": [
     "1.25 rad·s⁻¹",
@@ -3409,7 +3409,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ينجز 20 هزة خلال 10 s. احسب الدور الخاص T0.",
    "options": [
     "2 s",
@@ -3487,7 +3487,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ينجز 20 هزة خلال 3 s. احسب الدور الخاص T0.",
    "options": [
     "0.143 s",
@@ -3565,7 +3565,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كتلة جسمه m = 2 kg ودوره الخاص T0 = 4 s. احسب ثابت صلابة نابضه k (خذ π² = 10).",
    "options": [
     "0.2 N·m⁻¹",
@@ -3646,7 +3646,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كتلة جسمه m = 1 kg وثابت صلابة نابضه k = 10 N·m⁻¹. احسب دوره الخاص T0 (خذ π² = 10).",
    "options": [
     "20 s",
@@ -3727,7 +3727,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كتلة جسمه m = 0.4 kg ودوره الخاص T0 = 0.8 s. احسب ثابت صلابة نابضه k (خذ π² = 10).",
    "options": [
     "25 N·m⁻¹",
@@ -3808,7 +3808,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه k = 20 N·m⁻¹ ودوره الخاص T0 = 2 s. احسب كتلة جسمه m (خذ π² = 10).",
    "options": [
     "1 kg",
@@ -3889,7 +3889,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كتلة جسمه m = 0.2 kg ودوره الخاص T0 = 0.8 s. احسب ثابت صلابة نابضه k (خذ π² = 10).",
    "options": [
     "10 N·m⁻¹",
@@ -3970,7 +3970,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه k = 20 N·m⁻¹ ودوره الخاص T0 = 4 s. احسب كتلة جسمه m (خذ π² = 10).",
    "options": [
     "8 kg",
@@ -4051,7 +4051,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه k = 40 N·m⁻¹ ودوره الخاص T0 = 2 s. احسب قوة الإرجاع F في الموضع الذي مطاله x = 0.5 cm (π² = 10).",
    "options": [
     "−20 N",
@@ -4126,7 +4126,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه k = 20 N·m⁻¹ ودوره الخاص T0 = 0.5 s. احسب قوة الإرجاع F في الموضع الذي مطاله x = −2 cm (π² = 10).",
    "options": [
     "−0.4 N",
@@ -4201,7 +4201,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه k = 8 N·m⁻¹ ودوره الخاص T0 = 1 s. احسب قوة الإرجاع F في الموضع الذي مطاله x = 2 cm (π² = 10).",
    "options": [
     "−0.8 N",
@@ -4276,7 +4276,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه k = 16 N·m⁻¹ ودوره الخاص T0 = 0.5 s. احسب قوة الإرجاع F في الموضع الذي مطاله x = 0.5 cm (π² = 10).",
    "options": [
     "−0.08 N",
@@ -4351,7 +4351,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه k = 8 N·m⁻¹ ودوره الخاص T0 = 0.5 s. احسب قوة الإرجاع F في الموضع الذي مطاله x = −5 cm (π² = 10).",
    "options": [
     "40 N",
@@ -4426,7 +4426,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه k = 8 N·m⁻¹ ودوره الخاص T0 = 1 s. احسب التسارع a في الموضع الذي مطاله x = 2 cm (π² = 10).",
    "options": [
     "−0.16 m·s⁻²",
@@ -4501,7 +4501,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد نبضه ω0 = 5 rad·s⁻¹ وسعته 10 cm. احسب السرعة العظمى vmax.",
    "options": [
     "50 m·s⁻¹",
@@ -4574,7 +4574,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد نبضه ω0 = 2 rad·s⁻¹ وسعته 5 cm. احسب السرعة العظمى vmax.",
    "options": [
     "0.1 m·s⁻¹",
@@ -4647,7 +4647,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد نبضه ω0 = 4 rad·s⁻¹ وسعته 5 cm. احسب السرعة العظمى vmax.",
    "options": [
     "0.8 m·s⁻¹",
@@ -4720,7 +4720,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد نبضه ω0 = 10 rad·s⁻¹ وسعته 10 cm. احسب السرعة في الموضع الذي مطاله x = 6 cm.",
    "options": [
     "±1 m·s⁻¹",
@@ -4793,7 +4793,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد نبضه ω0 = 2 rad·s⁻¹ وسعته 10 cm. احسب السرعة العظمى vmax.",
    "options": [
     "0.4 m·s⁻¹",
@@ -4866,7 +4866,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد نبضه ω0 = 10 rad·s⁻¹ وسعته 5 cm. احسب السرعة في الموضع الذي مطاله x = 3 cm.",
    "options": [
     "±0.4 m·s⁻¹",
@@ -4939,7 +4939,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه 16 N·m⁻¹ يهتز بسعة 5 cm. احسب الطاقة الحركية Ek في الموضع x = 4 cm.",
    "options": [
     "0.0072 J",
@@ -5014,7 +5014,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه 40 N·m⁻¹ يهتز بسعة 10 cm. احسب الطاقة الكامنة المرونية Ep في الموضع x = 4 cm.",
    "options": [
     "0.032 J",
@@ -5089,7 +5089,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه 10 N·m⁻¹ يهتز بسعة 10 cm. احسب الطاقة الحركية Ek في الموضع x = 2 cm.",
    "options": [
     "0.002 J",
@@ -5164,7 +5164,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه 10 N·m⁻¹ يهتز بسعة 4 cm. احسب الطاقة الكامنة المرونية Ep في الموضع x = 2 cm.",
    "options": [
     "0.004 J",
@@ -5239,7 +5239,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه 20 N·m⁻¹ يهتز بسعة 10 cm. احسب الطاقة الميكانيكية E في الموضع x = 3 cm.",
    "options": [
     "1 J",
@@ -5314,7 +5314,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد ثابت صلابة نابضه 16 N·m⁻¹ يهتز بسعة 16 cm. احسب الطاقة الحركية Ek في الموضع x = 4 cm.",
    "options": [
     "0.0128 J",
@@ -5389,7 +5389,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "قيمة الطاقة الحركية في نقطة مطالها x = XmaX/4 هي:",
    "options": [
     "Ek = 15·E/16",
@@ -5459,7 +5459,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس المرن غير المتخامد تتساوى الطاقتان الكامنة والحركية عندما يكون المطال:",
    "options": [
     "x = +XmaX/√2",
@@ -5529,7 +5529,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "قيمة الطاقة الكامنة المرونية في نقطة مطالها x = XmaX/√3 هي:",
    "options": [
     "Ep = E/3",
@@ -5599,7 +5599,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في أي موضع x من مسار الجسم تكون Ep = 0.2·E؟",
    "options": [
     "x = ±0.2·XmaX",
@@ -5669,7 +5669,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "قيمة الطاقة الكامنة المرونية في نقطة مطالها x = XmaX/4 هي:",
    "options": [
     "Ep = E/32",
@@ -5739,7 +5739,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "قيمة الطاقة الحركية في نقطة مطالها x = XmaX/√3 هي:",
    "options": [
     "Ek = 2·E/6",
@@ -5809,7 +5809,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن شاقولي غير متخامد كتلة جسمه m = 0.2 kg وثابت صلابة نابضه k = 40 N·m⁻¹. احسب شدة قوة توتر النابض في وضع التوازن Fs0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "80 N",
@@ -5883,7 +5883,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن شاقولي غير متخامد دوره الخاص T0 = 4 s. احسب استطالة النابض في وضع التوازن x0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "1 m",
@@ -5957,7 +5957,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن شاقولي غير متخامد كتلة جسمه m = 0.5 kg وثابت صلابة نابضه k = 20 N·m⁻¹. احسب استطالة النابض في وضع التوازن x0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "0.025 m",
@@ -6031,7 +6031,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن شاقولي غير متخامد كتلة جسمه m = 0.2 kg وثابت صلابة نابضه k = 20 N·m⁻¹. احسب شدة قوة توتر النابض في وضع التوازن Fs0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "2000 N",
@@ -6105,7 +6105,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن شاقولي غير متخامد كتلة جسمه m = 0.5 kg وثابت صلابة نابضه k = 40 N·m⁻¹. احسب شدة قوة توتر النابض في وضع التوازن Fs0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "5 N",
@@ -6179,7 +6179,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن شاقولي غير متخامد كتلة جسمه m = 0.5 kg وثابت صلابة نابضه k = 20 N·m⁻¹. احسب شدة قوة توتر النابض في وضع التوازن Fs0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "100 N",
@@ -6253,7 +6253,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الزمن الذي يستغرقه مركز العطالة للانتقال من +XmaX إلى −XmaX هو:",
    "options": [
     "2·T0",
@@ -6320,7 +6320,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ينجز 10 هزة ويرسم مساراً مستقيماً طوله 320 cm؛ سعته:",
    "options": [
     "32 cm",
@@ -6391,7 +6391,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ينتقل الجسم من +XmaX إلى −XmaX خلال 5 s؛ نبضه:",
    "options": [
     "0.2 rad·s⁻¹",
@@ -6462,7 +6462,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ينتقل الجسم من +XmaX إلى −XmaX خلال 10 s؛ نبضه:",
    "options": [
     "π/10 rad·s⁻¹",
@@ -6533,7 +6533,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "طول القطعة المستقيمة التي يرسمها مركز عطالة الجسم عندما ينتقل من +XmaX إلى −XmaX هي:",
    "options": [
     "2·XmaX",
@@ -6600,7 +6600,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس يرسم مساراً طوله 8·XmaX خلال 5 s؛ دوره:",
    "options": [
     "5 s",
@@ -6671,7 +6671,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كان جسمه في مبدأ الزمن t = 0 في x = −XmaX/2 متحركاً بالاتجاه السالب. الطور الابتدائي φ في x = XmaX·cos(ω0·t + φ):",
    "options": [
     "φ = +2π/3 rad",
@@ -6735,7 +6735,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كان جسمه في مبدأ الزمن t = 0 في x = +XmaX/2 متحركاً بالاتجاه السالب. الطور الابتدائي φ في x = XmaX·cos(ω0·t + φ):",
    "options": [
     "φ = π rad",
@@ -6799,7 +6799,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كان جسمه في مبدأ الزمن t = 0 في مركز الاهتزاز متحركاً بالاتجاه السالب. الطور الابتدائي φ في x = XmaX·cos(ω0·t + φ):",
    "options": [
     "φ = −π/2 rad",
@@ -6863,7 +6863,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كان جسمه في مبدأ الزمن t = 0 في x = +XmaX/2 متحركاً بالاتجاه الموجب. الطور الابتدائي φ في x = XmaX·cos(ω0·t + φ):",
    "options": [
     "φ = 0 rad",
@@ -6927,7 +6927,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كان جسمه في مبدأ الزمن t = 0 في المطال الأعظمي السالب (تُرك دون سرعة ابتدائية). الطور الابتدائي φ في x = XmaX·cos(ω0·t + φ):",
    "options": [
     "φ = π rad",
@@ -6991,7 +6991,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد كان جسمه في مبدأ الزمن t = 0 في مركز الاهتزاز متحركاً بالاتجاه الموجب. الطور الابتدائي φ في x = XmaX·cos(ω0·t + φ):",
    "options": [
     "φ = π rad",
@@ -7055,7 +7055,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد تابع مطاله x = 0.1·cos(π/6·t + π/6) (x بالمتر، t بالثانية). لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "8 s",
@@ -7143,7 +7143,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد تابع مطاله x = 0.1·cos(π/6·t + π/6) (x بالمتر، t بالثانية). أول لحظة يكون فيها المطال أعظمياً موجباً (+XmaX):",
    "options": [
     "11 s",
@@ -7231,7 +7231,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد تابع مطاله x = 0.06·cos(π/6·t − π/3) (x بالمتر، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "0 m·s⁻¹",
@@ -7319,7 +7319,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد تابع مطاله x = 0.04·cos(π·t + π/6) (x بالمتر، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "0 m·s⁻¹",
@@ -7407,7 +7407,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد تابع مطاله x = 0.04·cos(π/6·t + π/3) (x بالمتر، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "−π/150 m·s⁻¹",
@@ -7495,7 +7495,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد تابع مطاله x = 0.08·cos(2π·t + π/3) (x بالمتر، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "+4π/25 m·s⁻¹",
@@ -7583,7 +7583,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد سعته 30 cm وكتلة جسمه 2 kg وثابت صلابة نابضه 20 N·m⁻¹؛ في مبدأ الزمن كان الجسم في المطال الأعظمي السالب (تُرك دون سرعة ابتدائية). تابع المطال الزمني:",
    "options": [
     "x = 0.3·cos(√10·t + π)",
@@ -7650,7 +7650,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد سعته 5 cm وكتلة جسمه 2 kg وثابت صلابة نابضه 20 N·m⁻¹؛ في مبدأ الزمن كان الجسم في x = −XmaX/2 متحركاً بالاتجاه السالب. تابع المطال الزمني:",
    "options": [
     "x = 0.05·cos(√10·t + 2π/3)",
@@ -7717,7 +7717,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد سعته 5 cm ودوره الخاص T0 = 2 s؛ في مبدأ الزمن كان الجسم في مركز الاهتزاز متحركاً بالاتجاه السالب. تابع المطال الزمني:",
    "options": [
     "x = 0.05·cos(π·t + π/2)",
@@ -7784,7 +7784,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد سعته 5 cm وكتلة جسمه 0.04 kg وثابت صلابة نابضه 10 N·m⁻¹؛ في مبدأ الزمن كان الجسم في مركز الاهتزاز متحركاً بالاتجاه السالب. تابع المطال الزمني:",
    "options": [
     "x = 5·cos(√250·t + π/2)",
@@ -7851,7 +7851,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد سعته 5 cm وكتلة جسمه 0.04 kg وثابت صلابة نابضه 10 N·m⁻¹؛ في مبدأ الزمن كان الجسم في المطال الأعظمي الموجب (تُرك دون سرعة ابتدائية). تابع المطال الزمني:",
    "options": [
     "x = 0.05·cos(√250·t + π)",
@@ -7918,7 +7918,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس مرن غير متخامد سعته 5 cm ودوره الخاص T0 = 2 s؛ في مبدأ الزمن كان الجسم في x = +XmaX/2 متحركاً بالاتجاه الموجب. تابع المطال الزمني:",
    "options": [
     "x = 5·cos(π·t − π/3)",
@@ -7985,7 +7985,7 @@
    "type": "why",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "علّل: النبض الخاص للنواس المرن غير المتخامد مقدار ثابت وموجب.",
    "options": [
     "لأن k وm مقداران ثابتان وموجبان",
@@ -8051,7 +8051,7 @@
    "type": "why",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "علّل: تنعدم الطاقة الكامنة المرونية في مركز الاهتزاز.",
    "options": [
     "بسبب انعدام سعة الحركة",
@@ -8118,7 +8118,7 @@
    "type": "why",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "علّل: تنعدم الطاقة الحركية في الموضعين الطرفيين.",
    "options": [
     "بسبب انعدام السرعة",
@@ -8184,7 +8184,7 @@
    "type": "why",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "علّل: الطاقة الحركية عظمى في مركز الاهتزاز.",
    "options": [
     "لأن المطال أعظمي",
@@ -8249,7 +8249,7 @@
    "type": "why",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "علّل: الطاقة الكامنة المرونية عظمى في الموضعين الطرفيين.",
    "options": [
     "لأن النبض أعظمي",
@@ -8314,7 +8314,7 @@
    "type": "why",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "علّل: يكون تسارع النواس المرن أعظمياً في الموضعين الطرفيين.",
    "options": [
     "لأن المطال أعظمي فقوة الإرجاع عظمى",
@@ -8380,7 +8380,7 @@
    "type": "why",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "علّل: تُسمّى محصلة القوى الخارجية المؤثرة في مركز عطالة الجسم قوة إرجاع.",
    "options": [
     "لأنها تعيد الجسم إلى موضع انطلاقه",
@@ -8447,7 +8447,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "حركة نواس الفتل غير المتخامد هي:",
    "options": [
     "حركة جيبية دورانية",
@@ -8501,7 +8501,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في نواس الفتل غير المتخامد يكون:",
    "options": [
     "الساق (أو القرص) متجانس",
@@ -8555,7 +8555,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يخضع ساق نواس الفتل غير المتخامد لتأثير القوى الخارجية الآتية:",
    "options": [
     "قوة الثقل w⃗ وقوة توتر السلك T⃗ فقط",
@@ -8613,7 +8613,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في نواس الفتل غير المتخامد يكون عزم قوة الثقل وعزم قوة توتر السلك بالنسبة لمحور السلك:",
    "options": [
     "معدومين لأن حامل كلٍّ منهما ينطبق على محور الدوران",
@@ -8671,7 +8671,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عندما ندير ساق نواس الفتل بزاوية θ عن وضع توازنه في مستوٍ أفقي فإن مزدوجة الفتل:",
    "options": [
     "تنشأ في السلك",
@@ -8730,7 +8730,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يتناسب عزم مزدوجة الفتل لنواس فتل غير متخامد:",
    "options": [
     "عكساً مع الجذر التربيعي لعزم العطالة",
@@ -8788,7 +8788,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُسمّى عزم مزدوجة الفتل عزم إرجاع لأنه:",
    "options": [
     "يعيد الساق إلى الموضع الطرفي",
@@ -8846,7 +8846,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "النبض الخاص لنواس الفتل غير المتخامد مقدار ثابت وموجب لأن:",
    "options": [
     "النواس يخضع لعزم إرجاع",
@@ -8904,7 +8904,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند دراسة حركة نواس الفتل نستخدم العلاقة الأساسية في التحريك الدوراني:",
    "options": [
     "Ep = ½·C·θ²",
@@ -8969,7 +8969,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُعطى عزم مزدوجة الفتل بالعلاقة:",
    "options": [
     "Γ_η/Δ = −C·θ",
@@ -9034,7 +9034,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُعطى التسارع الزاوي لنواس فتل غير متخامد بالعلاقة:",
    "options": [
     "θ″ = ω0²·θ",
@@ -9099,7 +9099,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "النبض الخاص لنواس الفتل غير المتخامد هو:",
    "options": [
     "ω0 = √(IΔ/C)",
@@ -9164,7 +9164,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "دور نواس الفتل غير المتخامد T0 هو:",
    "options": [
     "T0 = 2π·√(C/IΔ)",
@@ -9229,7 +9229,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الطاقة الكامنة المرونية لنواس الفتل تُعطى بالعلاقة:",
    "options": [
     "Ep = C·θ²",
@@ -9294,7 +9294,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الطاقة الحركية الدورانية لنواس الفتل تُعطى بالعلاقة:",
    "options": [
     "Ek = ½·IΔ·θ′",
@@ -9359,7 +9359,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "المعادلة التفاضلية من المرتبة الثانية لنواس الفتل غير المتخامد التي تقبل حلاً جيبياً هي:",
    "options": [
     "θ″ = −(IΔ/C)·θ",
@@ -9424,7 +9424,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مشتق الطاقة الكامنة المرونية لنواس الفتل بالنسبة للزمن هو:",
    "options": [
     "Ep = ½·C·θ²",
@@ -9489,7 +9489,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مشتق الطاقة الحركية الدورانية لنواس الفتل بالنسبة للزمن هو:",
    "options": [
     "Ep = ½·C·θ²",
@@ -9554,7 +9554,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُعطى التابع الزمني للسرعة الزاوية لنواس الفتل بالعلاقة:",
    "options": [
     "Ek = ½·IΔ·θ′²",
@@ -9619,7 +9619,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُعطى ثابت فتل السلك C بالعلاقة:",
    "options": [
     "C = IΔ·ω0²",
@@ -9685,7 +9685,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الطاقة الحركية الدورانية لنواس الفتل تُعطى بالعلاقة:",
    "options": [
     "Ek = E − Ep",
@@ -9751,7 +9751,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس عزم عطالة ساق (أو قرص) نواس الفتل IΔ بواحدة:",
    "options": [
     "kg·m²",
@@ -9804,7 +9804,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس ثابت فتل السلك C بواحدة:",
    "options": [
     "rad·s⁻²",
@@ -9857,7 +9857,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس عزم مزدوجة الفتل بواحدة:",
    "options": [
     "N·m·rad⁻¹",
@@ -9910,7 +9910,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس السرعة الزاوية θ′ بواحدة:",
    "options": [
     "s⁻²",
@@ -9963,7 +9963,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يتناسب دور نواس الفتل غير المتخامد:",
    "options": [
     "طرداً مع عزم العطالة",
@@ -10019,7 +10019,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "لا تتغير قيمة الدور الخاص لنواس الفتل بتغير السعة الزاوية للحركة وذلك لأن:",
    "options": [
     "الدور مقدار ثابت بالتعريف",
@@ -10075,7 +10075,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند زيادة عزم عطالة نواس فتل غير متخامد فإن دوره T0′:",
    "options": [
     "T0′ < T0",
@@ -10131,7 +10131,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند نقصان طول سلك الفتل لنواس فتل غير متخامد:",
    "options": [
     "تنقص قيمة ثابت الفتل فينقص الدور",
@@ -10187,7 +10187,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ميقاتية تعتمد في عملها على نواس فتل، ولتصحيح التأخير الحاصل في الوقت فيها:",
    "options": [
     "إنقاص طول سلك الفتل بمقدار ضئيل",
@@ -10243,7 +10243,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ساقان متماثلتان معلّقتان بسلكَي فتل لهما الطول نفسه، C1 و C2 مع T01 = 2·T02. العلاقة بين الثابتين:",
    "options": [
     "C1 = 4·C2",
@@ -10324,7 +10324,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل دوره 2 s وسعته الزاوية 10°؛ نزيد سعته إلى 15°. دوره:",
    "options": [
     "2.45 s",
@@ -10409,7 +10409,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل دوره T0؛ نجعل طول سلك الفتل ثلاثة أرباع ما كان عليه. دوره الجديد:",
    "options": [
     "√3·T0/2",
@@ -10490,7 +10490,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل دوره T0؛ ننقص من طول سلكه بمقدار الثلث. دوره الجديد:",
    "options": [
     "√(2/3)·T0",
@@ -10571,7 +10571,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل دوره T0؛ نجعل قطر السلك ضعف ما كان عليه (الطول نفسه). دوره الجديد:",
    "options": [
     "T0/2",
@@ -10652,7 +10652,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل دوره T0؛ نجعل طول سلك الفتل ضعف ما كان عليه. دوره الجديد:",
    "options": [
     "T0",
@@ -10733,7 +10733,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد عزم عطالته IΔ = 0.04 kg·m² وثابت فتل سلكه C = 0.4 N·m·rad⁻¹. احسب دوره الخاص T0 (π² = 10).",
    "options": [
     "0.316 s",
@@ -10807,7 +10807,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد عزم عطالته IΔ = 0.02 kg·m² ودوره الخاص T0 = 2 s. احسب ثابت فتل سلكه C (π² = 10).",
    "options": [
     "0.005 N·m·rad⁻¹",
@@ -10881,7 +10881,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد ثابت فتل سلكه C = 2 N·m·rad⁻¹ ودوره الخاص T0 = 2 s. احسب عزم عطالته IΔ (π² = 10).",
    "options": [
     "0.2 kg·m²",
@@ -10955,7 +10955,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد عزم عطالته IΔ = 0.04 kg·m² ودوره الخاص T0 = 0.5 s. احسب ثابت فتل سلكه C (π² = 10).",
    "options": [
     "0.16 N·m·rad⁻¹",
@@ -11029,7 +11029,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد ثابت فتل سلكه C = 0.8 N·m·rad⁻¹ ودوره الخاص T0 = 2 s. احسب عزم عطالته IΔ (π² = 10).",
    "options": [
     "0.04 kg·m²",
@@ -11103,7 +11103,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد ثابت فتل سلكه C = 0.4 N·m·rad⁻¹ ودوره الخاص T0 = 2 s. احسب عزم عطالته IΔ (π² = 10).",
    "options": [
     "25 kg·m²",
@@ -11177,7 +11177,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد نبضه الخاص ω0 = 5 rad·s⁻¹ وسعته الزاوية θmax = 1 rad. احسب القيمة العظمى للسرعة الزاوية θ′max.",
    "options": [
     "25 rad·s⁻¹",
@@ -11253,7 +11253,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد نبضه الخاص ω0 = 5 rad·s⁻¹ وسعته الزاوية θmax = 0.2 rad وثابت فتل سلكه C = 0.8 N·m·rad⁻¹. احسب الطاقة الكامنة المرونية عندما يكون المطال الزاوي θ = 0.05 rad.",
    "options": [
     "0.004 J",
@@ -11329,7 +11329,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد نبضه الخاص ω0 = 2 rad·s⁻¹ وسعته الزاوية θmax = 0.2 rad. احسب القيمة العظمى للتسارع الزاوي θ″max.",
    "options": [
     "0.08 rad·s⁻²",
@@ -11405,7 +11405,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد نبضه الخاص ω0 = 10 rad·s⁻¹ وسعته الزاوية θmax = 1 rad. احسب القيمة العظمى للسرعة الزاوية θ′max.",
    "options": [
     "100 rad·s⁻¹",
@@ -11481,7 +11481,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد نبضه الخاص ω0 = 5 rad·s⁻¹ وسعته الزاوية θmax = 1 rad. احسب التسارع الزاوي θ″ في الموضع الذي مطاله الزاوي θ = 0.25 rad.",
    "options": [
     "−6.25 rad·s⁻²",
@@ -11557,7 +11557,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد نبضه الخاص ω0 = 4 rad·s⁻¹ وسعته الزاوية θmax = 0.1 rad. احسب القيمة العظمى للسرعة الزاوية θ′max.",
    "options": [
     "0.4 rad·s⁻¹",
@@ -11633,7 +11633,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند مرور نواس الفتل في وضع التوازن:",
    "options": [
     "ينعدم المطال الزاوي",
@@ -11688,7 +11688,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند حركة نواس فتل غير متخامد وفي مركز الاهتزاز يكون:",
    "options": [
     "θ″ = 0 · E = 0",
@@ -11742,7 +11742,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند حركة نواس فتل غير متخامد وفي الموضعين الطرفيين يكون:",
    "options": [
     "θ″ = θ″max · θ′ = θ′max",
@@ -11796,7 +11796,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل يتألف من ساق مهملة الكتلة طولها 0.1 m تحمل في طرفيها كتلتين نقطيتين متماثلتين كل منهما 0.4 kg معلّق من مركزه بسلك فتل شاقولي ثابت فتله C = 0.08 N·m·rad⁻¹. احسب دوره الخاص T0 (π² = 10).",
    "options": [
     "40 s",
@@ -11900,7 +11900,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل يتألف من قرص متجانس كتلته 0.1 kg ونصف قطره 0.1 m معلّق من مركزه بسلك فتل شاقولي ثابت فتله C = 0.08 N·m·rad⁻¹. احسب دوره الخاص T0 (π² = 10).",
    "options": [
     "80 s",
@@ -12004,7 +12004,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل يتألف من قرص متجانس كتلته 0.5 kg ونصف قطره 0.1 m معلّق من مركزه بسلك فتل شاقولي. احسب عزم عطالة الجملة IΔ بالنسبة لمحور السلك.",
    "options": [
     "25 kg·m²",
@@ -12108,7 +12108,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل يتألف من قرص متجانس كتلته 0.1 kg ونصف قطره 0.4 m معلّق من مركزه بسلك فتل شاقولي ثابت فتله C = 0.02 N·m·rad⁻¹. احسب دوره الخاص T0 (π² = 10).",
    "options": [
     "0.632 s",
@@ -12212,7 +12212,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل يتألف من ساق مهملة الكتلة طولها 1 m تحمل في طرفيها كتلتين نقطيتين متماثلتين كل منهما 0.1 kg معلّق من مركزه بسلك فتل شاقولي؛ دوره الخاص T0 = 2 s. احسب ثابت فتل السلك C (π² = 10).",
    "options": [
     "0.0125 N·m·rad⁻¹",
@@ -12316,7 +12316,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل يتألف من قرص متجانس كتلته 2 kg ونصف قطره 0.2 m معلّق من مركزه بسلك فتل شاقولي. احسب عزم عطالة الجملة IΔ بالنسبة لمحور السلك.",
    "options": [
     "0.04 kg·m²",
@@ -12420,7 +12420,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد تابع مطاله الزاوي θ = 0.1·cos(π/6·t + π/3) (θ بالراديان، t بالثانية). أول لحظة يكون فيها المطال أعظمياً موجباً (+θmax):",
    "options": [
     "10 s",
@@ -12477,7 +12477,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد تابع مطاله الزاوي θ = 0.25·cos(π/6·t + π/3) (θ بالراديان، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "0 rad·s⁻¹",
@@ -12534,7 +12534,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد تابع مطاله الزاوي θ = 0.1·cos(π/3·t) (θ بالراديان، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "+π/30 rad·s⁻¹",
@@ -12591,7 +12591,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد تابع مطاله الزاوي θ = 0.3·cos(π/3·t) (θ بالراديان، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "−0.1 rad·s⁻¹",
@@ -12648,7 +12648,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد تابع مطاله الزاوي θ = 0.25·cos(π/3·t + π/6) (θ بالراديان، t بالثانية). لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "2.5 s",
@@ -12705,7 +12705,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل غير متخامد تابع مطاله الزاوي θ = 0.25·cos(π/6·t + π/6) (θ بالراديان، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "−0.0417 rad·s⁻¹",
@@ -12762,7 +12762,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس فتل قرصه يحمل على محيطه كأسين متماثلين يحويان ماءً يتسرّب نحو مركز القرص أثناء الاهتزاز. أثناء التفريغ:",
    "options": [
     "ينقص عزم عطالة الجملة فينقص الدور وتزداد السرعة الزاوية",
@@ -12815,7 +12815,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "أثناء اهتزاز نواس فتل ابتعدت الكتلتان النقطيتان عن المحور بالمقدار نفسه. الخط البياني للمطال الزاوي بعد تلك اللحظة:",
    "options": [
     "لا يتغير",
@@ -12868,7 +12868,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يتألف النواس الثقلي البسيط غير المتخامد من:",
    "options": [
     "نقطة مادية تهتز في مستوٍ أفقي حول سلك شاقولي",
@@ -12922,7 +12922,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "أي من هذه العبارات خاطئة بالنسبة للنواس الثقلي البسيط؟",
    "options": [
     "طول الخيط صغير بالنسبة لنصف قطر الكرة",
@@ -12976,7 +12976,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي المركّب غير المتخامد يهتز النواس:",
    "options": [
     "بتأثير عزم قوة ثقله",
@@ -13031,7 +13031,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "حركة النواس الثقلي المركّب غير المتخامد من أجل الزوايا صغيرة السعة هي:",
    "options": [
     "جيبية دورانية",
@@ -13092,7 +13092,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "حركة النواس الثقلي المركّب حركة اهتزازية غير توافقية:",
    "options": [
     "الحركة اهتزازية توافقية دوماً",
@@ -13152,7 +13152,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في المعادلة التفاضلية θ″ = −(mgd/IΔ)·sin θ ومن أجل السعات الزاوية الصغيرة نعتبر:",
    "options": [
     "sin θ ≈ θ (بالراديان)",
@@ -13212,7 +13212,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي المركّب المعادلة التفاضلية θ″ = −(mgd/IΔ)·sin θ لا تقبل حلاً جيبياً لأنها:",
    "options": [
     "تحوي IΔ",
@@ -13272,7 +13272,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط ومن أجل النوسات صغيرة السعة تكون النوسات متواقتة أي:",
    "options": [
     "لها الطول نفسه",
@@ -13332,7 +13332,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط النبض الخاص مقدار موجب دوماً لأن:",
    "options": [
     "IΔ وm وg وd مقادير موجبة",
@@ -13392,7 +13392,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "دور النواس الثقلي غير المتخامد من أجل السعات الزاوية الكبيرة يُعطى بالعلاقة:",
    "options": [
     "T = T0·(1 + θmax/16)",
@@ -13452,7 +13452,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط المعادلة التفاضلية θ″ = −(g/l)·θ تقبل حلاً جيبياً من الشكل:",
    "options": [
     "ω0 = √(g/l) > 0",
@@ -13512,7 +13512,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تخضع كرة النواس الثقلي البسيط غير المتخامد لتأثير القوى الخارجية:",
    "options": [
     "ثقل الكرة w⃗ وقوة توتر الخيط T⃗",
@@ -13581,7 +13581,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يخضع النواس الثقلي المركّب غير المتخامد لتأثير القوى الخارجية:",
    "options": [
     "ثقل النواس w⃗ ومزدوجة الفتل",
@@ -13650,7 +13650,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط عزم قوة التوتر T⃗ معدوم لأن:",
    "options": [
     "حامل T⃗ يعامد الانتقال",
@@ -13719,7 +13719,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي المركّب عزم قوة رد الفعل R⃗ معدوم لأن:",
    "options": [
     "حامل R⃗ يمر من محور الدوران",
@@ -13788,7 +13788,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط عمل قوة التوتر معدوم لأن:",
    "options": [
     "T⃗ ثابتة الشدة",
@@ -13857,7 +13857,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي المركّب عمل قوة رد الفعل معدوم لأن:",
    "options": [
     "نقطة تأثير R⃗ لا تنتقل",
@@ -13926,7 +13926,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عزم قوة الثقل في النواس الثقلي البسيط يُعطى بالعلاقة:",
    "options": [
     "Γ_w = −m·g·l",
@@ -13995,7 +13995,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عندما نزيح النواس الثقلي المركّب زاوية كبيرة السعة ونتركه، يكون عزم ثقله:",
    "options": [
     "Γ_w = −m·g·d·cos θ",
@@ -14064,7 +14064,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط مسقط قوة الثقل على المحور المماسي الموجّه بجهة إزاحة الكرة هو:",
    "options": [
     "−m·g·cos θ",
@@ -14133,7 +14133,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط مسقط قوة الثقل على المحور الناظمي (الموجّه نحو المحور بجهة T⃗) عندما يصنع الخيط زاوية θ مع الشاقول هو:",
    "options": [
     "+m·g·cos θ",
@@ -14202,7 +14202,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط مسقط قوة الثقل على المحور الناظمي عندما ينطبق الخيط على الشاقول هو:",
    "options": [
     "−W = +W",
@@ -14271,7 +14271,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مسقط قوة التوتر على المحور الناظمي الذي له حامل T⃗ وجهتها هو:",
    "options": [
     "T·sin θ",
@@ -14340,7 +14340,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُعطى التسارع المماسي لكرة النواس الثقلي البسيط at بالعلاقة:",
    "options": [
     "at = l·θ″",
@@ -14410,7 +14410,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "لحساب سرعة نواس ثقلي (بسيط أو مركّب) ننطلق من:",
    "options": [
     "العلاقة الأساسية في التحريك الدوراني",
@@ -14479,7 +14479,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "لحساب قوة توتر خيط النواس الثقلي البسيط ننطلق من:",
    "options": [
     "العلاقة الأساسية في التحريك الدوراني",
@@ -14548,7 +14548,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند إيجاد قوة التوتر يتم إسقاط العلاقة الشعاعية w⃗ + T⃗ = m·a⃗ على:",
    "options": [
     "المحور الشاقولي الموجّه نحو الأعلى",
@@ -14617,7 +14617,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "لحساب عزم عطالة جسم صلب بالنسبة لمحور لا يمر من مركز عطالته نستخدم نظرية هايغنز:",
    "options": [
     "IG = IΔ + m·d²",
@@ -14686,7 +14686,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "دور النواس الثقلي المركّب من أجل السعات الصغيرة يُعطى بالعلاقة:",
    "options": [
     "T = m·g·(3·cos θ − 2·cos θmax)",
@@ -14749,7 +14749,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "النبض الخاص للنواس الثقلي المركّب يُعطى بالعلاقة:",
    "options": [
     "T01 = T02",
@@ -14812,7 +14812,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "المسافة الشاقولية h التي تقطعها كرة النواس البسيط من زاوية θ حتى ينطبق الخيط على الشاقول:",
    "options": [
     "h = l·(1 − sin θ)",
@@ -14875,7 +14875,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سرعة كرة النواس البسيط في وضع الشاقول (أُزيح θmax وتُرك) تُعطى بالعلاقة:",
    "options": [
     "v0 = √(2·g·l·(1 − sin θmax))",
@@ -14938,7 +14938,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "توتر خيط النواس البسيط عند الزاوية θ (أُزيح θmax وتُرك):",
    "options": [
     "T = m·g·(3·sin θ − 2·sin θmax)",
@@ -15001,7 +15001,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "توتر خيط النواس البسيط عند المرور بالشاقول:",
    "options": [
     "h = l·(1 − cos θ)",
@@ -15064,7 +15064,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عمل قوة الثقل لكرة النواس البسيط أثناء الهبوط من الطرف إلى الشاقول:",
    "options": [
     "في وضع التوازن الشاقولي (θ = 0)",
@@ -15127,7 +15127,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "انطلاقاً من h = d(1 − cos θmax) للنواس المركّب في وضع التوازن الشاقولي فإن:",
    "options": [
     "cos θmax = 1 − h/d",
@@ -15190,7 +15190,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تُعطى السرعة الزاوية العظمى للنواس الثقلي المركّب (سعة صغيرة) بالعلاقة:",
    "options": [
     "W(w⃗) = +m·g·h",
@@ -15253,7 +15253,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يكون توتر خيط النواس الثقلي البسيط أعظمياً:",
    "options": [
     "W(w⃗) = +m·g·h",
@@ -15316,7 +15316,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط دوره T01 مواقت لنواس ثقلي مركّب دوره T02، عندئذ:",
    "options": [
     "T01 = T02",
@@ -15379,7 +15379,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الطاقة الميكانيكية للنواس الثقلي البسيط غير المتخامد هي:",
    "options": [
     "E = Ek + Ep",
@@ -15443,7 +15443,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي المركّب غير المتخامد البعد بين محور الدوران ومركز العطالة هو:",
    "options": [
     "d (m)",
@@ -15506,7 +15506,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط البعد بين محور الدوران ومركز عطالة الكرة هو:",
    "options": [
     "cos θmax = 1 − h/d",
@@ -15569,7 +15569,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يتناسب دور النواس الثقلي البسيط غير المتخامد:",
    "options": [
     "طرداً مع نوع مادة الكرة",
@@ -15625,7 +15625,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ميقاتية ذات نواس ثقلي تدق الثانية على سطح البحر؛ ننقلها إلى قمة جبل فإنها:",
    "options": [
     "تقف عن العمل",
@@ -15681,7 +15681,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ميقاتية تعتمد على نواس ثقلي بسيط تؤخّر في قمة ناطحة سحاب لأن:",
    "options": [
     "تنقص قيمة الجاذبية فينقص الدور",
@@ -15737,7 +15737,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "لتصحيح ميقاتية تقدّم في وقتها وتعتمد على نواس ثقلي مركّب (ساق وقرص):",
    "options": [
     "تصحيح عقرب الدقائق فقط",
@@ -15793,7 +15793,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "من أجل النواس الثقلي البسيط وعند انعدام الثقل الظاهري داخل المحطة الفضائية فإن دور النواس:",
    "options": [
     "نصف قيمته على الأرض",
@@ -15849,7 +15849,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط دوره T0؛ نجعل طول خيطه ربع ما كان عليه ونجعل كتلته أربعة أمثال ما كانت عليه. دوره الجديد:",
    "options": [
     "2·T0",
@@ -15910,7 +15910,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط دوره T0؛ نجعل طول خيطه ضعف ما كان عليه وننقله إلى سطح القمر حيث g′ = g/6 ونجعل كتلته أربعة أمثال ما كانت عليه. دوره الجديد:",
    "options": [
     "12·T0",
@@ -15971,7 +15971,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط دوره T0؛ نجعل طول خيطه نصف ما كان عليه وننقله إلى سطح القمر حيث g′ = g/6. دوره الجديد:",
    "options": [
     "2√3·T0",
@@ -16032,7 +16032,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط دوره T0؛ نجعل طول خيطه ضعف ما كان عليه. دوره الجديد:",
    "options": [
     "T0/√2",
@@ -16093,7 +16093,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط دوره T0؛ نجعل طول خيطه نصف ما كان عليه وننقله إلى سطح القمر حيث g′ = g/6 ونجعل كتلته أربعة أمثال ما كانت عليه. دوره الجديد:",
    "options": [
     "T0/√3",
@@ -16154,7 +16154,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط دوره T0؛ نجعل طول خيطه أربعة أمثال ما كان عليه وننقله إلى سطح القمر حيث g′ = g/6. دوره الجديد:",
    "options": [
     "24·T0",
@@ -16215,7 +16215,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط طول خيطه l = 0.625 m. احسب نبضه الخاص ω0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "4 rad·s⁻¹",
@@ -16284,7 +16284,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط طول خيطه l = 0.1 m. احسب نبضه الخاص ω0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "0.1 rad·s⁻¹",
@@ -16353,7 +16353,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط كتلة كرته m = 0.5 kg وطول خيطه l = 0.1 m. احسب عزم عطالة الكرة IΔ بالنسبة لمحور الدوران (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "0.05 kg·m²",
@@ -16422,7 +16422,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط كتلة كرته m = 0.5 kg وطول خيطه l = 0.2 m. احسب عزم عطالة الكرة IΔ بالنسبة لمحور الدوران (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "200 kg·m²",
@@ -16491,7 +16491,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط دوره الخاص T0 = 4 s. احسب طول خيطه l (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "4 m",
@@ -16560,7 +16560,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط كتلة كرته m = 0.1 kg وطول خيطه l = 2.5 m. احسب عزم عطالة الكرة IΔ بالنسبة لمحور الدوران (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "6250 kg·m²",
@@ -16629,7 +16629,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط كتلة كرته 0.1 kg وطول خيطه 0.2 m، يُزاح عن الشاقول بزاوية 37° ويُترك دون سرعة ابتدائية. احسب التسارع الناظمي للكرة لحظة المرور بوضع التوازن (g = 10 m·s⁻²، cos 37° = 0.8، sin 37° = 0.6).",
    "options": [
     "0 m·s⁻²",
@@ -16715,7 +16715,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط طول خيطه 0.2 m تمر كرته بوضع التوازن الشاقولي بسرعة 2 m·s⁻¹. السعة الزاوية θmax للحركة (g = 10 m·s⁻²، cos 37° = 0.8):",
    "options": [
     "90°",
@@ -16797,7 +16797,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط كتلة كرته 0.5 kg وطول خيطه 1 m، يُزاح عن الشاقول بزاوية 37° ويُترك دون سرعة ابتدائية. احسب شدة قوة توتر الخيط لحظة المرور بوضع التوازن الشاقولي (g = 10 m·s⁻²، cos 37° = 0.8، sin 37° = 0.6).",
    "options": [
     "5 N",
@@ -16883,7 +16883,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط كتلة كرته 0.4 kg وطول خيطه 1 m، يُزاح عن الشاقول بزاوية 37° ويُترك دون سرعة ابتدائية. احسب شدة قوة توتر الخيط لحظة المرور بوضع التوازن الشاقولي (g = 10 m·s⁻²، cos 37° = 0.8، sin 37° = 0.6).",
    "options": [
     "5.6 N",
@@ -16969,7 +16969,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط كتلة كرته 0.1 kg وطول خيطه 1 m، يُزاح عن الشاقول بزاوية 37° ويُترك دون سرعة ابتدائية. احسب سرعة الكرة لحظة مرورها بوضع التوازن الشاقولي (g = 10 m·s⁻²، cos 37° = 0.8، sin 37° = 0.6).",
    "options": [
     "1.41 m·s⁻¹",
@@ -17055,7 +17055,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط كتلة كرته 0.5 kg وطول خيطه 0.4 m، يُزاح عن الشاقول بزاوية 37° ويُترك دون سرعة ابتدائية. احسب التسارع المماسي للكرة عندما يصنع الخيط الزاوية 37° مع الشاقول (g = 10 m·s⁻²، cos 37° = 0.8، sin 37° = 0.6).",
    "options": [
     "6.46 m·s⁻²",
@@ -17141,7 +17141,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من ساق متجانسة كتلتها 2 kg وطولها L = 2.4 m يهتز في مستوٍ شاقولي بسعة صغيرة حول محور أفقي يبعد L/6 عن مركزها ويعامدها. احسب طول النواس الثقلي البسيط المواقت له.",
    "options": [
     "2.4 m",
@@ -17238,7 +17238,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من قرص متجانس كتلته 2 kg ونصف قطره r = 0.24 m يهتز في مستوٍ شاقولي بسعة صغيرة حول محور أفقي يمر من نقطة على محيطه ويعامد مستويه. عبارة دوره الخاص T0 بدلالة r وg:",
    "options": [
     "T0 = 2π·√(3r/(2g))",
@@ -17331,7 +17331,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من ساق متجانسة كتلتها 3 kg وطولها L = 1.5 m يهتز في مستوٍ شاقولي بسعة صغيرة حول محور أفقي يمر من أحد طرفيها ويعامدها. احسب دوره الخاص T0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "1 s",
@@ -17428,7 +17428,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من قرص متجانس كتلته 2 kg ونصف قطره r = 0.54 m يهتز في مستوٍ شاقولي بسعة صغيرة حول محور أفقي يمر من نقطة على محيطه ويعامد مستويه. احسب دوره الخاص T0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "1.04 s",
@@ -17525,7 +17525,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من ساق متجانسة كتلتها 3 kg وطولها L = 6 m يهتز في مستوٍ شاقولي بسعة صغيرة حول محور أفقي يبعد L/6 عن مركزها ويعامدها. احسب دوره الخاص T0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "4 s",
@@ -17622,7 +17622,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من قرص متجانس كتلته 0.5 kg ونصف قطره r = 0.96 m يهتز في مستوٍ شاقولي بسعة صغيرة حول محور أفقي يمر من نقطة على محيطه ويعامد مستويه. احسب دوره الخاص T0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "2.4 s",
@@ -17719,7 +17719,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 85,
-   "approved": false,
+   "approved": true,
    "stem": "ساق مهملة الكتلة طولها L تحمل في طرفيها كتلتين نقطيتين m1؛ المحور على بعد L/4 من الطرف العلوي (L = 0.2 m، m1 = 0.5 kg). احسب طول النواس الثقلي البسيط المواقت له.",
    "options": [
     "0.05 m",
@@ -17820,7 +17820,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 85,
-   "approved": false,
+   "approved": true,
    "stem": "ساق مهملة الكتلة طولها L تحمل في طرفيها كتلتين نقطيتين m1؛ المحور على بعد L/4 من الطرف العلوي (L = 3.2 m، m1 = 0.3 kg). يهتز النواس في مستوٍ شاقولي بسعة صغيرة. احسب دوره الخاص T0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "2.83 s",
@@ -17921,7 +17921,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 85,
-   "approved": false,
+   "approved": true,
    "stem": "ساق مهملة الكتلة طولها L تحمل في طرفيها كتلتين نقطيتين m1؛ المحور على بعد L/4 من الطرف العلوي (L = 3.2 m، m1 = 0.2 kg). نزيح النواس عن وضع توازنه بزاوية 60° ونتركه دون سرعة ابتدائية. احسب سرعته الزاوية لحظة مروره بوضع التوازن (g = 10 m·s⁻²).",
    "options": [
     "√5/2 rad·s⁻¹",
@@ -18022,7 +18022,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 85,
-   "approved": false,
+   "approved": true,
    "stem": "ساق مهملة الكتلة طولها L تحمل في طرفيها كتلتين نقطيتين m1؛ المحور على بعد L/4 من الطرف العلوي (L = 0.2 m، m1 = 0.2 kg). يهتز النواس في مستوٍ شاقولي بسعة صغيرة. احسب دوره الخاص T0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "0.577 s",
@@ -18123,7 +18123,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 85,
-   "approved": false,
+   "approved": true,
    "stem": "ساق مهملة الكتلة طولها L تحمل في طرفيها كتلتين نقطيتين m1؛ المحور على بعد L/4 من الطرف العلوي (L = 0.8 m، m1 = 0.2 kg). يهتز النواس في مستوٍ شاقولي بسعة صغيرة. احسب دوره الخاص T0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "1.41 s",
@@ -18224,7 +18224,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 85,
-   "approved": false,
+   "approved": true,
    "stem": "ساق مهملة الكتلة طولها L تحمل في طرفيها كتلتين نقطيتين m1؛ المحور على بعد L/4 من الطرف العلوي (L = 3.2 m، m1 = 0.4 kg). يهتز النواس في مستوٍ شاقولي بسعة صغيرة. احسب دوره الخاص T0 (g = 10 m·s⁻²، π² = 10).",
    "options": [
     "2.31 s",
@@ -18325,7 +18325,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط عندما تتحرك الكرة مبتعدة عن مركز الاهتزاز:",
    "options": [
     "تنقص الطاقة الحركية وتزداد الكامنة الثقالية حتى تصبح عظمى في الموضعين الطرفيين",
@@ -18387,7 +18387,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط عندما تتحرك الكرة مقتربة من مركز الاهتزاز:",
    "options": [
     "تبقى الطاقتان ثابتتين",
@@ -18449,7 +18449,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الطاقة الحركية الدورانية للنواس الثقلي المركّب تُعطى بالعلاقة:",
    "options": [
     "Ek = ΣW(F⃗)",
@@ -18511,7 +18511,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الطاقة الحركية الانسحابية لكرة النواس الثقلي البسيط تُعطى بالعلاقة:",
    "options": [
     "Ek = ½·m·v²",
@@ -18573,7 +18573,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط والمركّب تكون الطاقة الحركية الابتدائية معدومة لأن:",
    "options": [
     "الطاقة الكامنة معدومة",
@@ -18635,7 +18635,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الطاقة الحركية الانسحابية لكرة النواس الثقلي البسيط غير المتخامد:",
    "options": [
     "عظمى في وضع التوازن",
@@ -18698,7 +18698,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الطاقة الكامنة الثقالية لكرة النواس الثقلي البسيط غير المتخامد:",
    "options": [
     "معدومة في وضع التوازن",
@@ -18761,7 +18761,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مبدأ قياس الطاقة الكامنة الثقالية في النواس الثقلي البسيط هو:",
    "options": [
     "المستوي الأفقي المار من الكرة في الموضع الطرفي",
@@ -18823,7 +18823,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند إيجاد سرعة كرة النواس البسيط عند المرور بالشاقول ننطلق من نظرية الطاقة الحركية بين:",
    "options": [
     "وضعين متناظرين θmax و−θmax",
@@ -18885,7 +18885,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُعدّ المقدار ri (بعد كتلة نقطية عن المحور) موجباً عند حساب d = Σmi·ri/Σmi إذا كانت:",
    "options": [
     "الكتلة على يمين المحور",
@@ -18941,7 +18941,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي المركّب غير المتخامد يكون البعد d بين محور الدوران ومركز عطالة الجملة مساوياً لبعد المحور عن مركز العطالة الهندسي في:",
    "options": [
     "الساق المتجانسة من طرفها",
@@ -18998,7 +18998,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "في النواس الثقلي البسيط غير المتخامد البعد بين محور الدوران ومركز عطالة الكرة هو:",
    "options": [
     "لا يمكن تحديده",
@@ -19054,7 +19054,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس عزم عطالة النواس الثقلي IΔ بواحدة:",
    "options": [
     "kg·m⁻²",
@@ -19106,7 +19106,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس توتر خيط النواس الثقلي البسيط T بواحدة:",
    "options": [
     "kg·m²",
@@ -19158,7 +19158,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس بعد مركز العطالة عن المحور d بواحدة:",
    "options": [
     "m",
@@ -19210,7 +19210,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقاس النبض الخاص ω0 بواحدة:",
    "options": [
     "s",
@@ -19262,7 +19262,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط يهتز بسعة صغيرة وتابع مطاله الزاوي θ = 0.1·cos(π/2·t − π/3) (θ بالراديان، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "−π/20 rad·s⁻¹",
@@ -19315,7 +19315,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط يهتز بسعة صغيرة وتابع مطاله الزاوي θ = 0.2·cos(π/2·t + π/3) (θ بالراديان، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "+π/10 rad·s⁻¹",
@@ -19368,7 +19368,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط يهتز بسعة صغيرة وتابع مطاله الزاوي θ = 0.2·cos(π/2·t + π/6) (θ بالراديان، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "0 rad·s⁻¹",
@@ -19421,7 +19421,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط يهتز بسعة صغيرة وتابع مطاله الزاوي θ = 0.15·cos(π/2·t − π/3) (θ بالراديان، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "−0.075 rad·s⁻¹",
@@ -19474,7 +19474,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط يهتز بسعة صغيرة وتابع مطاله الزاوي θ = 0.1·cos(2π·t) (θ بالراديان، t بالثانية). السرعة (الجبرية) لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "+π/5 rad·s⁻¹",
@@ -19527,7 +19527,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط يهتز بسعة صغيرة وتابع مطاله الزاوي θ = 0.2·cos(π/3·t + π/3) (θ بالراديان، t بالثانية). لحظة المرور الأول بمركز الاهتزاز:",
    "options": [
     "2 s",
@@ -19580,7 +19580,7 @@
    "type": "proof",
    "difficulty": 3,
    "weight": 25,
-   "approved": false,
+   "approved": true,
    "stem": "انطلاقاً من المعادلة التفاضلية x″ = −(k/m)·x برهن أن حركة الجسم جيبية انسحابية (توافقية بسيطة) ثم استنتج علاقة الدور الخاص.",
    "options": [],
    "correctIndex": -1,
@@ -19686,7 +19686,7 @@
    "type": "proof",
    "difficulty": 3,
    "weight": 25,
-   "approved": false,
+   "approved": true,
    "stem": "برهان: حركة نواس الفتل جيبية دورانية + T0 (+ طريق مصونية الطاقة)",
    "options": [],
    "correctIndex": -1,
@@ -19773,7 +19773,7 @@
    "type": "proof",
    "difficulty": 3,
    "weight": 25,
-   "approved": false,
+   "approved": true,
    "stem": "برهان: النواس الثقلي المركّب جيبي دوراني في السعات الصغيرة فقط + T0 + دلالات الرموز",
    "options": [],
    "correctIndex": -1,
@@ -19867,7 +19867,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان حجمه 600 L يُملأ بالماء خلال 300 s. احسب معدل التدفق الحجمي Q′.",
    "options": [
     "2×10⁻³ m³·s⁻¹",
@@ -19932,7 +19932,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان حجمه 300 L يُملأ بالماء خلال 200 s. احسب معدل التدفق الحجمي Q′.",
    "options": [
     "1.5 m³·s⁻¹",
@@ -19997,7 +19997,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان حجمه 1200 L يُملأ بالماء خلال 600 s. احسب معدل التدفق الحجمي Q′.",
    "options": [
     "5×10² m³·s⁻¹",
@@ -20062,7 +20062,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان حجمه 120 L يُملأ بالماء خلال 200 s. احسب معدل التدفق الحجمي Q′.",
    "options": [
     "3.6×10⁻² m³·s⁻¹",
@@ -20127,7 +20127,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان حجمه 1200 L يُملأ بالماء خلال 120 s. احسب معدل التدفق الحجمي Q′.",
    "options": [
     "10² m³·s⁻¹",
@@ -20192,7 +20192,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان حجمه 120 L يُملأ بالماء خلال 120 s. احسب معدل التدفق الحجمي Q′.",
    "options": [
     "10⁻³ m³·s⁻¹",
@@ -20257,7 +20257,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء في أنبوب مساحة مقطعه 25 cm² بمعدل تدفق حجمي 2×10⁻³ m³·s⁻¹. احسب سرعة الجريان v.",
    "options": [
     "0.8 m·s⁻¹",
@@ -20322,7 +20322,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء في أنبوب مساحة مقطعه 4 cm² بمعدل تدفق حجمي 5×10⁻³ m³·s⁻¹. احسب سرعة الجريان v.",
    "options": [
     "6.25 m·s⁻¹",
@@ -20387,7 +20387,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء في أنبوب مساحة مقطعه 8 cm² بمعدل تدفق حجمي 2×10⁻³ m³·s⁻¹. احسب سرعة الجريان v.",
    "options": [
     "1.6 m·s⁻¹",
@@ -20452,7 +20452,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء في أنبوب مساحة مقطعه 5 cm² بمعدل تدفق حجمي 4×10⁻³ m³·s⁻¹. احسب سرعة الجريان v.",
    "options": [
     "2 m·s⁻¹",
@@ -20517,7 +20517,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء في أنبوب مساحة مقطعه 5 cm² بمعدل تدفق حجمي 2×10⁻³ m³·s⁻¹. احسب سرعة الجريان v.",
    "options": [
     "4 m·s⁻¹",
@@ -20582,7 +20582,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء في أنبوب مساحة مقطعه 2 cm² بمعدل تدفق حجمي 2×10⁻³ m³·s⁻¹. احسب سرعة الجريان v.",
    "options": [
     "0.4 m·s⁻¹",
@@ -20647,7 +20647,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سائل مثالي يجري في أنبوب أفقي، ينتقل من مقطع مساحته s إلى مقطع واسع مساحته 3·s. سرعته في المقطع الثاني بالنسبة إلى سرعته v في الأول:",
    "options": [
     "v/9",
@@ -20700,7 +20700,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سائل مثالي يجري في أنبوب أفقي، ينتقل من مقطع مساحته s إلى مقطع ضيق مساحته s/3. سرعته في المقطع الثاني بالنسبة إلى سرعته v في الأول:",
    "options": [
     "v/3",
@@ -20753,7 +20753,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سائل مثالي يجري في أنبوب أفقي، ينتقل من مقطع مساحته s إلى مقطع واسع مساحته 5·s. سرعته في المقطع الثاني بالنسبة إلى سرعته v في الأول:",
    "options": [
     "v (لا تتغير)",
@@ -20806,7 +20806,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سائل مثالي يجري في أنبوب أفقي، ينتقل من مقطع مساحته s إلى مقطع ضيق مساحته s/2. سرعته في المقطع الثاني بالنسبة إلى سرعته v في الأول:",
    "options": [
     "v/2",
@@ -20859,7 +20859,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سائل مثالي يجري في أنبوب أفقي، ينتقل من مقطع مساحته s إلى مقطع واسع مساحته 2·s. سرعته في المقطع الثاني بالنسبة إلى سرعته v في الأول:",
    "options": [
     "v/2",
@@ -20912,7 +20912,7 @@
    "type": "mcq",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سائل مثالي يجري في أنبوب أفقي، ينتقل من مقطع مساحته s إلى مقطع ضيق مساحته s/4. سرعته في المقطع الثاني بالنسبة إلى سرعته v في الأول:",
    "options": [
     "v/4",
@@ -20965,7 +20965,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان كبير مفتوح مملوء بالماء، فُتحت فيه فتحة صغيرة على عمق 0.8 m تحت السطح الحر. احسب سرعة خروج الماء من الفتحة (g = 10 m·s⁻²).",
    "options": [
     "2.83 m·s⁻¹",
@@ -21030,7 +21030,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان كبير مفتوح مملوء بالماء، فُتحت فيه فتحة صغيرة على عمق 3.2 m تحت السطح الحر. احسب سرعة خروج الماء من الفتحة (g = 10 m·s⁻²).",
    "options": [
     "8 m·s⁻¹",
@@ -21095,7 +21095,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان كبير مفتوح مملوء بالماء، فُتحت فيه فتحة صغيرة على عمق 7.2 m تحت السطح الحر. احسب سرعة خروج الماء من الفتحة (g = 10 m·s⁻²).",
    "options": [
     "72 m·s⁻¹",
@@ -21160,7 +21160,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان كبير مفتوح مملوء بالماء، فُتحت فيه فتحة صغيرة على عمق 20 m تحت السطح الحر. احسب سرعة خروج الماء من الفتحة (g = 10 m·s⁻²).",
    "options": [
     "200 m·s⁻¹",
@@ -21225,7 +21225,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان كبير مفتوح مملوء بالماء، فُتحت فيه فتحة صغيرة على عمق 1.8 m تحت السطح الحر. احسب سرعة خروج الماء من الفتحة (g = 10 m·s⁻²).",
    "options": [
     "4.24 m·s⁻¹",
@@ -21290,7 +21290,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خزان كبير مفتوح مملوء بالماء، فُتحت فيه فتحة صغيرة على عمق 1.25 m تحت السطح الحر. احسب سرعة خروج الماء من الفتحة (g = 10 m·s⁻²).",
    "options": [
     "5 m·s⁻¹",
@@ -21355,7 +21355,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء (ρ = 1000 kg·m⁻³) في أنبوب أفقي، سرعته في المقطع الواسع 2 m·s⁻¹ وفي المقطع الضيق 3 m·s⁻¹. احسب فرق الضغط P1 − P2 بين المقطعين.",
    "options": [
     "5×10³ Pa",
@@ -21420,7 +21420,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء (ρ = 1000 kg·m⁻³) في أنبوب أفقي، سرعته في المقطع الواسع 2 m·s⁻¹ وفي المقطع الضيق 4 m·s⁻¹. احسب فرق الضغط P1 − P2 بين المقطعين.",
    "options": [
     "6×10³ Pa",
@@ -21485,7 +21485,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء (ρ = 1000 kg·m⁻³) في أنبوب أفقي، سرعته في المقطع الواسع 2 m·s⁻¹ وفي المقطع الضيق 5 m·s⁻¹. احسب فرق الضغط P1 − P2 بين المقطعين.",
    "options": [
     "2.1×10⁴ Pa",
@@ -21550,7 +21550,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء (ρ = 1000 kg·m⁻³) في أنبوب أفقي، سرعته في المقطع الواسع 3 m·s⁻¹ وفي المقطع الضيق 5 m·s⁻¹. احسب فرق الضغط P1 − P2 بين المقطعين.",
    "options": [
     "8×10³ Pa",
@@ -21615,7 +21615,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء (ρ = 1000 kg·m⁻³) في أنبوب أفقي، سرعته في المقطع الواسع 1 m·s⁻¹ وفي المقطع الضيق 6 m·s⁻¹. احسب فرق الضغط P1 − P2 بين المقطعين.",
    "options": [
     "3.5×10⁴ Pa",
@@ -21680,7 +21680,7 @@
    "type": "numeric",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يجري الماء (ρ = 1000 kg·m⁻³) في أنبوب أفقي، سرعته في المقطع الواسع 2 m·s⁻¹ وفي المقطع الضيق 8 m·s⁻¹. احسب فرق الضغط P1 − P2 بين المقطعين.",
    "options": [
     "6×10⁴ Pa",
@@ -21745,7 +21745,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عند مرور سائل مثالي من مقطع واسع إلى مقطع ضيق في أنبوب أفقي فإن:",
    "options": [
     "سرعته تزداد وضغطه ينقص",
@@ -21789,7 +21789,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "من صفات السائل المثالي:",
    "options": [
     "غير قابل للانضغاط وذو لزوجة كبيرة",
@@ -21833,7 +21833,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "وحدة الحد ½ρv² في معادلة برنولي هي:",
    "options": [
     "Pa (J·m⁻³)",
@@ -21877,7 +21877,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "معادلة برنولي تعبير عن:",
    "options": [
     "مصونية كمية الحركة",
@@ -21921,7 +21921,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يضيق عمود الماء المتدفق من صنبور نحو الأسفل لأن:",
    "options": [
     "سرعته تزداد بالسقوط فيصغر مقطعه حفاظاً على Q′",
@@ -21965,7 +21965,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مركبة تتحرك بسرعة 0.8c بالنسبة إلى الأرض. يقيس رائد داخلها مدة رحلته 3 سنة. ما المدة التي يقيسها مراقب على الأرض؟",
    "options": [
     "1.8 سنة",
@@ -22030,7 +22030,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مركبة تتحرك بسرعة 0.8c بالنسبة إلى الأرض. يقيس مراقب على الأرض مدة رحلتها 20 سنة. ما المدة التي يقيسها رائد داخلها؟",
    "options": [
     "7.2 سنة",
@@ -22095,7 +22095,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مركبة تتحرك بسرعة 0.6c بالنسبة إلى الأرض. يقيس مراقب على الأرض مدة رحلتها 15 سنة. ما المدة التي يقيسها رائد داخلها؟",
    "options": [
     "9.6 سنة",
@@ -22160,7 +22160,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مركبة تتحرك بسرعة 0.8c بالنسبة إلى الأرض. يقيس مراقب على الأرض مدة رحلتها 15 سنة. ما المدة التي يقيسها رائد داخلها؟",
    "options": [
     "9 سنة",
@@ -22225,7 +22225,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مركبة تتحرك بسرعة 0.6c بالنسبة إلى الأرض. يقيس رائد داخلها مدة رحلته 12 سنة. ما المدة التي يقيسها مراقب على الأرض؟",
    "options": [
     "9.6 سنة",
@@ -22290,7 +22290,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مركبة تتحرك بسرعة 0.8c بالنسبة إلى الأرض. يقيس مراقب على الأرض مدة رحلتها 10 سنة. ما المدة التي يقيسها رائد داخلها؟",
    "options": [
     "3.6 سنة",
@@ -22355,7 +22355,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سارية طولها الساكن 15 m تتحرك بسرعة 0.6c موازيةً لطولها. ما طولها الذي يقيسه مراقب ساكن؟",
    "options": [
     "9.6 m",
@@ -22420,7 +22420,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سارية طولها الساكن 20 m تتحرك بسرعة 0.6c موازيةً لطولها. ما طولها الذي يقيسه مراقب ساكن؟",
    "options": [
     "16 m",
@@ -22485,7 +22485,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سارية طولها الساكن 50 m تتحرك بسرعة 0.8c موازيةً لطولها. ما طولها الذي يقيسه مراقب ساكن؟",
    "options": [
     "83.3 m",
@@ -22550,7 +22550,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سارية طولها الساكن 5 m تتحرك بسرعة 0.8c موازيةً لطولها. ما طولها الذي يقيسه مراقب ساكن؟",
    "options": [
     "8.33 m",
@@ -22615,7 +22615,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سارية طولها الساكن 25 m تتحرك بسرعة 0.8c موازيةً لطولها. ما طولها الذي يقيسه مراقب ساكن؟",
    "options": [
     "5 m",
@@ -22680,7 +22680,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سارية طولها الساكن 25 m تتحرك بسرعة 0.6c موازيةً لطولها. ما طولها الذي يقيسه مراقب ساكن؟",
    "options": [
     "10 m",
@@ -22745,7 +22745,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "جسيم طاقته الحركية Ek تساوي 2 أمثال طاقته السكونية E0. معامل لورينتس γ يساوي:",
    "options": [
     "1/3",
@@ -22799,7 +22799,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "جسيم طاقته الكلية E تساوي 2 أمثال طاقته السكونية E0. سرعته تساوي:",
    "options": [
     "√3·c/2",
@@ -22853,7 +22853,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "جسيم طاقته الحركية Ek تساوي 4 أمثال طاقته السكونية E0. سرعته تساوي:",
    "options": [
     "√15·c/4",
@@ -22907,7 +22907,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "جسيم طاقته الحركية Ek تساوي 5 أمثال طاقته السكونية E0. سرعته تساوي:",
    "options": [
     "c/6",
@@ -22961,7 +22961,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "جسيم طاقته الكلية E تساوي 3 أمثال طاقته السكونية E0. سرعته تساوي:",
    "options": [
     "2√2·c/3",
@@ -23015,7 +23015,7 @@
    "type": "mcq",
    "difficulty": 3,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "جسيم طاقته الكلية E تساوي 5 أمثال طاقته السكونية E0. سرعته تساوي:",
    "options": [
     "2√6·c/5",
@@ -23069,7 +23069,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "احسب الطاقة السكونية لـبروتون (m0 = 1.67×10⁻²⁷ kg، c = 3×10⁸ m·s⁻¹).",
    "options": [
     "9.394×10⁸ J",
@@ -23134,7 +23134,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "احسب الطاقة السكونية لـإلكترون (m0 = 9.1×10⁻³¹ kg، c = 3×10⁸ m·s⁻¹).",
    "options": [
     "8.19×10⁻¹⁴ J",
@@ -23199,7 +23199,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "تنص الفرضية الأولى لأينشتاين على أن:",
    "options": [
     "القوانين الفيزيائية واحدة في جميع الجمل العطالية",
@@ -23243,7 +23243,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الزمن الخاص t0 هو الزمن الذي يقيسه:",
    "options": [
     "المراقب الذي تقع الظاهرة في جملته (المراقب الداخلي)",
@@ -23287,7 +23287,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "لا يمكن لجسيم ذي كتلة سكونية أن يبلغ سرعة الضوء لأن:",
    "options": [
     "كتلته تزداد مع السرعة فيلزم طاقة لا نهائية لتسريعه",
@@ -23331,7 +23331,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "عندما تكون v ≪ c فإن علاقات النسبية:",
    "options": [
     "تعطي Ek = 0",
@@ -23375,7 +23375,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يتقلص من أبعاد جسم متحرك بسرعة نسبية:",
    "options": [
     "البعد العمودي على السرعة فقط",
@@ -23419,7 +23419,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 48,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من ساق شاقولية مهملة الكتلة طولها 1.8 m، تحمل في طرفها العلوي كتلة نقطية m1 وفي طرفها السفلي كتلة نقطية m2 متماثلة معها (m1 = m2 = 0.5 kg)، وينطبق الجملة بمحور دوران أفقي يبعد d = L/4 عن الطرف العلوي. تُحرَّك الجملة في مستوٍ شاقولي بزاوية صغيرة، مع g = 10 m·s⁻² وπ² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -23856,7 +23856,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 48,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من ساق شاقولية مهملة الكتلة طولها 3.2 m، تحمل في طرفها العلوي كتلة نقطية m1 وفي طرفها السفلي كتلة نقطية m2 متماثلة معها (m1 = m2 = 0.5 kg)، وينطبق الجملة بمحور دوران أفقي يبعد d = L/4 عن الطرف العلوي. تُحرَّك الجملة في مستوٍ شاقولي بزاوية صغيرة، مع g = 10 m·s⁻² وπ² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -24293,7 +24293,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 48,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من ساق شاقولية مهملة الكتلة طولها 0.8 m، تحمل في طرفها العلوي كتلة نقطية m1 وفي طرفها السفلي كتلة نقطية m2 متماثلة معها (m1 = m2 = 0.4 kg)، وينطبق الجملة بمحور دوران أفقي يبعد d = L/4 عن الطرف العلوي. تُحرَّك الجملة في مستوٍ شاقولي بزاوية صغيرة، مع g = 10 m·s⁻² وπ² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -24730,7 +24730,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 48,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من ساق شاقولية مهملة الكتلة طولها 3.2 m، تحمل في طرفها العلوي كتلة نقطية m1 وفي طرفها السفلي كتلة نقطية m2 متماثلة معها (m1 = m2 = 0.2 kg)، وينطبق الجملة بمحور دوران أفقي يبعد d = L/4 عن الطرف العلوي. تُحرَّك الجملة في مستوٍ شاقولي بزاوية صغيرة، مع g = 10 m·s⁻² وπ² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -25167,7 +25167,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 48,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من ساق شاقولية مهملة الكتلة طولها 1.8 m، تحمل في طرفها العلوي كتلة نقطية m1 وفي طرفها السفلي كتلة نقطية m2 متماثلة معها (m1 = m2 = 0.5 kg)، وينطبق الجملة بمحور دوران أفقي يبعد d = L/4 عن الطرف العلوي. تُحرَّك الجملة في مستوٍ شاقولي بزاوية صغيرة، مع g = 10 m·s⁻² وπ² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -25604,7 +25604,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 48,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي مركّب من ساق شاقولية مهملة الكتلة طولها 0.8 m، تحمل في طرفها العلوي كتلة نقطية m1 وفي طرفها السفلي كتلة نقطية m2 متماثلة معها (m1 = m2 = 0.2 kg)، وينطبق الجملة بمحور دوران أفقي يبعد d = L/4 عن الطرف العلوي. تُحرَّك الجملة في مستوٍ شاقولي بزاوية صغيرة، مع g = 10 m·s⁻² وπ² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -26041,7 +26041,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "متذبذب توافقي أفقي مؤلف من كتلة m = 0.4 kg مثبّتة بنابض ثابت مرونته k = 4 N·m⁻¹، ينزلق دون احتكاك على مستوٍ أفقي ويهتز حول وضع توازنه بسعة Xm = 0.05 m. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -26351,7 +26351,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "متذبذب توافقي أفقي مؤلف من كتلة m = 0.1 kg مثبّتة بنابض ثابت مرونته k = 4 N·m⁻¹، ينزلق دون احتكاك على مستوٍ أفقي ويهتز حول وضع توازنه بسعة Xm = 0.04 m. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -26661,7 +26661,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "متذبذب توافقي أفقي مؤلف من كتلة m = 0.1 kg مثبّتة بنابض ثابت مرونته k = 16 N·m⁻¹، ينزلق دون احتكاك على مستوٍ أفقي ويهتز حول وضع توازنه بسعة Xm = 0.1 m. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -26971,7 +26971,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "متذبذب توافقي أفقي مؤلف من كتلة m = 0.1 kg مثبّتة بنابض ثابت مرونته k = 16 N·m⁻¹، ينزلق دون احتكاك على مستوٍ أفقي ويهتز حول وضع توازنه بسعة Xm = 0.04 m. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -27281,7 +27281,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "متذبذب توافقي أفقي مؤلف من كتلة m = 1.6 kg مثبّتة بنابض ثابت مرونته k = 16 N·m⁻¹، ينزلق دون احتكاك على مستوٍ أفقي ويهتز حول وضع توازنه بسعة Xm = 0.1 m. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -27591,7 +27591,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "متذبذب توافقي أفقي مؤلف من كتلة m = 0.4 kg مثبّتة بنابض ثابت مرونته k = 4 N·m⁻¹، ينزلق دون احتكاك على مستوٍ أفقي ويهتز حول وضع توازنه بسعة Xm = 0.1 m. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -27901,7 +27901,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط طول خيطه L = 0.25 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -28221,7 +28221,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط طول خيطه L = 4 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -28541,7 +28541,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط طول خيطه L = 1 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -28861,7 +28861,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط طول خيطه L = 1 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -29181,7 +29181,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط طول خيطه L = 0.25 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -29501,7 +29501,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "نواس ثقلي بسيط طول خيطه L = 1 m يتأرجح بسعة زاوية صغيرة في مكان تسارع الجاذبية فيه g = 10 m·s⁻². نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -29821,7 +29821,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 5 cm² تقع على عمق h = 0.2 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 10 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
    "options": [],
    "correctIndex": -1,
@@ -30155,7 +30155,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 10 cm² تقع على عمق h = 0.2 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 4 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
    "options": [],
    "correctIndex": -1,
@@ -30489,7 +30489,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 5 cm² تقع على عمق h = 0.8 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 20 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
    "options": [],
    "correctIndex": -1,
@@ -30823,7 +30823,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 10 cm² تقع على عمق h = 0.8 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 20 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
    "options": [],
    "correctIndex": -1,
@@ -31157,7 +31157,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 5 cm² تقع على عمق h = 5 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 4 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
    "options": [],
    "correctIndex": -1,
@@ -31491,7 +31491,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "خزّان كبير مفتوح مملوء بسائل مثالي، في جداره فتحة صغيرة مساحتها s1 = 5 cm² تقع على عمق h = 0.2 m تحت السطح الحر. يخرج السائل ثم يمرّ في أنبوب مقطعه s2 = 4 cm². نأخذ g = 10 m·s⁻²، ونهمل هبوط السطح الحر.",
    "options": [],
    "correctIndex": -1,
@@ -31825,7 +31825,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.8·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 4 s لظاهرة ما، وطول السفينة الساكن L0 = 12 m.",
    "options": [],
    "correctIndex": -1,
@@ -32143,7 +32143,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.8·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 2 s لظاهرة ما، وطول السفينة الساكن L0 = 3 m.",
    "options": [],
    "correctIndex": -1,
@@ -32461,7 +32461,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.8·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 2 s لظاهرة ما، وطول السفينة الساكن L0 = 6 m.",
    "options": [],
    "correctIndex": -1,
@@ -32779,7 +32779,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.6·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 2 s لظاهرة ما، وطول السفينة الساكن L0 = 6 m.",
    "options": [],
    "correctIndex": -1,
@@ -33097,7 +33097,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.6·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 2 s لظاهرة ما، وطول السفينة الساكن L0 = 3 m.",
    "options": [],
    "correctIndex": -1,
@@ -33415,7 +33415,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 29,
-   "approved": false,
+   "approved": true,
    "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.6·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 10 s لظاهرة ما، وطول السفينة الساكن L0 = 6 m.",
    "options": [],
    "correctIndex": -1,
@@ -33733,7 +33733,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "قرص متجانس عزم عطالته بالنسبة لمحور الفتل الشاقولي I = 0.1 kg·m²، معلّق بسلك فتله ثابته C = 4 N·m·rad⁻¹. يُدار القرص بزاوية صغيرة ثم يُترك فيهتز اهتزاز فتل. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -34042,7 +34042,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "قرص متجانس عزم عطالته بالنسبة لمحور الفتل الشاقولي I = 0.1 kg·m²، معلّق بسلك فتله ثابته C = 4 N·m·rad⁻¹. يُدار القرص بزاوية صغيرة ثم يُترك فيهتز اهتزاز فتل. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -34351,7 +34351,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "قرص متجانس عزم عطالته بالنسبة لمحور الفتل الشاقولي I = 0.4 kg·m²، معلّق بسلك فتله ثابته C = 16 N·m·rad⁻¹. يُدار القرص بزاوية صغيرة ثم يُترك فيهتز اهتزاز فتل. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -34660,7 +34660,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "قرص متجانس عزم عطالته بالنسبة لمحور الفتل الشاقولي I = 0.4 kg·m²، معلّق بسلك فتله ثابته C = 4 N·m·rad⁻¹. يُدار القرص بزاوية صغيرة ثم يُترك فيهتز اهتزاز فتل. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -34969,7 +34969,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "قرص متجانس عزم عطالته بالنسبة لمحور الفتل الشاقولي I = 0.1 kg·m²، معلّق بسلك فتله ثابته C = 16 N·m·rad⁻¹. يُدار القرص بزاوية صغيرة ثم يُترك فيهتز اهتزاز فتل. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,
@@ -35278,7 +35278,7 @@
    "type": "problem",
    "difficulty": 2,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "قرص متجانس عزم عطالته بالنسبة لمحور الفتل الشاقولي I = 0.4 kg·m²، معلّق بسلك فتله ثابته C = 16 N·m·rad⁻¹. يُدار القرص بزاوية صغيرة ثم يُترك فيهتز اهتزاز فتل. نأخذ π² = 10.",
    "options": [],
    "correctIndex": -1,

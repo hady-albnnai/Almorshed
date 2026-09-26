@@ -23,7 +23,7 @@
    "parts-v1"
   ],
   "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
-  "approvedByDefault": false
+  "approvedByDefault": true
  },
  "items": [
   {
@@ -34,7 +34,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 14000 km·s⁻¹. احسب بعدها عنا.",
    "options": [
     "200 Mpc",
@@ -99,7 +99,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبعد عنا 10 Mpc. احسب سرعة ابتعادها.",
    "options": [
     "0.143 km·s⁻¹",
@@ -164,7 +164,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 7000 km·s⁻¹. احسب بعدها عنا.",
    "options": [
     "490000 Mpc",
@@ -229,7 +229,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 13600 km·s⁻¹. احسب بعدها عنا.",
    "options": [
     "200000 Mpc",
@@ -294,7 +294,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ثابت هابل H0 = 68 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 680 km·s⁻¹. احسب بعدها عنا.",
    "options": [
     "10000 Mpc",
@@ -359,7 +359,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "ثابت هابل H0 = 70 km·s⁻¹·Mpc⁻¹. مجرة تبتعد عنا بسرعة 700 km·s⁻¹. احسب بعدها عنا.",
    "options": [
     "10000 Mpc",
@@ -424,7 +424,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خط طيفي طول موجته في المختبر 656 nm يُرصد في طيف مجرة عند 656 + 8 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
     "3.66×10³ m·s⁻¹",
@@ -489,7 +489,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خط طيفي طول موجته في المختبر 500 nm يُرصد في طيف مجرة عند 500 + 5 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
     "3×10³ m·s⁻¹",
@@ -554,7 +554,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خط طيفي طول موجته في المختبر 600 nm يُرصد في طيف مجرة عند 600 + 2 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
     "10⁶ m·s⁻¹",
@@ -619,7 +619,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خط طيفي طول موجته في المختبر 600 nm يُرصد في طيف مجرة عند 600 + 4 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
     "4.5×10¹⁰ m·s⁻¹",
@@ -684,7 +684,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 1 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
     "7.5×10⁵ m·s⁻¹",
@@ -749,7 +749,7 @@
    "type": "numeric",
    "difficulty": 2,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "خط طيفي طول موجته في المختبر 400 nm يُرصد في طيف مجرة عند 400 + 5 nm (انزياح نحو الأحمر). احسب سرعة ابتعاد المجرة (c = 3×10⁸ m·s⁻¹).",
    "options": [
     "1.25×10⁻² m·s⁻¹",
@@ -814,7 +814,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "انزياح طيف مجرة نحو الأحمر يعني أن المجرة:",
    "options": [
     "تدور حول نفسها",
@@ -858,7 +858,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "مصدر طاقة النجوم هو:",
    "options": [
     "انشطار نووي",
@@ -902,7 +902,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "الثقوب السوداء بالضرورة:",
    "options": [
     "ذات كتلة حجمية هائلة",
@@ -946,7 +946,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سرعة الإفلات vesc بدلالة السرعة المدارية v1 على السطح نفسه:",
    "options": [
     "v1/√2",
@@ -990,7 +990,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "يُقدَّر عمر الكون انطلاقاً من قانون هابل بـ:",
    "options": [
     "1/H0",
@@ -1034,7 +1034,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "سرعة الإفلات من سطح جرم كتلته M ونصف قطره R تُعطى بـ:",
    "options": [
     "vesc = √(2GM/R)",
@@ -1078,7 +1078,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "إذا انكمش نجم إلى ثقب أسود مع ثبات كتلته فإن قوة جذبه لكوكب يدور حوله على البعد نفسه:",
    "options": [
     "تنصّف",
@@ -1122,7 +1122,7 @@
    "type": "mcq",
    "difficulty": 1,
    "weight": 10,
-   "approved": false,
+   "approved": true,
    "stem": "من الأسس الفيزيائية لنظرية الانفجار الأعظم:",
    "options": [
     "إشعاع خلفية راديوي ضعيف منتظم من جميع الاتجاهات",
@@ -1166,7 +1166,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "قمر اصطناعي يدور في مدار دائري منخفض قرب سطح كوكب نصف قطره R = 1600000 m، تسارع الجاذبية عند سطحه g0 = 10 m·s⁻². نأخذ π² = 10 ونهمل ارتفاع المدار أمام R.",
    "options": [],
    "correctIndex": -1,
@@ -1496,7 +1496,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "قمر اصطناعي يدور في مدار دائري منخفض قرب سطح كوكب نصف قطره R = 6400000 m، تسارع الجاذبية عند سطحه g0 = 10 m·s⁻². نأخذ π² = 10 ونهمل ارتفاع المدار أمام R.",
    "options": [],
    "correctIndex": -1,
@@ -1826,7 +1826,7 @@
    "type": "problem",
    "difficulty": 3,
    "weight": 30,
-   "approved": false,
+   "approved": true,
    "stem": "قمر اصطناعي يدور في مدار دائري منخفض قرب سطح كوكب نصف قطره R = 400000 m، تسارع الجاذبية عند سطحه g0 = 10 m·s⁻². نأخذ π² = 10 ونهمل ارتفاع المدار أمام R.",
    "options": [],
    "correctIndex": -1,

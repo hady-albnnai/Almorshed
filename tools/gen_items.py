@@ -1768,6 +1768,8 @@ def main(argv=None):
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--u1-only", action="store_true", help="القوالب U1.yaml فقط (سلوك المادة ١٠ الأصلي)")
     ap.add_argument("--asset", action="store_true", help="كتابة المجمّع الكامل إلى app/assets/content/items.json")
+    ap.add_argument("--approve", action="store_true",
+                    help="اعتماد كل البنود المولّدة (approved=true) — فرع dev/self-content يتابع بلا إشراف الأستاذ (قرار المالك 2026-09-23)")
     ap.add_argument("--parts-asset", action="store_true",
                     help="ضمّن بنود الأجزاء (parts-v1) إلى الأصل — لا تُشحن قبل تنفيذ التصحيح بالسلّم (docs/14 §١٣)")
     args = ap.parse_args(argv)
@@ -1777,6 +1779,9 @@ def main(argv=None):
     pool = gen.generate(args.per_template)
     bad = [(it["templateId"], verify(it, gen.rules)) for it in pool if verify(it, gen.rules)]
     pool = [it for it in pool if not verify(it, gen.rules)]
+    if args.approve:
+        for it in pool:
+            it["approved"] = True
     smp = sample(pool, args.n, random.Random(args.seed + 1))
     meta = {"generator": "tools/gen_items.py", "templates": str(TEMPLATES.relative_to(ROOT)) if args.u1_only else str(TEMPLATES_DIR.relative_to(ROOT)) + "/*.yaml",
             "templatesVersion": doc["meta"].get("version"), "seed": args.seed, "perTemplate": args.per_template,
@@ -1784,7 +1789,7 @@ def main(argv=None):
             "partsPool": sum(1 for i in pool if i.get("grading") == GRADING_PARTS),
             "gradingFormats": sorted({i.get("grading") or "flat-v0" for i in pool}),
             "credit": "تم الإشراف على المادة العلمية من قبل الأستاذ القدير فداء مأمون البني",
-            "approvedByDefault": False}
+            "approvedByDefault": args.approve}
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     units = sorted({it["unit"] for it in pool})
     for u in units:
