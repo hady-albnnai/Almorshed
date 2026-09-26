@@ -484,7 +484,8 @@ class _ExperimentPainter extends CustomPainter {
     }
   }
 
-  // خلفية المختبر: تدرّج + شبكة قياس خفيفة + إطار.
+  // خلفية المختبر «جهاز قياس»: تدرّج + ضوء محيطي + شبكة فوسفورية مزدوجة +
+  // مسطرة حوافّ + خطّ مسح متحرّك + تعتيم زوايا (vignette) + إطار.
   void _panel(Canvas c, Size s) {
     final rect = Offset.zero & s;
     final rr = RRect.fromRectAndRadius(rect, const Radius.circular(16));
@@ -495,30 +496,96 @@ class _ExperimentPainter extends CustomPainter {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: dark
-              ? const [Color(0xFF1B2E28), Color(0xFF10201B)]
-              : const [Color(0xFFFFFDF7), Color(0xFFE9E4D6)],
+              ? const [Color(0xFF1F332C), Color(0xFF0E1B17)]
+              : const [Color(0xFFFFFDF7), Color(0xFFEBE6D8)],
         ).createShader(rect),
     );
     c.save();
     c.clipRRect(rr);
-    final grid = Paint()
-      ..color = _ink.withValues(alpha: 0.05)
+
+    // ١) ضوء محيطي ناعم يتمحور حول العيّنة (يعطي عمقاً «مسرحياً»).
+    final glowCtr = Offset(s.width / 2, s.height * 0.42);
+    c.drawCircle(
+      glowCtr,
+      s.width * 0.55,
+      Paint()
+        ..shader = RadialGradient(
+          colors: [
+            gold.withValues(alpha: dark ? 0.16 : 0.10),
+            gold.withValues(alpha: 0.0),
+          ],
+        ).createShader(Rect.fromCircle(center: glowCtr, radius: s.width * 0.55)),
+    );
+
+    // ٢) شبكة فوسفورية مزدوجة: خطوط دقيقة كل ١١px + خطوط رئيسية كل ٤٤px.
+    final minor = Paint()
+      ..color = _ink.withValues(alpha: 0.035)
       ..strokeWidth = 1;
-    for (double x = 0; x < s.width; x += 22) {
-      c.drawLine(Offset(x, 0), Offset(x, s.height), grid);
+    final major = Paint()
+      ..color = _ink.withValues(alpha: 0.08)
+      ..strokeWidth = 1;
+    for (double x = 0; x < s.width; x += 11) {
+      c.drawLine(Offset(x, 0), Offset(x, s.height),
+          x % 44 < 0.5 ? major : minor);
     }
-    for (double y = 0; y < s.height; y += 22) {
-      c.drawLine(Offset(0, y), Offset(s.width, y), grid);
+    for (double y = 0; y < s.height; y += 11) {
+      c.drawLine(Offset(0, y), Offset(s.width, y),
+          y % 44 < 0.5 ? major : minor);
     }
+
+    // ٣) مسطرة حوافّ (علوية ويسرى) — طابع أداة قياس مخبرية.
+    final tick = Paint()
+      ..color = _ink.withValues(alpha: 0.22)
+      ..strokeWidth = 1;
+    for (double x = 0; x < s.width; x += 11) {
+      final long = x % 44 < 0.5;
+      c.drawLine(Offset(x, 0), Offset(x, long ? 7 : 4), tick);
+    }
+    for (double y = 0; y < s.height; y += 11) {
+      final long = y % 44 < 0.5;
+      c.drawLine(Offset(0, y), Offset(long ? 7 : 4, y), tick);
+    }
+
+    // ٤) خطّ مسح متحرّك رفيع أثناء التشغيل (نبض «أوسيلوسكوب»).
+    if (running) {
+      final sx = (t * 90) % (s.width + 60) - 30;
+      c.drawRect(
+        Rect.fromLTWH(sx - 14, 0, 28, s.height),
+        Paint()
+          ..shader = LinearGradient(
+            colors: [
+              gold.withValues(alpha: 0.0),
+              gold.withValues(alpha: 0.10),
+              gold.withValues(alpha: 0.0),
+            ],
+          ).createShader(Rect.fromLTWH(sx - 14, 0, 28, s.height)),
+      );
+    }
+
+    // ٥) تعتيم الزوايا (vignette) — يركّز العين على العيّنة.
+    c.drawRect(
+      rect,
+      Paint()
+        ..shader = RadialGradient(
+          radius: 0.9,
+          colors: [
+            Colors.black.withValues(alpha: 0.0),
+            Colors.black.withValues(alpha: dark ? 0.28 : 0.10),
+          ],
+          stops: const [0.62, 1.0],
+        ).createShader(rect),
+    );
     c.restore();
+
     c.drawRRect(
       rr,
       Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.5
-        ..color = gold.withValues(alpha: 0.25),
+        ..color = gold.withValues(alpha: 0.30),
     );
   }
+
 
   Paint _glow(Color col, double blur, double w) => Paint()
     ..color = col
@@ -601,6 +668,19 @@ class _ExperimentPainter extends CustomPainter {
     }
     c.drawPath(arc, _glow(gold.withValues(alpha: 0.22), 3, 2));
     _dash(c, pivot, Offset(pivot.dx, pivot.dy + len));
+    // صور لاحقة (motion blur) للكرة أثناء التأرجح — إحساس بالسرعة.
+    if (running) {
+      for (final f in const [0.58, 0.80]) {
+        final g = pivot + Offset(math.sin(q * f) * len, math.cos(q * f) * len);
+        c.drawCircle(
+          g,
+          13,
+          Paint()
+            ..color = gold.withValues(alpha: 0.10)
+            ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4),
+        );
+      }
+    }
     final bob = pivot + Offset(math.sin(q) * len, math.cos(q) * len);
     c.drawLine(
         pivot,
