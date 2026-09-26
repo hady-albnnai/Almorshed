@@ -103,9 +103,9 @@ templates:
       book: "الدارة LC المثالية: q″ + q/(LC) = 0 · T0 = 2π√(LC) · f0 = 1/T0 · Qmax = C·Um"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      L: {set: [0.1, 0.25, 1.0], unit: H}
-      Cu: {set: [10, 25, 100], unit: "µF"}
-      Um: {set: [5, 10, 12], unit: V}
+      L: {set: [0.1, 0.25, 0.4, 0.9, 1.0, 2.5], unit: H}
+      Cu: {set: [10, 25, 40, 90, 100, 250], unit: "µF"}
+      Um: {set: [5, 10, 12, 20, 24, 25], unit: V}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       C: "Cu*1e-6"
@@ -416,10 +416,10 @@ templates:
       book: "المحوّلة المثالية: Us/Up = Ns/Np · Is/Ip = Np/Ns · P = Up·Ip = Us·Is"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      Up: {set: [220], unit: V}
-      Np: {set: [1000], unit: ""}
-      Ns: {set: [100, 500, 2000], unit: ""}
-      Ip: {set: [2, 4], unit: A}
+      Up: {set: [110, 220, 380], unit: V}
+      Np: {set: [500, 1000, 1100, 2000], unit: ""}
+      Ns: {set: [50, 100, 200, 500, 1000, 2000, 5000], unit: ""}
+      Ip: {set: [1, 2, 4, 5], unit: A}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       Us: "Up*Ns/Np"
@@ -477,8 +477,8 @@ templates:
       book: "E_n = −13.6/n² (eV) · طاقة الفوتون ΔE = E_i − E_f · λ = h·c/ΔE (h·c = 1240 eV·nm)"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      ni: {set: [2, 3, 4], unit: ""}
-      nf: {set: [1, 2], unit: ""}
+      ni: {set: [2, 3, 4, 5, 6, 7], unit: ""}
+      nf: {set: [1, 2, 3], unit: ""}
     constants_used: {g: 10, pi_sq: 10}
     constraints:
       - "ni > nf"
@@ -599,9 +599,9 @@ templates:
       book: "γ = 1/√(1 − v²/c²) · Δt = γ·Δt0 (تمدد الزمن) · L = L0/γ (تقلّص الطول)"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      beta: {set: [0.6, 0.8], unit: ""}
-      dt0: {set: [2, 4, 10], unit: s}
-      L0: {set: [3, 6, 12], unit: m}
+      beta: {set: [0.28, 0.6, 0.8, 0.96], unit: ""}
+      dt0: {set: [1, 2, 4, 5, 10, 20], unit: s}
+      L0: {set: [3, 6, 12, 15, 30, 60], unit: m}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       gamma: "1/sqrt(1-beta**2)"
@@ -662,7 +662,7 @@ templates:
       book: "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      R: {set: [400000, 1600000, 6400000], unit: m}
+      R: {set: [100000, 400000, 900000, 1600000, 2500000, 3600000, 4900000, 6400000, 8100000, 10000000], unit: m}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       vo: "sqrt(g*R)"
@@ -722,10 +722,10 @@ templates:
       book: "n = N/L · B = μ0·n·I (μ0 = 4π×10⁻⁷) · Φ = B·S"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      N: {set: [500, 1000, 2000], unit: ""}
-      L: {set: [0.5, 1.0], unit: m}
-      I: {set: [2, 5], unit: A}
-      Scm: {set: [1, 2], unit: "cm²"}
+      N: {set: [500, 800, 1000, 2000, 4000], unit: ""}
+      L: {set: [0.25, 0.5, 1.0, 2.0], unit: m}
+      I: {set: [1, 2, 5, 10], unit: A}
+      Scm: {set: [1, 2, 4, 5], unit: "cm²"}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       n: "N/L"
@@ -972,9 +972,9 @@ templates:
       book: "T0 = 2π√(I/C) · f = 1/T0 · عزم الإرجاع Γ = C·θ (قانون الفتل)"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      I: {set: [0.1, 0.4, 1.0], unit: "kg·m²"}
-      C: {set: [4, 10, 16], unit: "N·m·rad⁻¹"}
-      theta: {set: [0.1, 0.2, 0.5], unit: rad}
+      I: {set: [0.1, 0.4, 0.9, 1.0, 1.6], unit: "kg·m²"}
+      C: {set: [4, 10, 16, 25, 40], unit: "N·m·rad⁻¹"}
+      theta: {set: [0.1, 0.2, 0.3, 0.4, 0.5], unit: rad}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       T0: "2*sqrt(pi_sq*I/C)"
@@ -1093,8 +1093,8 @@ templates:
       book: "T0 = 2π√(L/g) ⇒ L = g·T0²/(4π²) · f = 1/T0 · N = Δt/T0"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      T0v: {set: [1, 2, 4], unit: s}
-      dt: {set: [30, 60, 120], unit: s}
+      T0v: {set: [1, 2, 3, 4, 5, 6], unit: s}
+      dt: {set: [15, 30, 45, 60, 90, 120, 180, 240], unit: s}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       L: "g*T0v**2/(4*pi_sq)"
@@ -1281,8 +1281,8 @@ templates:
       book: "v = √(2eU/m) · r = m·v/(e·B) · T = 2πm/(e·B)"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      U: {set: [200, 500, 1000], unit: V}
-      B: {set: [0.002, 0.005], unit: T}
+      U: {set: [100, 200, 300, 500, 750, 1000, 1500, 2000, 3000, 5000], unit: V}
+      B: {set: [0.001, 0.002, 0.005, 0.01, 0.02], unit: T}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       v: "sqrt(2*e_charge*U/m_e)"
@@ -1341,9 +1341,9 @@ templates:
       book: "T0 = 2π√(I/C) ⇒ C = 4π²·I/T0² · f = 1/T0 · Γ = C·θ"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      I: {set: [0.1, 0.4, 1.0], unit: "kg·m²"}
-      T0v: {set: [1, 2, 4], unit: s}
-      theta: {set: [0.1, 0.2, 0.5], unit: rad}
+      I: {set: [0.1, 0.4, 0.9, 1.0, 1.6], unit: "kg·m²"}
+      T0v: {set: [1, 2, 3, 4, 5], unit: s}
+      theta: {set: [0.1, 0.2, 0.3, 0.4, 0.5], unit: rad}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       C: "4*pi_sq*I/T0v**2"
@@ -1401,9 +1401,9 @@ templates:
       book: "E = ½·C·Um² = ½·L·Imax² · Qmax = C·Um · Imax = √(2E/L)"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      L: {set: [0.1, 0.4, 1.0], unit: H}
-      Cu: {set: [10, 40, 100], unit: "µF"}
-      Um: {set: [10, 20], unit: V}
+      L: {set: [0.1, 0.25, 0.4, 1.0], unit: H}
+      Cu: {set: [10, 25, 40, 100], unit: "µF"}
+      Um: {set: [10, 12, 20, 24, 25], unit: V}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       C: "Cu*1e-6"
@@ -1524,9 +1524,9 @@ templates:
       book: "مزمار مفتوح الطرفين: f1 = v/(2L) · λ1 = 2L · fn = n·v/(2L) (كل التوافقيات)"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      v: {set: [340], unit: "m·s⁻¹"}
-      L: {set: [0.5, 0.85, 1.7], unit: m}
-      n: {set: [2, 3], unit: ""}
+      v: {set: [300, 320, 330, 340, 350, 360], unit: "m·s⁻¹"}
+      L: {set: [0.25, 0.34, 0.425, 0.5, 0.68, 0.85, 1.0, 1.36, 1.7], unit: m}
+      n: {set: [2, 3, 4], unit: ""}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       f1: "v/(2*L)"
@@ -1648,8 +1648,8 @@ templates:
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
       rho: {set: [1000], unit: "kg·m⁻³"}
-      h: {set: [2, 5, 10], unit: m}
-      S: {set: [0.1, 0.2, 0.5], unit: "m²"}
+      h: {set: [1, 2, 3, 4, 5, 8, 10, 15, 20], unit: m}
+      S: {set: [0.05, 0.1, 0.2, 0.5, 1.0], unit: "m²"}
       P0: {set: [100000], unit: Pa}
     constants_used: {g: 10, pi_sq: 10}
     compute:
@@ -1708,8 +1708,8 @@ templates:
       book: "γ = 1/√(1 − β²) · E = γ·E0 · Ek = (γ − 1)·E0 (حيث E0 = m·c²)"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      beta: {set: [0.6, 0.8], unit: ""}
-      E0: {set: [4, 8, 20, 40, 80, 200], unit: MeV}
+      beta: {set: [0.28, 0.6, 0.8, 0.96], unit: ""}
+      E0: {set: [0.5, 1, 2, 4, 8, 10, 20, 40, 80, 100, 200, 500], unit: MeV}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       gamma: "1/sqrt(1-beta**2)"
@@ -1768,9 +1768,9 @@ templates:
       book: "ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d · قوة لورنتز F = q·v·B"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      I: {set: [2, 5, 10, 20], unit: A}
-      d: {set: [0.1, 0.2, 0.5], unit: m}
-      v: {set: [1000000, 2000000], unit: "m·s⁻¹"}
+      I: {set: [1, 2, 5, 10, 20, 50], unit: A}
+      d: {set: [0.05, 0.1, 0.2, 0.5, 1.0], unit: m}
+      v: {set: [1000000, 2000000, 5000000], unit: "m·s⁻¹"}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       B: "2e-7*I/d"
@@ -1894,9 +1894,9 @@ templates:
     vars:
       Up: {set: [220], unit: V}
       Np: {set: [1100], unit: ""}
-      Ns: {set: [100, 220, 550], unit: ""}
-      Ip: {set: [2, 3], unit: A}
-      eta: {set: [0.9, 0.95, 1.0], unit: ""}
+      Ns: {set: [50, 100, 220, 550, 1100, 2200], unit: ""}
+      Ip: {set: [2, 3, 4, 5], unit: A}
+      eta: {set: [0.8, 0.9, 0.95, 1.0], unit: ""}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       Us: "Up*Ns/Np"
@@ -1954,8 +1954,8 @@ templates:
       book: "ΔE = 13.6·(1/nf² − 1/ni²) eV · λ = h·c/ΔE (1240 eV·nm) · f = c/λ"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      ni: {set: [2, 3, 4], unit: ""}
-      nf: {set: [1, 2], unit: ""}
+      ni: {set: [2, 3, 4, 5, 6, 7], unit: ""}
+      nf: {set: [1, 2, 3], unit: ""}
     constants_used: {g: 10, pi_sq: 10}
     constraints:
       - "ni > nf"
@@ -2138,8 +2138,8 @@ templates:
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
       rhoL: {set: [1000], unit: "kg·m⁻³"}
-      rhoO: {set: [2000, 2700, 8000, 11300], unit: "kg·m⁻³"}
-      Vcm: {set: [100, 200, 500, 1000], unit: "cm³"}
+      rhoO: {set: [2000, 2700, 7800, 7900, 8000, 8900, 11300, 13600, 19300], unit: "kg·m⁻³"}
+      Vcm: {set: [100, 200, 250, 400, 500, 800, 1000, 1500, 2000], unit: "cm³"}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       V: "Vcm*1e-6"
@@ -2260,9 +2260,9 @@ templates:
       book: "E = ½·C·Um² · عند q = Qmax/2: E_C = q²/(2C) = E/4 · E_L = E − E_C = (3/4)·E"
       exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
     vars:
-      L: {set: [0.1, 0.4, 1.0], unit: H}
-      Cu: {set: [10, 40, 100], unit: "µF"}
-      Um: {set: [10, 20], unit: V}
+      L: {set: [0.1, 0.25, 0.4, 1.0], unit: H}
+      Cu: {set: [10, 25, 40, 100], unit: "µF"}
+      Um: {set: [10, 12, 20, 24, 25], unit: V}
     constants_used: {g: 10, pi_sq: 10}
     compute:
       Etot: "0.5*Cu*1e-6*Um**2"
