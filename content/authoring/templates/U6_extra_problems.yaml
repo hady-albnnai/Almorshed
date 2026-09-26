@@ -337,3 +337,188 @@ templates:
       - "μ بالغرام لكل متر في الجذع وتُحوَّل إلى kg·m⁻¹ داخلياً (×10⁻³)."
       - "الجزء ٢ متابعة على الأول (f_n ∝ v)؛ الجزء ٣ مستقل عن سرعة الطالب."
     approved: false
+
+  # ── ٦) ساق متحركة على سكّتين (U2C3) — قوة محركة · تيار · قوة لابلاس ──
+  - id: U2.L3.P01
+    title: "ساق تنزلق على سكّتين في حقل مغناطيسي — مسألة بأجزاء"
+    chapter: U2C3
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L3 — التحريض الكهرطيسي"
+      book: "قوة محركة متحرّضة e = B·ℓ·v · أوم I = e/R · قوة لابلاس F = B·I·ℓ (لنز)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      B: {set: [0.2, 0.5, 1.0], unit: T}
+      L: {set: [0.2, 0.5, 1.0], unit: m}
+      v: {set: [2, 5, 10], unit: "m·s⁻¹"}
+      R: {set: [2, 5, 10], unit: "Ω"}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      e: "B*L*v"
+      I: "e/R"
+      F: "B*I*L"
+    stem: "ساق موصلة طولها ℓ = {L} m تنزلق دون احتكاك بسرعة ثابتة v = {v} m·s⁻¹ عمودياً على سكّتين أفقيتين، ضمن حقل مغناطيسي منتظم شدّته B = {B} T عمودي على مستوى السكّتين. تُغلق الدارة على مقاومة R = {R} Ω، وتُهمل مقاومة الساق والسكّتين."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز القوة المحركة الكهربائية المتحرّضة e في الساق، ثم احسب قيمتها."
+        unit: "V"
+        value: "e"
+        answer: {format: auto}
+        lines:
+          - relation: "القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v"
+            subst: "e = {B}·{L}·{v}"
+            expect: ["{B}", "{L}", "{v}"]
+            keys: ["e = B·ℓ·v", "B·L·v"]
+            anti_keys: ["e = B·v/ℓ", "e = B·ℓ/v"]
+      - label: "٢"
+        ask: "احسب شدّة التيار المتحرّض I في الدارة."
+        unit: "A"
+        value: "I"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}    # I = e/R ⇒ ∝ e
+        lines:
+          - relation: "قانون أوم للدارة: I = e/R"
+            subst: "I = {e}/{R}"
+            expect: ["{e}", "{R}"]
+            keys: ["I = e/R", "e/R"]
+            anti_keys: ["I = e·R", "I = R/e"]
+      - label: "٣"
+        ask: "احسب شدّة قوة لابلاس F المؤثّرة في الساق (التي تعاكس حركتها)."
+        unit: "N"
+        value: "F"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}    # F = B·I·ℓ ⇒ ∝ I
+        lines:
+          - relation: "قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ"
+            subst: "F = {B}·{I}·{L}"
+            expect: ["{B}", "{I}", "{L}"]
+            keys: ["F = B·I·ℓ", "B·I·L"]
+            anti_keys: ["F = B·I/ℓ", "F = I·ℓ/B"]
+    answer_basis: "الساق المتحركة: e = B·ℓ·v · I = e/R (أوم) · F = B·I·ℓ (لابلاس/لنز). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "سلسلة متابعة نظيفة: الجزء ٢ يتبع الأول والجزء ٣ يتبع الثاني (بالقوة ١)."
+    approved: false
+
+  # ── ٧) المحوّلة المثالية (U2C6) — توتر ثانوي · تيار ثانوي · استطاعة ──
+  - id: U2.L6.P01
+    title: "المحوّلة الكهربائية المثالية — مسألة بأجزاء"
+    chapter: U2C6
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L6 — المحوّلة"
+      book: "المحوّلة المثالية: Us/Up = Ns/Np · Is/Ip = Np/Ns · P = Up·Ip = Us·Is"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      Up: {set: [220], unit: V}
+      Np: {set: [1000], unit: ""}
+      Ns: {set: [100, 500, 2000], unit: ""}
+      Ip: {set: [2, 4], unit: A}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      Us: "Up*Ns/Np"
+      Is: "Ip*Np/Ns"
+      P: "Up*Ip"
+    stem: "محوّلة كهربائية مثالية عدد لفّات ابتدائيّها Np = {Np} لفّة وثانويّها Ns = {Ns} لفّة. طُبّق على الابتدائي توتر فعّال Up = {Up} V فمرّ فيه تيار فعّال Ip = {Ip} A. تُهمل الضياعات."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز التوتر الفعّال الثانوي Us، ثم احسب قيمته."
+        unit: "V"
+        value: "Us"
+        answer: {format: auto}
+        lines:
+          - relation: "في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np"
+            subst: "Us = {Up}·{Ns}/{Np}"
+            expect: ["{Up}", "{Ns}", "{Np}"]
+            keys: ["Us = Up·Ns/Np", "Ns/Np"]
+            anti_keys: ["Us = Up·Np/Ns", "Us = Up + Ns/Np"]
+      - label: "٢"
+        ask: "احسب الاستطاعة الكهربائية المنقولة عبر المحوّلة P."
+        unit: "W"
+        value: "P"
+        answer: {format: auto}
+        lines:
+          - relation: "الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip"
+            subst: "P = {Up}·{Ip}"
+            expect: ["{Up}", "{Ip}"]
+            keys: ["P = Up·Ip", "Us·Is"]
+            anti_keys: ["P = Up/Ip", "P = Up·Ip·Ns/Np"]
+      - label: "٣"
+        ask: "احسب شدّة التيار الفعّال الثانوي Is."
+        unit: "A"
+        value: "Is"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: -1}   # من P = Us·Is ⇒ Is = P/Us ⇒ ∝ 1/Us
+        lines:
+          - relation: "من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us"
+            subst: "Is = {P}/{Us}"
+            expect: ["{P}", "{Us}"]
+            keys: ["Is = P/Us", "P = Us·Is"]
+            anti_keys: ["Is = P·Us", "Is = Us/P"]
+    answer_basis: "المحوّلة المثالية: Us = Up·Ns/Np · P = Up·Ip · Is = P/Us (= Ip·Np/Ns). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "الجزء ٣ متابعة خطأ على الجزء ١ بالقوة −١ (Is = P/Us ⇒ ∝ 1/Us)."
+    approved: false
+
+  # ── ٨) نموذج بور وطيف الهيدروجين (U4C1) — طاقة سوية · طاقة الفوتون · طول الموجة ──
+  - id: U4.L1.P01
+    title: "نموذج بور وطيف الهيدروجين — مسألة بأجزاء"
+    chapter: U4C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — نموذج بور والأطياف"
+      book: "E_n = −13.6/n² (eV) · طاقة الفوتون ΔE = E_i − E_f · λ = h·c/ΔE (h·c = 1240 eV·nm)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      ni: {set: [2, 3, 4], unit: ""}
+      nf: {set: [1, 2], unit: ""}
+    constants_used: {g: 10, pi_sq: 10}
+    constraints:
+      - "ni > nf"
+    compute:
+      Ei: "-13.6/ni**2"
+      dE: "13.6*(1/nf**2 - 1/ni**2)"
+      lam: "1240/dE"
+    stem: "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = {ni} إلى السوية n_f = {nf} فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm."
+    parts:
+      - label: "١"
+        ask: "احسب طاقة السوية الابتدائية E(n_i) بوحدة eV."
+        unit: "eV"
+        value: "Ei"
+        answer: {format: auto, round: true, sig: 3}
+        lines:
+          - relation: "طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²"
+            subst: "E({ni}) = −13.6/{ni}²"
+            expect: ["{ni}"]
+            keys: ["E_n = −13.6/n²", "−13.6/n²"]
+            anti_keys: ["E_n = −13.6/n", "E_n = 13.6/n²"]
+      - label: "٢"
+        ask: "احسب طاقة الفوتون المُصدَر ΔE بوحدة eV."
+        unit: "eV"
+        value: "dE"
+        answer: {format: auto, round: true, sig: 3}
+        lines:
+          - relation: "طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)"
+            subst: "ΔE = 13.6·(1/{nf}² − 1/{ni}²)"
+            expect: ["{ni}", "{nf}"]
+            keys: ["ΔE = E_i − E_f", "13.6·(1/n_f² − 1/n_i²)"]
+            anti_keys: ["ΔE = E_i + E_f", "ΔE = 13.6·(1/n_i² − 1/n_f²)"]
+      - label: "٣"
+        ask: "احسب طول موجة الفوتون المُصدَر λ بوحدة nm."
+        unit: "nm"
+        value: "lam"
+        answer: {format: auto, round: true, sig: 3}
+        follow: {depends_on: "٢", power: -1}   # λ = h·c/ΔE ⇒ ∝ 1/ΔE
+        lines:
+          - relation: "علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE"
+            subst: "λ = 1240/ΔE"
+            keys: ["λ = h·c/ΔE", "1240/ΔE"]
+            anti_keys: ["λ = ΔE/(h·c)", "λ = h·c·ΔE"]
+    answer_basis: "نموذج بور للهيدروجين: E_n = −13.6/n² · ΔE = E_i − E_f · λ = h·c/ΔE مع h·c = 1240 eV·nm. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "القيم مقرَّبة إلى ٣ أرقام معنوية (أطياف بور غير صحيحة تماماً) بسماحية ٢٪."
+      - "قيد ni > nf يضمن انتقالاً مُصدِراً (طاقة فوتون موجبة)."
+      - "الجزء ٣ متابعة خطأ على الجزء ٢ بالقوة −١ (λ ∝ 1/ΔE)."
+    approved: false

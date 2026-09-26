@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 591,
+  "poolSize": 608,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 42,
+  "partsPool": 59,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -49821,6 +49821,5421 @@
    "reviewNotes": [
     "μ بالغرام لكل متر في الجذع وتُحوَّل إلى kg·m⁻¹ داخلياً (×10⁻³).",
     "الجزء ٢ متابعة على الأول (f_n ∝ v)؛ الجزء ٣ مستقل عن سرعة الطالب."
+   ]
+  },
+  {
+   "id": 21126,
+   "templateId": "U2.L3.P01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ساق موصلة طولها ℓ = 0.2 m تنزلق دون احتكاك بسرعة ثابتة v = 5 m·s⁻¹ عمودياً على سكّتين أفقيتين، ضمن حقل مغناطيسي منتظم شدّته B = 1 T عمودي على مستوى السكّتين. تُغلق الدارة على مقاومة R = 10 Ω، وتُهمل مقاومة الساق والسكّتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1 V — 10 درجة",
+    "٢) 0.1 A — 10 درجة",
+    "٣) 0.02 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.20000000000000004,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = B·ℓ·v",
+      "B·L·v"
+     ],
+     "antiKeys": [
+      "e = B·v/ℓ",
+      "e = B·ℓ/v"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: e = 1·0.2·5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "0.2",
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 1/10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.1 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·ℓ",
+      "B·I·L"
+     ],
+     "antiKeys": [
+      "F = B·I/ℓ",
+      "F = I·ℓ/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 1·0.1·0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "0.1",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.02 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز القوة المحركة الكهربائية المتحرّضة e في الساق، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = B·ℓ·v",
+        "B·L·v"
+       ],
+       "antiKeys": [
+        "e = B·v/ℓ",
+        "e = B·ℓ/v"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: e = 1·0.2·5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "0.2",
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "V",
+      "text": "1 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة التيار المتحرّض I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 1/10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.1 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.1,
+      "unit": "A",
+      "text": "0.1 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في الساق (التي تعاكس حركتها).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·ℓ",
+        "B·I·L"
+       ],
+       "antiKeys": [
+        "F = B·I/ℓ",
+        "F = I·ℓ/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 1·0.1·0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "0.1",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.02 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.020000000000000004,
+      "unit": "N",
+      "text": "0.02 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.20000000000000004,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الساق المتحركة: e = B·ℓ·v · I = e/R (أوم) · F = B·I·ℓ (لابلاس/لنز). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "قوة محركة متحرّضة e = B·ℓ·v · أوم I = e/R · قوة لابلاس F = B·I·ℓ (لنز)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة نظيفة: الجزء ٢ يتبع الأول والجزء ٣ يتبع الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21127,
+   "templateId": "U2.L3.P01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ساق موصلة طولها ℓ = 0.5 m تنزلق دون احتكاك بسرعة ثابتة v = 10 m·s⁻¹ عمودياً على سكّتين أفقيتين، ضمن حقل مغناطيسي منتظم شدّته B = 0.2 T عمودي على مستوى السكّتين. تُغلق الدارة على مقاومة R = 2 Ω، وتُهمل مقاومة الساق والسكّتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1 V — 10 درجة",
+    "٢) 0.5 A — 10 درجة",
+    "٣) 0.05 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = B·ℓ·v",
+      "B·L·v"
+     ],
+     "antiKeys": [
+      "e = B·v/ℓ",
+      "e = B·ℓ/v"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: e = 0.2·0.5·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "0.5",
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 1/2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.5 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·ℓ",
+      "B·I·L"
+     ],
+     "antiKeys": [
+      "F = B·I/ℓ",
+      "F = I·ℓ/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 0.2·0.5·0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "0.5",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.05 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز القوة المحركة الكهربائية المتحرّضة e في الساق، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = B·ℓ·v",
+        "B·L·v"
+       ],
+       "antiKeys": [
+        "e = B·v/ℓ",
+        "e = B·ℓ/v"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: e = 0.2·0.5·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "0.5",
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "V",
+      "text": "1 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة التيار المتحرّض I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 1/2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.5 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.5,
+      "unit": "A",
+      "text": "0.5 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في الساق (التي تعاكس حركتها).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·ℓ",
+        "B·I·L"
+       ],
+       "antiKeys": [
+        "F = B·I/ℓ",
+        "F = I·ℓ/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 0.2·0.5·0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "0.5",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.05 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.05,
+      "unit": "N",
+      "text": "0.05 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الساق المتحركة: e = B·ℓ·v · I = e/R (أوم) · F = B·I·ℓ (لابلاس/لنز). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "قوة محركة متحرّضة e = B·ℓ·v · أوم I = e/R · قوة لابلاس F = B·I·ℓ (لنز)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة نظيفة: الجزء ٢ يتبع الأول والجزء ٣ يتبع الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21128,
+   "templateId": "U2.L3.P01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ساق موصلة طولها ℓ = 1 m تنزلق دون احتكاك بسرعة ثابتة v = 10 m·s⁻¹ عمودياً على سكّتين أفقيتين، ضمن حقل مغناطيسي منتظم شدّته B = 1 T عمودي على مستوى السكّتين. تُغلق الدارة على مقاومة R = 5 Ω، وتُهمل مقاومة الساق والسكّتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10 V — 10 درجة",
+    "٢) 2 A — 10 درجة",
+    "٣) 2 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.2,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = B·ℓ·v",
+      "B·L·v"
+     ],
+     "antiKeys": [
+      "e = B·v/ℓ",
+      "e = B·ℓ/v"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: e = 1·1·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "1",
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 10/5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10",
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·ℓ",
+      "B·I·L"
+     ],
+     "antiKeys": [
+      "F = B·I/ℓ",
+      "F = I·ℓ/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 1·2·1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "2",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز القوة المحركة الكهربائية المتحرّضة e في الساق، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = B·ℓ·v",
+        "B·L·v"
+       ],
+       "antiKeys": [
+        "e = B·v/ℓ",
+        "e = B·ℓ/v"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: e = 1·1·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "1",
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "V",
+      "text": "10 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة التيار المتحرّض I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 10/5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10",
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "A",
+      "text": "2 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.2,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في الساق (التي تعاكس حركتها).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·ℓ",
+        "B·I·L"
+       ],
+       "antiKeys": [
+        "F = B·I/ℓ",
+        "F = I·ℓ/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 1·2·1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "2",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "N",
+      "text": "2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الساق المتحركة: e = B·ℓ·v · I = e/R (أوم) · F = B·I·ℓ (لابلاس/لنز). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "قوة محركة متحرّضة e = B·ℓ·v · أوم I = e/R · قوة لابلاس F = B·I·ℓ (لنز)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة نظيفة: الجزء ٢ يتبع الأول والجزء ٣ يتبع الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21129,
+   "templateId": "U2.L3.P01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ساق موصلة طولها ℓ = 0.2 m تنزلق دون احتكاك بسرعة ثابتة v = 5 m·s⁻¹ عمودياً على سكّتين أفقيتين، ضمن حقل مغناطيسي منتظم شدّته B = 0.5 T عمودي على مستوى السكّتين. تُغلق الدارة على مقاومة R = 2 Ω، وتُهمل مقاومة الساق والسكّتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.5 V — 10 درجة",
+    "٢) 0.25 A — 10 درجة",
+    "٣) 0.025 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = B·ℓ·v",
+      "B·L·v"
+     ],
+     "antiKeys": [
+      "e = B·v/ℓ",
+      "e = B·ℓ/v"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: e = 0.5·0.2·5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5",
+      "0.2",
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.5 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 0.5/2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.25 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·ℓ",
+      "B·I·L"
+     ],
+     "antiKeys": [
+      "F = B·I/ℓ",
+      "F = I·ℓ/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 0.5·0.25·0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5",
+      "0.25",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.025 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز القوة المحركة الكهربائية المتحرّضة e في الساق، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = B·ℓ·v",
+        "B·L·v"
+       ],
+       "antiKeys": [
+        "e = B·v/ℓ",
+        "e = B·ℓ/v"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: e = 0.5·0.2·5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5",
+        "0.2",
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.5 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.5,
+      "unit": "V",
+      "text": "0.5 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة التيار المتحرّض I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 0.5/2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.25 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.25,
+      "unit": "A",
+      "text": "0.25 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في الساق (التي تعاكس حركتها).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·ℓ",
+        "B·I·L"
+       ],
+       "antiKeys": [
+        "F = B·I/ℓ",
+        "F = I·ℓ/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 0.5·0.25·0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5",
+        "0.25",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.025 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.025,
+      "unit": "N",
+      "text": "0.025 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الساق المتحركة: e = B·ℓ·v · I = e/R (أوم) · F = B·I·ℓ (لابلاس/لنز). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "قوة محركة متحرّضة e = B·ℓ·v · أوم I = e/R · قوة لابلاس F = B·I·ℓ (لنز)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة نظيفة: الجزء ٢ يتبع الأول والجزء ٣ يتبع الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21130,
+   "templateId": "U2.L3.P01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ساق موصلة طولها ℓ = 0.5 m تنزلق دون احتكاك بسرعة ثابتة v = 5 m·s⁻¹ عمودياً على سكّتين أفقيتين، ضمن حقل مغناطيسي منتظم شدّته B = 0.2 T عمودي على مستوى السكّتين. تُغلق الدارة على مقاومة R = 10 Ω، وتُهمل مقاومة الساق والسكّتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.5 V — 10 درجة",
+    "٢) 0.05 A — 10 درجة",
+    "٣) 5×10⁻³ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.10000000000000002,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = B·ℓ·v",
+      "B·L·v"
+     ],
+     "antiKeys": [
+      "e = B·v/ℓ",
+      "e = B·ℓ/v"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: e = 0.2·0.5·5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "0.5",
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.5 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 0.5/10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5",
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.05 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·ℓ",
+      "B·I·L"
+     ],
+     "antiKeys": [
+      "F = B·I/ℓ",
+      "F = I·ℓ/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 0.2·0.05·0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "0.05",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 5×10⁻³ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز القوة المحركة الكهربائية المتحرّضة e في الساق، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = B·ℓ·v",
+        "B·L·v"
+       ],
+       "antiKeys": [
+        "e = B·v/ℓ",
+        "e = B·ℓ/v"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: e = 0.2·0.5·5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "0.5",
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.5 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.5,
+      "unit": "V",
+      "text": "0.5 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة التيار المتحرّض I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 0.5/10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5",
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.05 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.05,
+      "unit": "A",
+      "text": "0.05 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في الساق (التي تعاكس حركتها).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·ℓ",
+        "B·I·L"
+       ],
+       "antiKeys": [
+        "F = B·I/ℓ",
+        "F = I·ℓ/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 0.2·0.05·0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "0.05",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 5×10⁻³ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.005000000000000001,
+      "unit": "N",
+      "text": "5×10⁻³ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.10000000000000002,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الساق المتحركة: e = B·ℓ·v · I = e/R (أوم) · F = B·I·ℓ (لابلاس/لنز). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "قوة محركة متحرّضة e = B·ℓ·v · أوم I = e/R · قوة لابلاس F = B·I·ℓ (لنز)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة نظيفة: الجزء ٢ يتبع الأول والجزء ٣ يتبع الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21131,
+   "templateId": "U2.L3.P01",
+   "unit": "U2",
+   "chapter": "U2C3",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ساق موصلة طولها ℓ = 0.5 m تنزلق دون احتكاك بسرعة ثابتة v = 2 m·s⁻¹ عمودياً على سكّتين أفقيتين، ضمن حقل مغناطيسي منتظم شدّته B = 1 T عمودي على مستوى السكّتين. تُغلق الدارة على مقاومة R = 2 Ω، وتُهمل مقاومة الساق والسكّتين.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1 V — 10 درجة",
+    "٢) 0.5 A — 10 درجة",
+    "٣) 0.25 N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "e = B·ℓ·v",
+      "B·L·v"
+     ],
+     "antiKeys": [
+      "e = B·v/ℓ",
+      "e = B·ℓ/v"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: e = 1·0.5·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "0.5",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = e/R",
+      "e/R"
+     ],
+     "antiKeys": [
+      "I = e·R",
+      "I = R/e"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 1/2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.5 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·ℓ",
+      "B·I·L"
+     ],
+     "antiKeys": [
+      "F = B·I/ℓ",
+      "F = I·ℓ/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 1·0.5·0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "0.5",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.25 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز القوة المحركة الكهربائية المتحرّضة e في الساق، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: القوة المحركة المتحرّضة في ساق متحركة: e = B·ℓ·v",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "e = B·ℓ·v",
+        "B·L·v"
+       ],
+       "antiKeys": [
+        "e = B·v/ℓ",
+        "e = B·ℓ/v"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: e = 1·0.5·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "0.5",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "V",
+      "text": "1 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة التيار المتحرّض I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للدارة: I = e/R",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = e/R",
+        "e/R"
+       ],
+       "antiKeys": [
+        "I = e·R",
+        "I = R/e"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 1/2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.5 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.5,
+      "unit": "A",
+      "text": "0.5 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في الساق (التي تعاكس حركتها).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لابلاس على الساق (تعاكس الحركة وفق قانون لنز): F = B·I·ℓ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·ℓ",
+        "B·I·L"
+       ],
+       "antiKeys": [
+        "F = B·I/ℓ",
+        "F = I·ℓ/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 1·0.5·0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "0.5",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.25 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.25,
+      "unit": "N",
+      "text": "0.25 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الساق المتحركة: e = B·ℓ·v · I = e/R (أوم) · F = B·I·ℓ (لابلاس/لنز). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L3 — التحريض الكهرطيسي",
+    "book": "قوة محركة متحرّضة e = B·ℓ·v · أوم I = e/R · قوة لابلاس F = B·I·ℓ (لنز)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة نظيفة: الجزء ٢ يتبع الأول والجزء ٣ يتبع الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 21132,
+   "templateId": "U2.L6.P01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "محوّلة كهربائية مثالية عدد لفّات ابتدائيّها Np = 1000 لفّة وثانويّها Ns = 500 لفّة. طُبّق على الابتدائي توتر فعّال Up = 220 V فمرّ فيه تيار فعّال Ip = 2 A. تُهمل الضياعات.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 110 V — 10 درجة",
+    "٢) 440 W — 10 درجة",
+    "٣) 4 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 440.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·500/1000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "500",
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 110 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = Up·Ip",
+      "Us·Is"
+     ],
+     "antiKeys": [
+      "P = Up/Ip",
+      "P = Up·Ip·Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: P = 220·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 440 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Is = P/Us",
+      "P = Us·Is"
+     ],
+     "antiKeys": [
+      "Is = P·Us",
+      "Is = Us/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Is = 440/110",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "440",
+      "110"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز التوتر الفعّال الثانوي Us، ثم احسب قيمته.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·500/1000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "500",
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 110 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 110.0,
+      "unit": "V",
+      "text": "110 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الكهربائية المنقولة عبر المحوّلة P.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = Up·Ip",
+        "Us·Is"
+       ],
+       "antiKeys": [
+        "P = Up/Ip",
+        "P = Up·Ip·Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: P = 220·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 440 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 440.0,
+      "unit": "W",
+      "text": "440 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الفعّال الثانوي Is.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Is = P/Us",
+        "P = Us·Is"
+       ],
+       "antiKeys": [
+        "Is = P·Us",
+        "Is = Us/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Is = 440/110",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "440",
+        "110"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.0,
+      "unit": "A",
+      "text": "4 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 440.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة المثالية: Us = Up·Ns/Np · P = Up·Ip · Is = P/Us (= Ip·Np/Ns). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L6 — المحوّلة",
+    "book": "المحوّلة المثالية: Us/Up = Ns/Np · Is/Ip = Np/Ns · P = Up·Ip = Us·Is",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة خطأ على الجزء ١ بالقوة −١ (Is = P/Us ⇒ ∝ 1/Us)."
+   ]
+  },
+  {
+   "id": 21133,
+   "templateId": "U2.L6.P01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "محوّلة كهربائية مثالية عدد لفّات ابتدائيّها Np = 1000 لفّة وثانويّها Ns = 2000 لفّة. طُبّق على الابتدائي توتر فعّال Up = 220 V فمرّ فيه تيار فعّال Ip = 4 A. تُهمل الضياعات.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 440 V — 10 درجة",
+    "٢) 880 W — 10 درجة",
+    "٣) 2 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 880.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·2000/1000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "2000",
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 440 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = Up·Ip",
+      "Us·Is"
+     ],
+     "antiKeys": [
+      "P = Up/Ip",
+      "P = Up·Ip·Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: P = 220·4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 880 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Is = P/Us",
+      "P = Us·Is"
+     ],
+     "antiKeys": [
+      "Is = P·Us",
+      "Is = Us/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Is = 880/440",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "880",
+      "440"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز التوتر الفعّال الثانوي Us، ثم احسب قيمته.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·2000/1000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "2000",
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 440 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 440.0,
+      "unit": "V",
+      "text": "440 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الكهربائية المنقولة عبر المحوّلة P.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = Up·Ip",
+        "Us·Is"
+       ],
+       "antiKeys": [
+        "P = Up/Ip",
+        "P = Up·Ip·Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: P = 220·4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 880 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 880.0,
+      "unit": "W",
+      "text": "880 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الفعّال الثانوي Is.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Is = P/Us",
+        "P = Us·Is"
+       ],
+       "antiKeys": [
+        "Is = P·Us",
+        "Is = Us/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Is = 880/440",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "880",
+        "440"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "A",
+      "text": "2 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 880.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة المثالية: Us = Up·Ns/Np · P = Up·Ip · Is = P/Us (= Ip·Np/Ns). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L6 — المحوّلة",
+    "book": "المحوّلة المثالية: Us/Up = Ns/Np · Is/Ip = Np/Ns · P = Up·Ip = Us·Is",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة خطأ على الجزء ١ بالقوة −١ (Is = P/Us ⇒ ∝ 1/Us)."
+   ]
+  },
+  {
+   "id": 21136,
+   "templateId": "U2.L6.P01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "محوّلة كهربائية مثالية عدد لفّات ابتدائيّها Np = 1000 لفّة وثانويّها Ns = 100 لفّة. طُبّق على الابتدائي توتر فعّال Up = 220 V فمرّ فيه تيار فعّال Ip = 2 A. تُهمل الضياعات.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 22 V — 10 درجة",
+    "٢) 440 W — 10 درجة",
+    "٣) 20 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 440.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·100/1000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "100",
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 22 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = Up·Ip",
+      "Us·Is"
+     ],
+     "antiKeys": [
+      "P = Up/Ip",
+      "P = Up·Ip·Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: P = 220·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 440 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Is = P/Us",
+      "P = Us·Is"
+     ],
+     "antiKeys": [
+      "Is = P·Us",
+      "Is = Us/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Is = 440/22",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "440",
+      "22"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 20 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز التوتر الفعّال الثانوي Us، ثم احسب قيمته.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·100/1000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "100",
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 22 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 22.0,
+      "unit": "V",
+      "text": "22 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الكهربائية المنقولة عبر المحوّلة P.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = Up·Ip",
+        "Us·Is"
+       ],
+       "antiKeys": [
+        "P = Up/Ip",
+        "P = Up·Ip·Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: P = 220·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 440 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 440.0,
+      "unit": "W",
+      "text": "440 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الفعّال الثانوي Is.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Is = P/Us",
+        "P = Us·Is"
+       ],
+       "antiKeys": [
+        "Is = P·Us",
+        "Is = Us/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Is = 440/22",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "440",
+        "22"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 20 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "A",
+      "text": "20 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 440.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة المثالية: Us = Up·Ns/Np · P = Up·Ip · Is = P/Us (= Ip·Np/Ns). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L6 — المحوّلة",
+    "book": "المحوّلة المثالية: Us/Up = Ns/Np · Is/Ip = Np/Ns · P = Up·Ip = Us·Is",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة خطأ على الجزء ١ بالقوة −١ (Is = P/Us ⇒ ∝ 1/Us)."
+   ]
+  },
+  {
+   "id": 21137,
+   "templateId": "U2.L6.P01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "محوّلة كهربائية مثالية عدد لفّات ابتدائيّها Np = 1000 لفّة وثانويّها Ns = 100 لفّة. طُبّق على الابتدائي توتر فعّال Up = 220 V فمرّ فيه تيار فعّال Ip = 4 A. تُهمل الضياعات.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 22 V — 10 درجة",
+    "٢) 880 W — 10 درجة",
+    "٣) 40 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 880.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·100/1000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "100",
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 22 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = Up·Ip",
+      "Us·Is"
+     ],
+     "antiKeys": [
+      "P = Up/Ip",
+      "P = Up·Ip·Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: P = 220·4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 880 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Is = P/Us",
+      "P = Us·Is"
+     ],
+     "antiKeys": [
+      "Is = P·Us",
+      "Is = Us/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Is = 880/22",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "880",
+      "22"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 40 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز التوتر الفعّال الثانوي Us، ثم احسب قيمته.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·100/1000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "100",
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 22 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 22.0,
+      "unit": "V",
+      "text": "22 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الكهربائية المنقولة عبر المحوّلة P.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = Up·Ip",
+        "Us·Is"
+       ],
+       "antiKeys": [
+        "P = Up/Ip",
+        "P = Up·Ip·Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: P = 220·4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 880 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 880.0,
+      "unit": "W",
+      "text": "880 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الفعّال الثانوي Is.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Is = P/Us",
+        "P = Us·Is"
+       ],
+       "antiKeys": [
+        "Is = P·Us",
+        "Is = Us/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Is = 880/22",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "880",
+        "22"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 40 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 40.0,
+      "unit": "A",
+      "text": "40 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 880.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة المثالية: Us = Up·Ns/Np · P = Up·Ip · Is = P/Us (= Ip·Np/Ns). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L6 — المحوّلة",
+    "book": "المحوّلة المثالية: Us/Up = Ns/Np · Is/Ip = Np/Ns · P = Up·Ip = Us·Is",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة خطأ على الجزء ١ بالقوة −١ (Is = P/Us ⇒ ∝ 1/Us)."
+   ]
+  },
+  {
+   "id": 21139,
+   "templateId": "U2.L6.P01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "محوّلة كهربائية مثالية عدد لفّات ابتدائيّها Np = 1000 لفّة وثانويّها Ns = 500 لفّة. طُبّق على الابتدائي توتر فعّال Up = 220 V فمرّ فيه تيار فعّال Ip = 4 A. تُهمل الضياعات.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 110 V — 10 درجة",
+    "٢) 880 W — 10 درجة",
+    "٣) 8 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 880.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·500/1000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "500",
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 110 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = Up·Ip",
+      "Us·Is"
+     ],
+     "antiKeys": [
+      "P = Up/Ip",
+      "P = Up·Ip·Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: P = 220·4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 880 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Is = P/Us",
+      "P = Us·Is"
+     ],
+     "antiKeys": [
+      "Is = P·Us",
+      "Is = Us/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Is = 880/110",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "880",
+      "110"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 8 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز التوتر الفعّال الثانوي Us، ثم احسب قيمته.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·500/1000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "500",
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 110 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 110.0,
+      "unit": "V",
+      "text": "110 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الكهربائية المنقولة عبر المحوّلة P.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = Up·Ip",
+        "Us·Is"
+       ],
+       "antiKeys": [
+        "P = Up/Ip",
+        "P = Up·Ip·Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: P = 220·4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 880 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 880.0,
+      "unit": "W",
+      "text": "880 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الفعّال الثانوي Is.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Is = P/Us",
+        "P = Us·Is"
+       ],
+       "antiKeys": [
+        "Is = P·Us",
+        "Is = Us/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Is = 880/110",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "880",
+        "110"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 8 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8.0,
+      "unit": "A",
+      "text": "8 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 880.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة المثالية: Us = Up·Ns/Np · P = Up·Ip · Is = P/Us (= Ip·Np/Ns). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L6 — المحوّلة",
+    "book": "المحوّلة المثالية: Us/Up = Ns/Np · Is/Ip = Np/Ns · P = Up·Ip = Us·Is",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة خطأ على الجزء ١ بالقوة −١ (Is = P/Us ⇒ ∝ 1/Us)."
+   ]
+  },
+  {
+   "id": 21143,
+   "templateId": "U2.L6.P01",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "محوّلة كهربائية مثالية عدد لفّات ابتدائيّها Np = 1000 لفّة وثانويّها Ns = 2000 لفّة. طُبّق على الابتدائي توتر فعّال Up = 220 V فمرّ فيه تيار فعّال Ip = 2 A. تُهمل الضياعات.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 440 V — 10 درجة",
+    "٢) 440 W — 10 درجة",
+    "٣) 1 A — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 440.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·2000/1000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "2000",
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 440 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = Up·Ip",
+      "Us·Is"
+     ],
+     "antiKeys": [
+      "P = Up/Ip",
+      "P = Up·Ip·Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: P = 220·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 440 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Is = P/Us",
+      "P = Us·Is"
+     ],
+     "antiKeys": [
+      "Is = P·Us",
+      "Is = Us/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Is = 440/440",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "440",
+      "440"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز التوتر الفعّال الثانوي Us، ثم احسب قيمته.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: في المحوّلة المثالية نسبة التوترات = نسبة اللفّات: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·2000/1000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "2000",
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 440 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 440.0,
+      "unit": "V",
+      "text": "440 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الكهربائية المنقولة عبر المحوّلة P.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة المنقولة في المحوّلة المثالية: P = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = Up·Ip",
+        "Us·Is"
+       ],
+       "antiKeys": [
+        "P = Up/Ip",
+        "P = Up·Ip·Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: P = 220·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 440 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 440.0,
+      "unit": "W",
+      "text": "440 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب شدّة التيار الفعّال الثانوي Is.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: من انحفاظ الاستطاعة P = Us·Is ⇒ Is = P/Us",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Is = P/Us",
+        "P = Us·Is"
+       ],
+       "antiKeys": [
+        "Is = P·Us",
+        "Is = Us/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Is = 440/440",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "440",
+        "440"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "A",
+      "text": "1 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 440.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة المثالية: Us = Up·Ns/Np · P = Up·Ip · Is = P/Us (= Ip·Np/Ns). سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L6 — المحوّلة",
+    "book": "المحوّلة المثالية: Us/Up = Ns/Np · Is/Ip = Np/Ns · P = Up·Ip = Us·Is",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة خطأ على الجزء ١ بالقوة −١ (Is = P/Us ⇒ ∝ 1/Us)."
+   ]
+  },
+  {
+   "id": 21144,
+   "templateId": "U4.L1.P01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 4 إلى السوية n_f = 1 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) −0.85 eV — 10 درجة",
+    "٢) 12.8 eV — 10 درجة",
+    "٣) 97.3 nm — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 1245.44,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E_n = −13.6/n²",
+      "−13.6/n²"
+     ],
+     "antiKeys": [
+      "E_n = −13.6/n",
+      "E_n = 13.6/n²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E(4) = −13.6/4²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: −0.85 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = E_i − E_f",
+      "13.6·(1/n_f² − 1/n_i²)"
+     ],
+     "antiKeys": [
+      "ΔE = E_i + E_f",
+      "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/1² − 1/4²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 12.8 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+     "points": 3,
+     "kind": "substitution"
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 97.3 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة السوية الابتدائية E(n_i) بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E_n = −13.6/n²",
+        "−13.6/n²"
+       ],
+       "antiKeys": [
+        "E_n = −13.6/n",
+        "E_n = 13.6/n²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E(4) = −13.6/4²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: −0.85 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": -0.85,
+      "unit": "eV",
+      "text": "−0.85 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طاقة الفوتون المُصدَر ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = E_i − E_f",
+        "13.6·(1/n_f² − 1/n_i²)"
+       ],
+       "antiKeys": [
+        "ΔE = E_i + E_f",
+        "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/1² − 1/4²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 12.8 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 12.8,
+      "unit": "eV",
+      "text": "12.8 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة الفوتون المُصدَر λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+       "points": 3,
+       "kind": "substitution"
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 97.3 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 97.3,
+      "unit": "nm",
+      "text": "97.3 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 1245.44,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور للهيدروجين: E_n = −13.6/n² · ΔE = E_i − E_f · λ = h·c/ΔE مع h·c = 1240 eV·nm. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — نموذج بور والأطياف",
+    "book": "E_n = −13.6/n² (eV) · طاقة الفوتون ΔE = E_i − E_f · λ = h·c/ΔE (h·c = 1240 eV·nm)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مقرَّبة إلى ٣ أرقام معنوية (أطياف بور غير صحيحة تماماً) بسماحية ٢٪.",
+    "قيد ni > nf يضمن انتقالاً مُصدِراً (طاقة فوتون موجبة).",
+    "الجزء ٣ متابعة خطأ على الجزء ٢ بالقوة −١ (λ ∝ 1/ΔE)."
+   ]
+  },
+  {
+   "id": 21145,
+   "templateId": "U4.L1.P01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 3 إلى السوية n_f = 2 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) −1.51 eV — 10 درجة",
+    "٢) 1.89 eV — 10 درجة",
+    "٣) 656 nm — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 1239.84,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E_n = −13.6/n²",
+      "−13.6/n²"
+     ],
+     "antiKeys": [
+      "E_n = −13.6/n",
+      "E_n = 13.6/n²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E(3) = −13.6/3²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: −1.51 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = E_i − E_f",
+      "13.6·(1/n_f² − 1/n_i²)"
+     ],
+     "antiKeys": [
+      "ΔE = E_i + E_f",
+      "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/2² − 1/3²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.89 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+     "points": 3,
+     "kind": "substitution"
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 656 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة السوية الابتدائية E(n_i) بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E_n = −13.6/n²",
+        "−13.6/n²"
+       ],
+       "antiKeys": [
+        "E_n = −13.6/n",
+        "E_n = 13.6/n²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E(3) = −13.6/3²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: −1.51 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": -1.51,
+      "unit": "eV",
+      "text": "−1.51 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طاقة الفوتون المُصدَر ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = E_i − E_f",
+        "13.6·(1/n_f² − 1/n_i²)"
+       ],
+       "antiKeys": [
+        "ΔE = E_i + E_f",
+        "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/2² − 1/3²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.89 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.89,
+      "unit": "eV",
+      "text": "1.89 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة الفوتون المُصدَر λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+       "points": 3,
+       "kind": "substitution"
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 656 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 656.0,
+      "unit": "nm",
+      "text": "656 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 1239.84,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور للهيدروجين: E_n = −13.6/n² · ΔE = E_i − E_f · λ = h·c/ΔE مع h·c = 1240 eV·nm. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — نموذج بور والأطياف",
+    "book": "E_n = −13.6/n² (eV) · طاقة الفوتون ΔE = E_i − E_f · λ = h·c/ΔE (h·c = 1240 eV·nm)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مقرَّبة إلى ٣ أرقام معنوية (أطياف بور غير صحيحة تماماً) بسماحية ٢٪.",
+    "قيد ni > nf يضمن انتقالاً مُصدِراً (طاقة فوتون موجبة).",
+    "الجزء ٣ متابعة خطأ على الجزء ٢ بالقوة −١ (λ ∝ 1/ΔE)."
+   ]
+  },
+  {
+   "id": 21147,
+   "templateId": "U4.L1.P01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 2 إلى السوية n_f = 1 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) −3.4 eV — 10 درجة",
+    "٢) 10.2 eV — 10 درجة",
+    "٣) 122 nm — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 1244.3999999999999,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E_n = −13.6/n²",
+      "−13.6/n²"
+     ],
+     "antiKeys": [
+      "E_n = −13.6/n",
+      "E_n = 13.6/n²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E(2) = −13.6/2²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: −3.4 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = E_i − E_f",
+      "13.6·(1/n_f² − 1/n_i²)"
+     ],
+     "antiKeys": [
+      "ΔE = E_i + E_f",
+      "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/1² − 1/2²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10.2 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+     "points": 3,
+     "kind": "substitution"
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 122 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة السوية الابتدائية E(n_i) بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E_n = −13.6/n²",
+        "−13.6/n²"
+       ],
+       "antiKeys": [
+        "E_n = −13.6/n",
+        "E_n = 13.6/n²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E(2) = −13.6/2²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: −3.4 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": -3.4,
+      "unit": "eV",
+      "text": "−3.4 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طاقة الفوتون المُصدَر ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = E_i − E_f",
+        "13.6·(1/n_f² − 1/n_i²)"
+       ],
+       "antiKeys": [
+        "ΔE = E_i + E_f",
+        "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/1² − 1/2²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10.2 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.2,
+      "unit": "eV",
+      "text": "10.2 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة الفوتون المُصدَر λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+       "points": 3,
+       "kind": "substitution"
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 122 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 122.0,
+      "unit": "nm",
+      "text": "122 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 1244.3999999999999,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور للهيدروجين: E_n = −13.6/n² · ΔE = E_i − E_f · λ = h·c/ΔE مع h·c = 1240 eV·nm. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — نموذج بور والأطياف",
+    "book": "E_n = −13.6/n² (eV) · طاقة الفوتون ΔE = E_i − E_f · λ = h·c/ΔE (h·c = 1240 eV·nm)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مقرَّبة إلى ٣ أرقام معنوية (أطياف بور غير صحيحة تماماً) بسماحية ٢٪.",
+    "قيد ni > nf يضمن انتقالاً مُصدِراً (طاقة فوتون موجبة).",
+    "الجزء ٣ متابعة خطأ على الجزء ٢ بالقوة −١ (λ ∝ 1/ΔE)."
+   ]
+  },
+  {
+   "id": 21157,
+   "templateId": "U4.L1.P01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 4 إلى السوية n_f = 2 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) −0.85 eV — 10 درجة",
+    "٢) 2.55 eV — 10 درجة",
+    "٣) 486 nm — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 1239.3,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E_n = −13.6/n²",
+      "−13.6/n²"
+     ],
+     "antiKeys": [
+      "E_n = −13.6/n",
+      "E_n = 13.6/n²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E(4) = −13.6/4²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: −0.85 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = E_i − E_f",
+      "13.6·(1/n_f² − 1/n_i²)"
+     ],
+     "antiKeys": [
+      "ΔE = E_i + E_f",
+      "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/2² − 1/4²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.55 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+     "points": 3,
+     "kind": "substitution"
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 486 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة السوية الابتدائية E(n_i) بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E_n = −13.6/n²",
+        "−13.6/n²"
+       ],
+       "antiKeys": [
+        "E_n = −13.6/n",
+        "E_n = 13.6/n²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E(4) = −13.6/4²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: −0.85 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": -0.85,
+      "unit": "eV",
+      "text": "−0.85 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طاقة الفوتون المُصدَر ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = E_i − E_f",
+        "13.6·(1/n_f² − 1/n_i²)"
+       ],
+       "antiKeys": [
+        "ΔE = E_i + E_f",
+        "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/2² − 1/4²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.55 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.55,
+      "unit": "eV",
+      "text": "2.55 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة الفوتون المُصدَر λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+       "points": 3,
+       "kind": "substitution"
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 486 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 486.0,
+      "unit": "nm",
+      "text": "486 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 1239.3,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور للهيدروجين: E_n = −13.6/n² · ΔE = E_i − E_f · λ = h·c/ΔE مع h·c = 1240 eV·nm. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — نموذج بور والأطياف",
+    "book": "E_n = −13.6/n² (eV) · طاقة الفوتون ΔE = E_i − E_f · λ = h·c/ΔE (h·c = 1240 eV·nm)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مقرَّبة إلى ٣ أرقام معنوية (أطياف بور غير صحيحة تماماً) بسماحية ٢٪.",
+    "قيد ni > nf يضمن انتقالاً مُصدِراً (طاقة فوتون موجبة).",
+    "الجزء ٣ متابعة خطأ على الجزء ٢ بالقوة −١ (λ ∝ 1/ΔE)."
+   ]
+  },
+  {
+   "id": 21158,
+   "templateId": "U4.L1.P01",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "في ذرة الهيدروجين وفق نموذج بور، طاقة السوية رقم n معطاة بالعلاقة E_n = −13.6/n² مقدَّرة بالإلكترون·فولت. تنتقل الذرة من السوية n_i = 3 إلى السوية n_f = 1 فتُصدر فوتوناً. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) −1.51 eV — 10 درجة",
+    "٢) 12.1 eV — 10 درجة",
+    "٣) 103 nm — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 1246.3,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E_n = −13.6/n²",
+      "−13.6/n²"
+     ],
+     "antiKeys": [
+      "E_n = −13.6/n",
+      "E_n = 13.6/n²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E(3) = −13.6/3²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: −1.51 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = E_i − E_f",
+      "13.6·(1/n_f² − 1/n_i²)"
+     ],
+     "antiKeys": [
+      "ΔE = E_i + E_f",
+      "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/1² − 1/3²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 12.1 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+     "points": 3,
+     "kind": "substitution"
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 103 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة السوية الابتدائية E(n_i) بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة السوية في نموذج بور للهيدروجين: E_n = −13.6/n²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E_n = −13.6/n²",
+        "−13.6/n²"
+       ],
+       "antiKeys": [
+        "E_n = −13.6/n",
+        "E_n = 13.6/n²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E(3) = −13.6/3²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: −1.51 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": -1.51,
+      "unit": "eV",
+      "text": "−1.51 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طاقة الفوتون المُصدَر ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: طاقة الفوتون = فرق السويتين: ΔE = E_i − E_f = 13.6·(1/n_f² − 1/n_i²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = E_i − E_f",
+        "13.6·(1/n_f² − 1/n_i²)"
+       ],
+       "antiKeys": [
+        "ΔE = E_i + E_f",
+        "ΔE = 13.6·(1/n_i² − 1/n_f²)"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: ΔE = 13.6·(1/1² − 1/3²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 12.1 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 12.1,
+      "unit": "eV",
+      "text": "12.1 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة الفوتون المُصدَر λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة طول الموجة بطاقة الفوتون: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 1240/ΔE",
+       "points": 3,
+       "kind": "substitution"
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 103 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 103.0,
+      "unit": "nm",
+      "text": "103 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 1246.3,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور للهيدروجين: E_n = −13.6/n² · ΔE = E_i − E_f · λ = h·c/ΔE مع h·c = 1240 eV·nm. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — نموذج بور والأطياف",
+    "book": "E_n = −13.6/n² (eV) · طاقة الفوتون ΔE = E_i − E_f · λ = h·c/ΔE (h·c = 1240 eV·nm)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم مقرَّبة إلى ٣ أرقام معنوية (أطياف بور غير صحيحة تماماً) بسماحية ٢٪.",
+    "قيد ni > nf يضمن انتقالاً مُصدِراً (طاقة فوتون موجبة).",
+    "الجزء ٣ متابعة خطأ على الجزء ٢ بالقوة −١ (λ ∝ 1/ΔE)."
    ]
   }
  ]
