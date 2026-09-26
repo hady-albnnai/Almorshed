@@ -3934,3 +3934,183 @@ templates:
     review_notes:
       - "الجزء ٢ متابعة على الحقل E، والجزء ٣ متابعة على القوة F."
     approved: false
+
+  # ═══ الجولة ٥: توسيع الفصول المحدودة فيزيائياً (U1C5 · U2C5 · U5C1) ═══
+  - id: U1.L5.P04
+    title: "النسبية الخاصة — مسألة بأجزاء (عامل لورنتز · كمية الحركة النسبية · علاقة الطاقة-الزخم)"
+    chapter: U1C5
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L5 — العلاقة اللاتغيّرية: E² = (p·c)² + E0² · γ = 1/√(1−β²) · p·c = γ·β·E0 · E = γ·E0"
+      book: "المتغيّر اللاتغيّري E² − (pc)² = E0²"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      beta: {set: [0.6, 0.8, 0.9, 0.95, 0.99], unit: ""}
+      E0: {set: [0.5, 1, 2, 4, 8, 10, 20, 40, 100, 200, 500, 938], unit: MeV}
+    constants_used: {c_light: 3e8}
+    compute:
+      gamma: "1/sqrt(1-beta**2)"
+      pc: "beta*E0/sqrt(1-beta**2)"
+      E: "E0/sqrt(1-beta**2)"
+    stem: "جسيم طاقته الساكنة E0 = {E0} MeV يتحرك بسرعة v = {beta}·c بالنسبة لمرصد."
+    parts:
+      - label: "١"
+        ask: "احسب عامل لورنتز γ الموافق لسرعة الجسيم."
+        unit: ""
+        value: "gamma"
+        answer: {format: sci, round: true, sig: 3, unit_required: false}
+        lines:
+          - relation: "عامل لورنتز: γ = 1/√(1−β²)"
+            subst: "γ = 1/√(1−{beta}²)"
+            expect: ["{beta}"]
+            keys: ["γ = 1/√(1−β²)"]
+            anti_keys: ["γ = √(1−β²)", "γ = 1/(1−β²)"]
+      - label: "٢"
+        ask: "احسب كمية الحركة النسبية مضروبةً بسرعة الضوء (p·c) بوحدة MeV."
+        unit: "MeV"
+        value: "pc"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}   # p·c = γ·β·E0 ⇒ ∝ γ
+        lines:
+          - relation: "كمية الحركة النسبية: p·c = γ·β·E0"
+            subst: "p·c = {beta}·{E0}·γ"
+            expect: ["{beta}", "{E0}"]
+            keys: ["p·c = γ·β·E0"]
+            anti_keys: ["p·c = β·E0", "p = γ·β·E0"]
+      - label: "٣"
+        ask: "احسب الطاقة الكلية E للجسيم انطلاقاً من العلاقة اللاتغيّرية E² = (p·c)² + E0² (بوحدة MeV)."
+        unit: "MeV"
+        value: "E"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}   # E = γ·E0 ⇒ ∝ γ
+        lines:
+          - relation: "العلاقة اللاتغيّرية بين الطاقة والزخم: E = √((p·c)² + E0²) = γ·E0"
+            subst: "E = √((p·c)² + {E0}²)"
+            expect: ["{E0}"]
+            keys: ["E² = (p·c)² + E0²"]
+            anti_keys: ["E = p·c + E0", "E = √((p·c)² − E0²)"]
+    answer_basis: "النسبية: γ = 1/√(1−β²) · p·c = γ·β·E0 · E = √((p·c)²+E0²) = γ·E0. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزءان ٢ و٣ متابعة على γ (كلاهما ∝ γ)؛ الجزء ٣ يوظّف العلاقة اللاتغيّرية صراحةً."
+    approved: false
+
+  - id: U2.L5.P04
+    title: "دارة RLC تسلسلية — مسألة بأجزاء (الرنين: التواتر الخاص · التيار الأعظمي · الاستطاعة عند الرنين)"
+    chapter: U2C5
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L5 — الرنين: f0 = 1/(2π√(LC)) · عند الرنين Z = R والتيار أعظمي I0 = U/R · P = R·I0²"
+      book: "شرط الرنين XL = XC ⇒ Z أصغرية = R"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      L: {set: [0.1, 0.2, 0.5, 1], unit: H}
+      C: {set: [1, 2, 4, 5, 10], unit: "µF"}
+      R: {set: [40, 50, 80, 100], unit: "Ω"}
+      U: {set: [100, 110, 200, 220], unit: V}
+    compute:
+      f0: "1/(2*pi*sqrt(L*C*1e-6))"
+      I0: "U/R"
+      P0: "R*(U/R)**2"
+    stem: "دارة RLC تسلسلية مقاومتها R = {R} Ω، ووشيعتها ذاتيتها L = {L} H (مهملة المقاومة)، ومكثفتها سعتها C = {C} µF، موصولة بمنبع توتره المنتج U = {U} V وتواتره قابل للضبط حتى تدخل الدارة في حالة الرنين."
+    parts:
+      - label: "١"
+        ask: "احسب التواتر الخاص للرنين f0 للدارة."
+        unit: "Hz"
+        value: "f0"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "تواتر الرنين: f0 = 1/(2π√(LC))"
+            subst: "f0 = 1/(2π√({L}·{C}×10⁻⁶))"
+            expect: ["{L}", "{C}"]
+            keys: ["f0 = 1/(2π√(LC))"]
+            anti_keys: ["f0 = 2π√(LC)", "f0 = 1/(2π·LC)"]
+      - label: "٢"
+        ask: "احسب شدّة التيار المنتج الأعظمي I0 التي تجري في الدارة عند الرنين."
+        unit: "A"
+        value: "I0"
+        answer: {format: auto}
+        lines:
+          - relation: "عند الرنين تصبح الممانعة أصغرية Z = R، فالتيار أعظمي: I0 = U/R"
+            subst: "I0 = {U}/{R}"
+            expect: ["{U}", "{R}"]
+            keys: ["I0 = U/R", "Z = R"]
+            anti_keys: ["I0 = U·R", "I0 = R/U"]
+      - label: "٣"
+        ask: "احسب الاستطاعة المتوسطة P المستهلكة في الدارة عند الرنين."
+        unit: "W"
+        value: "P0"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 2}   # P = R·I0² ⇒ ∝ I0²
+        lines:
+          - relation: "الاستطاعة المستهلكة في المقاومة: P = R·I0²"
+            subst: "P = {R}·I0²"
+            expect: ["{R}"]
+            keys: ["P = R·I0²"]
+            anti_keys: ["P = R·I0", "P = I0²/R"]
+    answer_basis: "الرنين في RLC: f0 = 1/(2π√(LC)) · I0 = U/R (لأن Z=R) · P = R·I0². سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٣ متابعة على التيار I0 بالقوّة ٢ (P ∝ I0²)؛ الجزآن ١ و٢ مستقلّان."
+    approved: false
+
+  - id: U5.L1.P04
+    title: "الجذب العام — مسألة بأجزاء (طاقة قمر في مداره: السرعة المدارية · الطاقة الحركية · الطاقة الكامنة الثقالية)"
+    chapter: U5C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L5 — المدار الدائري: v = √(g0·R²/r) · Ek = ½m·v² · Ep = −G·M·m/r = −m·v² (حيث r = R+h)"
+      book: "g0·R² = G·M ⇒ v² = G·M/r · الطاقة الميكانيكية Em = Ek + Ep = −Ek"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      g0: {set: [10, 4], unit: "m·s⁻²"}
+      R: {set: [6400000, 3400000], unit: m}
+      h: {set: [400000, 1000000, 2000000, 5000000], unit: m}
+      m: {set: [100, 500, 1000, 2000], unit: kg}
+    constants_used: {G: 6.67e-11}
+    compute:
+      v: "R*sqrt(g0/(R+h))"
+      Ek: "0.5*m*(R**2)*g0/(R+h)"
+      Ep: "-m*(R**2)*g0/(R+h)"
+    stem: "قمر اصطناعي كتلته m = {m} kg يدور في مدار دائري حول كوكب نصف قطره R = {R} m، وتسارع الجاذبية عند سطحه g0 = {g0} m·s⁻²، على ارتفاع h = {h} m عن سطحه (نأخذ g0·R² = G·M)."
+    parts:
+      - label: "١"
+        ask: "احسب السرعة المدارية v للقمر (نصف قطر المدار r = R + h)."
+        unit: "m·s⁻¹"
+        value: "v"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "التوازن الدائري: v² = G·M/r = g0·R²/(R+h) ⇒ v = √(g0·R²/(R+h))"
+            subst: "v = √({g0}·{R}²/({R}+{h}))"
+            expect: ["{g0}", "{R}", "{h}"]
+            keys: ["v = √(g0·R²/(R+h))", "v² = G·M/r"]
+            anti_keys: ["v = √(g0·R/(R+h))", "v = g0·R²/(R+h)"]
+      - label: "٢"
+        ask: "احسب الطاقة الحركية Ek للقمر في مداره."
+        unit: "J"
+        value: "Ek"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 2}   # Ek = ½m·v² ⇒ ∝ v²
+        lines:
+          - relation: "الطاقة الحركية: Ek = ½·m·v²"
+            subst: "Ek = ½·{m}·v²"
+            expect: ["{m}"]
+            keys: ["Ek = ½·m·v²"]
+            anti_keys: ["Ek = m·v²", "Ek = ½·m·v"]
+      - label: "٣"
+        ask: "احسب الطاقة الكامنة الثقالية Ep للقمر (علماً أنّ Ep = −m·v²)."
+        unit: "J"
+        value: "Ep"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 2}   # Ep = −G·M·m/r = −m·v² ⇒ ∝ v²
+        lines:
+          - relation: "الطاقة الكامنة الثقالية: Ep = −G·M·m/r = −m·v²"
+            subst: "Ep = −{m}·v²"
+            expect: ["{m}"]
+            keys: ["Ep = −G·M·m/r", "Ep = −m·v²"]
+            anti_keys: ["Ep = +m·v²", "Ep = −½·m·v²"]
+    answer_basis: "طاقة القمر في مدار دائري: v = √(g0R²/r) · Ek = ½mv² · Ep = −mv² = −2Ek. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزآن ٢ و٣ متابعة على السرعة v بالقوّة ٢ (كلاهما ∝ v²)؛ Ep سالبة والطاقة الميكانيكية Em = −Ek."
+    approved: false

@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 50,
-  "poolSize": 4568,
+  "poolSize": 4718,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 2625,
+  "partsPool": 2775,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"

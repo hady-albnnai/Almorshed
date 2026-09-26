@@ -90,6 +90,10 @@ CHECKS = {
  'U2.L6.P04': lambda it:(lambda P,U,R:[(I:=P/U),R*I**2,R*I])(N(r'استطاعة كهربائية P = ([\d.]+) W',it['stem']),N(r'توتره U = ([\d.]+) V',it['stem']),N(r'الكلية R = ([\d.]+) Ω',it['stem'])),
  'U3.L2.P04': lambda it:(lambda v,f1,n:[v/(2*f1),v/f1,n*f1])(N(r'الهواء v = ([\d.]+) m',it['stem']),N(r'f1 = ([\d.]+) Hz',it['stem']),N(r'رقم n = (\d+)',full(it))),
  'U4.L2.P04': lambda it:(lambda U,dd:[U/dd,1.6e-19*U/dd,1.6e-19*U/(9.1e-31*dd)])(N(r'توتر U = ([\d.]+) V',it['stem']),N(r'بينهما d = ([\d.]+) m',it['stem'])),
+ # ── مجموعة G (توسيع الفصول المحدودة) ──
+ 'U1.L5.P04': lambda it:(lambda E0,b:[(gm:=1/math.sqrt(1-b**2)),b*E0*gm,E0*gm])(N(r'E0 = ([\d.]+) MeV',it['stem']),N(r'v = ([\d.]+)·c',it['stem'])),
+ 'U2.L5.P04': lambda it:(lambda L,C,R,U:[1/(2*math.pi*math.sqrt(L*C*1e-6)),U/R,R*(U/R)**2])(N(r'ذاتيتها L = ([\d.]+) H',it['stem']),N(r'سعتها C = ([\d.]+) µF',it['stem']),N(r'مقاومتها R = ([\d.]+) Ω',it['stem']),N(r'المنتج U = ([\d.]+) V',it['stem'])),
+ 'U5.L1.P04': lambda it:(lambda m,R,g0,h:[R*math.sqrt(g0/(R+h)),0.5*m*R**2*g0/(R+h),-m*R**2*g0/(R+h)])(N(r'كتلته m = ([\d.]+) kg',it['stem']),N(r'قطره R = ([\d.]+) m',it['stem']),N(r'g0 = ([\d.]+) m',it['stem']),N(r'h = ([\d.]+) m',it['stem'])),
 }
 
 
