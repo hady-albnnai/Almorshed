@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 608,
+  "poolSize": 620,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 59,
+  "partsPool": 71,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -31815,6 +31815,1914 @@
    "reviewNotes": [
     "المساحات بالسنتيمتر المربّع في الجذع وتُحوَّل إلى m² داخلياً (×10⁻⁴).",
     "الجزء ٢ متابعة على الأول والجزء ٣ متابعة على الثاني (بالقوة ١)."
+   ]
+  },
+  {
+   "id": 22027,
+   "templateId": "U1.L5.P01",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 29,
+   "approved": false,
+   "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.8·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 4 s لظاهرة ما، وطول السفينة الساكن L0 = 12 m.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.67 — 9 درجة",
+    "٢) 6.67 s — 10 درجة",
+    "٣) 7.2 m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 3.9940119760479043,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 12.024,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1 − v²/c²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1/(1 − β²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.8²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.8"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.67",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δt = γ·Δt0",
+      "تمدد الزمن"
+     ],
+     "antiKeys": [
+      "Δt = Δt0/γ",
+      "Δt = Δt0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Δt = 1.6667·4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 6.67 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = L0/γ",
+      "تقلّص الطول"
+     ],
+     "antiKeys": [
+      "L = L0·γ",
+      "L = L0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: L = 12/1.6667",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "12"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 7.2 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ الموافق لسرعة السفينة.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1 − v²/c²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1/(1 − β²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.8²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.8"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.67",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.67,
+      "unit": "",
+      "text": "1.67",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب المدة Δt التي يقيسها المرصد الأرضي للظاهرة نفسها (تمدد الزمن).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δt = γ·Δt0",
+        "تمدد الزمن"
+       ],
+       "antiKeys": [
+        "Δt = Δt0/γ",
+        "Δt = Δt0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Δt = 1.6667·4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 6.67 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.67,
+      "unit": "s",
+      "text": "6.67 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 3.9940119760479043,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول السفينة L كما يقيسه المرصد الأرضي (تقلّص الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = L0/γ",
+        "تقلّص الطول"
+       ],
+       "antiKeys": [
+        "L = L0·γ",
+        "L = L0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: L = 12/1.6667",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "12"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 7.2 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.2,
+      "unit": "m",
+      "text": "7.2 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 12.024,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النسبية الخاصة: γ = 1/√(1 − β²) · تمدد الزمن Δt = γ·Δt0 · تقلّص الطول L = L0/γ. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − v²/c²) · Δt = γ·Δt0 (تمدد الزمن) · L = L0/γ (تقلّص الطول)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "γ مقدار بلا واحدة (سطره بلا درجة وحدة)؛ القيم مقرَّبة إلى ٣ أرقام معنوية.",
+    "الجزءان ٢ و٣ متابعة على الأول (Δt ∝ γ · L ∝ 1/γ)."
+   ]
+  },
+  {
+   "id": 22028,
+   "templateId": "U1.L5.P01",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 29,
+   "approved": false,
+   "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.8·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 2 s لظاهرة ما، وطول السفينة الساكن L0 = 3 m.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.67 — 9 درجة",
+    "٢) 3.33 s — 10 درجة",
+    "٣) 1.8 m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.9940119760479043,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 3.006,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1 − v²/c²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1/(1 − β²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.8²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.8"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.67",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δt = γ·Δt0",
+      "تمدد الزمن"
+     ],
+     "antiKeys": [
+      "Δt = Δt0/γ",
+      "Δt = Δt0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Δt = 1.6667·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.33 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = L0/γ",
+      "تقلّص الطول"
+     ],
+     "antiKeys": [
+      "L = L0·γ",
+      "L = L0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: L = 3/1.6667",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.8 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ الموافق لسرعة السفينة.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1 − v²/c²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1/(1 − β²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.8²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.8"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.67",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.67,
+      "unit": "",
+      "text": "1.67",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب المدة Δt التي يقيسها المرصد الأرضي للظاهرة نفسها (تمدد الزمن).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δt = γ·Δt0",
+        "تمدد الزمن"
+       ],
+       "antiKeys": [
+        "Δt = Δt0/γ",
+        "Δt = Δt0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Δt = 1.6667·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.33 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.33,
+      "unit": "s",
+      "text": "3.33 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.9940119760479043,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول السفينة L كما يقيسه المرصد الأرضي (تقلّص الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = L0/γ",
+        "تقلّص الطول"
+       ],
+       "antiKeys": [
+        "L = L0·γ",
+        "L = L0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: L = 3/1.6667",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.8 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.8,
+      "unit": "m",
+      "text": "1.8 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 3.006,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النسبية الخاصة: γ = 1/√(1 − β²) · تمدد الزمن Δt = γ·Δt0 · تقلّص الطول L = L0/γ. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − v²/c²) · Δt = γ·Δt0 (تمدد الزمن) · L = L0/γ (تقلّص الطول)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "γ مقدار بلا واحدة (سطره بلا درجة وحدة)؛ القيم مقرَّبة إلى ٣ أرقام معنوية.",
+    "الجزءان ٢ و٣ متابعة على الأول (Δt ∝ γ · L ∝ 1/γ)."
+   ]
+  },
+  {
+   "id": 22029,
+   "templateId": "U1.L5.P01",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 29,
+   "approved": false,
+   "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.8·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 2 s لظاهرة ما، وطول السفينة الساكن L0 = 6 m.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.67 — 9 درجة",
+    "٢) 3.33 s — 10 درجة",
+    "٣) 3.6 m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.9940119760479043,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 6.012,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1 − v²/c²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1/(1 − β²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.8²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.8"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.67",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δt = γ·Δt0",
+      "تمدد الزمن"
+     ],
+     "antiKeys": [
+      "Δt = Δt0/γ",
+      "Δt = Δt0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Δt = 1.6667·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.33 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = L0/γ",
+      "تقلّص الطول"
+     ],
+     "antiKeys": [
+      "L = L0·γ",
+      "L = L0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: L = 6/1.6667",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "6"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3.6 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ الموافق لسرعة السفينة.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1 − v²/c²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1/(1 − β²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.8²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.8"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.67",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.67,
+      "unit": "",
+      "text": "1.67",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب المدة Δt التي يقيسها المرصد الأرضي للظاهرة نفسها (تمدد الزمن).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δt = γ·Δt0",
+        "تمدد الزمن"
+       ],
+       "antiKeys": [
+        "Δt = Δt0/γ",
+        "Δt = Δt0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Δt = 1.6667·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.33 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.33,
+      "unit": "s",
+      "text": "3.33 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.9940119760479043,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول السفينة L كما يقيسه المرصد الأرضي (تقلّص الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = L0/γ",
+        "تقلّص الطول"
+       ],
+       "antiKeys": [
+        "L = L0·γ",
+        "L = L0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: L = 6/1.6667",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "6"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3.6 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.6,
+      "unit": "m",
+      "text": "3.6 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 6.012,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النسبية الخاصة: γ = 1/√(1 − β²) · تمدد الزمن Δt = γ·Δt0 · تقلّص الطول L = L0/γ. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − v²/c²) · Δt = γ·Δt0 (تمدد الزمن) · L = L0/γ (تقلّص الطول)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "γ مقدار بلا واحدة (سطره بلا درجة وحدة)؛ القيم مقرَّبة إلى ٣ أرقام معنوية.",
+    "الجزءان ٢ و٣ متابعة على الأول (Δt ∝ γ · L ∝ 1/γ)."
+   ]
+  },
+  {
+   "id": 22031,
+   "templateId": "U1.L5.P01",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 29,
+   "approved": false,
+   "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.6·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 2 s لظاهرة ما، وطول السفينة الساكن L0 = 6 m.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.25 — 9 درجة",
+    "٢) 2.5 s — 10 درجة",
+    "٣) 4.8 m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 5.999999999999999,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1 − v²/c²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1/(1 − β²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.6"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.25",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δt = γ·Δt0",
+      "تمدد الزمن"
+     ],
+     "antiKeys": [
+      "Δt = Δt0/γ",
+      "Δt = Δt0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Δt = 1.25·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.5 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = L0/γ",
+      "تقلّص الطول"
+     ],
+     "antiKeys": [
+      "L = L0·γ",
+      "L = L0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: L = 6/1.25",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "6"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4.8 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ الموافق لسرعة السفينة.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1 − v²/c²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1/(1 − β²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.6"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.25",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "",
+      "text": "1.25",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب المدة Δt التي يقيسها المرصد الأرضي للظاهرة نفسها (تمدد الزمن).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δt = γ·Δt0",
+        "تمدد الزمن"
+       ],
+       "antiKeys": [
+        "Δt = Δt0/γ",
+        "Δt = Δt0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Δt = 1.25·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.5 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.5,
+      "unit": "s",
+      "text": "2.5 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول السفينة L كما يقيسه المرصد الأرضي (تقلّص الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = L0/γ",
+        "تقلّص الطول"
+       ],
+       "antiKeys": [
+        "L = L0·γ",
+        "L = L0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: L = 6/1.25",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "6"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4.8 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.8,
+      "unit": "m",
+      "text": "4.8 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 5.999999999999999,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النسبية الخاصة: γ = 1/√(1 − β²) · تمدد الزمن Δt = γ·Δt0 · تقلّص الطول L = L0/γ. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − v²/c²) · Δt = γ·Δt0 (تمدد الزمن) · L = L0/γ (تقلّص الطول)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "γ مقدار بلا واحدة (سطره بلا درجة وحدة)؛ القيم مقرَّبة إلى ٣ أرقام معنوية.",
+    "الجزءان ٢ و٣ متابعة على الأول (Δt ∝ γ · L ∝ 1/γ)."
+   ]
+  },
+  {
+   "id": 22034,
+   "templateId": "U1.L5.P01",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 29,
+   "approved": false,
+   "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.6·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 2 s لظاهرة ما، وطول السفينة الساكن L0 = 3 m.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.25 — 9 درجة",
+    "٢) 2.5 s — 10 درجة",
+    "٣) 2.4 m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 2.9999999999999996,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1 − v²/c²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1/(1 − β²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.6"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.25",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δt = γ·Δt0",
+      "تمدد الزمن"
+     ],
+     "antiKeys": [
+      "Δt = Δt0/γ",
+      "Δt = Δt0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Δt = 1.25·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.5 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = L0/γ",
+      "تقلّص الطول"
+     ],
+     "antiKeys": [
+      "L = L0·γ",
+      "L = L0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: L = 3/1.25",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.4 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ الموافق لسرعة السفينة.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1 − v²/c²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1/(1 − β²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.6"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.25",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "",
+      "text": "1.25",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب المدة Δt التي يقيسها المرصد الأرضي للظاهرة نفسها (تمدد الزمن).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δt = γ·Δt0",
+        "تمدد الزمن"
+       ],
+       "antiKeys": [
+        "Δt = Δt0/γ",
+        "Δt = Δt0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Δt = 1.25·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.5 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.5,
+      "unit": "s",
+      "text": "2.5 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول السفينة L كما يقيسه المرصد الأرضي (تقلّص الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = L0/γ",
+        "تقلّص الطول"
+       ],
+       "antiKeys": [
+        "L = L0·γ",
+        "L = L0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: L = 3/1.25",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.4 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.4,
+      "unit": "m",
+      "text": "2.4 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 2.9999999999999996,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النسبية الخاصة: γ = 1/√(1 − β²) · تمدد الزمن Δt = γ·Δt0 · تقلّص الطول L = L0/γ. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − v²/c²) · Δt = γ·Δt0 (تمدد الزمن) · L = L0/γ (تقلّص الطول)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "γ مقدار بلا واحدة (سطره بلا درجة وحدة)؛ القيم مقرَّبة إلى ٣ أرقام معنوية.",
+    "الجزءان ٢ و٣ متابعة على الأول (Δt ∝ γ · L ∝ 1/γ)."
+   ]
+  },
+  {
+   "id": 22035,
+   "templateId": "U1.L5.P01",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 29,
+   "approved": false,
+   "stem": "سفينة فضائية تتحرك بسرعة منتظمة v = 0.6·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = 10 s لظاهرة ما، وطول السفينة الساكن L0 = 6 m.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.25 — 9 درجة",
+    "٢) 12.5 s — 10 درجة",
+    "٣) 4.8 m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 10.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 5.999999999999999,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1 − v²/c²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1/(1 − β²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.6"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.25",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Δt = γ·Δt0",
+      "تمدد الزمن"
+     ],
+     "antiKeys": [
+      "Δt = Δt0/γ",
+      "Δt = Δt0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Δt = 1.25·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 12.5 s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = L0/γ",
+      "تقلّص الطول"
+     ],
+     "antiKeys": [
+      "L = L0·γ",
+      "L = L0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: L = 6/1.25",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "6"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4.8 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ الموافق لسرعة السفينة.",
+     "weight": 9,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1 − v²/c²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1/(1 − β²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.6"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.25",
+       "points": 1,
+       "kind": "result"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "",
+      "text": "1.25",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب المدة Δt التي يقيسها المرصد الأرضي للظاهرة نفسها (تمدد الزمن).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Δt = γ·Δt0",
+        "تمدد الزمن"
+       ],
+       "antiKeys": [
+        "Δt = Δt0/γ",
+        "Δt = Δt0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Δt = 1.25·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 12.5 s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 12.5,
+      "unit": "s",
+      "text": "12.5 s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 10.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول السفينة L كما يقيسه المرصد الأرضي (تقلّص الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = L0/γ",
+        "تقلّص الطول"
+       ],
+       "antiKeys": [
+        "L = L0·γ",
+        "L = L0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: L = 6/1.25",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "6"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4.8 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.8,
+      "unit": "m",
+      "text": "4.8 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 5.999999999999999,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "النسبية الخاصة: γ = 1/√(1 − β²) · تمدد الزمن Δt = γ·Δt0 · تقلّص الطول L = L0/γ. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − v²/c²) · Δt = γ·Δt0 (تمدد الزمن) · L = L0/γ (تقلّص الطول)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "γ مقدار بلا واحدة (سطره بلا درجة وحدة)؛ القيم مقرَّبة إلى ٣ أرقام معنوية.",
+    "الجزءان ٢ و٣ متابعة على الأول (Δt ∝ γ · L ∝ 1/γ)."
    ]
   }
  ]

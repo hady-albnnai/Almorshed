@@ -522,3 +522,186 @@ templates:
       - "قيد ni > nf يضمن انتقالاً مُصدِراً (طاقة فوتون موجبة)."
       - "الجزء ٣ متابعة خطأ على الجزء ٢ بالقوة −١ (λ ∝ 1/ΔE)."
     approved: false
+
+  # ── ٩) مزمار مغلق من طرف (U3C2) — تواتر أساسي · طول الموجة · المدروج التالي ──
+  - id: U3.L2.P01
+    title: "مزمار مغلق من طرف — مسألة بأجزاء (أمواج طولية مستقرة)"
+    chapter: U3C2
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L2 — الأمواج الطولية في الأنابيب"
+      book: "مزمار مغلق: f_(2k−1) = (2k−1)·v/(4L) (توافقيات فردية) · λ1 = 4L"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      v: {set: [340], unit: "m·s⁻¹"}
+      L: {set: [0.425, 0.85, 1.7], unit: m}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      f1: "v/(4*L)"
+      lam1: "4*L"
+      f3: "3*v/(4*L)"
+    stem: "مزمار طوله L = {L} m مغلق من أحد طرفيه ومفتوح من الآخر، تنتشر فيه الأمواج الصوتية بسرعة v = {v} m·s⁻¹. عند الرنين يتشكّل عقدة عند الطرف المغلق وبطن عند الطرف المفتوح."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز التواتر الأساسي f1 للمزمار المغلق، ثم احسب قيمته."
+        unit: "Hz"
+        value: "f1"
+        answer: {format: auto}
+        lines:
+          - relation: "المزمار المغلق: طوله يوافق ربع طول الموجة L = λ1/4 ⇒ f1 = v/(4L)"
+            subst: "f1 = {v}/(4·{L})"
+            expect: ["{v}", "{L}"]
+            keys: ["f1 = v/(4L)", "L = λ/4"]
+            anti_keys: ["f1 = v/(2L)", "f1 = v/L"]
+      - label: "٢"
+        ask: "احسب طول الموجة λ1 الموافق للتواتر الأساسي."
+        unit: "m"
+        value: "lam1"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: -1}   # λ1 = v/f1 ⇒ ∝ 1/f1
+        lines:
+          - relation: "علاقة طول الموجة بالتواتر: λ1 = v/f1 (= 4L)"
+            subst: "λ1 = {v}/{f1}"
+            expect: ["{v}", "{f1}"]
+            keys: ["λ1 = v/f1", "λ1 = 4L"]
+            anti_keys: ["λ1 = f1/v", "λ1 = 2L"]
+      - label: "٣"
+        ask: "احسب تواتر المدروج المسموح التالي (التوافقي الفردي الثالث) f3."
+        unit: "Hz"
+        value: "f3"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}    # f3 = 3·f1 ⇒ ∝ f1
+        lines:
+          - relation: "المزمار المغلق يسمح بالتوافقيات الفردية فقط: f3 = 3·f1"
+            subst: "f3 = 3·{f1}"
+            expect: ["{f1}"]
+            keys: ["f3 = 3·f1", "التوافقيات الفردية"]
+            anti_keys: ["f3 = 2·f1", "f3 = f1/3"]
+    answer_basis: "المزمار المغلق: L = λ1/4 ⇒ f1 = v/(4L) · λ1 = v/f1 = 4L · التوافقيات الفردية f_(2k−1) = (2k−1)f1. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "الجزء ٢ متابعة على الأول (λ1 ∝ 1/f1)؛ الجزء ٣ متابعة على الأول (f3 = 3f1)."
+    approved: false
+
+  # ── ١٠) النسبية الخاصة (U1C5) — عامل لورنتز · تمدد الزمن · تقلّص الطول ──
+  - id: U1.L5.P01
+    title: "النسبية الخاصة — مسألة بأجزاء (عامل لورنتز · تمدد الزمن · تقلّص الطول)"
+    chapter: U1C5
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L5 — النسبية الخاصة"
+      book: "γ = 1/√(1 − v²/c²) · Δt = γ·Δt0 (تمدد الزمن) · L = L0/γ (تقلّص الطول)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      beta: {set: [0.6, 0.8], unit: ""}
+      dt0: {set: [2, 4, 10], unit: s}
+      L0: {set: [3, 6, 12], unit: m}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      gamma: "1/sqrt(1-beta**2)"
+      dt: "gamma*dt0"
+      Lc: "L0*sqrt(1-beta**2)"
+    stem: "سفينة فضائية تتحرك بسرعة منتظمة v = {beta}·c بالنسبة إلى مرصد أرضي (c سرعة الضوء). في مرجعها الخاص يقيس روّادها زمناً ذاتياً Δt0 = {dt0} s لظاهرة ما، وطول السفينة الساكن L0 = {L0} m."
+    parts:
+      - label: "١"
+        ask: "احسب عامل لورنتز γ الموافق لسرعة السفينة."
+        unit: ""
+        value: "gamma"
+        answer: {format: auto, round: true, sig: 3, unit_required: false}
+        lines:
+          - relation: "عامل لورنتز: γ = 1/√(1 − v²/c²) = 1/√(1 − β²)"
+            subst: "γ = 1/√(1 − {beta}²)"
+            expect: ["{beta}"]
+            keys: ["γ = 1/√(1 − β²)", "1/√(1 − v²/c²)"]
+            anti_keys: ["γ = √(1 − β²)", "γ = 1/(1 − β²)"]
+            unit: false
+      - label: "٢"
+        ask: "احسب المدة Δt التي يقيسها المرصد الأرضي للظاهرة نفسها (تمدد الزمن)."
+        unit: "s"
+        value: "dt"
+        answer: {format: auto, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}    # Δt = γ·Δt0 ⇒ ∝ γ
+        lines:
+          - relation: "تمدد الزمن: المدة في المرجع المتحرك أطول Δt = γ·Δt0"
+            subst: "Δt = {gamma}·{dt0}"
+            expect: ["{dt0}"]
+            keys: ["Δt = γ·Δt0", "تمدد الزمن"]
+            anti_keys: ["Δt = Δt0/γ", "Δt = Δt0"]
+      - label: "٣"
+        ask: "احسب طول السفينة L كما يقيسه المرصد الأرضي (تقلّص الطول)."
+        unit: "m"
+        value: "Lc"
+        answer: {format: auto, round: true, sig: 3}
+        follow: {depends_on: "١", power: -1}   # L = L0/γ ⇒ ∝ 1/γ
+        lines:
+          - relation: "تقلّص الطول باتجاه الحركة: الطول المقيس أقصر L = L0/γ"
+            subst: "L = {L0}/{gamma}"
+            expect: ["{L0}"]
+            keys: ["L = L0/γ", "تقلّص الطول"]
+            anti_keys: ["L = L0·γ", "L = L0"]
+    answer_basis: "النسبية الخاصة: γ = 1/√(1 − β²) · تمدد الزمن Δt = γ·Δt0 · تقلّص الطول L = L0/γ. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "γ مقدار بلا واحدة (سطره بلا درجة وحدة)؛ القيم مقرَّبة إلى ٣ أرقام معنوية."
+      - "الجزءان ٢ و٣ متابعة على الأول (Δt ∝ γ · L ∝ 1/γ)."
+    approved: false
+
+  # ── ١١) الأقمار والسرعات الكونية (U5C1) — سرعة مدارية · سرعة إفلات · دور ──
+  - id: U5.L1.P01
+    title: "قمر يدور حول كوكب — مسألة بأجزاء (سرعة مدارية · سرعة إفلات · دور)"
+    chapter: U5C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — الفيزياء الفلكية"
+      book: "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      R: {set: [400000, 1600000, 6400000], unit: m}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      vo: "sqrt(g*R)"
+      ve: "sqrt(2*g*R)"
+      T: "2*sqrt(pi_sq)*R/vo"
+    stem: "قمر اصطناعي يدور في مدار دائري منخفض قرب سطح كوكب نصف قطره R = {R} m، تسارع الجاذبية عند سطحه g0 = 10 m·s⁻². نأخذ π² = 10 ونهمل ارتفاع المدار أمام R."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز السرعة المدارية v_o للقمر قرب السطح، ثم احسب قيمتها."
+        unit: "m·s⁻¹"
+        value: "vo"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)"
+            subst: "v_o = √(10·{R})"
+            expect: ["{R}"]
+            keys: ["v_o = √(g0·R)", "g0 = v_o²/R"]
+            anti_keys: ["v_o = √(g0/R)", "v_o = g0·R"]
+      - label: "٢"
+        ask: "احسب سرعة الإفلات v_e من سطح الكوكب."
+        unit: "m·s⁻¹"
+        value: "ve"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}    # v_e = √2·v_o ⇒ ∝ v_o
+        lines:
+          - relation: "سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o"
+            subst: "v_e = √2·{vo}"
+            expect: ["{vo}"]
+            keys: ["v_e = √(2·g0·R)", "√2·v_o"]
+            anti_keys: ["v_e = 2·v_o", "v_e = v_o/√2"]
+      - label: "٣"
+        ask: "احسب دور القمر T في مداره المنخفض."
+        unit: "s"
+        value: "T"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: -1}   # T = 2πR/v_o ⇒ ∝ 1/v_o
+        lines:
+          - relation: "دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o"
+            subst: "T = 2π·{R}/{vo}"
+            expect: ["{R}", "{vo}"]
+            keys: ["T = 2πR/v_o", "المحيط/السرعة"]
+            anti_keys: ["T = 2πv_o/R", "T = πR/v_o"]
+    answer_basis: "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "v_e وT مقرَّبان إلى ٣ أرقام معنوية بالصيغة العلمية (بسماحية ٢٪)."
+      - "الجزءان ٢ و٣ متابعة على الأول (v_e ∝ v_o · T ∝ 1/v_o)."
+    approved: false

@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 608,
+  "poolSize": 620,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 59,
+  "partsPool": 71,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -1157,6 +1157,996 @@
     "book": "ص ٢٥٤–٢٦٨",
     "lesson": "U5/L1 اختبر نفسك س١–س٥ [كتاب أولاً/ثانياً ص ٢٦٧]"
    }
+  },
+  {
+   "id": 22036,
+   "templateId": "U5.L1.P01",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "قمر اصطناعي يدور في مدار دائري منخفض قرب سطح كوكب نصف قطره R = 1600000 m، تسارع الجاذبية عند سطحه g0 = 10 m·s⁻². نأخذ π² = 10 ونهمل ارتفاع المدار أمام R.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4×10³ m·s⁻¹ — 10 درجة",
+    "٢) 5.66×10³ m·s⁻¹ — 10 درجة",
+    "٣) 2.53×10³ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.415,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 10120000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v_o = √(g0·R)",
+      "g0 = v_o²/R"
+     ],
+     "antiKeys": [
+      "v_o = √(g0/R)",
+      "v_o = g0·R"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v_o = √(10·1600000)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1600000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4×10³ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v_e = √(2·g0·R)",
+      "√2·v_o"
+     ],
+     "antiKeys": [
+      "v_e = 2·v_o",
+      "v_e = v_o/√2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: v_e = √2·4000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4000"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5.66×10³ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2πR/v_o",
+      "المحيط/السرعة"
+     ],
+     "antiKeys": [
+      "T = 2πv_o/R",
+      "T = πR/v_o"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·1600000/4000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1600000",
+      "4000"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.53×10³ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز السرعة المدارية v_o للقمر قرب السطح، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v_o = √(g0·R)",
+        "g0 = v_o²/R"
+       ],
+       "antiKeys": [
+        "v_o = √(g0/R)",
+        "v_o = g0·R"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v_o = √(10·1600000)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1600000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4×10³ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4000.0,
+      "unit": "m·s⁻¹",
+      "text": "4×10³ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب سرعة الإفلات v_e من سطح الكوكب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v_e = √(2·g0·R)",
+        "√2·v_o"
+       ],
+       "antiKeys": [
+        "v_e = 2·v_o",
+        "v_e = v_o/√2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: v_e = √2·4000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4000"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5.66×10³ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5660.0,
+      "unit": "m·s⁻¹",
+      "text": "5.66×10³ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.415,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور القمر T في مداره المنخفض.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2πR/v_o",
+        "المحيط/السرعة"
+       ],
+       "antiKeys": [
+        "T = 2πv_o/R",
+        "T = πR/v_o"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·1600000/4000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1600000",
+        "4000"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.53×10³ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2530.0,
+      "unit": "s",
+      "text": "2.53×10³ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 10120000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — الفيزياء الفلكية",
+    "book": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "v_e وT مقرَّبان إلى ٣ أرقام معنوية بالصيغة العلمية (بسماحية ٢٪).",
+    "الجزءان ٢ و٣ متابعة على الأول (v_e ∝ v_o · T ∝ 1/v_o)."
+   ]
+  },
+  {
+   "id": 22037,
+   "templateId": "U5.L1.P01",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "قمر اصطناعي يدور في مدار دائري منخفض قرب سطح كوكب نصف قطره R = 6400000 m، تسارع الجاذبية عند سطحه g0 = 10 m·s⁻². نأخذ π² = 10 ونهمل ارتفاع المدار أمام R.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8×10³ m·s⁻¹ — 10 درجة",
+    "٢) 1.13×10⁴ m·s⁻¹ — 10 درجة",
+    "٣) 5.06×10³ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.4125,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 40480000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v_o = √(g0·R)",
+      "g0 = v_o²/R"
+     ],
+     "antiKeys": [
+      "v_o = √(g0/R)",
+      "v_o = g0·R"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v_o = √(10·6400000)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "6400000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8×10³ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v_e = √(2·g0·R)",
+      "√2·v_o"
+     ],
+     "antiKeys": [
+      "v_e = 2·v_o",
+      "v_e = v_o/√2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: v_e = √2·8000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "8000"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.13×10⁴ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2πR/v_o",
+      "المحيط/السرعة"
+     ],
+     "antiKeys": [
+      "T = 2πv_o/R",
+      "T = πR/v_o"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·6400000/8000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "6400000",
+      "8000"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 5.06×10³ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز السرعة المدارية v_o للقمر قرب السطح، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v_o = √(g0·R)",
+        "g0 = v_o²/R"
+       ],
+       "antiKeys": [
+        "v_o = √(g0/R)",
+        "v_o = g0·R"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v_o = √(10·6400000)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "6400000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8×10³ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8000.0,
+      "unit": "m·s⁻¹",
+      "text": "8×10³ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب سرعة الإفلات v_e من سطح الكوكب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v_e = √(2·g0·R)",
+        "√2·v_o"
+       ],
+       "antiKeys": [
+        "v_e = 2·v_o",
+        "v_e = v_o/√2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: v_e = √2·8000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "8000"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.13×10⁴ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 11300.0,
+      "unit": "m·s⁻¹",
+      "text": "1.13×10⁴ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.4125,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور القمر T في مداره المنخفض.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2πR/v_o",
+        "المحيط/السرعة"
+       ],
+       "antiKeys": [
+        "T = 2πv_o/R",
+        "T = πR/v_o"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·6400000/8000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "6400000",
+        "8000"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 5.06×10³ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5060.0,
+      "unit": "s",
+      "text": "5.06×10³ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 40480000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — الفيزياء الفلكية",
+    "book": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "v_e وT مقرَّبان إلى ٣ أرقام معنوية بالصيغة العلمية (بسماحية ٢٪).",
+    "الجزءان ٢ و٣ متابعة على الأول (v_e ∝ v_o · T ∝ 1/v_o)."
+   ]
+  },
+  {
+   "id": 22039,
+   "templateId": "U5.L1.P01",
+   "unit": "U5",
+   "chapter": "U5C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "قمر اصطناعي يدور في مدار دائري منخفض قرب سطح كوكب نصف قطره R = 400000 m، تسارع الجاذبية عند سطحه g0 = 10 m·s⁻². نأخذ π² = 10 ونهمل ارتفاع المدار أمام R.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10³ m·s⁻¹ — 10 درجة",
+    "٢) 2.83×10³ m·s⁻¹ — 10 درجة",
+    "٣) 1.26×10³ s — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.415,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 2520000.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v_o = √(g0·R)",
+      "g0 = v_o²/R"
+     ],
+     "antiKeys": [
+      "v_o = √(g0/R)",
+      "v_o = g0·R"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: v_o = √(10·400000)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "400000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10³ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "v_e = √(2·g0·R)",
+      "√2·v_o"
+     ],
+     "antiKeys": [
+      "v_e = 2·v_o",
+      "v_e = v_o/√2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: v_e = √2·2000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2000"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.83×10³ m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "T = 2πR/v_o",
+      "المحيط/السرعة"
+     ],
+     "antiKeys": [
+      "T = 2πv_o/R",
+      "T = πR/v_o"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: T = 2π·400000/2000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "400000",
+      "2000"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.26×10³ s",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج بالرموز السرعة المدارية v_o للقمر قرب السطح، ثم احسب قيمتها.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: توازن الجاذبية مع القوة النابذة قرب السطح: m·g0 = m·v_o²/R ⇒ v_o = √(g0·R)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v_o = √(g0·R)",
+        "g0 = v_o²/R"
+       ],
+       "antiKeys": [
+        "v_o = √(g0/R)",
+        "v_o = g0·R"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: v_o = √(10·400000)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "400000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10³ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2000.0,
+      "unit": "m·s⁻¹",
+      "text": "2×10³ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب سرعة الإفلات v_e من سطح الكوكب.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: سرعة الإفلات: v_e = √(2·g0·R) = √2·v_o",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "v_e = √(2·g0·R)",
+        "√2·v_o"
+       ],
+       "antiKeys": [
+        "v_e = 2·v_o",
+        "v_e = v_o/√2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: v_e = √2·2000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2000"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.83×10³ m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2830.0,
+      "unit": "m·s⁻¹",
+      "text": "2.83×10³ m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.415,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب دور القمر T في مداره المنخفض.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: دور المدار الدائري: T = المحيط/السرعة = 2πR/v_o",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "T = 2πR/v_o",
+        "المحيط/السرعة"
+       ],
+       "antiKeys": [
+        "T = 2πv_o/R",
+        "T = πR/v_o"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: T = 2π·400000/2000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "400000",
+        "2000"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.26×10³ s",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1260.0,
+      "unit": "s",
+      "text": "1.26×10³ s",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 2520000.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — الفيزياء الفلكية",
+    "book": "قرب السطح: v_o = √(g0·R) · v_e = √(2·g0·R) = √2·v_o · T = 2πR/v_o",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "v_e وT مقرَّبان إلى ٣ أرقام معنوية بالصيغة العلمية (بسماحية ٢٪).",
+    "الجزءان ٢ و٣ متابعة على الأول (v_e ∝ v_o · T ∝ 1/v_o)."
+   ]
   }
  ]
 }
