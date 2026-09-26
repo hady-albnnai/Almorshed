@@ -3516,3 +3516,421 @@ templates:
     review_notes:
       - "الجزء ٢ متابعة بقوّة −0.5 على μ، والجزء ٣ متابعة بقوّة 1 على v."
     approved: false
+
+  # ══════════ الدفعة الثامنة: أنماط جديدة إضافية (توسيع العرض — الجولة ٤) ══════════
+  # ── ٥٩) نواس الفتل (U1C2) — توزّع الطاقة عند θmax/2 ──
+  - id: U1.L2.P04
+    title: "نواس الفتل — مسألة طاقة بأجزاء (الطاقة الكلية · الكامنة والحركية عند θmax/2)"
+    chapter: U1C2
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L2 — طاقة نواس الفتل: E = ½C·θmax² · عند θ = θmax/2: Ep = E/4 و Ec = ¾E"
+      book: "حفظ الطاقة الفتلية"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      C: {set: [10, 20, 40, 90, 160, 250, 360, 500, 640], unit: "N·m·rad⁻¹"}
+      thmax: {set: [0.1, 0.2, 0.3, 0.4, 0.5], unit: rad}
+    compute:
+      E: "0.5*C*thmax**2"
+      Ep: "0.5*C*thmax**2/4"
+      Ec: "0.75*(0.5*C*thmax**2)"
+    stem: "نواس فتل ثابت فتله C = {C} N·m·rad⁻¹ يهتز بسعة زاوية θmax = {thmax} rad."
+    parts:
+      - label: "١"
+        ask: "احسب الطاقة الميكانيكية الكلية E للنواس."
+        unit: "J"
+        value: "E"
+        answer: {format: auto}
+        lines:
+          - relation: "الطاقة الكلية = الكامنة الفتلية العظمى: E = ½·C·θmax²"
+            subst: "E = ½·{C}·{thmax}²"
+            expect: ["{C}", "{thmax}"]
+            keys: ["E = ½·C·θmax²"]
+            anti_keys: ["E = C·θmax²", "E = ½·C·θmax"]
+      - label: "٢"
+        ask: "احسب الطاقة الكامنة الفتلية Ep عند الزاوية θ = θmax/2."
+        unit: "J"
+        value: "Ep"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # Ep = E/4 ⇒ ∝ E
+        lines:
+          - relation: "Ep = ½·C·θ² = ½·C·(θmax/2)² = E/4"
+            subst: "Ep = {E}/4"
+            expect: ["{E}"]
+            keys: ["Ep = E/4"]
+            anti_keys: ["Ep = E/2", "Ep = E"]
+      - label: "٣"
+        ask: "استنتج الطاقة الحركية Ec عند الزاوية نفسها."
+        unit: "J"
+        value: "Ec"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # Ec = ¾E ⇒ ∝ E
+        lines:
+          - relation: "حفظ الطاقة: Ec = E − Ep = ¾·E"
+            subst: "Ec = ¾·{E}"
+            expect: ["{E}"]
+            keys: ["Ec = E − Ep", "Ec = ¾·E"]
+            anti_keys: ["Ec = E + Ep", "Ec = E/4"]
+    answer_basis: "طاقة الفتل: E = ½Cθmax²؛ عند θmax/2: Ep = E/4 و Ec = ¾E. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزآن ٢ و٣ متابعة على الطاقة الكلية E."
+    approved: false
+
+  # ── ٦٠) النواس البسيط (U1C3) — تحديد تسارع الجاذبية على كوكب ──
+  - id: U1.L3.P04
+    title: "النواس البسيط — مسألة بأجزاء (تسارع الجاذبية على كوكب · التواتر · الوزن)"
+    chapter: U1C3
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L3 — من T0 = 2π√(L/g) نجد g = 4π²·L/T0² · f = 1/T0 · الوزن P = m·g"
+      book: "قياس g بالنواس البسيط"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      L: {set: [0.1, 0.25, 0.4, 0.9, 1.0, 1.6, 2.5], unit: m}
+      T0v: {set: [1, 2, 4], unit: s}
+      m: {set: [0.1, 0.5, 1.0, 2.0, 5.0], unit: kg}
+    constants_used: {pi_sq: 10}
+    compute:
+      gp: "4*pi_sq*L/T0v**2"
+      f: "1/T0v"
+      W: "m*4*pi_sq*L/T0v**2"
+    stem: "نواس بسيط طول خيطه L = {L} m عُلّق على سطح كوكب فوُجد دوره T0 = {T0v} s (سعة صغيرة). كتلة الكرية m = {m} kg. نأخذ π² = 10."
+    parts:
+      - label: "١"
+        ask: "استنتج تسارع الجاذبية g على سطح هذا الكوكب."
+        unit: "m·s⁻²"
+        value: "gp"
+        answer: {format: auto}
+        lines:
+          - relation: "من T0 = 2π√(L/g) ⇒ g = 4π²·L/T0²"
+            subst: "g = 4π²·{L}/{T0v}²"
+            expect: ["{L}", "{T0v}"]
+            keys: ["g = 4π²·L/T0²"]
+            anti_keys: ["g = T0²/(4π²L)", "g = 4π²·L·T0²"]
+      - label: "٢"
+        ask: "احسب تواتر النواس f."
+        unit: "Hz"
+        value: "f"
+        answer: {format: auto}
+        lines:
+          - relation: "التواتر: f = 1/T0"
+            subst: "f = 1/{T0v}"
+            expect: ["{T0v}"]
+            keys: ["f = 1/T0"]
+            anti_keys: ["f = T0", "f = 2π/T0"]
+      - label: "٣"
+        ask: "احسب وزن الكرية P على سطح هذا الكوكب."
+        unit: "N"
+        value: "W"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # P = m·g ⇒ ∝ g
+        lines:
+          - relation: "الوزن: P = m·g"
+            subst: "P = {m}·{gp}"
+            expect: ["{m}"]
+            keys: ["P = m·g"]
+            anti_keys: ["P = m/g", "P = g/m"]
+    answer_basis: "النواس على كوكب: g = 4π²L/T0² · f = 1/T0 · P = m·g. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٣ متابعة على تسارع الجاذبية g (P ∝ g)."
+    approved: false
+
+  # ── ٦١) القوة المغناطيسية (U2C2) — جسيم مشحون في حقل: القوة · نصف القطر · الدور ──
+  - id: U2.L2.P04
+    title: "بروتون في حقل مغناطيسي — مسألة بأجزاء (قوة لورنتز · نصف قطر المسار · الدور)"
+    chapter: U2C2
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L2 — قوة لورنتز F = q·v·B · نصف القطر r = m·v/(q·B) · الدور T = 2π·m/(q·B)"
+      book: "بروتون: q = 1.6×10⁻¹⁹ C، m = 1.67×10⁻²⁷ kg"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      v: {set: [100000, 200000, 500000, 1000000, 2000000], unit: "m·s⁻¹"}
+      B: {set: [0.1, 0.2, 0.5, 1.0], unit: T}
+    constants_used: {}
+    compute:
+      F: "1.6e-19*v*B"
+      r: "1.67e-27*v/(1.6e-19*B)"
+      T: "2*3.14159265*1.67e-27/(1.6e-19*B)"
+    stem: "بروتون (q = 1.6×10⁻¹⁹ C، m = 1.67×10⁻²⁷ kg) يدخل عمودياً حقلاً مغناطيسياً منتظماً B = {B} T بسرعة v = {v} m·s⁻¹."
+    parts:
+      - label: "١"
+        ask: "احسب شدّة قوة لورنتز F المؤثّرة في البروتون."
+        unit: "N"
+        value: "F"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "قوة لورنتز (السرعة عمودية على الحقل): F = q·v·B"
+            subst: "F = 1.6×10⁻¹⁹·{v}·{B}"
+            expect: ["{v}", "{B}"]
+            keys: ["F = q·v·B"]
+            anti_keys: ["F = q·v/B", "F = q·B/v"]
+      - label: "٢"
+        ask: "احسب نصف قطر المسار الدائري r للبروتون."
+        unit: "m"
+        value: "r"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}   # r = m·v/(qB) و F = qvB ⇒ r ∝ F (عند ثبات B)
+        lines:
+          - relation: "التوازن بين لورنتز والقوة المركزية: r = m·v/(q·B)"
+            subst: "r = 1.67×10⁻²⁷·{v}/(1.6×10⁻¹⁹·{B})"
+            expect: ["{v}", "{B}"]
+            keys: ["r = m·v/(q·B)"]
+            anti_keys: ["r = q·B/(m·v)", "r = m·B/(q·v)"]
+      - label: "٣"
+        ask: "احسب دور دوران البروتون T في الحقل."
+        unit: "s"
+        value: "T"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "الدور مستقلّ عن السرعة: T = 2π·m/(q·B)"
+            subst: "T = 2π·1.67×10⁻²⁷/(1.6×10⁻¹⁹·{B})"
+            expect: ["{B}"]
+            keys: ["T = 2π·m/(q·B)"]
+            anti_keys: ["T = 2π·q·B/m", "T = m/(2π·q·B)"]
+    answer_basis: "جسيم في حقل: F = qvB · r = mv/(qB) · T = 2πm/(qB). سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على القوة F (عند ثبات B فإنّ r ∝ v ∝ F)."
+    approved: false
+
+  # ── ٦٢) الدارة المهتزة (U2C4) — مسألة عكسية: إيجاد السعة من التواتر ──
+  - id: U2.L4.P04
+    title: "الدارة المهتزة (LC) — مسألة عكسية بأجزاء (السعة من التواتر · الشحنة العظمى · الدور)"
+    chapter: U2C4
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L4 — من f0 = 1/(2π√(LC)) نجد C = 1/(4π²·f0²·L) · Qmax = C·Um · T0 = 1/f0"
+      book: "العلاقة العكسية بين التواتر والسعة"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      f0: {set: [50, 100, 159, 200, 250, 500, 1000], unit: Hz}
+      L: {set: [0.1, 0.25, 1.0], unit: H}
+      Um: {set: [5, 10, 12, 20], unit: V}
+    constants_used: {pi_sq: 10}
+    compute:
+      C: "1/(4*pi_sq*f0**2*L)"
+      Qmax: "(1/(4*pi_sq*f0**2*L))*Um"
+      T0: "1/f0"
+    stem: "دارة مهتزة مثالية (LC) وشيعتها L = {L} H تتذبذب بتواتر خاص f0 = {f0} Hz، والتوتر الأعظمي على المكثفة Um = {Um} V. نأخذ π² = 10."
+    parts:
+      - label: "١"
+        ask: "استنتج سعة المكثفة C."
+        unit: "F"
+        value: "C"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "من f0 = 1/(2π√(LC)) ⇒ C = 1/(4π²·f0²·L)"
+            subst: "C = 1/(4π²·{f0}²·{L})"
+            expect: ["{f0}", "{L}"]
+            keys: ["C = 1/(4π²·f0²·L)"]
+            anti_keys: ["C = 4π²·f0²·L", "C = 1/(4π²·f0·L)"]
+      - label: "٢"
+        ask: "احسب الشحنة العظمى Qmax على المكثفة."
+        unit: "C"
+        value: "Qmax"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}   # Qmax = C·Um ⇒ ∝ C
+        lines:
+          - relation: "الشحنة العظمى: Qmax = C·Um"
+            subst: "Qmax = {C}·{Um}"
+            expect: ["{Um}"]
+            keys: ["Qmax = C·Um"]
+            anti_keys: ["Qmax = C/Um", "Qmax = Um/C"]
+      - label: "٣"
+        ask: "احسب الدور الخاص T0 للدارة."
+        unit: "s"
+        value: "T0"
+        answer: {format: auto}
+        lines:
+          - relation: "الدور: T0 = 1/f0"
+            subst: "T0 = 1/{f0}"
+            expect: ["{f0}"]
+            keys: ["T0 = 1/f0"]
+            anti_keys: ["T0 = f0", "T0 = 2π/f0"]
+    answer_basis: "عكسي: C = 1/(4π²f0²L) · Qmax = C·Um · T0 = 1/f0. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على السعة C (Qmax ∝ C)."
+    approved: false
+
+  # ── ٦٣) نقل الطاقة الكهربائية (U2C6) — التيار في خط النقل والضياعات ──
+  - id: U2.L6.P04
+    title: "نقل الطاقة عبر خط (U2C6) — مسألة بأجزاء (تيار الخط · الضياع بالحرارة · هبوط التوتر)"
+    chapter: U2C6
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L6 — تيار الخط I = P/U · الضياع P_perte = R·I² · هبوط التوتر ΔU = R·I"
+      book: "فائدة رفع التوتر لتقليل الضياعات"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      P: {set: [1000, 2000, 5000, 10000, 20000], unit: W}
+      U: {set: [100, 200, 500, 1000, 5000], unit: V}
+      R: {set: [1, 2, 5, 10], unit: "Ω"}
+    compute:
+      I: "P/U"
+      Ploss: "R*(P/U)**2"
+      dU: "R*(P/U)"
+    stem: "يُنقل استطاعة كهربائية P = {P} W عبر خط توتره U = {U} V ومقاومته الكلية R = {R} Ω."
+    parts:
+      - label: "١"
+        ask: "احسب شدّة التيار I في خط النقل."
+        unit: "A"
+        value: "I"
+        answer: {format: auto}
+        lines:
+          - relation: "تيار الخط: I = P/U"
+            subst: "I = {P}/{U}"
+            expect: ["{P}", "{U}"]
+            keys: ["I = P/U"]
+            anti_keys: ["I = U/P", "I = P·U"]
+      - label: "٢"
+        ask: "احسب الاستطاعة المضيَّعة حرارياً P_perte في الخط."
+        unit: "W"
+        value: "Ploss"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 2}   # P_perte = R·I² ⇒ ∝ I²
+        lines:
+          - relation: "الضياع بمفعول جول: P_perte = R·I²"
+            subst: "P_perte = {R}·{I}²"
+            expect: ["{R}"]
+            keys: ["P_perte = R·I²"]
+            anti_keys: ["P_perte = R·I", "P_perte = I²/R"]
+      - label: "٣"
+        ask: "احسب هبوط التوتر ΔU على طول الخط."
+        unit: "V"
+        value: "dU"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # ΔU = R·I ⇒ ∝ I
+        lines:
+          - relation: "هبوط التوتر: ΔU = R·I"
+            subst: "ΔU = {R}·{I}"
+            expect: ["{R}"]
+            keys: ["ΔU = R·I"]
+            anti_keys: ["ΔU = R/I", "ΔU = I/R"]
+    answer_basis: "نقل الطاقة: I = P/U · P_perte = R·I² · ΔU = R·I. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة بقوّة 2 على التيار I، والجزء ٣ متابعة بقوّة 1."
+    approved: false
+
+  # ── ٦٤) المزمار المفتوح (U3C2) — مسألة عكسية: الطول من التواتر الأساسي ──
+  - id: U3.L2.P04
+    title: "المزمار المفتوح — مسألة عكسية بأجزاء (الطول · طول الموجة · التوافقي رقم n)"
+    chapter: U3C2
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L2 — مزمار مفتوح الطرفين: L = v/(2·f1) · λ1 = 2L = v/f1 · fn = n·f1"
+      book: "بطنان عند الطرفين"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      v: {set: [320, 330, 340, 350], unit: "m·s⁻¹"}
+      f1: {set: [50, 85, 100, 125, 170, 200, 250, 340, 425, 500], unit: Hz}
+      n: {set: [2, 3, 4, 5], unit: ""}
+    compute:
+      L: "v/(2*f1)"
+      lam1: "v/f1"
+      fn: "n*f1"
+    stem: "مزمار مفتوح الطرفين يُصدر تواتره الأساسي f1 = {f1} Hz، وسرعة الصوت في الهواء v = {v} m·s⁻¹."
+    parts:
+      - label: "١"
+        ask: "استنتج طول المزمار L."
+        unit: "m"
+        value: "L"
+        answer: {format: auto}
+        lines:
+          - relation: "على الأساسي في مزمار مفتوح: L = λ1/2 = v/(2·f1)"
+            subst: "L = {v}/(2·{f1})"
+            expect: ["{v}", "{f1}"]
+            keys: ["L = v/(2·f1)"]
+            anti_keys: ["L = v/(4·f1)", "L = 2·v/f1"]
+      - label: "٢"
+        ask: "احسب طول الموجة الأساسي λ1."
+        unit: "m"
+        value: "lam1"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # λ1 = 2L ⇒ ∝ L
+        lines:
+          - relation: "λ1 = 2·L = v/f1"
+            subst: "λ1 = 2·{L}"
+            expect: ["{L}"]
+            keys: ["λ1 = 2·L", "λ1 = v/f1"]
+            anti_keys: ["λ1 = 4·L", "λ1 = L/2"]
+      - label: "٣"
+        ask: "احسب تواتر التوافقي رقم n = {n} أي fn."
+        unit: "Hz"
+        value: "fn"
+        answer: {format: auto}
+        lines:
+          - relation: "المزمار المفتوح يسمح بكل التوافقيات: fn = n·f1"
+            subst: "fn = {n}·{f1}"
+            expect: ["{n}", "{f1}"]
+            keys: ["fn = n·f1"]
+            anti_keys: ["fn = f1/n", "fn = (2n−1)·f1"]
+    answer_basis: "المزمار المفتوح: L = v/(2f1) · λ1 = 2L · fn = n·f1. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على الطول L (λ1 = 2L)."
+    approved: false
+
+  # ── ٦٥) الأشعّة المهبطية (U4C2) — إلكترون في حقل كهربائي بين لوحين ──
+  - id: U4.L2.P04
+    title: "إلكترون في حقل كهربائي منتظم — مسألة بأجزاء (الحقل · القوة · التسارع)"
+    chapter: U4C2
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L2 — الحقل بين لوحين E = U/d · القوة F = e·E · التسارع a = F/m"
+      book: "إلكترون بين لوحين متوازيين"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      U: {set: [100, 200, 500, 1000, 2000], unit: V}
+      d: {set: [0.01, 0.02, 0.05, 0.1, 0.2], unit: m}
+    constants_used: {e_charge: 1.6e-19, m_e: 9.1e-31}
+    compute:
+      Efield: "U/d"
+      F: "1.6e-19*U/d"
+      a: "1.6e-19*U/(9.1e-31*d)"
+    stem: "لوحان متوازيان بينهما توتر U = {U} V والمسافة بينهما d = {d} m. يوضع إلكترون (e = 1.6×10⁻¹⁹ C، m = 9.1×10⁻³¹ kg) في الحقل بينهما."
+    parts:
+      - label: "١"
+        ask: "احسب شدّة الحقل الكهربائي E بين اللوحين."
+        unit: "V·m⁻¹"
+        value: "Efield"
+        answer: {format: auto}
+        lines:
+          - relation: "الحقل المنتظم بين لوحين: E = U/d"
+            subst: "E = {U}/{d}"
+            expect: ["{U}", "{d}"]
+            keys: ["E = U/d"]
+            anti_keys: ["E = U·d", "E = d/U"]
+      - label: "٢"
+        ask: "احسب شدّة القوة الكهربائية F المؤثّرة في الإلكترون."
+        unit: "N"
+        value: "F"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}   # F = e·E ⇒ ∝ E
+        lines:
+          - relation: "القوة الكهربائية: F = e·E"
+            subst: "F = 1.6×10⁻¹⁹·{Efield}"
+            expect: ["{Efield}"]
+            keys: ["F = e·E"]
+            anti_keys: ["F = e/E", "F = E/e"]
+      - label: "٣"
+        ask: "احسب تسارع الإلكترون a."
+        unit: "m·s⁻²"
+        value: "a"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: 1}   # a = F/m ⇒ ∝ F
+        lines:
+          - relation: "العلاقة الأساسية للتحريك: a = F/m"
+            subst: "a = {F}/9.1×10⁻³¹"
+            expect: ["{F}"]
+            keys: ["a = F/m"]
+            anti_keys: ["a = F·m", "a = m/F"]
+    answer_basis: "إلكترون بين لوحين: E = U/d · F = e·E · a = F/m. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على الحقل E، والجزء ٣ متابعة على القوة F."
+    approved: false
