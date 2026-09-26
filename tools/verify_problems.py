@@ -94,6 +94,24 @@ CHECKS = {
  'U1.L5.P04': lambda it:(lambda E0,b:[(gm:=1/math.sqrt(1-b**2)),b*E0*gm,E0*gm])(N(r'E0 = ([\d.]+) MeV',it['stem']),N(r'v = ([\d.]+)·c',it['stem'])),
  'U2.L5.P04': lambda it:(lambda L,C,R,U:[1/(2*math.pi*math.sqrt(L*C*1e-6)),U/R,R*(U/R)**2])(N(r'ذاتيتها L = ([\d.]+) H',it['stem']),N(r'سعتها C = ([\d.]+) µF',it['stem']),N(r'مقاومتها R = ([\d.]+) Ω',it['stem']),N(r'المنتج U = ([\d.]+) V',it['stem'])),
  'U5.L1.P04': lambda it:(lambda m,R,g0,h:[R*math.sqrt(g0/(R+h)),0.5*m*R**2*g0/(R+h),-m*R**2*g0/(R+h)])(N(r'كتلته m = ([\d.]+) kg',it['stem']),N(r'قطره R = ([\d.]+) m',it['stem']),N(r'g0 = ([\d.]+) m',it['stem']),N(r'h = ([\d.]+) m',it['stem'])),
+ # ── مجموعة H (تغطية القوالب الأساسية الـ17 المتبقّية ⇒ 69/69) ──
+ 'U1.L1.P02': lambda it:(lambda m,k,X:[(w:=math.sqrt(k/m)),w*X,(k/m)*X])(N(r'كتلة m = ([\d.]+) kg',it['stem']),N(r'مرونته k = ([\d.]+) N',it['stem']),N(r'بسعة Xm = ([\d.]+) m',it['stem'])),
+ 'U1.L2.P02': lambda it:(lambda I,T,th:[(C:=4*pis*I/T**2),1/T,C*th])(N(r'الفتل I = ([\d.]+) kg',it['stem']),N(r'الفتل T0 = ([\d.]+) s',it['stem']),N(r'θ = ([\d.]+) rad',full(it))),
+ 'U1.L3.P01': lambda it:(lambda L,m,th:(lambda Id,M,d:[math.sqrt(4*pis*Id/(M*g*d)),Id/(M*d),math.sqrt(2*M*g*d*(1-math.cos(math.radians(th)))/Id)])(0.625*m*L**2,2*m,L/4))(N(r'طولها ([\d.]+) m',it['stem']),N(r'= ([\d.]+) kg',it['stem']),N(r'θmax = (\d+)°',full(it))),
+ 'U1.L5.P02': lambda it:(lambda E0,b:[(gm:=1/math.sqrt(1-b**2)),gm*E0,(gm-1)*E0])(N(r'سكونه E0 = ([\d.]+) MeV',it['stem']),N(r'β = v/c = (\d+(?:\.\d+)?)',it['stem'])),
+ 'U2.L1.P01': lambda it:(lambda Nk,L,S,I:(lambda n:[n,mu0*n*I,mu0*n*I*(S*1e-4)])(Nk/L))(N(r'لفّاتها N = (\d+)',it['stem']),N(r'طول L = ([\d.]+) m',it['stem']),N(r'مقطعها S = ([\d.]+) cm',it['stem']),N(r'شدّته I = ([\d.]+) A',it['stem'])),
+ 'U2.L2.P01': lambda it:(lambda a,b,Nk,I,B:[(F:=B*I*a),F*b,Nk*F*b])(N(r'ضلعيه a = ([\d.]+) m',it['stem']),N(r'وb = ([\d.]+) m',it['stem']),N(r'لفّاته N = (\d+)',it['stem']),N(r'تيار شدّته I = ([\d.]+) A',it['stem']),N(r'منتظم شدّته B = ([\d.]+) T',it['stem'])),
+ 'U2.L2.P02': lambda it:(lambda d,I1,I2,l:[(fpl:=2e-7*I1*I2/d),fpl*l,fpl/2])(N(r'يفصلهما d = ([\d.]+) m',it['stem']),N(r'I1 = (\d+) A',it['stem']),N(r'I2 = (\d+) A',it['stem']),N(r'ℓ = ([\d.]+) m',it['stem'])),
+ 'U2.L3.P01': lambda it:(lambda l,v,B,R:[(ee:=B*l*v),ee/R,B*(ee/R)*l])(N(r'طولها ℓ = ([\d.]+) m',it['stem']),N(r'ثابتة v = ([\d.]+) m',it['stem']),N(r'منتظم شدّته B = ([\d.]+) T',it['stem']),N(r'مقاومة R = ([\d.]+) Ω',it['stem'])),
+ 'U2.L3.P02': lambda it:(lambda Nk,S,B,dt,R:(lambda dphi:[dphi,(e:=Nk*dphi/dt),e/R])(B*(S*1e-4)))(N(r'لفّاتها N = (\d+)',it['stem']),N(r'لفّة S = ([\d.]+) cm',it['stem']),N(r'من B = ([\d.]+) T',it['stem']),N(r'Δt = ([\d.]+) s',it['stem']),N(r'R = ([\d.]+) Ω',it['stem'])),
+ 'U2.L4.P02': lambda it:(lambda L,C,Um:(lambda Cf:[(E:=0.5*Cf*Um**2),Cf*Um,math.sqrt(2*E/L)])(C*1e-6))(N(r'وشيعة L = ([\d.]+) H',it['stem']),N(r'مكثفة C = ([\d.]+) µF',it['stem']),N(r'Um = ([\d.]+) V',it['stem'])),
+ 'U2.L5.P01': lambda it:(lambda R,X,U:(lambda Z:[Z,U/Z,R/Z,R*(U/Z)**2])(math.hypot(R,X)))(N(r'R = ([\d.]+) Ω',it['stem']),N(r'XC\| = ([\d.]+) Ω',it['stem']),N(r'Ueff = ([\d.]+) V',it['stem'])),
+ 'U2.L6.P02': lambda it:(lambda Np,Up,Ns,Ip,eta:[Up*Ns/Np,(Pp:=Up*Ip),eta*Pp])(N(r'Np = (\d+)',it['stem']),N(r'Up = ([\d.]+) V',it['stem']),N(r'Ns = (\d+)',it['stem']),N(r'Ip = ([\d.]+) A',it['stem']),N(r'η = (\d+(?:\.\d+)?)',it['stem'])),
+ 'U3.L1.P02': lambda it:(lambda L,mu,F,n:(lambda v:[v,v/(2*L),n*v/(2*L)])(math.sqrt(F/mu)))(N(r'طوله L = ([\d.]+) m',it['stem']),N(r'الطولية μ = ([\d.]+) kg',it['stem']),N(r'بقوة F = ([\d.]+) N',it['stem']),N(r'n = (\d+)',full(it))),
+ 'U4.L1.P01': lambda it:(lambda ni,nf:[-13.6/ni**2,(dE:=13.6*(1/nf**2-1/ni**2)),1240/dE])(N(r'n_i = (\d+)',it['stem']),N(r'n_f = (\d+)',it['stem'])),
+ 'U4.L3.P02': lambda it:(lambda W0,lam:(lambda l0:[l0,c/(l0*1e-9),1240/lam-W0])(1240/W0))(N(r'شغله W0 = ([\d.]+) eV',it['stem']),N(r'موجته λ = ([\d.]+) nm',it['stem'])),
+ 'U5.L1.P01': lambda it:(lambda R,g0:(lambda vo:[vo,math.sqrt(2)*vo,2*math.sqrt(pis)*R/vo])(math.sqrt(g0*R)))(N(r'قطره R = (\d+) m',it['stem']),N(r'g0 = ([\d.]+) m',it['stem'])),
+ 'U5.L1.P02': lambda it:(lambda R,g0,k:(lambda gh,r:[gh,(v:=math.sqrt(gh*r)),2*math.sqrt(pis)*r/v])(g0/(1+k)**2,(1+k)*R))(N(r'قطره R = (\d+) m',it['stem']),N(r'g0 = ([\d.]+) m',it['stem']),N(r'h = (\d+)·R',it['stem'])),
 }
 
 

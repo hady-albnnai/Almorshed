@@ -20,6 +20,7 @@ tools/gen_items.py — المادة ١٠: مولّد البنود من قوال�
 from __future__ import annotations
 
 import argparse
+import itertools
 import json
 import math
 import random
@@ -289,6 +290,9 @@ def formula_transforms(key: str):
 # docs/20 §٢ قاعدة ١: لكل سطر رياضي (٥ للعلاقة · ٣ للتعويض · ١ للنتيجة · ١ للوحدة).
 # وزن الجزء = مجموع أسطره، ووزن البند = مجموع أجزائه ⇒ يستحيل أن يختلف السلّم عن الوزن
 # (البلاء الموجود في القوالب القديمة: مسألة ٨٥ درجاتها ٤١).
+# عند رفع العدّاد عالياً: تتوقّف الحلقة العشوائية بعد هذا العدد من المحاولات
+# المتتالية بلا بند جديد (أي استُنفد فضاء التوليفات المميّزة عملياً).
+STALL_LIMIT = 6000
 LINE_POINTS = {"relation": 5, "substitution": 3, "result": 1, "unit": 1}
 GRADING_PARTS = "parts-v1"
 
@@ -549,10 +553,12 @@ class Generator:
             return expr
         return eval(expr, {"__builtins__": {}}, self._ns(env))  # noqa: S307 — قوالب المستودع فقط
 
-    def _draw(self, t):
+    def _draw(self, t, base=None):
         env = {}
         for name, spec in (t.get("vars") or {}).items():
-            if isinstance(spec, dict) and "set" in spec:
+            if base is not None and name in base:
+                env[name] = base[name]
+            elif isinstance(spec, dict) and "set" in spec:
                 env[name] = self.rng.choice(spec["set"])
             elif isinstance(spec, dict) and "range" in spec:
                 lo, hi = spec["range"]
@@ -735,9 +741,10 @@ class Generator:
                 return p
         return None
 
-    def from_parts(self, t):
-        """قالب بمحور `parts` ⇒ بند واحد لكل سحب، أجزاؤه متسلسلة على البيئة نفسها."""
-        env = self._draw(t)
+    def from_parts(self, t, base=None):
+        """قالب بمحور `parts` ⇒ بند واحد لكل سحب، أجزاؤه متسلسلة على البيئة نفسها.
+        base: توليفة قيم محدّدة للمتغيّرات (للتعداد الشامل) بدل السحب العشوائي."""
+        env = self._draw(t, base)
         if env is None:
             return None
         stem = self._render(t["stem"], env)
@@ -835,7 +842,25 @@ class Generator:
             it = self.from_proof(t)
             return [it] if it else []
         if t.get("parts"):                                   # مسألة بأجزاء — قرار ٦٨
-            out, seen, tries = [], set(), 0
+            out, seen = [], set()
+            vars_ = t.get("vars") or {}
+            set_names = [n for n, s in vars_.items() if isinstance(s, dict) and "set" in s]
+            other = [n for n, s in vars_.items() if not (isinstance(s, dict) and "set" in s)]
+            if set_names and not other:                      # تعداد شامل لكل التوليفات (سريع وحصري)
+                combos = list(itertools.product(*[vars_[n]["set"] for n in set_names]))
+                self.rng.shuffle(combos)                     # ترتيب متنوّع قبل السقف
+                for combo in combos:
+                    if len(out) >= per_template:
+                        break
+                    it = self.from_parts(t, dict(zip(set_names, combo)))
+                    if not it:
+                        continue
+                    sig = norm(it["stem"]) + "|" + "|".join(p["answer"]["text"] for p in it["parts"])
+                    if sig not in seen:
+                        seen.add(sig)
+                        out.append(it)
+                return out
+            tries = 0                                        # احتياط: متغيّرات range ⇒ سحب عشوائي
             while len(out) < per_template and tries < per_template * 80:
                 tries += 1
                 it = self.from_parts(t)
@@ -849,24 +874,28 @@ class Generator:
         if "variants" in t:
             return self.from_variants(t)
         if tid in SOLVERS:
-            out, seen, tries = [], set(), 0
-            while len(out) < per_template and tries < per_template * 40:
+            out, seen, tries, stall = [], set(), 0, 0
+            while len(out) < per_template and tries < per_template * 40 and stall < STALL_LIMIT:
                 tries += 1
                 it = SOLVERS[tid](self, t)
-                if it and norm(it["stem"]) + "|" + it["options"][it["correctIndex"]] not in seen:
-                    seen.add(norm(it["stem"]) + "|" + it["options"][it["correctIndex"]])
-                    out.append(it)
+                sig = (norm(it["stem"]) + "|" + it["options"][it["correctIndex"]]) if it else None
+                if sig and sig not in seen:
+                    seen.add(sig); out.append(it); stall = 0
+                else:
+                    stall += 1
             return out
         if "table" in t and isinstance(t.get("stem"), str):
             return self.from_table(t)
         if "compute" in t or "vars" in t:
-            out, seen, tries = [], set(), 0
-            while len(out) < per_template and tries < per_template * 60:
+            out, seen, tries, stall = [], set(), 0, 0
+            while len(out) < per_template and tries < per_template * 60 and stall < STALL_LIMIT:
                 tries += 1
                 it = self.from_compute(t)
-                if it and norm(it["stem"]) + "|" + it["options"][it["correctIndex"]] not in seen:
-                    seen.add(norm(it["stem"]) + "|" + it["options"][it["correctIndex"]])
-                    out.append(it)
+                sig = (norm(it["stem"]) + "|" + it["options"][it["correctIndex"]]) if it else None
+                if sig and sig not in seen:
+                    seen.add(sig); out.append(it); stall = 0
+                else:
+                    stall += 1
             return out
         self.report["skipped"].append((tid, "no_solver"))
         return []
@@ -1772,7 +1801,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--seed", type=int, default=2026)
     ap.add_argument("--n", type=int, default=100, help="حجم العيّنة")
-    ap.add_argument("--per-template", type=int, default=50, help="عدد البنود لكل قالب محسوب (رُفع إلى 50 لتغطية كل الاحتمالات — طلب المالك؛ القالب يعطي أقصى تركيباته الفريدة إن قلّت عن 50)")
+    ap.add_argument("--per-template", type=int, default=2000, help="سقف البنود لكل قالب (رُفع إلى 2000 — طلب المالك: أقصى كمّ ممكن؛ قوالب المسائل تُعدّ كل توليفاتها المميّزة تعداداً شاملاً حتى هذا السقف، وقوالب MCQ تتوقّف عند استنفاد فضائها عبر STALL_LIMIT)")
     ap.add_argument("--pack", action="store_true", help="دمج العيّنة في pack.json تحت items")
     ap.add_argument("--quiet", action="store_true")
     ap.add_argument("--u1-only", action="store_true", help="القوالب U1.yaml فقط (سلوك المادة ١٠ الأصلي)")
