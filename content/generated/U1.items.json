@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 707,
+  "poolSize": 748,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 158,
+  "partsPool": 199,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -41199,6 +41199,3732 @@
    },
    "reviewNotes": [
     "الجزء ٣ متابعة على الجزء ١ (Γ ∝ C)."
+   ]
+  },
+  {
+   "id": 23504,
+   "templateId": "U1.L4.P02",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "خزّان مملوء بسائل كثافته ρ = 1000 kg·m⁻³. عند عمق h = 5 m توجد فتحة مسطّحة مساحتها S = 0.2 m². الضغط الجوي فوق السطح P0 = 100000 Pa. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 5×10⁴ Pa — 10 درجة",
+    "٢) 1.5×10⁵ Pa — 10 درجة",
+    "٣) 3×10⁴ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.2,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = ρ·g·h",
+      "ρ·g·h"
+     ],
+     "antiKeys": [
+      "P = ρ·g/h",
+      "P = ρ·h/g"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: P = 1000·10·5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 5×10⁴ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pabs = P0 + ρ·g·h",
+      "P0 + ρgh"
+     ],
+     "antiKeys": [
+      "Pabs = P0 − ρgh",
+      "Pabs = ρgh"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pabs = 100000 + 50000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100000",
+      "50000"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.5×10⁵ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = P·S",
+      "Pabs·S"
+     ],
+     "antiKeys": [
+      "F = P/S",
+      "F = S/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 150000·0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "150000",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3×10⁴ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الضغط الزائد (الناتج عن السائل وحده) عند العمق h.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = ρ·g·h",
+        "ρ·g·h"
+       ],
+       "antiKeys": [
+        "P = ρ·g/h",
+        "P = ρ·h/g"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: P = 1000·10·5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 5×10⁴ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50000.0,
+      "unit": "Pa",
+      "text": "5×10⁴ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الضغط المطلق Pabs عند هذا العمق.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pabs = P0 + ρ·g·h",
+        "P0 + ρgh"
+       ],
+       "antiKeys": [
+        "Pabs = P0 − ρgh",
+        "Pabs = ρgh"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pabs = 100000 + 50000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100000",
+        "50000"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.5×10⁵ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 150000.0,
+      "unit": "Pa",
+      "text": "1.5×10⁵ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة F التي يؤثّر بها السائل والجوّ على الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = P·S",
+        "Pabs·S"
+       ],
+       "antiKeys": [
+        "F = P/S",
+        "F = S/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 150000·0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "150000",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3×10⁴ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 30000.0,
+      "unit": "N",
+      "text": "3×10⁴ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.2,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الضغط الهيدروستاتيكي: P = ρgh · Pabs = P0 + ρgh · F = Pabs·S. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الضغط)",
+    "book": "الضغط الزائد P = ρ·g·h · الضغط المطلق Pabs = P0 + ρ·g·h · القوة F = P·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الضغط المطلق (F ∝ Pabs)."
+   ]
+  },
+  {
+   "id": 23505,
+   "templateId": "U1.L4.P02",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "خزّان مملوء بسائل كثافته ρ = 1000 kg·m⁻³. عند عمق h = 2 m توجد فتحة مسطّحة مساحتها S = 0.1 m². الضغط الجوي فوق السطح P0 = 100000 Pa. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁴ Pa — 10 درجة",
+    "٢) 1.2×10⁵ Pa — 10 درجة",
+    "٣) 1.2×10⁴ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = ρ·g·h",
+      "ρ·g·h"
+     ],
+     "antiKeys": [
+      "P = ρ·g/h",
+      "P = ρ·h/g"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: P = 1000·10·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁴ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pabs = P0 + ρ·g·h",
+      "P0 + ρgh"
+     ],
+     "antiKeys": [
+      "Pabs = P0 − ρgh",
+      "Pabs = ρgh"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pabs = 100000 + 20000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100000",
+      "20000"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.2×10⁵ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = P·S",
+      "Pabs·S"
+     ],
+     "antiKeys": [
+      "F = P/S",
+      "F = S/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 120000·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "120000",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.2×10⁴ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الضغط الزائد (الناتج عن السائل وحده) عند العمق h.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = ρ·g·h",
+        "ρ·g·h"
+       ],
+       "antiKeys": [
+        "P = ρ·g/h",
+        "P = ρ·h/g"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: P = 1000·10·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁴ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20000.0,
+      "unit": "Pa",
+      "text": "2×10⁴ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الضغط المطلق Pabs عند هذا العمق.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pabs = P0 + ρ·g·h",
+        "P0 + ρgh"
+       ],
+       "antiKeys": [
+        "Pabs = P0 − ρgh",
+        "Pabs = ρgh"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pabs = 100000 + 20000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100000",
+        "20000"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.2×10⁵ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 120000.0,
+      "unit": "Pa",
+      "text": "1.2×10⁵ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة F التي يؤثّر بها السائل والجوّ على الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = P·S",
+        "Pabs·S"
+       ],
+       "antiKeys": [
+        "F = P/S",
+        "F = S/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 120000·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "120000",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.2×10⁴ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 12000.0,
+      "unit": "N",
+      "text": "1.2×10⁴ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الضغط الهيدروستاتيكي: P = ρgh · Pabs = P0 + ρgh · F = Pabs·S. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الضغط)",
+    "book": "الضغط الزائد P = ρ·g·h · الضغط المطلق Pabs = P0 + ρ·g·h · القوة F = P·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الضغط المطلق (F ∝ Pabs)."
+   ]
+  },
+  {
+   "id": 23506,
+   "templateId": "U1.L4.P02",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "خزّان مملوء بسائل كثافته ρ = 1000 kg·m⁻³. عند عمق h = 2 m توجد فتحة مسطّحة مساحتها S = 0.5 m². الضغط الجوي فوق السطح P0 = 100000 Pa. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁴ Pa — 10 درجة",
+    "٢) 1.2×10⁵ Pa — 10 درجة",
+    "٣) 6×10⁴ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = ρ·g·h",
+      "ρ·g·h"
+     ],
+     "antiKeys": [
+      "P = ρ·g/h",
+      "P = ρ·h/g"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: P = 1000·10·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁴ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pabs = P0 + ρ·g·h",
+      "P0 + ρgh"
+     ],
+     "antiKeys": [
+      "Pabs = P0 − ρgh",
+      "Pabs = ρgh"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pabs = 100000 + 20000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100000",
+      "20000"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.2×10⁵ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = P·S",
+      "Pabs·S"
+     ],
+     "antiKeys": [
+      "F = P/S",
+      "F = S/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 120000·0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "120000",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 6×10⁴ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الضغط الزائد (الناتج عن السائل وحده) عند العمق h.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = ρ·g·h",
+        "ρ·g·h"
+       ],
+       "antiKeys": [
+        "P = ρ·g/h",
+        "P = ρ·h/g"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: P = 1000·10·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁴ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20000.0,
+      "unit": "Pa",
+      "text": "2×10⁴ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الضغط المطلق Pabs عند هذا العمق.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pabs = P0 + ρ·g·h",
+        "P0 + ρgh"
+       ],
+       "antiKeys": [
+        "Pabs = P0 − ρgh",
+        "Pabs = ρgh"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pabs = 100000 + 20000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100000",
+        "20000"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.2×10⁵ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 120000.0,
+      "unit": "Pa",
+      "text": "1.2×10⁵ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة F التي يؤثّر بها السائل والجوّ على الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = P·S",
+        "Pabs·S"
+       ],
+       "antiKeys": [
+        "F = P/S",
+        "F = S/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 120000·0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "120000",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 6×10⁴ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 60000.0,
+      "unit": "N",
+      "text": "6×10⁴ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الضغط الهيدروستاتيكي: P = ρgh · Pabs = P0 + ρgh · F = Pabs·S. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الضغط)",
+    "book": "الضغط الزائد P = ρ·g·h · الضغط المطلق Pabs = P0 + ρ·g·h · القوة F = P·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الضغط المطلق (F ∝ Pabs)."
+   ]
+  },
+  {
+   "id": 23507,
+   "templateId": "U1.L4.P02",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "خزّان مملوء بسائل كثافته ρ = 1000 kg·m⁻³. عند عمق h = 10 m توجد فتحة مسطّحة مساحتها S = 0.2 m². الضغط الجوي فوق السطح P0 = 100000 Pa. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10⁵ Pa — 10 درجة",
+    "٢) 2×10⁵ Pa — 10 درجة",
+    "٣) 4×10⁴ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.2,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = ρ·g·h",
+      "ρ·g·h"
+     ],
+     "antiKeys": [
+      "P = ρ·g/h",
+      "P = ρ·h/g"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: P = 1000·10·10",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "10"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10⁵ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pabs = P0 + ρ·g·h",
+      "P0 + ρgh"
+     ],
+     "antiKeys": [
+      "Pabs = P0 − ρgh",
+      "Pabs = ρgh"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pabs = 100000 + 100000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100000",
+      "100000"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2×10⁵ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = P·S",
+      "Pabs·S"
+     ],
+     "antiKeys": [
+      "F = P/S",
+      "F = S/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 200000·0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200000",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4×10⁴ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الضغط الزائد (الناتج عن السائل وحده) عند العمق h.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = ρ·g·h",
+        "ρ·g·h"
+       ],
+       "antiKeys": [
+        "P = ρ·g/h",
+        "P = ρ·h/g"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: P = 1000·10·10",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "10"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10⁵ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 100000.0,
+      "unit": "Pa",
+      "text": "10⁵ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الضغط المطلق Pabs عند هذا العمق.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pabs = P0 + ρ·g·h",
+        "P0 + ρgh"
+       ],
+       "antiKeys": [
+        "Pabs = P0 − ρgh",
+        "Pabs = ρgh"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pabs = 100000 + 100000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100000",
+        "100000"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2×10⁵ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 200000.0,
+      "unit": "Pa",
+      "text": "2×10⁵ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة F التي يؤثّر بها السائل والجوّ على الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = P·S",
+        "Pabs·S"
+       ],
+       "antiKeys": [
+        "F = P/S",
+        "F = S/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 200000·0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200000",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4×10⁴ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 40000.0,
+      "unit": "N",
+      "text": "4×10⁴ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.2,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الضغط الهيدروستاتيكي: P = ρgh · Pabs = P0 + ρgh · F = Pabs·S. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الضغط)",
+    "book": "الضغط الزائد P = ρ·g·h · الضغط المطلق Pabs = P0 + ρ·g·h · القوة F = P·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الضغط المطلق (F ∝ Pabs)."
+   ]
+  },
+  {
+   "id": 23508,
+   "templateId": "U1.L4.P02",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "خزّان مملوء بسائل كثافته ρ = 1000 kg·m⁻³. عند عمق h = 2 m توجد فتحة مسطّحة مساحتها S = 0.2 m². الضغط الجوي فوق السطح P0 = 100000 Pa. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁴ Pa — 10 درجة",
+    "٢) 1.2×10⁵ Pa — 10 درجة",
+    "٣) 2.4×10⁴ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.2,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = ρ·g·h",
+      "ρ·g·h"
+     ],
+     "antiKeys": [
+      "P = ρ·g/h",
+      "P = ρ·h/g"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: P = 1000·10·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁴ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pabs = P0 + ρ·g·h",
+      "P0 + ρgh"
+     ],
+     "antiKeys": [
+      "Pabs = P0 − ρgh",
+      "Pabs = ρgh"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pabs = 100000 + 20000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100000",
+      "20000"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.2×10⁵ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = P·S",
+      "Pabs·S"
+     ],
+     "antiKeys": [
+      "F = P/S",
+      "F = S/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 120000·0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "120000",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.4×10⁴ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الضغط الزائد (الناتج عن السائل وحده) عند العمق h.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = ρ·g·h",
+        "ρ·g·h"
+       ],
+       "antiKeys": [
+        "P = ρ·g/h",
+        "P = ρ·h/g"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: P = 1000·10·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁴ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20000.0,
+      "unit": "Pa",
+      "text": "2×10⁴ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الضغط المطلق Pabs عند هذا العمق.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pabs = P0 + ρ·g·h",
+        "P0 + ρgh"
+       ],
+       "antiKeys": [
+        "Pabs = P0 − ρgh",
+        "Pabs = ρgh"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pabs = 100000 + 20000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100000",
+        "20000"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.2×10⁵ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 120000.0,
+      "unit": "Pa",
+      "text": "1.2×10⁵ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة F التي يؤثّر بها السائل والجوّ على الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = P·S",
+        "Pabs·S"
+       ],
+       "antiKeys": [
+        "F = P/S",
+        "F = S/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 120000·0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "120000",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.4×10⁴ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 24000.0,
+      "unit": "N",
+      "text": "2.4×10⁴ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.2,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الضغط الهيدروستاتيكي: P = ρgh · Pabs = P0 + ρgh · F = Pabs·S. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الضغط)",
+    "book": "الضغط الزائد P = ρ·g·h · الضغط المطلق Pabs = P0 + ρ·g·h · القوة F = P·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الضغط المطلق (F ∝ Pabs)."
+   ]
+  },
+  {
+   "id": 23509,
+   "templateId": "U1.L4.P02",
+   "unit": "U1",
+   "chapter": "U1C4",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "خزّان مملوء بسائل كثافته ρ = 1000 kg·m⁻³. عند عمق h = 5 m توجد فتحة مسطّحة مساحتها S = 0.1 m². الضغط الجوي فوق السطح P0 = 100000 Pa. نأخذ g = 10 m·s⁻².",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 5×10⁴ Pa — 10 درجة",
+    "٢) 1.5×10⁵ Pa — 10 درجة",
+    "٣) 1.5×10⁴ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = ρ·g·h",
+      "ρ·g·h"
+     ],
+     "antiKeys": [
+      "P = ρ·g/h",
+      "P = ρ·h/g"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: P = 1000·10·5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 5×10⁴ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pabs = P0 + ρ·g·h",
+      "P0 + ρgh"
+     ],
+     "antiKeys": [
+      "Pabs = P0 − ρgh",
+      "Pabs = ρgh"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pabs = 100000 + 50000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100000",
+      "50000"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.5×10⁵ Pa",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = P·S",
+      "Pabs·S"
+     ],
+     "antiKeys": [
+      "F = P/S",
+      "F = S/P"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 150000·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "150000",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.5×10⁴ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الضغط الزائد (الناتج عن السائل وحده) عند العمق h.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الضغط الزائد في مائع ساكن: P = ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = ρ·g·h",
+        "ρ·g·h"
+       ],
+       "antiKeys": [
+        "P = ρ·g/h",
+        "P = ρ·h/g"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: P = 1000·10·5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 5×10⁴ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50000.0,
+      "unit": "Pa",
+      "text": "5×10⁴ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الضغط المطلق Pabs عند هذا العمق.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pabs = P0 + ρ·g·h",
+        "P0 + ρgh"
+       ],
+       "antiKeys": [
+        "Pabs = P0 − ρgh",
+        "Pabs = ρgh"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pabs = 100000 + 50000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100000",
+        "50000"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.5×10⁵ Pa",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 150000.0,
+      "unit": "Pa",
+      "text": "1.5×10⁵ Pa",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب القوة F التي يؤثّر بها السائل والجوّ على الفتحة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: القوة الناتجة عن الضغط على مساحة: F = Pabs·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = P·S",
+        "Pabs·S"
+       ],
+       "antiKeys": [
+        "F = P/S",
+        "F = S/P"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 150000·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "150000",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.5×10⁴ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 15000.0,
+      "unit": "N",
+      "text": "1.5×10⁴ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الضغط الهيدروستاتيكي: P = ρgh · Pabs = P0 + ρgh · F = Pabs·S. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L4 — ميكانيك الموائع (الضغط)",
+    "book": "الضغط الزائد P = ρ·g·h · الضغط المطلق Pabs = P0 + ρ·g·h · القوة F = P·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الضغط المطلق (F ∝ Pabs)."
+   ]
+  },
+  {
+   "id": 23510,
+   "templateId": "U1.L5.P02",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسيم طاقة سكونه E0 = 40 MeV يتحرّك بسرعة نسبتها β = v/c = 0.6.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.25 — 10 درجة",
+    "٢) 50 MeV — 10 درجة",
+    "٣) 10 MeV — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 40.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1−β²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1 − β²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.6"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.25",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = γ·E0",
+      "γ·m·c²"
+     ],
+     "antiKeys": [
+      "E = E0/γ",
+      "E = γ²·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: E = 1.25·40",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "40"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 50 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = (γ − 1)·E0",
+      "E − E0"
+     ],
+     "antiKeys": [
+      "Ek = γ·E0",
+      "Ek = (1 − γ)·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·40",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "40"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 10 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1−β²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1 − β²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.6"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.25",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "",
+      "text": "1.25",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الطاقة الكلية E للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = γ·E0",
+        "γ·m·c²"
+       ],
+       "antiKeys": [
+        "E = E0/γ",
+        "E = γ²·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: E = 1.25·40",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "40"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 50 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "MeV",
+      "text": "50 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 40.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الحركية النسبية Ek للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = (γ − 1)·E0",
+        "E − E0"
+       ],
+       "antiKeys": [
+        "Ek = γ·E0",
+        "Ek = (1 − γ)·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·40",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "40"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 10 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "MeV",
+      "text": "10 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الطاقة النسبية: γ = 1/√(1−β²) · E = γ·E0 · Ek = (γ−1)·E0. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − β²) · E = γ·E0 · Ek = (γ − 1)·E0 (حيث E0 = m·c²)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "β مختار لعامل لورنتز نظيف (β=0.6 ⇒ γ=1.25)؛ غير النظيف يُرفض تلقائياً.",
+    "الجزء ٢ متابعة على γ (E ∝ γ)."
+   ]
+  },
+  {
+   "id": 23512,
+   "templateId": "U1.L5.P02",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسيم طاقة سكونه E0 = 80 MeV يتحرّك بسرعة نسبتها β = v/c = 0.6.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.25 — 10 درجة",
+    "٢) 100 MeV — 10 درجة",
+    "٣) 20 MeV — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 80.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1−β²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1 − β²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.6"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.25",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = γ·E0",
+      "γ·m·c²"
+     ],
+     "antiKeys": [
+      "E = E0/γ",
+      "E = γ²·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: E = 1.25·80",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "80"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 100 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = (γ − 1)·E0",
+      "E − E0"
+     ],
+     "antiKeys": [
+      "Ek = γ·E0",
+      "Ek = (1 − γ)·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·80",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "80"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 20 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1−β²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1 − β²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.6"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.25",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "",
+      "text": "1.25",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الطاقة الكلية E للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = γ·E0",
+        "γ·m·c²"
+       ],
+       "antiKeys": [
+        "E = E0/γ",
+        "E = γ²·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: E = 1.25·80",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "80"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 100 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 100.0,
+      "unit": "MeV",
+      "text": "100 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 80.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الحركية النسبية Ek للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = (γ − 1)·E0",
+        "E − E0"
+       ],
+       "antiKeys": [
+        "Ek = γ·E0",
+        "Ek = (1 − γ)·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·80",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "80"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 20 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "MeV",
+      "text": "20 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الطاقة النسبية: γ = 1/√(1−β²) · E = γ·E0 · Ek = (γ−1)·E0. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − β²) · E = γ·E0 · Ek = (γ − 1)·E0 (حيث E0 = m·c²)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "β مختار لعامل لورنتز نظيف (β=0.6 ⇒ γ=1.25)؛ غير النظيف يُرفض تلقائياً.",
+    "الجزء ٢ متابعة على γ (E ∝ γ)."
+   ]
+  },
+  {
+   "id": 23516,
+   "templateId": "U1.L5.P02",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسيم طاقة سكونه E0 = 200 MeV يتحرّك بسرعة نسبتها β = v/c = 0.6.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.25 — 10 درجة",
+    "٢) 250 MeV — 10 درجة",
+    "٣) 50 MeV — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 200.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1−β²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1 − β²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.6"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.25",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = γ·E0",
+      "γ·m·c²"
+     ],
+     "antiKeys": [
+      "E = E0/γ",
+      "E = γ²·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: E = 1.25·200",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 250 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = (γ − 1)·E0",
+      "E − E0"
+     ],
+     "antiKeys": [
+      "Ek = γ·E0",
+      "Ek = (1 − γ)·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·200",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 50 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1−β²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1 − β²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.6"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.25",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "",
+      "text": "1.25",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الطاقة الكلية E للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = γ·E0",
+        "γ·m·c²"
+       ],
+       "antiKeys": [
+        "E = E0/γ",
+        "E = γ²·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: E = 1.25·200",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 250 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 250.0,
+      "unit": "MeV",
+      "text": "250 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 200.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الحركية النسبية Ek للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = (γ − 1)·E0",
+        "E − E0"
+       ],
+       "antiKeys": [
+        "Ek = γ·E0",
+        "Ek = (1 − γ)·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·200",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 50 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "MeV",
+      "text": "50 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الطاقة النسبية: γ = 1/√(1−β²) · E = γ·E0 · Ek = (γ−1)·E0. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − β²) · E = γ·E0 · Ek = (γ − 1)·E0 (حيث E0 = m·c²)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "β مختار لعامل لورنتز نظيف (β=0.6 ⇒ γ=1.25)؛ غير النظيف يُرفض تلقائياً.",
+    "الجزء ٢ متابعة على γ (E ∝ γ)."
+   ]
+  },
+  {
+   "id": 23518,
+   "templateId": "U1.L5.P02",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسيم طاقة سكونه E0 = 4 MeV يتحرّك بسرعة نسبتها β = v/c = 0.6.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.25 — 10 درجة",
+    "٢) 5 MeV — 10 درجة",
+    "٣) 1 MeV — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1−β²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1 − β²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.6"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.25",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = γ·E0",
+      "γ·m·c²"
+     ],
+     "antiKeys": [
+      "E = E0/γ",
+      "E = γ²·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: E = 1.25·4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = (γ − 1)·E0",
+      "E − E0"
+     ],
+     "antiKeys": [
+      "Ek = γ·E0",
+      "Ek = (1 − γ)·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1−β²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1 − β²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.6"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.25",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "",
+      "text": "1.25",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الطاقة الكلية E للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = γ·E0",
+        "γ·m·c²"
+       ],
+       "antiKeys": [
+        "E = E0/γ",
+        "E = γ²·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: E = 1.25·4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "MeV",
+      "text": "5 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الحركية النسبية Ek للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = (γ − 1)·E0",
+        "E − E0"
+       ],
+       "antiKeys": [
+        "Ek = γ·E0",
+        "Ek = (1 − γ)·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "MeV",
+      "text": "1 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الطاقة النسبية: γ = 1/√(1−β²) · E = γ·E0 · Ek = (γ−1)·E0. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − β²) · E = γ·E0 · Ek = (γ − 1)·E0 (حيث E0 = m·c²)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "β مختار لعامل لورنتز نظيف (β=0.6 ⇒ γ=1.25)؛ غير النظيف يُرفض تلقائياً.",
+    "الجزء ٢ متابعة على γ (E ∝ γ)."
+   ]
+  },
+  {
+   "id": 23519,
+   "templateId": "U1.L5.P02",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسيم طاقة سكونه E0 = 8 MeV يتحرّك بسرعة نسبتها β = v/c = 0.6.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.25 — 10 درجة",
+    "٢) 10 MeV — 10 درجة",
+    "٣) 2 MeV — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 8.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1−β²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1 − β²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.6"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.25",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = γ·E0",
+      "γ·m·c²"
+     ],
+     "antiKeys": [
+      "E = E0/γ",
+      "E = γ²·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: E = 1.25·8",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "8"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = (γ − 1)·E0",
+      "E − E0"
+     ],
+     "antiKeys": [
+      "Ek = γ·E0",
+      "Ek = (1 − γ)·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·8",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "8"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1−β²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1 − β²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.6"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.25",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "",
+      "text": "1.25",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الطاقة الكلية E للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = γ·E0",
+        "γ·m·c²"
+       ],
+       "antiKeys": [
+        "E = E0/γ",
+        "E = γ²·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: E = 1.25·8",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "8"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.0,
+      "unit": "MeV",
+      "text": "10 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 8.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الحركية النسبية Ek للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = (γ − 1)·E0",
+        "E − E0"
+       ],
+       "antiKeys": [
+        "Ek = γ·E0",
+        "Ek = (1 − γ)·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·8",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "8"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "MeV",
+      "text": "2 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الطاقة النسبية: γ = 1/√(1−β²) · E = γ·E0 · Ek = (γ−1)·E0. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − β²) · E = γ·E0 · Ek = (γ − 1)·E0 (حيث E0 = m·c²)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "β مختار لعامل لورنتز نظيف (β=0.6 ⇒ γ=1.25)؛ غير النظيف يُرفض تلقائياً.",
+    "الجزء ٢ متابعة على γ (E ∝ γ)."
+   ]
+  },
+  {
+   "id": 23522,
+   "templateId": "U1.L5.P02",
+   "unit": "U1",
+   "chapter": "U1C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "جسيم طاقة سكونه E0 = 20 MeV يتحرّك بسرعة نسبتها β = v/c = 0.6.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.25 — 10 درجة",
+    "٢) 25 MeV — 10 درجة",
+    "٣) 5 MeV — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 20.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "γ = 1/√(1 − β²)",
+      "1/√(1−β²)"
+     ],
+     "antiKeys": [
+      "γ = √(1 − β²)",
+      "γ = 1 − β²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.6"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.25",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E = γ·E0",
+      "γ·m·c²"
+     ],
+     "antiKeys": [
+      "E = E0/γ",
+      "E = γ²·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: E = 1.25·20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 25 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = (γ − 1)·E0",
+      "E − E0"
+     ],
+     "antiKeys": [
+      "Ek = γ·E0",
+      "Ek = (1 − γ)·E0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·20",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.25",
+      "20"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 5 MeV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب عامل لورنتز γ للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: عامل لورنتز: γ = 1/√(1 − β²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "γ = 1/√(1 − β²)",
+        "1/√(1−β²)"
+       ],
+       "antiKeys": [
+        "γ = √(1 − β²)",
+        "γ = 1 − β²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: γ = 1/√(1 − 0.6²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.6"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.25",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.25,
+      "unit": "",
+      "text": "1.25",
+      "tolerance": 0.02,
+      "unitRequired": false
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الطاقة الكلية E للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الطاقة الكلية النسبية: E = γ·E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E = γ·E0",
+        "γ·m·c²"
+       ],
+       "antiKeys": [
+        "E = E0/γ",
+        "E = γ²·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: E = 1.25·20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 25 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 25.0,
+      "unit": "MeV",
+      "text": "25 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 20.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الطاقة الحركية النسبية Ek للجسيم.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = (γ − 1)·E0",
+        "E − E0"
+       ],
+       "antiKeys": [
+        "Ek = γ·E0",
+        "Ek = (1 − γ)·E0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ek = (1.25 − 1)·20",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.25",
+        "20"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 5 MeV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "MeV",
+      "text": "5 MeV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "الطاقة النسبية: γ = 1/√(1−β²) · E = γ·E0 · Ek = (γ−1)·E0. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — النسبية الخاصة",
+    "book": "γ = 1/√(1 − β²) · E = γ·E0 · Ek = (γ − 1)·E0 (حيث E0 = m·c²)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "β مختار لعامل لورنتز نظيف (β=0.6 ⇒ γ=1.25)؛ غير النظيف يُرفض تلقائياً.",
+    "الجزء ٢ متابعة على γ (E ∝ γ)."
    ]
   }
  ]

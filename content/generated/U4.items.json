@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 707,
+  "poolSize": 748,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 158,
+  "partsPool": 199,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -10689,6 +10689,1656 @@
    "reviewNotes": [
     "قيد λ < λ0 يضمن انتزاعاً؛ λ0 وW0 مختاران لأرقام نظيفة.",
     "الجزء ٢ متابعة على λ0 بالقوة −١ (f0 = c/λ0)."
+   ]
+  },
+  {
+   "id": 23553,
+   "templateId": "U4.L1.P02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "ينتقل إلكترون في ذرّة الهدروجين (نموذج بور) من المستوى ni = 4 إلى المستوى nf = 1 فيصدر فوتوناً. طاقة المستوى E_n = −13.6/n² eV، وh·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 12.8 eV — 10 درجة",
+    "٢) 97.3 nm — 10 درجة",
+    "٣) 3.08×10¹⁵ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1245.44,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 2.99684e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = 13.6(1/nf² − 1/ni²)",
+      "E_i − E_f"
+     ],
+     "antiKeys": [
+      "ΔE = 13.6(1/ni² − 1/nf²)",
+      "ΔE = 13.6/ni²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/1² − 1/4²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 12.8 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ = 1240/12.75",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "12.75"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 97.3 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = c/λ",
+      "c/λ"
+     ],
+     "antiKeys": [
+      "f = λ/c",
+      "f = c·λ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f = 3×10⁸/(97.2549×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "97.2549"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3.08×10¹⁵ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة الفوتون المنبعث ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = 13.6(1/nf² − 1/ni²)",
+        "E_i − E_f"
+       ],
+       "antiKeys": [
+        "ΔE = 13.6(1/ni² − 1/nf²)",
+        "ΔE = 13.6/ni²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/1² − 1/4²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 12.8 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 12.8,
+      "unit": "eV",
+      "text": "12.8 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول موجة الفوتون المنبعث λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ = 1240/12.75",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "12.75"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 97.3 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 97.3,
+      "unit": "nm",
+      "text": "97.3 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1245.44,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر الفوتون f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = c/λ",
+        "c/λ"
+       ],
+       "antiKeys": [
+        "f = λ/c",
+        "f = c·λ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f = 3×10⁸/(97.2549×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "97.2549"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3.08×10¹⁵ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3080000000000000.0,
+      "unit": "Hz",
+      "text": "3.08×10¹⁵ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 2.99684e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور: ΔE = 13.6(1/nf²−1/ni²) · λ = h·c/ΔE · f = c/λ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — نموذج بور لذرّة الهدروجين",
+    "book": "ΔE = 13.6·(1/nf² − 1/ni²) eV · λ = h·c/ΔE (1240 eV·nm) · f = c/λ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيد ni > nf يضمن انبعاثاً (طاقة موجبة).",
+    "سلسلة متابعة: λ ∝ 1/ΔE و f ∝ 1/λ."
+   ]
+  },
+  {
+   "id": 23554,
+   "templateId": "U4.L1.P02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "ينتقل إلكترون في ذرّة الهدروجين (نموذج بور) من المستوى ni = 3 إلى المستوى nf = 2 فيصدر فوتوناً. طاقة المستوى E_n = −13.6/n² eV، وh·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.89 eV — 10 درجة",
+    "٢) 656 nm — 10 درجة",
+    "٣) 4.57×10¹⁴ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1239.84,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 2.99792e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = 13.6(1/nf² − 1/ni²)",
+      "E_i − E_f"
+     ],
+     "antiKeys": [
+      "ΔE = 13.6(1/ni² − 1/nf²)",
+      "ΔE = 13.6/ni²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/2² − 1/3²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2",
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.89 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ = 1240/1.8889",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.8889"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 656 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = c/λ",
+      "c/λ"
+     ],
+     "antiKeys": [
+      "f = λ/c",
+      "f = c·λ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f = 3×10⁸/(656.4706×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "656.4706"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4.57×10¹⁴ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة الفوتون المنبعث ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = 13.6(1/nf² − 1/ni²)",
+        "E_i − E_f"
+       ],
+       "antiKeys": [
+        "ΔE = 13.6(1/ni² − 1/nf²)",
+        "ΔE = 13.6/ni²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/2² − 1/3²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2",
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.89 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.89,
+      "unit": "eV",
+      "text": "1.89 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول موجة الفوتون المنبعث λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ = 1240/1.8889",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.8889"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 656 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 656.0,
+      "unit": "nm",
+      "text": "656 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1239.84,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر الفوتون f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = c/λ",
+        "c/λ"
+       ],
+       "antiKeys": [
+        "f = λ/c",
+        "f = c·λ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f = 3×10⁸/(656.4706×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "656.4706"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4.57×10¹⁴ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 457000000000000.0,
+      "unit": "Hz",
+      "text": "4.57×10¹⁴ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 2.99792e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور: ΔE = 13.6(1/nf²−1/ni²) · λ = h·c/ΔE · f = c/λ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — نموذج بور لذرّة الهدروجين",
+    "book": "ΔE = 13.6·(1/nf² − 1/ni²) eV · λ = h·c/ΔE (1240 eV·nm) · f = c/λ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيد ni > nf يضمن انبعاثاً (طاقة موجبة).",
+    "سلسلة متابعة: λ ∝ 1/ΔE و f ∝ 1/λ."
+   ]
+  },
+  {
+   "id": 23555,
+   "templateId": "U4.L1.P02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "ينتقل إلكترون في ذرّة الهدروجين (نموذج بور) من المستوى ni = 2 إلى المستوى nf = 1 فيصدر فوتوناً. طاقة المستوى E_n = −13.6/n² eV، وh·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10.2 eV — 10 درجة",
+    "٢) 122 nm — 10 درجة",
+    "٣) 2.47×10¹⁵ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1244.3999999999999,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.0134e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = 13.6(1/nf² − 1/ni²)",
+      "E_i − E_f"
+     ],
+     "antiKeys": [
+      "ΔE = 13.6(1/ni² − 1/nf²)",
+      "ΔE = 13.6/ni²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/1² − 1/2²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10.2 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ = 1240/10.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10.2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 122 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = c/λ",
+      "c/λ"
+     ],
+     "antiKeys": [
+      "f = λ/c",
+      "f = c·λ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f = 3×10⁸/(121.5686×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "121.5686"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.47×10¹⁵ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة الفوتون المنبعث ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = 13.6(1/nf² − 1/ni²)",
+        "E_i − E_f"
+       ],
+       "antiKeys": [
+        "ΔE = 13.6(1/ni² − 1/nf²)",
+        "ΔE = 13.6/ni²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/1² − 1/2²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10.2 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 10.2,
+      "unit": "eV",
+      "text": "10.2 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول موجة الفوتون المنبعث λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ = 1240/10.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10.2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 122 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 122.0,
+      "unit": "nm",
+      "text": "122 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1244.3999999999999,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر الفوتون f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = c/λ",
+        "c/λ"
+       ],
+       "antiKeys": [
+        "f = λ/c",
+        "f = c·λ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f = 3×10⁸/(121.5686×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "121.5686"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.47×10¹⁵ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2470000000000000.0,
+      "unit": "Hz",
+      "text": "2.47×10¹⁵ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.0134e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور: ΔE = 13.6(1/nf²−1/ni²) · λ = h·c/ΔE · f = c/λ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — نموذج بور لذرّة الهدروجين",
+    "book": "ΔE = 13.6·(1/nf² − 1/ni²) eV · λ = h·c/ΔE (1240 eV·nm) · f = c/λ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيد ni > nf يضمن انبعاثاً (طاقة موجبة).",
+    "سلسلة متابعة: λ ∝ 1/ΔE و f ∝ 1/λ."
+   ]
+  },
+  {
+   "id": 23557,
+   "templateId": "U4.L1.P02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "ينتقل إلكترون في ذرّة الهدروجين (نموذج بور) من المستوى ni = 3 إلى المستوى nf = 1 فيصدر فوتوناً. طاقة المستوى E_n = −13.6/n² eV، وh·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 12.1 eV — 10 درجة",
+    "٢) 103 nm — 10 درجة",
+    "٣) 2.92×10¹⁵ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1246.3,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.0076e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = 13.6(1/nf² − 1/ni²)",
+      "E_i − E_f"
+     ],
+     "antiKeys": [
+      "ΔE = 13.6(1/ni² − 1/nf²)",
+      "ΔE = 13.6/ni²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/1² − 1/3²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 12.1 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ = 1240/12.0889",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "12.0889"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 103 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = c/λ",
+      "c/λ"
+     ],
+     "antiKeys": [
+      "f = λ/c",
+      "f = c·λ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f = 3×10⁸/(102.5735×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "102.5735"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.92×10¹⁵ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة الفوتون المنبعث ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = 13.6(1/nf² − 1/ni²)",
+        "E_i − E_f"
+       ],
+       "antiKeys": [
+        "ΔE = 13.6(1/ni² − 1/nf²)",
+        "ΔE = 13.6/ni²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/1² − 1/3²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 12.1 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 12.1,
+      "unit": "eV",
+      "text": "12.1 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول موجة الفوتون المنبعث λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ = 1240/12.0889",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "12.0889"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 103 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 103.0,
+      "unit": "nm",
+      "text": "103 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1246.3,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر الفوتون f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = c/λ",
+        "c/λ"
+       ],
+       "antiKeys": [
+        "f = λ/c",
+        "f = c·λ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f = 3×10⁸/(102.5735×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "102.5735"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.92×10¹⁵ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2920000000000000.0,
+      "unit": "Hz",
+      "text": "2.92×10¹⁵ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.0076e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور: ΔE = 13.6(1/nf²−1/ni²) · λ = h·c/ΔE · f = c/λ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — نموذج بور لذرّة الهدروجين",
+    "book": "ΔE = 13.6·(1/nf² − 1/ni²) eV · λ = h·c/ΔE (1240 eV·nm) · f = c/λ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيد ni > nf يضمن انبعاثاً (طاقة موجبة).",
+    "سلسلة متابعة: λ ∝ 1/ΔE و f ∝ 1/λ."
+   ]
+  },
+  {
+   "id": 23558,
+   "templateId": "U4.L1.P02",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "ينتقل إلكترون في ذرّة الهدروجين (نموذج بور) من المستوى ni = 4 إلى المستوى nf = 2 فيصدر فوتوناً. طاقة المستوى E_n = −13.6/n² eV، وh·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2.55 eV — 10 درجة",
+    "٢) 486 nm — 10 درجة",
+    "٣) 6.17×10¹⁴ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1239.3,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 2.99862e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "ΔE = 13.6(1/nf² − 1/ni²)",
+      "E_i − E_f"
+     ],
+     "antiKeys": [
+      "ΔE = 13.6(1/ni² − 1/nf²)",
+      "ΔE = 13.6/ni²"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/2² − 1/4²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2.55 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h·c/ΔE",
+      "1240/ΔE"
+     ],
+     "antiKeys": [
+      "λ = ΔE/(h·c)",
+      "λ = h·c·ΔE"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ = 1240/2.55",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2.55"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 486 nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = c/λ",
+      "c/λ"
+     ],
+     "antiKeys": [
+      "f = λ/c",
+      "f = c·λ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f = 3×10⁸/(486.2745×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "486.2745"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 6.17×10¹⁴ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة الفوتون المنبعث ΔE بوحدة eV.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "ΔE = 13.6(1/nf² − 1/ni²)",
+        "E_i − E_f"
+       ],
+       "antiKeys": [
+        "ΔE = 13.6(1/ni² − 1/nf²)",
+        "ΔE = 13.6/ni²"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: ΔE = 13.6·(1/2² − 1/4²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2.55 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.55,
+      "unit": "eV",
+      "text": "2.55 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول موجة الفوتون المنبعث λ بوحدة nm.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: علاقة الطاقة بطول الموجة: λ = h·c/ΔE",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h·c/ΔE",
+        "1240/ΔE"
+       ],
+       "antiKeys": [
+        "λ = ΔE/(h·c)",
+        "λ = h·c·ΔE"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ = 1240/2.55",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2.55"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 486 nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 486.0,
+      "unit": "nm",
+      "text": "486 nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1239.3,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر الفوتون f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: العلاقة بين التواتر وطول الموجة: f = c/λ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = c/λ",
+        "c/λ"
+       ],
+       "antiKeys": [
+        "f = λ/c",
+        "f = c·λ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f = 3×10⁸/(486.2745×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "486.2745"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 6.17×10¹⁴ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 617000000000000.0,
+      "unit": "Hz",
+      "text": "6.17×10¹⁴ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 2.99862e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "نموذج بور: ΔE = 13.6(1/nf²−1/ni²) · λ = h·c/ΔE · f = c/λ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — نموذج بور لذرّة الهدروجين",
+    "book": "ΔE = 13.6·(1/nf² − 1/ni²) eV · λ = h·c/ΔE (1240 eV·nm) · f = c/λ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "قيد ni > nf يضمن انبعاثاً (طاقة موجبة).",
+    "سلسلة متابعة: λ ∝ 1/ΔE و f ∝ 1/λ."
    ]
   }
  ]

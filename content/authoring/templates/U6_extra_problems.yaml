@@ -1635,3 +1635,433 @@ templates:
     review_notes:
       - "الجزء ٢ متابعة على الجزء ١ (F ∝ F/ℓ)؛ الجزء ٣ متابعة عليه بسلّم ٠٫٥ (∝ 1/d)."
     approved: false
+
+  # ── ٢٧) الضغط في المائع الساكن (U1C4) — الضغط الزائد · الضغط المطلق · القوة ──
+  - id: U1.L4.P02
+    title: "الضغط الهيدروستاتيكي — مسألة بأجزاء (الضغط الزائد · المطلق · القوة)"
+    chapter: U1C4
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L4 — ميكانيك الموائع (الضغط)"
+      book: "الضغط الزائد P = ρ·g·h · الضغط المطلق Pabs = P0 + ρ·g·h · القوة F = P·S"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      rho: {set: [1000], unit: "kg·m⁻³"}
+      h: {set: [2, 5, 10], unit: m}
+      S: {set: [0.1, 0.2, 0.5], unit: "m²"}
+      P0: {set: [100000], unit: Pa}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      Pg: "rho*g*h"
+      Pabs: "P0 + rho*g*h"
+      F: "(P0 + rho*g*h)*S"
+    stem: "خزّان مملوء بسائل كثافته ρ = {rho} kg·m⁻³. عند عمق h = {h} m توجد فتحة مسطّحة مساحتها S = {S} m². الضغط الجوي فوق السطح P0 = {P0} Pa. نأخذ g = 10 m·s⁻²."
+    parts:
+      - label: "١"
+        ask: "احسب الضغط الزائد (الناتج عن السائل وحده) عند العمق h."
+        unit: "Pa"
+        value: "Pg"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "الضغط الزائد في مائع ساكن: P = ρ·g·h"
+            subst: "P = {rho}·10·{h}"
+            expect: ["{rho}", "{h}"]
+            keys: ["P = ρ·g·h", "ρ·g·h"]
+            anti_keys: ["P = ρ·g/h", "P = ρ·h/g"]
+      - label: "٢"
+        ask: "احسب الضغط المطلق Pabs عند هذا العمق."
+        unit: "Pa"
+        value: "Pabs"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "الضغط المطلق = الجوي + الزائد: Pabs = P0 + ρ·g·h"
+            subst: "Pabs = {P0} + {Pg}"
+            expect: ["{P0}", "{Pg}"]
+            keys: ["Pabs = P0 + ρ·g·h", "P0 + ρgh"]
+            anti_keys: ["Pabs = P0 − ρgh", "Pabs = ρgh"]
+      - label: "٣"
+        ask: "احسب القوة F التي يؤثّر بها السائل والجوّ على الفتحة."
+        unit: "N"
+        value: "F"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: 1}
+        lines:
+          - relation: "القوة الناتجة عن الضغط على مساحة: F = Pabs·S"
+            subst: "F = {Pabs}·{S}"
+            expect: ["{Pabs}", "{S}"]
+            keys: ["F = P·S", "Pabs·S"]
+            anti_keys: ["F = P/S", "F = S/P"]
+    answer_basis: "الضغط الهيدروستاتيكي: P = ρgh · Pabs = P0 + ρgh · F = Pabs·S. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "الجزء ٣ متابعة على الضغط المطلق (F ∝ Pabs)."
+    approved: false
+
+  # ── ٢٨) الطاقة النسبية (U1C5) — عامل لورنتز · الطاقة الكلية · الطاقة الحركية ──
+  - id: U1.L5.P02
+    title: "الطاقة النسبية — مسألة بأجزاء (عامل لورنتز · الطاقة الكلية · الحركية)"
+    chapter: U1C5
+    type: problem
+    difficulty: 4
+    source:
+      lesson: "L5 — النسبية الخاصة"
+      book: "γ = 1/√(1 − β²) · E = γ·E0 · Ek = (γ − 1)·E0 (حيث E0 = m·c²)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      beta: {set: [0.6, 0.8], unit: ""}
+      E0: {set: [4, 8, 20, 40, 80, 200], unit: MeV}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      gamma: "1/sqrt(1-beta**2)"
+      E: "E0/sqrt(1-beta**2)"
+      Ek: "E0*(1/sqrt(1-beta**2) - 1)"
+    stem: "جسيم طاقة سكونه E0 = {E0} MeV يتحرّك بسرعة نسبتها β = v/c = {beta}."
+    parts:
+      - label: "١"
+        ask: "احسب عامل لورنتز γ للجسيم."
+        unit: ""
+        value: "gamma"
+        answer: {format: auto, unit_required: false}
+        lines:
+          - relation: "عامل لورنتز: γ = 1/√(1 − β²)"
+            subst: "γ = 1/√(1 − {beta}²)"
+            expect: ["{beta}"]
+            keys: ["γ = 1/√(1 − β²)", "1/√(1−β²)"]
+            anti_keys: ["γ = √(1 − β²)", "γ = 1 − β²"]
+      - label: "٢"
+        ask: "احسب الطاقة الكلية E للجسيم."
+        unit: "MeV"
+        value: "E"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "الطاقة الكلية النسبية: E = γ·E0"
+            subst: "E = {gamma}·{E0}"
+            expect: ["{gamma}", "{E0}"]
+            keys: ["E = γ·E0", "γ·m·c²"]
+            anti_keys: ["E = E0/γ", "E = γ²·E0"]
+      - label: "٣"
+        ask: "احسب الطاقة الحركية النسبية Ek للجسيم."
+        unit: "MeV"
+        value: "Ek"
+        answer: {format: auto}
+        lines:
+          - relation: "الطاقة الحركية النسبية: Ek = (γ − 1)·E0 = E − E0"
+            subst: "Ek = ({gamma} − 1)·{E0}"
+            expect: ["{gamma}", "{E0}"]
+            keys: ["Ek = (γ − 1)·E0", "E − E0"]
+            anti_keys: ["Ek = γ·E0", "Ek = (1 − γ)·E0"]
+    answer_basis: "الطاقة النسبية: γ = 1/√(1−β²) · E = γ·E0 · Ek = (γ−1)·E0. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "β مختار لعامل لورنتز نظيف (β=0.6 ⇒ γ=1.25)؛ غير النظيف يُرفض تلقائياً."
+      - "الجزء ٢ متابعة على γ (E ∝ γ)."
+    approved: false
+
+  # ── ٢٩) حقل ناقل مستقيم (U2C1) — الحقل · أثر مضاعفة البعد · قوة لورنتز على شحنة ──
+  - id: U2.L1.P02
+    title: "الحقل المغناطيسي لناقل مستقيم — مسألة بأجزاء (الحقل · مضاعفة البعد · قوة لورنتز)"
+    chapter: U2C1
+    type: problem
+    difficulty: 4
+    source:
+      lesson: "L1 — المغناطيسية والحقل المغناطيسي"
+      book: "ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d · قوة لورنتز F = q·v·B"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      I: {set: [2, 5, 10, 20], unit: A}
+      d: {set: [0.1, 0.2, 0.5], unit: m}
+      v: {set: [1000000, 2000000], unit: "m·s⁻¹"}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      B: "2e-7*I/d"
+      Bhalf: "2e-7*I/(2*d)"
+      F: "e_charge*v*(2e-7*I/d)"
+    stem: "ناقل مستقيم طويل يمرّ فيه تيار شدّته I = {I} A. نأخذ μ0 = 4π×10⁻⁷، وإلكترون شحنته e = 1.6×10⁻¹⁹ C."
+    parts:
+      - label: "١"
+        ask: "احسب شدّة الحقل المغناطيسي B على بعد d = {d} m من الناقل."
+        unit: "T"
+        value: "B"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d"
+            subst: "B = 2×10⁻⁷·{I}/{d}"
+            expect: ["{I}", "{d}"]
+            keys: ["B = μ0·I/(2πd)", "2×10⁻⁷·I/d"]
+            anti_keys: ["B = μ0·I·d/(2π)", "B = 2×10⁻⁷·d/I"]
+      - label: "٢"
+        ask: "احسب شدّة الحقل إذا ضوعف البعد عن الناقل (2d)."
+        unit: "T"
+        value: "Bhalf"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B"
+            subst: "B' = 2×10⁻⁷·{I}/(2·{d})"
+            expect: ["{I}", "{d}"]
+            keys: ["B ∝ 1/d", "B' = ½·B"]
+            anti_keys: ["B' = 2·B", "B' = B"]
+      - label: "٣"
+        ask: "احسب قوة لورنتز F المؤثّرة في إلكترون يتحرّك بسرعة v = {v} m·s⁻¹ عمودياً على الحقل عند البعد d."
+        unit: "N"
+        value: "F"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}
+        lines:
+          - relation: "قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B"
+            subst: "F = 1.6×10⁻¹⁹·{v}·{B}"
+            expect: ["{v}", "{B}"]
+            keys: ["F = q·v·B", "e·v·B"]
+            anti_keys: ["F = q·v/B", "F = q·B/v"]
+    answer_basis: "الناقل المستقيم: B = μ0·I/(2πd) · مضاعفة d تنصّف B · F = q·v·B. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "الجزءان ٢ و٣ متابعة على الحقل B (كلاهما ∝ B)."
+    approved: false
+
+  # ── ٣٠) دارة TTM بالتسلسل RLC (U2C5) — الممانعة · التيار المنتج · الاستطاعة ──
+  - id: U2.L5.P02
+    title: "دارة التيار المتناوب بالتسلسل (RLC) — مسألة بأجزاء (الممانعة · التيار · الاستطاعة)"
+    chapter: U2C5
+    type: problem
+    difficulty: 4
+    source:
+      lesson: "L5 — التيار المتناوب الجيبي"
+      book: "Z = √(R² + (XL − XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      R: {set: [30, 60, 90], unit: "Ω"}
+      X: {set: [40, 80, 120], unit: "Ω"}
+      U: {set: [100, 200, 250], unit: V}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      Z: "sqrt(R**2 + X**2)"
+      I: "U/sqrt(R**2 + X**2)"
+      cosf: "R/sqrt(R**2 + X**2)"
+      P: "U*(U/sqrt(R**2 + X**2))*(R/sqrt(R**2 + X**2))"
+    stem: "دارة تسلسلية (مقاومة R = {R} Ω، ومفاعلة صافية |XL − XC| = {X} Ω) موصولة بتوتر منتج U = {U} V بتواتر ثابت."
+    parts:
+      - label: "١"
+        ask: "احسب ممانعة الدارة Z."
+        unit: "Ω"
+        value: "Z"
+        answer: {format: auto}
+        lines:
+          - relation: "ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)"
+            subst: "Z = √({R}² + {X}²)"
+            expect: ["{R}", "{X}"]
+            keys: ["Z = √(R² + (XL−XC)²)", "√(R²+X²)"]
+            anti_keys: ["Z = R + X", "Z = √(R² − X²)"]
+      - label: "٢"
+        ask: "احسب التيار المنتج I في الدارة."
+        unit: "A"
+        value: "I"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: -1}
+        lines:
+          - relation: "قانون أوم للتيار المتناوب: I = U/Z"
+            subst: "I = {U}/{Z}"
+            expect: ["{U}", "{Z}"]
+            keys: ["I = U/Z", "U/Z"]
+            anti_keys: ["I = U·Z", "I = Z/U"]
+      - label: "٣"
+        ask: "احسب الاستطاعة المتوسطة المستهلكة P في الدارة."
+        unit: "W"
+        value: "P"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}
+        lines:
+          - relation: "الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z"
+            subst: "P = {U}·{I}·(R/Z)"
+            expect: ["{U}", "{I}"]
+            keys: ["P = U·I·cosφ", "cosφ = R/Z"]
+            anti_keys: ["P = U·I", "P = U·I·sinφ"]
+    answer_basis: "الدارة RLC: Z = √(R²+(XL−XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "القيم تشكّل ثلاثيات فيثاغورية (3-4-5) ⇒ Z نظيف؛ الأزواج غير المتوافقة تُرفض."
+      - "سلسلة متابعة: I يتبع Z (∝1/Z) و P يتبع I (∝I)."
+    approved: false
+
+  # ── ٣١) المحوّلة والمردود (U2C6) — التوتر الثانوي · الاستطاعة الأولية · الاستطاعة الثانوية ──
+  - id: U2.L6.P02
+    title: "المحوّلة الحقيقية والمردود — مسألة بأجزاء (التوتر · الاستطاعتان)"
+    chapter: U2C6
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L6 — المحوّلات"
+      book: "Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp (المردود η = Ps/Pp)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      Up: {set: [220], unit: V}
+      Np: {set: [1100], unit: ""}
+      Ns: {set: [100, 220, 550], unit: ""}
+      Ip: {set: [2, 3], unit: A}
+      eta: {set: [0.9, 0.95, 1.0], unit: ""}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      Us: "Up*Ns/Np"
+      Pp: "Up*Ip"
+      Ps: "eta*Up*Ip"
+    stem: "محوّلة أوليّها Np = {Np} لفّة موصول بتوتر Up = {Up} V، وثانويّها Ns = {Ns} لفّة. شدّة التيار الأولي Ip = {Ip} A ومردود المحوّلة η = {eta}."
+    parts:
+      - label: "١"
+        ask: "احسب التوتر الثانوي Us."
+        unit: "V"
+        value: "Us"
+        answer: {format: auto}
+        lines:
+          - relation: "علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np"
+            subst: "Us = {Up}·{Ns}/{Np}"
+            expect: ["{Up}", "{Ns}", "{Np}"]
+            keys: ["Us = Up·Ns/Np", "Us/Up = Ns/Np"]
+            anti_keys: ["Us = Up·Np/Ns", "Us = Up + Ns/Np"]
+      - label: "٢"
+        ask: "احسب الاستطاعة الأوليّة Pp الداخلة إلى المحوّلة."
+        unit: "W"
+        value: "Pp"
+        answer: {format: auto}
+        lines:
+          - relation: "الاستطاعة الأوليّة: Pp = Up·Ip"
+            subst: "Pp = {Up}·{Ip}"
+            expect: ["{Up}", "{Ip}"]
+            keys: ["Pp = Up·Ip", "Up·Ip"]
+            anti_keys: ["Pp = Up/Ip", "Pp = Up + Ip"]
+      - label: "٣"
+        ask: "احسب الاستطاعة الثانويّة Ps الخارجة من المحوّلة."
+        unit: "W"
+        value: "Ps"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}
+        lines:
+          - relation: "المردود η = Ps/Pp ⇒ Ps = η·Pp"
+            subst: "Ps = {eta}·{Pp}"
+            expect: ["{eta}", "{Pp}"]
+            keys: ["Ps = η·Pp", "η = Ps/Pp"]
+            anti_keys: ["Ps = Pp/η", "Ps = η + Pp"]
+    answer_basis: "المحوّلة: Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "الجزء ٣ متابعة على الاستطاعة الأوليّة (Ps ∝ Pp)."
+    approved: false
+
+  # ── ٣٢) نموذج بور (U4C1) — طاقة الانتقال · طول الموجة · التواتر ──
+  - id: U4.L1.P02
+    title: "نموذج بور — مسألة بأجزاء (طاقة الانتقال · طول الموجة · التواتر)"
+    chapter: U4C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — نموذج بور لذرّة الهدروجين"
+      book: "ΔE = 13.6·(1/nf² − 1/ni²) eV · λ = h·c/ΔE (1240 eV·nm) · f = c/λ"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      ni: {set: [2, 3, 4], unit: ""}
+      nf: {set: [1, 2], unit: ""}
+    constants_used: {g: 10, pi_sq: 10}
+    constraints:
+      - "ni > nf"
+    compute:
+      dE: "13.6*(1/nf**2 - 1/ni**2)"
+      lam: "1240/(13.6*(1/nf**2 - 1/ni**2))"
+      f: "3e8/((1240/(13.6*(1/nf**2 - 1/ni**2)))*1e-9)"
+    stem: "ينتقل إلكترون في ذرّة الهدروجين (نموذج بور) من المستوى ni = {ni} إلى المستوى nf = {nf} فيصدر فوتوناً. طاقة المستوى E_n = −13.6/n² eV، وh·c = 1240 eV·nm."
+    parts:
+      - label: "١"
+        ask: "احسب طاقة الفوتون المنبعث ΔE بوحدة eV."
+        unit: "eV"
+        value: "dE"
+        answer: {format: auto, round: true, sig: 3}
+        lines:
+          - relation: "طاقة الانتقال: ΔE = E_i − E_f = 13.6·(1/nf² − 1/ni²)"
+            subst: "ΔE = 13.6·(1/{nf}² − 1/{ni}²)"
+            expect: ["{nf}", "{ni}"]
+            keys: ["ΔE = 13.6(1/nf² − 1/ni²)", "E_i − E_f"]
+            anti_keys: ["ΔE = 13.6(1/ni² − 1/nf²)", "ΔE = 13.6/ni²"]
+      - label: "٢"
+        ask: "احسب طول موجة الفوتون المنبعث λ بوحدة nm."
+        unit: "nm"
+        value: "lam"
+        answer: {format: auto, round: true, sig: 3}
+        follow: {depends_on: "١", power: -1}
+        lines:
+          - relation: "علاقة الطاقة بطول الموجة: λ = h·c/ΔE"
+            subst: "λ = 1240/{dE}"
+            expect: ["{dE}"]
+            keys: ["λ = h·c/ΔE", "1240/ΔE"]
+            anti_keys: ["λ = ΔE/(h·c)", "λ = h·c·ΔE"]
+      - label: "٣"
+        ask: "احسب تواتر الفوتون f."
+        unit: "Hz"
+        value: "f"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: -1}
+        lines:
+          - relation: "العلاقة بين التواتر وطول الموجة: f = c/λ"
+            subst: "f = 3×10⁸/({lam}×10⁻⁹)"
+            expect: ["{lam}"]
+            keys: ["f = c/λ", "c/λ"]
+            anti_keys: ["f = λ/c", "f = c·λ"]
+    answer_basis: "نموذج بور: ΔE = 13.6(1/nf²−1/ni²) · λ = h·c/ΔE · f = c/λ. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "قيد ni > nf يضمن انبعاثاً (طاقة موجبة)."
+      - "سلسلة متابعة: λ ∝ 1/ΔE و f ∝ 1/λ."
+    approved: false
+
+  # ── ٣٣) القمر الاصطناعي على ارتفاع (U5C1) — الجاذبية على الارتفاع · السرعة المدارية · الدور ──
+  - id: U5.L1.P02
+    title: "القمر الاصطناعي على ارتفاع — مسألة بأجزاء (الجاذبية · السرعة المدارية · الدور)"
+    chapter: U5C1
+    type: problem
+    difficulty: 4
+    source:
+      lesson: "L1 — الفلك والجاذبية"
+      book: "g(h) = g0·R²/(R+h)² · v = √(g(h)·(R+h)) · T = 2π·(R+h)/v"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      R: {set: [6400000, 3200000], unit: m}
+      k: {set: [1, 2, 3, 4], unit: ""}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      gh: "g/(1+k)**2"
+      v: "sqrt((g/(1+k)**2)*(R + k*R))"
+      T: "2*sqrt(pi_sq)*(R + k*R)/sqrt((g/(1+k)**2)*(R + k*R))"
+    stem: "قمر اصطناعي يدور دائرياً حول كوكب نصف قطره R = {R} m، تسارع الجاذبية على سطحه g0 = 10 m·s⁻²، على ارتفاع يساوي {k} أمثال نصف القطر (h = {k}·R). نأخذ π² = 10."
+    parts:
+      - label: "١"
+        ask: "احسب تسارع الجاذبية g(h) على ارتفاع القمر."
+        unit: "m·s⁻²"
+        value: "gh"
+        answer: {format: auto, round: true, sig: 3}
+        lines:
+          - relation: "تناقص الجاذبية مع الارتفاع: g(h) = g0·R²/(R+h)² = g0/(1+k)²"
+            subst: "g(h) = 10/(1 + {k})²"
+            expect: ["{k}"]
+            keys: ["g(h) = g0·R²/(R+h)²", "g0/(1+k)²"]
+            anti_keys: ["g(h) = g0·(R+h)²/R²", "g(h) = g0·R/(R+h)"]
+      - label: "٢"
+        ask: "احسب السرعة المدارية v للقمر."
+        unit: "m·s⁻¹"
+        value: "v"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 0.5}
+        lines:
+          - relation: "من مساواة الجاذبية بالقوة النابذة: v = √(g(h)·(R+h))"
+            subst: "v = √({gh}·(R + {k}·R))"
+            expect: ["{gh}"]
+            keys: ["v = √(g(h)·(R+h))", "g(h) = v²/(R+h)"]
+            anti_keys: ["v = g(h)·(R+h)", "v = √(g(h)/(R+h))"]
+      - label: "٣"
+        ask: "احسب دور القمر T حول الكوكب."
+        unit: "s"
+        value: "T"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: -1}
+        lines:
+          - relation: "الدور المداري: T = 2π·(R+h)/v"
+            subst: "T = 2π·(R + {k}·R)/{v}"
+            expect: ["{v}"]
+            keys: ["T = 2π·(R+h)/v", "2π(R+h)/v"]
+            anti_keys: ["T = v/(2π(R+h))", "T = 2π·v·(R+h)"]
+    answer_basis: "القمر على ارتفاع: g(h) = g0/(1+k)² · v = √(g(h)·(R+h)) · T = 2π(R+h)/v. سلم ٥/٣/١/١ لكل سطر."
+    review_notes:
+      - "سلسلة متابعة: v يتبع g(h) بالقوة ٠٫٥ و T يتبع v بالقوة −١."
+    approved: false

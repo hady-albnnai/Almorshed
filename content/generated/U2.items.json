@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 707,
+  "poolSize": 748,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 158,
+  "partsPool": 199,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -24498,6 +24498,5886 @@
    },
    "reviewNotes": [
     "الجزء ٢ متابعة على الجزء ١ (F ∝ F/ℓ)؛ الجزء ٣ متابعة عليه بسلّم ٠٫٥ (∝ 1/d)."
+   ]
+  },
+  {
+   "id": 23523,
+   "templateId": "U2.L1.P02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقل مستقيم طويل يمرّ فيه تيار شدّته I = 20 A. نأخذ μ0 = 4π×10⁻⁷، وإلكترون شحنته e = 1.6×10⁻¹⁹ C.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁵ T — 10 درجة",
+    "٢) 10⁻⁵ T — 10 درجة",
+    "٣) 6.4×10⁻¹⁸ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 3.1999999999999995e-13,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·I/(2πd)",
+      "2×10⁻⁷·I/d"
+     ],
+     "antiKeys": [
+      "B = μ0·I·d/(2π)",
+      "B = 2×10⁻⁷·d/I"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·20/0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁵ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B ∝ 1/d",
+      "B' = ½·B"
+     ],
+     "antiKeys": [
+      "B' = 2·B",
+      "B' = B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·20/(2·0.2)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10⁻⁵ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = q·v·B",
+      "e·v·B"
+     ],
+     "antiKeys": [
+      "F = q·v/B",
+      "F = q·B/v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·2000000·0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2000000",
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 6.4×10⁻¹⁸ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة الحقل المغناطيسي B على بعد d = 0.2 m من الناقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·I/(2πd)",
+        "2×10⁻⁷·I/d"
+       ],
+       "antiKeys": [
+        "B = μ0·I·d/(2π)",
+        "B = 2×10⁻⁷·d/I"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·20/0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁵ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2e-05,
+      "unit": "T",
+      "text": "2×10⁻⁵ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل إذا ضوعف البعد عن الناقل (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B ∝ 1/d",
+        "B' = ½·B"
+       ],
+       "antiKeys": [
+        "B' = 2·B",
+        "B' = B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·20/(2·0.2)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10⁻⁵ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1e-05,
+      "unit": "T",
+      "text": "10⁻⁵ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب قوة لورنتز F المؤثّرة في إلكترون يتحرّك بسرعة v = 2000000 m·s⁻¹ عمودياً على الحقل عند البعد d.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = q·v·B",
+        "e·v·B"
+       ],
+       "antiKeys": [
+        "F = q·v/B",
+        "F = q·B/v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·2000000·0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2000000",
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 6.4×10⁻¹⁸ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.4e-18,
+      "unit": "N",
+      "text": "6.4×10⁻¹⁸ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 3.1999999999999995e-13,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقل المستقيم: B = μ0·I/(2πd) · مضاعفة d تنصّف B · F = q·v·B. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل المغناطيسي",
+    "book": "ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d · قوة لورنتز F = q·v·B",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحقل B (كلاهما ∝ B)."
+   ]
+  },
+  {
+   "id": 23524,
+   "templateId": "U2.L1.P02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقل مستقيم طويل يمرّ فيه تيار شدّته I = 5 A. نأخذ μ0 = 4π×10⁻⁷، وإلكترون شحنته e = 1.6×10⁻¹⁹ C.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 5×10⁻⁶ T — 10 درجة",
+    "٢) 2.5×10⁻⁶ T — 10 درجة",
+    "٣) 8×10⁻¹⁹ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.5999999999999997e-13,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·I/(2πd)",
+      "2×10⁻⁷·I/d"
+     ],
+     "antiKeys": [
+      "B = μ0·I·d/(2π)",
+      "B = 2×10⁻⁷·d/I"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·5/0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 5×10⁻⁶ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B ∝ 1/d",
+      "B' = ½·B"
+     ],
+     "antiKeys": [
+      "B' = 2·B",
+      "B' = B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·5/(2·0.2)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.5×10⁻⁶ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = q·v·B",
+      "e·v·B"
+     ],
+     "antiKeys": [
+      "F = q·v/B",
+      "F = q·B/v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000000",
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 8×10⁻¹⁹ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة الحقل المغناطيسي B على بعد d = 0.2 m من الناقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·I/(2πd)",
+        "2×10⁻⁷·I/d"
+       ],
+       "antiKeys": [
+        "B = μ0·I·d/(2π)",
+        "B = 2×10⁻⁷·d/I"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·5/0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 5×10⁻⁶ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5e-06,
+      "unit": "T",
+      "text": "5×10⁻⁶ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل إذا ضوعف البعد عن الناقل (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B ∝ 1/d",
+        "B' = ½·B"
+       ],
+       "antiKeys": [
+        "B' = 2·B",
+        "B' = B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·5/(2·0.2)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.5×10⁻⁶ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.5e-06,
+      "unit": "T",
+      "text": "2.5×10⁻⁶ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب قوة لورنتز F المؤثّرة في إلكترون يتحرّك بسرعة v = 1000000 m·s⁻¹ عمودياً على الحقل عند البعد d.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = q·v·B",
+        "e·v·B"
+       ],
+       "antiKeys": [
+        "F = q·v/B",
+        "F = q·B/v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000000",
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 8×10⁻¹⁹ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8e-19,
+      "unit": "N",
+      "text": "8×10⁻¹⁹ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.5999999999999997e-13,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقل المستقيم: B = μ0·I/(2πd) · مضاعفة d تنصّف B · F = q·v·B. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل المغناطيسي",
+    "book": "ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d · قوة لورنتز F = q·v·B",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحقل B (كلاهما ∝ B)."
+   ]
+  },
+  {
+   "id": 23525,
+   "templateId": "U2.L1.P02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقل مستقيم طويل يمرّ فيه تيار شدّته I = 5 A. نأخذ μ0 = 4π×10⁻⁷، وإلكترون شحنته e = 1.6×10⁻¹⁹ C.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10⁻⁵ T — 10 درجة",
+    "٢) 5×10⁻⁶ T — 10 درجة",
+    "٣) 1.6×10⁻¹⁸ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.5999999999999997e-13,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·I/(2πd)",
+      "2×10⁻⁷·I/d"
+     ],
+     "antiKeys": [
+      "B = μ0·I·d/(2π)",
+      "B = 2×10⁻⁷·d/I"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·5/0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10⁻⁵ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B ∝ 1/d",
+      "B' = ½·B"
+     ],
+     "antiKeys": [
+      "B' = 2·B",
+      "B' = B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·5/(2·0.1)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5×10⁻⁶ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = q·v·B",
+      "e·v·B"
+     ],
+     "antiKeys": [
+      "F = q·v/B",
+      "F = q·B/v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000000",
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.6×10⁻¹⁸ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة الحقل المغناطيسي B على بعد d = 0.1 m من الناقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·I/(2πd)",
+        "2×10⁻⁷·I/d"
+       ],
+       "antiKeys": [
+        "B = μ0·I·d/(2π)",
+        "B = 2×10⁻⁷·d/I"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·5/0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10⁻⁵ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1e-05,
+      "unit": "T",
+      "text": "10⁻⁵ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل إذا ضوعف البعد عن الناقل (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B ∝ 1/d",
+        "B' = ½·B"
+       ],
+       "antiKeys": [
+        "B' = 2·B",
+        "B' = B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·5/(2·0.1)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5×10⁻⁶ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5e-06,
+      "unit": "T",
+      "text": "5×10⁻⁶ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب قوة لورنتز F المؤثّرة في إلكترون يتحرّك بسرعة v = 1000000 m·s⁻¹ عمودياً على الحقل عند البعد d.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = q·v·B",
+        "e·v·B"
+       ],
+       "antiKeys": [
+        "F = q·v/B",
+        "F = q·B/v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000000",
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.6×10⁻¹⁸ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.6e-18,
+      "unit": "N",
+      "text": "1.6×10⁻¹⁸ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.5999999999999997e-13,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقل المستقيم: B = μ0·I/(2πd) · مضاعفة d تنصّف B · F = q·v·B. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل المغناطيسي",
+    "book": "ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d · قوة لورنتز F = q·v·B",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحقل B (كلاهما ∝ B)."
+   ]
+  },
+  {
+   "id": 23526,
+   "templateId": "U2.L1.P02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقل مستقيم طويل يمرّ فيه تيار شدّته I = 5 A. نأخذ μ0 = 4π×10⁻⁷، وإلكترون شحنته e = 1.6×10⁻¹⁹ C.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁶ T — 10 درجة",
+    "٢) 10⁻⁶ T — 10 درجة",
+    "٣) 3.2×10⁻¹⁹ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.6e-13,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·I/(2πd)",
+      "2×10⁻⁷·I/d"
+     ],
+     "antiKeys": [
+      "B = μ0·I·d/(2π)",
+      "B = 2×10⁻⁷·d/I"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·5/0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁶ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B ∝ 1/d",
+      "B' = ½·B"
+     ],
+     "antiKeys": [
+      "B' = 2·B",
+      "B' = B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·5/(2·0.5)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10⁻⁶ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = q·v·B",
+      "e·v·B"
+     ],
+     "antiKeys": [
+      "F = q·v/B",
+      "F = q·B/v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000000",
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3.2×10⁻¹⁹ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة الحقل المغناطيسي B على بعد d = 0.5 m من الناقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·I/(2πd)",
+        "2×10⁻⁷·I/d"
+       ],
+       "antiKeys": [
+        "B = μ0·I·d/(2π)",
+        "B = 2×10⁻⁷·d/I"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·5/0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁶ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2e-06,
+      "unit": "T",
+      "text": "2×10⁻⁶ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل إذا ضوعف البعد عن الناقل (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B ∝ 1/d",
+        "B' = ½·B"
+       ],
+       "antiKeys": [
+        "B' = 2·B",
+        "B' = B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·5/(2·0.5)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10⁻⁶ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1e-06,
+      "unit": "T",
+      "text": "10⁻⁶ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب قوة لورنتز F المؤثّرة في إلكترون يتحرّك بسرعة v = 1000000 m·s⁻¹ عمودياً على الحقل عند البعد d.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = q·v·B",
+        "e·v·B"
+       ],
+       "antiKeys": [
+        "F = q·v/B",
+        "F = q·B/v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000000",
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3.2×10⁻¹⁹ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.2e-19,
+      "unit": "N",
+      "text": "3.2×10⁻¹⁹ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.6e-13,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقل المستقيم: B = μ0·I/(2πd) · مضاعفة d تنصّف B · F = q·v·B. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل المغناطيسي",
+    "book": "ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d · قوة لورنتز F = q·v·B",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحقل B (كلاهما ∝ B)."
+   ]
+  },
+  {
+   "id": 23527,
+   "templateId": "U2.L1.P02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقل مستقيم طويل يمرّ فيه تيار شدّته I = 20 A. نأخذ μ0 = 4π×10⁻⁷، وإلكترون شحنته e = 1.6×10⁻¹⁹ C.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10⁻⁵ T — 10 درجة",
+    "٢) 10⁻⁵ T — 10 درجة",
+    "٣) 3.2×10⁻¹⁸ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.5999999999999997e-13,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·I/(2πd)",
+      "2×10⁻⁷·I/d"
+     ],
+     "antiKeys": [
+      "B = μ0·I·d/(2π)",
+      "B = 2×10⁻⁷·d/I"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·20/0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10⁻⁵ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B ∝ 1/d",
+      "B' = ½·B"
+     ],
+     "antiKeys": [
+      "B' = 2·B",
+      "B' = B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·20/(2·0.2)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 10⁻⁵ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = q·v·B",
+      "e·v·B"
+     ],
+     "antiKeys": [
+      "F = q·v/B",
+      "F = q·B/v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000000",
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3.2×10⁻¹⁸ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة الحقل المغناطيسي B على بعد d = 0.2 m من الناقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·I/(2πd)",
+        "2×10⁻⁷·I/d"
+       ],
+       "antiKeys": [
+        "B = μ0·I·d/(2π)",
+        "B = 2×10⁻⁷·d/I"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·20/0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10⁻⁵ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2e-05,
+      "unit": "T",
+      "text": "2×10⁻⁵ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل إذا ضوعف البعد عن الناقل (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B ∝ 1/d",
+        "B' = ½·B"
+       ],
+       "antiKeys": [
+        "B' = 2·B",
+        "B' = B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·20/(2·0.2)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 10⁻⁵ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1e-05,
+      "unit": "T",
+      "text": "10⁻⁵ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب قوة لورنتز F المؤثّرة في إلكترون يتحرّك بسرعة v = 1000000 m·s⁻¹ عمودياً على الحقل عند البعد d.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = q·v·B",
+        "e·v·B"
+       ],
+       "antiKeys": [
+        "F = q·v/B",
+        "F = q·B/v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000000",
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3.2×10⁻¹⁸ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.2e-18,
+      "unit": "N",
+      "text": "3.2×10⁻¹⁸ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.5999999999999997e-13,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقل المستقيم: B = μ0·I/(2πd) · مضاعفة d تنصّف B · F = q·v·B. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل المغناطيسي",
+    "book": "ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d · قوة لورنتز F = q·v·B",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحقل B (كلاهما ∝ B)."
+   ]
+  },
+  {
+   "id": 23532,
+   "templateId": "U2.L1.P02",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "ناقل مستقيم طويل يمرّ فيه تيار شدّته I = 20 A. نأخذ μ0 = 4π×10⁻⁷، وإلكترون شحنته e = 1.6×10⁻¹⁹ C.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8×10⁻⁶ T — 10 درجة",
+    "٢) 4×10⁻⁶ T — 10 درجة",
+    "٣) 1.28×10⁻¹⁸ N — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.5,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 1.6e-13,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·I/(2πd)",
+      "2×10⁻⁷·I/d"
+     ],
+     "antiKeys": [
+      "B = μ0·I·d/(2π)",
+      "B = 2×10⁻⁷·d/I"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·20/0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8×10⁻⁶ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B ∝ 1/d",
+      "B' = ½·B"
+     ],
+     "antiKeys": [
+      "B' = 2·B",
+      "B' = B"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·20/(2·0.5)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "20",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4×10⁻⁶ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = q·v·B",
+      "e·v·B"
+     ],
+     "antiKeys": [
+      "F = q·v/B",
+      "F = q·B/v"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000000",
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.28×10⁻¹⁸ N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة الحقل المغناطيسي B على بعد d = 0.5 m من الناقل.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: حقل ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·I/(2πd)",
+        "2×10⁻⁷·I/d"
+       ],
+       "antiKeys": [
+        "B = μ0·I·d/(2π)",
+        "B = 2×10⁻⁷·d/I"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: B = 2×10⁻⁷·20/0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8×10⁻⁶ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8e-06,
+      "unit": "T",
+      "text": "8×10⁻⁶ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل إذا ضوعف البعد عن الناقل (2d).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: بما أن B ∝ 1/d فإن مضاعفة البعد تنصّف الحقل: B' = ½·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B ∝ 1/d",
+        "B' = ½·B"
+       ],
+       "antiKeys": [
+        "B' = 2·B",
+        "B' = B"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B' = 2×10⁻⁷·20/(2·0.5)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "20",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4×10⁻⁶ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4e-06,
+      "unit": "T",
+      "text": "4×10⁻⁶ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.5,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب قوة لورنتز F المؤثّرة في إلكترون يتحرّك بسرعة v = 1000000 m·s⁻¹ عمودياً على الحقل عند البعد d.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: قوة لورنتز على شحنة متحركة عمودياً على الحقل: F = q·v·B",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = q·v·B",
+        "e·v·B"
+       ],
+       "antiKeys": [
+        "F = q·v/B",
+        "F = q·B/v"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: F = 1.6×10⁻¹⁹·1000000·0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000000",
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.28×10⁻¹⁸ N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.28e-18,
+      "unit": "N",
+      "text": "1.28×10⁻¹⁸ N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 1.6e-13,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الناقل المستقيم: B = μ0·I/(2πd) · مضاعفة d تنصّف B · F = q·v·B. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل المغناطيسي",
+    "book": "ناقل مستقيم طويل: B = μ0·I/(2π·d) = 2×10⁻⁷·I/d · قوة لورنتز F = q·v·B",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزءان ٢ و٣ متابعة على الحقل B (كلاهما ∝ B)."
+   ]
+  },
+  {
+   "id": 23533,
+   "templateId": "U2.L5.P02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة تسلسلية (مقاومة R = 30 Ω، ومفاعلة صافية |XL − XC| = 40 Ω) موصولة بتوتر منتج U = 200 V بتواتر ثابت.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 50 Ω — 10 درجة",
+    "٢) 4 A — 10 درجة",
+    "٣) 480 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 200.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 120.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Z = √(R² + (XL−XC)²)",
+      "√(R²+X²)"
+     ],
+     "antiKeys": [
+      "Z = R + X",
+      "Z = √(R² − X²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Z = √(30² + 40²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "30",
+      "40"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 50 Ω",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = U/Z",
+      "U/Z"
+     ],
+     "antiKeys": [
+      "I = U·Z",
+      "I = Z/U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 200/50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = U·I·cosφ",
+      "cosφ = R/Z"
+     ],
+     "antiKeys": [
+      "P = U·I",
+      "P = U·I·sinφ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: P = 200·4·(R/Z)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200",
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 480 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب ممانعة الدارة Z.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Z = √(R² + (XL−XC)²)",
+        "√(R²+X²)"
+       ],
+       "antiKeys": [
+        "Z = R + X",
+        "Z = √(R² − X²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Z = √(30² + 40²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "30",
+        "40"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 50 Ω",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "Ω",
+      "text": "50 Ω",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التيار المنتج I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = U/Z",
+        "U/Z"
+       ],
+       "antiKeys": [
+        "I = U·Z",
+        "I = Z/U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 200/50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.0,
+      "unit": "A",
+      "text": "4 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 200.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة المتوسطة المستهلكة P في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = U·I·cosφ",
+        "cosφ = R/Z"
+       ],
+       "antiKeys": [
+        "P = U·I",
+        "P = U·I·sinφ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: P = 200·4·(R/Z)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200",
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 480 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 480.0,
+      "unit": "W",
+      "text": "480 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 120.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة RLC: Z = √(R²+(XL−XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — التيار المتناوب الجيبي",
+    "book": "Z = √(R² + (XL − XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم تشكّل ثلاثيات فيثاغورية (3-4-5) ⇒ Z نظيف؛ الأزواج غير المتوافقة تُرفض.",
+    "سلسلة متابعة: I يتبع Z (∝1/Z) و P يتبع I (∝I)."
+   ]
+  },
+  {
+   "id": 23534,
+   "templateId": "U2.L5.P02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة تسلسلية (مقاومة R = 60 Ω، ومفاعلة صافية |XL − XC| = 80 Ω) موصولة بتوتر منتج U = 100 V بتواتر ثابت.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 100 Ω — 10 درجة",
+    "٢) 1 A — 10 درجة",
+    "٣) 60 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 100.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 60.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Z = √(R² + (XL−XC)²)",
+      "√(R²+X²)"
+     ],
+     "antiKeys": [
+      "Z = R + X",
+      "Z = √(R² − X²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "60",
+      "80"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 100 Ω",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = U/Z",
+      "U/Z"
+     ],
+     "antiKeys": [
+      "I = U·Z",
+      "I = Z/U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 100/100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = U·I·cosφ",
+      "cosφ = R/Z"
+     ],
+     "antiKeys": [
+      "P = U·I",
+      "P = U·I·sinφ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: P = 100·1·(R/Z)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 60 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب ممانعة الدارة Z.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Z = √(R² + (XL−XC)²)",
+        "√(R²+X²)"
+       ],
+       "antiKeys": [
+        "Z = R + X",
+        "Z = √(R² − X²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "60",
+        "80"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 100 Ω",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 100.0,
+      "unit": "Ω",
+      "text": "100 Ω",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التيار المنتج I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = U/Z",
+        "U/Z"
+       ],
+       "antiKeys": [
+        "I = U·Z",
+        "I = Z/U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 100/100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "A",
+      "text": "1 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 100.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة المتوسطة المستهلكة P في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = U·I·cosφ",
+        "cosφ = R/Z"
+       ],
+       "antiKeys": [
+        "P = U·I",
+        "P = U·I·sinφ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: P = 100·1·(R/Z)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 60 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 60.0,
+      "unit": "W",
+      "text": "60 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 60.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة RLC: Z = √(R²+(XL−XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — التيار المتناوب الجيبي",
+    "book": "Z = √(R² + (XL − XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم تشكّل ثلاثيات فيثاغورية (3-4-5) ⇒ Z نظيف؛ الأزواج غير المتوافقة تُرفض.",
+    "سلسلة متابعة: I يتبع Z (∝1/Z) و P يتبع I (∝I)."
+   ]
+  },
+  {
+   "id": 23535,
+   "templateId": "U2.L5.P02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة تسلسلية (مقاومة R = 60 Ω، ومفاعلة صافية |XL − XC| = 80 Ω) موصولة بتوتر منتج U = 200 V بتواتر ثابت.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 100 Ω — 10 درجة",
+    "٢) 2 A — 10 درجة",
+    "٣) 240 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 200.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 120.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Z = √(R² + (XL−XC)²)",
+      "√(R²+X²)"
+     ],
+     "antiKeys": [
+      "Z = R + X",
+      "Z = √(R² − X²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "60",
+      "80"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 100 Ω",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = U/Z",
+      "U/Z"
+     ],
+     "antiKeys": [
+      "I = U·Z",
+      "I = Z/U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 200/100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200",
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = U·I·cosφ",
+      "cosφ = R/Z"
+     ],
+     "antiKeys": [
+      "P = U·I",
+      "P = U·I·sinφ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: P = 200·2·(R/Z)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 240 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب ممانعة الدارة Z.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Z = √(R² + (XL−XC)²)",
+        "√(R²+X²)"
+       ],
+       "antiKeys": [
+        "Z = R + X",
+        "Z = √(R² − X²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "60",
+        "80"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 100 Ω",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 100.0,
+      "unit": "Ω",
+      "text": "100 Ω",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التيار المنتج I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = U/Z",
+        "U/Z"
+       ],
+       "antiKeys": [
+        "I = U·Z",
+        "I = Z/U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 200/100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200",
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "A",
+      "text": "2 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 200.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة المتوسطة المستهلكة P في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = U·I·cosφ",
+        "cosφ = R/Z"
+       ],
+       "antiKeys": [
+        "P = U·I",
+        "P = U·I·sinφ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: P = 200·2·(R/Z)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 240 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 240.0,
+      "unit": "W",
+      "text": "240 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 120.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة RLC: Z = √(R²+(XL−XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — التيار المتناوب الجيبي",
+    "book": "Z = √(R² + (XL − XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم تشكّل ثلاثيات فيثاغورية (3-4-5) ⇒ Z نظيف؛ الأزواج غير المتوافقة تُرفض.",
+    "سلسلة متابعة: I يتبع Z (∝1/Z) و P يتبع I (∝I)."
+   ]
+  },
+  {
+   "id": 23536,
+   "templateId": "U2.L5.P02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة تسلسلية (مقاومة R = 30 Ω، ومفاعلة صافية |XL − XC| = 40 Ω) موصولة بتوتر منتج U = 250 V بتواتر ثابت.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 50 Ω — 10 درجة",
+    "٢) 5 A — 10 درجة",
+    "٣) 750 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 250.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 150.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Z = √(R² + (XL−XC)²)",
+      "√(R²+X²)"
+     ],
+     "antiKeys": [
+      "Z = R + X",
+      "Z = √(R² − X²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Z = √(30² + 40²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "30",
+      "40"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 50 Ω",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = U/Z",
+      "U/Z"
+     ],
+     "antiKeys": [
+      "I = U·Z",
+      "I = Z/U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 250/50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "250",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = U·I·cosφ",
+      "cosφ = R/Z"
+     ],
+     "antiKeys": [
+      "P = U·I",
+      "P = U·I·sinφ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: P = 250·5·(R/Z)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "250",
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 750 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب ممانعة الدارة Z.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Z = √(R² + (XL−XC)²)",
+        "√(R²+X²)"
+       ],
+       "antiKeys": [
+        "Z = R + X",
+        "Z = √(R² − X²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Z = √(30² + 40²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "30",
+        "40"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 50 Ω",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "Ω",
+      "text": "50 Ω",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التيار المنتج I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = U/Z",
+        "U/Z"
+       ],
+       "antiKeys": [
+        "I = U·Z",
+        "I = Z/U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 250/50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "250",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.0,
+      "unit": "A",
+      "text": "5 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 250.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة المتوسطة المستهلكة P في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = U·I·cosφ",
+        "cosφ = R/Z"
+       ],
+       "antiKeys": [
+        "P = U·I",
+        "P = U·I·sinφ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: P = 250·5·(R/Z)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "250",
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 750 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 750.0,
+      "unit": "W",
+      "text": "750 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 150.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة RLC: Z = √(R²+(XL−XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — التيار المتناوب الجيبي",
+    "book": "Z = √(R² + (XL − XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم تشكّل ثلاثيات فيثاغورية (3-4-5) ⇒ Z نظيف؛ الأزواج غير المتوافقة تُرفض.",
+    "سلسلة متابعة: I يتبع Z (∝1/Z) و P يتبع I (∝I)."
+   ]
+  },
+  {
+   "id": 23537,
+   "templateId": "U2.L5.P02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة تسلسلية (مقاومة R = 30 Ω، ومفاعلة صافية |XL − XC| = 40 Ω) موصولة بتوتر منتج U = 100 V بتواتر ثابت.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 50 Ω — 10 درجة",
+    "٢) 2 A — 10 درجة",
+    "٣) 120 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 100.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 60.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Z = √(R² + (XL−XC)²)",
+      "√(R²+X²)"
+     ],
+     "antiKeys": [
+      "Z = R + X",
+      "Z = √(R² − X²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Z = √(30² + 40²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "30",
+      "40"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 50 Ω",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = U/Z",
+      "U/Z"
+     ],
+     "antiKeys": [
+      "I = U·Z",
+      "I = Z/U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 100/50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = U·I·cosφ",
+      "cosφ = R/Z"
+     ],
+     "antiKeys": [
+      "P = U·I",
+      "P = U·I·sinφ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: P = 100·2·(R/Z)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 120 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب ممانعة الدارة Z.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Z = √(R² + (XL−XC)²)",
+        "√(R²+X²)"
+       ],
+       "antiKeys": [
+        "Z = R + X",
+        "Z = √(R² − X²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Z = √(30² + 40²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "30",
+        "40"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 50 Ω",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 50.0,
+      "unit": "Ω",
+      "text": "50 Ω",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التيار المنتج I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = U/Z",
+        "U/Z"
+       ],
+       "antiKeys": [
+        "I = U·Z",
+        "I = Z/U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 100/50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "A",
+      "text": "2 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 100.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة المتوسطة المستهلكة P في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = U·I·cosφ",
+        "cosφ = R/Z"
+       ],
+       "antiKeys": [
+        "P = U·I",
+        "P = U·I·sinφ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: P = 100·2·(R/Z)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 120 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 120.0,
+      "unit": "W",
+      "text": "120 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 60.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة RLC: Z = √(R²+(XL−XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — التيار المتناوب الجيبي",
+    "book": "Z = √(R² + (XL − XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم تشكّل ثلاثيات فيثاغورية (3-4-5) ⇒ Z نظيف؛ الأزواج غير المتوافقة تُرفض.",
+    "سلسلة متابعة: I يتبع Z (∝1/Z) و P يتبع I (∝I)."
+   ]
+  },
+  {
+   "id": 23545,
+   "templateId": "U2.L5.P02",
+   "unit": "U2",
+   "chapter": "U2C5",
+   "type": "problem",
+   "difficulty": 4,
+   "weight": 30,
+   "approved": true,
+   "stem": "دارة تسلسلية (مقاومة R = 60 Ω، ومفاعلة صافية |XL − XC| = 80 Ω) موصولة بتوتر منتج U = 250 V بتواتر ثابت.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 100 Ω — 10 درجة",
+    "٢) 2.5 A — 10 درجة",
+    "٣) 375 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 250.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 150.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Z = √(R² + (XL−XC)²)",
+      "√(R²+X²)"
+     ],
+     "antiKeys": [
+      "Z = R + X",
+      "Z = √(R² − X²)"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "60",
+      "80"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 100 Ω",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "I = U/Z",
+      "U/Z"
+     ],
+     "antiKeys": [
+      "I = U·Z",
+      "I = Z/U"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: I = 250/100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "250",
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.5 A",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "P = U·I·cosφ",
+      "cosφ = R/Z"
+     ],
+     "antiKeys": [
+      "P = U·I",
+      "P = U·I·sinφ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: P = 250·2.5·(R/Z)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "250",
+      "2.5"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 375 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب ممانعة الدارة Z.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: ممانعة الدارة التسلسلية: Z = √(R² + (XL − XC)²)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Z = √(R² + (XL−XC)²)",
+        "√(R²+X²)"
+       ],
+       "antiKeys": [
+        "Z = R + X",
+        "Z = √(R² − X²)"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Z = √(60² + 80²)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "60",
+        "80"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 100 Ω",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 100.0,
+      "unit": "Ω",
+      "text": "100 Ω",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب التيار المنتج I في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: قانون أوم للتيار المتناوب: I = U/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "I = U/Z",
+        "U/Z"
+       ],
+       "antiKeys": [
+        "I = U·Z",
+        "I = Z/U"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: I = 250/100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "250",
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.5 A",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.5,
+      "unit": "A",
+      "text": "2.5 A",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 250.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة المتوسطة المستهلكة P في الدارة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: الاستطاعة المتوسطة: P = U·I·cosφ حيث cosφ = R/Z",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "P = U·I·cosφ",
+        "cosφ = R/Z"
+       ],
+       "antiKeys": [
+        "P = U·I",
+        "P = U·I·sinφ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: P = 250·2.5·(R/Z)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "250",
+        "2.5"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 375 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 375.0,
+      "unit": "W",
+      "text": "375 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 150.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الدارة RLC: Z = √(R²+(XL−XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L5 — التيار المتناوب الجيبي",
+    "book": "Z = √(R² + (XL − XC)²) · I = U/Z · cosφ = R/Z · P = U·I·cosφ",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "القيم تشكّل ثلاثيات فيثاغورية (3-4-5) ⇒ Z نظيف؛ الأزواج غير المتوافقة تُرفض.",
+    "سلسلة متابعة: I يتبع Z (∝1/Z) و P يتبع I (∝I)."
+   ]
+  },
+  {
+   "id": 23546,
+   "templateId": "U2.L6.P02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "محوّلة أوليّها Np = 1100 لفّة موصول بتوتر Up = 220 V، وثانويّها Ns = 550 لفّة. شدّة التيار الأولي Ip = 3 A ومردود المحوّلة η = 1.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 110 V — 10 درجة",
+    "٢) 660 W — 10 درجة",
+    "٣) 660 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Us/Up = Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·550/1100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "550",
+      "1100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 110 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pp = Up·Ip",
+      "Up·Ip"
+     ],
+     "antiKeys": [
+      "Pp = Up/Ip",
+      "Pp = Up + Ip"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pp = 220·3",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 660 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ps = η·Pp",
+      "η = Ps/Pp"
+     ],
+     "antiKeys": [
+      "Ps = Pp/η",
+      "Ps = η + Pp"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ps = 1·660",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "660"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 660 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب التوتر الثانوي Us.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Us/Up = Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·550/1100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "550",
+        "1100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 110 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 110.0,
+      "unit": "V",
+      "text": "110 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الأوليّة Pp الداخلة إلى المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pp = Up·Ip",
+        "Up·Ip"
+       ],
+       "antiKeys": [
+        "Pp = Up/Ip",
+        "Pp = Up + Ip"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pp = 220·3",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 660 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 660.0,
+      "unit": "W",
+      "text": "660 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة الثانويّة Ps الخارجة من المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ps = η·Pp",
+        "η = Ps/Pp"
+       ],
+       "antiKeys": [
+        "Ps = Pp/η",
+        "Ps = η + Pp"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ps = 1·660",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "660"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 660 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 660.0,
+      "unit": "W",
+      "text": "660 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة: Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L6 — المحوّلات",
+    "book": "Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp (المردود η = Ps/Pp)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الاستطاعة الأوليّة (Ps ∝ Pp)."
+   ]
+  },
+  {
+   "id": 23547,
+   "templateId": "U2.L6.P02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "محوّلة أوليّها Np = 1100 لفّة موصول بتوتر Up = 220 V، وثانويّها Ns = 100 لفّة. شدّة التيار الأولي Ip = 2 A ومردود المحوّلة η = 0.9.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 20 V — 10 درجة",
+    "٢) 440 W — 10 درجة",
+    "٣) 396 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.9,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Us/Up = Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·100/1100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "100",
+      "1100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 20 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pp = Up·Ip",
+      "Up·Ip"
+     ],
+     "antiKeys": [
+      "Pp = Up/Ip",
+      "Pp = Up + Ip"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pp = 220·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 440 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ps = η·Pp",
+      "η = Ps/Pp"
+     ],
+     "antiKeys": [
+      "Ps = Pp/η",
+      "Ps = η + Pp"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ps = 0.9·440",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.9",
+      "440"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 396 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب التوتر الثانوي Us.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Us/Up = Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·100/1100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "100",
+        "1100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 20 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "V",
+      "text": "20 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الأوليّة Pp الداخلة إلى المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pp = Up·Ip",
+        "Up·Ip"
+       ],
+       "antiKeys": [
+        "Pp = Up/Ip",
+        "Pp = Up + Ip"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pp = 220·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 440 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 440.0,
+      "unit": "W",
+      "text": "440 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة الثانويّة Ps الخارجة من المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ps = η·Pp",
+        "η = Ps/Pp"
+       ],
+       "antiKeys": [
+        "Ps = Pp/η",
+        "Ps = η + Pp"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ps = 0.9·440",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.9",
+        "440"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 396 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 396.0,
+      "unit": "W",
+      "text": "396 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.9,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة: Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L6 — المحوّلات",
+    "book": "Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp (المردود η = Ps/Pp)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الاستطاعة الأوليّة (Ps ∝ Pp)."
+   ]
+  },
+  {
+   "id": 23548,
+   "templateId": "U2.L6.P02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "محوّلة أوليّها Np = 1100 لفّة موصول بتوتر Up = 220 V، وثانويّها Ns = 100 لفّة. شدّة التيار الأولي Ip = 3 A ومردود المحوّلة η = 1.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 20 V — 10 درجة",
+    "٢) 660 W — 10 درجة",
+    "٣) 660 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Us/Up = Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·100/1100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "100",
+      "1100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 20 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pp = Up·Ip",
+      "Up·Ip"
+     ],
+     "antiKeys": [
+      "Pp = Up/Ip",
+      "Pp = Up + Ip"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pp = 220·3",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 660 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ps = η·Pp",
+      "η = Ps/Pp"
+     ],
+     "antiKeys": [
+      "Ps = Pp/η",
+      "Ps = η + Pp"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ps = 1·660",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "660"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 660 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب التوتر الثانوي Us.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Us/Up = Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·100/1100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "100",
+        "1100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 20 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "V",
+      "text": "20 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الأوليّة Pp الداخلة إلى المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pp = Up·Ip",
+        "Up·Ip"
+       ],
+       "antiKeys": [
+        "Pp = Up/Ip",
+        "Pp = Up + Ip"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pp = 220·3",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 660 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 660.0,
+      "unit": "W",
+      "text": "660 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة الثانويّة Ps الخارجة من المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ps = η·Pp",
+        "η = Ps/Pp"
+       ],
+       "antiKeys": [
+        "Ps = Pp/η",
+        "Ps = η + Pp"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ps = 1·660",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "660"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 660 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 660.0,
+      "unit": "W",
+      "text": "660 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة: Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L6 — المحوّلات",
+    "book": "Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp (المردود η = Ps/Pp)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الاستطاعة الأوليّة (Ps ∝ Pp)."
+   ]
+  },
+  {
+   "id": 23549,
+   "templateId": "U2.L6.P02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "محوّلة أوليّها Np = 1100 لفّة موصول بتوتر Up = 220 V، وثانويّها Ns = 220 لفّة. شدّة التيار الأولي Ip = 3 A ومردود المحوّلة η = 0.9.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 44 V — 10 درجة",
+    "٢) 660 W — 10 درجة",
+    "٣) 594 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.9,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Us/Up = Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·220/1100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "220",
+      "1100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 44 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pp = Up·Ip",
+      "Up·Ip"
+     ],
+     "antiKeys": [
+      "Pp = Up/Ip",
+      "Pp = Up + Ip"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pp = 220·3",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "3"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 660 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ps = η·Pp",
+      "η = Ps/Pp"
+     ],
+     "antiKeys": [
+      "Ps = Pp/η",
+      "Ps = η + Pp"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ps = 0.9·660",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.9",
+      "660"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 594 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب التوتر الثانوي Us.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Us/Up = Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·220/1100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "220",
+        "1100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 44 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 44.0,
+      "unit": "V",
+      "text": "44 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الأوليّة Pp الداخلة إلى المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pp = Up·Ip",
+        "Up·Ip"
+       ],
+       "antiKeys": [
+        "Pp = Up/Ip",
+        "Pp = Up + Ip"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pp = 220·3",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "3"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 660 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 660.0,
+      "unit": "W",
+      "text": "660 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة الثانويّة Ps الخارجة من المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ps = η·Pp",
+        "η = Ps/Pp"
+       ],
+       "antiKeys": [
+        "Ps = Pp/η",
+        "Ps = η + Pp"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ps = 0.9·660",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.9",
+        "660"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 594 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 594.0,
+      "unit": "W",
+      "text": "594 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.9,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة: Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L6 — المحوّلات",
+    "book": "Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp (المردود η = Ps/Pp)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الاستطاعة الأوليّة (Ps ∝ Pp)."
+   ]
+  },
+  {
+   "id": 23551,
+   "templateId": "U2.L6.P02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "محوّلة أوليّها Np = 1100 لفّة موصول بتوتر Up = 220 V، وثانويّها Ns = 220 لفّة. شدّة التيار الأولي Ip = 2 A ومردود المحوّلة η = 0.95.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 44 V — 10 درجة",
+    "٢) 440 W — 10 درجة",
+    "٣) 418 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.95,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Us/Up = Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·220/1100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "220",
+      "1100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 44 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pp = Up·Ip",
+      "Up·Ip"
+     ],
+     "antiKeys": [
+      "Pp = Up/Ip",
+      "Pp = Up + Ip"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pp = 220·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 440 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ps = η·Pp",
+      "η = Ps/Pp"
+     ],
+     "antiKeys": [
+      "Ps = Pp/η",
+      "Ps = η + Pp"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ps = 0.95·440",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.95",
+      "440"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 418 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب التوتر الثانوي Us.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Us/Up = Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·220/1100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "220",
+        "1100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 44 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 44.0,
+      "unit": "V",
+      "text": "44 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الأوليّة Pp الداخلة إلى المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pp = Up·Ip",
+        "Up·Ip"
+       ],
+       "antiKeys": [
+        "Pp = Up/Ip",
+        "Pp = Up + Ip"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pp = 220·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 440 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 440.0,
+      "unit": "W",
+      "text": "440 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة الثانويّة Ps الخارجة من المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ps = η·Pp",
+        "η = Ps/Pp"
+       ],
+       "antiKeys": [
+        "Ps = Pp/η",
+        "Ps = η + Pp"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ps = 0.95·440",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.95",
+        "440"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 418 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 418.0,
+      "unit": "W",
+      "text": "418 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.95,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة: Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L6 — المحوّلات",
+    "book": "Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp (المردود η = Ps/Pp)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الاستطاعة الأوليّة (Ps ∝ Pp)."
+   ]
+  },
+  {
+   "id": 23552,
+   "templateId": "U2.L6.P02",
+   "unit": "U2",
+   "chapter": "U2C6",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "محوّلة أوليّها Np = 1100 لفّة موصول بتوتر Up = 220 V، وثانويّها Ns = 100 لفّة. شدّة التيار الأولي Ip = 2 A ومردود المحوّلة η = 1.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 20 V — 10 درجة",
+    "٢) 440 W — 10 درجة",
+    "٣) 440 W — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 1.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Us = Up·Ns/Np",
+      "Us/Up = Ns/Np"
+     ],
+     "antiKeys": [
+      "Us = Up·Np/Ns",
+      "Us = Up + Ns/Np"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Us = 220·100/1100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "100",
+      "1100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 20 V",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Pp = Up·Ip",
+      "Up·Ip"
+     ],
+     "antiKeys": [
+      "Pp = Up/Ip",
+      "Pp = Up + Ip"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: Pp = 220·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "220",
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 440 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ps = η·Pp",
+      "η = Ps/Pp"
+     ],
+     "antiKeys": [
+      "Ps = Pp/η",
+      "Ps = η + Pp"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Ps = 1·440",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1",
+      "440"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 440 W",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب التوتر الثانوي Us.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: علاقة المحوّلة: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Us = Up·Ns/Np",
+        "Us/Up = Ns/Np"
+       ],
+       "antiKeys": [
+        "Us = Up·Np/Ns",
+        "Us = Up + Ns/Np"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Us = 220·100/1100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "100",
+        "1100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 20 V",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 20.0,
+      "unit": "V",
+      "text": "20 V",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب الاستطاعة الأوليّة Pp الداخلة إلى المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الاستطاعة الأوليّة: Pp = Up·Ip",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Pp = Up·Ip",
+        "Up·Ip"
+       ],
+       "antiKeys": [
+        "Pp = Up/Ip",
+        "Pp = Up + Ip"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: Pp = 220·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "220",
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 440 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 440.0,
+      "unit": "W",
+      "text": "440 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب الاستطاعة الثانويّة Ps الخارجة من المحوّلة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المردود η = Ps/Pp ⇒ Ps = η·Pp",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ps = η·Pp",
+        "η = Ps/Pp"
+       ],
+       "antiKeys": [
+        "Ps = Pp/η",
+        "Ps = η + Pp"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Ps = 1·440",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1",
+        "440"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 440 W",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 440.0,
+      "unit": "W",
+      "text": "440 W",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 1.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "المحوّلة: Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp. سلم ٥/٣/١/١ لكل سطر.",
+   "source": {
+    "lesson": "L6 — المحوّلات",
+    "book": "Us = Up·Ns/Np · Pp = Up·Ip · Ps = η·Pp (المردود η = Ps/Pp)",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٣ متابعة على الاستطاعة الأوليّة (Ps ∝ Pp)."
    ]
   }
  ]
