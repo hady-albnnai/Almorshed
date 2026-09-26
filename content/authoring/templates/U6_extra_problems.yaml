@@ -3154,3 +3154,365 @@ templates:
     review_notes:
       - "الجزء ٢ متابعة بقوّة −1 على Z، والجزء ٣ متابعة بقوّة 2 على I."
     approved: false
+
+  # ══════════ الدفعة السابعة: أنماط جديدة إضافية (توسيع العرض — الجولة ٣) ══════════
+  # ── ٥٢) المتذبذب المرن (U1C1) — مسألة عكسية: ثابت المرونة من الدور ──
+  - id: U1.L1.P05
+    title: "المتذبذب المرن — مسألة عكسية بأجزاء (ثابت المرونة من الدور · التسارع الأعظمي · الطاقة)"
+    chapter: U1C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — من T0 = 2π√(m/k) نجد k = 4π²m/T0² · a_max = (4π²/T0²)·Xm · E = ½kXm²"
+      book: "العلاقة العكسية بين الدور وثابت المرونة"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      m: {set: [0.1, 0.25, 0.4, 0.9, 1.0, 1.6, 2.5], unit: kg}
+      T0v: {set: [1, 2, 4, 5], unit: s}
+      Xm: {set: [0.02, 0.05, 0.1, 0.2], unit: m}
+    constants_used: {pi_sq: 10}
+    compute:
+      k: "4*pi_sq*m/T0v**2"
+      amax: "(4*pi_sq/T0v**2)*Xm"
+      E: "0.5*(4*pi_sq*m/T0v**2)*Xm**2"
+    stem: "متذبذب مرن أفقي كتلته m = {m} kg يهتز بدور T0 = {T0v} s وسعة Xm = {Xm} m دون احتكاك. نأخذ π² = 10."
+    parts:
+      - label: "١"
+        ask: "استنتج ثابت مرونة النابض k ثم احسب قيمته."
+        unit: "N·m⁻¹"
+        value: "k"
+        answer: {format: auto}
+        lines:
+          - relation: "من T0 = 2π√(m/k) ⇒ k = 4π²·m/T0²"
+            subst: "k = 4π²·{m}/{T0v}²"
+            expect: ["{m}", "{T0v}"]
+            keys: ["k = 4π²·m/T0²"]
+            anti_keys: ["k = T0²/(4π²m)", "k = 4π²·m·T0²"]
+      - label: "٢"
+        ask: "احسب التسارع الأعظمي a_max للكتلة."
+        unit: "m·s⁻²"
+        value: "amax"
+        answer: {format: auto}
+        lines:
+          - relation: "a_max = ω0²·Xm = (4π²/T0²)·Xm"
+            subst: "a_max = (4π²/{T0v}²)·{Xm}"
+            expect: ["{T0v}", "{Xm}"]
+            keys: ["a_max = (4π²/T0²)·Xm", "a_max = ω0²·Xm"]
+            anti_keys: ["a_max = ω0·Xm", "a_max = Xm/ω0²"]
+      - label: "٣"
+        ask: "احسب الطاقة الميكانيكية الكلية E للمتذبذب."
+        unit: "J"
+        value: "E"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # E = ½·k·Xm² ⇒ ∝ k
+        lines:
+          - relation: "E = ½·k·Xm²"
+            subst: "E = ½·{k}·{Xm}²"
+            expect: ["{Xm}"]
+            keys: ["E = ½·k·Xm²"]
+            anti_keys: ["E = k·Xm²", "E = ½·k·Xm"]
+    answer_basis: "عكسي: k = 4π²m/T0² · a_max = (4π²/T0²)Xm · E = ½kXm². سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٣ متابعة على ثابت المرونة k (E ∝ k)."
+    approved: false
+
+  # ── ٥٤) الوشيعة اللولبية (U2C1) — الذاتية · التدفق الكلي · الطاقة المغناطيسية ──
+  - id: U2.L1.P04
+    title: "الوشيعة اللولبية — مسألة بأجزاء (المحارضة الذاتية · التدفق الكلي · الطاقة)"
+    chapter: U2C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — محارضة وشيعة لولبية: L = μ0·N²·S/ℓ · Φ = L·I · W = ½·L·I²"
+      book: "μ0 = 4π×10⁻⁷ · S = المقطع"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      Nk: {set: [100, 200, 500, 1000], unit: ""}
+      Scm: {set: [1, 2, 5, 10, 20], unit: "cm²"}
+      ell: {set: [0.1, 0.2, 0.5, 1.0], unit: m}
+      I: {set: [1, 2, 5, 10], unit: A}
+    constants_used: {pi: 3.14159265}
+    compute:
+      L: "4*pi*1e-7*Nk**2*(Scm*1e-4)/ell"
+      Phi: "(4*pi*1e-7*Nk**2*(Scm*1e-4)/ell)*I"
+      W: "0.5*(4*pi*1e-7*Nk**2*(Scm*1e-4)/ell)*I**2"
+    stem: "وشيعة لولبية طويلة عدد لفّاتها N = {Nk}، طولها ℓ = {ell} m، ومساحة مقطعها S = {Scm} cm²، يمرّ فيها تيار I = {I} A. نأخذ μ0 = 4π×10⁻⁷ SI."
+    parts:
+      - label: "١"
+        ask: "احسب المحارضة الذاتية L للوشيعة."
+        unit: "H"
+        value: "L"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "محارضة وشيعة لولبية: L = μ0·N²·S/ℓ"
+            subst: "L = 4π×10⁻⁷·{Nk}²·({Scm}×10⁻⁴)/{ell}"
+            expect: ["{Nk}", "{Scm}", "{ell}"]
+            keys: ["L = μ0·N²·S/ℓ"]
+            anti_keys: ["L = μ0·N·S/ℓ", "L = μ0·N²·ℓ/S"]
+      - label: "٢"
+        ask: "احسب التدفق الكلي Φ عبر الوشيعة عند الشدّة I."
+        unit: "Wb"
+        value: "Phi"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}   # Φ = L·I ⇒ ∝ L
+        lines:
+          - relation: "التدفق الكلي: Φ = L·I"
+            subst: "Φ = {L}·{I}"
+            expect: ["{I}"]
+            keys: ["Φ = L·I"]
+            anti_keys: ["Φ = L/I", "Φ = I/L"]
+      - label: "٣"
+        ask: "احسب الطاقة المغناطيسية W المخزّنة في الوشيعة."
+        unit: "J"
+        value: "W"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: 1}   # W = ½·Φ·I ⇒ ∝ Φ
+        lines:
+          - relation: "الطاقة المخزّنة: W = ½·L·I² = ½·Φ·I"
+            subst: "W = ½·{L}·{I}²"
+            expect: ["{I}"]
+            keys: ["W = ½·L·I²", "W = ½·Φ·I"]
+            anti_keys: ["W = L·I²", "W = ½·L·I"]
+    answer_basis: "الوشيعة اللولبية: L = μ0N²S/ℓ · Φ = L·I · W = ½L·I². سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على L، والجزء ٣ متابعة على Φ."
+    approved: false
+
+  # ── ٥٥) نموذج بور (U4C1) — نصف القطر · السرعة المدارية · طاقة المستوى ──
+  - id: U4.L1.P04
+    title: "نموذج بور — مسألة بأجزاء (نصف القطر المداري · السرعة · طاقة المستوى)"
+    chapter: U4C1
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L1 — مدارات بور: r_n = 0.0529·n² nm · v_n = 2.18×10⁶/n m·s⁻¹ · E_n = −13.6/n² eV"
+      book: "المدار الأول r1 = 0.0529 nm"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      n: {set: [1, 2, 3, 4, 5, 6], unit: ""}
+    constants_used: {}
+    compute:
+      rn: "0.0529*n**2"
+      vn: "2.18e6/n"
+      En: "-13.6/n**2"
+    stem: "ذرّة هيدروجين (نموذج بور) يدور إلكترونها في المستوى n = {n}. نأخذ r1 = 0.0529 nm و v1 = 2.18×10⁶ m·s⁻¹ و E1 = −13.6 eV."
+    parts:
+      - label: "١"
+        ask: "احسب نصف قطر المدار r_n بوحدة nm."
+        unit: "nm"
+        value: "rn"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "نصف القطر المداري: r_n = n²·r1 = 0.0529·n²"
+            subst: "r_n = 0.0529·{n}²"
+            expect: ["{n}"]
+            keys: ["r_n = n²·r1", "r_n = 0.0529·n²"]
+            anti_keys: ["r_n = r1/n²", "r_n = n·r1"]
+      - label: "٢"
+        ask: "احسب سرعة الإلكترون v_n في هذا المدار."
+        unit: "m·s⁻¹"
+        value: "vn"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "السرعة المدارية: v_n = v1/n = 2.18×10⁶/n"
+            subst: "v_n = 2.18×10⁶/{n}"
+            expect: ["{n}"]
+            keys: ["v_n = v1/n"]
+            anti_keys: ["v_n = v1·n", "v_n = v1/n²"]
+      - label: "٣"
+        ask: "احسب طاقة المستوى E_n بوحدة eV."
+        unit: "eV"
+        value: "En"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: -1}   # E_n ∝ 1/n² و r_n ∝ n² ⇒ E_n ∝ 1/r_n
+        lines:
+          - relation: "طاقة المستوى: E_n = E1/n² = −13.6/n²"
+            subst: "E_n = −13.6/{n}²"
+            expect: ["{n}"]
+            keys: ["E_n = −13.6/n²"]
+            anti_keys: ["E_n = −13.6·n²", "E_n = −13.6/n"]
+    answer_basis: "مدارات بور: r_n = 0.0529·n² · v_n = 2.18e6/n · E_n = −13.6/n². سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٣ متابعة بقوّة −1 على نصف القطر r_n (E_n ∝ 1/r_n)."
+    approved: false
+
+  # ── ٥٦) الأثر الكهرضوئي (U4C3) — التيار الكهرضوئي وعدد الفوتونات ──
+  - id: U4.L3.P04
+    title: "الأثر الكهرضوئي — مسألة بأجزاء (طاقة الفوتون · عدد الفوتونات · التيار المشبع)"
+    chapter: U4C3
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L3 — طاقة الفوتون E = h·c/λ · عدد الفوتونات/ثانية N = P/E · التيار I = N·e"
+      book: "افتراض مردود كمومي = 1"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      lam: {set: [200, 300, 400, 500, 620], unit: nm}
+      Pmw: {set: [1, 2, 5, 10, 20, 50, 100], unit: mW}
+    constants_used: {h_planck: 6.63e-34, c_light: 3e8, e_charge: 1.6e-19}
+    compute:
+      Eph: "6.63e-34*3e8/(lam*1e-9)"
+      Nrate: "(Pmw*1e-3)/(6.63e-34*3e8/(lam*1e-9))"
+      I: "((Pmw*1e-3)/(6.63e-34*3e8/(lam*1e-9)))*1.6e-19"
+    stem: "يسقط ضوء أحادي اللون طول موجته λ = {lam} nm واستطاعته P = {Pmw} mW على مهبط كهرضوئي. نأخذ h = 6.63×10⁻³⁴ J·s و c = 3×10⁸ m·s⁻¹ و e = 1.6×10⁻¹⁹ C، ونفترض أنّ كل فوتون يقتلع إلكتروناً."
+    parts:
+      - label: "١"
+        ask: "احسب طاقة الفوتون الساقط E (بالجول)."
+        unit: "J"
+        value: "Eph"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "طاقة الفوتون: E = h·c/λ"
+            subst: "E = 6.63×10⁻³⁴·3×10⁸/({lam}×10⁻⁹)"
+            expect: ["{lam}"]
+            keys: ["E = h·c/λ"]
+            anti_keys: ["E = h·λ/c", "E = λ/(h·c)"]
+      - label: "٢"
+        ask: "احسب عدد الفوتونات N الساقطة في الثانية."
+        unit: "s⁻¹"
+        value: "Nrate"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: -1}   # N = P/E ⇒ ∝ 1/E
+        lines:
+          - relation: "عدد الفوتونات في الثانية: N = P/E"
+            subst: "N = {Pmw}×10⁻³/{Eph}"
+            expect: ["{Pmw}"]
+            keys: ["N = P/E"]
+            anti_keys: ["N = P·E", "N = E/P"]
+      - label: "٣"
+        ask: "احسب التيار الكهرضوئي المشبع I (بفرض قلع إلكترون واحد لكل فوتون)."
+        unit: "A"
+        value: "I"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: 1}   # I = N·e ⇒ ∝ N
+        lines:
+          - relation: "التيار المشبع: I = N·e"
+            subst: "I = {Nrate}·1.6×10⁻¹⁹"
+            expect: ["{Nrate}"]
+            keys: ["I = N·e"]
+            anti_keys: ["I = N/e", "I = e/N"]
+    answer_basis: "الكهرضوئي: E = hc/λ · N = P/E · I = N·e. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة بقوّة −1 على E، والجزء ٣ متابعة بقوّة 1 على N."
+    approved: false
+
+  # ── ٥٧) الجذب العام (U5C1) — قوة التجاذب بين كتلتين والتسارعات ──
+  - id: U5.L1.P03
+    title: "الجذب العام — مسألة بأجزاء (قوة التجاذب · تسارع كل كتلة)"
+    chapter: U5C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — قانون نيوتن للجذب العام: F = G·m1·m2/d² · a = F/m"
+      book: "G = 6.67×10⁻¹¹ SI"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      m1: {set: [10, 50, 100, 500, 1000], unit: kg}
+      m2: {set: [10, 50, 100, 500, 1000], unit: kg}
+      d: {set: [0.1, 0.2, 0.5, 1, 2, 5], unit: m}
+    constants_used: {G: 6.67e-11}
+    compute:
+      F: "6.67e-11*m1*m2/d**2"
+      a2: "6.67e-11*m1/d**2"
+      a1: "6.67e-11*m2/d**2"
+    stem: "كتلتان نقطيّتان m1 = {m1} kg و m2 = {m2} kg يفصل بين مركزيهما مسافة d = {d} m. نأخذ ثابت الجذب العام G = 6.67×10⁻¹¹ SI."
+    parts:
+      - label: "١"
+        ask: "احسب شدّة قوة التجاذب F بين الكتلتين."
+        unit: "N"
+        value: "F"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "قانون الجذب العام: F = G·m1·m2/d²"
+            subst: "F = 6.67×10⁻¹¹·{m1}·{m2}/{d}²"
+            expect: ["{m1}", "{m2}", "{d}"]
+            keys: ["F = G·m1·m2/d²"]
+            anti_keys: ["F = G·m1·m2/d", "F = G·m1·m2·d²"]
+      - label: "٢"
+        ask: "احسب تسارع الكتلة m2 الناتج عن هذه القوة."
+        unit: "m·s⁻²"
+        value: "a2"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}   # a2 = F/m2 ⇒ ∝ F
+        lines:
+          - relation: "من العلاقة الأساسية: a2 = F/m2 = G·m1/d²"
+            subst: "a2 = {F}/{m2}"
+            expect: ["{m2}"]
+            keys: ["a2 = F/m2", "a2 = G·m1/d²"]
+            anti_keys: ["a2 = F·m2", "a2 = G·m2/d²"]
+      - label: "٣"
+        ask: "احسب تسارع الكتلة m1 الناتج عن القوة نفسها."
+        unit: "m·s⁻²"
+        value: "a1"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}   # a1 = F/m1 ⇒ ∝ F
+        lines:
+          - relation: "a1 = F/m1 = G·m2/d²"
+            subst: "a1 = {F}/{m1}"
+            expect: ["{m1}"]
+            keys: ["a1 = F/m1", "a1 = G·m2/d²"]
+            anti_keys: ["a1 = F·m1", "a1 = G·m1/d²"]
+    answer_basis: "الجذب العام: F = G·m1·m2/d² · a2 = F/m2 · a1 = F/m1. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزآن ٢ و٣ متابعة على القوة F."
+    approved: false
+
+  # ── ٥٨) الأمواج المستقرة على وتر (U3C1) — كتلة الوتر · السرعة · الأساسي ──
+  - id: U3.L1.P04
+    title: "الوتر المشدود — مسألة بأجزاء (الكتلة الطولية من الكتلة · سرعة الموجة · الأساسي)"
+    chapter: U3C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — μ = m/L · v = √(F/μ) · f1 = v/(2L)"
+      book: "الكتلة الطولية من كتلة الوتر وطوله"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      mgr: {set: [1, 2, 4, 5, 10], unit: g}
+      L: {set: [0.5, 1.0, 2.0], unit: m}
+      F: {set: [10, 40, 90, 160, 250], unit: N}
+    compute:
+      mu: "mgr*1e-3/L"
+      v: "sqrt(F/(mgr*1e-3/L))"
+      f1: "sqrt(F/(mgr*1e-3/L))/(2*L)"
+    stem: "وتر مشدود من طرفيه طوله L = {L} m وكتلته m = {mgr} g، مشدود بقوة توتر F = {F} N."
+    parts:
+      - label: "١"
+        ask: "احسب الكتلة الطولية μ للوتر."
+        unit: "kg·m⁻¹"
+        value: "mu"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "الكتلة الطولية: μ = m/L"
+            subst: "μ = {mgr}×10⁻³/{L}"
+            expect: ["{mgr}", "{L}"]
+            keys: ["μ = m/L"]
+            anti_keys: ["μ = L/m", "μ = m·L"]
+      - label: "٢"
+        ask: "احسب سرعة انتشار الموجة v على الوتر."
+        unit: "m·s⁻¹"
+        value: "v"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: -0.5}   # v = √(F/μ) ⇒ ∝ μ^(−1/2)
+        lines:
+          - relation: "سرعة الموجة على وتر: v = √(F/μ)"
+            subst: "v = √({F}/{mu})"
+            expect: ["{F}"]
+            keys: ["v = √(F/μ)"]
+            anti_keys: ["v = √(μ/F)", "v = F/μ"]
+      - label: "٣"
+        ask: "احسب التواتر الأساسي f1 للوتر."
+        unit: "Hz"
+        value: "f1"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}   # f1 = v/(2L) ⇒ ∝ v
+        lines:
+          - relation: "التواتر الأساسي: f1 = v/(2L)"
+            subst: "f1 = {v}/(2·{L})"
+            expect: ["{L}"]
+            keys: ["f1 = v/(2L)"]
+            anti_keys: ["f1 = 2L·v", "f1 = v/L"]
+    answer_basis: "الوتر: μ = m/L · v = √(F/μ) · f1 = v/(2L). سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة بقوّة −0.5 على μ، والجزء ٣ متابعة بقوّة 1 على v."
+    approved: false
