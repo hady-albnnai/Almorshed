@@ -2368,3 +2368,483 @@ templates:
     review_notes:
       - "سلسلة متابعة: λmin ∝ 1/Emax و fmax ∝ 1/λmin."
     approved: false
+
+  # ══════════ الدفعة الخامسة: أنماط جديدة (توسيع العرض — صيغ أسئلة إضافية) ══════════
+  # ── ٣٩) المتذبذب المرن (U1C1) — توزّع الطاقة عند x = Xm/2 ──
+  - id: U1.L1.P04
+    title: "المتذبذب المرن — مسألة طاقة بأجزاء (الطاقة الكلية · الكامنة والحركية عند x = Xm/2)"
+    chapter: U1C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — الطاقة في الحركة التوافقية: E = ½kXm² · عند x = Xm/2: Ep = E/4 و Ec = ¾E"
+      book: "الطاقة الكلية محفوظة: E = Ep + Ec = ½kXm²"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      k: {set: [8, 10, 16, 20, 32, 40, 50, 72, 90, 100, 128, 160, 200], unit: "N·m⁻¹"}
+      Xm: {set: [0.02, 0.04, 0.05, 0.1, 0.2], unit: m}
+    constants_used: {pi_sq: 10}
+    compute:
+      E: "0.5*k*Xm**2"
+      Ep: "0.5*k*Xm**2/4"
+      Ec: "0.75*(0.5*k*Xm**2)"
+    stem: "متذبذب مرن أفقي (كتلة-نابض) ثابت مرونة نابضه k = {k} N·m⁻¹ يهتز بسعة Xm = {Xm} m دون احتكاك."
+    parts:
+      - label: "١"
+        ask: "احسب الطاقة الميكانيكية الكلية E للمتذبذب."
+        unit: "J"
+        value: "E"
+        answer: {format: auto}
+        lines:
+          - relation: "الطاقة الكلية = الكامنة المرنة العظمى: E = ½·k·Xm²"
+            subst: "E = ½·{k}·{Xm}²"
+            expect: ["{k}", "{Xm}"]
+            keys: ["E = ½·k·Xm²"]
+            anti_keys: ["E = k·Xm²", "E = ½·k·Xm"]
+      - label: "٢"
+        ask: "احسب الطاقة الكامنة المرنة Ep عندما تكون الاستطالة x = Xm/2."
+        unit: "J"
+        value: "Ep"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # Ep = ½k(Xm/2)² = E/4 ⇒ ∝ E
+        lines:
+          - relation: "Ep = ½·k·x² = ½·k·(Xm/2)² = ¼·(½·k·Xm²) = E/4"
+            subst: "Ep = E/4 = {E}/4"
+            expect: ["{E}"]
+            keys: ["Ep = E/4", "½·k·(Xm/2)²"]
+            anti_keys: ["Ep = E/2", "Ep = E"]
+      - label: "٣"
+        ask: "استنتج الطاقة الحركية Ec عند النقطة نفسها (x = Xm/2)."
+        unit: "J"
+        value: "Ec"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # Ec = E − Ep = ¾E ⇒ ∝ E
+        lines:
+          - relation: "حفظ الطاقة: Ec = E − Ep = E − E/4 = ¾·E"
+            subst: "Ec = ¾·{E}"
+            expect: ["{E}"]
+            keys: ["Ec = E − Ep", "Ec = ¾·E"]
+            anti_keys: ["Ec = E + Ep", "Ec = E/4"]
+    answer_basis: "طاقة المتذبذب المرن: E = ½kXm² ثابتة؛ عند x = Xm/2 تكون Ep = E/4 و Ec = ¾E. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزآن ٢ و٣ متابعة على الطاقة الكلية E (Ep ∝ E و Ec ∝ E)."
+    approved: false
+
+  # ── ٤٠) نواس الفتل (U1C2) — النبض الزاوي · السرعة الزاوية العظمى · الطاقة ──
+  - id: U1.L2.P03
+    title: "نواس الفتل — مسألة بأجزاء (النبض الخاص · السرعة الزاوية العظمى · الطاقة)"
+    chapter: U1C2
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L2 — نواس الفتل: ω0 = √(C/I) · θ′max = ω0·θmax · E = ½C·θmax²"
+      book: "المعادلة: I·θ″ + C·θ = 0"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      C: {set: [10, 40, 90, 160, 250, 360, 640], unit: "N·m·rad⁻¹"}
+      I: {set: [0.1, 0.4, 0.9, 1.0, 1.6, 2.5], unit: "kg·m²"}
+      thmax: {set: [0.1, 0.2, 0.3, 0.5], unit: rad}
+    constants_used: {pi_sq: 10}
+    compute:
+      w0: "sqrt(C/I)"
+      dth: "sqrt(C/I)*thmax"
+      Ec: "0.5*C*thmax**2"
+    stem: "نواس فتل عزم عطالة قرصه I = {I} kg·m² معلّق بسلك ثابت فتله C = {C} N·m·rad⁻¹. يُدار بزاوية صغيرة θmax = {thmax} rad ثم يُترك."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز النبض الخاص ω0 للنواس ثم احسب قيمته."
+        unit: "rad·s⁻¹"
+        value: "w0"
+        answer: {format: auto}
+        lines:
+          - relation: "من I·θ″ + C·θ = 0 نجد ω0 = √(C/I)"
+            subst: "ω0 = √({C}/{I})"
+            expect: ["{C}", "{I}"]
+            keys: ["ω0 = √(C/I)"]
+            anti_keys: ["ω0 = √(I/C)", "ω0 = C/I"]
+      - label: "٢"
+        ask: "احسب السرعة الزاوية العظمى θ′max التي يبلغها القرص عند مروره بوضع التوازن."
+        unit: "rad·s⁻¹"
+        value: "dth"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # θ′max = ω0·θmax ⇒ ∝ ω0
+        lines:
+          - relation: "في الحركة التوافقية: θ′max = ω0·θmax"
+            subst: "θ′max = {w0}·{thmax}"
+            expect: ["{thmax}"]
+            keys: ["θ′max = ω0·θmax"]
+            anti_keys: ["θ′max = ω0/θmax", "θ′max = θmax/ω0"]
+      - label: "٣"
+        ask: "احسب الطاقة الميكانيكية الكلية E للنواس."
+        unit: "J"
+        value: "Ec"
+        answer: {format: auto}
+        lines:
+          - relation: "الطاقة الكلية = الكامنة الفتلية العظمى: E = ½·C·θmax²"
+            subst: "E = ½·{C}·{thmax}²"
+            expect: ["{C}", "{thmax}"]
+            keys: ["E = ½·C·θmax²"]
+            anti_keys: ["E = ½·I·θmax²", "E = C·θmax²"]
+    answer_basis: "نواس الفتل: ω0 = √(C/I) · θ′max = ω0·θmax · E = ½C·θmax². سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على النبض ω0 (θ′max ∝ ω0)."
+    approved: false
+
+  # ── ٤١) الحقل المغناطيسي (U2C1) — وشيعة دائرية: الحقل في المركز · العزم المغناطيسي ──
+  - id: U2.L1.P03
+    title: "الوشيعة الدائرية — مسألة بأجزاء (الحقل في المركز · المساحة · العزم المغناطيسي)"
+    chapter: U2C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — الحقل في مركز وشيعة دائرية: B = μ0·N·I/(2R) · العزم المغناطيسي m = N·I·S"
+      book: "μ0 = 4π×10⁻⁷ · S = π·R²"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      N: {set: [1, 10, 50, 100, 200, 500, 1000], unit: ""}
+      I: {set: [1, 2, 5, 10], unit: A}
+      Rcm: {set: [2, 5, 10, 20], unit: cm}
+    constants_used: {pi: 3.14159265, mu0: 1.2566e-6}
+    compute:
+      B: "4*pi*1e-7*N*I/(2*(Rcm*1e-2))"
+      S: "pi*(Rcm*1e-2)**2"
+      M: "N*I*pi*(Rcm*1e-2)**2"
+    stem: "وشيعة دائرية مسطّحة عدد لفّاتها N = {N} ونصف قطرها R = {Rcm} cm يمرّ فيها تيار I = {I} A. نأخذ μ0 = 4π×10⁻⁷ SI."
+    parts:
+      - label: "١"
+        ask: "احسب شدّة الحقل المغناطيسي B في مركز الوشيعة."
+        unit: "T"
+        value: "B"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "الحقل في مركز وشيعة دائرية: B = μ0·N·I/(2R)"
+            subst: "B = 4π×10⁻⁷·{N}·{I}/(2·{Rcm}×10⁻²)"
+            expect: ["{N}", "{I}", "{Rcm}"]
+            keys: ["B = μ0·N·I/(2R)"]
+            anti_keys: ["B = μ0·N·I/R", "B = μ0·I/(2R)"]
+      - label: "٢"
+        ask: "احسب مساحة سطح الوشيعة S."
+        unit: "m²"
+        value: "S"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "مساحة القرص الدائري: S = π·R²"
+            subst: "S = π·({Rcm}×10⁻²)²"
+            expect: ["{Rcm}"]
+            keys: ["S = π·R²"]
+            anti_keys: ["S = 2π·R", "S = π·R"]
+      - label: "٣"
+        ask: "احسب العزم المغناطيسي m للوشيعة."
+        unit: "A·m²"
+        value: "M"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: 1}   # m = N·I·S ⇒ ∝ S
+        lines:
+          - relation: "العزم المغناطيسي: m = N·I·S"
+            subst: "m = {N}·{I}·{S}"
+            expect: ["{N}", "{I}"]
+            keys: ["m = N·I·S"]
+            anti_keys: ["m = N·I/S", "m = I·S"]
+    answer_basis: "الوشيعة الدائرية: B = μ0·N·I/(2R) · S = πR² · m = N·I·S. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٣ متابعة على المساحة S (m ∝ S)."
+    approved: false
+
+  # ── ٤٢) قوة لابلاس (U2C2) — القوة · الشغل · الاستطاعة ──
+  - id: U2.L2.P03
+    title: "قوة لابلاس على ناقل مستقيم — مسألة بأجزاء (القوة · الشغل · الاستطاعة)"
+    chapter: U2C2
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L2 — قوة لابلاس: F = B·I·L · الشغل W = F·d · الاستطاعة P = W/t"
+      book: "الناقل عمودي على الحقل"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      B: {set: [0.1, 0.2, 0.5, 1.0, 2.0], unit: T}
+      I: {set: [1, 2, 5, 10], unit: A}
+      L: {set: [0.1, 0.2, 0.5, 1.0], unit: m}
+      d: {set: [0.1, 0.2, 0.5, 1.0], unit: m}
+      t: {set: [0.1, 0.2, 0.5, 1.0, 2.0], unit: s}
+    compute:
+      F: "B*I*L"
+      W: "B*I*L*d"
+      P: "B*I*L*d/t"
+    stem: "ناقل مستقيم طوله L = {L} m يمرّ فيه تيار I = {I} A، موضوع عمودياً في حقل مغناطيسي منتظم B = {B} T، فينزلق مسافة d = {d} m خلال زمن t = {t} s."
+    parts:
+      - label: "١"
+        ask: "احسب شدّة قوة لابلاس F المؤثّرة في الناقل."
+        unit: "N"
+        value: "F"
+        answer: {format: auto}
+        lines:
+          - relation: "قوة لابلاس (الناقل عمودي على الحقل): F = B·I·L"
+            subst: "F = {B}·{I}·{L}"
+            expect: ["{B}", "{I}", "{L}"]
+            keys: ["F = B·I·L"]
+            anti_keys: ["F = B·I/L", "F = B·L/I"]
+      - label: "٢"
+        ask: "احسب الشغل W الذي تبذله القوة خلال الإزاحة d."
+        unit: "J"
+        value: "W"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # W = F·d ⇒ ∝ F
+        lines:
+          - relation: "شغل قوة ثابتة في اتجاه الحركة: W = F·d"
+            subst: "W = {F}·{d}"
+            expect: ["{d}"]
+            keys: ["W = F·d"]
+            anti_keys: ["W = F/d", "W = F·d²"]
+      - label: "٣"
+        ask: "احسب الاستطاعة المتوسطة P التي تطوّرها القوة."
+        unit: "W"
+        value: "P"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}   # P = W/t ⇒ ∝ W
+        lines:
+          - relation: "الاستطاعة المتوسطة: P = W/t"
+            subst: "P = {W}/{t}"
+            expect: ["{t}"]
+            keys: ["P = W/t"]
+            anti_keys: ["P = W·t", "P = t/W"]
+    answer_basis: "قوة لابلاس: F = B·I·L · W = F·d · P = W/t. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على القوة F، والجزء ٣ متابعة على الشغل W."
+    approved: false
+
+  # ── ٤٣) الوتر المشدود (U3C1) — مسألة عكسية: إيجاد قوة التوتر من التواتر الأساسي ──
+  - id: U3.L1.P03
+    title: "الوتر المشدود — مسألة عكسية بأجزاء (سرعة الموجة · قوة التوتر · التوافقي الثالث)"
+    chapter: U3C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — الأمواج المستقرة: v = 2·L·f1 · F = μ·v² · fn = n·f1"
+      book: "على وتر مثبّت الطرفين: f1 = v/(2L)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      mug: {set: [0.5, 1, 2, 4, 10], unit: "g·m⁻¹"}
+      L: {set: [0.25, 0.5, 1.0], unit: m}
+      f1: {set: [10, 20, 25, 50, 100, 200], unit: Hz}
+    compute:
+      v: "2*L*f1"
+      F: "mug*1e-3*(2*L*f1)**2"
+      f3: "3*f1"
+    stem: "وتر مثبّت من طرفيه طوله L = {L} m وكتلته الطولية μ = {mug} g·m⁻¹ يهتز على أساسيّه (المدروج الأول) بتواتر f1 = {f1} Hz."
+    parts:
+      - label: "١"
+        ask: "احسب سرعة انتشار الموجة v على الوتر."
+        unit: "m·s⁻¹"
+        value: "v"
+        answer: {format: auto}
+        lines:
+          - relation: "على الأساسي: λ1 = 2L ⇒ v = λ1·f1 = 2·L·f1"
+            subst: "v = 2·{L}·{f1}"
+            expect: ["{L}", "{f1}"]
+            keys: ["v = 2·L·f1"]
+            anti_keys: ["v = L·f1", "v = f1/(2L)"]
+      - label: "٢"
+        ask: "استنتج قوة التوتر F المطبّقة على الوتر."
+        unit: "N"
+        value: "F"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 2}   # F = μ·v² ⇒ ∝ v²
+        lines:
+          - relation: "سرعة الموجة على وتر: v = √(F/μ) ⇒ F = μ·v²"
+            subst: "F = {mug}×10⁻³·{v}²"
+            expect: ["{mug}"]
+            keys: ["F = μ·v²"]
+            anti_keys: ["F = μ·v", "F = v²/μ"]
+      - label: "٣"
+        ask: "احسب تواتر المدروج الثالث f3."
+        unit: "Hz"
+        value: "f3"
+        answer: {format: auto}
+        lines:
+          - relation: "التوافقيات: fn = n·f1 ⇒ f3 = 3·f1"
+            subst: "f3 = 3·{f1}"
+            expect: ["{f1}"]
+            keys: ["f3 = 3·f1"]
+            anti_keys: ["f3 = f1/3", "f3 = 3·f1²"]
+    answer_basis: "الوتر: v = 2·L·f1 · F = μ·v² · f3 = 3·f1. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على السرعة v بقوّة 2 (F ∝ v²)."
+    approved: false
+
+  # ── ٤٤) نموذج بور (U4C1) — التأيّن من مستوى n · طول موجة التأيّن · التواتر ──
+  - id: U4.L1.P03
+    title: "نموذج بور — مسألة تأيّن بأجزاء (طاقة التأيّن · طول موجة العتبة · التواتر)"
+    chapter: U4C1
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L1 — التأيّن من المستوى n: E_ion = 13.6/n² · λ = h·c/E_ion · f = c/λ"
+      book: "طاقة المستوى E_n = −13.6/n² eV؛ التأيّن يرفع الإلكترون إلى n = ∞"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      n: {set: [1, 2, 3, 4, 5, 6, 7], unit: ""}
+    constants_used: {c_light: 3e8, h_planck: 6.63e-34}
+    compute:
+      Eion: "13.6/n**2"
+      lam: "1240/(13.6/n**2)"
+      f: "3e8/((1240/(13.6/n**2))*1e-9)"
+    stem: "ذرّة هيدروجين في المستوى n = {n} (نموذج بور، E_n = −13.6/n² eV). نريد تأيينها برفع إلكترونها إلى اللانهاية. نأخذ h·c = 1240 eV·nm."
+    parts:
+      - label: "١"
+        ask: "احسب طاقة التأيّن E_ion اللازمة (بوحدة eV)."
+        unit: "eV"
+        value: "Eion"
+        answer: {format: auto}
+        lines:
+          - relation: "طاقة التأيّن = 0 − E_n = 13.6/n²"
+            subst: "E_ion = 13.6/{n}²"
+            expect: ["{n}"]
+            keys: ["E_ion = 13.6/n²"]
+            anti_keys: ["E_ion = 13.6·n²", "E_ion = 13.6/n"]
+      - label: "٢"
+        ask: "احسب أكبر طول موجة λ لفوتون يستطيع تأيين الذرّة من هذا المستوى."
+        unit: "nm"
+        value: "lam"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: -1}   # λ = 1240/E_ion ⇒ ∝ 1/E_ion
+        lines:
+          - relation: "E_ion = h·c/λ ⇒ λ = h·c/E_ion = 1240/E_ion"
+            subst: "λ = 1240/{Eion}"
+            expect: ["{Eion}"]
+            keys: ["λ = 1240/E_ion"]
+            anti_keys: ["λ = 1240·E_ion", "λ = E_ion/1240"]
+      - label: "٣"
+        ask: "احسب تواتر هذا الفوتون f."
+        unit: "Hz"
+        value: "f"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: -1}   # f = c/λ ⇒ ∝ 1/λ
+        lines:
+          - relation: "f = c/λ"
+            subst: "f = 3×10⁸/({lam}×10⁻⁹)"
+            expect: ["{lam}"]
+            keys: ["f = c/λ"]
+            anti_keys: ["f = λ/c", "f = c·λ"]
+    answer_basis: "التأيّن من المستوى n: E_ion = 13.6/n² · λ = 1240/E_ion · f = c/λ. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزآن ٢ و٣ متابعة بقوّة −1 (λ ∝ 1/E، f ∝ 1/λ)."
+    approved: false
+
+  # ── ٤٥) الأشعّة المهبطية (U4C2) — طول موجة دي بروي لإلكترون مسرَّع ──
+  - id: U4.L2.P03
+    title: "طول موجة دي بروي — مسألة بأجزاء (الطاقة الحركية · كمية الحركة · طول الموجة)"
+    chapter: U4C2
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p"
+      book: "علاقة دي بروي: λ = h/p"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      U: {set: [50, 100, 150, 200, 250, 300, 400, 500, 600, 750, 800, 1000, 1200, 1500, 2000, 2500, 3000, 4000, 5000, 6000, 8000, 10000], unit: V}
+    constants_used: {e_charge: 1.6e-19, m_e: 9.1e-31, h_planck: 6.63e-34}
+    compute:
+      Ek: "e_charge*U"
+      p: "sqrt(2*m_e*e_charge*U)"
+      lam: "h_planck/sqrt(2*m_e*e_charge*U)"
+    stem: "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = {U} V. نأخذ h = 6.63×10⁻³⁴ J·s."
+    parts:
+      - label: "١"
+        ask: "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول)."
+        unit: "J"
+        value: "Ek"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "الطاقة الحركية المكتسبة: Ek = e·U"
+            subst: "Ek = 1.6×10⁻¹⁹·{U}"
+            expect: ["{U}"]
+            keys: ["Ek = e·U"]
+            anti_keys: ["Ek = e/U", "Ek = ½·e·U"]
+      - label: "٢"
+        ask: "احسب كمية حركة الإلكترون p."
+        unit: "kg·m·s⁻¹"
+        value: "p"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 0.5}   # p = √(2·m·Ek) ⇒ ∝ √Ek
+        lines:
+          - relation: "من Ek = p²/(2m) ⇒ p = √(2·m·Ek)"
+            subst: "p = √(2·9.1×10⁻³¹·{Ek})"
+            expect: ["{Ek}"]
+            keys: ["p = √(2·m·Ek)"]
+            anti_keys: ["p = 2·m·Ek", "p = √(Ek/(2m))"]
+      - label: "٣"
+        ask: "احسب طول موجة دي بروي λ المرافق للإلكترون."
+        unit: "m"
+        value: "lam"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: -1}   # λ = h/p ⇒ ∝ 1/p
+        lines:
+          - relation: "علاقة دي بروي: λ = h/p"
+            subst: "λ = 6.63×10⁻³⁴/{p}"
+            expect: ["{p}"]
+            keys: ["λ = h/p"]
+            anti_keys: ["λ = h·p", "λ = p/h"]
+    answer_basis: "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+    approved: false
+
+  # ── ٤٦) النسبية الخاصة (U1C5) — كمية الحركة النسبية والطاقة ──
+  - id: U1.L5.P03
+    title: "النسبية الخاصة — مسألة بأجزاء (عامل لورنتز · الطاقة الكلية · كمية الحركة النسبية)"
+    chapter: U1C5
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L5 — الطاقة وكمية الحركة النسبية: γ = 1/√(1−β²) · E = γ·E0 · p·c = γ·β·E0"
+      book: "العلاقة E² = (p·c)² + E0²"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      beta: {set: [0.28, 0.6, 0.8, 0.96], unit: ""}
+      E0: {set: [0.5, 1, 2, 4, 8, 10, 20, 40, 100, 200, 500], unit: MeV}
+    constants_used: {c_light: 3e8}
+    compute:
+      gamma: "1/sqrt(1-beta**2)"
+      E: "E0/sqrt(1-beta**2)"
+      pc: "beta*E0/sqrt(1-beta**2)"
+    stem: "جسيم طاقته الساكنة E0 = {E0} MeV يتحرك بسرعة v = {beta}·c بالنسبة لمرصد."
+    parts:
+      - label: "١"
+        ask: "احسب عامل لورنتز γ الموافق لسرعة الجسيم."
+        unit: ""
+        value: "gamma"
+        answer: {format: auto, unit_required: false}
+        lines:
+          - relation: "عامل لورنتز: γ = 1/√(1−β²)"
+            subst: "γ = 1/√(1−{beta}²)"
+            expect: ["{beta}"]
+            keys: ["γ = 1/√(1−β²)"]
+            anti_keys: ["γ = √(1−β²)", "γ = 1/(1−β²)"]
+      - label: "٢"
+        ask: "احسب الطاقة الكلية E للجسيم (بوحدة MeV)."
+        unit: "MeV"
+        value: "E"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # E = γ·E0 ⇒ ∝ γ
+        lines:
+          - relation: "الطاقة الكلية: E = γ·E0"
+            subst: "E = {gamma}·{E0}"
+            expect: ["{E0}"]
+            keys: ["E = γ·E0"]
+            anti_keys: ["E = E0/γ", "E = γ²·E0"]
+      - label: "٣"
+        ask: "احسب كمية الحركة النسبية للجسيم مقدّرة بـ p·c (بوحدة MeV)."
+        unit: "MeV"
+        value: "pc"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}   # p·c = β·E ⇒ ∝ E
+        lines:
+          - relation: "من E² = (p·c)² + E0² ومع E = γ·E0 نجد p·c = γ·β·E0 = β·E"
+            subst: "p·c = {beta}·{E}"
+            expect: ["{beta}"]
+            keys: ["p·c = β·E", "p·c = γ·β·E0"]
+            anti_keys: ["p·c = E/β", "p·c = β/E"]
+    answer_basis: "النسبية: γ = 1/√(1−β²) · E = γ·E0 · p·c = γ·β·E0 = β·E. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على γ، والجزء ٣ متابعة على E (p·c = β·E)."
+    approved: false

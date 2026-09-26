@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 50,
-  "poolSize": 3590,
+  "poolSize": 3877,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 1647,
+  "partsPool": 1934,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -80581,6 +80581,8352 @@
    },
    "reviewNotes": [
     "سلسلة متابعة: λmin ∝ 1/Emax و fmax ∝ 1/λmin."
+   ]
+  },
+  {
+   "id": 118879,
+   "templateId": "U4.L1.P03",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "ذرّة هيدروجين في المستوى n = 5 (نموذج بور، E_n = −13.6/n² eV). نريد تأيينها برفع إلكترونها إلى اللانهاية. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.544 eV — 10 درجة",
+    "٢) 2.28×10³ nm — 10 درجة",
+    "٣) 1.32×10¹⁴ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1240.3200000000002,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.0096e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة التأيّن = 0 − E_n = 13.6/n²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E_ion = 13.6/n²"
+     ],
+     "antiKeys": [
+      "E_ion = 13.6·n²",
+      "E_ion = 13.6/n"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E_ion = 13.6/5²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.544 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: E_ion = h·c/λ ⇒ λ = h·c/E_ion = 1240/E_ion",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = 1240/E_ion"
+     ],
+     "antiKeys": [
+      "λ = 1240·E_ion",
+      "λ = E_ion/1240"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ = 1240/0.544",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.544"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.28×10³ nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: f = c/λ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = c/λ"
+     ],
+     "antiKeys": [
+      "f = λ/c",
+      "f = c·λ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f = 3×10⁸/(2279.4118×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2279.4118"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.32×10¹⁴ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة التأيّن E_ion اللازمة (بوحدة eV).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة التأيّن = 0 − E_n = 13.6/n²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E_ion = 13.6/n²"
+       ],
+       "antiKeys": [
+        "E_ion = 13.6·n²",
+        "E_ion = 13.6/n"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E_ion = 13.6/5²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.544 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.544,
+      "unit": "eV",
+      "text": "0.544 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب أكبر طول موجة λ لفوتون يستطيع تأيين الذرّة من هذا المستوى.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: E_ion = h·c/λ ⇒ λ = h·c/E_ion = 1240/E_ion",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = 1240/E_ion"
+       ],
+       "antiKeys": [
+        "λ = 1240·E_ion",
+        "λ = E_ion/1240"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ = 1240/0.544",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.544"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.28×10³ nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2280.0,
+      "unit": "nm",
+      "text": "2.28×10³ nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1240.3200000000002,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر هذا الفوتون f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: f = c/λ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = c/λ"
+       ],
+       "antiKeys": [
+        "f = λ/c",
+        "f = c·λ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f = 3×10⁸/(2279.4118×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2279.4118"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.32×10¹⁴ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 132000000000000.0,
+      "unit": "Hz",
+      "text": "1.32×10¹⁴ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.0096e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التأيّن من المستوى n: E_ion = 13.6/n² · λ = 1240/E_ion · f = c/λ. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L1 — التأيّن من المستوى n: E_ion = 13.6/n² · λ = h·c/E_ion · f = c/λ",
+    "book": "طاقة المستوى E_n = −13.6/n² eV؛ التأيّن يرفع الإلكترون إلى n = ∞",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزآن ٢ و٣ متابعة بقوّة −1 (λ ∝ 1/E، f ∝ 1/λ)."
+   ]
+  },
+  {
+   "id": 118882,
+   "templateId": "U4.L1.P03",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "ذرّة هيدروجين في المستوى n = 2 (نموذج بور، E_n = −13.6/n² eV). نريد تأيينها برفع إلكترونها إلى اللانهاية. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 3.4 eV — 10 درجة",
+    "٢) 3.65×10² nm — 10 درجة",
+    "٣) 8.23×10¹⁴ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1241.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.00395e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة التأيّن = 0 − E_n = 13.6/n²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E_ion = 13.6/n²"
+     ],
+     "antiKeys": [
+      "E_ion = 13.6·n²",
+      "E_ion = 13.6/n"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E_ion = 13.6/2²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 3.4 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: E_ion = h·c/λ ⇒ λ = h·c/E_ion = 1240/E_ion",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = 1240/E_ion"
+     ],
+     "antiKeys": [
+      "λ = 1240·E_ion",
+      "λ = E_ion/1240"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ = 1240/3.4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3.4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.65×10² nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: f = c/λ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = c/λ"
+     ],
+     "antiKeys": [
+      "f = λ/c",
+      "f = c·λ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f = 3×10⁸/(364.7059×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "364.7059"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 8.23×10¹⁴ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة التأيّن E_ion اللازمة (بوحدة eV).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة التأيّن = 0 − E_n = 13.6/n²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E_ion = 13.6/n²"
+       ],
+       "antiKeys": [
+        "E_ion = 13.6·n²",
+        "E_ion = 13.6/n"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E_ion = 13.6/2²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 3.4 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.4,
+      "unit": "eV",
+      "text": "3.4 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب أكبر طول موجة λ لفوتون يستطيع تأيين الذرّة من هذا المستوى.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: E_ion = h·c/λ ⇒ λ = h·c/E_ion = 1240/E_ion",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = 1240/E_ion"
+       ],
+       "antiKeys": [
+        "λ = 1240·E_ion",
+        "λ = E_ion/1240"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ = 1240/3.4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3.4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.65×10² nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 365.0,
+      "unit": "nm",
+      "text": "3.65×10² nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1241.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر هذا الفوتون f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: f = c/λ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = c/λ"
+       ],
+       "antiKeys": [
+        "f = λ/c",
+        "f = c·λ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f = 3×10⁸/(364.7059×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "364.7059"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 8.23×10¹⁴ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 823000000000000.0,
+      "unit": "Hz",
+      "text": "8.23×10¹⁴ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.00395e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التأيّن من المستوى n: E_ion = 13.6/n² · λ = 1240/E_ion · f = c/λ. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L1 — التأيّن من المستوى n: E_ion = 13.6/n² · λ = h·c/E_ion · f = c/λ",
+    "book": "طاقة المستوى E_n = −13.6/n² eV؛ التأيّن يرفع الإلكترون إلى n = ∞",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزآن ٢ و٣ متابعة بقوّة −1 (λ ∝ 1/E، f ∝ 1/λ)."
+   ]
+  },
+  {
+   "id": 118888,
+   "templateId": "U4.L1.P03",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "ذرّة هيدروجين في المستوى n = 1 (نموذج بور، E_n = −13.6/n² eV). نريد تأيينها برفع إلكترونها إلى اللانهاية. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 13.6 eV — 10 درجة",
+    "٢) 9.12×10¹ nm — 10 درجة",
+    "٣) 3.29×10¹⁵ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1240.32,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.00048e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة التأيّن = 0 − E_n = 13.6/n²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E_ion = 13.6/n²"
+     ],
+     "antiKeys": [
+      "E_ion = 13.6·n²",
+      "E_ion = 13.6/n"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E_ion = 13.6/1²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 13.6 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: E_ion = h·c/λ ⇒ λ = h·c/E_ion = 1240/E_ion",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = 1240/E_ion"
+     ],
+     "antiKeys": [
+      "λ = 1240·E_ion",
+      "λ = E_ion/1240"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ = 1240/13.6",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "13.6"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 9.12×10¹ nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: f = c/λ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = c/λ"
+     ],
+     "antiKeys": [
+      "f = λ/c",
+      "f = c·λ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f = 3×10⁸/(91.1765×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "91.1765"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3.29×10¹⁵ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة التأيّن E_ion اللازمة (بوحدة eV).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة التأيّن = 0 − E_n = 13.6/n²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E_ion = 13.6/n²"
+       ],
+       "antiKeys": [
+        "E_ion = 13.6·n²",
+        "E_ion = 13.6/n"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E_ion = 13.6/1²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 13.6 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 13.6,
+      "unit": "eV",
+      "text": "13.6 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب أكبر طول موجة λ لفوتون يستطيع تأيين الذرّة من هذا المستوى.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: E_ion = h·c/λ ⇒ λ = h·c/E_ion = 1240/E_ion",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = 1240/E_ion"
+       ],
+       "antiKeys": [
+        "λ = 1240·E_ion",
+        "λ = E_ion/1240"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ = 1240/13.6",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "13.6"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 9.12×10¹ nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 91.2,
+      "unit": "nm",
+      "text": "9.12×10¹ nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1240.32,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر هذا الفوتون f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: f = c/λ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = c/λ"
+       ],
+       "antiKeys": [
+        "f = λ/c",
+        "f = c·λ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f = 3×10⁸/(91.1765×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "91.1765"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3.29×10¹⁵ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3290000000000000.0,
+      "unit": "Hz",
+      "text": "3.29×10¹⁵ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.00048e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التأيّن من المستوى n: E_ion = 13.6/n² · λ = 1240/E_ion · f = c/λ. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L1 — التأيّن من المستوى n: E_ion = 13.6/n² · λ = h·c/E_ion · f = c/λ",
+    "book": "طاقة المستوى E_n = −13.6/n² eV؛ التأيّن يرفع الإلكترون إلى n = ∞",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزآن ٢ و٣ متابعة بقوّة −1 (λ ∝ 1/E، f ∝ 1/λ)."
+   ]
+  },
+  {
+   "id": 118890,
+   "templateId": "U4.L1.P03",
+   "unit": "U4",
+   "chapter": "U4C1",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "ذرّة هيدروجين في المستوى n = 4 (نموذج بور، E_n = −13.6/n² eV). نريد تأيينها برفع إلكترونها إلى اللانهاية. نأخذ h·c = 1240 eV·nm.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.85 eV — 10 درجة",
+    "٢) 1.46×10³ nm — 10 درجة",
+    "٣) 2.06×10¹⁴ Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": -1.0,
+       "scale": 1241.0,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 3.0076e+17,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: طاقة التأيّن = 0 − E_n = 13.6/n²",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "E_ion = 13.6/n²"
+     ],
+     "antiKeys": [
+      "E_ion = 13.6·n²",
+      "E_ion = 13.6/n"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: E_ion = 13.6/4²",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.85 eV",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: E_ion = h·c/λ ⇒ λ = h·c/E_ion = 1240/E_ion",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = 1240/E_ion"
+     ],
+     "antiKeys": [
+      "λ = 1240·E_ion",
+      "λ = E_ion/1240"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ = 1240/0.85",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.85"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.46×10³ nm",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: f = c/λ",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f = c/λ"
+     ],
+     "antiKeys": [
+      "f = λ/c",
+      "f = c·λ"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f = 3×10⁸/(1458.8235×10⁻⁹)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1458.8235"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.06×10¹⁴ Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب طاقة التأيّن E_ion اللازمة (بوحدة eV).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: طاقة التأيّن = 0 − E_n = 13.6/n²",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "E_ion = 13.6/n²"
+       ],
+       "antiKeys": [
+        "E_ion = 13.6·n²",
+        "E_ion = 13.6/n"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: E_ion = 13.6/4²",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.85 eV",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.85,
+      "unit": "eV",
+      "text": "0.85 eV",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب أكبر طول موجة λ لفوتون يستطيع تأيين الذرّة من هذا المستوى.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: E_ion = h·c/λ ⇒ λ = h·c/E_ion = 1240/E_ion",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = 1240/E_ion"
+       ],
+       "antiKeys": [
+        "λ = 1240·E_ion",
+        "λ = E_ion/1240"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ = 1240/0.85",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.85"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.46×10³ nm",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1460.0,
+      "unit": "nm",
+      "text": "1.46×10³ nm",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": -1.0,
+        "scale": 1241.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر هذا الفوتون f.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: f = c/λ",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f = c/λ"
+       ],
+       "antiKeys": [
+        "f = λ/c",
+        "f = c·λ"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f = 3×10⁸/(1458.8235×10⁻⁹)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1458.8235"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.06×10¹⁴ Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 206000000000000.0,
+      "unit": "Hz",
+      "text": "2.06×10¹⁴ Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 3.0076e+17,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "التأيّن من المستوى n: E_ion = 13.6/n² · λ = 1240/E_ion · f = c/λ. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L1 — التأيّن من المستوى n: E_ion = 13.6/n² · λ = h·c/E_ion · f = c/λ",
+    "book": "طاقة المستوى E_n = −13.6/n² eV؛ التأيّن يرفع الإلكترون إلى n = ∞",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزآن ٢ و٣ متابعة بقوّة −1 (λ ∝ 1/E، f ∝ 1/λ)."
+   ]
+  },
+  {
+   "id": 121185,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 50 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8×10⁻¹⁸ J — 10 درجة",
+    "٢) 3.82×10⁻²⁴ kg·m·s⁻¹ — 10 درجة",
+    "٣) 1.74×10⁻¹⁰ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3505739520663058e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6468e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8×10⁻¹⁸ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.82×10⁻²⁴ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.74×10⁻¹⁰ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8×10⁻¹⁸ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8e-18,
+      "unit": "J",
+      "text": "8×10⁻¹⁸ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.82×10⁻²⁴ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.82e-24,
+      "unit": "kg·m·s⁻¹",
+      "text": "3.82×10⁻²⁴ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3505739520663058e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.74×10⁻¹⁰ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.74e-10,
+      "unit": "m",
+      "text": "1.74×10⁻¹⁰ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6468e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121186,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 100 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.6×10⁻¹⁷ J — 10 درجة",
+    "٢) 5.4×10⁻²⁴ kg·m·s⁻¹ — 10 درجة",
+    "٣) 1.23×10⁻¹⁰ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.35e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.641999999999999e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.6×10⁻¹⁷ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5.4×10⁻²⁴ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.23×10⁻¹⁰ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.6×10⁻¹⁷ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.6e-17,
+      "unit": "J",
+      "text": "1.6×10⁻¹⁷ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5.4×10⁻²⁴ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.4e-24,
+      "unit": "kg·m·s⁻¹",
+      "text": "5.4×10⁻²⁴ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.35e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.23×10⁻¹⁰ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.23e-10,
+      "unit": "m",
+      "text": "1.23×10⁻¹⁰ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.641999999999999e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121187,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 300 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4.8×10⁻¹⁷ J — 10 درجة",
+    "٢) 9.35×10⁻²⁴ kg·m·s⁻¹ — 10 درجة",
+    "٣) 7.09×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3495562542307502e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.629149999999999e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·300",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "300"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4.8×10⁻¹⁷ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 9.35×10⁻²⁴ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 7.09×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·300",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "300"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4.8×10⁻¹⁷ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.8e-17,
+      "unit": "J",
+      "text": "4.8×10⁻¹⁷ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 9.35×10⁻²⁴ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 9.35e-24,
+      "unit": "kg·m·s⁻¹",
+      "text": "9.35×10⁻²⁴ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3495562542307502e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 7.09×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.09e-11,
+      "unit": "m",
+      "text": "7.09×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.629149999999999e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121188,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 150 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2.4×10⁻¹⁷ J — 10 درجة",
+    "٢) 6.61×10⁻²⁴ kg·m·s⁻¹ — 10 درجة",
+    "٣) 10⁻¹⁰ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3492605999830673e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.610000000000001e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·150",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "150"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2.4×10⁻¹⁷ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 6.61×10⁻²⁴ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 10⁻¹⁰ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·150",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "150"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2.4×10⁻¹⁷ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.4e-17,
+      "unit": "J",
+      "text": "2.4×10⁻¹⁷ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 6.61×10⁻²⁴ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.61e-24,
+      "unit": "kg·m·s⁻¹",
+      "text": "6.61×10⁻²⁴ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3492605999830673e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 10⁻¹⁰ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1e-10,
+      "unit": "m",
+      "text": "10⁻¹⁰ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.610000000000001e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121189,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 600 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 9.6×10⁻¹⁷ J — 10 درجة",
+    "٢) 1.32×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 5.02×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.347219358530748e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.626399999999999e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·600",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "600"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 9.6×10⁻¹⁷ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.32×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 5.02×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·600",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "600"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 9.6×10⁻¹⁷ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 9.6e-17,
+      "unit": "J",
+      "text": "9.6×10⁻¹⁷ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.32×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.32e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "1.32×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.347219358530748e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 5.02×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.02e-11,
+      "unit": "m",
+      "text": "5.02×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.626399999999999e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121190,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 2500 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4×10⁻¹⁶ J — 10 درجة",
+    "٢) 2.7×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 2.46×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3499999999999998e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.642e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·2500",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2500"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.7×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.46×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·2500",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2500"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4e-16,
+      "unit": "J",
+      "text": "4×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.7×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.7e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "2.7×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3499999999999998e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.46×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.46e-11,
+      "unit": "m",
+      "text": "2.46×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.642e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121191,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 10000 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.6×10⁻¹⁵ J — 10 درجة",
+    "٢) 5.4×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 1.23×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3499999999999998e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.642e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·10000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "10000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.6×10⁻¹⁵ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5.4×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.23×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·10000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "10000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.6×10⁻¹⁵ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.6e-15,
+      "unit": "J",
+      "text": "1.6×10⁻¹⁵ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5.4×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.4e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "5.4×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3499999999999998e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.23×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.23e-11,
+      "unit": "m",
+      "text": "1.23×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.642e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121192,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 5000 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8×10⁻¹⁶ J — 10 درجة",
+    "٢) 3.82×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 1.74×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3505739520663058e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6468e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·5000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.82×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.74×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·5000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8e-16,
+      "unit": "J",
+      "text": "8×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.82×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.82e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "3.82×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3505739520663058e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.74×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.74e-11,
+      "unit": "m",
+      "text": "1.74×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6468e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121193,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 4000 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 6.4×10⁻¹⁶ J — 10 درجة",
+    "٢) 3.41×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 1.94×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3479208526467716e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6154e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·4000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "4000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 6.4×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.41×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.94×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·4000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "4000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 6.4×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.4e-16,
+      "unit": "J",
+      "text": "6.4×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.41×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.41e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "3.41×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3479208526467716e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.94×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.94e-11,
+      "unit": "m",
+      "text": "1.94×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6154e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121194,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 1000 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.6×10⁻¹⁶ J — 10 درجة",
+    "٢) 1.71×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 3.89×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.351873699721982e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.651900000000001e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·1000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.6×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.71×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3.89×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·1000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.6×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.6e-16,
+      "unit": "J",
+      "text": "1.6×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.71×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.71e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "1.71×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.351873699721982e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3.89×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.89e-11,
+      "unit": "m",
+      "text": "3.89×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.651900000000001e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121195,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 200 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 3.2×10⁻¹⁷ J — 10 درجة",
+    "٢) 7.63×10⁻²⁴ kg·m·s⁻¹ — 10 درجة",
+    "٣) 8.69×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3488061851133394e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6304700000000004e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·200",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 3.2×10⁻¹⁷ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 7.63×10⁻²⁴ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 8.69×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·200",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 3.2×10⁻¹⁷ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.2e-17,
+      "unit": "J",
+      "text": "3.2×10⁻¹⁷ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 7.63×10⁻²⁴ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.63e-24,
+      "unit": "kg·m·s⁻¹",
+      "text": "7.63×10⁻²⁴ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3488061851133394e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 8.69×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8.69e-11,
+      "unit": "m",
+      "text": "8.69×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6304700000000004e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121197,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 750 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.2×10⁻¹⁶ J — 10 درجة",
+    "٢) 1.48×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 4.49×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3510489751794098e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6452e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·750",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "750"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.2×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.48×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4.49×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·750",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "750"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.2×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.2e-16,
+      "unit": "J",
+      "text": "1.2×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.48×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.48e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "1.48×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3510489751794098e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4.49×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.49e-11,
+      "unit": "m",
+      "text": "4.49×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6452e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121198,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 8000 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.28×10⁻¹⁵ J — 10 درجة",
+    "٢) 4.83×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 1.37×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.350026041415498e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.617100000000001e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·8000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "8000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.28×10⁻¹⁵ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4.83×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.37×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·8000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "8000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.28×10⁻¹⁵ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.28e-15,
+      "unit": "J",
+      "text": "1.28×10⁻¹⁵ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4.83×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.83e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "4.83×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.350026041415498e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.37×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.37e-11,
+      "unit": "m",
+      "text": "1.37×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.617100000000001e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121200,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 800 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.28×10⁻¹⁶ J — 10 درجة",
+    "٢) 1.53×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 4.34×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.352341719019272e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6402e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·800",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "800"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.28×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.53×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4.34×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·800",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "800"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.28×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.28e-16,
+      "unit": "J",
+      "text": "1.28×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.53×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.53e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "1.53×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.352341719019272e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4.34×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.34e-11,
+      "unit": "m",
+      "text": "4.34×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6402e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121201,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 400 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 6.4×10⁻¹⁷ J — 10 درجة",
+    "٢) 1.08×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 6.14×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.35e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6312e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·400",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "400"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 6.4×10⁻¹⁷ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.08×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 6.14×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·400",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "400"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 6.4×10⁻¹⁷ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.4e-17,
+      "unit": "J",
+      "text": "6.4×10⁻¹⁷ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.08×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.08e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "1.08×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.35e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 6.14×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.14e-11,
+      "unit": "m",
+      "text": "6.14×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6312e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121202,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 250 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4×10⁻¹⁷ J — 10 درجة",
+    "٢) 8.53×10⁻²⁴ kg·m·s⁻¹ — 10 درجة",
+    "٣) 7.77×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3487114220618137e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.62781e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·250",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "250"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4×10⁻¹⁷ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 8.53×10⁻²⁴ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 7.77×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·250",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "250"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4×10⁻¹⁷ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4e-17,
+      "unit": "J",
+      "text": "4×10⁻¹⁷ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 8.53×10⁻²⁴ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8.53e-24,
+      "unit": "kg·m·s⁻¹",
+      "text": "8.53×10⁻²⁴ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3487114220618137e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 7.77×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.77e-11,
+      "unit": "m",
+      "text": "7.77×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.62781e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121211,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 1200 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.92×10⁻¹⁶ J — 10 درجة",
+    "٢) 1.87×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 3.55×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3495562542307502e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.638499999999999e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·1200",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1200"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.92×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.87×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3.55×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·1200",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1200"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.92×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.92e-16,
+      "unit": "J",
+      "text": "1.92×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.87×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.87e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "1.87×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3495562542307502e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3.55×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.55e-11,
+      "unit": "m",
+      "text": "3.55×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.638499999999999e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121212,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 500 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 8×10⁻¹⁷ J — 10 درجة",
+    "٢) 1.21×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 5.49×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3528211263873728e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6429e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·500",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 8×10⁻¹⁷ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.21×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 5.49×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·500",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 8×10⁻¹⁷ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 8e-17,
+      "unit": "J",
+      "text": "8×10⁻¹⁷ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.21×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.21e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "1.21×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3528211263873728e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 5.49×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.49e-11,
+      "unit": "m",
+      "text": "5.49×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6429e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121218,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 1500 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2.4×10⁻¹⁶ J — 10 درجة",
+    "٢) 2.09×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 3.17×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3490891989289168e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6253e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·1500",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1500"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2.4×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.09×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 3.17×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·1500",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1500"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2.4×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.4e-16,
+      "unit": "J",
+      "text": "2.4×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.09×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.09e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "2.09×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3490891989289168e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 3.17×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.17e-11,
+      "unit": "m",
+      "text": "3.17×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6253e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121220,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 2000 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 3.2×10⁻¹⁶ J — 10 درجة",
+    "٢) 2.41×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 2.75×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3472309564436232e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6275e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·2000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 3.2×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.41×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.75×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·2000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 3.2×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.2e-16,
+      "unit": "J",
+      "text": "3.2×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.41×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.41e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "2.41×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3472309564436232e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.75×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.75e-11,
+      "unit": "m",
+      "text": "2.75×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6275e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121277,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 3000 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4.8×10⁻¹⁶ J — 10 درجة",
+    "٢) 2.96×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 2.24×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3510489751794098e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6304e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·3000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "3000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4.8×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.96×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.24×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·3000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "3000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4.8×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.8e-16,
+      "unit": "J",
+      "text": "4.8×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.96×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.96e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "2.96×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3510489751794098e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.24×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.24e-11,
+      "unit": "m",
+      "text": "2.24×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6304e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
+   ]
+  },
+  {
+   "id": 121279,
+   "templateId": "U4.L2.P03",
+   "unit": "U4",
+   "chapter": "U4C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": true,
+   "stem": "إلكترون (m = 9.1×10⁻³¹ kg، e = 1.6×10⁻¹⁹ C) يُسرَّع من السكون بفرق كمون U = 6000 V. نأخذ h = 6.63×10⁻³⁴ J·s.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 9.6×10⁻¹⁶ J — 10 درجة",
+    "٢) 4.18×10⁻²³ kg·m·s⁻¹ — 10 درجة",
+    "٣) 1.59×10⁻¹¹ m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 0.5,
+       "scale": 1.3490891989289168e-15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": -1.0,
+       "scale": 6.6462e-34,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Ek = e·U"
+     ],
+     "antiKeys": [
+      "Ek = e/U",
+      "Ek = ½·e·U"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·6000",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "6000"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 9.6×10⁻¹⁶ J",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "p = √(2·m·Ek)"
+     ],
+     "antiKeys": [
+      "p = 2·m·Ek",
+      "p = √(Ek/(2m))"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4.18×10⁻²³ kg·m·s⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ = h/p"
+     ],
+     "antiKeys": [
+      "λ = h·p",
+      "λ = p/h"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.59×10⁻¹¹ m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بالجول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: الطاقة الحركية المكتسبة: Ek = e·U",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Ek = e·U"
+       ],
+       "antiKeys": [
+        "Ek = e/U",
+        "Ek = ½·e·U"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: Ek = 1.6×10⁻¹⁹·6000",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "6000"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 9.6×10⁻¹⁶ J",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 9.6e-16,
+      "unit": "J",
+      "text": "9.6×10⁻¹⁶ J",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب كمية حركة الإلكترون p.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: من Ek = p²/(2m) ⇒ p = √(2·m·Ek)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "p = √(2·m·Ek)"
+       ],
+       "antiKeys": [
+        "p = 2·m·Ek",
+        "p = √(Ek/(2m))"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: p = √(2·9.1×10⁻³¹·0)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4.18×10⁻²³ kg·m·s⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.18e-23,
+      "unit": "kg·m·s⁻¹",
+      "text": "4.18×10⁻²³ kg·m·s⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 0.5,
+        "scale": 1.3490891989289168e-15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب طول موجة دي بروي λ المرافق للإلكترون.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: علاقة دي بروي: λ = h/p",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ = h/p"
+       ],
+       "antiKeys": [
+        "λ = h·p",
+        "λ = p/h"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: λ = 6.63×10⁻³⁴/0",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.59×10⁻¹¹ m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.59e-11,
+      "unit": "m",
+      "text": "1.59×10⁻¹¹ m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": -1.0,
+        "scale": 6.6462e-34,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "دي بروي: Ek = e·U · p = √(2·m·Ek) · λ = h/p. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الطبيعة الموجية للجسيمات: Ek = e·U · p = √(2·m·Ek) · λ = h/p",
+    "book": "علاقة دي بروي: λ = h/p",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة بقوّة 0.5 على Ek، والجزء ٣ متابعة بقوّة −1 على p."
    ]
   }
  ]
