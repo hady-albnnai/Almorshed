@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 6,
-  "poolSize": 620,
+  "poolSize": 648,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 71,
+  "partsPool": 99,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -14664,6 +14664,3996 @@
    },
    "reviewNotes": [
     "الجزء ٣ متابعة خطأ على الجزء ١ بالقوة −١ (Is = P/Us ⇒ ∝ 1/Us)."
+   ]
+  },
+  {
+   "id": 22516,
+   "templateId": "U2.L1.P01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "وشيعة لولبية طويلة عدد لفّاتها N = 1000 لفّة موزّعة على طول L = 1 m، ومساحة مقطعها S = 2 cm². يمرّ فيها تيار مستمر شدّته I = 5 A. نأخذ μ0 = 4π×10⁻⁷ T·m·A⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10³ m⁻¹ — 10 درجة",
+    "٢) 6.28×10⁻³ T — 10 درجة",
+    "٣) 1.26×10⁻⁶ Wb — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 6.28e-06,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.00020063694267515923,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "n = N/L",
+      "لفّات/الطول"
+     ],
+     "antiKeys": [
+      "n = L/N",
+      "n = N·L"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: n = 1000/1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10³ m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·n·I",
+      "μ0·n·I"
+     ],
+     "antiKeys": [
+      "B = μ0·N·I",
+      "B = μ0·I/n"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·1000·5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 6.28×10⁻³ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Φ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "Φ = B/S",
+      "Φ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Φ = 0.0063·0.0002",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.26×10⁻⁶ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب كثافة اللفّات n (عدد اللفّات في وحدة الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "n = N/L",
+        "لفّات/الطول"
+       ],
+       "antiKeys": [
+        "n = L/N",
+        "n = N·L"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: n = 1000/1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10³ m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1000.0,
+      "unit": "m⁻¹",
+      "text": "10³ m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل المغناطيسي B داخل الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·n·I",
+        "μ0·n·I"
+       ],
+       "antiKeys": [
+        "B = μ0·N·I",
+        "B = μ0·I/n"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·1000·5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 6.28×10⁻³ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.00628,
+      "unit": "T",
+      "text": "6.28×10⁻³ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 6.28e-06,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التدفق المغناطيسي Φ عبر مقطع الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Φ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "Φ = B/S",
+        "Φ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Φ = 0.0063·0.0002",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.26×10⁻⁶ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.26e-06,
+      "unit": "Wb",
+      "text": "1.26×10⁻⁶ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.00020063694267515923,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوشيعة اللولبية الطويلة: n = N/L · B = μ0·n·I · Φ = B·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل",
+    "book": "n = N/L · B = μ0·n·I (μ0 = 4π×10⁻⁷) · Φ = B·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "μ0 = 4π×10⁻⁷ (π حقيقية في الثابت)؛ القيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام.",
+    "سلسلة متابعة: B يتبع n والتدفق يتبع B."
+   ]
+  },
+  {
+   "id": 22517,
+   "templateId": "U2.L1.P01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "وشيعة لولبية طويلة عدد لفّاتها N = 2000 لفّة موزّعة على طول L = 0.5 m، ومساحة مقطعها S = 2 cm². يمرّ فيها تيار مستمر شدّته I = 2 A. نأخذ μ0 = 4π×10⁻⁷ T·m·A⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 4×10³ m⁻¹ — 10 درجة",
+    "٢) 1.01×10⁻² T — 10 درجة",
+    "٣) 2.01×10⁻⁶ Wb — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.525e-06,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.000199009900990099,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "n = N/L",
+      "لفّات/الطول"
+     ],
+     "antiKeys": [
+      "n = L/N",
+      "n = N·L"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: n = 2000/0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2000",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 4×10³ m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·n·I",
+      "μ0·n·I"
+     ],
+     "antiKeys": [
+      "B = μ0·N·I",
+      "B = μ0·I/n"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·4000·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.01×10⁻² T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Φ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "Φ = B/S",
+      "Φ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Φ = 0.0101·0.0002",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0002"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.01×10⁻⁶ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب كثافة اللفّات n (عدد اللفّات في وحدة الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "n = N/L",
+        "لفّات/الطول"
+       ],
+       "antiKeys": [
+        "n = L/N",
+        "n = N·L"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: n = 2000/0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2000",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 4×10³ m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4000.0,
+      "unit": "m⁻¹",
+      "text": "4×10³ m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل المغناطيسي B داخل الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·n·I",
+        "μ0·n·I"
+       ],
+       "antiKeys": [
+        "B = μ0·N·I",
+        "B = μ0·I/n"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·4000·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.01×10⁻² T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.0101,
+      "unit": "T",
+      "text": "1.01×10⁻² T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.525e-06,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التدفق المغناطيسي Φ عبر مقطع الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Φ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "Φ = B/S",
+        "Φ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Φ = 0.0101·0.0002",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0002"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.01×10⁻⁶ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.01e-06,
+      "unit": "Wb",
+      "text": "2.01×10⁻⁶ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.000199009900990099,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوشيعة اللولبية الطويلة: n = N/L · B = μ0·n·I · Φ = B·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل",
+    "book": "n = N/L · B = μ0·n·I (μ0 = 4π×10⁻⁷) · Φ = B·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "μ0 = 4π×10⁻⁷ (π حقيقية في الثابت)؛ القيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام.",
+    "سلسلة متابعة: B يتبع n والتدفق يتبع B."
+   ]
+  },
+  {
+   "id": 22518,
+   "templateId": "U2.L1.P01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "وشيعة لولبية طويلة عدد لفّاتها N = 500 لفّة موزّعة على طول L = 0.5 m، ومساحة مقطعها S = 1 cm². يمرّ فيها تيار مستمر شدّته I = 5 A. نأخذ μ0 = 4π×10⁻⁷ T·m·A⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10³ m⁻¹ — 10 درجة",
+    "٢) 6.28×10⁻³ T — 10 درجة",
+    "٣) 6.28×10⁻⁷ Wb — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 6.28e-06,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 9.999999999999999e-05,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "n = N/L",
+      "لفّات/الطول"
+     ],
+     "antiKeys": [
+      "n = L/N",
+      "n = N·L"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: n = 500/0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10³ m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·n·I",
+      "μ0·n·I"
+     ],
+     "antiKeys": [
+      "B = μ0·N·I",
+      "B = μ0·I/n"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·1000·5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "5"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 6.28×10⁻³ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Φ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "Φ = B/S",
+      "Φ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Φ = 0.0063·0.0001",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0001"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 6.28×10⁻⁷ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب كثافة اللفّات n (عدد اللفّات في وحدة الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "n = N/L",
+        "لفّات/الطول"
+       ],
+       "antiKeys": [
+        "n = L/N",
+        "n = N·L"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: n = 500/0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10³ m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1000.0,
+      "unit": "m⁻¹",
+      "text": "10³ m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل المغناطيسي B داخل الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·n·I",
+        "μ0·n·I"
+       ],
+       "antiKeys": [
+        "B = μ0·N·I",
+        "B = μ0·I/n"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·1000·5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "5"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 6.28×10⁻³ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.00628,
+      "unit": "T",
+      "text": "6.28×10⁻³ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 6.28e-06,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التدفق المغناطيسي Φ عبر مقطع الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Φ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "Φ = B/S",
+        "Φ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Φ = 0.0063·0.0001",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0001"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 6.28×10⁻⁷ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.28e-07,
+      "unit": "Wb",
+      "text": "6.28×10⁻⁷ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 9.999999999999999e-05,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوشيعة اللولبية الطويلة: n = N/L · B = μ0·n·I · Φ = B·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل",
+    "book": "n = N/L · B = μ0·n·I (μ0 = 4π×10⁻⁷) · Φ = B·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "μ0 = 4π×10⁻⁷ (π حقيقية في الثابت)؛ القيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام.",
+    "سلسلة متابعة: B يتبع n والتدفق يتبع B."
+   ]
+  },
+  {
+   "id": 22519,
+   "templateId": "U2.L1.P01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "وشيعة لولبية طويلة عدد لفّاتها N = 500 لفّة موزّعة على طول L = 0.5 m، ومساحة مقطعها S = 1 cm². يمرّ فيها تيار مستمر شدّته I = 2 A. نأخذ μ0 = 4π×10⁻⁷ T·m·A⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 10³ m⁻¹ — 10 درجة",
+    "٢) 2.51×10⁻³ T — 10 درجة",
+    "٣) 2.51×10⁻⁷ Wb — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.51e-06,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.0001,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "n = N/L",
+      "لفّات/الطول"
+     ],
+     "antiKeys": [
+      "n = L/N",
+      "n = N·L"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: n = 500/0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 10³ m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·n·I",
+      "μ0·n·I"
+     ],
+     "antiKeys": [
+      "B = μ0·N·I",
+      "B = μ0·I/n"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·1000·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.51×10⁻³ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Φ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "Φ = B/S",
+      "Φ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Φ = 0.0025·0.0001",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0001"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2.51×10⁻⁷ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب كثافة اللفّات n (عدد اللفّات في وحدة الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "n = N/L",
+        "لفّات/الطول"
+       ],
+       "antiKeys": [
+        "n = L/N",
+        "n = N·L"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: n = 500/0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 10³ m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1000.0,
+      "unit": "m⁻¹",
+      "text": "10³ m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل المغناطيسي B داخل الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·n·I",
+        "μ0·n·I"
+       ],
+       "antiKeys": [
+        "B = μ0·N·I",
+        "B = μ0·I/n"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·1000·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.51×10⁻³ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.00251,
+      "unit": "T",
+      "text": "2.51×10⁻³ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.51e-06,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التدفق المغناطيسي Φ عبر مقطع الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Φ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "Φ = B/S",
+        "Φ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Φ = 0.0025·0.0001",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0001"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2.51×10⁻⁷ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.51e-07,
+      "unit": "Wb",
+      "text": "2.51×10⁻⁷ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.0001,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوشيعة اللولبية الطويلة: n = N/L · B = μ0·n·I · Φ = B·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل",
+    "book": "n = N/L · B = μ0·n·I (μ0 = 4π×10⁻⁷) · Φ = B·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "μ0 = 4π×10⁻⁷ (π حقيقية في الثابت)؛ القيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام.",
+    "سلسلة متابعة: B يتبع n والتدفق يتبع B."
+   ]
+  },
+  {
+   "id": 22520,
+   "templateId": "U2.L1.P01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "وشيعة لولبية طويلة عدد لفّاتها N = 500 لفّة موزّعة على طول L = 1 m، ومساحة مقطعها S = 1 cm². يمرّ فيها تيار مستمر شدّته I = 2 A. نأخذ μ0 = 4π×10⁻⁷ T·m·A⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 5×10² m⁻¹ — 10 درجة",
+    "٢) 1.26×10⁻³ T — 10 درجة",
+    "٣) 1.26×10⁻⁷ Wb — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.52e-06,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 9.999999999999999e-05,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "n = N/L",
+      "لفّات/الطول"
+     ],
+     "antiKeys": [
+      "n = L/N",
+      "n = N·L"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: n = 500/1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "500",
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 5×10² m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·n·I",
+      "μ0·n·I"
+     ],
+     "antiKeys": [
+      "B = μ0·N·I",
+      "B = μ0·I/n"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·500·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.26×10⁻³ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Φ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "Φ = B/S",
+      "Φ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Φ = 0.0013·0.0001",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0001"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.26×10⁻⁷ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب كثافة اللفّات n (عدد اللفّات في وحدة الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "n = N/L",
+        "لفّات/الطول"
+       ],
+       "antiKeys": [
+        "n = L/N",
+        "n = N·L"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: n = 500/1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "500",
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 5×10² m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 500.0,
+      "unit": "m⁻¹",
+      "text": "5×10² m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل المغناطيسي B داخل الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·n·I",
+        "μ0·n·I"
+       ],
+       "antiKeys": [
+        "B = μ0·N·I",
+        "B = μ0·I/n"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·500·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.26×10⁻³ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.00126,
+      "unit": "T",
+      "text": "1.26×10⁻³ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.52e-06,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التدفق المغناطيسي Φ عبر مقطع الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Φ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "Φ = B/S",
+        "Φ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Φ = 0.0013·0.0001",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0001"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.26×10⁻⁷ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.26e-07,
+      "unit": "Wb",
+      "text": "1.26×10⁻⁷ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 9.999999999999999e-05,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوشيعة اللولبية الطويلة: n = N/L · B = μ0·n·I · Φ = B·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل",
+    "book": "n = N/L · B = μ0·n·I (μ0 = 4π×10⁻⁷) · Φ = B·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "μ0 = 4π×10⁻⁷ (π حقيقية في الثابت)؛ القيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام.",
+    "سلسلة متابعة: B يتبع n والتدفق يتبع B."
+   ]
+  },
+  {
+   "id": 22521,
+   "templateId": "U2.L1.P01",
+   "unit": "U2",
+   "chapter": "U2C1",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": false,
+   "stem": "وشيعة لولبية طويلة عدد لفّاتها N = 1000 لفّة موزّعة على طول L = 0.5 m، ومساحة مقطعها S = 1 cm². يمرّ فيها تيار مستمر شدّته I = 2 A. نأخذ μ0 = 4π×10⁻⁷ T·m·A⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 2×10³ m⁻¹ — 10 درجة",
+    "٢) 5.03×10⁻³ T — 10 درجة",
+    "٣) 5.03×10⁻⁷ Wb — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 2.515e-06,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 0.0001,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "n = N/L",
+      "لفّات/الطول"
+     ],
+     "antiKeys": [
+      "n = L/N",
+      "n = N·L"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: n = 1000/0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1000",
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 2×10³ m⁻¹",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "B = μ0·n·I",
+      "μ0·n·I"
+     ],
+     "antiKeys": [
+      "B = μ0·N·I",
+      "B = μ0·I/n"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·2000·2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "2"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 5.03×10⁻³ T",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "Φ = B·S",
+      "B·S"
+     ],
+     "antiKeys": [
+      "Φ = B/S",
+      "Φ = S/B"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: Φ = 0.005·0.0001",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.0001"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 5.03×10⁻⁷ Wb",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب كثافة اللفّات n (عدد اللفّات في وحدة الطول).",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: كثافة اللفّات: n = N/L",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "n = N/L",
+        "لفّات/الطول"
+       ],
+       "antiKeys": [
+        "n = L/N",
+        "n = N·L"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: n = 1000/0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1000",
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 2×10³ m⁻¹",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2000.0,
+      "unit": "m⁻¹",
+      "text": "2×10³ m⁻¹",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب شدّة الحقل المغناطيسي B داخل الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "B = μ0·n·I",
+        "μ0·n·I"
+       ],
+       "antiKeys": [
+        "B = μ0·N·I",
+        "B = μ0·I/n"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: B = 4π×10⁻⁷·2000·2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "2"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 5.03×10⁻³ T",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.00503,
+      "unit": "T",
+      "text": "5.03×10⁻³ T",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 2.515e-06,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب التدفق المغناطيسي Φ عبر مقطع الوشيعة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: التدفق عبر مقطع واحد: Φ = B·S",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "Φ = B·S",
+        "B·S"
+       ],
+       "antiKeys": [
+        "Φ = B/S",
+        "Φ = S/B"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: Φ = 0.005·0.0001",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.0001"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 5.03×10⁻⁷ Wb",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 5.03e-07,
+      "unit": "Wb",
+      "text": "5.03×10⁻⁷ Wb",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 0.0001,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الوشيعة اللولبية الطويلة: n = N/L · B = μ0·n·I · Φ = B·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L1 — المغناطيسية والحقل",
+    "book": "n = N/L · B = μ0·n·I (μ0 = 4π×10⁻⁷) · Φ = B·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "μ0 = 4π×10⁻⁷ (π حقيقية في الثابت)؛ القيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام.",
+    "سلسلة متابعة: B يتبع n والتدفق يتبع B."
+   ]
+  },
+  {
+   "id": 22522,
+   "templateId": "U2.L2.P01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ملف مستطيل الشكل طول ضلعيه a = 0.2 m وb = 0.1 m، عدد لفّاته N = 100 لفّة، يمرّ فيه تيار شدّته I = 2 A، وُضع في حقل مغناطيسي منتظم شدّته B = 0.5 T بحيث يكون مستوى الملف موازياً لخطوط الحقل.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.2 N — 10 درجة",
+    "٢) 0.02 N·m — 10 درجة",
+    "٣) 2 N·m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.10000000000000002,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 100.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·a",
+      "B·I·ℓ"
+     ],
+     "antiKeys": [
+      "F = B·I·b",
+      "F = B·I·a·b"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F = 0.5·2·0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5",
+      "2",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M = B·I·S",
+      "M = F·b"
+     ],
+     "antiKeys": [
+      "M = F·a",
+      "M = F/b"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: M = 0.2·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.02 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M_N = N·B·I·S",
+      "N·M"
+     ],
+     "antiKeys": [
+      "M_N = M/N",
+      "M_N = B·I·S"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: M_N = 100·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "0.02"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في أحد الضلعين الفعّالين (طوله a) للفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·a",
+        "B·I·ℓ"
+       ],
+       "antiKeys": [
+        "F = B·I·b",
+        "F = B·I·a·b"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F = 0.5·2·0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5",
+        "2",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.2,
+      "unit": "N",
+      "text": "0.2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب عزم المزدوجة M المؤثّر في لفّة واحدة من الملف.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M = B·I·S",
+        "M = F·b"
+       ],
+       "antiKeys": [
+        "M = F·a",
+        "M = F/b"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: M = 0.2·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.02 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.020000000000000004,
+      "unit": "N·m",
+      "text": "0.02 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.10000000000000002,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عزم المزدوجة الكلي M_N المؤثّر في الملف كامل اللفّات.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M_N = N·B·I·S",
+        "N·M"
+       ],
+       "antiKeys": [
+        "M_N = M/N",
+        "M_N = B·I·S"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: M_N = 100·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "0.02"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0000000000000004,
+      "unit": "N·m",
+      "text": "2 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 100.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الملف المستطيل: F = B·I·a · M = B·I·S = F·b · M_N = N·B·I·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية (لابلاس) والمزدوجة",
+    "book": "F = B·I·a (على ضلع) · عزم المزدوجة M = B·I·S (مستوى الملف مواز للحقل) · M_N = N·B·I·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة كاملة: العزم يتبع القوة والعزم الكلي يتبع عزم اللفّة."
+   ]
+  },
+  {
+   "id": 22523,
+   "templateId": "U2.L2.P01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ملف مستطيل الشكل طول ضلعيه a = 0.1 m وb = 0.1 m، عدد لفّاته N = 200 لفّة، يمرّ فيه تيار شدّته I = 4 A، وُضع في حقل مغناطيسي منتظم شدّته B = 0.5 T بحيث يكون مستوى الملف موازياً لخطوط الحقل.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.2 N — 10 درجة",
+    "٢) 0.02 N·m — 10 درجة",
+    "٣) 4 N·m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.10000000000000002,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 200.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·a",
+      "B·I·ℓ"
+     ],
+     "antiKeys": [
+      "F = B·I·b",
+      "F = B·I·a·b"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F = 0.5·4·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5",
+      "4",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M = B·I·S",
+      "M = F·b"
+     ],
+     "antiKeys": [
+      "M = F·a",
+      "M = F/b"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: M = 0.2·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.02 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M_N = N·B·I·S",
+      "N·M"
+     ],
+     "antiKeys": [
+      "M_N = M/N",
+      "M_N = B·I·S"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: M_N = 200·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200",
+      "0.02"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 4 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في أحد الضلعين الفعّالين (طوله a) للفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·a",
+        "B·I·ℓ"
+       ],
+       "antiKeys": [
+        "F = B·I·b",
+        "F = B·I·a·b"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F = 0.5·4·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5",
+        "4",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.2,
+      "unit": "N",
+      "text": "0.2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب عزم المزدوجة M المؤثّر في لفّة واحدة من الملف.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M = B·I·S",
+        "M = F·b"
+       ],
+       "antiKeys": [
+        "M = F·a",
+        "M = F/b"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: M = 0.2·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.02 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.020000000000000004,
+      "unit": "N·m",
+      "text": "0.02 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.10000000000000002,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عزم المزدوجة الكلي M_N المؤثّر في الملف كامل اللفّات.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M_N = N·B·I·S",
+        "N·M"
+       ],
+       "antiKeys": [
+        "M_N = M/N",
+        "M_N = B·I·S"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: M_N = 200·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200",
+        "0.02"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 4 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.000000000000001,
+      "unit": "N·m",
+      "text": "4 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 200.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الملف المستطيل: F = B·I·a · M = B·I·S = F·b · M_N = N·B·I·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية (لابلاس) والمزدوجة",
+    "book": "F = B·I·a (على ضلع) · عزم المزدوجة M = B·I·S (مستوى الملف مواز للحقل) · M_N = N·B·I·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة كاملة: العزم يتبع القوة والعزم الكلي يتبع عزم اللفّة."
+   ]
+  },
+  {
+   "id": 22524,
+   "templateId": "U2.L2.P01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ملف مستطيل الشكل طول ضلعيه a = 0.2 m وb = 0.1 m، عدد لفّاته N = 100 لفّة، يمرّ فيه تيار شدّته I = 5 A، وُضع في حقل مغناطيسي منتظم شدّته B = 0.2 T بحيث يكون مستوى الملف موازياً لخطوط الحقل.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.2 N — 10 درجة",
+    "٢) 0.02 N·m — 10 درجة",
+    "٣) 2 N·m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.10000000000000002,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 100.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·a",
+      "B·I·ℓ"
+     ],
+     "antiKeys": [
+      "F = B·I·b",
+      "F = B·I·a·b"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F = 0.2·5·0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "5",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M = B·I·S",
+      "M = F·b"
+     ],
+     "antiKeys": [
+      "M = F·a",
+      "M = F/b"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: M = 0.2·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.02 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M_N = N·B·I·S",
+      "N·M"
+     ],
+     "antiKeys": [
+      "M_N = M/N",
+      "M_N = B·I·S"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: M_N = 100·0.02",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100",
+      "0.02"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 2 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في أحد الضلعين الفعّالين (طوله a) للفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·a",
+        "B·I·ℓ"
+       ],
+       "antiKeys": [
+        "F = B·I·b",
+        "F = B·I·a·b"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F = 0.2·5·0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "5",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.2,
+      "unit": "N",
+      "text": "0.2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب عزم المزدوجة M المؤثّر في لفّة واحدة من الملف.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M = B·I·S",
+        "M = F·b"
+       ],
+       "antiKeys": [
+        "M = F·a",
+        "M = F/b"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: M = 0.2·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.02 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.020000000000000004,
+      "unit": "N·m",
+      "text": "0.02 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.10000000000000002,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عزم المزدوجة الكلي M_N المؤثّر في الملف كامل اللفّات.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M_N = N·B·I·S",
+        "N·M"
+       ],
+       "antiKeys": [
+        "M_N = M/N",
+        "M_N = B·I·S"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: M_N = 100·0.02",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100",
+        "0.02"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 2 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0000000000000004,
+      "unit": "N·m",
+      "text": "2 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 100.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الملف المستطيل: F = B·I·a · M = B·I·S = F·b · M_N = N·B·I·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية (لابلاس) والمزدوجة",
+    "book": "F = B·I·a (على ضلع) · عزم المزدوجة M = B·I·S (مستوى الملف مواز للحقل) · M_N = N·B·I·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة كاملة: العزم يتبع القوة والعزم الكلي يتبع عزم اللفّة."
+   ]
+  },
+  {
+   "id": 22525,
+   "templateId": "U2.L2.P01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ملف مستطيل الشكل طول ضلعيه a = 0.1 m وb = 0.1 m، عدد لفّاته N = 50 لفّة، يمرّ فيه تيار شدّته I = 5 A، وُضع في حقل مغناطيسي منتظم شدّته B = 0.5 T بحيث يكون مستوى الملف موازياً لخطوط الحقل.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.25 N — 10 درجة",
+    "٢) 0.025 N·m — 10 درجة",
+    "٣) 1.25 N·m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.10000000000000002,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 50.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·a",
+      "B·I·ℓ"
+     ],
+     "antiKeys": [
+      "F = B·I·b",
+      "F = B·I·a·b"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F = 0.5·5·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5",
+      "5",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.25 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M = B·I·S",
+      "M = F·b"
+     ],
+     "antiKeys": [
+      "M = F·a",
+      "M = F/b"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: M = 0.25·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.25",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.025 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M_N = N·B·I·S",
+      "N·M"
+     ],
+     "antiKeys": [
+      "M_N = M/N",
+      "M_N = B·I·S"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: M_N = 50·0.025",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50",
+      "0.025"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 1.25 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في أحد الضلعين الفعّالين (طوله a) للفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·a",
+        "B·I·ℓ"
+       ],
+       "antiKeys": [
+        "F = B·I·b",
+        "F = B·I·a·b"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F = 0.5·5·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5",
+        "5",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.25 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.25,
+      "unit": "N",
+      "text": "0.25 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب عزم المزدوجة M المؤثّر في لفّة واحدة من الملف.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M = B·I·S",
+        "M = F·b"
+       ],
+       "antiKeys": [
+        "M = F·a",
+        "M = F/b"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: M = 0.25·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.25",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.025 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.025000000000000005,
+      "unit": "N·m",
+      "text": "0.025 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.10000000000000002,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عزم المزدوجة الكلي M_N المؤثّر في الملف كامل اللفّات.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M_N = N·B·I·S",
+        "N·M"
+       ],
+       "antiKeys": [
+        "M_N = M/N",
+        "M_N = B·I·S"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: M_N = 50·0.025",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50",
+        "0.025"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 1.25 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.2500000000000002,
+      "unit": "N·m",
+      "text": "1.25 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 50.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الملف المستطيل: F = B·I·a · M = B·I·S = F·b · M_N = N·B·I·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية (لابلاس) والمزدوجة",
+    "book": "F = B·I·a (على ضلع) · عزم المزدوجة M = B·I·S (مستوى الملف مواز للحقل) · M_N = N·B·I·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة كاملة: العزم يتبع القوة والعزم الكلي يتبع عزم اللفّة."
+   ]
+  },
+  {
+   "id": 22526,
+   "templateId": "U2.L2.P01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ملف مستطيل الشكل طول ضلعيه a = 0.2 m وb = 0.15 m، عدد لفّاته N = 200 لفّة، يمرّ فيه تيار شدّته I = 2 A، وُضع في حقل مغناطيسي منتظم شدّته B = 0.5 T بحيث يكون مستوى الملف موازياً لخطوط الحقل.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.2 N — 10 درجة",
+    "٢) 0.03 N·m — 10 درجة",
+    "٣) 6 N·m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.15,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 200.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·a",
+      "B·I·ℓ"
+     ],
+     "antiKeys": [
+      "F = B·I·b",
+      "F = B·I·a·b"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F = 0.5·2·0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5",
+      "2",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.2 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M = B·I·S",
+      "M = F·b"
+     ],
+     "antiKeys": [
+      "M = F·a",
+      "M = F/b"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: M = 0.2·0.15",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "0.15"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 0.03 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M_N = N·B·I·S",
+      "N·M"
+     ],
+     "antiKeys": [
+      "M_N = M/N",
+      "M_N = B·I·S"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: M_N = 200·0.03",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200",
+      "0.03"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 6 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في أحد الضلعين الفعّالين (طوله a) للفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·a",
+        "B·I·ℓ"
+       ],
+       "antiKeys": [
+        "F = B·I·b",
+        "F = B·I·a·b"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F = 0.5·2·0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5",
+        "2",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.2 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.2,
+      "unit": "N",
+      "text": "0.2 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب عزم المزدوجة M المؤثّر في لفّة واحدة من الملف.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M = B·I·S",
+        "M = F·b"
+       ],
+       "antiKeys": [
+        "M = F·a",
+        "M = F/b"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: M = 0.2·0.15",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "0.15"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 0.03 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.03,
+      "unit": "N·m",
+      "text": "0.03 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.15,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عزم المزدوجة الكلي M_N المؤثّر في الملف كامل اللفّات.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M_N = N·B·I·S",
+        "N·M"
+       ],
+       "antiKeys": [
+        "M_N = M/N",
+        "M_N = B·I·S"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: M_N = 200·0.03",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200",
+        "0.03"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 6 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.0,
+      "unit": "N·m",
+      "text": "6 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 200.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الملف المستطيل: F = B·I·a · M = B·I·S = F·b · M_N = N·B·I·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية (لابلاس) والمزدوجة",
+    "book": "F = B·I·a (على ضلع) · عزم المزدوجة M = B·I·S (مستوى الملف مواز للحقل) · M_N = N·B·I·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة كاملة: العزم يتبع القوة والعزم الكلي يتبع عزم اللفّة."
+   ]
+  },
+  {
+   "id": 22527,
+   "templateId": "U2.L2.P01",
+   "unit": "U2",
+   "chapter": "U2C2",
+   "type": "problem",
+   "difficulty": 3,
+   "weight": 30,
+   "approved": false,
+   "stem": "ملف مستطيل الشكل طول ضلعيه a = 0.2 m وb = 0.1 m، عدد لفّاته N = 50 لفّة، يمرّ فيه تيار شدّته I = 2 A، وُضع في حقل مغناطيسي منتظم شدّته B = 0.2 T بحيث يكون مستوى الملف موازياً لخطوط الحقل.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.08 N — 10 درجة",
+    "٢) 8×10⁻³ N·m — 10 درجة",
+    "٣) 0.4 N·m — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 0.1,
+       "tolerance": 0.02
+      }
+     ]
+    },
+    {
+     "part": "٣",
+     "accept": [
+      {
+       "dependsOn": "٢",
+       "power": 1.0,
+       "scale": 50.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "F = B·I·a",
+      "B·I·ℓ"
+     ],
+     "antiKeys": [
+      "F = B·I·b",
+      "F = B·I·a·b"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: F = 0.2·2·0.2",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.2",
+      "2",
+      "0.2"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.08 N",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M = B·I·S",
+      "M = F·b"
+     ],
+     "antiKeys": [
+      "M = F·a",
+      "M = F/b"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: M = 0.08·0.1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.08",
+      "0.1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 8×10⁻³ N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "M_N = N·B·I·S",
+      "N·M"
+     ],
+     "antiKeys": [
+      "M_N = M/N",
+      "M_N = B·I·S"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: M_N = 50·0.008",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50",
+      "0.008"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 0.4 N·m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "احسب شدّة قوة لابلاس F المؤثّرة في أحد الضلعين الفعّالين (طوله a) للفّة واحدة.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "F = B·I·a",
+        "B·I·ℓ"
+       ],
+       "antiKeys": [
+        "F = B·I·b",
+        "F = B·I·a·b"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: F = 0.2·2·0.2",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.2",
+        "2",
+        "0.2"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.08 N",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.08000000000000002,
+      "unit": "N",
+      "text": "0.08 N",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب عزم المزدوجة M المؤثّر في لفّة واحدة من الملف.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M = B·I·S",
+        "M = F·b"
+       ],
+       "antiKeys": [
+        "M = F·a",
+        "M = F/b"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: M = 0.08·0.1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.08",
+        "0.1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 8×10⁻³ N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.008000000000000002,
+      "unit": "N·m",
+      "text": "8×10⁻³ N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 0.1,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب عزم المزدوجة الكلي M_N المؤثّر في الملف كامل اللفّات.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "M_N = N·B·I·S",
+        "N·M"
+       ],
+       "antiKeys": [
+        "M_N = M/N",
+        "M_N = B·I·S"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: M_N = 50·0.008",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50",
+        "0.008"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 0.4 N·m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.4000000000000001,
+      "unit": "N·m",
+      "text": "0.4 N·m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٣",
+      "accept": [
+       {
+        "dependsOn": "٢",
+        "power": 1.0,
+        "scale": 50.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    }
+   ],
+   "answerBasis": "الملف المستطيل: F = B·I·a · M = B·I·S = F·b · M_N = N·B·I·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢).",
+   "source": {
+    "lesson": "L2 — القوة المغناطيسية (لابلاس) والمزدوجة",
+    "book": "F = B·I·a (على ضلع) · عزم المزدوجة M = B·I·S (مستوى الملف مواز للحقل) · M_N = N·B·I·S",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "سلسلة متابعة كاملة: العزم يتبع القوة والعزم الكلي يتبع عزم اللفّة."
    ]
   }
  ]

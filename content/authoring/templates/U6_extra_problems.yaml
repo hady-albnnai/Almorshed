@@ -23,6 +23,11 @@ schema:
   # لا قواعد مشتّتات جديدة — هذه المسائل إجابة حرّة تُصحَّح بالسلّم لا بالخيارات.
   distractor_rules: {}
 
+# ثوابت إضافية تُدمَج مع ثوابت U1.yaml (g · pi_sq) وتُتاح داخل compute.
+constants:
+  e_charge: 1.6e-19     # شحنة الإلكترون (C)
+  m_e: 9.1e-31          # كتلة الإلكترون (kg)
+
 templates:
 
   # ── ١) المتذبذب المرن الأفقي (U1C1) — دور · تسارع أعظمي · طاقة ──
@@ -704,4 +709,314 @@ templates:
     review_notes:
       - "v_e وT مقرَّبان إلى ٣ أرقام معنوية بالصيغة العلمية (بسماحية ٢٪)."
       - "الجزءان ٢ و٣ متابعة على الأول (v_e ∝ v_o · T ∝ 1/v_o)."
+    approved: false
+
+  # ── ١٢) الوشيعة اللولبية الطويلة (U2C1) — كثافة اللفّات · الحقل · التدفق ──
+  - id: U2.L1.P01
+    title: "الوشيعة اللولبية الطويلة — مسألة بأجزاء (الحقل المغناطيسي المنتظم)"
+    chapter: U2C1
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L1 — المغناطيسية والحقل"
+      book: "n = N/L · B = μ0·n·I (μ0 = 4π×10⁻⁷) · Φ = B·S"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      N: {set: [500, 1000, 2000], unit: ""}
+      L: {set: [0.5, 1.0], unit: m}
+      I: {set: [2, 5], unit: A}
+      Scm: {set: [1, 2], unit: "cm²"}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      n: "N/L"
+      B: "4*pi*1e-7*n*I"
+      S: "Scm*1e-4"
+      Phi: "B*S"
+    stem: "وشيعة لولبية طويلة عدد لفّاتها N = {N} لفّة موزّعة على طول L = {L} m، ومساحة مقطعها S = {Scm} cm². يمرّ فيها تيار مستمر شدّته I = {I} A. نأخذ μ0 = 4π×10⁻⁷ T·m·A⁻¹."
+    parts:
+      - label: "١"
+        ask: "احسب كثافة اللفّات n (عدد اللفّات في وحدة الطول)."
+        unit: "m⁻¹"
+        value: "n"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "كثافة اللفّات: n = N/L"
+            subst: "n = {N}/{L}"
+            expect: ["{N}", "{L}"]
+            keys: ["n = N/L", "لفّات/الطول"]
+            anti_keys: ["n = L/N", "n = N·L"]
+      - label: "٢"
+        ask: "احسب شدّة الحقل المغناطيسي B داخل الوشيعة."
+        unit: "T"
+        value: "B"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}    # B = μ0·n·I ⇒ ∝ n
+        lines:
+          - relation: "الحقل داخل وشيعة لولبية طويلة: B = μ0·n·I"
+            subst: "B = 4π×10⁻⁷·{n}·{I}"
+            expect: ["{I}"]
+            keys: ["B = μ0·n·I", "μ0·n·I"]
+            anti_keys: ["B = μ0·N·I", "B = μ0·I/n"]
+      - label: "٣"
+        ask: "احسب التدفق المغناطيسي Φ عبر مقطع الوشيعة."
+        unit: "Wb"
+        value: "Phi"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: 1}    # Φ = B·S ⇒ ∝ B
+        lines:
+          - relation: "التدفق عبر مقطع واحد: Φ = B·S"
+            subst: "Φ = {B}·{S}"
+            expect: ["{S}"]
+            keys: ["Φ = B·S", "B·S"]
+            anti_keys: ["Φ = B/S", "Φ = S/B"]
+    answer_basis: "الوشيعة اللولبية الطويلة: n = N/L · B = μ0·n·I · Φ = B·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "μ0 = 4π×10⁻⁷ (π حقيقية في الثابت)؛ القيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام."
+      - "سلسلة متابعة: B يتبع n والتدفق يتبع B."
+    approved: false
+
+  # ── ١٣) المزدوجة على ملف مستطيل (U2C2) — قوة لابلاس · عزم · عزم N لفّة ──
+  - id: U2.L2.P01
+    title: "المزدوجة على ملف مستطيل في حقل منتظم — مسألة بأجزاء"
+    chapter: U2C2
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L2 — القوة المغناطيسية (لابلاس) والمزدوجة"
+      book: "F = B·I·a (على ضلع) · عزم المزدوجة M = B·I·S (مستوى الملف مواز للحقل) · M_N = N·B·I·S"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      B: {set: [0.2, 0.5], unit: T}
+      I: {set: [2, 4, 5], unit: A}
+      a: {set: [0.1, 0.2], unit: m}
+      b: {set: [0.1, 0.15], unit: m}
+      N: {set: [50, 100, 200], unit: ""}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      F: "B*I*a"
+      S: "a*b"
+      M1: "B*I*S"
+      Mn: "N*M1"
+    stem: "ملف مستطيل الشكل طول ضلعيه a = {a} m وb = {b} m، عدد لفّاته N = {N} لفّة، يمرّ فيه تيار شدّته I = {I} A، وُضع في حقل مغناطيسي منتظم شدّته B = {B} T بحيث يكون مستوى الملف موازياً لخطوط الحقل."
+    parts:
+      - label: "١"
+        ask: "احسب شدّة قوة لابلاس F المؤثّرة في أحد الضلعين الفعّالين (طوله a) للفّة واحدة."
+        unit: "N"
+        value: "F"
+        answer: {format: auto}
+        lines:
+          - relation: "قوة لابلاس على ضلع عمودي على الحقل: F = B·I·a"
+            subst: "F = {B}·{I}·{a}"
+            expect: ["{B}", "{I}", "{a}"]
+            keys: ["F = B·I·a", "B·I·ℓ"]
+            anti_keys: ["F = B·I·b", "F = B·I·a·b"]
+      - label: "٢"
+        ask: "احسب عزم المزدوجة M المؤثّر في لفّة واحدة من الملف."
+        unit: "N·m"
+        value: "M1"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}    # M = F·b ⇒ ∝ F
+        lines:
+          - relation: "عزم المزدوجة (المستوى مواز للحقل): M = F·b = B·I·S حيث S = a·b"
+            subst: "M = {F}·{b}"
+            expect: ["{F}", "{b}"]
+            keys: ["M = B·I·S", "M = F·b"]
+            anti_keys: ["M = F·a", "M = F/b"]
+      - label: "٣"
+        ask: "احسب عزم المزدوجة الكلي M_N المؤثّر في الملف كامل اللفّات."
+        unit: "N·m"
+        value: "Mn"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}    # M_N = N·M ⇒ ∝ M
+        lines:
+          - relation: "عزم المزدوجة على N لفّة: M_N = N·B·I·S = N·M"
+            subst: "M_N = {N}·{M1}"
+            expect: ["{N}", "{M1}"]
+            keys: ["M_N = N·B·I·S", "N·M"]
+            anti_keys: ["M_N = M/N", "M_N = B·I·S"]
+    answer_basis: "الملف المستطيل: F = B·I·a · M = B·I·S = F·b · M_N = N·B·I·S. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "سلسلة متابعة كاملة: العزم يتبع القوة والعزم الكلي يتبع عزم اللفّة."
+    approved: false
+
+  # ── ١٤) تسريع إلكترون بفرق كمون (U4C2) — طاقة حركية · سرعة · كمية حركة ──
+  - id: U4.L2.P01
+    title: "تسريع إلكترون بفرق كمون — مسألة بأجزاء (الأشعّة المهبطية)"
+    chapter: U4C2
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L2 — استخراج الإلكترون والأشعّة المهبطية"
+      book: "e·U = ½·m·v² ⇒ Ek = e·U · v = √(2·Ek/m) · p = m·v"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      U: {set: [100, 200, 500, 1000], unit: V}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      Ek: "e_charge*U"
+      v: "sqrt(2*Ek/m_e)"
+      p: "m_e*v"
+    stem: "إلكترون (شحنته e = 1.6×10⁻¹⁹ C وكتلته m = 9.1×10⁻³¹ kg) ينطلق من المهبط بسرعة مهملة ويُسرَّع بفرق كمون U = {U} V قبل أن يصطدم بالمصعد. نهمل التأثيرات النسبية."
+    parts:
+      - label: "١"
+        ask: "احسب الطاقة الحركية Ek التي يكتسبها الإلكترون (بوحدة الجول)."
+        unit: "J"
+        value: "Ek"
+        answer: {format: sci, round: true, sig: 3}
+        lines:
+          - relation: "تطبيق مبدأ انحفاظ الطاقة (عمل القوة الكهربائية): Ek = e·U"
+            subst: "Ek = 1.6×10⁻¹⁹·{U}"
+            expect: ["{U}"]
+            keys: ["Ek = e·U", "e·U"]
+            anti_keys: ["Ek = e/U", "Ek = U/e"]
+      - label: "٢"
+        ask: "احسب سرعة الإلكترون v عند وصوله إلى المصعد."
+        unit: "m·s⁻¹"
+        value: "v"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 0.5}  # v = √(2Ek/m) ⇒ ∝ √Ek
+        lines:
+          - relation: "من Ek = ½·m·v² ⇒ v = √(2·Ek/m)"
+            subst: "v = √(2·{Ek}/9.1×10⁻³¹)"
+            expect: ["{Ek}"]
+            keys: ["v = √(2·Ek/m)", "Ek = ½mv²"]
+            anti_keys: ["v = √(Ek/m)", "v = 2·Ek/m"]
+      - label: "٣"
+        ask: "احسب كمية حركة الإلكترون p عند المصعد."
+        unit: "kg·m·s⁻¹"
+        value: "p"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "٢", power: 1}    # p = m·v ⇒ ∝ v
+        lines:
+          - relation: "كمية الحركة: p = m·v"
+            subst: "p = 9.1×10⁻³¹·{v}"
+            expect: ["{v}"]
+            keys: ["p = m·v", "m·v"]
+            anti_keys: ["p = v/m", "p = m·v²"]
+    answer_basis: "تسريع الإلكترون: Ek = e·U (عمل القوة الكهربائية) · v = √(2Ek/m) · p = m·v. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "القيم بالصيغة العلمية مقرَّبة إلى ٣ أرقام (بسماحية ٢٪)."
+      - "سلسلة متابعة: v ∝ √Ek (قوة ٠٫٥) · p ∝ v."
+    approved: false
+
+  # ── ١٥) الأثر الكهرضوئي (U4C3) — طاقة الفوتون · الطاقة الحركية العظمى · كمون الإيقاف ──
+  - id: U4.L3.P01
+    title: "الأثر الكهرضوئي — مسألة بأجزاء (فوتون · طاقة حركية عظمى · كمون إيقاف)"
+    chapter: U4C3
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L3 — الأثر الكهرضوئي وأشعّة X والليزر"
+      book: "E = h·c/λ · معادلة أينشتاين Ek = E − W0 · كمون الإيقاف e·U0 = Ek"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      lam: {set: [200, 300, 400], unit: nm}
+      W0: {set: [2, 3, 4], unit: eV}
+    constants_used: {g: 10, pi_sq: 10}
+    constraints:
+      - "1240/lam > W0 + 0.05"
+    compute:
+      Eph: "1240/lam"
+      Ek: "1240/lam - W0"
+      U0: "1240/lam - W0"
+    stem: "يُضاء سطح معدن عمله الوسطي (تابع الشغل) W0 = {W0} eV بضوء أحادي اللون طول موجته λ = {lam} nm. نأخذ h·c = 1240 eV·nm."
+    parts:
+      - label: "١"
+        ask: "احسب طاقة الفوتون الساقط E بوحدة eV."
+        unit: "eV"
+        value: "Eph"
+        answer: {format: auto, round: true, sig: 3}
+        lines:
+          - relation: "طاقة الفوتون: E = h·c/λ"
+            subst: "E = 1240/{lam}"
+            expect: ["{lam}"]
+            keys: ["E = h·c/λ", "1240/λ"]
+            anti_keys: ["E = λ/(h·c)", "E = h·c·λ"]
+      - label: "٢"
+        ask: "احسب الطاقة الحركية العظمى Ek للإلكترونات المنتزعة بوحدة eV."
+        unit: "eV"
+        value: "Ek"
+        answer: {format: auto, round: true, sig: 3}
+        lines:
+          - relation: "معادلة أينشتاين للأثر الكهرضوئي: Ek = E − W0"
+            subst: "Ek = {Eph} − {W0}"
+            expect: ["{Eph}", "{W0}"]
+            keys: ["Ek = E − W0", "E − W0"]
+            anti_keys: ["Ek = E + W0", "Ek = W0 − E"]
+      - label: "٣"
+        ask: "احسب كمون الإيقاف U0 (بالفولت) الذي يوقف أسرع الإلكترونات."
+        unit: "V"
+        value: "U0"
+        answer: {format: auto, round: true, sig: 3}
+        follow: {depends_on: "٢", power: 1}    # e·U0 = Ek ⇒ U0[V] = Ek[eV] ⇒ ∝ Ek
+        lines:
+          - relation: "كمون الإيقاف: e·U0 = Ek ⇒ U0 = Ek/e (عددياً U0[V] = Ek[eV])"
+            subst: "U0 = {Ek}"
+            expect: ["{Ek}"]
+            keys: ["e·U0 = Ek", "U0 = Ek/e"]
+            anti_keys: ["U0 = Ek·e", "U0 = e/Ek"]
+    answer_basis: "الأثر الكهرضوئي: E = h·c/λ · Ek = E − W0 (أينشتاين) · e·U0 = Ek ⇒ U0[V] = Ek[eV]. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "قيد E > W0 يضمن انتزاعاً فعلياً (طاقة حركية موجبة)."
+      - "الجزء ٣ متابعة على الثاني (U0 عددياً = Ek)؛ القيم مقرَّبة إلى ٣ أرقام."
+    approved: false
+
+  # ── ١٦) نواس الفتل (U1C2) — الدور · التواتر · عزم الإرجاع ──
+  - id: U1.L2.P01
+    title: "نواس الفتل — مسألة بأجزاء (الدور · التواتر · عزم الإرجاع)"
+    chapter: U1C2
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L2 — نواس الفتل"
+      book: "T0 = 2π√(I/C) · f = 1/T0 · عزم الإرجاع Γ = C·θ (قانون الفتل)"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      I: {set: [0.1, 0.4, 1.0], unit: "kg·m²"}
+      C: {set: [4, 10, 16], unit: "N·m·rad⁻¹"}
+      theta: {set: [0.1, 0.2, 0.5], unit: rad}
+    constants_used: {g: 10, pi_sq: 10}
+    compute:
+      T0: "2*sqrt(pi_sq*I/C)"
+      f: "1/T0"
+      Gamma: "C*theta"
+    stem: "قرص متجانس عزم عطالته بالنسبة لمحور الفتل الشاقولي I = {I} kg·m²، معلّق بسلك فتله ثابته C = {C} N·m·rad⁻¹. يُدار القرص بزاوية صغيرة ثم يُترك فيهتز اهتزاز فتل. نأخذ π² = 10."
+    parts:
+      - label: "١"
+        ask: "استنتج بالرموز علاقة دور نواس الفتل T0 بدلالة I وC، ثم احسب قيمته."
+        unit: "s"
+        value: "T0"
+        answer: {format: auto}
+        lines:
+          - relation: "المعادلة التفاضلية I·θ″ + C·θ = 0 ⇒ ω0² = C/I ⇒ T0 = 2π·√(I/C)"
+            subst: "T0 = 2π·√({I}/{C})"
+            expect: ["{I}", "{C}"]
+            keys: ["2π·√(I/C)", "ω0² = C/I"]
+            anti_keys: ["T0 = 2π·√(C/I)", "T0 = 2π·(I/C)"]
+      - label: "٢"
+        ask: "احسب تواتر نواس الفتل f."
+        unit: "Hz"
+        value: "f"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: -1}   # f = 1/T0 ⇒ ∝ 1/T0
+        lines:
+          - relation: "التواتر مقلوب الدور: f = 1/T0"
+            subst: "f = 1/{T0}"
+            expect: ["{T0}"]
+            keys: ["f = 1/T0", "1/T0"]
+            anti_keys: ["f = T0", "f = 2π/T0"]
+      - label: "٣"
+        ask: "احسب عزم الإرجاع Γ المؤثّر في القرص عند إدارته بزاوية θ = {theta} rad."
+        unit: "N·m"
+        value: "Gamma"
+        answer: {format: auto}
+        lines:
+          - relation: "قانون الفتل (عزم الإرجاع): Γ = C·θ"
+            subst: "Γ = {C}·{theta}"
+            expect: ["{C}", "{theta}"]
+            keys: ["Γ = C·θ", "C·θ"]
+            anti_keys: ["Γ = C/θ", "Γ = θ/C"]
+    answer_basis: "نواس الفتل: ω0² = C/I · T0 = 2π√(I/C) · f = 1/T0 · Γ = C·θ. سلم ٥/٣/١/١ لكل سطر (docs/20 §٢)."
+    review_notes:
+      - "الجزء ٢ متابعة على الأول (f ∝ 1/T0)؛ الجزء ٣ مستقل (قانون الفتل)."
     approved: false
