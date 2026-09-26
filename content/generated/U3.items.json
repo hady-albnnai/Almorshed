@@ -5,7 +5,7 @@
   "templatesVersion": 1,
   "seed": 2026,
   "perTemplate": 50,
-  "poolSize": 3877,
+  "poolSize": 4092,
   "sampleSize": 100,
   "constants": {
    "g": 10,
@@ -17,7 +17,7 @@
    "m_e": 9.1e-31,
    "G_grav": 6.67e-11
   },
-  "partsPool": 1934,
+  "partsPool": 2149,
   "gradingFormats": [
    "flat-v0",
    "parts-v1"
@@ -74784,6 +74784,6369 @@
    },
    "reviewNotes": [
     "الجزء ٢ متابعة على السرعة v بقوّة 2 (F ∝ v²)."
+   ]
+  },
+  {
+   "id": 126182,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 100 Hz، وسرعة الصوت في الهواء v = 350 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.875 m — 10 درجة",
+    "٢) 3.5 m — 10 درجة",
+    "٣) 300 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 350/(4·100)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "350",
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.875 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.875",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.875"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.5 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 300 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 350/(4·100)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "350",
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.875 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.875,
+      "unit": "m",
+      "text": "0.875 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.875",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.875"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.5 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.5,
+      "unit": "m",
+      "text": "3.5 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 300 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 300.0,
+      "unit": "Hz",
+      "text": "300 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126183,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 200 Hz، وسرعة الصوت في الهواء v = 340 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.425 m — 10 درجة",
+    "٢) 1.7 m — 10 درجة",
+    "٣) 600 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 340/(4·200)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "340",
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.425 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.425",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.425"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.7 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·200",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 600 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 340/(4·200)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "340",
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.425 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.425,
+      "unit": "m",
+      "text": "0.425 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.425",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.425"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.7 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.7,
+      "unit": "m",
+      "text": "1.7 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·200",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 600 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 600.0,
+      "unit": "Hz",
+      "text": "600 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126184,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 200 Hz، وسرعة الصوت في الهواء v = 320 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.4 m — 10 درجة",
+    "٢) 1.6 m — 10 درجة",
+    "٣) 600 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 320/(4·200)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "320",
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.4 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.4",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.6 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·200",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "200"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 600 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 320/(4·200)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "320",
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.4 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.4,
+      "unit": "m",
+      "text": "0.4 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.4",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.6 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.6,
+      "unit": "m",
+      "text": "1.6 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·200",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "200"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 600 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 600.0,
+      "unit": "Hz",
+      "text": "600 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126185,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 250 Hz، وسرعة الصوت في الهواء v = 340 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.34 m — 10 درجة",
+    "٢) 1.36 m — 10 درجة",
+    "٣) 750 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 340/(4·250)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "340",
+      "250"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.34 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.34",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.34"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.36 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·250",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "250"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 750 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 340/(4·250)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "340",
+        "250"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.34 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.34,
+      "unit": "m",
+      "text": "0.34 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.34",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.34"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.36 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.36,
+      "unit": "m",
+      "text": "1.36 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·250",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "250"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 750 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 750.0,
+      "unit": "Hz",
+      "text": "750 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126186,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 250 Hz، وسرعة الصوت في الهواء v = 350 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.35 m — 10 درجة",
+    "٢) 1.4 m — 10 درجة",
+    "٣) 750 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 350/(4·250)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "350",
+      "250"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.35 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.35",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.35"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.4 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·250",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "250"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 750 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 350/(4·250)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "350",
+        "250"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.35 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.35,
+      "unit": "m",
+      "text": "0.35 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.35",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.35"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.4 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.4,
+      "unit": "m",
+      "text": "1.4 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·250",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "250"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 750 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 750.0,
+      "unit": "Hz",
+      "text": "750 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126187,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 250 Hz، وسرعة الصوت في الهواء v = 320 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.32 m — 10 درجة",
+    "٢) 1.28 m — 10 درجة",
+    "٣) 750 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 320/(4·250)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "320",
+      "250"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.32 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.32",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.32"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.28 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·250",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "250"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 750 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 320/(4·250)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "320",
+        "250"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.32 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.32,
+      "unit": "m",
+      "text": "0.32 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.32",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.32"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.28 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.28,
+      "unit": "m",
+      "text": "1.28 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·250",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "250"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 750 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 750.0,
+      "unit": "Hz",
+      "text": "750 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126190,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 100 Hz، وسرعة الصوت في الهواء v = 320 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.8 m — 10 درجة",
+    "٢) 3.2 m — 10 درجة",
+    "٣) 300 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 320/(4·100)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "320",
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.8 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.8",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.8"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.2 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 300 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 320/(4·100)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "320",
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.8 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.8,
+      "unit": "m",
+      "text": "0.8 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.8",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.8"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.2 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.2,
+      "unit": "m",
+      "text": "3.2 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 300 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 300.0,
+      "unit": "Hz",
+      "text": "300 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126191,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 170 Hz، وسرعة الصوت في الهواء v = 340 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.5 m — 10 درجة",
+    "٢) 2 m — 10 درجة",
+    "٣) 510 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 340/(4·170)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "340",
+      "170"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.5 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.5",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.5"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·170",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "170"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 510 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 340/(4·170)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "340",
+        "170"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.5 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.5,
+      "unit": "m",
+      "text": "0.5 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.5",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.5"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.0,
+      "unit": "m",
+      "text": "2 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·170",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "170"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 510 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 510.0,
+      "unit": "Hz",
+      "text": "510 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126192,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 100 Hz، وسرعة الصوت في الهواء v = 340 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.85 m — 10 درجة",
+    "٢) 3.4 m — 10 درجة",
+    "٣) 300 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 340/(4·100)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "340",
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.85 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.85",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.85"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.4 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 300 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 340/(4·100)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "340",
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.85 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.85,
+      "unit": "m",
+      "text": "0.85 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.85",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.85"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.4 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.4,
+      "unit": "m",
+      "text": "3.4 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 300 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 300.0,
+      "unit": "Hz",
+      "text": "300 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126193,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 85 Hz، وسرعة الصوت في الهواء v = 340 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1 m — 10 درجة",
+    "٢) 4 m — 10 درجة",
+    "٣) 255 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 340/(4·85)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "340",
+      "85"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·85",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "85"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 255 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 340/(4·85)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "340",
+        "85"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "m",
+      "text": "1 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.0,
+      "unit": "m",
+      "text": "4 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·85",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "85"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 255 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 255.0,
+      "unit": "Hz",
+      "text": "255 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126194,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 50 Hz، وسرعة الصوت في الهواء v = 320 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.6 m — 10 درجة",
+    "٢) 6.4 m — 10 درجة",
+    "٣) 150 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 320/(4·50)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "320",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.6 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·1.6",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.6"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 6.4 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 150 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 320/(4·50)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "320",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.6 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.6,
+      "unit": "m",
+      "text": "1.6 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·1.6",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.6"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 6.4 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.4,
+      "unit": "m",
+      "text": "6.4 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 150 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 150.0,
+      "unit": "Hz",
+      "text": "150 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126195,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 125 Hz، وسرعة الصوت في الهواء v = 350 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.7 m — 10 درجة",
+    "٢) 2.8 m — 10 درجة",
+    "٣) 375 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 350/(4·125)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "350",
+      "125"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.7 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.7",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.7"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.8 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·125",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "125"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 375 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 350/(4·125)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "350",
+        "125"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.7 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.7,
+      "unit": "m",
+      "text": "0.7 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.7",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.7"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.8 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.8,
+      "unit": "m",
+      "text": "2.8 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·125",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "125"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 375 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 375.0,
+      "unit": "Hz",
+      "text": "375 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126196,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 80 Hz، وسرعة الصوت في الهواء v = 320 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1 m — 10 درجة",
+    "٢) 4 m — 10 درجة",
+    "٣) 240 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 320/(4·80)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "320",
+      "80"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·1",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 4 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·80",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "80"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 240 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 320/(4·80)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "320",
+        "80"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.0,
+      "unit": "m",
+      "text": "1 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·1",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 4 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 4.0,
+      "unit": "m",
+      "text": "4 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·80",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "80"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 240 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 240.0,
+      "unit": "Hz",
+      "text": "240 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126198,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 125 Hz، وسرعة الصوت في الهواء v = 330 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.66 m — 10 درجة",
+    "٢) 2.64 m — 10 درجة",
+    "٣) 375 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 330/(4·125)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "330",
+      "125"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.66 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.66",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.66"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.64 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·125",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "125"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 375 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 330/(4·125)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "330",
+        "125"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.66 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.66,
+      "unit": "m",
+      "text": "0.66 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.66",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.66"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.64 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.64,
+      "unit": "m",
+      "text": "2.64 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·125",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "125"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 375 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 375.0,
+      "unit": "Hz",
+      "text": "375 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126202,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 100 Hz، وسرعة الصوت في الهواء v = 330 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.825 m — 10 درجة",
+    "٢) 3.3 m — 10 درجة",
+    "٣) 300 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 330/(4·100)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "330",
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.825 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.825",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.825"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 3.3 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·100",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "100"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 300 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 330/(4·100)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "330",
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.825 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.825,
+      "unit": "m",
+      "text": "0.825 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.825",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.825"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 3.3 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 3.3,
+      "unit": "m",
+      "text": "3.3 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·100",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "100"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 300 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 300.0,
+      "unit": "Hz",
+      "text": "300 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126213,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 50 Hz، وسرعة الصوت في الهواء v = 350 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.75 m — 10 درجة",
+    "٢) 7 m — 10 درجة",
+    "٣) 150 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 350/(4·50)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "350",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.75 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·1.75",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.75"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 7 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 150 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 350/(4·50)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "350",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.75 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.75,
+      "unit": "m",
+      "text": "1.75 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·1.75",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.75"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 7 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 7.0,
+      "unit": "m",
+      "text": "7 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 150 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 150.0,
+      "unit": "Hz",
+      "text": "150 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126223,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 50 Hz، وسرعة الصوت في الهواء v = 340 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.7 m — 10 درجة",
+    "٢) 6.8 m — 10 درجة",
+    "٣) 150 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 340/(4·50)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "340",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.7 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·1.7",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.7"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 6.8 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 150 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 340/(4·50)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "340",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.7 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.7,
+      "unit": "m",
+      "text": "1.7 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·1.7",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.7"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 6.8 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.8,
+      "unit": "m",
+      "text": "6.8 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 150 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 150.0,
+      "unit": "Hz",
+      "text": "150 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126229,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 250 Hz، وسرعة الصوت في الهواء v = 330 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.33 m — 10 درجة",
+    "٢) 1.32 m — 10 درجة",
+    "٣) 750 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 330/(4·250)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "330",
+      "250"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.33 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.33",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.33"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 1.32 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·250",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "250"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 750 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 330/(4·250)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "330",
+        "250"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.33 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.33,
+      "unit": "m",
+      "text": "0.33 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.33",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.33"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 1.32 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.32,
+      "unit": "m",
+      "text": "1.32 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·250",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "250"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 750 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 750.0,
+      "unit": "Hz",
+      "text": "750 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126241,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 125 Hz، وسرعة الصوت في الهواء v = 340 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.68 m — 10 درجة",
+    "٢) 2.72 m — 10 درجة",
+    "٣) 375 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 340/(4·125)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "340",
+      "125"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.68 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.68",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.68"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.72 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·125",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "125"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 375 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 340/(4·125)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "340",
+        "125"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.68 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.68,
+      "unit": "m",
+      "text": "0.68 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.68",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.68"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.72 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.72,
+      "unit": "m",
+      "text": "2.72 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·125",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "125"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 375 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 375.0,
+      "unit": "Hz",
+      "text": "375 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126250,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 125 Hz، وسرعة الصوت في الهواء v = 320 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 0.64 m — 10 درجة",
+    "٢) 2.56 m — 10 درجة",
+    "٣) 375 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 320/(4·125)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "320",
+      "125"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 0.64 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·0.64",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "0.64"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 2.56 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·125",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "125"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 375 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 320/(4·125)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "320",
+        "125"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 0.64 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 0.64,
+      "unit": "m",
+      "text": "0.64 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·0.64",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "0.64"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 2.56 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 2.56,
+      "unit": "m",
+      "text": "2.56 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·125",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "125"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 375 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 375.0,
+      "unit": "Hz",
+      "text": "375 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+   ]
+  },
+  {
+   "id": 126268,
+   "templateId": "U3.L2.P03",
+   "unit": "U3",
+   "chapter": "U3C2",
+   "type": "problem",
+   "difficulty": 2,
+   "weight": 30,
+   "approved": true,
+   "stem": "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = 50 Hz، وسرعة الصوت في الهواء v = 330 m·s⁻¹.",
+   "options": [],
+   "correctIndex": -1,
+   "optionRules": [],
+   "optionValues": [],
+   "solutionSteps": [
+    "١) 1.65 m — 10 درجة",
+    "٢) 6.6 m — 10 درجة",
+    "٣) 150 Hz — 10 درجة"
+   ],
+   "followThrough": [
+    {
+     "part": "٢",
+     "accept": [
+      {
+       "dependsOn": "١",
+       "power": 1.0,
+       "scale": 4.0,
+       "tolerance": 0.02
+      }
+     ]
+    }
+   ],
+   "answer": null,
+   "rubric": [
+    {
+     "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "L = v/(4·f1)"
+     ],
+     "antiKeys": [
+      "L = v/(2·f1)",
+      "L = 4·v/f1"
+     ]
+    },
+    {
+     "step": "الجزء ١ · التعويض: L = 330/(4·50)",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "330",
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ١ · النتيجة: 1.65 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ١ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "λ1 = 4·L",
+      "λ1 = v/f1"
+     ],
+     "antiKeys": [
+      "λ1 = 2·L",
+      "λ1 = L/4"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · التعويض: λ1 = 4·1.65",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "1.65"
+     ]
+    },
+    {
+     "step": "الجزء ٢ · النتيجة: 6.6 m",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٢ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    },
+    {
+     "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+     "points": 5,
+     "kind": "relation",
+     "keys": [
+      "f3 = 3·f1"
+     ],
+     "antiKeys": [
+      "f3 = 2·f1",
+      "f3 = f1/3"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · التعويض: f3 = 3·50",
+     "points": 3,
+     "kind": "substitution",
+     "expect": [
+      "50"
+     ]
+    },
+    {
+     "step": "الجزء ٣ · النتيجة: 150 Hz",
+     "points": 1,
+     "kind": "result"
+    },
+    {
+     "step": "الجزء ٣ · الوحدة",
+     "points": 1,
+     "kind": "unit"
+    }
+   ],
+   "grading": "parts-v1",
+   "parts": [
+    {
+     "n": 1,
+     "label": "١",
+     "prompt": "استنتج طول المزمار L.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ١ · العلاقة: على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "L = v/(4·f1)"
+       ],
+       "antiKeys": [
+        "L = v/(2·f1)",
+        "L = 4·v/f1"
+       ]
+      },
+      {
+       "step": "الجزء ١ · التعويض: L = 330/(4·50)",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "330",
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ١ · النتيجة: 1.65 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ١ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 1.65,
+      "unit": "m",
+      "text": "1.65 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    },
+    {
+     "n": 2,
+     "label": "٢",
+     "prompt": "احسب طول الموجة الأساسي λ1.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٢ · العلاقة: λ1 = 4·L = v/f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "λ1 = 4·L",
+        "λ1 = v/f1"
+       ],
+       "antiKeys": [
+        "λ1 = 2·L",
+        "λ1 = L/4"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · التعويض: λ1 = 4·1.65",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "1.65"
+       ]
+      },
+      {
+       "step": "الجزء ٢ · النتيجة: 6.6 m",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٢ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 6.6,
+      "unit": "m",
+      "text": "6.6 m",
+      "tolerance": 0.02,
+      "unitRequired": true
+     },
+     "followThrough": {
+      "part": "٢",
+      "accept": [
+       {
+        "dependsOn": "١",
+        "power": 1.0,
+        "scale": 4.0,
+        "tolerance": 0.02
+       }
+      ]
+     }
+    },
+    {
+     "n": 3,
+     "label": "٣",
+     "prompt": "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3.",
+     "weight": 10,
+     "rubric": [
+      {
+       "step": "الجزء ٣ · العلاقة: المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1",
+       "points": 5,
+       "kind": "relation",
+       "keys": [
+        "f3 = 3·f1"
+       ],
+       "antiKeys": [
+        "f3 = 2·f1",
+        "f3 = f1/3"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · التعويض: f3 = 3·50",
+       "points": 3,
+       "kind": "substitution",
+       "expect": [
+        "50"
+       ]
+      },
+      {
+       "step": "الجزء ٣ · النتيجة: 150 Hz",
+       "points": 1,
+       "kind": "result"
+      },
+      {
+       "step": "الجزء ٣ · الوحدة",
+       "points": 1,
+       "kind": "unit"
+      }
+     ],
+     "options": null,
+     "correctIndex": -1,
+     "optionRules": [],
+     "optionValues": [],
+     "solutionSteps": [],
+     "answer": {
+      "value": 150.0,
+      "unit": "Hz",
+      "text": "150 Hz",
+      "tolerance": 0.02,
+      "unitRequired": true
+     }
+    }
+   ],
+   "answerBasis": "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١.",
+   "source": {
+    "lesson": "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1",
+    "book": "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح",
+    "exam": "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+   },
+   "reviewNotes": [
+    "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
    ]
   }
  ]

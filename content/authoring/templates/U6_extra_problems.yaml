@@ -2848,3 +2848,309 @@ templates:
     review_notes:
       - "الجزء ٢ متابعة على γ، والجزء ٣ متابعة على E (p·c = β·E)."
     approved: false
+
+  # ══════════ الدفعة السادسة: أنماط جديدة إضافية (توسيع العرض) ══════════
+  # ── ٤٧) المزمار المغلق (U3C2) — مسألة عكسية: إيجاد الطول من التواتر الأساسي ──
+  - id: U3.L2.P03
+    title: "المزمار المغلق — مسألة عكسية بأجزاء (الطول · طول الموجة · التوافقي الثالث)"
+    chapter: U3C2
+    type: problem
+    difficulty: 2
+    source:
+      lesson: "L2 — الأمواج المستقرة في مزمار مغلق: L = v/(4·f1) · λ1 = 4L = v/f1 · f3 = 3·f1"
+      book: "مزمار مغلق من طرف: عقدة عند المغلق وبطن عند المفتوح"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      v: {set: [320, 330, 340, 350], unit: "m·s⁻¹"}
+      f1: {set: [50, 80, 85, 100, 125, 170, 200, 250, 340, 425, 500], unit: Hz}
+    compute:
+      L: "v/(4*f1)"
+      lam1: "v/f1"
+      f3: "3*f1"
+    stem: "مزمار مغلق من أحد طرفيه يُصدر تواتره الأساسي f1 = {f1} Hz، وسرعة الصوت في الهواء v = {v} m·s⁻¹."
+    parts:
+      - label: "١"
+        ask: "استنتج طول المزمار L."
+        unit: "m"
+        value: "L"
+        answer: {format: auto}
+        lines:
+          - relation: "على الأساسي في مزمار مغلق: L = λ1/4 = v/(4·f1)"
+            subst: "L = {v}/(4·{f1})"
+            expect: ["{v}", "{f1}"]
+            keys: ["L = v/(4·f1)"]
+            anti_keys: ["L = v/(2·f1)", "L = 4·v/f1"]
+      - label: "٢"
+        ask: "احسب طول الموجة الأساسي λ1."
+        unit: "m"
+        value: "lam1"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # λ1 = 4L ⇒ ∝ L
+        lines:
+          - relation: "λ1 = 4·L = v/f1"
+            subst: "λ1 = 4·{L}"
+            expect: ["{L}"]
+            keys: ["λ1 = 4·L", "λ1 = v/f1"]
+            anti_keys: ["λ1 = 2·L", "λ1 = L/4"]
+      - label: "٣"
+        ask: "احسب تواتر أول توافقي مسموح تالٍ (التوافقي الثالث) f3."
+        unit: "Hz"
+        value: "f3"
+        answer: {format: auto}
+        lines:
+          - relation: "المزمار المغلق يسمح بالتوافقيات الفردية: f3 = 3·f1"
+            subst: "f3 = 3·{f1}"
+            expect: ["{f1}"]
+            keys: ["f3 = 3·f1"]
+            anti_keys: ["f3 = 2·f1", "f3 = f1/3"]
+    answer_basis: "المزمار المغلق: L = v/(4f1) · λ1 = 4L · f3 = 3f1. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على الطول L (λ1 = 4L)."
+    approved: false
+
+  # ── ٤٨) المحوّلة المثالية على حمل مقاوم (U2C6) — التوتر · التيار · الاستطاعة ──
+  - id: U2.L6.P03
+    title: "المحوّلة المثالية على حمل مقاوم — مسألة بأجزاء (التوتر الثانوي · التيار · الاستطاعة)"
+    chapter: U2C6
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L6 — المحوّلة على حمل: Us = Up·Ns/Np · Is = Us/R · P = Us·Is"
+      book: "المحوّلة المثالية تنقل كامل الاستطاعة إلى الحمل"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      Up: {set: [110, 220], unit: V}
+      Np: {set: [500, 1000, 1100, 2000], unit: ""}
+      Ns: {set: [100, 200, 500, 1000, 2000, 5000], unit: ""}
+      R: {set: [10, 20, 50, 100, 200, 500], unit: "Ω"}
+    compute:
+      Us: "Up*Ns/Np"
+      Is: "Up*Ns/Np/R"
+      P: "(Up*Ns/Np)**2/R"
+    stem: "محوّلة مثالية ابتدائيّها Np = {Np} لفّة وثانويّها Ns = {Ns} لفّة، طُبّق على ابتدائيّها توتر فعّال Up = {Up} V. وُصل على الثانوي حمل مقاوم R = {R} Ω."
+    parts:
+      - label: "١"
+        ask: "احسب التوتر الفعّال الثانوي Us."
+        unit: "V"
+        value: "Us"
+        answer: {format: auto}
+        lines:
+          - relation: "المحوّلة المثالية: Us/Up = Ns/Np ⇒ Us = Up·Ns/Np"
+            subst: "Us = {Up}·{Ns}/{Np}"
+            expect: ["{Up}", "{Ns}", "{Np}"]
+            keys: ["Us = Up·Ns/Np"]
+            anti_keys: ["Us = Up·Np/Ns", "Us = Up + Ns/Np"]
+      - label: "٢"
+        ask: "احسب شدّة التيار الفعّال Is في الحمل."
+        unit: "A"
+        value: "Is"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: 1}   # Is = Us/R ⇒ ∝ Us
+        lines:
+          - relation: "قانون أوم على الحمل: Is = Us/R"
+            subst: "Is = {Us}/{R}"
+            expect: ["{R}"]
+            keys: ["Is = Us/R"]
+            anti_keys: ["Is = Us·R", "Is = R/Us"]
+      - label: "٣"
+        ask: "احسب الاستطاعة الكهربائية P المنقولة إلى الحمل."
+        unit: "W"
+        value: "P"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}   # P = Us·Is ⇒ ∝ Is
+        lines:
+          - relation: "الاستطاعة المستهلكة في الحمل: P = Us·Is"
+            subst: "P = {Us}·{Is}"
+            expect: ["{Us}"]
+            keys: ["P = Us·Is", "P = Us²/R"]
+            anti_keys: ["P = Us/Is", "P = Us + Is"]
+    answer_basis: "المحوّلة على حمل: Us = Up·Ns/Np · Is = Us/R · P = Us·Is. سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على Us، والجزء ٣ متابعة على Is."
+    approved: false
+
+  # ── ٤٩) جريان مثالي في أنبوب متغيّر المقطع (U1C4) — الاستمرارية وبرنولي ──
+  - id: U1.L4.P04
+    title: "جريان في أنبوب فنتوري — مسألة بأجزاء (سرعة التضيّق · التدفق · فرق الضغط)"
+    chapter: U1C4
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L4 — الاستمرارية s1·v1 = s2·v2 وبرنولي: ΔP = ½·ρ·(v2² − v1²)"
+      book: "أنبوب أفقي، سائل مثالي ρ = 1000 kg·m⁻³"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      s1cm: {set: [10, 20, 40, 50], unit: "cm²"}
+      s2cm: {set: [2, 4, 5, 10], unit: "cm²"}
+      v1: {set: [1, 2, 3, 4, 5], unit: "m·s⁻¹"}
+    constants_used: {rho: 1000}
+    constraints:
+      - "s1cm > s2cm"
+    compute:
+      v2: "(s1cm/s2cm)*v1"
+      Qv: "(s2cm*1e-4)*((s1cm/s2cm)*v1)"
+      dP: "0.5*1000*(((s1cm/s2cm)*v1)**2 - v1**2)"
+    stem: "سائل مثالي كثافته ρ = 1000 kg·m⁻³ يجري في أنبوب أفقي؛ مقطعه الواسع s1 = {s1cm} cm² تكون فيه سرعته v1 = {v1} m·s⁻¹، ثم يضيق إلى مقطع s2 = {s2cm} cm²."
+    parts:
+      - label: "١"
+        ask: "احسب سرعة السائل v2 في المقطع الضيّق."
+        unit: "m·s⁻¹"
+        value: "v2"
+        answer: {format: auto}
+        lines:
+          - relation: "معادلة الاستمرارية: s1·v1 = s2·v2 ⇒ v2 = (s1/s2)·v1"
+            subst: "v2 = ({s1cm}/{s2cm})·{v1}"
+            expect: ["{s1cm}", "{s2cm}", "{v1}"]
+            keys: ["v2 = (s1/s2)·v1", "s1·v1 = s2·v2"]
+            anti_keys: ["v2 = (s2/s1)·v1", "v2 = s1·s2·v1"]
+      - label: "٢"
+        ask: "احسب التدفق الحجمي Qv للسائل."
+        unit: "m³·s⁻¹"
+        value: "Qv"
+        answer: {format: sci, round: true, sig: 3}
+        follow: {depends_on: "١", power: 1}   # Qv = s2·v2 ⇒ ∝ v2
+        lines:
+          - relation: "التدفق الحجمي: Qv = s2·v2 (= s1·v1)"
+            subst: "Qv = {s2cm}×10⁻⁴·{v2}"
+            expect: ["{s2cm}"]
+            keys: ["Qv = s2·v2", "Qv = s1·v1"]
+            anti_keys: ["Qv = v2/s2", "Qv = s2/v2"]
+      - label: "٣"
+        ask: "احسب فرق الضغط ΔP = P1 − P2 بين المقطعين."
+        unit: "Pa"
+        value: "dP"
+        answer: {format: auto}
+        lines:
+          - relation: "علاقة برنولي (أنبوب أفقي): P1 + ½ρv1² = P2 + ½ρv2² ⇒ ΔP = ½·ρ·(v2² − v1²)"
+            subst: "ΔP = ½·1000·({v2}² − {v1}²)"
+            expect: ["{v1}"]
+            keys: ["ΔP = ½·ρ·(v2² − v1²)"]
+            anti_keys: ["ΔP = ½·ρ·(v1² − v2²)", "ΔP = ρ·(v2 − v1)"]
+    answer_basis: "فنتوري: v2 = (s1/s2)v1 · Qv = s2·v2 · ΔP = ½ρ(v2²−v1²). سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة على السرعة v2 (Qv ∝ v2)."
+    approved: false
+
+  # ── ٥٠) التحريض الذاتي (U2C3) — القوة المحركة الذاتية · التدفق · الطاقة ──
+  - id: U2.L3.P04
+    title: "التحريض الذاتي في وشيعة — مسألة بأجزاء (ق.م.ح الذاتية · التدفق الذاتي · الطاقة)"
+    chapter: U2C3
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L3 — التحريض الذاتي: e = L·ΔI/Δt · Φ = L·I · W = ½·L·I²"
+      book: "الطاقة المخزّنة في وشيعة"
+      exam: "بنية ٣ أجزاء — سلمها ٥/٣/١/١ لكل سطر (docs/20 §٢)"
+    vars:
+      L: {set: [0.1, 0.2, 0.5, 1.0, 2.0], unit: H}
+      dI: {set: [1, 2, 5, 10], unit: A}
+      dt: {set: [0.01, 0.02, 0.1, 0.5, 1.0], unit: s}
+      I: {set: [1, 2, 5, 10], unit: A}
+    compute:
+      e: "L*dI/dt"
+      Phi: "L*I"
+      W: "0.5*L*I**2"
+    stem: "وشيعة ذاتيتها L = {L} H مهملة المقاومة. يتغيّر التيار فيها بمقدار ΔI = {dI} A خلال Δt = {dt} s، ويستقرّ عند شدّة I = {I} A."
+    parts:
+      - label: "١"
+        ask: "احسب القوة المحركة الكهربائية الذاتية e المتحرّضة في الوشيعة."
+        unit: "V"
+        value: "e"
+        answer: {format: auto}
+        lines:
+          - relation: "القوة المحركة الذاتية: e = L·ΔI/Δt (بالقيمة المطلقة)"
+            subst: "e = {L}·{dI}/{dt}"
+            expect: ["{L}", "{dI}", "{dt}"]
+            keys: ["e = L·ΔI/Δt"]
+            anti_keys: ["e = L·Δt/ΔI", "e = ΔI/(L·Δt)"]
+      - label: "٢"
+        ask: "احسب التدفق الذاتي Φ عبر الوشيعة عند الشدّة I."
+        unit: "Wb"
+        value: "Phi"
+        answer: {format: auto}
+        lines:
+          - relation: "التدفق الذاتي: Φ = L·I"
+            subst: "Φ = {L}·{I}"
+            expect: ["{L}", "{I}"]
+            keys: ["Φ = L·I"]
+            anti_keys: ["Φ = L/I", "Φ = I/L"]
+      - label: "٣"
+        ask: "احسب الطاقة المغناطيسية W المخزّنة في الوشيعة عند الشدّة I."
+        unit: "J"
+        value: "W"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 1}   # W = ½·Φ·I ⇒ ∝ Φ
+        lines:
+          - relation: "الطاقة المخزّنة: W = ½·L·I² = ½·Φ·I"
+            subst: "W = ½·{L}·{I}²"
+            expect: ["{I}"]
+            keys: ["W = ½·L·I²", "W = ½·Φ·I"]
+            anti_keys: ["W = L·I²", "W = ½·L·I"]
+    answer_basis: "التحريض الذاتي: e = L·ΔI/Δt · Φ = L·I · W = ½·L·I². سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٣ متابعة على التدفق Φ (W = ½·Φ·I)."
+    approved: false
+
+  # ── ٥١) دارة RLC تسلسلية بمفاعلتين منفصلتين (U2C5) — الممانعة · التيار · الاستطاعة ──
+  - id: U2.L5.P03
+    title: "دارة RLC تسلسلية (مفاعلتان منفصلتان) — مسألة بأجزاء (الممانعة · التيار · الاستطاعة)"
+    chapter: U2C5
+    type: problem
+    difficulty: 3
+    source:
+      lesson: "L5 — التسلسل: X = XL − XC · Z = √(R² + X²) · I = U/Z · P = R·I²"
+      book: "مثلث الممانعات"
+      exam: "٢٠٢٦ المسألة الثالثة (البنية) — المعطيات من عندنا"
+    vars:
+      R: {set: [30, 45, 60, 80, 90], unit: "Ω"}
+      XL: {set: [80, 100, 120, 160, 200, 240], unit: "Ω"}
+      XC: {set: [40, 60, 80, 100, 120], unit: "Ω"}
+      U: {set: [100, 150, 200, 250, 300], unit: V}
+    constraints:
+      - "XL > XC"
+    compute:
+      X: "XL - XC"
+      Z: "sqrt(R**2 + (XL - XC)**2)"
+      I: "U/sqrt(R**2 + (XL - XC)**2)"
+      P: "R*(U/sqrt(R**2 + (XL - XC)**2))**2"
+    stem: "دارة تسلسلية تحوي مقاومة R = {R} Ω، ومفاعلة حثّية XL = {XL} Ω، ومفاعلة سعوية XC = {XC} Ω، موصولة بتوتر منتج U = {U} V."
+    parts:
+      - label: "١"
+        ask: "احسب ممانعة الدارة Z."
+        unit: "Ω"
+        value: "Z"
+        answer: {format: auto}
+        lines:
+          - relation: "المفاعلة الصافية X = XL − XC، والممانعة Z = √(R² + X²)"
+            subst: "Z = √({R}² + ({XL} − {XC})²)"
+            expect: ["{R}", "{XL}", "{XC}"]
+            keys: ["Z = √(R² + (XL−XC)²)"]
+            anti_keys: ["Z = R + XL − XC", "Z = √(R² − X²)"]
+      - label: "٢"
+        ask: "احسب شدّة التيار المنتج I في الدارة."
+        unit: "A"
+        value: "I"
+        answer: {format: auto}
+        follow: {depends_on: "١", power: -1}   # I = U/Z ⇒ ∝ 1/Z
+        lines:
+          - relation: "قانون أوم للدارة المتناوبة: I = U/Z"
+            subst: "I = {U}/{Z}"
+            expect: ["{U}"]
+            keys: ["I = U/Z"]
+            anti_keys: ["I = U·Z", "I = Z/U"]
+      - label: "٣"
+        ask: "احسب الاستطاعة المتوسطة P المستهلكة في الدارة."
+        unit: "W"
+        value: "P"
+        answer: {format: auto}
+        follow: {depends_on: "٢", power: 2}   # P = R·I² ⇒ ∝ I²
+        lines:
+          - relation: "الاستطاعة تُستهلك في المقاومة فقط: P = R·I²"
+            subst: "P = {R}·{I}²"
+            expect: ["{R}"]
+            keys: ["P = R·I²"]
+            anti_keys: ["P = Z·I²", "P = R·I"]
+    answer_basis: "RLC تسلسلي: X = XL−XC · Z = √(R²+X²) · I = U/Z · P = R·I². سلم ٥/٣/١/١."
+    review_notes:
+      - "الجزء ٢ متابعة بقوّة −1 على Z، والجزء ٣ متابعة بقوّة 2 على I."
+    approved: false
