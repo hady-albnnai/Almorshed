@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فيزيا كلاش — عين الطالب: يوم واحد من جوا التطبيق</title>
+<style>
+:root{
+  --bg:#0b1220; --bg2:#111a2e; --card:#16223a; --card2:#1c2b47;
+  --txt:#e8eef7; --txt2:#9db0c9; --line:#243350;
+  --brand:#2dd4a7; --brand2:#38bdf8; --gold:#fbbf24; --silver:#cbd5e1; --bronze:#d97706;
+  --violet:#a78bfa; --danger:#f87171; --ok:#34d399;
+}
+*{box-sizing:border-box; margin:0; padding:0; font-family:"Segoe UI",Tahoma,Arial,sans-serif}
+body{background:#05080f; color:var(--txt); line-height:1.75}
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px}
+/* رأس الجولة */
+.tour-head{padding:34px 0 20px}
+.kick{color:var(--brand2); font-size:13px; font-weight:700; letter-spacing:.5px}
+h1{font-size:clamp(24px,4vw,36px); font-weight:800; line-height:1.4}
+.lead{color:var(--txt2); font-size:14.5px; margin-top:10px; max-width:760px}
+.headchips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.hchip{background:var(--card); border:1px solid var(--line); color:var(--txt2); font-size:11.5px; font-weight:600; padding:5px 12px; border-radius:20px}
+.hchip b{color:var(--brand)}
+/* المرحلتان */
+.stage{display:grid; grid-template-columns:330px minmax(0,1fr); gap:22px; align-items:start; padding-bottom:40px}
+@media (max-width:980px){ .stage{grid-template-columns:1fr} .anno{order:-1; position:static} }
+/* لوحة الشرح */
+.anno{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:20px; position:sticky; top:16px; transition:opacity .25s, transform .25s}
+.anno.fade{opacity:0; transform:translateY(8px)}
+.anno-k{display:inline-block; background:#12233c; color:var(--brand2); font-size:11px; font-weight:800; border:1px solid var(--line); padding:3px 12px; border-radius:20px}
+.anno h3{font-size:18px; margin:10px 0 8px; line-height:1.5}
+.anno p{color:var(--txt2); font-size:13px; line-height:1.9}
+.anno-hook{margin-top:14px; background:rgba(45,212,167,.08); border:1px dashed rgba(45,212,167,.4); border-radius:12px; padding:10px 12px; font-size:12.5px}
+.anno-hook b{color:var(--brand)}
+.anno-hook span{color:var(--txt)}
+.anno-ref{margin-top:10px; font-size:11px; color:var(--txt2); opacity:.75}
+/* الهاتف */
+.phonecol{display:flex; flex-direction:column; align-items:center}
+.toc{display:flex; flex-wrap:wrap; gap:6px; justify-content:center; margin-bottom:12px; max-width:520px}
+.toc button{background:var(--card); border:1px solid var(--line); color:var(--txt2); border-radius:20px; padding:6px 12px; font-size:11.5px; font-weight:700; cursor:pointer; transition:.15s}
+.toc button:hover{color:var(--txt)}
+.toc button.on{background:#123f38; color:var(--brand); border-color:var(--brand)}
+.phone{width:392px; max-width:100%; height:min(820px, calc(100vh - 300px)); min-height:560px; background:var(--bg); border-radius:34px;
+  border:1px solid #1d2a45; overflow:hidden; position:relative; display:flex; flex-direction:column;
+  box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.top{display:flex; align-items:center; justify-content:space-between; padding:14px 18px 10px;
+  background:linear-gradient(180deg,#0d1526,#0b1220); border-bottom:1px solid var(--line)}
+.top .app{font-size:19px; font-weight:800; color:var(--brand)}
+.top .sub{font-size:10px; color:var(--txt2)}
+.top .acct{display:flex; align-items:center; gap:6px; cursor:default; background:var(--card);
+  border:1px solid var(--line); padding:6px 10px; border-radius:20px; font-size:12px}
+.top .acct .dot{width:8px; height:8px; border-radius:50%; background:var(--ok)}
+.screens{flex:1; overflow-y:auto; scrollbar-width:thin}
+.screen{display:none; padding:14px 14px 20px; animation:fadein .2s}
+.screen.active{display:block}
+@keyframes fadein{from{opacity:.3; transform:translateY(6px)}to{opacity:1}}
+h2.sec{font-size:15px; margin:12px 0 8px; color:var(--brand2)}
+.note{font-size:11px; color:var(--txt2); line-height:1.8}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:13px; margin-bottom:10px}
+.card.grad{background:linear-gradient(135deg,#123f38,#0e2a3a)}
+.row{display:flex; align-items:center; justify-content:space-between; gap:8px}
+.chip{display:inline-block; background:#12233c; color:var(--brand2); border-radius:20px; padding:3px 10px; font-size:10.5px; border:1px solid var(--line); white-space:nowrap}
+.chip.gold{color:var(--gold); border-color:#6b5a1e; background:#2a2410}
+.chip.violet{color:var(--violet); border-color:#3d3168; background:#1d1836}
+.chip.shield{color:var(--brand); border-color:#1d4b57; background:#0e2236}
+.chip.red{color:var(--danger); border-color:#7f3a3a; background:#2a1214}
+.btn{width:100%; padding:12px; border:none; border-radius:13px; background:linear-gradient(90deg,var(--brand),#22b8cf);
+  color:#04222b; font-size:14px; font-weight:800; cursor:pointer; margin-top:8px}
+.btn.ghost{background:var(--card); color:var(--txt2); border:1px solid var(--line); font-weight:600}
+.progress{height:7px; background:#0d1a30; border-radius:6px; overflow:hidden; margin-top:8px}
+.progress i{display:block; height:100%; background:linear-gradient(90deg,var(--brand),var(--brand2)); border-radius:6px}
+/* الرئيسية — عدّاد الامتحان */
+.countdown{display:flex; align-items:center; gap:14px; margin-top:10px}
+.cd-num{font-size:46px; font-weight:900; color:var(--brand2); line-height:1; min-width:74px; text-align:center;
+  background:#0d1a30; border:1px solid var(--line); border-radius:16px; padding:10px 14px}
+.cd-txt{font-size:13px; font-weight:700; line-height:1.7}
+.cd-txt span{display:block; font-size:11px; font-weight:400; color:var(--txt2)}
+/* بلوكات الدرس */
+.crumb{font-size:11px; color:var(--txt2); margin-bottom:10px}
+.blk{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; margin-bottom:10px}
+.blk-h{font-size:12px; font-weight:800; color:var(--brand2); margin-bottom:8px; letter-spacing:.3px}
+.blk h4{font-size:13.5px; color:var(--brand); margin-bottom:6px}
+.blk p{font-size:13px; line-height:2.05}
+.blk.predict{border-color:#1d4b57; background:linear-gradient(160deg,#0e2236,var(--card))}
+.blk.proof{border-color:#2f7a5a}
+.blk.fade-blk{border-color:#6b5a1e}
+.blk.quiz-mini{border-color:#3d3168; background:linear-gradient(160deg,#1d1836,var(--card))}
+.blk .why{background:rgba(56,189,248,.07); border:1px solid #1d4b57; border-radius:10px; padding:9px 11px; margin-top:8px; font-size:12px; color:var(--txt2); line-height:1.9}
+.blk .why b{color:var(--brand2)}
+.blk .warn{background:rgba(248,113,113,.06); border:1px solid #7f3a3a; border-radius:10px; padding:9px 11px; margin-top:8px; font-size:12px; color:var(--txt2); line-height:1.9}
+.blk .warn b{color:var(--danger)}
+.formula{background:#0d1830; border:1px solid var(--line); border-radius:12px; padding:11px;
+  text-align:center; font-size:17px; direction:ltr; margin:9px 0; color:#c7f5e8}
+.formula span{display:block; direction:rtl; font-size:11px; color:var(--txt2); margin-top:4px}
+.reveal{background:none; border:1px dashed var(--brand); color:var(--brand); border-radius:10px; padding:9px 14px; font-size:12.5px; font-weight:700; cursor:pointer; margin-top:8px}
+.ansbox{display:none; margin-top:10px; background:#0e2236; border:1px solid #1d4b57; border-radius:10px; padding:10px; font-size:12.5px; line-height:1.95; color:var(--txt2)}
+.ansbox b{color:var(--txt)}
+/* البرهان */
+.proofsteps{list-style:none; margin-top:6px}
+.proofsteps li{display:flex; gap:10px; align-items:flex-start; padding:8px 0; border-bottom:1px dashed var(--line); font-size:13px}
+.proofsteps li:last-child{border-bottom:none}
+.proofsteps .n{min-width:22px; height:22px; border-radius:50%; background:#123f38; color:var(--brand); font-size:11px; font-weight:900; display:flex; align-items:center; justify-content:center; flex-shrink:0}
+.proofsteps .fml{background:#0d1830; border:1px solid var(--line); border-radius:8px; padding:5px 12px; margin-top:5px; direction:ltr; text-align:center; font-size:14px; color:#c7f5e8}
+.proofsteps li.gold{background:rgba(251,191,36,.05); border-radius:10px; padding-inline:8px}
+.proofsteps li.gold .n{background:#2a2410; color:var(--gold)}
+.proofsteps li.gold .fml{border-color:#6b5a1e; color:var(--gold)}
+/* مثال */
+.exq{background:#0d1a30; border:1px solid var(--line); border-radius:10px; padding:10px; font-size:12.5px; line-height:2; margin-bottom:8px}
+.exsteps{list-style:none; font-size:12.5px}
+.exsteps li{padding:7px 0; border-bottom:1px dashed var(--line); line-height:1.9}
+.exsteps li:last-child{border-bottom:none}
+.exsteps b{color:var(--brand2)}
+.unitcheck{margin-top:8px; background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35); border-radius:10px; padding:8px 11px; font-size:11.5px; color:var(--ok)}
+.hiddenbox{display:inline-block; background:#12233c; border:1px dashed var(--line); border-radius:8px; padding:3px 10px; color:var(--txt2); font-size:11px; cursor:pointer; direction:rtl}
+.hiddenbox.show{border-style:solid; color:var(--txt)}
+.fadesol{margin-top:8px; background:#0e2236; border:1px solid #1d4b57; border-radius:10px; padding:10px; font-size:13px; direction:ltr; text-align:center; color:var(--gold)}
+/* أسئلة */
+.opt{display:block; width:100%; text-align:right; padding:12px; border-radius:12px; border:1px solid var(--line);
+  background:var(--card); color:var(--txt); margin-bottom:8px; cursor:pointer; font-size:13.5px; transition:.15s}
+.opt:hover{border-color:var(--brand2)}
+.opt.right{border-color:var(--ok); background:rgba(52,211,153,.12)}
+.opt.wrong{border-color:var(--danger); background:rgba(248,113,113,.12)}
+.opt:disabled{cursor:default}
+.diff{color:var(--gold); border-color:#6b5a1e; background:#2a2410}
+.fbcard{margin-top:10px; border-radius:12px; padding:10px 12px; font-size:12.5px; font-weight:700}
+.fbcard.ok{background:rgba(52,211,153,.1); border:1px solid rgba(52,211,153,.4); color:var(--ok)}
+.fbcard.no{background:rgba(248,113,113,.08); border:1px solid #7f3a3a; color:var(--danger)}
+.fbcard span{display:block; font-weight:400; color:var(--txt2); font-size:11px; margin-top:3px}
+.rubric{margin-top:10px; background:#0d1a30; border:1px solid var(--line); border-radius:12px; padding:10px 12px; font-size:11.5px; line-height:2; color:var(--txt2)}
+.rubric b{color:var(--brand)}
+.rubric .sc{color:var(--gold); font-weight:700}
+/* المختبر */
+.poe-card{border-color:var(--brand2)}
+.grader{display:flex; gap:7px; margin-top:9px}
+.grader button{flex:1; padding:10px 4px; border-radius:11px; border:1px solid var(--line); background:var(--card); color:var(--txt); font-weight:700; font-size:11.5px; cursor:pointer; transition:.15s}
+.grader .g1{border-color:#7f3a3a; color:var(--danger)}
+.grader .g2{border-color:#8a6d2f; color:var(--gold)}
+.grader .g3{border-color:#2f7a5a; color:var(--ok)}
+.grader button:disabled{opacity:.45; cursor:default}
+.grader button.gok{border-color:var(--ok)!important; background:rgba(52,211,153,.14); opacity:1!important}
+.grader button.gbad{border-color:var(--danger)!important; background:rgba(248,113,113,.1); opacity:1!important}
+.poefb{min-height:16px; margin-top:8px; font-weight:600}
+.canvasbox{background:#0d1a30; border:1px solid var(--line); border-radius:14px; padding:8px; margin-bottom:10px}
+.canvasbox canvas{width:100%; display:block; border-radius:8px}
+.legend{font-size:10px; color:var(--txt2); text-align:center; margin-top:5px}
+.slider-row{display:flex; align-items:center; gap:10px; margin:9px 0; font-size:12px}
+.slider-row span{width:60px; color:var(--txt2); flex-shrink:0}
+.slider-row b{width:74px; text-align:left; font-size:12px; color:var(--gold)}
+.slider-row input[type=range]{flex:1; accent-color:var(--brand); height:24px}
+.fmlc{text-align:center; font-size:14px; direction:ltr; background:#0d1830; border:1px solid var(--line); border-radius:10px; padding:9px; color:#c7f5e8}
+.fmlc b{color:var(--gold)}
+/* السلسلة */
+.streakbig{text-align:center; padding:20px 14px; background:linear-gradient(160deg,#2a1a0e,#0e2236); border-color:#6b5a1e}
+.streakbig .fire{font-size:40px}
+.streakbig .snum{font-size:52px; font-weight:900; color:var(--gold); line-height:1.1}
+.streakbig .slab{font-size:12.5px; color:var(--txt2)}
+.mrow{display:flex; gap:6px; justify-content:center; margin-top:12px; flex-wrap:wrap}
+.ms{background:#0d1a30; border:1px solid var(--line); border-radius:20px; padding:4px 12px; font-size:11px; font-weight:700; color:var(--txt2)}
+.ms.done{color:var(--ok); border-color:#2f7a5a; background:rgba(52,211,153,.08)}
+.ms.next{color:var(--gold); border-color:#6b5a1e; background:#2a2410}
+.comeback{border-color:#7f3a3a}
+.comeback .blk-h{color:var(--danger)}
+/* الدوري */
+.leaguegrad{background:linear-gradient(135deg,#2a2140,#0e2a3a); border-color:#3d3168}
+.mybig .row{font-size:13px}
+.tierrow{display:flex; justify-content:space-between; align-items:center; font-size:12.5px}
+footer{padding:26px 0 40px; color:var(--txt2); font-size:12px; text-align:center; line-height:2}
+footer a{color:var(--brand2)}
+/* تنقّل الجولة */
+.tournav{display:flex; align-items:center; gap:14px; margin-top:14px}
+.tournav button{background:var(--card); border:1px solid var(--line); color:var(--txt); border-radius:12px; padding:10px 22px; font-size:13.5px; font-weight:800; cursor:pointer; transition:.15s}
+.tournav button:hover{border-color:var(--brand); color:var(--brand)}
+.tournav button:disabled{opacity:.35; cursor:default}
+.dots{display:flex; gap:6px}
+.dots i{width:8px; height:8px; border-radius:50%; background:var(--line); transition:.2s}
+.dots i.on{background:var(--brand); transform:scale(1.25)}
+/* توست النقاط */
+.toast{position:absolute; top:14%; left:50%; transform:translateX(-50%) translateY(8px); background:var(--gold); color:#3a2d0a;
+  font-weight:900; font-size:13px; border-radius:22px; padding:9px 20px; opacity:0; transition:.3s; z-index:60; pointer-events:none; white-space:nowrap; box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.toast.on{opacity:1; transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<header class="tour-head">
+  <div class="wrap">
+    <div class="kick">👀 عين الطالب — فيزيا كلاش ⚡</div>
+    <h1>يوم واحد من جوا التطبيق، كما يراه الطالب بالضبط</h1>
+    <p class="lead">كل شاشة فيها <b style="color:var(--txt)">حزمة تعلق</b> من بحث docs/33 — والشاشة المجاورة تسمّي الحزمة ومصدرها.
+    هذا ما سيراه طالب بكالوريا سوري على جهازه (أندرويد، أوف لاين، داكن).</p>
+    <div class="headchips">
+      <span class="hchip">📱 ٨ شاشات = يوم طالب حقيقي</span>
+      <span class="hchip">🎯 <b>٨ حزم تعلق</b> موثقة بالمصادر</span>
+      <span class="hchip">🎨 هوية <b>docs/13</b> المعتمدة</span>
+      <span class="hchip">📄 رفيق المواصفة <b>ui-mockup/index.html</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="stage wrap" style="max-width:1240px">
+
+  <!-- لوحة الشرح -->
+  <aside class="anno" id="annoCard">
+    <span class="anno-k" id="annoK">الشاشة ١ / ٨</span>
+    <h3 id="annoT"></h3>
+    <p id="annoP"></p>
+    <div class="anno-hook"><b>🎯 الحزمة:</b> <span id="annoH"></span></div>
+    <div class="anno-ref" id="annoR"></div>
+  </aside>
+
+  <!-- الهاتف -->
+  <div class="phonecol">
+    <div class="toc" id="toc"></div>
+
+    <div class="phone">
+      <div class="top">
+        <div>
+          <div class="app">فيزيا كلاش</div>
+          <div class="sub">Clash of Physics · منهاج الثالث الثانوي العلمي</div>
+        </div>
+        <div class="acct">👤 <span>أحمد</span> <span class="dot"></span></div>
+      </div>
+
+      <div class="screens" id="screens">
+
+      <!-- ١ ═══ الرئيسية ══ -->
+      <div class="screen active" id="e-home">
+        <div class="card grad">
+          <div class="row"><b>👋 أهلاً، أحمد</b><span class="chip">مفعّل حتى ٢٠٢٧/٠٥/٠١</span></div>
+          <div class="countdown">
+            <div class="cd-num">18</div>
+            <div class="cd-txt">يوماً على امتحان الفيزياء
+              <span>⚔️ الامتحان الموحد هذا الأسبوع: الخميس ٨:٠٠ م — النموذج نفسه لكل سوريا</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="row"><span>🔥 <b>يومك ١٢</b> — سلسلتك</span><span class="chip shield">🛡️ درع متاح: 1</span></div>
+          <div class="progress"><i style="width:38%"></i></div>
+          <p class="note" style="margin-top:5px">اليوم الدراسي حتى ٤ فجر — السهرة الدراسية آمنة · الدرع يحميك يوماً واحداً إذا غبت</p>
+        </div>
+        <div class="card"><div class="row"><span>📘 <b>تابِع من حيث وقفت</b></span><span class="note">التوافقي البسيط ← <b style="color:var(--brand)">38٪</b></span></div></div>
+        <div class="card"><div class="row"><span>📝 <b>دفعة اليوم</b></span><span class="chip">بذرة جديدة · ١٠ أسئلة</span></div>
+          <p class="note" style="margin-top:5px">نفس الأسئلة صباحاً ومساءً — أتممتها؟ عد متى ما شئت ✓</p></div>
+        <div class="card"><div class="row"><span>🎯 <b>بطاقات اليوم</b></span><span class="chip">١٨ مستحقة · ٥ دقائق</span></div></div>
+        <div class="card" style="border-color:#3d3168">
+          <div class="row"><span>⚔️ <b>سلسلة مشتركة مع محمد</b></span><span class="chip violet">٣ أيام</span></div>
+          <p class="note" style="margin-top:5px">مباراتان متتاليتان مع الصديق = سلسلة مشتركة. مبارزة الغد تحافظ عليها</p>
+        </div>
+        <div class="card"><div class="row"><span>💡 <b>فكرة اليوم</b></span></div>
+          <p class="note" style="margin-top:5px">في الاهتزاز التوافقي البسيط، الدور لا يعتمد على السعة — جرّبه في المختبر</p></div>
+      </div>
+
+      <!-- ٢ ═══ الدرس: التوقع والفقرات ═══ -->
+      <div class="screen" id="e-lesson">
+        <div class="crumb">الوحدة ١ ← الفصل ١ · <b>الحركة التوافقية البسيطة</b> (ص٦)</div>
+        <div class="blk predict">
+          <div class="blk-h">🔑 قبل أن تبدأ — توقّع</div>
+          <p>نابضان متماثلان — علّقنا على الأول كتلة <b>2 kg</b> وعلى الثاني <b>0.5 kg</b>.<br>
+          <b>أيّهما دوره أكبر؟ وبكم؟</b></p>
+          <button class="reveal" onclick="predReveal()">💭 توقّعت ذهنياً — أظهر لي الجواب</button>
+          <div class="ansbox" id="predBox">
+            كتلة الـ 2 kg — دورها <b>أكبر بمرّتين</b> (لا «أبطأ شوي»): T = 2π√(m/k) و√4 = 2.
+            حدسك «الأثقل أبطأ» كان صحيح الاتجاه — لكن الامتحان يسأل <b>بكم</b>، والمقدار هو أين تُفقد الدرجة. هذا ما ستراه في المختبر.
+          </div>
+        </div>
+        <div class="blk">
+          <div class="blk-h">📖 الفكرة — ١</div>
+          <h4>القوة الراجعة تتناسب مع الإزاحة وتعاكسها</h4>
+          <p>علّق كتلة على نابض واسحبها قليلاً — النابض يسحبها راجعة نحو المركز. كل ما سحبت أكثر، سحبت أقوى. القوة دائماً نحو مركز الاهتزاز — لهذا إشارتها سالبة.</p>
+          <div class="formula">F = −k·x<span>k: ثابت صلابة النابض (N/m) · x: الإزاحة عن المركز (m)</span></div>
+          <div class="why"><b>لماذا؟</b> النابض الممدود «يُريد» العودة لطول طبيعيته — كلما زاد التمدد زادت قوة الرجوع. لهذا سُمّيت «راجعة».</div>
+          <div class="warn"><b>⚠️ الخطأ الشائع:</b> «الأجسام الأثقل تهتز أسرع لأنها تسقط أسرع». الاتجاه معكوس: الأثقل <b>أبطأ</b> (T ∝ √m) — والامتحان يميّز بينهما.</div>
+        </div>
+        <div class="blk">
+          <div class="blk-h">📖 الفكرة — ٢</div>
+          <h4>الدور يعتمد على الكتلة والصلابة — ولا يعتمد على السعة</h4>
+          <p>كتلة أثقل ⇒ اهتزاز أبطأ. نابض أصلب (k أكبر) ⇒ أسرع. أما كم سحبت (السعة) فلا يغيّر الدور — جرّب بنفسك في المختبر.</p>
+          <div class="formula">T₀ = 2π√(m/k)</div>
+          <div class="why"><b>لماذا؟</b> الكتلة تقاوم الحركة (عطالة) والصلابة تسحبها للرجعة — زمن الدورة هو نتيجة هذه المنافسة، والسعة خارج المعادلة.</div>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; background:rgba(45,212,167,.08); border:1px dashed rgba(45,212,167,.4); border-radius:12px; padding:9px 12px; font-size:11px; color:var(--txt2)">✓ محتوى هذا الدرس راجعته: <b style="color:var(--brand)">الأستاذ فداء البني</b> — رموزه مطابقة للكتاب حرفياً</div>
+      </div>
+
+      <!-- ٣ ═══ الدرس: البرهان والمثال ═══ -->
+      <div class="screen" id="e-proof">
+        <div class="crumb">الوحدة ١ ← الفصل ١ · <b>البرهان والمثال المحلول</b></div>
+        <div class="blk proof">
+          <div class="blk-h">🧮 البرهان — كل خطوة = درجة محتملة في سلم ٢٠٢</div>
+          <p class="note" style="margin-bottom:4px">بصيغة سؤال البكالوريا: «انطلاقاً من القانون الثاني، برهن أن الدور… واستنتج»</p>
+          <ol class="proofsteps">
+            <li><span class="n">1</span><div>نطبّق القانون الثاني لنوتون:<div class="fml">ΣF = m·a</div></div></li>
+            <li><span class="n">2</span><div>نعوّض القوة الراجعة:<div class="fml">−k·x = m·a</div></div></li>
+            <li><span class="n">3</span><div>نكتب التسارع مشتقاً ثانياً:<div class="fml">x″ + (k/m)·x = 0</div></div></li>
+            <li><span class="n">4</span><div>نقارن بالمعادلة العامة x″ + ω₀²·x = 0:<div class="fml">ω₀² = k/m</div></div></li>
+            <li class="gold"><span class="n">5</span><div>ومنه الدور:<div class="fml">T₀ = 2π/ω₀ = 2π·√(m/k)</div></div></li>
+          </ol>
+          <p class="note" style="margin-top:8px">💡 احفظ <b style="color:var(--txt)">البنية</b> (قوة ← مشتق ثانٍ ← مقارنة ← نتيجة) لا الجُمل — الامتحان يغيّر الأرقام ولا يغيّر البنية.</p>
+        </div>
+        <div class="blk">
+          <div class="blk-h">✍️ مثال محلول — بنمط سلّم الوزارة</div>
+          <div class="exq">
+            <b>المعطيات:</b> m = 0.2 kg · k = 80 N/m · X<sub>max</sub> = 4 cm<br>
+            <b>المطلوب:</b> الدور T₀ · السرعة العظمى<br>
+            <span style="color:var(--brand2)"><b>المبدأ الحاكم:</b> هزازة توافقية بسيطة — ω₀ = √(k/m)</span>
+          </div>
+          <ol class="exsteps">
+            <li><b>(١) العلاقة:</b> T₀ = 2π·√(m/k)</li>
+            <li><b>(٢) التعويض:</b> T₀ = 2π·√(0.2/80) = 2π·√(0.0025)</li>
+            <li><b>(٣) النتيجة:</b> T₀ = 2π × 0.05 ≈ <b>0.31 s</b></li>
+            <li><b>(٤) السرعة العظمى:</b> v<sub>max</sub> = ω₀·X<sub>max</sub> = 20 × 0.04 = <b>0.8 m/s</b></li>
+          </ol>
+          <div class="unitcheck">✅ تحقّق من الوحدة: √(kg / (N/m)) = √(kg·m/N) = √(s²) = s</div>
+        </div>
+        <div class="blk fade-blk">
+          <div class="blk-h">✍️ والآن بخطوات محذوفة — أنت تكمل (fading)</div>
+          <p class="note" style="margin-bottom:6px">نفس البنية، أرقام مختلفة: m = 0.5 kg · k = 50 N/m · X<sub>max</sub> = 6 cm</p>
+          <ol class="exsteps">
+            <li><b>(١) العلاقة:</b> T₀ = 2π·√(m/k) = <span class="hiddenbox" onclick="this.classList.toggle('show')">▢ اكتملها ثم المس للكشف</span></li>
+            <li><b>(٢) التعويض:</b> <span class="hiddenbox" onclick="this.classList.toggle('show')">▢ 2π·√(0.5/50)</span></li>
+            <li><b>(٣) النتيجة:</b> <span class="hiddenbox" onclick="this.classList.toggle('show')">T₀ = 2π × 0.1 ≈ 0.63 s ✓</span></li>
+          </ol>
+        </div>
+        <div class="blk quiz-mini">
+          <div class="blk-h">🎯 اختبر نفسك</div>
+          <p style="font-size:13px; margin-bottom:8px">أُبدلت الكتلة بأخرى <b>أثقل ٤ مرات</b> — ماذا يحدث للدور؟</p>
+          <button class="opt" onclick="miniPick(this,false)">يتضاعف (×2)</button>
+          <button class="opt" onclick="miniPick(this,false)">يتربّع (×4)</button>
+          <button class="opt" onclick="miniPick(this,false)">لا يتغير</button>
+          <p class="note" id="miniFb" style="min-height:16px; font-weight:600"></p>
+        </div>
+      </div>
+
+      <!-- ٤ ═══ المختبر POE ═══ -->
+      <div class="screen" id="e-lab">
+        <div class="crumb">الوحدة ١ ← الفصل ١ ← <b>تجربة النابض</b> <span class="chip" style="color:var(--brand)">توقّع ← شغّل ← لاحظ</span></div>
+        <div class="card poe-card">
+          <b style="font-size:13px">🤔 توقّع أولاً</b>
+          <p class="note" style="margin-top:3px">إذا ضاعفنا الكتلة m، ماذا يحدث لدور الاهتزاز T؟</p>
+          <div class="grader" id="poeGrader">
+            <button class="g1" onclick="poePick(this,false)">يقصر ⬇</button>
+            <button class="g2" onclick="poePick(this,true)">يطول ⬆</button>
+            <button class="g3" onclick="poePick(this,false)">لا يتغير</button>
+          </div>
+          <p class="poefb" id="labFb"></p>
+          <button class="btn" id="runBtn" onclick="labToggle()">▶ شغّل التجربة</button>
+        </div>
+        <div class="canvasbox">
+          <canvas id="simCv" width="640" height="360"></canvas>
+          <div class="legend">تبدأ ساكنة — الحركة تبدأ <b>بفعلك أنت</b> · غيّر k أو m وشاهد T يتغير أمامك</div>
+        </div>
+        <div class="canvasbox" style="padding:6px 10px">
+          <canvas id="xtCv" width="640" height="110"></canvas>
+          <p class="note" style="text-align:center; margin-top:3px">x(t) — يُرسم حياً أثناء الاهتزاز</p>
+        </div>
+        <div class="card">
+          <div class="slider-row"><span>صلابة k</span><input type="range" id="kIn" min="20" max="100" value="50" step="5"><b id="kVal"></b></div>
+          <div class="slider-row"><span>كتلة m</span><input type="range" id="mIn" min="0.5" max="3" value="1" step="0.25"><b id="mVal"></b></div>
+          <div class="fmlc" style="margin-top:10px">T = 2π√(m/k) = <b id="tVal"></b> s</div>
+        </div>
+      </div>
+
+      <!-- ٥ ═══ التدريب ═══ -->
+      <div class="screen" id="e-quiz">
+        <div class="row" style="margin-bottom:10px">
+          <span class="chip">السؤال ٣/١٠</span><span class="chip">الحركة والتحريك</span>
+          <span class="chip diff">المستوى: أساسي ●○○</span>
+        </div>
+        <div class="card">
+          <p style="font-size:13.5px; line-height:2">جسم كتلته <b>0.5 kg</b> يهتز توافقياً بسيطاً على نابض ثابته <b>200 N/m</b>. ما مقدار القوة الراجعة عند إزاحته <b>5 cm</b> عن مركز اهتزازه؟</p>
+          <div style="margin-top:10px" id="quizOpts">
+            <button class="opt" onclick="quizPick(this,false)">a) 2.5 N</button>
+            <button class="opt" data-correct="1" onclick="quizPick(this,true)">b) 10 N</button>
+            <button class="opt" onclick="quizPick(this,false)">c) 20 N</button>
+            <button class="opt" onclick="quizPick(this,false)">d) 40 N</button>
+          </div>
+          <div id="quizFb" style="display:none">
+            <div class="fbcard ok" id="qOk" style="display:none">✅ صحيحة — <b style="color:var(--gold)">+١٥ نقطة</b>
+              <span>الإجابة صحيحة ٤ مرات ⇒ السؤال التالي بمستوى «قياسي» — التحدي يصعد معك</span></div>
+            <div class="fbcard no" id="qNo" style="display:none">❌ الإجابة الصحيحة: 10 N — حُفظ السؤال في «أخطائك» (سبب الخطأ: تحويل cm → m)
+              <span>السؤال التالي بنفس المستوى — لا نُجبرك على صعوبة قبل إتقانك</span></div>
+            <div class="rubric">
+              <b>سلّم التصحيح (كما في الوزارة) — سطراً سطراً:</b><br>
+              ١) القانون: F = −k·x <span class="sc">٠٫٥</span> · ٢) التحويل: x = 5cm = 0.05 m <span class="sc">٠٫٥</span><br>
+              ٣) التعويض: F = −200 × 0.05 <span class="sc">٠٫٥</span> · ٤) الناتج مع الوحدة: F = −10 N <span class="sc">٠٫٥</span>
+            </div>
+          </div>
+        </div>
+        <button class="btn">السؤال التالي ←</button>
+        <p class="note" style="text-align:center; margin-top:6px">١٠ أسئلة ← «ولّد المزيد» بلا نهاية — أوف لاين من المخزون المحمّل</p>
+      </div>
+
+      <!-- ٦ ═══ أخطائي ═══ -->
+      <div class="screen" id="e-mistakes">
+        <h2 class="sec">أخطاؤك <span class="chip">١٤ سؤالاً</span></h2>
+        <p class="note" style="margin-bottom:10px">أرشيفك أنت — كل خطأ هنا درجة عائدة إليك قبل الامتحان</p>
+        <div class="card"><div class="row"><b style="font-size:13px">قوة راجعة على نابض</b><span class="chip red">×٣ أخطأت</span></div>
+          <p class="note" style="margin-top:4px">الوحدة ١ · آخر خطأ: أمس — <b>السبب:</b> عدم تحويل cm إلى m</p></div>
+        <div class="card"><div class="row"><b style="font-size:13px">التواتر العتبة f<sub>s</sub></b><span class="chip red">×٢</span></div>
+          <p class="note" style="margin-top:4px">الوحدة ٤ · آخر خطأ: قبل ٣ أيام — السبب: الخلط بين f<sub>s</sub> وطاقة الشبكة</p></div>
+        <div class="card"><div class="row"><b style="font-size:13px">قانون فاراداي للتدفق</b><span class="chip">×١</span></div>
+          <p class="note" style="margin-top:4px">الوحدة ٢ · أتقنته في آخر محاولتين — <b style="color:var(--ok)">يُخرَج من الأرشيف قريباً تلقائياً ✓</b></p></div>
+        <div class="card" style="border-color:#2f7a5a">
+          <b style="font-size:12.5px; color:var(--ok)">قاعدة الخروج:</b>
+          <p class="note" style="margin-top:4px">السؤال الذي تجيب عنه <b>صحيحة مرتين متتاليتين</b> يخرج من الأرشيف تلقائياً — القائمة تقصر كلما قويّت، وهذا إحساسك بالكفاءة لا يأتي من لوحة تصعيد</p>
+        </div>
+        <button class="btn">ابدأ مراجعة أخطائك (١٤) — +١٠ نقاط</button>
+      </div>
+
+      <!-- ٧ ═══ السلسلة ═══ -->
+      <div class="screen" id="e-streak">
+        <div class="card streakbig">
+          <div class="fire">🔥</div>
+          <div class="snum">١٢</div>
+          <div class="slab">يوماً متتالياً — اليوم الدراسي (حتى ٤ فجر)</div>
+          <div class="mrow">
+            <span class="ms done">٧ ✓ احتُفل</span>
+            <span class="ms next">٣٠ — التالي</span>
+            <span class="ms">١٠٠</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="row"><span>🛡️ <b>الدرع</b></span><span class="chip shield">1 متاح — يُكسب: ٣ أيام نظيفة</span></div>
+          <p class="note" style="margin-top:6px">الدرع يغطي <b>٢٤ ساعة تلقائياً</b> إن غبت يوماً — مرض، سفر، جوال صارف. يُكسب بالجهد لا يُشترى</p>
+        </div>
+        <div class="card comeback">
+          <div class="blk-h">لو انكسرت السلسلة؟ (بلا خجل)</div>
+          <p style="font-size:13.5px; line-height:2">سلسلتك انكسرت — <b>تقدمك ما راح</b>. نقاطك وبطاقتك وأخطاؤك ومراتبك كلها محفوظة. السلسلة تعاد من ١… في ٥ دقائق.</p>
+          <button class="btn">⚡ ٥ دقائق تعيد سلسلتي (بطاقات اليوم: ١٨)</button>
+          <p class="note" style="text-align:center; margin-top:8px">لا «خسرت كل شيء» — بل «تقدمك ملكك». من كسر سلسلته ١٠٠ يوم يعيدها أسرع من من بدأ من الصفر</p>
+        </div>
+      </div>
+
+      <!-- ٨ ═══ الدوري + الامتحان الموحد ═══ -->
+      <div class="screen" id="e-league">
+        <div class="card leaguegrad">
+          <div class="row"><b style="color:var(--violet)">🏆 دوري فيزيا كلاش</b><span class="chip violet">مرحلة برونزية</span></div>
+          <div class="mybig" style="margin-top:10px">
+            <div class="row"><span>رقمك القياسي: <b style="color:var(--brand)">٩/١٠</b></span><span class="chip" style="color:var(--ok); border-color:#2f7a5a; background:rgba(52,211,153,.08)">رتبتك صعدت ٢ هذا الأسبوع ↑</span></div>
+            <div class="progress"><i style="width:62%"></i></div>
+            <p class="note" style="margin-top:5px">العرض الافتراضي: <b style="color:var(--txt)">أنت ورقمك</b> — الترتيب (٨ من ١٠) يظهر إن طلبته، ولا اسم يُعرض إلا بموافقة صاحبه</p>
+          </div>
+        </div>
+        <div class="card" style="border-color:#6b5a1e; background:linear-gradient(160deg,#2a2410,#0e2a3a)">
+          <div class="row"><b>⚔️ تحدّي هذا الأسبوع — الامتحان الموحد</b><span class="chip gold">كل سوريا</span></div>
+          <p style="font-size:12.5px; line-height:2; margin-top:6px">النموذج نفسه للجميع (بذرة موحدة): <b>امتحان كامل · ٤٠٠ درجة · بتوقيت الوزارة ٣ ساعات</b>.</p>
+          <p class="note" style="margin-top:4px">نتيجتك تُقارن بـ<b style="color:var(--txt)">رقمك القياسي أنت</b> — لا درجات عامة. الموسم ينتهي بيوم الامتحان: <b style="color:var(--txt)">١٨ يوماً</b></p>
+          <button class="btn" style="margin-top:10px">🔔 ذكّرني الخميس ٨:٠٠ م</button>
+        </div>
+        <div class="card">
+          <div class="tierrow"><span>🥉 <b>برونزية</b> — أنت هنا</span><span class="note">→ فضية عند 200 نقطة</span></div>
+          <div class="progress"><i style="width:62%"></i></div>
+          <p class="note" style="margin-top:6px">جوائز الموسم تُسلَّم من المكتب بعد التحقق — وعند نجاحك بالبكالوريا: قيمة الأكواد نقداً أو هدية لمن تحب + شهادة بطل الدوري</p>
+        </div>
+      </div>
+
+      </div><!-- /screens -->
+
+      <!-- شريط سفلي (زيه الحقيقي) -->
+      <div style="display:flex; background:#0d1526; border-top:1px solid var(--line); padding:6px 4px 12px">
+        <div class="btb" data-tab="0" style="flex:1; text-align:center; font-size:10.5px; color:var(--brand); padding:6px 0; border-radius:12px; background:#12233c">🏠<br>الرئيسية</div>
+        <div class="btb" data-tab="1" style="flex:1; text-align:center; font-size:10.5px; color:var(--txt2); padding:6px 0; border-radius:12px">📘<br>المنهاج</div>
+        <div class="btb" data-tab="2" style="flex:1; text-align:center; font-size:10.5px; color:var(--txt2); padding:6px 0; border-radius:12px">📝<br>التدريب</div>
+        <div class="btb" data-tab="3" style="flex:1; text-align:center; font-size:10.5px; color:var(--txt2); padding:6px 0; border-radius:12px">⚔️<br>التحديات</div>
+        <div class="btb" data-tab="4" style="flex:1; text-align:center; font-size:10.5px; color:var(--txt2); padding:6px 0; border-radius:12px">📋<br>الملخصات</div>
+      </div>
+      <div class="toast" id="toast"></div>
+    </div><!-- /phone -->
+
+    <div class="tournav">
+      <button id="prevBtn" onclick="goto(cur-1)">→ السابق</button>
+      <div class="dots" id="dots"></div>
+      <button id="nextBtn" onclick="goto(cur+1)">التالي ←</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <b style="color:var(--txt)">فيزيا كلاش ⚡</b> — عين الطالب · يوم واحد من جوا التطبيق · 2026-10-01<br>
+    المواصفة البصرية الكاملة (23 شاشة): <a href="index.html">ui-mockup/index.html</a> · بحث التعلق: <a href="../docs/33-ENGAGEMENT-RESEARCH-2026-10-01.md">docs/33</a> · هوية الألوان: docs/13 (WCAG-مقيسة)
+  </div>
+</footer>
+
+<script>
+/* ═══ الجولة ═══ */
+var ORDER=['e-home','e-lesson','e-proof','e-lab','e-quiz','e-mistakes','e-streak','e-league'];
+var SHORT=['الرئيسية','التوقع','البرهان','المختبر','التدريب','أخطاؤك','السلسلة','الدوري'];
+var TABMAP={'e-home':0,'e-lesson':1,'e-proof':1,'e-lab':1,'e-quiz':2,'e-mistakes':2,'e-streak':3,'e-league':3};
+var ANNO=[
+ {t:'الثلث الأول يقرر العودة',
+  p:'أول ما يراه الطالب: عدّاد «18 يوماً على الامتحان» (الهدف الحقيقي الذي يجمع كل سوريا)، سلسلته مع درع مُكتسب، سلسلة صديقه المشتركة، و«تابِع من حيث وقفت» — توجيه دون مصادرة حرية (طالب البكالوريا يختار حسب جدول امتحانه).',
+  h:'Epic Meaning + تجنّب الخسارة + انتماء (+22٪ إكمال) — أربعة حزم في 3 ثوانٍ',
+  r:'docs/33 §0 (10)، §3، §9 · docs/31 (درس Duolingo: تابع بدون مسار مفروض)'},
+ {t:'الطالب اللي يتوقع هو اللي يَلصَق',
+  p:'الدرس يفتح بسؤال توقع يفتح التصور الخاطئ («الأثقل أبطأ» — صحيح الاتجاه، خاطئ المقدار)، ثم فقرات ≤ 90 كلمة، كل واحدة بعنوان يحمل الفكرة + «لماذا؟» + «⚠️ الخطأ الشائع» — المواجهة الصريحة هي التي تزيل التصور الخاطئ لا التصحيح الصامت.',
+  h:'POE نصي (توقّع ← فاجعة ← فهم) + مواجهة التصورات الخاطئة (PER) + ميكرو-تعلّم 3–5 دقائق',
+  r:'docs/33 §6 (2)، §8 · docs/19 §3.1–3.2 (القالب الإلزامي)'},
+ {t:'البرهان يُحفظ كبنية لا كجُمل',
+  p:'كل خطوة في البرهان = درجة محتملة في سلم 2026 — الطالب يبني العادة: قوة ← مشتق ثانٍ ← مقارنة ← نتيجة. ثم مثال كامل بنمط الوزارة (علاقة ← تعويض ← نتيجة + تحقّق الوحدة)، ونفسه بخطوات محذوفة يكملها (fading) — أثر المثال المحلول للمبتدئ موثّق في الفيزياء تحديداً.',
+  h:'صدق امتحاني (سلّم الوزارة) + worked-example effect (Sweller) + استرجاع فوري',
+  r:'docs/33 §11 (4-6) · docs/19 §1.3، §3.3–3.4'},
+ {t:'المحاكاة تبدأ ساكنة',
+  p:'POE في المختبر: توقع أولاً ← الحركة يبدأها الطالب («شغّل التجربة» — لا شيء يتحرك قبل فعله) ← عنصران فقط (k و m) ← T يُحسب أمامه حيّاً. لا شكل دفتر مخبري، لا إرشاد زائد، والإعدادات الافتراضية بعين الأستاذ (قاعدة «صخرة القمر»: خطأ افتراضي واحد يقلب إجابة 91٪).',
+  h:'قواعد PhET الخمس: تفاعل + توقع + سكون ابتدائي + بساطة + مصداقية',
+  r:'docs/33 §6 (1-6) · قرار 71-ح (توثيق الإعدادات الافتراضية)'},
+ {t:'تغذية فورية + صعوبة صادقة',
+  p:'بعد الإجابة: النتيجة + السلّم سطراً سطراً (كما في الوزارة — صدق امتحاني) + سبب الخطأ. مستوى الصعوبة (أساسي/قياسي/بكالوريا) يصعد عند ≥80٪ صواب وينزل عند الفشل المتكرر — قناة الفلو: التحدي ≈ المهارة، لا ملل ولا يأس.',
+  h:'شرط الفلو #2 (تغذية فورية) + إغلاق ثغرة الصعوبة (قرار 71-ب)',
+  r:'docs/33 §7، §2 (6) · docs/19 §1.2 (نسبة Rosenshine 80٪)'},
+ {t:'«أخطاؤك» لا «أخطاء التطبيق»',
+  p:'الدفتر يُعرض بصيغة المتكلم — وهو أثقل محتوى في النظام: هذا استثمار الطالب الشخصي (أقوى استراتيجية Hook مساهمة — دراسة β≈0.86). والسؤال يخرج من الأرشيف تلقائياً بـ 2 صحيحة: «الكفاءة» تُبنى بانقراض القائمة لا بلوحة تصعيد عامة.',
+  h:'الاستثمار الشخصي (Investment) + إحساس الكفاءة (SDT)',
+  r:'docs/33 §2 (9)، §5 (3-4) · meta-SDT 2024: الكفاءة لا تخدمها اللوحات العامة'},
+ {t:'السلسلة… بسلسلة رحيمة',
+  p:'درع يُكتسب بالجهد (لا يُشترى) يغطي 24 ساعة — رحمة تحول دون «قنبلة زمنية» يوم المرض. اليوم الدراسي حتى 4 فجر (السهرة الدراسية آمنة — جمهورنا يدرس ليلاً). وشاشة العودة بلا خجل: «تقدمك ما راح» + 5 دقائق تعيد السلسلة. الاحتفال محجوز للمحطات (7/30/100).',
+  h:'تجنّب الخسارة + ثلاثية الرحمة (درع/عودة/هوية) + عتبة منخفضة',
+  r:'docs/33 §3 (1-5) · Duolingo: freezes قلّلت السقوط 21٪، wager +14٪ D14'},
+ {t:'أنت — لا الترتيب… وبطولة تنتهي بيوم الامتحان',
+  p:'العرض الافتراضي للدوري «رقمك أنت» (الرقم القياسي + الترقية) حمايةً للمتدني — لا ترتيب عام إلا إن طلب، ولا اسم بلا موافقة. وتحدّي الأسبوع = بطولة موقوتة: النموذج نفسه لكل سوريا (بذرة موحدة) والموسم ينتهي بالهدف الحقيقي: يوم الامتحان. RCT على 10,000 طالب: +76٪ إكمال بعد 12 أسبوعاً من إزالة كل الحوافز.',
+  h:'لوحات نسبية (الحماية) + منافسة موقوتة (عادة تبقى) + هدف معنوي موحى',
+  r:'docs/33 §4 (Freadom RCT)، §5 (6) · 01-PLAN §16 (التحديات)'}
+];
+var cur=0;
+var tocEl=document.getElementById('toc'), dotsEl=document.getElementById('dots'), annoCard=document.getElementById('annoCard');
+ORDER.forEach(function(id,i){
+  var b=document.createElement('button'); b.textContent=SHORT[i]; b.onclick=function(){goto(i)}; tocEl.appendChild(b);
+  var d=document.createElement('i'); dotsEl.appendChild(d);
+});
+function setTab(n){
+  document.querySelectorAll('.btb').forEach(function(el){
+    var on=(+el.dataset.tab===n);
+    el.style.color=on?'var(--brand)':'var(--txt2)';
+    el.style.background=on?'#12233c':'transparent';
+  });
+}
+function goto(i){
+  cur=Math.max(0,Math.min(ORDER.length-1,i));
+  ORDER.forEach(function(id,n){document.getElementById(id).classList.toggle('active',n===cur)});
+  document.querySelectorAll('.toc button').forEach(function(b,n){b.classList.toggle('on',n===cur)});
+  document.querySelectorAll('.dots i').forEach(function(d,n){d.classList.toggle('on',n===cur)});
+  setTab(TABMAP[ORDER[cur]]);
+  document.getElementById('screens').scrollTop=0;
+  document.getElementById('prevBtn').disabled=(cur===0);
+  document.getElementById('nextBtn').disabled=(cur===ORDER.length-1);
+  var a=ANNO[cur];
+  annoCard.classList.add('fade');
+  setTimeout(function(){
+    document.getElementById('annoK').textContent='الشاشة '+(cur+1)+' / '+ORDER.length;
+    document.getElementById('annoT').textContent=a.t;
+    document.getElementById('annoP').textContent=a.p;
+    document.getElementById('annoH').textContent=a.h;
+    document.getElementById('annoR').textContent=a.r;
+    annoCard.classList.remove('fade');
+  },180);
+}
+document.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight') goto(cur-1);
+  if(e.key==='ArrowLeft') goto(cur+1);
+});
+goto(0);
+
+/* ═══ توست النقاط ═══ */
+var toastEl=document.getElementById('toast'), toastTmr=null;
+function toast(msg){
+  toastEl.textContent=msg; toastEl.classList.add('on');
+  clearTimeout(toastTmr); toastTmr=setTimeout(function(){toastEl.classList.remove('on')},1600);
+}
+/* ═══ التوقع في الدرس ═══ */
+function predReveal(){
+  var box=document.getElementById('predBox');
+  box.style.display=(box.style.display==='block')?'none':'block';
+}
+/* ═══ اختبر نفسك (mini) ═══ */
+function miniPick(el,ok){
+  var fb=document.getElementById('miniFb');
+  var opts=document.querySelectorAll('#e-proof .opt');
+  opts.forEach(function(b){b.disabled=true;});
+  if(ok){
+    el.classList.add('right');
+    fb.style.color='var(--ok)';fb.textContent='✅ أصبت: ×2 — لأن T ∝ √m و√4 = 2 (الدرجة كاملة للمقدار)';
+  }else{
+    el.classList.add('wrong');
+    opts[0].classList.add('right');
+    fb.style.color='var(--danger)';fb.textContent='❌ الصحيح: يتضاعف (×2) — T ∝ √m، لا T ∝ m';
+  }
+}
+/* ═══ سؤال التدريب ═══ */
+function quizPick(el,ok){
+  if(el.dataset.done)return;
+  document.querySelectorAll('#quizOpts .opt').forEach(function(b){b.dataset.done=1;b.disabled=true;
+    if(b===el)b.classList.add(ok?'right':'wrong');});
+  if(!ok)document.querySelector('#quizOpts .opt[data-correct]').classList.add('right');
+  document.getElementById('quizFb').style.display='block';
+  (ok?document.getElementById('qOk'):document.getElementById('qNo')).style.display='block';
+  if(ok)toast('+15 نقطة ✓ — سلسلتك اليوم محفوظة');
+}
+/* ═══ المختبر: POE + محاكاة النابض ═══ */
+var kIn=document.getElementById('kIn'), mIn=document.getElementById('mIn');
+var kVal=document.getElementById('kVal'), mVal=document.getElementById('mVal'), tVal=document.getElementById('tVal');
+var simCv=document.getElementById('simCv'), xtCv=document.getElementById('xtCv');
+var sctx=simCv.getContext('2d'), xctx=xtCv.getContext('2d');
+var running=false, labT=0, lastTs=0, poeDone=false;
+function simT(){var k=+kIn.value,m=+mIn.value;return 2*Math.PI*Math.sqrt(m/k)}
+function readout(){
+  kVal.textContent=kIn.value+' N/m'; mVal.textContent=mIn.value+' kg';
+  tVal.textContent=simT().toFixed(2);
+}
+kIn.addEventListener('input',readout); mIn.addEventListener('input',readout); readout();
+function poePick(el,ok){
+  if(poeDone)return; poeDone=true;
+  document.querySelectorAll('#poeGrader button').forEach(function(b){b.disabled=true;
+    if(b===el)b.classList.add(ok?'gok':'gbad');});
+  document.getElementById('labFb').innerHTML=ok
+    ?'✅ توقّعت صحيح — اضغط «شغّل التجربة» وشاهد: ضاعف m بالسلايدر ولاحظ T ×√2 ≈ ×1.41'
+    :'❌ ليست كذلك — اضغط «شغّل التجربة» وراقب: الدورة تعتمد على √m — جرّب بنفسك';
+  document.getElementById('runBtn').textContent='▶ شغّل التجربة — قارن بتوقعك';
+}
+function labToggle(){
+  var b=document.getElementById('runBtn');
+  if(running){running=false;b.textContent='▶ استمر'}
+  else{running=true;lastTs=performance.now();b.textContent='⏸ إيقاف'}
+}
+function rrect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function frame(ts){
+  if(running){labT+=(ts-lastTs)/1000}
+  lastTs=ts;
+  var k=+kIn.value,m=+mIn.value,Tdisp=simT()*1.6,A=95;
+  var W=simCv.width,H=simCv.height,cx=W/2,topY=34,restY=H/2+16;
+  sctx.clearRect(0,0,W,H);
+  // خط السقف
+  sctx.strokeStyle='#33456b';sctx.lineWidth=5;sctx.beginPath();sctx.moveTo(cx-90,topY);sctx.lineTo(cx+90,topY);sctx.stroke();
+  sctx.strokeStyle='#243350';sctx.lineWidth=2;
+  for(var hx=cx-84;hx<=cx+84;hx+=16){sctx.beginPath();sctx.moveTo(hx,topY-4);sctx.lineTo(hx-10,topY-16);sctx.stroke()}
+  // مركز الاهتزاز (متقطع)
+  sctx.strokeStyle='rgba(157,176,201,.35)';sctx.setLineDash([6,6]);sctx.lineWidth=1.5;
+  sctx.beginPath();sctx.moveTo(cx-150,restY);sctx.lineTo(cx+150,restY);sctx.stroke();sctx.setLineDash([]);
+  sctx.fillStyle='rgba(157,176,201,.7)';sctx.font='12px Segoe UI';sctx.textAlign='right';
+  sctx.fillText('مركز الاهتزاز',cx+150,restY-8);
+  // الإزاحة
+  var x=A*Math.sin(2*Math.PI*labT/Tdisp);
+  var bw=44+20*((m-0.5)/2.5), bh=54, blockY=restY+x-bh/2;
+  // النابض (zigzag)
+  var n=11, springTop=topY, springBot=blockY;
+  sctx.strokeStyle='#38bdf8';sctx.lineWidth=3;sctx.beginPath();sctx.moveTo(cx,springTop);
+  var seg=(springBot-springTop)/(n+1);
+  for(var i=1;i<=n;i++){sctx.lineTo(cx+(i%2?24:-24),springTop+seg*i)}
+  sctx.lineTo(cx,springBot);sctx.stroke();
+  // الكتلة
+  sctx.fillStyle='#2dd4a7';rrect(sctx,cx-bw/2,blockY,bw,bh,9);sctx.fill();
+  sctx.fillStyle='#04222b';sctx.font='bold 15px Segoe UI';sctx.textAlign='center';
+  sctx.fillText(m+' kg',cx,blockY+bh/2+5);
+  // منحنى x(t)
+  var W2=xtCv.width,H2=xtCv.height;
+  xctx.clearRect(0,0,W2,H2);
+  xctx.strokeStyle='#243350';xctx.lineWidth=1.5;xctx.beginPath();xctx.moveTo(0,H2/2);xctx.lineTo(W2,H2/2);xctx.stroke();
+  xctx.strokeStyle='#fbbf24';xctx.lineWidth=2.5;xctx.beginPath();
+  var span=2*Tdisp;
+  for(var px=0;px<=W2;px++){
+    var t=labT-(W2-px)*span/W2;
+    var y=H2/2-(A*0.40)*Math.sin(2*Math.PI*t/Tdisp);
+    if(px===0)xctx.moveTo(px,y);else xctx.lineTo(px,y);
+  }
+  xctx.stroke();
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
