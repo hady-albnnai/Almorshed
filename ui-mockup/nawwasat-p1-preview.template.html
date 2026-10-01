@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>معاينة — الفقرة الأولى من نوطة النواسات كما ستظهر بالتطبيق</title>
+<style>
+:root{
+  --bg:#0b1220; --bg2:#111a2e; --card:#16223a; --card2:#1c2b47;
+  --txt:#e8eef7; --txt2:#9db0c9; --line:#243350;
+  --brand:#2dd4a7; --brand2:#38bdf8; --gold:#fbbf24;
+  --violet:#a78bfa; --danger:#f87171; --ok:#34d399;
+}
+*{box-sizing:border-box; margin:0; padding:0; font-family:"Segoe UI",Tahoma,Arial,sans-serif}
+body{background:#05080f; color:var(--txt); line-height:1.75}
+.wrap{max-width:1180px; margin:0 auto; padding:0 20px}
+.head{padding:34px 0 18px}
+.kick{color:var(--brand2); font-size:13px; font-weight:700; letter-spacing:.5px}
+h1{font-size:clamp(22px,3.6vw,32px); font-weight:800; line-height:1.4}
+.lead{color:var(--txt2); font-size:14px; margin-top:8px; max-width:780px}
+.headchips{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+.hchip{background:var(--card); border:1px solid var(--line); color:var(--txt2); font-size:11.5px; font-weight:600; padding:5px 12px; border-radius:20px}
+.hchip b{color:var(--brand)}
+.layout{display:grid; grid-template-columns:420px minmax(0,1fr); gap:26px; align-items:start; padding-bottom:50px}
+@media (max-width:980px){ .layout{grid-template-columns:1fr} .anno{position:static} }
+
+/* الهاتف */
+.phone{width:400px; max-width:100%; height:800px; background:var(--bg); border-radius:38px;
+  border:1px solid #1d2a45; overflow:hidden; display:flex; flex-direction:column;
+  box-shadow:0 30px 80px rgba(0,0,0,.5); margin:0 auto}
+.statusbar{display:flex; justify-content:space-between; align-items:center; padding:10px 22px 4px; font-size:11px; color:var(--txt2); font-weight:600}
+.topbar{display:flex; align-items:center; gap:10px; padding:10px 14px; border-bottom:1px solid var(--line); background:var(--bg2)}
+.back{width:34px; height:34px; border-radius:10px; background:var(--card); border:1px solid var(--line); color:var(--txt); display:flex; align-items:center; justify-content:center; font-size:16px; flex:none}
+.tb-title{flex:1; min-width:0}
+.tb-title b{font-size:15px; display:block; line-height:1.3}
+.tb-title span{font-size:10.5px; color:var(--txt2)}
+.streak{display:flex; align-items:center; gap:4px; background:rgba(251,191,36,.1); border:1px solid rgba(251,191,36,.35); color:var(--gold); font-size:12px; font-weight:800; padding:5px 10px; border-radius:16px; flex:none}
+/* شريط التقدم */
+.progress{padding:12px 16px 4px}
+.progress .row{display:flex; justify-content:space-between; font-size:11px; color:var(--txt2); font-weight:700; margin-bottom:6px}
+.progress .row b{color:var(--brand)}
+.bar{height:5px; background:var(--card); border-radius:4px; overflow:hidden}
+.bar i{display:block; height:100%; width:.7%; background:linear-gradient(270deg,var(--brand),var(--brand2)); border-radius:4px}
+/* المحتوى */
+.content{flex:1; overflow-y:auto; padding:12px 14px 8px; display:flex; flex-direction:column; gap:12px}
+.pcard{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px 16px 14px}
+.pcard .chiprow{display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap}
+.chip{font-size:10.5px; font-weight:800; padding:3px 10px; border-radius:12px}
+.chip.sect{background:rgba(45,212,167,.12); color:var(--brand); border:1px solid rgba(45,212,167,.4)}
+.chip.num{background:var(--card2); color:var(--txt2); border:1px solid var(--line)}
+.pcard h2{font-size:16.5px; font-weight:800; margin-bottom:8px; color:var(--txt)}
+.pcard .body{font-size:14.5px; line-height:2.15; color:#dbe6f3}
+.math{font-family:"Cambria Math","STIX Two Math",Georgia,serif; font-style:italic; font-size:1.08em; color:#7dd3fc;
+  background:rgba(56,189,248,.09); border:1px solid rgba(56,189,248,.22); padding:0 5px; border-radius:5px; white-space:nowrap}
+.pcard .meta{margin-top:10px; padding-top:9px; border-top:1px dashed var(--line); font-size:10.5px; color:var(--txt2); display:flex; gap:10px}
+.pcard .meta b{color:var(--brand2); font-weight:700}
+/* الفقرة التالية (مقفل) */
+.nextcard{background:var(--card); border:1px dashed #2c3f63; border-radius:16px; padding:14px; opacity:.92}
+.nextcard .lbl{font-size:10.5px; font-weight:800; color:var(--txt2); margin-bottom:8px}
+.nextcard h3{font-size:14.5px; font-weight:800; margin-bottom:8px}
+.figbox{border-radius:12px; overflow:hidden; border:1px solid var(--line); background:#fffdf5}
+.figbox img{display:block; width:100%; height:auto}
+.nextbar{display:flex; align-items:center; justify-content:space-between; margin-top:10px}
+.lock{font-size:10.5px; color:var(--txt2); font-weight:700}
+.lock b{color:var(--gold)}
+/* شريط الأفعال */
+.actions{display:flex; gap:10px; padding:10px 14px 16px; border-top:1px solid var(--line); background:var(--bg2)}
+.btn{flex:1; border-radius:14px; padding:12px; font-size:14px; font-weight:800; text-align:center; border:1px solid var(--line); cursor:pointer}
+.btn.ghost{background:var(--card); color:var(--txt2)}
+.btn.primary{background:linear-gradient(270deg,var(--brand),#1fae8c); color:#04211a; border:none}
+/* لوحة الشرح */
+.anno{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:22px; position:sticky; top:16px}
+.anno-k{display:inline-block; background:#12233c; color:var(--brand2); font-size:11px; font-weight:800; border:1px solid var(--line); padding:3px 12px; border-radius:20px}
+.anno h3{font-size:18px; margin:10px 0 12px}
+.anno .item{display:flex; gap:10px; padding:10px 0; border-bottom:1px solid var(--line); font-size:13px; color:var(--txt2); line-height:1.9}
+.anno .item:last-child{border-bottom:none}
+.anno .item .ic{flex:none; width:26px; height:26px; border-radius:8px; background:var(--card2); display:flex; align-items:center; justify-content:center; font-size:13px}
+.anno .item b{color:var(--txt)}
+.anno-hook{margin-top:14px; background:rgba(45,212,167,.08); border:1px dashed rgba(45,212,167,.4); border-radius:12px; padding:12px 14px; font-size:12.5px; line-height:2}
+.anno-hook b{color:var(--brand)}
+.foot{padding:0 0 40px; color:var(--txt2); font-size:11.5px; opacity:.7}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <div class="kick">معاينة تصميم — شاشة المادة العلمية</div>
+    <h1>أول فقرة من نوطة النواسات — كيف رح تطلع بالتطبيق</h1>
+    <p class="lead">نص الأستاذ <b>كما هو حرفاً-بحرف</b> (بدون إعادة صياغة)، المعاملات كـ math runs،
+    والشكل من أصول النوط مباشرة. هذا أول شكل لشاشة «القراءة» في خط القرار ٧٢.</p>
+    <div class="headchips">
+      <span class="hchip">الوحدة <b>U1 · النواسات</b></span>
+      <span class="hchip">الفقرة <b>١</b> من <b>١٥٦٥</b></span>
+      <span class="hchip">القسم: <b>النواس المرن</b></span>
+      <span class="hchip">الحالة: <b>⚖️ بانتظار موافقة الأستاذ</b></span>
+    </div>
+  </div>
+
+  <div class="layout">
+    <!-- الهاتف -->
+    <div class="phone">
+      <div class="statusbar"><span>٩:٤١</span><span>🔋 ٢٪</span></div>
+      <div class="topbar">
+        <div class="back">←</div>
+        <div class="tb-title">
+          <b>الاهتزازات التوافقية البسيطة</b>
+          <span>U1 · الفصل ١: النواس المرن</span>
+        </div>
+        <div class="streak">🔥 ١٢</div>
+      </div>
+      <div class="progress">
+        <div class="row"><span>الفقرة <b>١</b></span><span>من ١٥٦٥ فقرة</span></div>
+        <div class="bar"><i></i></div>
+      </div>
+
+      <div class="content">
+        <!-- الفقرة ١ -->
+        <div class="pcard">
+          <div class="chiprow">
+            <span class="chip sect">النواس المرن الغير متخامد</span>
+            <span class="chip num">فقرة ١</span>
+          </div>
+          <h2>تعريفه</h2>
+          <div class="body">
+            هو عبارة عن نابض مرن مهمل الكتلة، حلقاته متباعدة ثابت صلابته <span class="math">k</span>،
+            معلق فيه جسم صلب كتلته <span class="math">m</span> يمكنه أن يهتز إلى جانبي نقطة ثابتة
+            تدعى <b>مركز الاهتزاز</b> (أو موضع التوازن).
+          </div>
+          <div class="meta">
+            <span>◈ <b>2</b> رمزين معادليين</span>
+            <span>✍️ نص الأستاذ كما هو</span>
+          </div>
+        </div>
+
+        <!-- الفقرة ٢ (التالية) -->
+        <div class="nextcard">
+          <div class="lbl">الفقرة التالية</div>
+          <h3>قوة الارجاع</h3>
+          <div class="figbox"><img src="__FIG_B64__" alt="شكل قوة الارجاع: النابض الشاقول بحالة السكون والحركة"></div>
+          <div class="nextbar">
+            <span class="lock">🔒 تفتح بعد اعتماد الفقرة الحالية</span>
+            <span class="chip num">فقرة ٢ · شكل</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="btn ghost">فهمتها ✓</div>
+        <div class="btn primary">التالية ⬅</div>
+      </div>
+    </div>
+
+    <!-- الشرح -->
+    <div class="anno">
+      <span class="anno-k">وش شو في هالشاشة؟</span>
+      <h3>كل عنصر له مصدره بالخط الأنبوبي</h3>
+      <div class="item"><div class="ic">✍️</div>
+        <div><b>النص</b> — حرف الأستاذ كما هو (البلوكات ٥+٦ من النوط)،
+        الوحيدة بالتعديل: رموز R1–R14 المتفق عليها (k و m مكان أي خطأ رمزي).
+        ما في إعادة صياغة — «اعتمدها تماماً متل ما هي».</div>
+      </div>
+      <div class="item"><div class="ic">𝑘</div>
+        <div><b>الرموز <span style="font-family:Georgia,serif; font-style:italic; color:#7dd3fc">k, m</span></b> —
+        math runs بـ Material ١١-ج: كشف خطي + عزل فونتي، <b>بدون MathJax وبدون إنترنت</b>
+        (math_text.dart موجود بالتطبيق).</div>
+      </div>
+      <div class="item"><div class="ic">🖼</div>
+        <div><b>الشكل</b> — <code>image2.png</code> (745×598) من أصول النوط الـ78 صورة؛
+        معروض 1:1 بدون إعادة رسم. (326 شكلاً متجهياً سيجون SVG داخل التطبيق)</div>
+      </div>
+      <div class="item"><div class="ic">🔢</div>
+        <div><b>التسلسل</b> — 1565 فقرة قابلة للاعتماد (1916 بلوك − 351 فارغة تُتخطى)
+        على 4 أقسام؛ نفس تقسيم صفحة المراجعة.</div>
+      </div>
+      <div class="item"><div class="ic">⚖️</div>
+        <div><b>بوابة الاعتماد</b> — الفقرة ما «تُفعّل» بالتطبيق إلا بعد موافقة الأستاذ
+        (تصدير JSON من صفحة المراجعة → أعيّن approved:true → تدخل بـ pack.json).</div>
+      </div>
+      <div class="anno-hook">
+        <b>التالي:</b> لو هذه المعاينة معك، أبدأ المرحلة A (تفريغ الفقرات للـ pack.json)
+        بالتوازي مع مراجعتك فقرة-فقرة — أول دفعة اعتمادات توصلني، التطبيق يكون جاهز يستقبلها.
+      </div>
+    </div>
+  </div>
+  <div class="foot">هوية docs/13 · نفس لغة ui-mockup/ · ملف واحد مستقل يعمل بلا إنترنت · 2026-10-01</div>
+</div>
+</body>
+</html>
