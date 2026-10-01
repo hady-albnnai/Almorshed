@@ -5,6 +5,7 @@ import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import 'experiment_screen.dart';
+import 'faraday1_lab_screen.dart';
 import 'spring_lab_screen.dart';
 
 /// F3.5 + المادة ١٤ — فهرس المختبر (قرار ٣٧: عرض بديل لنفس تجارب الدروس):
@@ -79,6 +80,34 @@ class _LabScreenState extends State<LabScreen> {
                         ),
                       ));
                       _load(); // تحديث حالة التحدي عند العودة
+                    },
+                  ),
+                ),
+                // المادة ١٤ — فاراداي (١) (المعتمد ٢٠٢٦-١٠-٠٢): شاشة خاصة
+                // بمشهد سحب حي — نمط النابض (لا القالب العام للخمسة).
+                Card(
+                  key: const Key('lab-faraday1'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['faraday1'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🧪',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('فاراداي (١): مغناطيس ووشيعة'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · التحريض الكهرومغناطيسي · تحدّي الانحرافين المتعاكسين'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => Faraday1LabScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load(); // تحديث علامة ✓ عند العودة
                     },
                   ),
                 ),

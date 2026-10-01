@@ -1,0 +1,123 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>فلاش: ملفا هلمهولتز — المسار الدائري r=mv/qB — نموذج اعتماد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+button:active{transform:scale(.97)}.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:120px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:520px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🌀 U2-5 · ملفا هلمهولتز: المسار الدائري للإلكترون r = mv/(qB) <span class="badge">نموذج اعتماد — يُنقل إلى Flutter بعد الاعتماد</span></h1>
+<div class="sub">مدفع إلكترونات يدخل حقلاً منتظماً بين الملفين — أثر فسفوري يرسم الدائرة، ومسطرة تقيس قطرها حياً</div>
+<div class="panel scenewrap">
+<canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">لو ضاعفنا شدة الحقل B (مع ثبات سرعة الإلكترون)، ماذا يحدث لنصف قطر المسار r؟</div>
+<button data-k="1">يتضاعف r</button><button data-k="2">ينصف r</button><button data-k="3">لا يتغير r</button><div class="fb" id="predFb"></div></div></div>
+</div>
+<div class="panel"><div class="ctrl">
+<span class="slider">جهد المسرّعة U <input type="range" id="U" min="100" max="500" step="10" value="250"><b id="UV" style="color:var(--ink)">٢٥٠V</b></span>
+<span class="slider">تيار الملفات I <input type="range" id="I" min="0.5" max="3" step="0.1" value="1.5"><b id="IV" style="color:var(--ink)">١٫٥A</b></span>
+<button id="beamBtn" class="primary">مدفع: شغّال ▶</button><button id="trailBtn">أثر دائم</button><button id="resetBtn">↺ إعادة</button>
+</div></div>
+<div class="panel"><span class="chip" id="chR">r المقاس: —</span><span class="chip" id="chT">r النظري: —</span><span class="chip" id="chC">🎯 اجعل r = ٤٫٠ cm</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">½mv² = qU &nbsp;·&nbsp; r = mv/(qB) &nbsp;·&nbsp; القوة عمودية على السرعة دائماً</div><ul>
+<li>الجهد U يمنح الإلكترون سرعة v = √(2qU/m) — من مدفع المهبط حتى فتحة الدخول.</li>
+<li>داخل الحقل المنتظم: قوة لورنتز q·v×B عمودية على السرعة ⇒ حركة دائرية منتظمة، r = mv/(qB).</li>
+<li>مضاعفة B تنصف r، ومضاعفة U (أي مضاعفة v بجذرها) تكبّر r بجذرها.</li>
+<li>القوة لا شغل تعمل — الطاقة الحركية ثابتة والحركة على دائرة سرعتها ثابتة.</li></ul></div></div>
+<div class="note">r النظري من القانون وr المقاس من هندسة الأثر على المسطرة — تطابقهما يثبت النموذج.</div>
+</div><div id="toast"></div><script>
+"use strict";const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+/* فيزياء: v=√(2eU/m)، r=mv/(qB) — B = k·I (k=1.0 mT/A)، مقياس: 12px=1cm */
+const EC=1.76e11, KM=1.0, PX=12; /* m/ث، mT/A، بكسل/سم */
+let U=250,Is=1.5,beam=true,permanent=true,t=0,started=false,won=false;
+let ang=0; /* طور دوران الإلكترون على مساره */
+const vOf=()=>Math.sqrt(2*EC*U);
+const BOf=()=>Is*KM*1e-3; /* تسلا */
+const rOf=()=>vOf()/BOf(); /* متر */
+const rcm=()=>rOf()*100, rpx=()=>rcm()*PX;
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;g.gain.value=.08;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+let AC=null;function initA(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function toast(s){const t=$("toast");t.textContent=s;t.style.opacity=1;setTimeout(()=>t.style.opacity=0,2400)}
+/* هندسة المشهد */
+const GUN={x:150,y:220}; /* فوهة الدخول */
+let entryAng=0; /* زاوية دخول الحزمة: عمودية على المحور ⇒ مركز الدائرة على المحور */
+const STEP=1/240;let acc=0,last=performance.now();const OMEGA=1.6; /* طور العرض (مبطّأ) */
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;while(acc>=STEP){acc-=STEP;t+=STEP;if(beam)ang=(ang+OMEGA*STEP)%1}
+ draw();requestAnimationFrame(loop)}
+function panel(){const g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#12211A");g.addColorStop(1,"#080F0B");cx.fillStyle=g;cx.fillRect(0,0,W,H);
+ cx.lineWidth=1;for(let x=0;x<W;x+=11){cx.strokeStyle=x%44<.5?"rgba(238,231,222,.07)":"rgba(238,231,222,.03)";cx.beginPath();cx.moveTo(x,0);cx.lineTo(x,H);cx.stroke()}
+ for(let y=0;y<H;y+=11){cx.strokeStyle=y%44<.5?"rgba(238,231,222,.07)":"rgba(238,231,222,.03)";cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke()}
+ const vg=cx.createRadialGradient(W/2,H/2,H*.3,W/2,H/2,W*.7);vg.addColorStop(0,"rgba(0,0,0,0)");vg.addColorStop(1,"rgba(0,0,0,.4)");cx.fillStyle=vg;cx.fillRect(0,0,W,H)}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+function draw(){if(!fit())return;panel();
+ const R=rpx();
+ /* منطقة الحقل بين الملفين */
+ const bx0=260,bx1=W-160;
+ cx.fillStyle="rgba(74,109,140,.08)";cx.fillRect(bx0,60,bx1-bx0,H-120);
+ /* الملفان: حلقتان أماميتان أعلى/أسفل */
+ for(const cy of[64,H-64]){cx.strokeStyle="rgba(203,183,158,.75)";cx.lineWidth=7;cx.beginPath();cx.ellipse((bx0+bx1)/2,cy,(bx1-bx0)/2,16,0,0,7);cx.stroke();
+  cx.strokeStyle="rgba(203,183,158,.25)";cx.lineWidth=1.5;cx.beginPath();cx.ellipse((bx0+bx1)/2,cy,(bx1-bx0)/2-14,10,0,0,7);cx.stroke()}
+ arT("ملفا هلمهولتز — B منتظم بينهما ≈ "+toAr((Is*KM).toFixed(1))+" mT",(bx0+bx1)/2,30,13,"#B3A79B");
+ /* علامات × للحقل (إلى الداخل) */
+ for(let x=bx0+30;x<bx1;x+=56)for(let y=110;y<H-80;y+=56){cx.strokeStyle="rgba(138,170,195,.16)";cx.lineWidth=1.4;cx.beginPath();cx.moveTo(x-6,y-6);cx.lineTo(x+6,y+6);cx.moveTo(x+6,y-6);cx.lineTo(x-6,y+6);cx.stroke()}
+ /* مدفع الإلكترونات */
+ cx.fillStyle="rgba(238,231,222,.15)";cx.fillRect(GUN.x-70,GUN.y-16,70,32);
+ cx.strokeStyle="rgba(238,231,222,.5)";cx.lineWidth=2;cx.strokeRect(GUN.x-70,GUN.y-16,70,32);
+ arT("مدفع v="+toAr((vOf()/1e7).toFixed(1))+"×١٠⁷ m/s",GUN.x-36,GUN.y-26,11.5,"#B3A79B");
+ if(beam){cx.save();cx.shadowColor="rgba(120,255,190,.9)";cx.shadowBlur=12;cx.strokeStyle="rgba(190,255,225,.9)";cx.lineWidth=2.5;cx.beginPath();cx.moveTo(GUN.x,GUN.y);cx.lineTo(bx0,GUN.y);cx.stroke();cx.restore()}
+ /* الدائرة داخل الحقل: مركزها على المحور الأفقي على بعد R من نقطة الدخول */
+ const cxx=bx0+R, cyc=GUN.y;
+ /* أثر فسفوري: قوس كامل خافت + قوس متوهج حتى طور الإلكترون */
+ const tot=2*Math.PI, ph=ang*tot;
+ cx.save();if(permanent){cx.strokeStyle="rgba(140,255,205,.28)";cx.lineWidth=3;cx.beginPath();cx.arc(cxx,cyc,R,0,7);cx.stroke()}
+ cx.shadowColor="rgba(120,255,190,.95)";cx.shadowBlur=18;
+ cx.strokeStyle="rgba(190,255,225,.95)";cx.lineWidth=4;cx.lineCap="round";
+ cx.beginPath();cx.arc(cxx,cyc,R,-0.0001,ph);cx.stroke();cx.restore();
+ /* نقطة الإلكترون */
+ if(beam){const ex=cxx+R*Math.cos(ph),ey=cyc+R*Math.sin(ph);
+  cx.save();cx.shadowColor="#fff";cx.shadowBlur=14;cx.fillStyle="#EAFFF5";cx.beginPath();cx.arc(ex,ey,4.5,0,7);cx.fill();cx.restore()}
+ /* مسطرة قطر حيّة */
+ if(R>8&&R<700){const dy=(cyc+R+24<H-40)?cyc+R+24:cyc-R-24;
+  cx.strokeStyle="rgba(238,231,222,.4)";cx.lineWidth=1.4;cx.beginPath();cx.moveTo(cxx-R,dy);cx.lineTo(cxx+R,dy);cx.stroke();
+  for(const e of[cxx-R,cxx+R]){cx.beginPath();cx.moveTo(e,dy-5);cx.lineTo(e,dy+5);cx.stroke()}
+  cx.strokeStyle="rgba(238,231,222,.2)";cx.beginPath();cx.moveTo(cxx-R,cyc);cx.lineTo(cxx-R,dy);cx.moveTo(cxx+R,cyc);cx.lineTo(cxx+R,dy);cx.stroke();
+  arT("قطر = "+toAr((2*R/PX).toFixed(1))+"cm",(cxx),dy+18,12.5,"#EEE7DE")}
+ /* مركز الدائرة */
+ cx.strokeStyle="rgba(238,231,222,.3)";cx.beginPath();cx.moveTo(cxx-6,cyc);cx.lineTo(cxx+6,cyc);cx.moveTo(cxx,cyc-6);cx.lineTo(cxx,cyc+6);cx.stroke();
+ /* نصف القطر من المركز إلى الإلكترون */
+ if(beam&&R>8){cx.setLineDash([4,5]);cx.strokeStyle="rgba(190,255,225,.4)";cx.lineWidth=1.3;cx.beginPath();cx.moveTo(cxx,cyc);cx.lineTo(cxx+R*Math.cos(ph),cyc+R*Math.sin(ph));cx.stroke();cx.setLineDash([]);
+  arT("r",cxx+R*Math.cos(ph/2)*0.55,cyc+R*Math.sin(ph/2)*0.55-8,13,"rgba(190,255,225,.7)")}
+ arT("U = "+toAr(U)+"V · I = "+toAr(Is.toFixed(1))+"A ⇒ r = mv/(qB)",W/2,H-14,13.5,"#B3A79B");
+ if(!started&&beam&&R>8){started=true;$("exp").classList.remove("locked")}
+ $("chR").textContent="r المقاس: "+(R>8&&R<700?toAr((R/PX).toFixed(1))+"cm":"—");
+ $("chT").textContent="r النظري: "+toAr(rcm().toFixed(1))+"cm";
+ if(!won&&Math.abs(R/PX-4.0)<=0.4){won=true;$("chDone").style.display="";toast("🏆 r = ٤٫٠ cm داخل النافذة (+١٠)");beep(660,.25)}}
+$("U").oninput=e=>{U=+e.target.value;$("UV").textContent=toAr(U)+"V";initA();beep(520,.08)};
+$("I").oninput=e=>{Is=+e.target.value;$("IV").textContent=toAr(Is.toFixed(1))+"A";initA();beep(390,.08)};
+$("beamBtn").onclick=()=>{initA();beam=!beam;$("beamBtn").textContent=beam?"مدفع: شغّال ▶":"مدفع: متوقف ⏸"};
+$("trailBtn").onclick=()=>permanent=!permanent;
+$("resetBtn").onclick=()=>{ang=0;U=250;Is=1.5;$("U").value=250;$("I").value=1.5;$("UV").textContent=toAr(250)+"V";$("IV").textContent=toAr((1.5).toFixed(1))+"A"};
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;const k=b.dataset.k,fb=$("predFb");
+ if(k==="2"){fb.className="fb good";fb.textContent="✔ صحيح — r = mv/(qB) يتناسب عكسياً مع B"}else{fb.className="fb bad";fb.textContent="✘ جرّب: ارفع I إلى ٣A وراقب نصف القطر";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("🎯 اضبط U وI حتى r = ٤٫٠ cm")},900)});
+requestAnimationFrame(loop);
+</script></body></html>

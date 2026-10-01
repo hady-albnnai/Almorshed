@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>فلاش: قرصانة عمود الهواء — نموذج اعتماد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+button:active{transform:scale(.97)}.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:130px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:520px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🔊 U3-6 · قرصانة عمود الهواء: الرنين فوق عمود الماء <span class="badge">نموذج اعتماد — يُنقل إلى Flutter بعد الاعتماد</span></h1>
+<div class="sub">رنانة فوق فوهة الأنبوب — أنزل مستوى الماء حتى تسمع الرنين: L₁ = λ/4 ثم L₂ = 3λ/4 ⇒ λ = 2(L₂−L₁) وv = f·λ</div>
+<div class="panel scenewrap">
+<canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">سمعنا أول رنين عند طول عمود L₁. لو واصلنا إنزال الماء — أين الرنين التالي؟</div>
+<button data-k="1">عند L₂ = 2·L₁ تقريباً</button><button data-k="2">عند L₂ = 3·L₁ تقريباً</button><button data-k="3">لا رنين ثانياً — الرنين الأول وحيد</button><div class="fb" id="predFb"></div></div></div>
+</div>
+<div class="panel"><div class="ctrl">
+<span class="slider">تواتر الرنانة f <input type="range" id="f" min="300" max="800" step="10" value="512"><b id="fV" style="color:var(--ink)">٥١٢Hz</b></span>
+<span class="slider">طول العمود L <input type="range" id="L" min="5" max="95" step="0.5" value="20"><b id="LV" style="color:var(--ink)">٢٠٫٠cm</b></span>
+<button id="scanBtn">اسحب الرنانة فوق الفوهة ◐</button><button id="holdBtn">أمسِكها فوق الفوهة (متواصلة)</button>
+<button id="markBtn">⌖ سجّل موضع رنين</button><button id="resetBtn">↺ إعادة</button>
+</div></div>
+<div class="panel"><span class="chip" id="chLoud">شدة الصوت: —</span><span class="chip" id="chM1">L₁: —</span><span class="chip" id="chM2">L₂: —</span><span class="chip" id="chV">v المقاسة: —</span><span class="chip" id="chC">🎯 سجّل رنينين واحسب v (الهدف ٣٤٣ m/s)</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">L = (2n−1)·λ/4 &nbsp;·&nbsp; λ = 2·(L₂ − L₁) &nbsp;·&nbsp; v = f·λ</div><ul>
+<li>عند سطح الماء عقدة (سكون) وفوق الفوهة بطن — عمود هواء مفتوح الطرف يردّد فقط أطوالاً تجعل L = (2n−1)·λ/4.</li>
+<li>الأطوال الرنّانية متباعدة بمقدار λ/2 — من فرقها نقيس λ بلا تصحيح الفوهة.</li>
+<li>من λ والتواتر نحسب سرعة الصوت v = f·λ ونقارنها بـ ٣٤٣ m/s.</li></ul></div></div>
+<div class="note">صوت الرنانة مولّد فعلياً ويتزامن مع f والرنين — رفع الصوت = وصول الرنين.</div>
+</div><div id="toast"></div><script>
+"use strict";const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+/* الفيزياء: v=343 ثابتة، λ=v/f، رنانات عند (2n-1)λ/4 */
+const V=343;let f=512,Lcm=20,forking=false,scanDir=1,t=0;let marks=[];let won=false,started=false;
+const lam=()=>V/f;
+const loud=()=>{let s=0;for(let n=1;n<=4;n++){const Ln=(2*n-1)*lam()/4*100;const d=(Lcm-Ln)/2.0;s+=Math.exp(-d*d/0.35)}return clamp(s,0,1)};
+/* صوت مولّد: نغمة f عند الرنين قوية */
+let AC=null;function audio(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(!AC)return;
+ if(!AC._o){AC._o=AC.createOscillator();AC._g=AC.createGain();AC._o.connect(AC._g);AC._g.connect(AC.destination);AC._o.start()}
+ const l=forking?loud():0;AC._o.frequency.value=f;AC._g.gain.value=0.012+0.13*l}
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;g.gain.value=.08;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+const STEP=1/240;let acc=0,last=performance.now();
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;
+ acc+=dt;while(acc>=STEP){acc-=STEP;t+=STEP;if(forking&&scanning){Lcm+=scanDir*dt*12;if(Lcm>=95){Lcm=95;scanDir=-1}if(Lcm<=5){Lcm=5;scanDir=1}}}
+ draw();audio();requestAnimationFrame(loop)}
+let scanning=false;
+/* رسم */
+function panel(){const g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#1D2721");g.addColorStop(1,"#0D130F");cx.fillStyle=g;cx.fillRect(0,0,W,H);
+ cx.lineWidth=1;for(let x=0;x<W;x+=11){cx.strokeStyle=x%44<.5?"rgba(238,231,222,.08)":"rgba(238,231,222,.035)";cx.beginPath();cx.moveTo(x,0);cx.lineTo(x,H);cx.stroke()}
+ for(let y=0;y<H;y+=11){cx.strokeStyle=y%44<.5?"rgba(238,231,222,.08)":"rgba(238,231,222,.035)";cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke()}
+ const vg=cx.createRadialGradient(W/2,H/2,H*.35,W/2,H/2,W*.72);vg.addColorStop(0,"rgba(0,0,0,0)");vg.addColorStop(1,"rgba(0,0,0,.38)");cx.fillStyle=vg;cx.fillRect(0,0,W,H)}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* هندسة: الأنبوب من y=70 (فوهة) إلى y=400 (قاع حاوية) — L: 0..100cm */
+const tubX=360,tubW=70,tubTop=70,tubBot=400;const yOfL=L=>tubBot-(L/100)*(tubBot-tubTop);
+function draw(){if(!fit())return;panel();const l=loud(),lamcm=lam()*100;
+ /* حاوية الماء */
+ cx.fillStyle="rgba(74,109,140,.35)";cx.fillRect(tubX-40,yOfL(Lcm),tubW+80,tubBot-yOfL(Lcm)+18);
+ cx.fillStyle="rgba(74,109,140,.6)";cx.fillRect(tubX-40,yOfL(Lcm),tubW+80,6);
+ /* الأنبوب */
+ cx.fillStyle="rgba(238,231,222,.06)";cx.fillRect(tubX,tubTop,tubW,tubBot-tubTop);
+ cx.strokeStyle="rgba(238,231,222,.5)";cx.lineWidth=2.5;cx.strokeRect(tubX,tubTop,tubW,tubBot-tubTop);
+ /* عمود الهواء المهتز داخل الأنبوب: موجة رأسية بطن-عقدة */
+ const nodes=l<=0.02?0:Math.min(4,Math.round((2*Lcm/lamcm+1)/2)); // عدد الأعمدة الرأسية
+ const A=6+16*l;
+ for(const dx of[tubX+18,tubX+35,tubX+52]){
+  cx.beginPath();let st=false;
+  for(let y=tubTop+6;y<=yOfL(Lcm)-2;y+=4){
+   const depth=(yOfL(Lcm)-y); // من سطح الماء
+   const env=Math.sin(Math.PI*depth/Math.max((Lcm/100)*(tubBot-tubTop),1)*0.5);
+   const yy=y,xx=dx+Math.sin(t*8+depth*0.16)*A*env*(0.4+l);
+   st?cx.lineTo(xx,yy):(cx.moveTo(xx,yy),st=true)}
+  cx.strokeStyle="rgba(221,110,66,"+(0.25+0.6*l)+")";cx.lineWidth=2;cx.stroke()}
+ /* مواقع الرنين النظرية على مسطرة جانبية */
+ cx.strokeStyle="rgba(238,231,222,.25)";cx.lineWidth=1;cx.beginPath();cx.moveTo(tubX-56,tubTop);cx.lineTo(tubX-56,tubBot);cx.stroke();
+ for(let n=1;n<=4;n++){const Ln=(2*n-1)*lam()/4*100;if(Ln>100)break;const y=yOfL(Ln);
+  cx.beginPath();cx.moveTo(tubX-62,y);cx.lineTo(tubX-50,y);cx.strokeStyle=n%2?"#7FB08D":"#DD6E42";cx.lineWidth=2;cx.stroke()}
+ arT("مواقع الرنين",tubX-56,tubTop-10,11.5,"#B3A79B");
+ /* مسطرة cm */
+ for(let c=0;c<=100;c+=10){const y=yOfL(c);cx.strokeStyle="rgba(238,231,222,.3)";cx.beginPath();cx.moveTo(tubX+tubW+8,y);cx.lineTo(tubX+tubW+(c%50===0?22:14),y);cx.stroke();if(c%50===0)arT(toAr(c),tubX+tubW+34,y+4,11,"#B3A79B")}
+ /* الرنانة */
+ const fx=tubX+tubW+120,fy=tubTop-2+(forking?Math.sin(t*40)*1.5:0);
+ if(forking){ /* أقواس صوتية تتوسع نحو الفوهة */
+  for(let k=0;k<3;k++){const rr=((t*60+k*22)%66);cx.beginPath();cx.arc(fx,fy+30,12+rr,-.65,.65);cx.strokeStyle="rgba(203,183,158,"+(0.5*(1-rr/66))+")";cx.lineWidth=2;cx.stroke()}}
+ cx.strokeStyle="rgba(238,231,222,.6)";cx.lineWidth=3;cx.beginPath();cx.moveTo(fx-26,fy+2);cx.lineTo(fx+26,fy+2);cx.stroke();/* شوكة */
+ cx.beginPath();cx.moveTo(fx-26,fy+2);cx.lineTo(fx-26,fy+34);cx.moveTo(fx+26,fy+2);cx.lineTo(fx+26,fy+34);cx.stroke();
+ arT("رنانة "+toAr(f)+"Hz",fx,fy+58,12.5,"#B3A79B");
+ /* عدّاد شدة الصوت */
+ const gx=60,gy=120,gh=210;cx.strokeStyle="rgba(238,231,222,.35)";cx.lineWidth=1.5;cx.strokeRect(gx,gy,26,gh);
+ cx.fillStyle="rgba(221,110,66,"+(0.35+0.45*l)+")";cx.fillRect(gx+2,gy+gh-gh*l-2,22,gh*l);
+ arT("🔊",gx+13,gy-14,16,"#EEE7DE");arT(toAr(Math.round(l*100))+"٪",gx+13,gy+gh+22,13,"#B3A79B");
+ /* علامات المسجل */
+ for(const mk of marks){const y=yOfL(mk);cx.strokeStyle="#7FB08D";cx.lineWidth=2.5;cx.beginPath();cx.moveTo(tubX-8,y);cx.lineTo(tubX-20,y);cx.stroke()}
+ arT("L = "+toAr(Lcm.toFixed(1))+"cm"+(l>0.35?" ⟵ رنين!":""),tubX+tubW/2,tubBot+34,14,l>0.35?"#7FB08D":"#EEE7DE");
+ arT("λ = v/f = "+toAr(lamcm.toFixed(1))+"cm · الرنين النظري عند "+toAr((lamcm/4).toFixed(1))+"/"+toAr((3*lamcm/4).toFixed(1))+"/"+toAr((5*lamcm/4).toFixed(1))+"cm",W/2,26,13.5,"#B3A79B");
+ if(l>0.5&&!started){started=true;$("exp").classList.remove("locked")}
+ $("chLoud").textContent="شدة الصوت: "+toAr(Math.round(l*100))+"٪";
+ const has1=marks.length>0,has2=marks.length>1;
+ $("chM1").textContent="L₁: "+(has1?toAr(Math.min(...marks).toFixed(1))+"cm":"—");
+ $("chM2").textContent="L₂: "+(has2?toAr(Math.max(...marks).toFixed(1))+"cm":"—");
+ if(has2){const vv=f*2*(Math.max(...marks)-Math.min(...marks))/100;
+  $("chV").textContent="v المقاسة: "+toAr(vv.toFixed(0))+" m/s";
+  if(!won&&Math.abs(vv-V)/V<0.05){won=true;$("chDone").style.display="";$("exp").classList.remove("locked");toast("🏆 v = "+toAr(vv.toFixed(0))+" m/s قريبة من ٣٤٣ (+١٠)");beep(660,.25)}}}
+function toast(s){const t=$("toast");t.textContent=s;t.style.opacity=1;setTimeout(()=>t.style.opacity=0,2600)}
+$("scanBtn").onclick=()=>{forking=true;scanning=true;$("scanBtn").style.borderColor="var(--accent)";$("holdBtn").style.borderColor=""};
+$("holdBtn").onclick=()=>{forking=true;scanning=false;$("holdBtn").style.borderColor="var(--accent)";$("scanBtn").style.borderColor=""};
+$("markBtn").onclick=()=>{const l=loud();if(l<0.3){toast("ليس رنيناً بعد — أنزل الماء وأصغِ");return}marks.push(Lcm);beep(880,.15);
+ if(marks.length>2)marks=marks.slice(-2)};
+$("resetBtn").onclick=()=>{marks=[];Lcm=20;forking=false;scanning=false;$("scanBtn").style.borderColor="";$("holdBtn").style.borderColor=""};
+$("f").oninput=e=>{f=+e.target.value;$("fV").textContent=toAr(f)+"Hz";marks=[]};
+$("L").oninput=e=>{Lcm=+e.target.value;$("LV").textContent=toAr(Lcm.toFixed(1))+"cm";scanning=false};
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;const k=b.dataset.k,fb=$("predFb");
+ if(k==="2"){fb.className="fb good";fb.textContent="✔ صحيح — الأطوال الرنّانية L=(2n−1)λ/4 ⇒ L₂≈3·L₁"}else{fb.className="fb bad";fb.textContent="✘ جرّب: سجّل الرنين الأول وواصل إنزال الماء";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("🎯 سجّل رنينين بـ⌖ ثم احسب v")},900)});
+requestAnimationFrame(loop);
+</script></body></html>

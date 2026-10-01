@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>فلاش: أنبوب كروكس — نموذج اعتماد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+button:active{transform:scale(.97)}.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:150px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:520px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>☢️ U4-2 · أنبوب كروكس: من الشرارة إلى الحزمة المهبطية <span class="badge">نموذج اعتماد — يُنقل إلى Flutter بعد الاعتماد</span></h1>
+<div class="sub">أنزل الضغط وشغّل التوتر العالي: شرارة → توهج وريدي → ظلام + تألق أخضر على الزجاج → حزمة مستقيمة وظل صليبها</div>
+<div class="panel scenewrap">
+<canvas id="scene" width="960" height="430"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">ما الذي يسافر من المهبط السالب نحو الزجاج فيلوّنه؟</div>
+<button data-k="1">ضوء ينتشر بكل الاتجاهات</button><button data-k="2">جسيمات سالبة في خطوط مستقيمة</button><button data-k="3">صوت عبر الغاز المتبقي</button><div class="fb" id="predFb"></div></div></div>
+</div>
+<div class="panel"><div class="ctrl">
+<span class="slider">ضغط الغاز <input type="range" id="P" min="0" max="100" step="1" value="100"><b id="PV" style="color:var(--ink)">٧٦٠ torr</b></span>
+<button id="hvBtn" class="primary">التوتر العالي: ON</button><button id="magBtn">🧲 مغناطيس قرب الأنبوب</button><button id="resetBtn">↺ إعادة</button>
+</div></div>
+<div class="panel"><span class="chip" id="cStage">المرحلة: —</span><span class="chip" id="cC">🎯 وصل للتألق الزجاجي ثم انحرف الحزمة بمغناطيس</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><ul>
+<li>عند الضغط الجوي: مسافة التوهج أقصر من الأنبوب ⇒ شرارة فقط. بإنقاص الضغط يطول مسار التوهج الوردي حتى يملأ الأنبوب.</li>
+<li>عند ضغط منخفض جداً: يخلو الأنبوب (ظلام) وتصبح الجسيمات حرة في السير: حزمة مهبطية مستقيمة ⇒ تألق أخضر حيث تصيب الزجاج.</li>
+<li>الصليب المالطي يرمي ظلاً حاداً ⇒ الجسيمات تسير في خطوط مستقيمة — الضوء لا ينحرف بالمغناطيس، هذه تنحرف ⇒ جسيمات سالبة (إلكترونات).</li>
+<li>المغناطيس يحرف الحزمة والظل معها — الدليل الحاسم على طبيعتها الشحنة.</li></ul></div></div>
+<div class="note">محاكاة بصرية مبسّطة بمراحل ضغط مستمرة — الترتيب والنتائج كما بالتجربة المكتبية (ص221).</div>
+</div><div id="toast"></div><script>
+"use strict";const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=430;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+/* الضغط: منزلق 0..100 → 760..0.01 torr لوغاريتمياً */
+let P=100,hv=true,mag=false,t=0,won=false,started=false;
+const torr=()=>Math.max(0.01,760*Math.pow(10,-(P/100)*4.88)); /* 760→0.01 */
+const stage=()=>{const p=torr();if(!hv)return 0;if(p>200)return 1;if(p>2)return 2;if(p>0.05)return 3;return 4};
+/* 1 شرارة، 2 توهج جزئي، 3 توهج كامل، 4 حزمة+تألق */
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;g.gain.value=.07;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+let AC=null;function initA(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function toast(s){const t=$("toast");t.textContent=s;t.style.opacity=1;setTimeout(()=>t.style.opacity=0,2600)}
+const STEP=1/240;let acc=0,last=performance.now();
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;while(acc>=STEP){acc-=STEP;t+=STEP}
+ draw();requestAnimationFrame(loop)}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* جسيمات الحزمة: تسبح من المهبط لليمين */
+const parts=[];const TUBE={x0:150,x1:810,cy:215,r:95};
+function draw(){if(!fit())return;
+ cx.fillStyle="#0A0F14";cx.fillRect(0,0,W,H);
+ const st=stage(),p=torr();
+ /* جسم الأنبوب */
+ cx.fillStyle="rgba(120,160,190,.06)";cx.beginPath();cx.ellipse((TUBE.x0+TUBE.x1)/2,TUBE.cy,(TUBE.x1-TUBE.x0)/2+40,TUBE.r+30,0,0,7);cx.fill();
+ cx.strokeStyle="rgba(150,190,215,.4)";cx.lineWidth=3;cx.beginPath();cx.ellipse((TUBE.x0+TUBE.x1)/2,TUBE.cy,(TUBE.x1-TUBE.x0)/2+40,TUBE.r+30,0,0,7);cx.stroke();
+ /* توهج الغاز: وردي، طوله يزداد بانخفاض الضغط حتى المرحلة 3 */
+ if(st===2||st===3){const frac=st===3?1:clamp((200-p)/198,0.08,0.85);const gl=(TUBE.x1-TUBE.x0)*frac;
+  const g=cx.createLinearGradient(TUBE.x0,0,TUBE.x0+gl,0);g.addColorStop(0,"rgba(255,110,170,.55)");g.addColorStop(1,"rgba(255,110,170,.05)");
+  cx.fillStyle=g;cx.beginPath();cx.ellipse(TUBE.x0+gl*0.5,TUBE.cy,gl*0.55,TUBE.r-8,0,0,7);cx.fill()}
+ /* شرارة عند الضغط الجوي */
+ if(st===1&&hv){const fl=Math.sin(t*40)>0.4?1:0.2;cx.save();cx.shadowColor="#BFD8FF";cx.shadowBlur=16*fl;cx.strokeStyle="rgba(200,225,255,"+fl+")";cx.lineWidth=2;
+  cx.beginPath();cx.moveTo(TUBE.x0+6,TUBE.cy);for(let k=1;k<6;k++)cx.lineTo(TUBE.x0+6+k*8,TUBE.cy+(Math.random()-0.5)*22);cx.stroke();cx.restore()}
+ /* المهبط */
+ cx.fillStyle="rgba(220,230,240,.85)";cx.fillRect(TUBE.x0-8,TUBE.cy-26,10,52);
+ /* حزمة مهبطية + تألق زجاجي + صليب */
+ if(st===4){
+  /* تألق أخضر على قاعدة الزجاج اليمنى */
+  const gg=cx.createRadialGradient(TUBE.x1+16,TUBE.cy,4,TUBE.x1+16,TUBE.cy,90);
+  gg.addColorStop(0,"rgba(140,255,170,.8)");gg.addColorStop(1,"rgba(140,255,170,0)");
+  cx.fillStyle=gg;cx.beginPath();cx.ellipse(TUBE.x1+16,TUBE.cy,34,TUBE.r-6,0,0,7);cx.fill();
+  /* انحراف بالمغناطيس */
+  const shift=mag?34*Math.sin(t*1.4):0;
+  /* جسيمات مستقيمة مع انحراف تدريجي عند تفعيل المغناطيس */
+  for(let k=0;k<14;k++){const prog=((t*0.9+k/14)%1);let x=TUBE.x0+prog*(TUBE.x1-TUBE.x0);let y=TUBE.cy+(prog*prog)*shift;
+   cx.save();cx.shadowColor="rgba(170,255,200,.9)";cx.shadowBlur=8;cx.fillStyle="rgba(220,255,235,.9)";cx.beginPath();cx.arc(x,y,2.2,0,7);cx.fill();cx.restore()}
+  /* صليب مالطي (حاجز) وظله */
+  const crx=740;
+  cx.fillStyle="rgba(200,215,230,.9)";
+  cx.save();cx.translate(crx,TUBE.cy+shift*0.55);
+  cx.beginPath();for(const[qx,qy]of[[1,1],[1,-1],[-1,1],[-1,-1]]){cx.moveTo(0,0);cx.lineTo(qx*26,0);cx.lineTo(qx*26,qy*26);cx.closePath()}cx.fill();cx.restore();
+  /* الظل على الزجاج */
+  cx.fillStyle="rgba(8,14,10,.92)";cx.save();cx.translate(TUBE.x1+10,TUBE.cy+shift);
+  cx.beginPath();for(const[qx,qy]of[[1,1],[1,-1],[-1,1],[-1,-1]]){cx.moveTo(0,0);cx.lineTo(qx*54,0);cx.lineTo(qx*54,qy*54);cx.closePath()}cx.fill();cx.restore()}
+ arT("P = "+toAr(p<1?p.toFixed(2):p.toFixed(0))+" torr",W/2,26,14,"#9CC3DF");
+ arT(["التوتر: OFF — شغّله لبدء التفريغ","المرحلة ١: شرارة فقط (الضغط الجوي)","المرحلة ٢: توهج وردي يمتد بإنقاص الضغط","المرحلة ٣: توهج يملأ الأنبوب","المرحلة ٤: ظلام + حزمة مهبطية + تألق أخضر"][st],W/2,H-16,13.5,st===4?"#8CFFAA":"#9CC3DF");
+ if(st===4&&!started){started=true;$("exp").classList.remove("locked")}
+ if(st===4&&mag&&!won){won=true;$("chDone").style.display="";toast("🏆 تألق زجاجي + انحراف بالمغناطيس (+١٠)");beep(660,.25)}
+ $("cStage").textContent="المرحلة: "+["٠ — بلا توتر","١ · شرارة","٢ · توهج جزئي","٣ · توهج كامل","٤ · حزمة وظل"][st]}
+$("P").oninput=e=>{P=+e.target.value;initA();const p=torr();$("PV").textContent=toAr(p<1?p.toFixed(2):p.toFixed(0))+" torr";
+ if(stage()>=3)beep(520,.06)};
+$("hvBtn").onclick=()=>{initA();hv=!hv;$("hvBtn").textContent="التوتر العالي: "+(hv?"ON":"OFF");$("hvBtn").style.opacity=hv?1:.55};
+$("magBtn").onclick=()=>{initA();if(stage()<4){toast("اوصل للمرحلة ٤ أولاً — أنزل الضغط أكثر");return}mag=!mag;$("magBtn").style.borderColor=mag?"var(--accent)":"";beep(330,.12)};
+$("resetBtn").onclick=()=>{P=100;hv=true;mag=false;$("P").value=100;$("PV").textContent=toAr(760)+" torr";$("magBtn").style.borderColor=""};
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;const k=b.dataset.k,fb=$("predFb");
+ if(k==="2"){fb.className="fb good";fb.textContent="✔ صحيح — جسيمات سالبة مستقيمة: تُحرف بالمغناطيس وترمي ظلاً حاداً"}else{fb.className="fb bad";fb.textContent="✘ جرّب: وصل للمرحلة ٤ وفعّل المغناطيس — الضوء لا يتأثر بالمغناطيس";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("أنزل الضغط تدريجياً وراقب المراحل")},900)});
+requestAnimationFrame(loop);
+</script></body></html>
