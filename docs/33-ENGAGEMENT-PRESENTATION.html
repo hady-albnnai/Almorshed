@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فيزيا كلاش — ما الذي يُلصق الطالب بالتطبيق؟ | عرض البحث</title>
+<style>
+:root{
+  --bg:#0b1220; --bg2:#111a2e; --card:#16223a; --card2:#1c2b47;
+  --txt:#e8eef7; --txt2:#9db0c9; --line:#243350;
+  --brand:#2dd4a7; --brand2:#38bdf8; --gold:#fbbf24;
+  --violet:#a78bfa; --danger:#f87171; --ok:#34d399;
+}
+*{box-sizing:border-box; margin:0; padding:0; font-family:"Segoe UI",Tahoma,Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg); color:var(--txt); line-height:1.8}
+/* شريط التقدم */
+#prog{position:fixed; top:0; right:0; height:3px; background:linear-gradient(90deg,var(--brand),var(--brand2)); width:0%; z-index:99; transition:width .1s}
+/* التنقل */
+nav{position:sticky; top:0; z-index:50; background:rgba(11,18,32,.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--line); display:flex; gap:2px; overflow-x:auto; padding:10px 16px}
+nav a{color:var(--txt2); text-decoration:none; font-size:13px; font-weight:600; padding:6px 12px; border-radius:20px; white-space:nowrap; transition:.15s}
+nav a:hover{color:var(--txt); background:var(--card)}
+nav a.on{color:#04222b; background:var(--brand)}
+/* الهيكل */
+.wrap{max-width:1060px; margin:0 auto; padding:0 20px}
+section{padding:56px 0 30px; border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.kick{color:var(--brand2); font-size:13px; font-weight:700; letter-spacing:.5px; margin-bottom:6px}
+h1{font-size:clamp(28px,5vw,44px); font-weight:800; line-height:1.35}
+h2{font-size:clamp(22px,3.4vw,30px); font-weight:800; margin-bottom:8px}
+h3{font-size:17px; font-weight:700; margin:18px 0 8px; color:var(--brand2)}
+.lead{color:var(--txt2); font-size:16px; max-width:820px}
+.card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px}
+.grid{display:grid; gap:12px; margin-top:18px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+/* بطاقات الحالة */
+.st{display:flex; gap:10px; align-items:flex-start}
+.st .ic{font-size:20px; line-height:1.5}
+.st b{display:block; font-size:14.5px}
+.st span{color:var(--txt2); font-size:12.5px; line-height:1.6}
+.tag{display:inline-block; font-size:11px; font-weight:700; padding:2px 10px; border-radius:20px; margin-inline-start:6px; vertical-align:middle}
+.tag.ok{background:rgba(52,211,153,.15); color:var(--ok)}
+.tag.no{background:rgba(248,113,113,.15); color:var(--danger)}
+.tag.warn{background:rgba(251,191,36,.15); color:var(--gold)}
+/* الأرقام الكبيرة */
+.stat{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:20px 16px; text-align:center; position:relative; overflow:hidden}
+.stat .n{font-size:clamp(26px,4vw,38px); font-weight:800; line-height:1.2}
+.stat .l{color:var(--txt2); font-size:12.5px; margin-top:6px; line-height:1.6}
+.stat .src{position:absolute; top:8px; inset-inline-start:10px; font-size:10px; color:var(--txt2); opacity:.7}
+.n-brand{color:var(--brand)} .n-sky{color:var(--brand2)} .n-gold{color:var(--gold)} .n-violet{color:var(--violet)} .n-red{color:var(--danger)}
+.stat.big{grid-column:span 1; padding:30px 16px}
+.stat.big .n{font-size:clamp(40px,7vw,64px)}
+/* آليات التعلق */
+.mech{display:flex; gap:12px}
+.mech .num{min-width:34px; height:34px; border-radius:10px; background:var(--card2); color:var(--brand2); font-weight:800; display:flex; align-items:center; justify-content:center; font-size:15px}
+.mech b{font-size:14.5px}
+.mech p{color:var(--txt2); font-size:12.5px; line-height:1.6}
+.mech .ev{color:var(--brand); font-weight:700; font-size:12px}
+/* جدول */
+table{width:100%; border-collapse:collapse; margin-top:16px; font-size:13px}
+th{color:var(--brand2); text-align:right; padding:10px 12px; border-bottom:2px solid var(--line); font-size:12.5px}
+td{padding:10px 12px; border-bottom:1px solid var(--line); color:var(--txt2); vertical-align:top}
+td:first-child{color:var(--txt); font-weight:700}
+tr:hover td{background:rgba(28,43,71,.4)}
+.badge{display:inline-block; font-size:11px; font-weight:800; padding:3px 10px; border-radius:12px}
+.b-high{background:rgba(45,212,167,.15); color:var(--brand)}
+.b-mid{background:rgba(56,189,248,.15); color:var(--brand2)}
+.b-low{background:rgba(157,176,201,.15); color:var(--txt2)}
+.b-yes{background:rgba(52,211,153,.15); color:var(--ok)}
+.b-later{background:rgba(251,191,36,.15); color:var(--gold)}
+.b-zero{background:rgba(167,139,250,.15); color:var(--violet)}
+/* قوائم */
+ul.ck{list-style:none; margin-top:14px}
+ul.ck li{padding:10px 14px; border:1px solid var(--line); border-radius:12px; margin-bottom:8px; background:var(--card); font-size:13.5px; display:flex; gap:10px; align-items:flex-start}
+ul.ck li .box{min-width:22px; height:22px; border-radius:6px; background:var(--card2); display:flex; align-items:center; justify-content:center; color:var(--brand); font-weight:800; font-size:13px}
+/* فلو */
+.flowmap{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px}
+.fz{border-radius:14px; padding:18px; text-align:center; font-weight:700; font-size:15px; border:1px solid var(--line)}
+.fz small{display:block; font-weight:400; color:var(--txt2); font-size:11.5px; margin-top:4px}
+.fz.flow{background:linear-gradient(135deg,rgba(45,212,167,.18),rgba(56,189,248,.12)); border-color:var(--brand); color:var(--brand)}
+.fz.boredom{color:var(--txt2)}
+.fz.anxiety{color:var(--danger)}
+.fz.control{color:var(--brand2)}
+/* تحذير */
+.alert{border-inline-start:4px solid var(--gold); background:rgba(251,191,36,.07); border-radius:10px; padding:14px 16px; margin-top:16px; font-size:13.5px; color:var(--txt2)}
+.alert b{color:var(--gold)}
+.alert.red{border-color:var(--danger); background:rgba(248,113,113,.07)}
+.alert.red b{color:var(--danger)}
+/* هيرو */
+.hero{padding:80px 0 46px; background:radial-gradient(1200px 500px at 50% -10%, rgba(45,212,167,.14), transparent 60%), radial-gradient(900px 400px at 80% 0%, rgba(56,189,248,.10), transparent 60%)}
+.hero .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:22px}
+.chip{background:var(--card); border:1px solid var(--line); color:var(--txt2); font-size:12px; font-weight:600; padding:6px 14px; border-radius:20px}
+.chip b{color:var(--brand)}
+/* الظهور عند التمرير */
+.rev{opacity:0; transform:translateY(14px); transition:.5s ease}
+.rev.in{opacity:1; transform:none}
+/* تذييل */
+footer{padding:34px 0 50px; color:var(--txt2); font-size:12.5px}
+footer a{color:var(--brand2)}
+@media print{nav,#prog{display:none} body{background:#fff; color:#111} .card,.stat{border-color:#ccc}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<nav>
+  <a href="#hero">⚡ الافتتاحية</a>
+  <a href="#status">الحالة الآن</a>
+  <a href="#glue">ما يُلصق الطالب</a>
+  <a href="#streak">السلسلة</a>
+  <a href="#contest">البطولة الموقوتة</a>
+  <a href="#gami">التلعيب: نعم/لا</a>
+  <a href="#lab">المختبر الفيزيائي</a>
+  <a href="#flow">الفلو</a>
+  <a href="#note">أول نوطة</a>
+  <a href="#d71">قرار ٧١</a>
+</nav>
+
+<!-- ═══════════ هيرو ═══════════ -->
+<header class="hero" id="hero">
+  <div class="wrap">
+    <div class="kick">بحث عميق · مصادر 2019–2026 · مربوطة بالكود الفعلي</div>
+    <h1>ما الذي يُلصق الطالب<br>بالتطبيق؟ <span style="color:var(--brand)">⚡ فيزيا كلاش</span></h1>
+    <p class="lead" style="margin-top:14px">
+      طالب بكالوريا سوري، جهاز أندرويد رخيص، دراسة مساءً، امتحان عالي المخاطرة.
+      السؤال ليس «كيف نجعله يفهم؟» (هذا في docs/19) — السؤال: <b style="color:var(--txt)">لماذا يعود غداً؟</b>
+    </p>
+    <div class="chips">
+      <span class="chip">📄 <b>docs/33</b> — المستند الكامل</span>
+      <span class="chip">🔬 23 مصدراً: تحليلات تجميعية + RCT + PhET + SDT</span>
+      <span class="chip">💻 تحقق من كود 2026-10-01</span>
+      <span class="chip">📱 فيزياء · الثالث الثانوي العلمي · سوريا</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ الحالة الآن ═══════════ -->
+<section id="status">
+  <div class="wrap rev">
+    <div class="kick">١ · الواقع قبل التوصية</div>
+    <h2>ما الذي عندنا أصلاً؟ <span class="tag ok">تحقق من app/lib</span></h2>
+    <p class="lead">الخلاصة الأولى: البنية التعلّمية عندنا أقوى من معظم التطبيقات — النقص في «طبقة الاحتفاظ».</p>
+    <div class="grid g3">
+      <div class="card st"><div class="ic">🔥</div><div><b>السلسلة اليومية<span class="tag ok">مبني</span></b><span>يوم دراسي ٤ فجر→ فجر (سماحية السهر) · عتبة منخفضة · سقف يومي ضد التكرار</span></div></div>
+      <div class="card st"><div class="ic">🧠</div><div><b>FSRS-5 (توزيع زمني)<span class="tag ok">مبني</span></b><span>أعلى تقنية تعلماً بالدليل (d≈0.85)</span></div></div>
+      <div class="card st"><div class="ic">🎯</div><div><b>دفعة اليوم الحتمية<span class="tag ok">مبني</span></b><span>نفس الأسئلة صباحاً ومساءً — التزام بلا ضغط</span></div></div>
+      <div class="card st"><div class="ic">⚔️</div><div><b>مبارزات محلية + أونلاين<span class="tag ok">مبني</span></b><span>بذرة حتمية + حكم خادمي/مضيف = عدالة مثبتة</span></div></div>
+      <div class="card st"><div class="ic">🏆</div><div><b>دوري بمراتب + XP<span class="tag ok">مبني</span></b><span>دوري نسبي = النموذج الآمن بحثياً</span></div></div>
+      <div class="card st"><div class="ic">🔬</div><div><b>مختبر POE<span class="tag ok">1 من 6</span></b><span>قالب F3.5 مبني (النابض) — ٥ تجارب متبقية بنفس القالب</span></div></div>
+      <div class="card st"><div class="ic">⚖️</div><div><b>تصحيح سلّمي بالأجزاء<span class="tag ok">مبني</span></b><span>سطر=درجة، يحاكي سلّم الوزارة = صدق امتحاني</span></div></div>
+      <div class="card st"><div class="ic">🗄️</div><div><b>بنك 561 بنداً<span class="tag warn">بانتظار الأستاذ</span></b><span>كلها approved:false · مشتتات من «الخطأ الشائع»</span></div></div>
+      <div class="card st"><div class="ic"></div><div><b>إشعارات<span class="tag no">غير موجودة</span></b><span>مرشّحة v1.1 (docs/14 §١٥-ز) — البحث يرفع أولويتها</span></div></div>
+    </div>
+    <div class="alert red"><b>ثغرة الفلو (الأهم):</b> البنك بلا «مستوى صعوبة» — 561 بنداً بدرجة واحدة ⇒ لا يمكن بناء منحنى «تحدٍّ ≈ مهارة» بعد.</div>
+  </div>
+</section>
+
+<!-- ═══════════ ما يُلصق الطالب ═══════════ -->
+<section id="glue">
+  <div class="wrap rev">
+    <div class="kick">٢ · الآليات مرتبة بقوة الدليل</div>
+    <h2>عشر آليات تُلصق الطالب</h2>
+    <div class="grid g2">
+      <div class="card mech"><div class="num">١</div><div><b>السلسلة + السماح (تجنّب الخسارة)</b><p class="ev">مستخدم وصل ٧ أيام: احتفاظ ×2.4–3.6</p><p>السلسلة موجودة عندنا — النقص: التجميد وطريق العودة</p></div></div>
+      <div class="card mech"><div class="num">٢</div><div><b>الاسترجاع / الاختبار الذاتي</b><p class="ev">d≈0.74 (أقوى تقنية بعد التوزيع)</p><p>«اختبر نفسك» بعد كل فقرة — في قالب docs/19</p></div></div>
+      <div class="card mech"><div class="num">٣</div><div><b>التوزيع الزمني (FSRS)</b><p class="ev">d≈0.85 — الأعلى</p><p>مبني ✅ — البطاقات هي قلب الحفظ</p></div></div>
+      <div class="card mech"><div class="num">٤</div><div><b>المنافسة الموقوتة (موسم/بطولة)</b><p class="ev">+76٪ إكمال بعد ١٢ أسبوعاً من إزالة الحافز (RCT)</p><p>«تحدّي الامتحان الكامل الموحد أسبوعياً» يطابق النموذج</p></div></div>
+      <div class="card mech"><div class="num">٥</div><div><b>توقع → فاجعة → فهم (POE)</b><p class="ev">PhET: التعلم يبدأ عند التوقع قبل التشغيل</p><p>المختبر مبني ✅ — نمدّه نصياً لكل درس</p></div></div>
+      <div class="card mech"><div class="num">٦</div><div><b>الفلو (تحدٍّ ≈ مهارة)</b><p class="ev">تركيز/إصرار/انخراط d≈0.48</p><p>⚠️ يحتاج مستوى صعوبة — الثغرة الموثقة</p></div></div>
+      <div class="card mech"><div class="num">٧</div><div><b>التغذية الفورية</b><p class="ev">شرط دخول الفلو</p><p>إجابة = نتيجة + سلّم سطراً سطراً + سبب — أفضل من معظم التطبيقات</p></div></div>
+      <div class="card mech"><div class="num">٨</div><div><b>المساءلة الاجتماعية</b><p class="ev">«سلسلة صديق»: +22٪ إكمال الدرس اليومي</p><p>قابلة للبناء أوف لاين عبر المبارزة المحلية</p></div></div>
+      <div class="card mech"><div class="num">٩</div><div><b>الاستثمار الشخصي</b><p class="ev">أقوى استراتيجيات Hook Model مساهمة</p><p>دفتر أخطائه هو + تقدمه = ما يُلصقه، لا النقاط</p></div></div>
+      <div class="card mech"><div class="num">١٠</div><div><b>الهدف المعنوي الموحى (Epic Meaning)</b><p class="ev">يشرح «لماذا أعود أصلاً»</p><p>عدّاد «كم يوم على امتحان الفيزياء» = أقوى مرسى متاح</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ السلسلة ═══════════ -->
+<section id="streak">
+  <div class="wrap rev">
+    <div class="kick">٣ · الغوص — أقوى رافعة احتفاظ موثقة</div>
+    <h2>السلسلة: الأرقام التي لا تتكرر في أي مجال آخر</h2>
+    <div class="grid g4">
+      <div class="stat"><div class="src">Duolingo</div><div class="n n-gold">×2.4–3.6</div><div class="l">احتمال استمرار طويل لمستخدم وصل سلسلة ٧ أيام</div></div>
+      <div class="stat"><div class="src">سنوات الميزة</div><div class="n n-brand">12٪→55٪</div><div class="l">الاحتفاظ T+1 عبر عمر الميزة — نمو تراكمي</div></div>
+      <div class="stat"><div class="src">Streak Wager</div><div class="n n-gold">+14%</div><div class="l">احتفاظ D14 لمَن راهن على ٧ أيام إضافية (التزام مسبق)</div></div>
+      <div class="stat"><div class="src">Friend Streaks</div><div class="n n-violet">+22%</div><div class="l">إكمال الدرس اليومي — أقوى طبقة اجتماعية</div></div>
+    </div>
+    <h3>لماذا تعمل — تدرّج نفسي من ثلاث مراحل</h3>
+    <div class="grid g3">
+      <div class="card"><b style="color:var(--gold)">١ · تجنّب الخسارة</b><p style="color:var(--txt2); font-size:13px">الخسارة تُشعر ضعفي أثر المكافأة (Kahneman/Tversky) — «سلسلة ٩٠ يوماً» أصل يُحمى، لا رقم يُمدّ.</p></div>
+      <div class="card"><b style="color:var(--brand2)">٢ · التصعيد الزمني</b><p style="color:var(--txt2); font-size:13px">من ٢→٣ مكسب ٥٠٪ (حماس مبكر)؛ من ٢٠٠→٢٠١ مكسب ٠.٥٪ (فقدانها كارثة) — الدافع يبقى في كل العمر.</p></div>
+      <div class="card"><b style="color:var(--violet)">٣ · الهوية</b><p style="color:var(--txt2); font-size:13px">«أنا من يحافظ على سلسلته» — اتساق مفهوم-ذاتي أقوى وأدوم من الخوف.</p></div>
+    </div>
+    <h3>ثلاثية الرحمة — بلاها ننفّر أفضل طلابنا</h3>
+    <table>
+      <tr><th>الميزة</th><th>الوظيفة</th><th>عندنا</th></tr>
+      <tr><td>عتبة منخفضة: أي نشاط واحد يحفظها</td><td>«السلسلة التي يسهل حفظها تُحفظ» (+40٪ مستخدمين بسلسلة 7+)</td><td><span class="badge b-yes">✅ أصلاً</span></td></tr>
+      <tr><td>تجميد يُكسب بجهد (٣ أيام نظيفة ⇒ ٢٤ س)</td><td>رحمة + التزام مسبق — خفض سقوط المعرضين للانكسار 21٪</td><td><span class="badge b-high">❌ مفقود — أولوية أولى</span></td></tr>
+      <tr><td>طريق عودة بلا خجل</td><td>«سلسلتك قُطعت — تقدمك ما راح» + ٥ دقائق تعيد من ١</td><td><span class="badge b-high">❌ مفقود</span></td></tr>
+      <tr><td>احتفال مقيّد بالعتبات (٧/٣٠/١٠)</td><td>حركة «الطائر العنقاء» وحدها نقلت D+7 بمقدار +1.7٪</td><td><span class="badge b-mid">🔲 يُبنى مع التجميد</span></td></tr>
+    </table>
+    <div class="alert"><b>تحذير مهم:</b> السلسلة تحسّن <b>الحضور</b> لا التعلم بالضرورة — من «يسرع درساً سهلاً» ليحمي سلسلته مشغول بلا متعلم. حدينا: العتبة = نشاط حقيقي (درس/دفعة/تحدٍّ/بطاقة)، ولا نخفّضها أبداً.</div>
+  </div>
+</section>
+
+<!-- ═══════════ البطولة ═══════════ -->
+<section id="contest">
+  <div class="wrap rev">
+    <div class="kick">٤ · التجربة العشوائية على 10,000 طالب (Freadom, 2026)</div>
+    <h2>عادة تبقى بعد إزالة الحافز</h2>
+    <div class="grid g3">
+      <div class="stat big"><div class="n n-brand">+45%</div><div class="l">إكمال أثناء البطولة (لوحة تصاعديه + جوائز)</div></div>
+      <div class="stat big"><div class="n n-gold">+76%</div><div class="l">إكمال بعد <b>١٢ أسبوعاً</b> من إزالة كل الحوافز والإشعارات</div></div>
+      <div class="stat big"><div class="n n-violet">6.5→9.6%</div><div class="l">نسبة النشطين — وبعد البطولة اختاروا محتوى أصعب (+0.29)</div></div>
+    </div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><b>ماذا يعني لنا؟</b><p style="color:var(--txt2); font-size:13.5px">«تحدّي الامتحان الكامل الأسبوعي» (بذرة موحدة، 400 درجة بتوقيت الوزارة) = بطولة موقوتة جاهزة التصميم. نضيف لها: <b style="color:var(--txt)">نهاية الموسم = يوم امتحان الوزارة</b> — لا تاريخ تعسفي، هدف حقيقي مشترك لكل سوريا.</p></div>
+      <div class="card"><b>قراءة صريحة</b><p style="color:var(--txt2); font-size:13.5px">الأثر تركز في «ذيل التوزيع الأعلى» (المتحمسين يصنعون النشاط) — ولا تقاس «تعلماً» بل انخراطاً. ⇒ نقيس: كم حلّ التحدّي كاملاً، وأي يوم بعده فُتحت الدروس.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ التلعيب ═══════════ -->
+<section id="gami">
+  <div class="wrap rev">
+    <div class="kick">٥ · التحليلات التجميعية 2024–2026</div>
+    <h2>التلعيب: متى يعمل ومتى يضر</h2>
+    <div class="grid g4">
+      <div class="stat"><div class="n n-brand">g = .49–.82</div><div class="l">تلعيب → نتائج تعلّم (معدّل الدراسات)</div></div>
+      <div class="stat"><div class="n n-brand">g = .654</div><div class="l">دافعية K-12 — 31 دراسة (2025) · ثانوياتنا بالضبط</div></div>
+      <div class="stat"><div class="n n-sky">d = 1.492</div><div class="l">سبر تنافسي فوري (Kahoot) → استرجاع (2025)</div></div>
+      <div class="stat"><div class="n n-red">هامش</div><div class="l">أثر التلعيب على «الإحساس بالكفاءة» — بسبب اللوحات العامة</div></div>
+    </div>
+    <h3>القاعدة الذهبية: المتنبئ الأول ليس النقاط</h3>
+    <div class="card"><p style="font-size:15px">«<b style="color:var(--brand)">محاذاة الميكانيك مع الهدف التعليمي</b> + تغذية ذات معنى + صعوبة مناسبة» — ليس حضور الأوسمة أصلاً.<br><span style="color:var(--txt2); font-size:13px">→ كل ميزة جديدة نسألها سؤالاً واحداً: أي <b style="color:var(--txt)">سلوك دراسي</b> تحفّز؟</span></p></div>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card"><b style="color:var(--danger)">⚠️ اللوحات العامة المطلقة تضرّ المتدني</b><p style="color:var(--txt2); font-size:13.5px">دراسة فيزياء رياضية (2026): مرتبة عالية ↔ تحسّن أداء، مرتبة دنيا ↔ <b style="color:var(--txt)">انخفاض دافعية</b>. 67٪ من الطلاب فضّلوا التعاون على المنافسة. خوف التقييم السلبي يخفض الأداء مخبرياً.</p><p style="margin-top:10px"><span class="badge b-yes">تصميمنا الحالي آمن: دوري نسبي بمراتب + لا أسماء عامة إلا بموافقة + الصدارة اختيارية</span></p></div>
+      <div class="card"><b style="color:var(--brand)">الاستثمار &gt; المكافأة المتغيرة</b><p style="color:var(--txt2); font-size:13.5px">دراسة على استراتيجيات Hook الأربع: الإجمالي موجب (β≈0.86) لكن <b style="color:var(--txt)">الاستثمار الشخصي هو أقوى مساهمات</b> — ما يبنيه الطالب (تقدمه، بطاقاته، أخطاؤه). و«التلعيب الناجح يُنهي وظيفته»: الهدف أن يدرس في النهاية لأجل الامتحان لا لأجل النقاط.</p><p style="margin-top:10px"><span class="badge b-high">ترجمتنا: دفتر الأخطاء يُعرض «أخطاؤك» لا «أخطاء التطبيق»</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ المختبر ═══════════ -->
+<section id="lab">
+  <div class="wrap rev">
+    <div class="kick">٦ · دراسات PhET (46 ساعة مقابلات + مراجعة 2025)</div>
+    <h2>قواعد التعلق بالمحاكاة الفيزيائية</h2>
+    <div class="grid g2">
+      <div class="card mech"><div class="num">١</div><div><b>أنيميشن بلا تفاعل ≈ مشاهدة سلبية</b><p>وصف الطلاب قبل التفاعل سطحي/خاطئ — التعلم يبدأ عندما يتغير المشهد <b style="color:var(--brand)">استجابة لفعلهم</b>. كل تجربة: سحب/سلايدر/زر — لا فيديو.</p></div></div>
+      <div class="card mech"><div class="num">٢</div><div><b>التوقع قبل التشغيل (POE)</b><p>الطالب يوقع ← يشغّل ← يقارن ← يفاجأ ← يعيد. المختبر مبني عليه ✅ — <b style="color:var(--brand)">ونوسّعه نصياً</b>: سؤال «توقّع» واحد يفتح كل درس.</p></div></div>
+      <div class="card mech"><div class="num">٣</div><div><b>لا يبدو دفتر مخبر</b><p>كثافة الأرقام والرسوم تُرعب المبتدئ: «أخاف أكسرها». ⇒ عنصران أو ثلاثة، الأرقام تظهر عند الطلب.</p></div></div>
+      <div class="card mech"><div class="num">٤</div><div><b>يبدأ ساكناً، والحركة بفعل الطالب</b><p>شاشة تفتح بشيء متحرك تخفض اللعب وتولّد توتراً — لم يُرصد ذلك أبداً عندما يبدأ الطالب الحركة بنفسه.</p></div></div>
+      <div class="card mech"><div class="num">٥</div><div><b>لا إرشاد زائد</b><p>التوجيه الصارم يُقلّل الاستكشاف: أسئلة POE موجّهة (٣) ثم «جرّب بنفسك» حر.</p></div></div>
+      <div class="card mech"><div class="num">٦</div><div><b>مراجعة الإعدادات الافتراضية</b><p>حالة مشهورة: خطأ افتراضي (كتلة 1650 kg على القمر) جعل <b style="color:var(--danger)">91٪→17٪</b> يقلبون إجابة صحيحة — لأنهم صدقوا المحاكاة أكثر من أنفسهم. ⇒ <b style="color:var(--brand)">قيم افتراضية لكل تجربة بعين الأستاذ</b> (وضع المراجعة).</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ الفلو ═══════════ -->
+<section id="flow">
+  <div class="wrap rev">
+    <div class="kick">٧ · نظرية Csikszentmihalyi</div>
+    <h2>الفلو — القناة التي يجب ألا يخرج منها</h2>
+    <p class="lead">الدخول = أربعة شروط معاً: <b style="color:var(--txt)">هدف واضح · تغذية فورية · تحدي فوق المهارة بقليل · بيئة بلا مقاطعة</b></p>
+    <div class="flowmap">
+      <div class="fz anxiety">قلق 😰<small>التحدي &gt;&gt; المهارة — يستسلم ويغادر</small></div>
+      <div class="fz boredom">ملل 😪<small>المهارة &gt;&gt; التحدي — «ما بينتهيش» بالملل</small></div>
+      <div class="fz control">تحكم 🙂<small>يدير الأمور — جيد، لكن ليس الذروة</small></div>
+      <div class="fz flow">🌊 فلو — تركيز + ذوبان وقت + إحساس تحكم<small>d≈0.48 (Hattie) على التركيز/الإصرار/الانخراط</small></div>
+    </div>
+    <div class="alert red"><b>الخطأ التصميمي الأول:</b> الصعوبة الثابتة. «المهارة تكبر مع الممارسة — إن لم ترفع السقف، ينزلق كل مستخدم من الفلو إلى الملل. يوم ١ مثالي، يوم ٣٠ = ممل لنفس المستخدم.»<br><b>عندنا اليوم:</b> البنك بلا مستوى صعوبة ⇒ المقترح (قرار ٧١-ب): <b style="color:var(--txt)">أساسي / قياسي / بكالوريا</b> + انتقاء متدرّج يحفظ الحتمية (نفس اليوم+الجهاز ⇒ نفس الدفعة) — عند ≥80٪ إجابة صحيحة يرفع، وعند الفشل المتكرر ينزل أو يعيد «المبدأ الحاكم».</div>
+  </div>
+</section>
+
+<!-- ═══════════ أول نوطة ═══════════ -->
+<section id="note">
+  <div class="wrap rev">
+    <div class="kick">٨ · الترجمة العملية — لحظة وصول أول نوطة</div>
+    <h2>قائمة فحص «أول نوطة» (10 بنود إلزامية)</h2>
+    <p class="lead">القالب (docs/19) مطابق أصلاً لقاعدة الميكرو-تعلّم (٣–٥ دقائق / فكرة واحدة / فحص فوري) — لا نغيّر القالب، <b style="color:var(--txt)">نلتزم به</b>:</p>
+    <ul class="ck">
+      <li><span class="box">١</span><span>قالب docs/19 كاملاً: 🔑 قبل أن تبدأ → 📖 الفكرة → 🧮 البرهان → ✍️ الأمثلة → 🎯 اختبر نفسك → 🧾 الخلاصة (+⚖️ الخصومات +📎 المقابلة)</span></li>
+      <li><span class="box">٢</span><span>🔑 = <b style="color:var(--brand)">سؤال توقع واحد</b> يكشف التصور الخاطئ (من «الخطأ الشائع» في النوتة نفسها) — يجيب ذهنياً قبل فتح 📖 (POE نصي)</span></li>
+      <li><span class="box">٣</span><span>📖 فقرات ≤ ٩٠ كلمة · عنوان يحمل الفكرة · الرمز حرفياً كالكتاب (قرار ١٤) · «لماذا؟» بعد كل قانون · «⚠️ الخطأ الشائع» حيث يوجد</span></li>
+      <li><span class="box">٤</span><span>🧮 برهان مُرقَّم: كل خطوة = درجة محتملة في سلم ٢٠٢ — «الطالب يحفظ البنية لا الجمل»</span></li>
+      <li><span class="box">٥</span><span>✍️ مثالان: كامل بنمط السلّم (علاقة ← تعويض ← نتيجة+وحدة) ثم <b>fading</b> بخطوات محذوفة يكملها الطالب</span></li>
+      <li><span class="box">٦</span><span>🎯 سؤال استرجاع بعد كل فقرة (d≈0.74) — الإجابة تظهر بالنقر</span></li>
+      <li><span class="box">٧</span><span>تصنيف صعوبة لكل سؤال يولَّد: <b style="color:var(--brand2)">أساسي / قياسي / بكالوريا</b> (يغلق ثغرة الفلو §٧)</span></li>
+      <li><span class="box">٨</span><span>مشتتات MCQ من «الخطأ الشائع» في النوتة حرفياً — لا من العشوائية (distractors.yaml)</span></li>
+      <li><span class="box">٩</span><span>كل بند يحمل unit/chapter + difficulty ⇒ pack.json جاهز للمحرك القائم (عقد الأنواع ثابت — لا نوع خامس)</span></li>
+      <li><span class="box">١٠</span><span>قبل التوليد: TermLinter (رموز/BAN) + مطابقة حرفية للكتاب + مراجعة عين الأستاذ بوضع المراجعة (قرار ٥٤)</span></li>
+    </ul>
+    <div class="alert"><b>نقطة التعلق في المادة نفسها:</b> الطالب «مشدود» = يتوقع ثم يفاجأ (POE) + يخطئ ويرى خطأه باسمه (الدفتر) + يرى نفسه يقترب من يوم الامتحان (العدّاد). المشدود على <b style="color:var(--txt)">المادة</b> لا على التطبيق — وهذا الفرق هو ما يحفظه حتى آخر يوم دراسة.</div>
+  </div>
+</section>
+
+<!-- ═══════════ قرار 71 ═══════════ -->
+<section id="d71">
+  <div class="wrap rev">
+    <div class="kick">٩ · معلق توقيع المالك — لا تنفيذ قبل القرار</div>
+    <h2>مسودة «قرار ٧١» — 8 بنود</h2>
+    <table>
+      <tr><th>#</th><th>البند</th><th>الكلفة</th><th>الأثر</th><th>التوصية</th></tr>
+      <tr><td>أ</td><td>تجميد السلسلة (يُكسب: ٣ أيام نظيفة ⇒ ٢٤ س) + شاشة عودة بلا خجل + احتفال عتبات (٧/٣٠/١٠)</td><td>صغيرة (محلي 100٪)</td><td><span class="badge b-high">عالي</span></td><td><span class="badge b-yes">نعم — أولوية أولى</span></td></tr>
+      <tr><td>ب</td><td>مستوى صعوبة ٣ للبنك (561 بنداً) + انتقاء متدرّج يحفظ الحتمية</td><td>متوسطة</td><td><span class="badge b-high">عالي</span></td><td><span class="badge b-yes">نعم — مع أول نوطة</span></td></tr>
+      <tr><td>ج</td><td>عدّاد «كم يوم على امتحان الفيزياء» + موسم أسبوعي ينتهي بالامتحان الموحد</td><td>صغيرة</td><td><span class="badge b-high">عالي</span></td><td><span class="badge b-yes">نعم</span></td></tr>
+      <tr><td>د</td><td>عرض الدوري الافتراضي = «رقمك أنت» (لا الترتيب العام)</td><td>صغيرة (عرض فقط)</td><td><span class="badge b-mid">متوسط</span></td><td><span class="badge b-yes">نعم</span></td></tr>
+      <tr><td>هـ</td><td>إشعارات محلية بلا FCM (نوعان: «احمِ سلسلتك» + «تحدّي اليوم/العدّاد»)</td><td>صغيرة-متوسطة (OEM caveat)</td><td><span class="badge b-mid">متوسط</span></td><td><span class="badge b-later">نعم — v1.1 مبكراً</span></td></tr>
+      <tr><td>و</td><td>«سلسلة صديق» عبر المبارزة المحلية (يومان متتاليان مع نفس الصديق)</td><td>متوسطة</td><td><span class="badge b-mid">متوسط-عالي</span></td><td><span class="badge b-later">بعد (أ)</span></td></tr>
+      <tr><td>ز</td><td>توسعة POE نصياً لكل درس بلا مختبر (سؤال توقع في 🔑)</td><td><span class="badge b-zero">صفر كود</span></td><td><span class="badge b-high">عالي في المادة</span></td><td><span class="badge b-yes">إلزامي من أول نوطة</span></td></tr>
+      <tr><td>ح</td><td>توثيق «الإعدادات الافتراضية» لكل تجربة بمراجعة الأستاذ</td><td><span class="badge b-zero">صفر كود</span></td><td><span class="badge b-low">مباشر (مصداقية)</span></td><td><span class="badge b-later">مع F3.5-ب</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b style="color:var(--txt)">فيزيا كلاش ⚡</b> — منهاج الثالث الثانوي العلمي (بكالوريا سوريا 2026–2027) · تعمل أوف لاين بالكامل بعد التفعيل</p>
+    <p style="margin-top:8px">مستند البحث الكامل: <a href="33-ENGAGEMENT-RESEARCH-2026-10-01.md">docs/33-ENGAGEMENT-RESEARCH-2026-10-01.md</a> (23 مصدراً: التحليلات التجميعية · RCT Freadom · PhET · SDT · سلوكيات Duolingo الموثقة) · 23 مصدر موثق في §١٣ من المستند</p>
+    <p style="margin-top:8px; opacity:.7">عرض مولّد من docs/33 · 2026-10-01 · هوية docs/13 (WCAG-مقيسة) · لا تنفيذ بلا قرار المالك</p>
+  </div>
+</footer>
+
+<script>
+// شريط التقدم
+const prog=document.getElementById('prog');
+addEventListener('scroll',()=>{const h=document.documentElement;prog.style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight)*100)+'%'},{passive:true});
+// ظهور الأقسام
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+// تفعيل رابط القسم الحالي
+const links=[...document.querySelectorAll('nav a')];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle('on',l.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('section,header.hero').forEach(s=>so.observe(s));
+</script>
+</body>
+</html>
