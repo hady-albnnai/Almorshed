@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>النواسات r23 — مراجعة فقرة-فقرة</title>
+<style>
+:root{
+  --bg:#0b1220; --card:#16223a; --card2:#1c2b47; --txt:#e8eef7; --txt2:#9db0c9; --line:#243350;
+  --brand:#2dd4a7; --brand2:#38bdf8; --gold:#fbbf24; --violet:#a78bfa; --danger:#f87171; --ok:#34d399;
+}
+*{box-sizing:border-box; margin:0; padding:0; font-family:"Segoe UI",Tahoma,Arial,sans-serif}
+body{background:var(--bg); color:var(--txt); line-height:1.8}
+/* ═══ الرأس ═══ */
+header{position:sticky; top:0; z-index:50; background:rgba(11,18,32,.96); backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line); padding:10px 16px 12px}
+.h1{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; flex-wrap:wrap}
+.h1 b{font-size:16px}
+.h1 .sub{font-size:11px; color:var(--txt2)}
+#overall{font-size:12px; color:var(--txt2); font-weight:700; white-space:nowrap}
+#overall b{color:var(--brand)}
+.progress{height:8px; background:#0d1a30; border-radius:6px; overflow:hidden; margin-top:8px}
+.progress i{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--brand),var(--brand2)); transition:width .3s}
+.chips{display:flex; gap:6px; flex-wrap:wrap; margin-top:9px}
+.chip{background:var(--card); border:1px solid var(--line); color:var(--txt2); border-radius:20px;
+  padding:4px 12px; font-size:11.5px; cursor:pointer; user-select:none; transition:.15s}
+.chip:hover{border-color:var(--brand2)}
+.chip .c{font-weight:800; color:var(--txt)}
+.chip.sec.on{background:#123f38; color:var(--brand); border-color:var(--brand)}
+.chip.stat{cursor:default}
+.chip.stat .c.ok{color:var(--ok)} .chip.stat .c.bad{color:var(--danger)} .chip.stat .c.note{color:var(--gold)} .chip.stat .c.pen{color:var(--txt2)}
+.tools{display:flex; gap:6px; margin-top:9px; flex-wrap:wrap; align-items:center}
+.btn{padding:8px 14px; border-radius:11px; border:1px solid var(--line); background:var(--card);
+  color:var(--txt); font-size:12.5px; font-weight:700; cursor:pointer; transition:.15s}
+.btn:hover{border-color:var(--brand); color:var(--brand)}
+.btn.pri{background:linear-gradient(90deg,var(--brand),#22b8cf); color:#04222b; border:none}
+.btn.danger:hover{border-color:var(--danger); color:var(--danger)}
+.searchwrap{display:none; margin-top:8px}
+.searchwrap.open{display:block}
+.searchwrap input{width:100%; background:#0d1830; border:1px solid var(--line); border-radius:11px;
+  color:var(--txt); padding:9px 12px; font-size:13px}
+.searchwrap input:focus{outline:none; border-color:var(--brand)}
+.searchres{display:flex; gap:6px; flex-wrap:wrap; margin-top:7px}
+.searchres .chip{font-size:10.5px}
+/* ═══ الجسم ═══ */
+main{max-width:860px; margin:0 auto; padding:16px 16px 110px}
+.meta{display:flex; gap:8px; align-items:center; flex-wrap:wrap; font-size:11.5px; color:var(--txt2); margin-bottom:9px}
+.meta .num{font-weight:900; color:var(--brand2); font-size:13px}
+.badge{background:var(--card2); border:1px solid var(--line); border-radius:12px; padding:2px 10px; font-size:10.5px; font-weight:700}
+.badge.eq{color:var(--brand2)} .badge.fig{color:var(--violet)} .badge.tb{color:var(--gold)}
+.badge.tbl{color:var(--brand2)} .badge.two{color:var(--txt2)} .badge.emp{color:var(--danger)}
+.blockcard{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px; margin-bottom:12px}
+.blockcard .txt{font-size:15.5px; line-height:2.25; white-space:pre-wrap; word-wrap:break-word}
+.blockcard .txt .m{direction:ltr; unicode-bidi:isolate; display:inline-block; color:#c7f5e8; font-weight:600}
+.blockcard.empty .txt{color:var(--txt2); font-style:italic; font-size:13px}
+.figrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+.figrow figure{background:#0d1a30; border:1px solid var(--line); border-radius:12px; padding:8px; max-width:100%}
+.figrow img{max-width:320px; max-height:360px; display:block; border-radius:6px}
+.figrow figcaption{font-size:10.5px; color:var(--txt2); margin-top:6px; text-align:center}
+.figvec{font-size:11px; color:var(--violet); background:rgba(167,139,250,.08); border:1px dashed #3d3168;
+  border-radius:12px; padding:10px 14px; align-self:center}
+/* الحالة والأفعال */
+.statusbar{display:flex; align-items:center; gap:10px; flex-wrap:wrap; background:var(--card2);
+  border-radius:12px; padding:10px 14px; margin-top:14px; font-size:12.5px}
+.statusbar .st{font-weight:900; font-size:13px}
+.st.approved{color:var(--ok)} .st.issue{color:var(--danger)} .st.pending{color:var(--txt2)}
+.statusbar .whom{color:var(--txt2); font-size:11px}
+.actions{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+textarea.note{width:100%; min-height:52px; background:#0d1830; border:1px solid var(--line); border-radius:11px;
+  color:var(--txt); padding:10px 12px; font-size:13px; margin-top:10px; resize:vertical; line-height:1.8}
+textarea.note:focus{outline:none; border-color:var(--brand)}
+.kbd-hint{font-size:10.5px; color:var(--txt2); text-align:center; margin-top:10px; opacity:.8}
+/* التنقل السفلي */
+.nav{position:fixed; bottom:0; right:0; left:0; background:rgba(13,21,38,.97); border-top:1px solid var(--line);
+  padding:10px 16px; display:flex; gap:8px; align-items:center; justify-content:center; z-index:40; flex-wrap:wrap}
+.nav .btn{min-width:104px}
+.jump{width:72px; background:#0d1830; border:1px solid var(--line); border-radius:10px; color:var(--txt);
+  padding:8px 6px; font-size:12.5px; text-align:center}
+.jump:focus{outline:none; border-color:var(--brand)}
+#toast{position:fixed; bottom:86px; left:50%; transform:translateX(-50%); background:var(--brand); color:#06281f;
+  font-weight:900; border-radius:20px; padding:8px 22px; opacity:0; transition:.3s; pointer-events:none; z-index:99; font-size:13px}
+#toast.on{opacity:1}
+@media (max-width:640px){ .nav .btn{min-width:80px; font-size:11.5px; padding:8px 8px} main{padding:12px 12px 120px} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h1">
+    <div>
+      <b>⚖️ النواسات (r23) — مراجعة فقرة-فقرة</b>
+      <div class="sub">كل فقرة تُعرض ← موافقة الأستاذ ← اعتماد في التطبيق · المصدر المجمّد: <span dir="ltr">39dcae28…d35d50</span></div>
+    </div>
+    <div id="overall"></div>
+  </div>
+  <div class="progress"><i id="pbar"></i></div>
+  <div class="chips" id="secChips"></div>
+  <div class="tools">
+    <button class="btn" onclick="toggleSearch()">🔍 بحث في النص</button>
+    <button class="btn pri" onclick="exportDecisions()">⬇ تصدير القرارات (JSON)</button>
+    <button class="btn" onclick="document.getElementById('importFile').click()">⬆ استيراد قرارات</button>
+    <input type="file" id="importFile" accept=".json" style="display:none" onchange="importDecisions(this)">
+    <button class="btn danger" onclick="bulkSection()">✔ اعتماد كل المعلق في هذا القسم</button>
+    <button class="btn danger" onclick="resetAll()">⟲ تصفير المراجعة</button>
+  </div>
+  <div class="searchwrap" id="searchWrap">
+    <input id="searchIn" placeholder="اكتب جزءاً من نص الفقرة… (Enter = بحث)" onkeydown="if(event.key==='Enter')doSearch()">
+    <div class="searchres" id="searchRes"></div>
+  </div>
+</header>
+
+<main>
+  <div class="meta" id="meta"></div>
+  <div class="blockcard" id="blockCard">
+    <div class="txt" id="blockText"></div>
+    <div class="figrow" id="figRow"></div>
+  </div>
+  <div class="statusbar" id="statusBar"></div>
+  <div class="actions" id="actions"></div>
+  <textarea class="note" id="noteIn" placeholder="ملاحظة (اختياري): مثال «أ. فداء: موافق — ٢٠٦/١٠/٢» أو «تصحيح: …»"></textarea>
+  <div class="kbd-hint">اختصارات: ← → تنقّل · <b>A</b> اعتماد · <b>F</b> مشكلة · <b>N</b> ملاحظة · كل شيء يُحفظ على جهازك تلقائياً</div>
+</main>
+
+<div class="nav">
+  <button class="btn" onclick="go(cur-1)">→ السابقة</button>
+  <input class="jump" id="jumpIn" placeholder="رقم الفقرة" onkeydown="if(event.key==='Enter'){go(posOf(parseInt(this.value,10)));this.value=''}">
+  <button class="btn pri" onclick="go(cur+1)">التالية ←</button>
+  <button class="btn" onclick="nextPending()">⏭ التالي المعلق</button>
+</div>
+<div id="toast"></div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+'use strict';
+var DATA = JSON.parse(document.getElementById('data').textContent);
+var B = DATA.blocks;
+var SECS = DATA.sections;
+var LS_KEY = 'nawwasat-review-v1';
+var cur = 0;
+var decisions = load();
+var noteDrafts = {};  // ملاحظات مسودة للفقرات غير المحسومة
+
+function load(){ try { return JSON.parse(localStorage.getItem(LS_KEY)) || {}; } catch(e){ return {}; } }
+function save(){ localStorage.setItem(LS_KEY, JSON.stringify(decisions)); renderChrome(); }
+function now(){ return Date.now(); }
+function statusOf(b){ if (b.e) return 'empty'; var d = decisions[b.i]; return d ? d.s : 'pending'; }
+function noteOf(b){ var d = decisions[b.i]; return (d && d.note) ? d.note : (noteDrafts[b.i] || ''); }
+
+/* ═══ الإحصاءات ═══ */
+function counts(){
+  var c = {approved:0, issue:0, noted:0, pending:0, empty:0, total:0};
+  var perSec = SECS.map(function(){ return {approved:0, issue:0, pending:0, total:0, empty:0}; });
+  for (var k in decisions) {
+    if (decisions.hasOwnProperty(k)) {
+      if (decisions[k].s === 'approved') { c.approved++; if (decisions[k].note) c.noted++; }
+      else c.issue++;
+    }
+  }
+  for (var i=0;i<B.length;i++){
+    var b = B[i];
+    if (b.e) { c.empty++; perSec[b.sec].empty++; continue; }  // الفارغات لا تُعتمد ولا تُحسب
+    c.total++; perSec[b.sec].total++;
+    var s = statusOf(b);
+    perSec[b.sec][s === 'approved' ? 'approved' : s === 'issue' ? 'issue' : 'pending']++;
+  }
+  c.pending = c.total - c.approved - c.issue;
+  c.perSec = perSec;
+  return c;
+}
+function renderChrome(){
+  var c = counts();
+  var pct = c.total ? Math.round(100*(c.approved + c.issue)/c.total) : 0;
+  document.getElementById('pbar').style.width = pct + '%';
+  document.getElementById('overall').innerHTML =
+    'معتمد: <b>' + c.approved + '</b> · مشكلات: <b style="color:var(--danger)">' + c.issue + '</b> · معلق: <b>' + c.pending + '</b> / ' + c.total + ' (' + pct + '٪)';
+  var sc = document.getElementById('secChips');
+  sc.innerHTML = '';
+  SECS.forEach(function(name, n){
+    var ps = c.perSec[n];
+    var el = document.createElement('span');
+    el.className = 'chip sec' + (B[cur].sec === n ? ' on' : '');
+    el.innerHTML = (n+1) + ' · ' + name + ' <span class="c">' + (ps.approved + ps.issue) + '/' + ps.total + '</span>';
+    el.onclick = function(){ goFirstPendingOf(n); };
+    sc.appendChild(el);
+  });
+}
+
+/* ═══ عرض الفقرة الحالية ═══ */
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function go(pos){
+  if (pos < 0) pos = 0;
+  if (pos >= B.length) pos = B.length - 1;
+  cur = pos;
+  renderBlock();
+  document.getElementById('blockCard').scrollIntoView({block:'start'});
+}
+function posOf(srcI){
+  if (isNaN(srcI)) return;
+  for (var i=0;i<B.length;i++) if (B[i].i === srcI) { go(i); return; }
+  toast('لا توجد فقرة برقم ' + srcI);
+}
+function nextPending(){
+  for (var k=1;k<=B.length;k++){
+    var p = (cur + k) % B.length;
+    if (statusOf(B[p]) === 'pending') { go(p); return; }
+  }
+  toast('لا معلق متبقٍ — كل شيء مراجَع 🎉');
+}
+function goFirstPendingOf(secN){
+  for (var i=0;i<B.length;i++) if (B[i].sec === secN && statusOf(B[i]) === 'pending') { go(i); return; }
+  toast('هذا القسم مراجَع بالكامل ✓');
+}
+function renderBlock(){
+  var b = B[cur];
+  var s = statusOf(b);
+  var meta = document.getElementById('meta');
+  var badges = '';
+  badges += '<span class="badge">فقرة #' + b.i + '</span>';
+  badges += '<span class="badge">' + (b.sec+1) + ' · ' + SECS[b.sec] + '</span>';
+  if (b.tb) badges += '<span class="badge tb">تسمية داخل رسم (مربع نصي)</span>';
+  if (b.tbl) badges += '<span class="badge tbl">داخل جدول</span>';
+  if (b.two) badges += '<span class="badge two">تخطيط عمودين في المصدر</span>';
+  if (b.neq) badges += '<span class="badge eq">معادلة ×' + b.neq + '</span>';
+  if (b.figs.length) badges += '<span class="badge fig">رسم ×' + b.figs.length + '</span>';
+  if (b.e) badges += '<span class="badge emp">فارغة</span>';
+  meta.innerHTML = '<span class="num">#' + b.i + '</span>' + badges +
+    '<span style="margin-inline-start:auto">' + (cur+1) + ' / ' + B.length + '</span>';
+
+  var card = document.getElementById('blockCard');
+  card.classList.toggle('empty', b.e);
+  var t = document.getElementById('blockText');
+  if (b.t) t.innerHTML = esc(b.t);
+  else t.textContent = '(فقرة فارغة في المصدر)';
+
+  var fr = document.getElementById('figRow');
+  fr.innerHTML = '';
+  (b.imgs || []).forEach(function(im){
+    if (im.u) {
+      var fig = document.createElement('figure');
+      fig.innerHTML = '<img src="' + im.u + '" alt="رسم ' + im.f + '" loading="lazy"><figcaption>📊 ' + im.f + '</figcaption>';
+      fr.appendChild(fig);
+    } else {
+      var v = document.createElement('div');
+      v.className = 'figvec';
+      v.textContent = '📐 ' + im.f + ' — شكل متجهي (أسهم/محاور/منحنى مرسوم) — يُعرض في مرحلة الرسوم (B)';
+      fr.appendChild(v);
+    }
+  });
+
+  var sb = document.getElementById('statusBar');
+  var d = decisions[b.i];
+  var stCls = s === 'approved' ? 'approved' : s === 'issue' ? 'issue' : s === 'empty' ? 'pending' : 'pending';
+  var stTxt = s === 'approved' ? '✅ معتمدة (موافقة الأستاذ)' : s === 'issue' ? '⛔ مشكلة / تحتاج مراجعة'
+    : s === 'empty' ? '⬜ فقرة فارغة — لا محتوى يُعتمد (تباعد في المصدر) — تُتخطى تلقائياً' : '⏳ معلقة';
+  sb.innerHTML = '<span class="st ' + stCls + '">' + stTxt + '</span>' +
+    (d ? '<span class="whom">آخر قرار: ' + new Date(d.ts).toLocaleString('ar-SY') + '</span>' : '');
+
+  var ac = document.getElementById('actions');
+  ac.innerHTML = '';
+  if (s === 'empty') {
+    ac.appendChild(btn('⏭ تخطي للتالي المعلق', '', nextPending));
+  } else if (s === 'pending') {
+    ac.appendChild(btn('✅ اعتماد (موافقة الأستاذ)', 'pri', function(){ setDecision(b, 'approved'); }));
+    ac.appendChild(btn('⛔ مشكلة / تحتاج مراجعة', 'danger', function(){ setDecision(b, 'issue'); }));
+  } else {
+    ac.appendChild(btn('↩️ إلغاء القرار (إعادة للمعلق)', '', function(){ delete decisions[b.i]; save(); renderBlock(); }));
+    ac.appendChild(btn(s === 'approved' ? '⛔ تحويل لمشكلة' : '✅ تحويل لمعتمد', 'danger',
+      function(){ setDecision(b, s === 'approved' ? 'issue' : 'approved'); }));
+  }
+  document.getElementById('noteIn').value = noteOf(b);
+  renderChrome();
+}
+function btn(label, cls, fn){
+  var el = document.createElement('button');
+  el.className = 'btn ' + (cls || '');
+  el.textContent = label;
+  el.onclick = fn;
+  return el;
+}
+function setDecision(b, s){
+  decisions[b.i] = {s: s, note: document.getElementById('noteIn').value.trim(), ts: now()};
+  delete noteDrafts[b.i];
+  save();
+  renderBlock();
+  toast(s === 'approved' ? '✓ عُدّت معتمدة — #' + b.i : '⛔ عُدّت مشكلة — #' + b.i);
+}
+
+/* ═══ بحث ═══ */
+function toggleSearch(){
+  document.getElementById('searchWrap').classList.toggle('open');
+  var inp = document.getElementById('searchIn');
+  if (document.getElementById('searchWrap').classList.contains('open')) inp.focus();
+}
+function doSearch(){
+  var q = document.getElementById('searchIn').value.trim();
+  var res = document.getElementById('searchRes');
+  res.innerHTML = '';
+  if (!q) return;
+  var hits = [];
+  for (var i=0;i<B.length && hits.length<30;i++) if (B[i].t && B[i].t.indexOf(q) !== -1) hits.push(i);
+  if (!hits.length) { res.innerHTML = '<span class="chip">لا نتائج</span>'; return; }
+  res.innerHTML = '<span class="chip" style="cursor:default">' + hits.length + ' نتيجة</span>';
+  hits.forEach(function(p){
+    var c = document.createElement('span');
+    c.className = 'chip';
+    c.textContent = '#' + B[p].i;
+    c.onclick = function(){ go(p); };
+    res.appendChild(c);
+  });
+}
+
+/* ═══ تصدير/استيراد ═══ */
+function exportDecisions(){
+  var c = counts();
+  var out = {
+    tool: 'nawwasat-review-console',
+    exported: new Date().toISOString(),
+    source: DATA.source,
+    source_sha256: DATA.source_sha256,
+    sections: SECS,
+    total: c.total,
+    counts: {approved: c.approved, issue: c.issue, pending: c.pending},
+    decisions: []
+  };
+  for (var i=0;i<B.length;i++){
+    var b = B[i];
+    if (decisions[b.i]) out.decisions.push({
+      i: b.i, section: b.sec, status: decisions[b.i].s,
+      note: decisions[b.i].note || '', ts: decisions[b.i].ts,
+      text: (b.t || '').slice(0, 140)
+    });
+  }
+  var blob = new Blob([JSON.stringify(out, null, 1)], {type:'application/json'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'nawwasat-decisions-' + new Date().toISOString().slice(0,16).replace(/[:T]/g,'-') + '.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  toast('⬇ صُدّرت ' + out.decisions.length + ' قراراً — أرسل الملف');
+}
+function importDecisions(inp){
+  var f = inp.files[0];
+  if (!f) return;
+  var r = new FileReader();
+  r.onload = function(){
+    try {
+      var data = JSON.parse(r.result);
+      var arr = data.decisions || data;
+      var n = 0;
+      arr.forEach(function(d){
+        if (typeof d.i === 'number' && d.status){
+          var old = decisions[d.i];
+          if (!old || (d.ts || 0) >= (old.ts || 0)){
+            decisions[d.i] = {s: d.status === 'approved' ? 'approved' : 'issue', note: d.note || '', ts: d.ts || now()};
+            n++;
+          }
+        }
+      });
+      save(); renderBlock();
+      toast('⬆ استُورِد ' + n + ' قراراً ✓');
+    } catch(e){ toast('ملف غير صالح: ' + e.message); }
+    inp.value = '';
+  };
+  r.readAsText(f);
+}
+function bulkSection(){
+  var secN = B[cur].sec;
+  var n = 0;
+  for (var i=0;i<B.length;i++) if (B[i].sec === secN && statusOf(B[i]) === 'pending') n++;
+  if (!n) { toast('لا معلق في هذا القسم'); return; }
+  var msg = 'اعتماد جماعي: كل المعلق في «' + SECS[secN] + '» (' + n + ' فقرة)؟\nيُستخدم عندما تأخذ موافقة الأستاذ على القسم كاملاً — يمكن إلغاء أي فقرة لاحقاً.';
+  if (!confirm(msg)) return;
+  for (var j=0;j<B.length;j++){
+    var b = B[j];
+    if (b.sec === secN && statusOf(b) === 'pending')
+      decisions[b.i] = {s:'approved', note:'اعتماد جماعي للقسم: ' + SECS[secN], ts: now()};
+  }
+  save(); renderBlock();
+  toast('✓ اعتمد ' + n + ' فقرة جماعياً');
+}
+function resetAll(){
+  if (!confirm('تصفير كامل لكل قرارات المراجعة؟ (لا يمكن التراجع)')) return;
+  decisions = {}; noteDrafts = {};
+  save(); renderBlock();
+  toast('⟲ صُفّرت المراجعة');
+}
+
+/* ═══ لوحات المفاتيح + توست ═══ */
+document.addEventListener('keydown', function(e){
+  var tag = (e.target.tagName || '').toLowerCase();
+  if (tag === 'input' || tag === 'textarea') return;
+  if (e.key === 'ArrowLeft') { go(cur+1); e.preventDefault(); }
+  else if (e.key === 'ArrowRight') { go(cur-1); e.preventDefault(); }
+  else if (e.key === 'a' || e.key === 'A') setDecision(B[cur], 'approved');
+  else if (e.key === 'f' || e.key === 'F') setDecision(B[cur], 'issue');
+  else if (e.key === 'n' || e.key === 'N') document.getElementById('noteIn').focus();
+});
+var toastTmr = null;
+function toast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('on');
+  clearTimeout(toastTmr);
+  toastTmr = setTimeout(function(){ t.classList.remove('on'); }, 1900);
+}
+/* حفظ الملاحظات كمسودة عند الكتابة */
+document.getElementById('noteIn').addEventListener('input', function(){
+  noteDrafts[B[cur].i] = this.value;
+});
+
+renderChrome();
+renderBlock();
+</script>
+</body>
+</html>
