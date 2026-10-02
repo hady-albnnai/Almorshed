@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>الوتر والرنانة والنبضة — U3-2/3/4 نموذج موحّد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button:active{transform:scale(.97)}
+.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:120px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700;animation:fxpop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fxpop{0%{transform:scale(.55)}100%{transform:scale(1)}}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:540px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🎻 U3-2/3/4 · الوتر بين مسمارين + الرنانة + طليقة/مقيدة <span class="badge">نموذج موحّد — واقعي + 🧊3D</span></h1>
+<div class="sub">نابل المطرقة (f₁) · صندوق الرنانة (نمط/نمطان) · انعكاس النبضة (قلب/لا قلب) · اسحب الخلفية بالـ3D</div>
+<div class="panel scenewrap"><canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">نبضة تعكس عن <b>نهاية طليقة</b> — كيف تعود؟</div>
+<button data-k="1">مقلوبة (قمة تصير قاعاً)</button><button data-k="2">بنفس الوجه — كأنها انعطفت</button><button data-k="3">تتلاشى بلا انعكاس</button><div class="fb" id="predFb"></div></div></div></div>
+<div class="panel"><div class="ctrl">
+<span class="chip">الوضع:</span>
+<button class="modeB" data-m="1" id="mB1">U3-2 · نابل المطرقة</button>
+<button class="modeB" data-m="2" id="mB2">U3-3 · صندوق الرنانة</button>
+<button class="modeB" data-m="3" id="mB3">U3-4 · طليقة/مقيدة</button>
+</div><div class="ctrl">
+<span class="slider">الطول L <input type="range" id="L" min="0.5" max="1.5" step="0.05" value="1"><b id="LV">١٫٠٠m</b></span>
+<span class="slider">الشدّ FT <input type="range" id="T" min="20" max="150" step="5" value="70"><b id="TV">٧٠N</b></span>
+<span class="slider" id="fRow" style="display:none">الرنانة f <input type="range" id="f" min="40" max="220" step="1" value="90"><b id="fV">٩٠Hz</b></span>
+</div><div class="ctrl">
+<button id="viewBtn">🧊 منظور 3D</button>
+<button id="actBtn">🔨 اطرق</button>
+<button id="endBtn" style="display:none">⇄ بدّل النهاية: مقيدة</button>
+<button id="resetBtn">↺ إعادة</button></div></div>
+<div class="panel"><span class="chip" id="chV">v = —</span><span class="chip" id="chF">f₁ = —</span><span class="chip" id="chS">النمط: —</span><span class="chip" id="chC">🎯 اطرق وقس f₁، ثم غيّر L إلى النصف — f₁ تتضاعف</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">v = √(FT/μ) &nbsp;·&nbsp; f₁ = v/2L &nbsp;·&nbsp; fn = n·f₁ &nbsp;·&nbsp; انعكاس: مقيدة تُقلب، طليقة لا</div><ul>
+<li>طرقة واحدة ⇒ الوتر يرنّ بالسعة الأساسية f₁ ثم يخمد — كل الأنماط الأخرى تتلاشى أسرع.</li>
+<li>الرنانة (صندوق رنّان) تضخ الصوت عند الرنين: f=f₁ نمط واحد، f=2f₁ نمطان.</li>
+<li>النبضة المقيدة (مسمار) ترتد مقلوبة — الطرف يفرض عقدة؛ الطليقة ترتد بنفس الوجه — بطن حُر.</li></ul></div></div>
+<div class="note">حتمية · صوت نقر عند الطرق ورنين حسب f₁ · بلا شبكة.</div>
+</div><div id="toast"></div><div id="fatal"></div>
+<script>window.onerror=function(m,src,l){var e=document.getElementById("fatal");if(e){e.style.display="block";e.textContent="خطأ: "+m+" @"+l}return false};</script>
+<script>
+"use strict";
+const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* ═══ الفيزياء ═══ */
+const mu=1.2e-3;
+let mode=1,L=1.0,FT=70,t=0,won=false,started=false;
+const vOf=()=>Math.sqrt(FT/mu);
+const f1=()=>vOf()/(2*L);
+/* نابل المطرقة: سعة مبدئية تتلاشى */
+let A1=0;
+/* الرنانة */
+let f=90;
+const rOf=()=>f/f1();
+const nOf=()=>Math.max(1,Math.round(rOf()));
+const reson=()=>{const r=rOf(),n=nOf();return Math.abs(r-n)<=0.045*n};
+const ampOf=()=>{const r=rOf(),n=nOf(),d=r-n;return 1/Math.sqrt(1+(d*24)*(d*24))};
+/* النبضة */
+let freeEnd=false,pulseT=-9;const c2=260;const PS=(u)=>{const w=34;u=Math.abs(u);return u>w?0:Math.cos(u/w*Math.PI/2)**2};
+let AC=null;function initA(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;o.type="sine";g.gain.value=.06;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+function tone(fq,d,vol){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;o.type="triangle";g.gain.value=vol||.08;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+function toast(s){const el=$("toast");el.textContent=s;el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2400)}
+let halfSeen=false;
+const STEP=1/240;let acc=0,last=performance.now();
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;
+ while(acc>=STEP){acc-=STEP;t+=STEP;A1*=Math.pow(0.9965,STEP*240);}
+ updChips();draw();requestAnimationFrame(loop)}
+function updChips(){
+ $("chV").textContent="v = "+toAr(vOf().toFixed(1))+"m/s";
+ $("chF").textContent=mode===2?"f الرنانة = "+toAr(f)+"Hz":"f₁ = "+toAr(f1().toFixed(1))+"Hz";
+ $("chS").textContent=mode===2?("النمط: "+toAr(nOf())+(reson()?" — رنين!":" (بعيد)")):mode===3?(pulseT>0?(t-pulseT<2.4?"نبضة تعمل…":"—"):"—"):(A1>0.02?"يرنّ ⌛"+toAr(A1.toFixed(1)):"ساكن");
+ if(mode===1){if(Math.abs(L-0.5)<0.01&&Math.abs(FT-70)<1)halfSeen=true;
+  if(halfSeen&&Math.abs(L-1)<0.01&&!won){/* عاد للأصل بعد نصف */}}
+ if((A1>0.2||reson()&&mode===2||(mode===3&&t-pulseT<1))&&!started){started=true;$("exp").classList.remove("locked")}}
+/* ═══ المحرك 3D ═══ */
+var view3d=false;const cam3={yaw:-0.5,pitch:0.3,dist:640,fov:640};
+let orbiting=false,_oX=0,_oY=0;
+function project3(p){const cy=Math.cos(cam3.yaw),sy=Math.sin(cam3.yaw),cp=Math.cos(cam3.pitch),sp=Math.sin(cam3.pitch);
+ const x=p.x*cy+p.z*sy,z=-p.x*sy+p.z*cy,y=p.y;const y2=y*cp-z*sp,z2=y*sp+z*cp;const dz=z2+cam3.dist,s=cam3.fov/dz;
+ return{x:480+x*s,y:210-y2*s,s:s,z:dz}}
+function line3(c,a,b,col,w){const pa=project3(a),pb=project3(b);c.strokeStyle=col;c.lineWidth=Math.max(.4,w*(pa.s/cam3.fov)*640*.7);c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+function spaceBg3(c){const g2=c.createLinearGradient(0,0,0,H);g2.addColorStop(0,"#0C1017");g2.addColorStop(1,"#05070B");c.fillStyle=g2;c.fillRect(0,0,W,H);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*W,sy=sr()*H*.72;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}}
+function arT3(c,s,x,y,size,col){c.fillStyle=col;c.font=size+"px Tahoma,Arial";c.textAlign="center";c.direction="rtl";c.fillText(s,x,y);c.direction="ltr"}
+function yOf3(xi,off){ /* إزاحة الوتر 3D بطول off (موضع مبدأ) */
+ if(mode===1)return A1*42*Math.sin(Math.PI*xi)*Math.cos(2*Math.PI*f1()*t);
+ if(mode===2){const n=nOf(),A=ampOf();return A*40*Math.sin(n*Math.PI*xi)*Math.cos(2*Math.PI*f*t*0.25)}
+ const u=(xi*L*300-(t-pulseT)*c2)/1;const ph=PS(u);
+ const ur=((L*300)*(2)-( (t-pulseT)*c2)-xi*L*300);const pr=freeEnd?PS(ur):-PS(ur);
+ return 34*(ph+pr)*(t-pulseT<3?1:0)}
+function drawScene3D(){const c=cx;spaceBg3(c);
+ for(let x=-380;x<=380;x+=76)line3(c,{x:x,y:-150,z:-300},{x:x,y:-150,z:300},"rgba(205,215,230,0.13)",1);
+ for(let z=-300;z<=300;z+=75)line3(c,{x:-380,y:-150,z:z},{x:380,y:-150,z:z},"rgba(205,215,230,0.13)",1);
+ /* الوتر من نقاط */
+ const LEN=L*300;
+ const res=mode===2?reson():(mode===1&&A1>0.5);
+ for(let i=0;i<=110;i++){const xi=i/110;
+  const y=yOf3(xi);
+  const p=project3({x:xi*LEN-LEN/2,y:0,z:y});
+  if(res){c.save();c.shadowColor="rgba(200,110,40,0.8)";c.shadowBlur=8}
+  c.fillStyle=res?"#C87A28":"#B0956A";c.beginPath();c.arc(p.x,p.y,res?2.7:2.1,0,7);c.fill();
+  if(res)c.restore()}
+ /* مسمارا الطرفين */
+ for(const s of[-1,1]){const p=project3({x:s*LEN/2,y:0,z:0});
+  c.fillStyle="#C9C9C2";c.beginPath();c.arc(p.x,p.y,5,0,7);c.fill();
+  c.fillStyle="rgba(120,120,115,0.9)";c.fillRect(p.x-2,p.y,4,44)}
+ /* صندوق الرنانة بالوضع 2 */
+ if(mode===2){const p0=project3({x:-LEN/2-40,y:-40,z:-90}),p1=project3({x:-LEN/2+140,y:-40,z:90});
+  c.fillStyle="rgba(122,90,50,0.55)";c.fillRect(p0.x,p0.y,p1.x-p0.x,50);
+  c.strokeStyle="rgba(200,160,100,0.7)";c.strokeRect(p0.x,p0.y,p1.x-p0.x,50);
+  arT3(c,"الرنانة 🎼",p0.x+(p1.x-p0.x)/2,p0.y+66,11.5,"rgba(232,226,208,0.7)")}
+ /* نهاية النبضة */
+ if(mode===3){const p=project3({x:LEN/2+14,y:0,z:0});
+  c.fillStyle=freeEnd?"rgba(150,190,160,0.95)":"rgba(178,58,52,0.95)";
+  c.fillRect(p.x-4,p.y-26,10,52);
+  arT3(c,freeEnd?"طليقة (حلقة)":"مقيدة (مسمار)",p.x+8,p.y-34,11.5,"rgba(232,226,208,0.8)")}
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(cx,16,12,240,64,10);cx.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";cx.strokeRect(16,12,240,64);
+ arT3(c,"v = "+toAr(vOf().toFixed(1))+"m/s · f₁ = "+toAr(f1().toFixed(1))+"Hz",136,34,12,"#E8E2D0");
+ arT3(c,"L = "+toAr(L.toFixed(2))+"m · FT = "+toAr(FT)+"N",136,56,11.5,"#F0964A");
+ arT3(c,"اسحب الخلفية لتدوير الكاميرا",480,H-12,12,"rgba(205,198,182,0.5)")}
+/* ═══ 2D واقعي ═══ */
+function drawRoom(){const c=cx;
+ const wall=c.createLinearGradient(0,0,0,320);wall.addColorStop(0,"#0C1017");wall.addColorStop(1,"#05070B");
+ c.fillStyle=wall;c.fillRect(0,0,W,320);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*960,sy=sr()*298;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}
+ c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,W,20);
+ const wood=c.createLinearGradient(0,321,0,440);wood.addColorStop(0,"#2E2114");wood.addColorStop(1,"#160F08");
+ c.fillStyle=wood;c.fillRect(0,321,W,119);c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,W,2)}
+function draw2D(){const c=cx;drawRoom();
+ const cy=225,X0=170,X1=170+L*440;
+ /* الطاولة الخشبية المخصصة */
+ c.fillStyle="rgba(46,33,20,0.9)";roundRect(c,120,318,700,14,4);c.fill();
+ /* مسمارا الطرفين */
+ c.fillStyle="#8F8F8A";c.fillRect(X0-2,cy,4,96);c.fillRect(X1-2,cy,4,96);
+ c.fillStyle="#C9C9C2";c.beginPath();c.arc(X0,cy,5,0,7);c.fill();c.beginPath();c.arc(X1,cy,5,0,7);c.fill();
+ /* الرنانة بالوضع 2 */
+ if(mode===2){c.fillStyle="rgba(122,90,50,0.85)";roundRect(c,X0-10,cy+94,240,54,6);c.fill();
+  c.fillStyle="rgba(90,64,32,0.9)";roundRect(c,X0-10,cy+94,240,12,6);c.fill();
+  arT("صندوق رنّان",X0+110,cy+170,11.5,"rgba(232,226,208,0.6)")}
+ /* نهاية النبضة بالوضع 3 */
+ if(mode===3){c.fillStyle=freeEnd?"rgba(150,190,160,0.95)":"rgba(178,58,52,0.95)";
+  c.fillRect(X1+8,cy-30,10,60);
+  arT(freeEnd?"حلقة (طليقة)":"مسمار (مقيدة)",X1+16,cy-44,11.5,"rgba(232,226,208,0.8)")}
+ /* الوتر */
+ const res=mode===2?reson():(mode===1&&A1>0.5);
+ c.save();
+ if(res){c.shadowColor="rgba(200,110,40,0.75)";c.shadowBlur=10}
+ c.strokeStyle=res?"#C87A28":"#B0956A";c.lineWidth=2.6;c.lineCap="round";
+ c.beginPath();
+ for(let i=0;i<=200;i++){const xi=i/200;
+  const y=cy-yOf3(xi);
+  i?c.lineTo(X0+xi*(X1-X0),y):c.moveTo(X0+xi*(X1-X0),y)}
+ c.stroke();c.restore();
+ /* مطرقة بالوضع 1 */
+ if(mode===1){const hx=X0+(X1-X0)/2+40;
+  c.save();c.translate(hx,cy-90);c.rotate(-0.5+A1*0.9);
+  c.fillStyle="#8A6432";c.fillRect(-4,0,8,44);
+  c.fillStyle="#5A4020";roundRect(c,-26,-14,52,22,6);c.fill();c.restore();
+  arT("مطرقة",hx+38,cy-96,11.5,"rgba(232,226,208,0.55)")}
+ /* قراءة f₁ */
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(c,24,20,250,64,10);c.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";c.strokeRect(24,20,250,64);
+ arT("v = "+toAr(vOf().toFixed(1))+"m/s · f₁ = "+toAr(f1().toFixed(1))+"Hz",149,42,12.5,"#E8E2D0");
+ arT(mode===2?("f = "+toAr(f)+"Hz · n = "+toAr(nOf())):("L = "+toAr(L.toFixed(2))+"m"),149,64,12,"#F0964A");
+ if(mode===1&&A1>0.05)arT("التردد المسموع = f₁ = "+toAr(f1().toFixed(1))+"Hz — لا شيء غيره",480,72,12.5,"#F0964A");
+ if(mode===2)arT(reson()?"رنين! السعة أعظمية":"ابحث عن f₁ أو 2f₁",480,72,12.5,reson()?"#F0964A":"rgba(232,226,208,0.6)");
+ if(mode===3){arT("النبضة: المقيدة ترتد مقلوبة (−) · الطليقة بنفس الوجه (+)",480,72,12.5,"rgba(232,226,208,0.6)");
+  /* رسم النبضتين المرجعيتين */
+ }}
+function draw(){if(!fit())return;cx.clearRect(0,0,W,H);
+ if(view3d){drawScene3D();return}draw2D()}
+/* ═══ تحكم ═══ */
+const bind=(id,vid,fmt,set)=>{$(id).oninput=e=>{set(+e.target.value);$(vid).textContent=fmt(+e.target.value)}};
+bind("L","LV",v=>toAr(v.toFixed(2))+"m",v=>L=v);
+bind("T","TV",v=>toAr(v)+"N",v=>FT=v);
+bind("f","fV",v=>toAr(v)+"Hz",v=>f=v);
+$("actBtn").onclick=()=>{initA();
+ if(mode===1){A1=1;tone(f1(),1.2,.12);beep(880,.04)}
+ else if(mode===2){const rr=rOf(),n=nOf();tone(Math.abs(rr-n)<0.045*n?f:60,0.8,reson()?.12:.02)}
+ else{pulseT=t;tone(220,.15,.07)}};
+$("endBtn").onclick=()=>{freeEnd=!freeEnd;$("endBtn").textContent=freeEnd?"⇄ بدّل النهاية: طليقة":"⇄ بدّل النهاية: مقيدة";pulseT=-9};
+$("resetBtn").onclick=()=>{A1=0;pulseT=-9;won=false;$("chDone").style.display="";$("chDone").classList.remove("ok");$("exp").classList.add("locked");started=false};
+$("viewBtn").onclick=()=>{view3d=!view3d;$("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D"};
+document.querySelectorAll(".modeB").forEach(b=>b.onclick=()=>{mode=+b.dataset.m;
+ document.querySelectorAll(".modeB").forEach(x=>x.style.borderColor="");b.style.borderColor="var(--accent)";
+ $("fRow").style.display=mode===2?"flex":"none";
+ $("endBtn").style.display=mode===3?"":"none";
+ $("actBtn").textContent=mode===1?"🔨 اطرق":mode===2?"🎼 شغّل الرنانة":"➤ أرسل نبضة";
+ $("chC").textContent=mode===1?"🎯 اطرق وقس f₁، ثم غيّر L إلى النصف — f₁ تتضاعف":
+  mode===2?"🎯 اضبط f على الرنين (نمط واحد) ثم على نمطين":"🎯 أرسل نبضة عن نهاية مقيدة ثم طليقة — قارن الانعكاس"});
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;
+ const k=b.dataset.k,fb=$("predFb");
+ if(k==="2"){fb.className="fb good";fb.textContent="✔ صحيح — النهاية الطليقة تعكس بنفس الوجه (بدون قلب الطور)"}
+ else{fb.className="fb bad";fb.textContent="✘ المقيدة هي المقلوبة — الطليقة تحافظ على الوجه";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("أرسل نبضة والوضع ٣ — بدّل النهاية وقارن")},900)});
+requestAnimationFrame(loop);
+</script></body></html>

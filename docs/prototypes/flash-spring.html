@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>النابض الحلزوني — U3-5 نموذج موحّد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button:active{transform:scale(.97)}
+.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:120px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700;animation:fxpop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fxpop{0%{transform:scale(.55)}100%{transform:scale(1)}}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:540px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🌀 U3-5 · النابض الحلزوني: تضاغطات وتخاخر <span class="badge">نموذج موحّد — واقعي + 🧊3D</span></h1>
+<div class="sub">سيلموشن أفقي: النبضة طولية — اللفّات تهتز باتجاه الانتشار (ليست عمودياً!) · اسحب الخلفية بالـ3D</div>
+<div class="panel scenewrap"><canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">أرسلنا نبضة تضاغط نحو النهاية <b>المثبتة</b> — تعود كيف؟</div>
+<button data-k="1">تضاغط بنفس الوجه</button><button data-k="2">تخاخر (منقلبة)</button><button data-k="3">لا تعود</button><div class="fb" id="predFb"></div></div></div></div>
+<div class="panel"><div class="ctrl">
+<button id="pulseBtn">➤ نبضة تضاغط</button>
+<button id="rareBtn">➤ نبضة تخاخر</button>
+<button id="contBtn">∿ تردد مستمر</button>
+<button id="endBtn">⇄ النهاية: حرة</button>
+<button id="viewBtn">🧊 منظور 3D</button>
+<button id="resetBtn">↺ إعادة</button>
+<span class="slider">التردد <input type="range" id="fq" min="0.5" max="2.5" step="0.1" value="1.2"><b id="fqV">١٫٢Hz</b></span>
+</div></div>
+<div class="panel"><span class="chip" id="chP">الحالة: ساكن</span><span class="chip" id="chEnd">النهاية: مثبتة (جدار)</span><span class="chip" id="chC">🎯 أرسل تضاغطاً عن النهاية المثبتة ولاحظ الانعكاس</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">موجة طولية: الاهتزاز ∥ الانتشار · تضاغط/تخاخر بالتناوب</div><ul>
+<li>اللفات تتزحزح أماماً-خلفاً فقط: مناطق كثافة عالية (تضاغط C) وكثافة منخفضة (تخاخر R).</li>
+<li>الانعكاس عن مثبت: تضاغط يعود تخاخراً — النابض يبث القوة للجدار فيرد معكوساً.</li>
+<li>النهاية الحرة تعيد النبضة بنفس الوجه — اللفة الحرة تتأرجح بلا ردّ.</li>
+<li>السرعة تعتمد على الشدّ وكتلة وحدة الطول — مثل الوتر لكن طولياً.</li></ul></div></div>
+<div class="note">لفتة تعليمية: لاحظ أن اللفة الواحدة لا تسافر — الموجة تسافر فقط! · حتمية · بلا شبكة.</div>
+</div><div id="toast"></div><div id="fatal"></div>
+<script>window.onerror=function(m,src,l){var e=document.getElementById("fatal");if(e){e.style.display="block";e.textContent="خطأ: "+m+" @"+l}return false};</script>
+<script>
+"use strict";
+const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* ═══ الفيزياء ═══ */
+let t=0,fq=1.2,cont=false,freeEnd=false,won=false,started=false;
+let pulses=[]; /* {x0,t0,sign} */
+const CC=300; /* سرعة النبضة px/s */
+const NCO=34,SPR={x0:90,x1:880};
+const pitch=()=> (SPR.x1-SPR.x0)/(NCO-1);
+const GA=(u,w)=>{u=Math.abs(u);return u>w?0:Math.cos(u/w*Math.PI/2)**2};
+function dispAt(X){ /* إزاحة طولية للفة عند موضعها الاسمي X */
+ let d=0;
+ for(const p of pulses){const age=t-p.t0;if(age<0||age>4.5)continue;
+  const xc=p.x0+CC*age;
+  d+=p.sign*30*GA(X-xc,44);
+  if(!freeEnd){ /* انعكاس عن النهاية المثبتة مع قلب الوجه */
+   const xr=2*SPR.x1-X+CC*age-(SPR.x1-p.x0)*0- 0;
+   const x2=2*SPR.x1- (p.x0+CC*age);
+   d-=p.sign*30*GA(X-x2,44);
+  } else {
+   const x2=2*SPR.x1-(p.x0+CC*age);
+   d+=p.sign*30*GA(X-x2,44);
+  }}
+ if(cont)d+=9*Math.sin(2*Math.PI*fq*(t-X/CC));
+ return d}
+const STEP=1/240;let acc=0,last=performance.now();
+let AC=null;function initA(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function beep(fq2,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq2;o.type="sine";g.gain.value=.05;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+function toast(s){const el=$("toast");el.textContent=s;el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2400)}
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;
+ while(acc>=STEP){acc+= -STEP;t+=STEP;pulses=pulses.filter(p=>t-p.t0<4.5)}
+ updChips();draw();requestAnimationFrame(loop)}
+function updChips(){
+ const act=pulses.length>0||cont;
+ $("chP").textContent="الحالة: "+(cont?"تردد مستمر ∿":act?"نبضة تسافر…":"ساكن");
+ $("chEnd").textContent="النهاية: "+(freeEnd?"حرة (حلقة)":"مثبتة (جدار)");
+ if(act&&!started){started=true;$("exp").classList.remove("locked")}}
+/* ═══ المحرك 3D ═══ */
+var view3d=false;const cam3={yaw:-0.55,pitch:0.32,dist:640,fov:640};
+let orbiting=false,_oX=0,_oY=0;
+function project3(p){const cy=Math.cos(cam3.yaw),sy=Math.sin(cam3.yaw),cp=Math.cos(cam3.pitch),sp=Math.sin(cam3.pitch);
+ const x=p.x*cy+p.z*sy,z=-p.x*sy+p.z*cy,y=p.y;const y2=y*cp-z*sp,z2=y*sp+z*cp;const dz=z2+cam3.dist,s=cam3.fov/dz;
+ return{x:480+x*s,y:200-y2*s,s:s,z:dz}}
+function ring3(c,xx,rr,col,w){c.strokeStyle=col;c.lineWidth=w;c.beginPath();
+ for(let i=0;i<=36;i++){const a=i/36*6.283;const q=project3({x:xx,y:Math.cos(a)*rr,z:Math.sin(a)*rr});
+  i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)}c.stroke()}
+function line3(c,a,b,col,w){const pa=project3(a),pb=project3(b);c.strokeStyle=col;c.lineWidth=w;c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+function spaceBg3(c){const g2=c.createLinearGradient(0,0,0,H);g2.addColorStop(0,"#0C1017");g2.addColorStop(1,"#05070B");c.fillStyle=g2;c.fillRect(0,0,W,H);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*W,sy=sr()*H*.72;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}}
+function arT3(c,s,x,y,size,col){c.fillStyle=col;c.font=size+"px Tahoma,Arial";c.textAlign="center";c.direction="rtl";c.fillText(s,x,y);c.direction="ltr"}
+cv.addEventListener("pointerdown",e=>{if(!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;orbiting=true;_oX=x;_oY=y;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener("pointermove",e=>{if(!orbiting||!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;cam3.yaw+=(x-_oX)*.006;cam3.pitch=clamp(cam3.pitch+(y-_oY)*.006,-0.05,1.0);_oX=x;_oY=y});
+addEventListener("pointerup",()=>{orbiting=false});
+cv.addEventListener("wheel",e=>{if(!view3d)return;e.preventDefault();cam3.dist=clamp(cam3.dist*(1+e.deltaY*.001),380,900)},{passive:false});
+function drawScene3D(){const c=cx;spaceBg3(c);
+ for(let x=-380;x<=380;x+=76)line3(c,{x:x,y:-150,z:-300},{x:x,y:-150,z:300},"rgba(205,215,230,0.13)",1);
+ for(let z=-300;z<=300;z+=75)line3(c,{x:-380,y:-150,z:z},{x:380,y:-150,z:z},"rgba(205,215,230,0.13)",1);
+ /* اللفات: حلقات بمواضع مُزاحة طولياً */
+ const P=pitch();
+ let dmax=0;
+ for(let k=0;k<NCO;k++){const X=SPR.x0+k*P;const d=dispAt(X);
+  if(Math.abs(d)>dmax)dmax=Math.abs(d);
+  ring3(c,X+d,34,k%2?"rgba(205,160,90,0.9)":"rgba(160,120,70,0.9)",2.6)}
+ /* الجدار / الحلقة */
+ const wp=project3({x:SPR.x1+16,y:0,z:0});
+ if(!freeEnd){c.fillStyle="rgba(140,140,135,0.9)";c.fillRect(wp.x,wp.y-64,12,128);
+  c.strokeStyle="rgba(200,200,195,0.5)";c.strokeRect(wp.x,wp.y-64,12,128);
+  arT3(c,"جدار",wp.x+6,wp.y-76,11.5,"rgba(232,226,208,0.7)")}
+ else{c.strokeStyle="rgba(150,190,160,0.95)";c.lineWidth=3;
+  c.beginPath();c.arc(wp.x,wp.y,16,0,7);c.stroke();
+  arT3(c,"حلقة حرة",wp.x+6,wp.y-76,11.5,"rgba(150,190,160,0.85)")}
+ /* يد المصدر يسار */
+ const hp=project3({x:SPR.x0-34,y:0,z:0});
+ c.fillStyle="rgba(205,160,90,0.95)";c.beginPath();c.arc(hp.x,hp.y,9,0,7);c.fill();
+ arT3(c,"المصدر",hp.x,hp.y+22,11.5,"rgba(232,226,208,0.6)");
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(cx,16,12,240,64,10);cx.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";cx.strokeRect(16,12,240,64);
+ arT3(c,"سعة الاضطراب: "+toAr((dmax/30*100).toFixed(0))+"٪",136,34,12,"#E8E2D0");
+ arT3(c,dmax>18?"تضاغط C وتخاخر R يتناوبان":"أرسل نبضة",136,56,12,"#F0964A");
+ arT3(c,"اسحب الخلفية لتدوير الكاميرا",480,H-12,12,"rgba(205,198,182,0.5)")}
+/* ═══ 2D واقعي ═══ */
+function drawRoom(){const c=cx;
+ const wall=c.createLinearGradient(0,0,0,320);wall.addColorStop(0,"#0C1017");wall.addColorStop(1,"#05070B");
+ c.fillStyle=wall;c.fillRect(0,0,W,320);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*960,sy=sr()*298;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}
+ c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,W,20);
+ const wood=c.createLinearGradient(0,321,0,440);wood.addColorStop(0,"#2E2114");wood.addColorStop(1,"#160F08");
+ c.fillStyle=wood;c.fillRect(0,321,W,119);c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,W,2)}
+function draw2D(){const c=cx;drawRoom();
+ const cy=235;
+ /* مسار دليلي */
+ c.strokeStyle="rgba(205,215,230,0.14)";c.lineWidth=1.4;c.setLineDash([4,7]);
+ c.beginPath();c.moveTo(SPR.x0-40,cy);c.lineTo(SPR.x1+40,cy);c.stroke();c.setLineDash([]);
+ /* اللفات بمواضع مُزاحة */
+ const P=pitch();
+ let dmax=0;
+ for(let k=0;k<NCO;k++){const X=SPR.x0+k*P;const d=dispAt(X);
+  if(Math.abs(d)>dmax)dmax=Math.abs(d);
+  const xx=X+d;
+  const sg=c.createLinearGradient(xx-11,0,xx+11,0);sg.addColorStop(0,"#7A5A32");sg.addColorStop(.5,"#D9AC6A");sg.addColorStop(1,"#7A5A32");
+  c.strokeStyle=sg;c.lineWidth=4.2;
+  c.beginPath();c.ellipse(xx,cy,10,52,0,0,7);c.stroke()}
+ /* شريط كثافة: تضاغط/تخاخر */
+ for(let k=0;k<NCO-1;k++){const X=SPR.x0+k*P;const ggap=(X+P+dispAt(X+P))-(X+dispAt(X));
+  if(ggap<P*0.55){c.fillStyle="rgba(226,90,60,0.5)";c.fillRect(X+P/2-3,cy-62,6,124)}
+  else if(ggap>P*1.45){c.fillStyle="rgba(120,180,220,0.4)";c.fillRect(X+P/2-3,cy-62,6,124)}
+  if(k===0&&dmax>8){}}
+ if(dmax>18){arT("تضاغط C",SPR.x0+40,cy-86,12,"rgba(226,90,60,0.95)");
+  arT("تخاخر R",SPR.x0+150,cy-86,12,"rgba(120,180,220,0.95)")}
+ /* الجدار/الحلقة */
+ if(!freeEnd){c.fillStyle="rgba(140,140,135,0.92)";c.fillRect(SPR.x1+16,cy-64,14,128);
+  c.strokeStyle="rgba(60,60,56,0.9)";for(let k=0;k<6;k++){c.beginPath();c.moveTo(SPR.x1+16,cy-58+k*22);c.lineTo(SPR.x1+30,cy-46+k*22);c.stroke()}
+  arT("مثبتة",SPR.x1+23,cy-78,11.5,"rgba(232,226,208,0.7)")}
+ else{c.strokeStyle="rgba(150,190,160,0.95)";c.lineWidth=3.5;
+  c.beginPath();c.arc(SPR.x1+16,cy,16,0,7);c.stroke();
+  arT("حرة",SPR.x1+16,cy-78,11.5,"rgba(150,190,160,0.85)")}
+ /* يد المصدر */
+ c.fillStyle="rgba(205,160,90,0.95)";c.beginPath();c.arc(SPR.x0-30,cy,9,0,7);c.fill();
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(c,24,20,240,64,10);c.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";c.strokeRect(24,20,240,64);
+ arT("موجة طولية: اهتزاز ∥ انتشار",144,42,12.5,"#E8E2D0");
+ arT("v = "+toAr((CC/100).toFixed(1))+"m/s (نموذج) · f = "+toAr(fq.toFixed(1))+"Hz",144,64,11.5,"#F0964A");
+ arT(cont?"لاحظ: اللفة الواحدة تهتز في مكانها — الموجة هي التي تسافر":"جرّب نبضة تضاغط ثم تخاخر",480,72,12.5,cont?"#F0964A":"rgba(232,226,208,0.6)")}
+function draw(){if(!fit())return;cx.clearRect(0,0,W,H);
+ if(view3d){drawScene3D();return}draw2D()}
+/* ═══ تحكم ═══ */
+$("fq").oninput=e=>{fq=+e.target.value;$("fqV").textContent=toAr(fq.toFixed(1))+"Hz"};
+function send(sign){initA();pulses.push({x0:SPR.x0+30,t0:t,sign});beep(sign>0?330:260,.08);
+ if(!freeEnd&&!won&&sign>0){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 تضاغط عن مثبت يعود تخاخراً (+١٠)")}}
+$("pulseBtn").onclick=()=>send(1);
+$("rareBtn").onclick=()=>send(-1);
+$("contBtn").onclick=()=>{initA();cont=!cont;$("contBtn").style.borderColor=cont?"var(--accent)":""};
+$("endBtn").onclick=()=>{freeEnd=!freeEnd;$("endBtn").textContent=freeEnd?"⇄ النهاية: مثبتة":"⇄ النهاية: حرة"};
+$("resetBtn").onclick=()=>{pulses=[];cont=false;$("contBtn").style.borderColor="";won=false;
+ $("chDone").style.display="";$("chDone").classList.remove("ok");$("exp").classList.add("locked");started=false};
+$("viewBtn").onclick=()=>{view3d=!view3d;$("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D"};
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;
+ const k=b.dataset.k,fb=$("predFb");
+ if(k==="2"){fb.className="fb good";fb.textContent="✔ صحيح — المثبت يقلب النبضة: تضاغط يعود تخاخراً"}
+ else{fb.className="fb bad";fb.textContent="✘ النهاية الحرة من يعيد بنفس الوجه — جرّب الوضعين";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("أرسل تضاغطاً وشاهد انعكاسه عن الجدار")},900)});
+requestAnimationFrame(loop);
+</script></body></html>
