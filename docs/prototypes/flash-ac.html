@@ -1,0 +1,246 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>القيمة الفعّالة وR/L/C — U2-20/21 نموذج موحّد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button:active{transform:scale(.97)}
+.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:120px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700;animation:fxpop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fxpop{0%{transform:scale(.55)}100%{transform:scale(1)}}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:540px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🔌 U2-20/21 · القيمة الفعّالة + R/L/C أمام AC/DC <span class="badge">نموذج موحّد — واقعي + 🧊3D</span></h1>
+<div class="sub">دارتان متساويتا التوهج ⇒ Ueff = U₀/√2 · المكثف يمنع DC ويمرّر AC · الوشيعة تعارض التغيّر · اسحب الخلفية بالـ3D</div>
+<div class="panel scenewrap"><canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">دارتان بمصباحين متساويي التوهج: الأولى ببطارية DC والأخرى بمتردد قمته U₀. ماذا نقول عن U₀؟</div>
+<button data-k="1">U₀ = Ueff</button><button data-k="2">U₀ = Ueff·√٢ — الفعّالة أصغر</button><button data-k="3">U₀ = Ueff/√٢</button><div class="fb" id="predFb"></div></div></div></div>
+<div class="panel"><div class="ctrl">
+<span class="chip">الوضع:</span>
+<button class="modeB" data-m="1" id="mB1">U2-20 · القيمة الفعّالة</button>
+<button class="modeB" data-m="2" id="mB2">U2-21 · R/L/C أمام DC وAC</button>
+</div>
+<div class="ctrl">
+<span class="slider">U₀ <input type="range" id="U" min="2" max="12" step="1" value="6"><b id="UV">٦V</b></span>
+<span class="slider">f <input type="range" id="f" min="20" max="120" step="5" value="50"><b id="fV">٥٠Hz</b></span>
+</div>
+<div class="ctrl" id="rlcRow" style="display:none">
+<span class="chip">العنصر:</span>
+<button id="swR">⏺ مقاومة R</button>
+<button id="swL">🌀 وشيعة L</button>
+<button id="swC">⧫ مكثف C</button>
+<span class="chip">المصدر:</span>
+<button id="srcBtn">~ AC</button>
+</div>
+<div class="ctrl">
+<button id="viewBtn">🧊 منظور 3D</button>
+<button id="resetBtn">↺ إعادة</button></div></div>
+<div class="panel"><span class="chip" id="chU">U₀ = —</span><span class="chip" id="chE">Ueff = —</span><span class="chip" id="chL">المصباح: —</span><span class="chip" id="chC">🎯 طابِق التوهجين ثم اقرأ Ueff من المقياس</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">Ueff = U₀/√٢ ≈ ٠٫٧٠٧·U₀ &nbsp;·&nbsp; C يمنع DC · L تعارض AC</div><ul>
+<li>التوهج المتساوي = نفس الطاقة الحرارية = نفس القيمة الفعّالة — قياس عملي أنيق.</li>
+<li>المكثف: يشحن مرة فيبطل DC؛ بالتردد يشتحن ويفرّغ باستمرار ⇒ تيار يمر.</li>
+<li>الوشيعة: بالDC تتصرف كسلك (بعد اللحظة الأولى)؛ بالAC قوتها الدافعة الذاتية تعارض الزيادة.</li></ul></div></div>
+<div class="note">شاشة أوسيلوسكوب مصغّرة تُظهر U₀ وUeff معاً · حتمية · بلا شبكة.</div>
+</div><div id="toast"></div><div id="fatal"></div>
+<script>window.onerror=function(m,src,l){var e=document.getElementById("fatal");if(e){e.style.display="block";e.textContent="خطأ: "+m+" @"+l}return false};</script>
+<script>
+"use strict";
+const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* ═══ الفيزياء ═══ */
+let mode=1,U0=6,f=50,elem="R",ac=true,t=0,won=false,started=false;
+const STEP=1/240;let acc=0,last=performance.now();
+const uOf=tt=>ac?U0*Math.sin(2*Math.PI*f*tt/1000):U0;
+/* سطوع المصباح */
+const bright=()=>{
+ if(mode===1)return 1;
+ if(elem==="R")return clamp(U0/8,0,1)*(ac?1:1);
+ if(ac)return elem==="C"?clamp(U0*f/240+0.25,0,1):clamp(U0/(8+f*0.02),0,0.8);
+ return elem==="C"?0:0.95};
+let AC=null;function initA(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;o.type="sine";g.gain.value=.05;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+function toast(s){const el=$("toast");el.textContent=s;el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2400)}
+let matched=false;
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;
+ while(acc>=STEP){acc+=-STEP;t+=STEP}
+ updChips();draw();requestAnimationFrame(loop)}
+function updChips(){
+ $("chU").textContent="U₀ = "+toAr(U0)+"V"+(ac?" (قمة)":" (DC)");
+ $("chE").textContent=mode===1?("Ueff المقاسة = "+toAr((U0/Math.SQRT2).toFixed(2))+"V"):(elem==="R"?"R: يمر بالحالتين":elem==="C"?"C: يمنع DC · يمرّر AC":"L: سلك بالDC · يعارض AC");
+ $("chL").textContent="المصباح: "+(bright()>0.85?"يضيء قوياً 💡":bright()>0.35?"متوسط توهج":bright()>0.06?"خفيف":"مطفأ");
+ if(mode===1&&matched&&!won){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 طابقت التوهجين — Ueff = U₀/√٢ (+١٠)")}
+ if(bright()>0.3&&!started){started=true;$("exp").classList.remove("locked")}}
+/* ═══ المحرك 3D ═══ */
+var view3d=false;const cam3={yaw:-0.5,pitch:0.3,dist:660,fov:660};
+let orbiting=false,_oX=0,_oY=0;
+function project3(p){const cy=Math.cos(cam3.yaw),sy=Math.sin(cam3.yaw),cp=Math.cos(cam3.pitch),sp=Math.sin(cam3.pitch);
+ const x=p.x*cy+p.z*sy,z=-p.x*sy+p.z*cy,y=p.y;const y2=y*cp-z*sp,z2=y*sp+z*cp;const dz=z2+cam3.dist,s=cam3.fov/dz;
+ return{x:480+x*s,y:210-y2*s,s:s,z:dz}}
+function line3(c,a,b,col,w){const pa=project3(a),pb=project3(b);c.strokeStyle=col;c.lineWidth=Math.max(.4,w*(pa.s/cam3.fov)*660*.7);c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+function stroke3(c,pts,col,w,cl){c.strokeStyle=col;c.lineWidth=w;c.lineJoin="round";c.beginPath();pts.forEach((p,i)=>{const q=project3(p);i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)});if(cl)c.closePath();c.stroke()}
+function ring3(c,xx,rr,col,w){const pts=[];for(let i=0;i<=40;i++){const a=i/40*6.283;pts.push({x:xx,y:Math.cos(a)*rr,z:Math.sin(a)*rr})}stroke3(c,pts,col,w,true)}
+function spaceBg3(c){const g2=c.createLinearGradient(0,0,0,H);g2.addColorStop(0,"#0C1017");g2.addColorStop(1,"#05070B");c.fillStyle=g2;c.fillRect(0,0,W,H);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*W,sy=sr()*H*.72;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}}
+function arT3(c,s,x,y,size,col){c.fillStyle=col;c.font=size+"px Tahoma,Arial";c.textAlign="center";c.direction="rtl";c.fillText(s,x,y);c.direction="ltr"}
+function drawScene3D(){const c=cx;spaceBg3(c);
+ for(let x=-380;x<=380;x+=76)line3(c,{x:x,y:-150,z:-300},{x:x,y:-150,z:300},"rgba(205,215,230,0.13)",1);
+ for(let z=-300;z<=300;z+=75)line3(c,{x:-380,y:-150,z:z},{x:380,y:-150,z:z},"rgba(205,215,230,0.13)",1);
+ const br=bright();
+ /* دارة حلقة 3D: مصدر يسار، مصباح يمين، عنصر وسط */
+ line3(c,{x:-180,y:-60,z:0},{x:180,y:-60,z:0},"rgba(205,160,90,0.85)",4);
+ line3(c,{x:-180,y:-60,z:0},{x:-180,y:80,z:0},"rgba(205,160,90,0.85)",4);
+ line3(c,{x:180,y:-60,z:0},{x:180,y:80,z:0},"rgba(205,160,90,0.85)",4);
+ line3(c,{x:-180,y:80,z:0},{x:-100,y:80,z:0},"rgba(205,160,90,0.85)",4);
+ line3(c,{x:100,y:80,z:0},{x:180,y:80,z:0},"rgba(205,160,90,0.85)",4);
+ line3(c,{x:-40,y:80,z:0},{x:40,y:80,z:0},"rgba(205,160,90,0.85)",4);
+ /* المصدر */
+ ring3(c,-180,14,"rgba(120,140,200,0.9)",3);
+ /* المصباح */
+ const lp=project3({x:140,y:80,z:0});
+ if(br>0.06){c.save();c.shadowColor="rgba(255,220,120,0.95)";c.shadowBlur=30*br;
+  c.fillStyle="rgba(255,226,140,"+(0.4+0.55*br)+")";c.beginPath();c.arc(lp.x,lp.y,12+6*br,0,7);c.fill();c.restore()}
+ else{c.fillStyle="rgba(70,70,66,0.95)";c.beginPath();c.arc(lp.x,lp.y,12,0,7);c.fill()}
+ /* العنصر بالوسط */
+ if(mode===2&&elem==="L"){for(let k=0;k<5;k++)ring3(c,-30+k*15,26,"rgba(205,160,90,0.9)",3)}
+ if(mode===2&&elem==="C"){const cp1=project3({x:-8,y:44,z:0}),cp2=project3({x:-8,y:116,z:0});
+  c.fillStyle="rgba(150,190,220,0.9)";c.fillRect(cp1.x-4,cp1.y,8,cp2.y-cp1.y);
+  line3(c,{x:-8,y:60,z:0},{x:-8,y:80,z:0},"rgba(205,160,90,0.85)",4);
+  line3(c,{x:-8,y:100,z:0},{x:-8,y:116,z:0},"rgba(205,160,90,0.85)",4)}
+ if(mode===1||elem==="R"){const rp=project3({x:0,y:80,z:0});
+  c.fillStyle="rgba(178,120,90,0.9)";c.fillRect(rp.x-18,rp.y-8,36,16)}
+ /* موجة AC على السلك */
+ if(ac){c.strokeStyle="rgba(120,200,255,0.75)";c.lineWidth=2;c.beginPath();
+  for(let k=0;k<=40;k++){const xx=-180+k*9;const p=project3({x:xx,y:-78+Math.sin(k/40*12.566-t*10)*7,z:0});
+   k?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y)}c.stroke()}
+ arT3(c,ac?"~ AC · f = "+toAr(f)+"Hz":"═ DC بطارية",480,52,13,"rgba(120,200,255,0.9)");
+ arT3(c,"اسحب الخلفية لتدوير الكاميرا",480,H-12,12,"rgba(205,198,182,0.5)")}
+/* ═══ 2D واقعي ═══ */
+function drawRoom(){const c=cx;
+ const wall=c.createLinearGradient(0,0,0,320);wall.addColorStop(0,"#0C1017");wall.addColorStop(1,"#05070B");
+ c.fillStyle=wall;c.fillRect(0,0,W,320);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*960,sy=sr()*298;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}
+ c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,W,20);
+ const wood=c.createLinearGradient(0,321,0,440);wood.addColorStop(0,"#2E2114");wood.addColorStop(1,"#160F08");
+ c.fillStyle=wood;c.fillRect(0,321,W,119);c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,W,2)}
+function draw2D(){const c=cx;drawRoom();
+ const cy=225;
+ /* لوحة دارتين بالوضع 1 */
+ if(mode===1){
+  for(const[bx,dc]of[[180,true],[600,false]]){
+   /* الدارة */
+   c.strokeStyle="rgba(205,160,90,0.85)";c.lineWidth=3;
+   c.strokeRect(bx,150,180,130);
+   /* المصدر */
+   if(dc){c.fillStyle="#2E2E2B";roundRect(c,bx+60,138,60,24,4);c.fill();
+    c.fillStyle="#B3372B";c.fillRect(bx+60,138,60,8);
+    arT("DC",bx+90,190,12,"#E8E2D0")}
+   else{c.strokeStyle="rgba(120,200,255,0.9)";c.lineWidth=2.5;
+    c.beginPath();c.arc(bx+90,150,16,0.15*Math.PI,0.85*Math.PI);c.stroke();
+    c.beginPath();c.arc(bx+90,150,16,1.15*Math.PI,1.85*Math.PI);c.stroke();
+    arT("~ AC",bx+90,190,12,"rgba(120,200,255,0.9)")}
+   /* المصباح */
+   const br=1,lx=bx+90,ly=150;
+   c.save();c.shadowColor="rgba(255,220,120,0.9)";c.shadowBlur=22;
+   c.fillStyle="rgba(255,226,140,0.95)";c.beginPath();c.arc(lx,ly+65,15,0,7);c.fill();c.restore();
+   arT("متطابق التوهج",bx+90,318,11.5,"rgba(232,226,208,0.7)");
+  }
+  arT("→ نفس التوهج ⇒ نفس Ueff",390,352,13,"#F0964A");
+  /* شاشة صغيرة: جيبية مع Ueff */
+  const sx=790,sy=225,sw=130,sh=90;
+  c.fillStyle="rgba(7,19,12,0.95)";roundRect(c,sx-65,sy-45,sw,sh,8);c.fill();
+  c.strokeStyle="rgba(120,180,140,0.5)";c.strokeRect(sx-65,sy-45,sw,sh);
+  c.strokeStyle="rgba(190,255,230,0.85)";c.lineWidth=2;c.beginPath();
+  for(let k=0;k<=60;k++){const xx=sx-65+k*(sw/60);const yy=sy-uOf(k/60*20)*(-30/U0);
+   k?c.lineTo(xx,yy):c.moveTo(xx,yy)}c.stroke();
+  c.strokeStyle="rgba(240,150,74,0.8)";c.lineWidth=1.6;c.setLineDash([5,5]);
+  c.beginPath();c.moveTo(sx-65,sy+21);c.lineTo(sx+65,sy+21);c.stroke();c.setLineDash([]);
+  arT("Ueff",sx+80,sy+25,11,"#F0964A");
+ }else{
+  /* دارة واحدة بالعنصر */
+  const bx=300;
+  c.strokeStyle="rgba(205,160,90,0.85)";c.lineWidth=3.5;
+  c.strokeRect(bx,150,260,140);
+  /* المصدر يسار */
+  if(ac){c.strokeStyle="rgba(120,200,255,0.9)";c.lineWidth=3;
+   c.beginPath();c.arc(bx,150,17,0.15*Math.PI,0.85*Math.PI);c.stroke();
+   c.beginPath();c.arc(bx,150,17,1.15*Math.PI,1.85*Math.PI);c.stroke();}
+  else{c.fillStyle="#2E2E2B";roundRect(c,bx-16,128,32,22,3);c.fill();
+   c.fillStyle="#B3372B";c.fillRect(bx-16,128,32,8)}
+  arT(ac?"~ "+toAr(f)+"Hz":"═ DC",bx+70,128,12,ac?"rgba(120,200,255,0.9)":"#E8E2D0");
+  /* العنصر بالأعلى وسط */
+  const ex=bx+130;
+  if(elem==="R"){c.fillStyle="rgba(178,120,90,0.92)";roundRect(c,ex-24,136,48,26,5);c.fill();
+   c.strokeStyle="rgba(90,55,35,0.9)";c.lineWidth=2;
+   for(let k=0;k<3;k++){c.beginPath();c.moveTo(ex-16+k*14,138);c.lineTo(ex-10+k*14,160);c.stroke()}
+   arT("R",ex,172,13,"#E8C98E")}
+  if(elem==="L"){for(let k=0;k<4;k++){c.strokeStyle="rgba(205,160,90,0.95)";c.lineWidth=4;
+   c.beginPath();c.ellipse(ex-27+k*18,150,9,20,0,0,7);c.stroke()}
+   arT("L",ex+60,155,13,"#E8C98E")}
+  if(elem==="C"){c.strokeStyle="rgba(150,190,220,0.95)";c.lineWidth=5;
+   c.beginPath();c.moveTo(ex-24,140);c.lineTo(ex+24,140);c.stroke();
+   c.beginPath();c.moveTo(ex-24,158);c.lineTo(ex+24,158);c.stroke();
+   arT("C",ex+60,155,13,"rgba(150,190,220,0.95)")}
+  /* المصباح يمين */
+  const br=bright(),lx=bx+260,ly=220;
+  if(br>0.06){c.save();c.shadowColor="rgba(255,220,120,0.9)";c.shadowBlur=30*br;
+   c.fillStyle="rgba(255,226,140,"+(0.4+0.55*br)+")";c.beginPath();c.arc(lx,ly,16+7*br,0,7);c.fill();c.restore()}
+  else{c.fillStyle="rgba(70,70,66,0.95)";c.beginPath();c.arc(lx,ly,16,0,7);c.fill();
+   c.strokeStyle="rgba(150,150,145,0.6)";c.stroke()}
+  c.fillStyle="rgba(90,90,86,0.9)";c.fillRect(lx-4,ly+15,8,16);
+  arT(br>0.06?"💡":"مطفأ",lx,ly-30,13,br>0.06?"#F0964A":"rgba(232,226,208,0.5)");
+  /* شاشة U(t) */
+  const sx=760,sy=225,sw=150,sh=100;
+  c.fillStyle="rgba(7,19,12,0.95)";roundRect(c,sx-75,sy-50,sw,sh,8);c.fill();
+  c.strokeStyle="rgba(120,180,140,0.5)";c.strokeRect(sx-75,sy-50,sw,sh);
+  c.strokeStyle="rgba(190,255,230,0.85)";c.lineWidth=2;c.beginPath();
+  for(let k=0;k<=70;k++){const xx=sx-75+k*(sw/70);const yy=sy-uOf(k/70*20)*(-36/U0);
+   k?c.lineTo(xx,yy):c.moveTo(xx,yy)}c.stroke();
+  arT("U(t)",sx,sy-58,11.5,"rgba(190,255,230,0.8)");
+ }
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(c,24,20,250,64,10);c.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";c.strokeRect(24,20,250,64);
+ arT("U₀ = "+toAr(U0)+"V · f = "+toAr(f)+"Hz",149,42,12.5,"#E8E2D0");
+ arT(mode===1?"Ueff = U₀/√٢ = "+toAr((U0/Math.SQRT2).toFixed(2))+"V":("عنصر: "+elem+" · مصدر: "+(ac?"AC":"DC")),149,64,12,"#F0964A")}
+function draw(){if(!fit())return;cx.clearRect(0,0,W,H);
+ if(view3d){drawScene3D();return}draw2D()}
+/* ═══ تحكم ═══ */
+$("U").oninput=e=>{U0=+e.target.value;$("UV").textContent=toAr(U0)+"V"};
+$("f").oninput=e=>{f=+e.target.value;$("fV").textContent=toAr(f)+"Hz"};
+$("swR").onclick=()=>{elem="R";sel()};
+$("swL").onclick=()=>{elem="L";sel()};
+$("swC").onclick=()=>{elem="C";sel()};
+function sel(){["#swR","#swL","#swC"].forEach(id=>$(id.slice(1)).style.borderColor="");
+ $({"R":"swR","L":"swL","C":"swC"}[elem]).style.borderColor="var(--accent)";beep(380,.06)}
+$("srcBtn").onclick=()=>{initA();ac=!ac;$("srcBtn").textContent=ac?"~ AC":"═ DC";$("srcBtn").style.borderColor=ac?"var(--accent)":"";beep(420,.07)};
+$("resetBtn").onclick=()=>{won=false;matched=false;$("chDone").style.display="";$("chDone").classList.remove("ok");$("exp").classList.add("locked");started=false};
+$("viewBtn").onclick=()=>{view3d=!view3d;$("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D"};
+document.querySelectorAll(".modeB").forEach(b=>b.onclick=()=>{mode=+b.dataset.m;
+ document.querySelectorAll(".modeB").forEach(x=>x.style.borderColor="");b.style.borderColor="var(--accent)";
+ $("rlcRow").style.display=mode===2?"flex":"none";
+ $("chC").textContent=mode===1?"🎯 طابِق التوهجين ثم اقرأ Ueff من المقياس":"🎯 جرب كل عنصر مع DC ثم AC — من يمرّ ومن يمنع؟"});
+/* مطابقة التوهجين: زر مخفي دبل كليك على اللوحة؟ نبسّطها: زر فحص */
+document.querySelector(".panel.scenewrap").addEventListener("dblclick",()=>{if(mode===1){matched=true;toast("طُبّق التوهج — Ueff = "+toAr((U0/Math.SQRT2).toFixed(2))+"V");beep(700,.15)}});
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;
+ const k=b.dataset.k,fb=$("predFb");
+ if(k==="2"){fb.className="fb good";fb.textContent="✔ صحيح — نفس التوهج يعني نفس الفعّالة: U₀ = Ueff·√٢. دبل-كليك للمطابقة!"}
+ else{fb.className="fb bad";fb.textContent="✘ القمة أعلى من الفعّالة بعامل √٢ — الجذر من ٢";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("اقرأ Ueff من الشاشة البرتقالية المتقطعة")},900)});
+requestAnimationFrame(loop);
+</script></body></html>

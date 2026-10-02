@@ -1,0 +1,217 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>أنابيب التفريغ وألوان الغازات — U2-4/U4-1 نموذج موحّد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button:active{transform:scale(.97)}
+.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:130px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700;animation:fxpop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fxpop{0%{transform:scale(.55)}100%{transform:scale(1)}}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:540px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🌈 U2-4/U4-1 · التفريغ المهبطي وألوان الغازات <span class="badge">نموذج موحّد — واقعي + 🧊3D</span></h1>
+<div class="sub">توتر × غاز × ضغط: ضوء نيون الأحمر بالنيون، الوردي بالهيليوم، الأرجواني بالأرغون · مغناطيس يحرف الحزمة · اسحب الخلفية بالـ3D</div>
+<div class="panel scenewrap"><canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">أدخلنا مغناطيساً قرب حزمة الأشعة المهبطية — إلى أين تنحرف؟</div>
+<button data-k="1">نحو القطب الشمالي</button><button data-k="2">نحو القطب المعاكس للتيار — الإلكترونات شحنة سالبة</button><button data-k="3">لا تنحرف — الكتلة صفرية تقريباً</button><div class="fb" id="predFb"></div></div></div></div>
+<div class="panel"><div class="ctrl">
+<span class="slider">التوتر HV <input type="range" id="hv" min="0" max="100" step="5" value="70"><b id="hvV">٧٠٪</b></span>
+<span class="slider">الضغط p <input type="range" id="pp" min="5" max="100" step="1" value="60"><b id="ppV">٦٠٪</b></span>
+<span class="slider">المغناطيس <input type="range" id="mg" min="-50" max="50" step="5" value="0"><b id="mgV">٠</b></span>
+</div><div class="ctrl">
+<span class="chip">الغاز:</span>
+<button class="gasB" data-g="هواء">هواء</button>
+<button class="gasB" data-g="نيون">نيون</button>
+<button class="gasB" data-g="هيليوم">هيليوم</button>
+<button class="gasB" data-g="أرغون">أرغون</button>
+<button id="viewBtn">🧊 منظور 3D</button>
+<button id="resetBtn">↺ إعادة</button></div></div>
+<div class="panel"><span class="chip" id="chP">p ≈ —</span><span class="chip" id="chG">الحزمة: —</span><span class="chip" id="chC">🎯 أنزل الضغط حتى تظهر الحزمة ثم قرّب المغناطيس</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">التفريغ يشتعل عند ضغط منخفض · F = q·v×B يحرف الشحنة</div><ul>
+<li>بضغط جوي: مسار الإلكترون قصير — لا ضوء. بالتخفيف: يصل للطرف ويلوّح لنا بلون الغاز.</li>
+<li>كل غاز بصمة لونية: نيون أحمر (لافتات)، هيليوم وردي، أرغون أرجواني.</li>
+<li>الحزمة سالبة الشحنة ⇒ تنحرف بعكس اتجاه التيار التقليدي تحت المغناطيس — دليل على الإلكترون.</li></ul></div></div>
+<div class="note">ألوان محاكاة قريبة من الطيف الحقيقي · حتمية · بلا شبكة.</div>
+</div><div id="toast"></div><div id="fatal"></div>
+<script>window.onerror=function(m,src,l){var e=document.getElementById("fatal");if(e){e.style.display="block";e.textContent="خطأ: "+m+" @"+l}return false};</script>
+<script>
+"use strict";
+const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* ═══ الفيزياء ═══ */
+const GCOL={"هواء":["200,220,255",0.9],"نيون":["255,70,60",1],"هيليوم":["255,150,190",0.95],"أرغون":["170,110,255",0.95]};
+let hv=70,pp=60,mg=0,gas="هواء",t=0,won=false,started=false;
+const torr=()=>Math.max(0.01,760*Math.pow(10,-(pp/100)*4.88));
+const beamOn=()=>hv>35&&torr()<8;
+const bendOf=()=>mg/50*(1-torr()/8>0?clamp(1-torr()/8,0,1):0);
+const STEP=1/240;let acc=0,last=performance.now();
+let AC=null;function initA(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;o.type="sine";g.gain.value=.05;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+function toast(s){const el=$("toast");el.textContent=s;el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2400)}
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;
+ while(acc>=STEP){acc+=-STEP;t+=STEP}
+ updChips();draw();requestAnimationFrame(loop)}
+function updChips(){
+ const p=torr();
+ $("chP").textContent="p ≈ "+toAr(p<0.1?p.toFixed(2):p.toFixed(0))+" torr";
+ const col=GCOL[gas][0];
+ $("chG").textContent=beamOn?("حزمة "+gas+" مضيئة"+(Math.abs(bendOf())>0.05?" · منحرفة!":"")):(hv<=35?"ارفع التوتر":torr()>=8?"أنزل الضغط أكثر":"…");
+ if(beamOn&&!started){started=true;$("exp").classList.remove("locked")}
+ if(beamOn&&Math.abs(bendOf())>0.1&&!won){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 الحزمة انحرفت بالمغناطيس (+١٠)")}}
+/* ═══ المحرك 3D ═══ */
+var view3d=false;const cam3={yaw:-0.5,pitch:0.3,dist:660,fov:660};
+let orbiting=false,_oX=0,_oY=0;
+function project3(p){const cy=Math.cos(cam3.yaw),sy=Math.sin(cam3.yaw),cp=Math.cos(cam3.pitch),sp=Math.sin(cam3.pitch);
+ const x=p.x*cy+p.z*sy,z=-p.x*sy+p.z*cy,y=p.y;const y2=y*cp-z*sp,z2=y*sp+z*cp;const dz=z2+cam3.dist,s=cam3.fov/dz;
+ return{x:480+x*s,y:210-y2*s,s:s,z:dz}}
+function line3(c,a,b,col,w){const pa=project3(a),pb=project3(b);c.strokeStyle=col;c.lineWidth=Math.max(.4,w*(pa.s/cam3.fov)*660*.7);c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+function stroke3(c,pts,col,w,cl){c.strokeStyle=col;c.lineWidth=w;c.lineJoin="round";c.beginPath();pts.forEach((p,i)=>{const q=project3(p);i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)});if(cl)c.closePath();c.stroke()}
+function ring3(c,xx,rr,col,w){const pts=[];for(let i=0;i<=40;i++){const a=i/40*6.283;pts.push({x:xx,y:Math.cos(a)*rr,z:Math.sin(a)*rr})}stroke3(c,pts,col,w,true)}
+function spaceBg3(c){const g2=c.createLinearGradient(0,0,0,H);g2.addColorStop(0,"#0C1017");g2.addColorStop(1,"#05070B");c.fillStyle=g2;c.fillRect(0,0,W,H);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*W,sy=sr()*H*.72;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}}
+function arT3(c,s,x,y,size,col){c.fillStyle=col;c.font=size+"px Tahoma,Arial";c.textAlign="center";c.direction="rtl";c.fillText(s,x,y);c.direction="ltr"}
+cv.addEventListener("pointerdown",e=>{if(!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;orbiting=true;_oX=x;_oY=y;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener("pointermove",e=>{if(!orbiting||!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;cam3.yaw+=(x-_oX)*.006;cam3.pitch=clamp(cam3.pitch+(y-_oY)*.006,-0.05,1.0);_oX=x;_oY=y});
+addEventListener("pointerup",()=>{orbiting=false});
+cv.addEventListener("wheel",e=>{if(!view3d)return;e.preventDefault();cam3.dist=clamp(cam3.dist*(1+e.deltaY*.001),380,900)},{passive:false});
+function drawScene3D(){const c=cx;spaceBg3(c);
+ for(let x=-380;x<=380;x+=76)line3(c,{x:x,y:-150,z:-300},{x:x,y:-150,z:300},"rgba(205,215,230,0.13)",1);
+ for(let z=-300;z<=300;z+=75)line3(c,{x:-380,y:-150,z:z},{x:380,y:-150,z:z},"rgba(205,215,230,0.13)",1);
+ /* أنبوب زجاجي أفقي */
+ const x0=-260,x1=220,R=58;
+ ring3(c,x0,R,"rgba(180,210,230,0.55)",2.5);ring3(c,x1,R,"rgba(180,210,230,0.55)",2.5);
+ line3(c,{x:x0,y:R,z:0},{x:x1,y:R,z:0},"rgba(180,210,230,0.3)",1.6);
+ line3(c,{x:x0,y:-R,z:0},{x:x1,y:-R,z:0},"rgba(180,210,230,0.3)",1.6);
+ /* كاثود ومهبط */
+ stroke3(c,[{x:x0+8,y:-R*0.7,z:-16},{x:x0+8,y:-R*0.7,z:16},{x:x0+8,y:R*0.7,z:16},{x:x0+8,y:R*0.7,z:-16}],"rgba(150,150,150,0.9)",5,true);
+ stroke3(c,[{x:x1-8,y:-R*0.7,z:-16},{x:x1-8,y:-R*0.7,z:16},{x:x1-8,y:R*0.7,z:16},{x:x1-8,y:R*0.7,z:-16}],"rgba(150,150,150,0.9)",5,true);
+ /* توهج الغاز حسب الضغط */
+ const col=GCOL[gas][0],intens=GCOL[gas][1];
+ if(beamOn){const reach=clamp((8-torr())/8,0,1);
+  for(let k=0;k<14;k++){const xx=x0+12+(x1-x0-24)*k/14*reach;
+   const bd=bendOf()*k*k*0.06;
+   ring3(c,xx,R*0.96,"rgba("+col+","+(0.14+0.3*intens)+")",5)}
+  /* الحزمة المنحرفة */
+  c.save();c.shadowColor="rgba("+col+",0.95)";c.shadowBlur=12;
+  const pts=[];for(let k=0;k<=30;k++){const xx=x0+12+(x1-x0-24)*k/30;
+   pts.push({x:xx,y:-bendOf()*k*k*0.055,z:0})}
+  stroke3(c,pts,"rgba("+col+","+(0.5+0.4*intens)+")",3);c.restore();
+  /* بقعة المهبط */
+  const gp=project3({x:x1-10,y:-bendOf()*900*0.055,z:0});
+  c.fillStyle="rgba("+col+",0.5)";c.beginPath();c.ellipse(gp.x,gp.y,14,34,0,0,7);c.fill()}
+ else if(hv>35){/* شرارة ضعيفة */
+  c.strokeStyle="rgba(255,200,110,0.8)";c.lineWidth=1.6;c.beginPath();
+  const p0=project3({x:x0+8,y:0,z:0});c.moveTo(p0.x,p0.y);
+  for(let k=0;k<4;k++){const q=project3({x:x0+8+Math.random()*26,y:Math.random()*18-9,z:Math.random()*12-6});c.lineTo(q.x,q.y)}
+  c.stroke()}
+ /* مغناطيس حدة فوق/تحت */
+ if(Math.abs(mg)>2){const mp=project3({x:20,y:-R-46,z:0});
+  c.fillStyle=mg>0?"rgba(178,58,52,0.95)":"rgba(62,111,168,0.95)";
+  c.fillRect(mp.x-22,mp.y-14,44,28);
+  arT3(c,mg>0?"N":"S",mp.x,mp.y-20,13,mg>0?"#FFD9CE":"#CFE3F7")}
+ arT3(c,"الغاز: "+gas+" · p = "+toAr(torr()<0.1?torr().toFixed(2):torr().toFixed(0))+" torr",480,46,13,GCOL[gas][0]?"rgba("+col+",0.95)":"#F0964A");
+ arT3(c,"اسحب الخلفية لتدوير الكاميرا",480,H-12,12,"rgba(205,198,182,0.5)")}
+/* ═══ 2D واقعي ═══ */
+function drawRoom(){const c=cx;
+ const wall=c.createLinearGradient(0,0,0,320);wall.addColorStop(0,"#0C1017");wall.addColorStop(1,"#05070B");
+ c.fillStyle=wall;c.fillRect(0,0,W,320);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*960,sy=sr()*298;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}
+ c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,W,20);
+ const wood=c.createLinearGradient(0,321,0,440);wood.addColorStop(0,"#2E2114");wood.addColorStop(1,"#160F08");
+ c.fillStyle=wood;c.fillRect(0,321,W,119);c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,W,2)}
+function draw2D(){const c=cx;drawRoom();
+ const cy=215,X0=170,X1=800,R=62;
+ /* حوامل */
+ c.fillStyle="#3A3A38";roundRect(c,X0-14,cy-R-24,28,20,4);c.fill();
+ c.fillStyle="#3A3A38";roundRect(c,X1-14,cy-R-24,28,20,4);c.fill();
+ c.fillStyle="#8F8F8A";c.fillRect(X0-4,cy-R-6,8,18);c.fillRect(X1-4,cy-R-6,8,18);
+ /* الأنبوب */
+ c.fillStyle="rgba(180,210,230,0.10)";roundRect(c,X0,cy-R,X1-X0,2*R,R);c.fill();
+ c.strokeStyle="rgba(190,220,240,0.45)";c.lineWidth=2.5;
+ c.beginPath();c.arc(X0+R,cy,R,Math.PI/2,Math.PI*1.5);c.stroke();
+ c.beginPath();c.arc(X1-R,cy,R,Math.PI*1.5,Math.PI/2);c.stroke();
+ c.beginPath();c.moveTo(X0+R,cy-R);c.lineTo(X1-R,cy-R);c.stroke();
+ c.beginPath();c.moveTo(X0+R,cy+R);c.lineTo(X1-R,cy+R);c.stroke();
+ /* لمعة زجاجية */
+ c.strokeStyle="rgba(255,255,255,0.14)";c.lineWidth=5;
+ c.beginPath();c.moveTo(X0+40,cy-R*0.55);c.lineTo(X1-120,cy-R*0.55);c.stroke();
+ /* قطبان */
+ c.fillStyle="rgba(140,140,138,0.95)";roundRect(c,X0+10,cy-24,14,48,3);c.fill();
+ c.fillStyle="rgba(140,140,138,0.95)";roundRect(c,X1-24,cy-24,14,48,3);c.fill();
+ arT("−",X0+17,cy+42,14,"#CFE3F7");arT("+",X1-17,cy+42,14,"#FFD9CE");
+ const col=GCOL[gas][0],intens=GCOL[gas][1];
+ /* توهج/حزمة */
+ if(beamOn){const reach=clamp((8-torr())/8,0,1);
+  /* عمود توهج خلف الحزمة */
+  c.fillStyle="rgba("+col+","+(0.10+0.16*intens)+")";
+  roundRect(c,X0+24,cy-R+8,(X1-X0-48)*reach,2*R-16,14);c.fill();
+  /* الحزمة بمنحنى انحراف */
+  const bd=bendOf();
+  c.save();c.shadowColor="rgba("+col+",0.95)";c.shadowBlur=14;
+  c.strokeStyle="rgba("+col+","+(0.55+0.4*intens)+")";c.lineWidth=3.4;
+  c.beginPath();c.moveTo(X0+26,cy);
+  for(let k=0;k<=40;k++){const xx=X0+26+(X1-X0-52)*k/40;
+   c.lineTo(xx,cy-bd*k*k*0.042)}
+  c.stroke();c.restore();
+  /* بقعة المهبط */
+  const gy2=cy-bd*40*40*0.042;
+  c.fillStyle="rgba("+col+","+(0.35+0.3*intens)+")";
+  c.beginPath();c.ellipse(X1-20,gy2,12,32,0,0,7);c.fill();
+ } else if(hv>35){
+  c.strokeStyle="rgba(255,200,110,0.85)";c.lineWidth=1.8;c.beginPath();
+  c.moveTo(X0+24,cy);
+  for(let k=0;k<4;k++)c.lineTo(X0+24+Math.random()*30,cy+Math.random()*20-10);c.stroke();
+  arT("شرارة ضعيفة فقط — خفّف الضغط",480,86,12.5,"rgba(255,200,110,0.9)");
+ } else arT("ارفع التوتر HV",480,86,12.5,"rgba(232,226,208,0.6)");
+ /* المغناطيس حدة */
+ if(Math.abs(mg)>2){const my=cy+R+26;
+  c.fillStyle=mg>0?"#B3372B":"#3E6FA8";roundRect(c,430,my,120,26,5);c.fill();
+  arT(mg>0?"N قريب":"S قريب",490,my+18,12,mg>0?"#FFD9CE":"#CFE3F7")}
+ /* لوحة غازات صغيرة */
+ const col2=["نيون","هيليوم","أرغون"];
+ col2.forEach((g2,k)=>{c.fillStyle="rgba("+GCOL[g2][0]+",0.75)";
+  c.beginPath();c.arc(120,160+k*40,7,0,7);c.fill();
+  arT(g2,150,164+k*40,11.5,"rgba(232,226,208,0.75)")});
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(c,24,20,260,64,10);c.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";c.strokeRect(24,20,260,64);
+ arT("p ≈ "+toAr(torr()<0.1?torr().toFixed(2):torr().toFixed(0))+" torr · "+gas,154,42,12.5,"rgba("+col+",0.95)");
+ arT($("chG").textContent,154,64,11.5,"#F0964A")}
+function draw(){if(!fit())return;cx.clearRect(0,0,W,H);
+ if(view3d){drawScene3D();return}draw2D()}
+/* ═══ تحكم ═══ */
+$("hv").oninput=e=>{hv=+e.target.value;$("hvV").textContent=toAr(hv)+"٪";moved()};
+$("pp").oninput=e=>{pp=+e.target.value;$("ppV").textContent=toAr(pp)+"٪";moved()};
+$("mg").oninput=e=>{mg=+e.target.value;$("mgV").textContent=toAr(Math.abs(mg));moved()};
+function moved(){}
+document.querySelectorAll(".gasB").forEach(b=>b.onclick=()=>{gas=b.dataset.g;
+ document.querySelectorAll(".gasB").forEach(x=>x.style.borderColor="");b.style.borderColor="var(--accent)";beep(420,.06)});
+$("resetBtn").onclick=()=>{hv=70;pp=60;mg=0;gas="هواء";won=false;
+ $("hv").value=70;$("hvV").textContent="٧٠٪";$("pp").value=60;$("ppV").textContent="٦٠٪";$("mg").value=0;$("mgV").textContent="٠";
+ document.querySelectorAll(".gasB").forEach(x=>x.style.borderColor="");
+ $("chDone").style.display="";$("chDone").classList.remove("ok");$("exp").classList.add("locked");started=false};
+$("viewBtn").onclick=()=>{view3d=!view3d;$("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D"};
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;
+ const k=b.dataset.k,fb=$("predFb");
+ if(k==="2"){fb.className="fb good";fb.textContent="✔ صحيح — F = qv×B وشحنة الإلكترون سالبة ⇒ انحراف معاكس للتيار"}
+ else{fb.className="fb bad";fb.textContent="✘ الحزمة إلكترونات سالبة — قارن اتجاهها بالتيار التقليدي";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("ارفع المغناطيس لقيمة سالبة/موجبة وشاهد الانحرافين")},900)});
+requestAnimationFrame(loop);
+</script></body></html>
