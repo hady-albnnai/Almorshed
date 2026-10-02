@@ -59,13 +59,11 @@ class _MeldeScreenState extends State<MeldeScreen>
   final OrbitCam cam = OrbitCam(dist: 640, fov: 640);
   final List<Star> stars = makeStars();
   bool _orbiting = false;
-  Offset _lastPan = Offset.zero;
 
   late final Ticker _ticker;
   Duration _last = Duration.zero;
   bool _challengeDoneToday = false;
   late TrainingData _data;
-  bool _announced = false;
 
   @override
   void initState() {
@@ -211,10 +209,10 @@ class _MeldeScreenState extends State<MeldeScreen>
     paintSpace(c, size, stars);
     paintGrid3(c, cam, size);
     final res = resonant;
-    final LEN = 340.0;
+    const wireLen = 340.0;
     for (var i = 0; i <= 200; i++) {
       final xi = i / 200;
-      final p = cam.project(P3(xi * LEN - 170, 40, disp(xi * L) * 0.9), size);
+      final p = cam.project(P3(xi * wireLen - 170, 40, disp(xi * L) * 0.9), size);
       if (res) {
         c.drawCircle(Offset(p.x, p.y), 2.8,
             Paint()..color = const Color(0xFFC87A28));
@@ -225,7 +223,7 @@ class _MeldeScreenState extends State<MeldeScreen>
     }
     for (var k = 0; k <= nModes; k++) {
       final xi = k / nModes;
-      final p = cam.project(P3(xi * LEN - 170, 40, 0), size);
+      final p = cam.project(P3(xi * wireLen - 170, 40, 0), size);
       c.drawCircle(Offset(p.x, p.y), 3.6,
           Paint()..color = const Color(0xFF4A4038));
     }
@@ -286,10 +284,7 @@ class _MeldeScreenState extends State<MeldeScreen>
           child: AspectRatio(
             aspectRatio: 960 / 440,
             child: GestureDetector(
-              onPanStart: view3d ? (_) {
-                _orbiting = true;
-                _lastPan = Offset.zero;
-              } : null,
+              onPanStart: view3d ? (_) => _orbiting = true : null,
               onPanUpdate: view3d ? (d) {
                 if (!_orbiting) return;
                 cam.yaw += d.delta.dx * 0.008;
@@ -431,7 +426,7 @@ class _LockedVeil extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withOpacity(.6),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(8)),
       child: const Text(
           '🔒 يُفتح الشرح بعد أول رنين تلاحظه — حرّك f أو الأثقال!',

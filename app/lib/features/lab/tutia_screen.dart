@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show Ticker;
@@ -623,7 +624,7 @@ class _LockedVeil extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withOpacity(.6),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(8)),
       child: const Text(
           '🔒 يُفتح الشرح عند أول تفريغ ضوئي — اشحن ثم شغّل UV!',

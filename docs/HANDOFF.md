@@ -279,3 +279,12 @@ git ls-remote origin refs/heads/dev/self-content          # تأكيد الرأ�
 - الإصلاح: كتلة التوقّع تُزرع كاملة من fbil (المصدر السليم) بنصوص كل تجربة، وحذف البقايا حتى مرساة بطاقة chips الفريدة (`EdgeInsets.all(10)`).
 - إصلاح إضافي بfbil: `k` متيم بقارنات side::BorderSide — صارت `oi + 1`.
 - فحص نهائي: توازن أقواس ( ( ) [ ] ) = 0,0,0 للملفات الثمانية كلها (نواة + ٦ شاشات) · صفر `k` يتيم.
+
+### الدفعة 33e — flutter analyze: صفر أخطاء (13 error ← 0)
+- **أخطاء الشاشات المنقولة**: airtube (3× invalid_constant: const مع level غير ثابت — أُسقط const؛ 0xA6C8EB → 0xFFA6C8EB) · crookes (math.pow num → .toDouble()) · fbil (om.sign double → .toInt()) · oscilloscope (zz/yy int → 160.0/120.0) · tutia (إرجاع import dart:ui كان حُذف خطأً).
+- **أخطاء faraday1_lab_screen كانت ستكسر الترجمة**: quadraticCurveTo → quadraticBezierTo · Gradient.linear/radial → ui.Gradient.* (+import dart:ui) · ghost g.a → g.ang (Faraday1Sample.ang).
+- **تحذيرات**: حذف _lastPan (fbil/melde) و_announced (melde) غير المستعملة · expr_eval حذف `r is! num` (دائماً false).
+- **infos**: withOpacity → withValues ×8 · prefer_const ×7 · أقواس استيفاء زائدة (problem_engine π-fractions، experiment_screen) · use_full_hex · LEN → wireLen · app_shell استيفاء كامل → متغيّر · expr_eval:36 ignore موجَّه (نوع خاص بواجهة عامة).
+- **خط الفحص بعد تعديل gen**: verify_problems 69/69 · part-checks 22138/22138 · pytest 35/35 · engine_ref 3537/3537 مطابق — صفر انحراف.
+- **genkey.dart** غير متتبّع بالريبو (جهاز المالك محلياً): أضِف سطراً أول الملف `// ignore_for_file: avoid_print`.
+- port/ الكنسي متزامن 9/9.

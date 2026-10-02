@@ -49,7 +49,6 @@ class _FbilScreenState extends State<FbilScreen>
   final OrbitCam cam = OrbitCam(dist: 640, fov: 640);
   final List<Star> stars = makeStars();
   bool _orbiting = false;
-  Offset _lastPan = Offset.zero;
 
   late final Ticker _ticker;
   Duration _last = Duration.zero;
@@ -95,7 +94,7 @@ class _FbilScreenState extends State<FbilScreen>
       om += tau * st * 22;
       phi += om * st;
       if (dirBefore == null && om.abs() > 0.5) {
-        dirBefore = om.sign;
+        dirBefore = om.sign.toInt();
       } else if (dirBefore != null &&
           om.sign != dirBefore &&
           om.abs() > 0.5 &&
@@ -369,7 +368,7 @@ class _FbilScreenState extends State<FbilScreen>
     paintGrid3(c, cam, size);
     if (mode == 1) {
       const p = 64.0;
-      final nCol = const Color(0xF2B23A34), sCol = const Color(0xF23E6FA8);
+      const nCol = Color(0xF2B23A34), sCol = Color(0xF23E6FA8);
       for (final sgn in [-1.0, 1.0]) {
         final xx = sgn * 120;
         final col = sgn < 0 ? nCol : sCol;
@@ -506,10 +505,7 @@ class _FbilScreenState extends State<FbilScreen>
           child: AspectRatio(
             aspectRatio: 960 / 440,
             child: GestureDetector(
-              onPanStart: view3d ? (_) {
-                _orbiting = true;
-                _lastPan = Offset.zero;
-              } : null,
+              onPanStart: view3d ? (_) => _orbiting = true : null,
               onPanUpdate: view3d ? (d) {
                 if (!_orbiting) return;
                 cam.yaw += d.delta.dx * 0.008;
@@ -728,7 +724,7 @@ class _LockedVeil extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withOpacity(.6),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(8)),
       child: const Text(
           '🔒 يُفتح الشرح بعد أول قوة تلاحظها — ارفع I أو B!',

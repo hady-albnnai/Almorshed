@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show Ticker;
@@ -706,7 +707,7 @@ class _FaradayScenePainter extends CustomPainter {
       for (final dy in const [-56.0, -28.0, 0.0, 28.0, 56.0]) {
         final path = Path()
           ..moveTo(faceMx, cy + dy * 0.55)
-          ..quadraticCurveTo(
+          ..quadraticBezierTo(
               (faceMx + faradayCoilX + 26) / 2, cy + dy, faradayCoilX + 26,
               cy + dy);
         canvas.drawPath(
@@ -783,7 +784,7 @@ class _FaradayScenePainter extends CustomPainter {
 
     // ── المغناطيس ──
     const magH = 26.0;
-    final hw = faradayMagnetLen / 2;
+    const hw = faradayMagnetLen / 2;
     final leftRect = Rect.fromLTWH(st.mx - hw, cy - magH / 2, hw, magH);
     final rightRect = Rect.fromLTWH(st.mx, cy - magH / 2, hw, magH);
     canvas.drawRect(leftRect, Paint()..color = cfg.polarity > 0 ? _north : _south);
@@ -803,7 +804,7 @@ class _FaradayScenePainter extends CustomPainter {
     // ── سهم السرعة v ──
     if (st.v.abs() > 12) {
       final l = (st.v * 0.14).clamp(-46.0, 46.0).toDouble();
-      final y = cy - 34;
+      const y = cy - 34;
       canvas.drawLine(Offset(st.mx, y), Offset(st.mx + l, y),
           Paint()..strokeWidth = 2.4..color = _cream);
       final sgn2 = l.sign;
@@ -829,7 +830,7 @@ class _FaradayScenePainter extends CustomPainter {
     canvas.drawRect(
       Rect.fromLTWH(0, 0, W, H),
       Paint()
-        ..shader = Gradient.linear(
+        ..shader = ui.Gradient.linear(
           Offset(0, 0),
           Offset(0, H),
           [const Color(0xFF1D2721), const Color(0xFF0D130F)],
@@ -838,7 +839,7 @@ class _FaradayScenePainter extends CustomPainter {
     canvas.drawRect(
       Rect.fromLTWH(0, 0, W, H),
       Paint()
-        ..shader = Gradient.radial(
+        ..shader = ui.Gradient.radial(
           Offset(W * .32, H * .42),
           W * .55,
           [const Color(0x1ADD6E42), const Color(0x00DD6E42)],
@@ -865,7 +866,7 @@ class _FaradayScenePainter extends CustomPainter {
     canvas.drawRect(
       Rect.fromLTWH(0, 0, W, H),
       Paint()
-        ..shader = Gradient.radial(
+        ..shader = ui.Gradient.radial(
           Offset(W / 2, H / 2),
           W * .72,
           [const Color(0x00000000), const Color(0x61000000)],
@@ -908,13 +909,13 @@ class _FaradayScenePainter extends CustomPainter {
           ..color = k == 0 ? _accent : _cream.withValues(alpha: .5),
       );
     }
-    final aEnd = -math.pi / 2 + span;
+    const aEnd = -math.pi / 2 + span;
     _arText(
         canvas, '٪+',
         Offset(pvx + R * math.cos(aEnd) + 4, pvy + R * math.sin(aEnd) - 20),
         size: 13,
         col: const Color(0xFF7FB08D));
-    final aNeg = -math.pi / 2 - span;
+    const aNeg = -math.pi / 2 - span;
     _arText(
         canvas, '٪−',
         Offset(pvx + R * math.cos(aNeg) - 20, pvy + R * math.sin(aNeg) - 20),
@@ -926,7 +927,7 @@ class _FaradayScenePainter extends CustomPainter {
     // ذيول فوسفورية ثم قمّة باهتة ثم الإبرة الحيّة.
     for (final g in recorder.ghosts) {
       final age = ((st.t - g.t) / 0.9).clamp(0.0, 1.0).toDouble();
-      _needle(canvas, pvx, pvy, R - 4, g.a,
+      _needle(canvas, pvx, pvy, R - 4, g.ang,
           _accent.withValues(alpha: .30 * (1 - age)), 2);
     }
     if (recorder.peakHold != 0) {
@@ -951,7 +952,7 @@ class _FaradayScenePainter extends CustomPainter {
         Offset(pvx, pvy),
         7,
         Paint()
-          ..shader = Gradient.radial(
+          ..shader = ui.Gradient.radial(
             Offset(pvx - 2.5, pvy - 3),
             7,
             [const Color(0xFFFFF6EC), _accent, const Color(0xFF1A120D)],

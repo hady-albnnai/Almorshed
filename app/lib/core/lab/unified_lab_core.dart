@@ -215,7 +215,7 @@ class LabSlider extends StatelessWidget {
       Text('$label ',
           style: TextStyle(
               fontSize: 12.5,
-              color: Theme.of(context).colorScheme.onSurface.withOpacity(.65))),
+              color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.65))),
       Text(display,
           style: const TextStyle(
               fontSize: 12.5, fontWeight: FontWeight.w700)),

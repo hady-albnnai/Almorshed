@@ -38,7 +38,7 @@ class _CrookesScreenState extends State<CrookesScreen>
   double t = 0;
   bool won = false, started = false;
 
-  double get torr => math.max(0.01, 760 * math.pow(10, -(pSlider / 100) * 4.88));
+  double get torr => math.max(0.01, 760 * math.pow(10, -(pSlider / 100) * 4.88).toDouble());
 
   int get stage {
     final p = torr;
@@ -618,7 +618,7 @@ class _LockedVeil extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withOpacity(.6),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(8)),
       child: const Text(
           '🔒 يُفتح الشرح عند وصول المرحلة ٤ — أنزل الضغط تدريجياً!',

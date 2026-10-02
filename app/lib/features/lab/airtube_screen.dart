@@ -117,7 +117,7 @@ class _AirtubeScreenState extends State<AirtubeScreen>
   void _paintReal(Canvas c, Size size) {
     paintSpace(c, size, stars);
     paintWalnutTable(c, size, size.height - 60);
-    final tubW = 70.0;
+    const tubW = 70.0;
     final tubX = size.width * 0.42;
     const top = 55.0, bot = 372.0;
     double yOf(double cm) => bot - (cm / 100) * (bot - top);
@@ -158,7 +158,7 @@ class _AirtubeScreenState extends State<AirtubeScreen>
             Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 2
-              ..color = const Color.fromRGBO(200, 110, 40, .2 + .5 * level));
+              ..color = Color.fromRGBO(200, 110, 40, .2 + .5 * level));
       }
     }
     // العلامات
@@ -196,16 +196,16 @@ class _AirtubeScreenState extends State<AirtubeScreen>
     c.drawPath(
         _pathOf(wpts, size),
         Paint()..color = const Color.fromRGBO(74, 109, 140, 0.55));
-    stroke3(c, cam, size, wpts, const Color(0xA6C8EB), 2, close: true);
+    stroke3(c, cam, size, wpts, const Color(0xFFA6C8EB), 2, close: true);
     // جسيمات الهدير
     if (forking) {
-      final seg = 8;
+      const seg = 8;
       for (var i = 0; i <= seg; i++) {
         final y = yw - 2 - i * ((yw - yBot - 4) / seg);
         final ph = math.sin(i * 2.1) * 20;
         final p = cam.project(P3(ph, y, math.cos(i * 2.1) * 20), size);
         c.drawCircle(Offset(p.x, p.y), 1.8,
-            Paint()..color = const Color.fromRGBO(226, 232, 240, .2 + .5 * level));
+            Paint()..color = Color.fromRGBO(226, 232, 240, .2 + .5 * level));
       }
       // أقواس الرنانة
       final fp = cam.project(const P3(0, yTop + 34, 0), size);
@@ -214,7 +214,7 @@ class _AirtubeScreenState extends State<AirtubeScreen>
             Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 2
-              ..color = const Color.fromRGBO(200, 110, 40, .2 + .55 * level));
+              ..color = Color.fromRGBO(200, 110, 40, .2 + .55 * level));
       }
     }
     // العلامات
@@ -417,7 +417,7 @@ class _LockedVeil extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withOpacity(.6),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(8)),
       child: const Text('🔒 يُفتح الشرح بعد أول قرصانة تسمعها/تراها.',
           style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),

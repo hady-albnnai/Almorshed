@@ -278,12 +278,12 @@ class _OscilloscopeScreenState extends State<OscilloscopeScreen>
     stroke3(c, cam, size, screen, const Color.fromRGBO(160, 220, 180, 0.6), 2,
         close: true);
     for (var i = 1; i < 8; i++) {
-      final zz = -160 + i * 40;
+      final zz = -160.0 + i * 40;
       line3(c, cam, size, P3(sx0, -120, zz), P3(sx0, 120, zz),
           const Color.fromRGBO(120, 180, 140, 0.22), 1);
     }
     for (var i = 1; i < 6; i++) {
-      final yy = -120 + i * 40;
+      final yy = -120.0 + i * 40;
       line3(c, cam, size, P3(sx0, yy, -160), P3(sx0, yy, 160),
           const Color.fromRGBO(120, 180, 140, 0.22), 1);
     }
@@ -580,7 +580,7 @@ class _LockedVeil extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withOpacity(.6),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(8)),
       child: const Text(
           '🔒 يُفتح الشرح بعد أول قراءة صحيحة من الشبكة — جاوب سؤال التجربة!',
