@@ -4,8 +4,11 @@ import '../../core/lab/experiments.dart';
 import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
+import 'airtube_screen.dart';
 import 'experiment_screen.dart';
 import 'faraday1_lab_screen.dart';
+import 'helmholtz_screen.dart';
+import 'melde_screen.dart';
 import 'spring_lab_screen.dart';
 
 /// F3.5 + المادة ١٤ — فهرس المختبر (قرار ٣٧: عرض بديل لنفس تجارب الدروس):
@@ -111,6 +114,84 @@ class _LabScreenState extends State<LabScreen> {
                     },
                   ),
                 ),
+                Card(
+                  key: const Key('lab-melde'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['melde'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🌊',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('ملد: الوتر والرنانة'),
+                    subtitle: const Text(
+                        'الوحدة ٣ · v=√(FT/μ) · أنماط المغازل الثابتة'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => MeldeScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-helmholtz'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['helmholtz'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🌀',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('ملفا هلمهولتز: المسار الدائري'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · r = 0.45·√(U/I) · الجسيم المشحون'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => HelmholtzScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-airtube'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['airtube'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🚰',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('قرصانة عمود الهواء'),
+                    subtitle: const Text(
+                        'الوحدة ٣ · Ln=(2n−1)λ/4 · الموجات الصوتية'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => AirtubeScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
                 for (final exp in labExperiments.values)
                   Card(
                     key: Key('lab-${exp.id}'),
@@ -156,27 +237,4 @@ String _chapterLabel(String chapterId) {
   final m = RegExp(r'^U(\d+)C(\d+)$').firstMatch(chapterId);
   if (m == null) return chapterId;
   return 'الوحدة ${m.group(1)} · الفصل ${m.group(2)}';
-  Widget _unifiedCard(
-    BuildContext context, {
-    required String keyId,
-    required bool done,
-    required String emoji,
-    required String title,
-    required String subtitle,
-    required Future<void> Function() onTap,
-  }) {
-    return Card(
-      key: Key(keyId),
-      child: ListTile(
-        leading: Text(done ? '✓' : emoji, style: const TextStyle(fontSize: 22)),
-        title: Text(title),
-        subtitle: Text(subtitle),
-        trailing: const Icon(Icons.chevron_left),
-        onTap: () async {
-          await onTap();
-          _load();
-        },
-      ),
-    );
-  }
 }

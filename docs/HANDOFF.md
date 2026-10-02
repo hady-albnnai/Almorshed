@@ -262,4 +262,5 @@ git ls-remote origin refs/heads/dev/self-content          # تأكيد الرأ�
   - airtube_screen.dart (U3-6): V=343، Ln=(2n−1)λ/4، هدير Σexp(−d²/0.35)؛ مسح 12cm/s، علامات، تحدّي L₂≈3L₁±٥٪ بمعرف 'airtube'.
 - **lab_screen.dart**: بطاقة فاراداي استُعيدت (كانت سقطت من الريموت بمسح بيئي سابق — رقعة دفعة 25 لم تصل) + ٣ بطاقات جديدة + ودجت _unifiedCard الموحد — مفاتيح lab-faraday1/lab-melde/lab-helmholtz/lab-airtube.
 - **تنبيه**: flutter/dart CLI غايبان بالبيئة — الفحص: توازن أقواس آلي 5/5 + مطابقة النمط المرجعي حرفياً + مسارات الاستيراد مضبوطة (features/lab → ../../core/lab). يلزم flutter analyze على جهاز المالك قبل الدمج النهائي.
+- **تصحيح 33b**: بطاقة فاراداي كانت موجودة أصلاً بالريموت (بنمط Key('lab-faraday1') inline) — فأُضيفت imports الثلاثة + بطاقات melde/helmholtz/airtube inline بنفس الأسلوب، وأُزيل ودجت _unifiedCard كان أُدرج خطأً داخل _chapterLabel. القائمة النهائية: faraday1 · melde · helmholtz · airtube · ثم البطاقات العامة.
 - **الباقي ١٧ نموذجاً**: بنفس الدورة — blvrails/oscilloscope/crookes/tutia (نجوم) ثم باقي العائلات.
