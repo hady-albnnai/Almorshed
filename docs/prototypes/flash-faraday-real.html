@@ -168,9 +168,9 @@ function shade(hex,f){
 function drawGround3(c){
   const Y=-150;
   for(let x=-420;x<=420;x+=42)
-    line3(c,{x:x,y:Y,z:-420},{x:x,y:Y,z:420},"rgba(20,18,14,"+(x%210===0?0.35:0.16)+")",1);
+    line3(c,{x:x,y:Y,z:-420},{x:x,y:Y,z:420},"rgba(205,215,230,"+(x%210===0?0.35:0.16)+")",1);
   for(let z=-420;z<=420;z+=42)
-    line3(c,{x:-420,y:Y,z:z},{x:420,y:Y,z:z},"rgba(20,18,14,"+(z%210===0?0.35:0.16)+")",1);
+    line3(c,{x:-420,y:Y,z:z},{x:420,y:Y,z:z},"rgba(205,215,230,"+(z%210===0?0.35:0.16)+")",1);
 }
 function drawFieldLines3(c,m){
   const sgn=pol>0?-1:1;
@@ -269,8 +269,8 @@ function drawHUD3(c){
   c.strokeStyle="rgba(90,80,60,0.4)";c.lineWidth=1.2;c.strokeRect(gx,gy,24,gh);
   const fh=gh*clamp(Math.abs(phi),0,1);
   if(fh>0.5){c.fillStyle="rgba(150,105,45,0.75)";c.fillRect(gx+2,gy+gh-fh,20,fh)}
-  arText(c,"Φ",gx+12,gy-16,17,"#4A4038");
-  arText(c,toAr(Math.round(Math.abs(phi)*100))+"٪",gx+12,gy+gh+22,13,"#6B6355");
+  arText(c,"Φ",gx+12,gy-16,17,"#E8E2D0");
+  arText(c,toAr(Math.round(Math.abs(phi)*100))+"٪",gx+12,gy+gh+22,13,"#B9AF9C");
   c.restore();
   c.save();c.translate(830,224);c.scale(0.62,0.62);c.translate(-830,-224);
   const gxp=700,gyp=60,gwp=250,ghp=320;
@@ -294,7 +294,7 @@ function drawHUD3(c){
     if(maj){c.fillStyle="#241F18";c.font="11px Georgia,serif";c.textAlign="center";
       c.fillText(String(Math.abs(k)*5),pvx+Math.cos(a)*(R-23),pvy+Math.sin(a)*(R-23)+4);}
   }
-  arText(c,"٪",pvx,pvy-R+38,12,"#6B6355");
+  arText(c,"٪",pvx,pvy-R+38,12,"#B9AF9C");
   for(const g of ghostAngles){
     const age=(simT-g.t)/0.9;
     drawNeedle2(c,pvx,pvy,R-8,g.a,"rgba(179,55,43,"+(0.18*(1-age))+")",2);
@@ -304,16 +304,20 @@ function drawHUD3(c){
   c.fillStyle="#3A352C";c.beginPath();c.arc(pvx,pvy,5,0,7);c.fill();
   arText(c,(ang>=0?"＋":"−")+toAr(Math.abs(ang).toFixed(2)),pvx,gyp+ghp-18,19,"#EDE8D8");
   c.restore();c.restore();
-  arText(c,"ε = "+toAr(Math.round(Math.abs(epsN)*100))+"٪   ·   v = "+toAr(Math.round(Math.abs(v)/3))+"٪",500,30,14,"#6B6355");
+  arText(c,"ε = "+toAr(Math.round(Math.abs(epsN)*100))+"٪   ·   v = "+toAr(Math.round(Math.abs(v)/3))+"٪",500,30,14,"#B9AF9C");
   if(started&&mode===null&&!dragging&&Math.abs(v)<2)
-    arText(c,"اسحب المغناطيس · اسحب الخلفية لتدوير الكاميرا",430,424,13,"rgba(60,55,48,0.5)");
+    arText(c,"اسحب المغناطيس · اسحب الخلفية لتدوير الكاميرا",430,424,13,"rgba(205,198,182,0.5)");
 }
 function drawScene3D(){
   const W=960,H=440;
   const c=sx;
   const g=c.createLinearGradient(0,0,0,H);
-  g.addColorStop(0,"#F2EEE4");g.addColorStop(1,"#DDD6C6");
+  g.addColorStop(0,"#0C1017");g.addColorStop(1,"#05070B");
   c.fillStyle=g;c.fillRect(0,0,W,H);
+  {let _sd=7;const _sr=()=>{_sd=(_sd*16807)%2147483647;return _sd/2147483647};
+ for(let i=0;i<95;i++){const sx=_sr()*W,sy=_sr()*298;
+  c.fillStyle="rgba(226,232,240,"+(0.1+_sr()*0.45)+")";
+  c.beginPath();c.arc(sx,sy,0.5+_sr()*1.1,0,7);c.fill();}}
   const m=mx-OFF3D;
   drawGround3(c);
   drawFieldLines3(c,m);
@@ -353,7 +357,7 @@ function drawScene3D(){
     c.strokeStyle="#A08A62";c.lineWidth=1.2;c.stroke();
     c.fillStyle=face==="N"?"#B3372B":"#3E6C96";
     c.font="bold 15px Tahoma";c.textAlign="center";c.fillText(face,pc.x,pc.y);
-    arText(c,"الوجه المُستحثّ",pc.x,pc.y-30,11,"#6B6355");
+    arText(c,"الوجه المُستحثّ",pc.x,pc.y-30,11,"#B9AF9C");
   }
   drawHUD3(c);
   const vg=c.createRadialGradient(W/2,H/2,H*0.35,W/2,H/2,W*0.72);
@@ -512,14 +516,19 @@ function roundRect(c,x,y,w,h,r){
 /* ═══════════ الساحة: حائط + طاولة خشب ═══════════ */
 function drawRoom(c){
   const wall=c.createLinearGradient(0,0,0,320);
-  wall.addColorStop(0,"#EFECE3");wall.addColorStop(0.75,"#E2DDD1");wall.addColorStop(1,"#D3CDBF");
+  wall.addColorStop(0,"#0C1017");wall.addColorStop(0.75,"#080B10");wall.addColorStop(1,"#05070B");
   c.fillStyle=wall;c.fillRect(0,0,960,320);
-  c.fillStyle="rgba(90,80,60,0.16)";c.fillRect(0,300,960,20);
-  c.fillStyle="rgba(60,50,35,0.22)";c.fillRect(0,318,960,3);
+  {let _sd=7;const _sr=()=>{_sd=(_sd*16807)%2147483647;return _sd/2147483647};
+ for(let i=0;i<95;i++){const sx=_sr()*960,sy=_sr()*298;
+  c.fillStyle="rgba(226,232,240,"+(0.1+_sr()*0.45)+")";
+  c.beginPath();c.arc(sx,sy,0.5+_sr()*1.1,0,7);c.fill();}}
+  c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,960,20);
+  c.fillStyle="rgba(0,0,0,0.5)";c.fillRect(0,318,960,3);
   const wood=c.createLinearGradient(0,321,0,440);
-  wood.addColorStop(0,"#A9793F");wood.addColorStop(0.1,"#9C6D36");wood.addColorStop(1,"#7C5527");
+  wood.addColorStop(0,"#2E2114");wood.addColorStop(0.1,"#291D12");wood.addColorStop(1,"#160F08");
   c.fillStyle=wood;c.fillRect(0,321,960,119);
-  c.strokeStyle="rgba(60,38,14,0.12)";c.lineWidth=1.1;
+  c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,960,2);
+  c.strokeStyle="rgba(255,214,150,0.07)";c.lineWidth=1.1;
   for(let i=0;i<6;i++){const y=334+i*17;
     c.beginPath();c.moveTo(0,y);
     for(let x=0;x<=960;x+=90)c.lineTo(x,y+Math.sin(x/110+i*2.4)*1.8);
@@ -621,7 +630,7 @@ function drawWires(c){
     c.beginPath();c.moveTo(x0,y0-1);c.quadraticCurveTo(mxp,myp-1,x1,y1-1);c.stroke();
   };
   swag(COIL_X+46,312,gx+44,gy-18,"#B3372B");
-  swag(COIL_X-46,312,gx-44,gy-18,"#1E1E1C");
+  swag(COIL_X-46,312,gx-44,gy-18,"#6E6A63");
 }
 
 /* ═══════════ الوشيعة المدرسية (بكرة بلفات نحاس كثيفة) ═══════════ */
@@ -672,7 +681,7 @@ function drawCoil(c){
     c.strokeStyle="#A08A62";c.lineWidth=1.2;c.stroke();
     c.fillStyle=face2==="N"?"#B3372B":"#3E6C96";
     c.font="bold 16px Tahoma";c.textAlign="center";c.fillText(face2,cx,106);
-    arText(c,"الوجه المُستحثّ",cx,74,11.5,"#6B6355");
+    arText(c,"الوجه المُستحثّ",cx,74,11.5,"#B9AF9C");
   }
 }
 
@@ -717,12 +726,12 @@ function drawMagnet(c){
 function drawVelArrow(c){
   if(Math.abs(v)<12)return;
   const l=clamp(v*0.14,-46,46), y=168;
-  c.strokeStyle="#4A4038";c.lineWidth=2.6;
+  c.strokeStyle="#E8E2D0";c.lineWidth=2.6;
   c.beginPath();c.moveTo(mx,y);c.lineTo(mx+l,y);c.stroke();
   const s=Math.sign(l);
   c.beginPath();c.moveTo(mx+l,y);c.lineTo(mx+l-s*8,y-4.5);c.lineTo(mx+l-s*8,y+4.5);c.closePath();
-  c.fillStyle="#4A4038";c.fill();
-  arText(c,"v",mx+l+(l>0?12:-12),y+5,13,"#4A4038");
+  c.fillStyle="#E8E2D0";c.fill();
+  arText(c,"v",mx+l+(l>0?12:-12),y+5,13,"#E8E2D0");
 }
 
 /* ═══════════ خطوط الحقل وبرادة الحديد ═══════════ */
@@ -755,7 +764,7 @@ function drawFilings(c){
     const bx=3*dot*(dx/r)-sgn, by=3*dot*(dy/r);
     const fade=clamp(110/r,0,0.55);
     c.save();c.globalAlpha=fade;c.translate(p.x,p.y);c.rotate(Math.atan2(by,bx));
-    c.strokeStyle="rgba(55,50,45,0.75)";c.lineWidth=1.1;
+    c.strokeStyle="rgba(214,206,190,0.7)";c.lineWidth=1.1;
     c.beginPath();c.moveTo(-3.4,0);c.lineTo(3.4,0);c.stroke();
     c.restore();
   }
@@ -795,7 +804,7 @@ function drawScene(){
   tickSparks(1/60,c);
   /* إضاءة نهارية خفيفة */
   const vg=c.createRadialGradient(W*0.35,H*0.3,H*0.4,W*0.5,H*0.5,W*0.75);
-  vg.addColorStop(0,"rgba(255,250,235,0.05)");vg.addColorStop(1,"rgba(30,20,10,0.16)");
+  vg.addColorStop(0,"rgba(255,250,235,0.05)");vg.addColorStop(1,"rgba(0,0,0,0.34)");
   c.fillStyle=vg;c.fillRect(0,0,W,H);
 }
 
