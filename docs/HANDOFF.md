@@ -293,3 +293,5 @@ git ls-remote origin refs/heads/dev/self-content          # تأكيد الرأ�
 - تصحيح: تعديلات expr_eval/problem_engine/experiment_screen/app_shell لم تُنفَّذ ب33e (السكربت انتهى عند خطأ faraday1 قبلها) — نُفِّذت الآن: ignore موجَّه بtokenize · حذف `r is! num` دائماً-false · أقواس استيفاء زائدة بالكسور π (${sign}π → $signπ ونظيراتها) وkePct · حذف pe غير المستعمل + const kineticCol (experiment_screen) · استيفاء كامل → متغيّر بapp_shell.
 - خط الفحص بعد التعديل الفعلي للـgen: verify 69/69 + 22138/22138 · pytest 35/35 · engine_ref 3537/3537 — صفر انحراف.
 - genkey.dart غير متتبَّع (محلي عند المالك): `// ignore_for_file: avoid_print` بأول سطر.
+
+- **تتمة 33g**: helmholtz:367 withOpacity → withValues (كانت فاتت قائمة 33e) — صفر withOpacity بالتطبيق كله؛ port/ متزامن.

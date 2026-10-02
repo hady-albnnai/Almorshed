@@ -364,7 +364,7 @@ class _LockedVeil extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.surface.withOpacity(.6),
+          color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.6),
           borderRadius: BorderRadius.circular(8)),
       child: const Text('🔒 يُفتح الشرح بعد أول مسار دائري تراه (شغّل الحزمة).',
           style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
