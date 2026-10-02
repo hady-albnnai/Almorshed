@@ -520,10 +520,10 @@ class _TutiaScreenState extends State<TutiaScreen>
                                       : const Color(0xFFBB5A45))
                                   : const Color(0xFFDCD8CC)),
                         ),
-                        child: const [
-                          Text('يستمر التفريغ أبطأ فقط'),
-                          Text('يتوقف التفريغ — الزجاج يمتص UV'),
-                          Text('ينعكس التفريغ'),
+                        child: Text(const [
+                          'يستمر التفريغ أبطأ فقط',
+                          'يتوقف التفريغ — الزجاج يمتص UV',
+                          'ينعكس التفريغ',
                         ][oi]),
                       ),
                     ),
@@ -544,7 +544,6 @@ class _TutiaScreenState extends State<TutiaScreen>
             ),
           ),
         ],
-        const SizedBox(height: 12),
         Card(
           child: Padding(
             padding: const EdgeInsets.all(10),

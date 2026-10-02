@@ -609,8 +609,8 @@ class _FbilScreenState extends State<FbilScreen>
                         },
                         style: OutlinedButton.styleFrom(
                           side: BorderSide(
-                              color: _predictPick == k
-                                  ? (k == 1
+                              color: _predictPick == oi + 1
+                                  ? (oi + 1 == 1
                                       ? const Color(0xFF538065)
                                       : const Color(0xFFBB5A45))
                                   : const Color(0xFFDCD8CC)),

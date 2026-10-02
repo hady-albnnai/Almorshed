@@ -273,3 +273,9 @@ git ls-remote origin refs/heads/dev/self-content          # تأكيد الرأ�
 - **lab_screen.dart**: البطاقات الثمانية كاملة (faraday1·melde·helmholtz·airtube·fbil·oscilloscope·crookes·tutia) بمفاتيح lab-*. توافق أوسع: بلا records/switch-expressions/destructuring (أمان إصدار dart أقدم).
 - **القبول**: الفيزياء نسخ حرفي من النماذج المعتمدة (flash-fbil/oscilloscope/crookes/tutia) · فحص توازن أقواس آلي 6/6 · يلزم flutter analyze على جهاز المالك.
 - **الباقي ١٣ نموذجاً**: blvrails/induct/mstat/syringe/fcoil/generators/torsion/tube/simple/strings/spring/faraday3d (عائلات الكتاب الباقية) بنفس الدورة.
+
+### الدفعة 33d — تصحيح توصيل بطاقات التوقّع (predict) بالشاشات الثلاث
+- خطأ الجذر: مرساة حذف `const SizedBox(height: 12),` كانت تظهر **داخل** كتلة التوقّع قبل نهايتها ⇒ استبدال ناقص ترك بقايا كتلة قديمة مكررة (crookes/tutia) وقوساً/قوسين ناقصين.
+- الإصلاح: كتلة التوقّع تُزرع كاملة من fbil (المصدر السليم) بنصوص كل تجربة، وحذف البقايا حتى مرساة بطاقة chips الفريدة (`EdgeInsets.all(10)`).
+- إصلاح إضافي بfbil: `k` متيم بقارنات side::BorderSide — صارت `oi + 1`.
+- فحص نهائي: توازن أقواس ( ( ) [ ] ) = 0,0,0 للملفات الثمانية كلها (نواة + ٦ شاشات) · صفر `k` يتيم.

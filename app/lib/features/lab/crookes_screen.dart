@@ -514,10 +514,10 @@ class _CrookesScreenState extends State<CrookesScreen>
                                       : const Color(0xFFBB5A45))
                                   : const Color(0xFFDCD8CC)),
                         ),
-                        child: const [
-                          Text('ضوء ينتشر بكل الاتجاهات'),
-                          Text('جسيمات سالبة في خطوط مستقيمة'),
-                          Text('صوت عبر الغاز المتبقي'),
+                        child: Text(const [
+                          'ضوء ينتشر بكل الاتجاهات',
+                          'جسيمات سالبة في خطوط مستقيمة',
+                          'صوت عبر الغاز المتبقي',
                         ][oi]),
                       ),
                     ),
@@ -538,7 +538,6 @@ class _CrookesScreenState extends State<CrookesScreen>
             ),
           ),
         ],
-        const SizedBox(height: 12),
         Card(
           child: Padding(
             padding: const EdgeInsets.all(10),
