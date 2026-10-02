@@ -1144,8 +1144,7 @@ class _EnergyBarPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final double ke = keFraction.clamp(0.0, 1.0);
-    final double pe = 1.0 - ke;
-    final Color kineticCol = const Color(0xFF9FBD9A); // أخضر مريمي (طاقة حركية)
+    const Color kineticCol = Color(0xFF9FBD9A); // أخضر مريمي (طاقة حركية)
     final Color potentialCol = gold; // طوبي (طاقة كامنة)
     final Color track = dark ? const Color(0x22F0F5EF) : const Color(0x22132722);
     final Color textCol = dark ? const Color(0xFFE9EEE8) : const Color(0xFF132722);
@@ -1193,7 +1192,7 @@ class _EnergyBarPainter extends CustomPainter {
 
     final int kePct = (ke * 100).round();
     // الحركية على اليسار إن اتّسعت، والكامنة على اليمين.
-    if (keW > 44) label('$kineticLabel ${kePct}٪', keW / 2, TextAlign.center);
+    if (keW > 44) label('$kineticLabel $kePct٪', keW / 2, TextAlign.center);
     if (size.width - keW > 44) {
       label('$potentialLabel ${100 - kePct}٪', keW + (size.width - keW) / 2,
           TextAlign.center);

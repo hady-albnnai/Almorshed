@@ -33,6 +33,7 @@ bool _isAlpha(int c) =>
     (c >= 0x41 && c <= 0x5A) || (c >= 0x61 && c <= 0x7A) || c == 0x5F;
 bool _isAlnum(int c) => _isDigit(c) || _isAlpha(c);
 
+// ignore: library_private_types_in_public_api
 List<_Tok> tokenize(String s) {
   final toks = <_Tok>[];
   int i = 0;
@@ -372,7 +373,7 @@ Object? _pow(Object? a, Object? b) {
     throw ExprError('أُس ناتجه عقديّ'); // أساس سالب بأُس كسريّ
   }
   final r = math.pow(a, b);
-  if (r is! num || r.isNaN || r.isInfinite) throw ExprError('أُس غير صالح');
+  if (r.isNaN || r.isInfinite) throw ExprError('أُس غير صالح');
   return r;
 }
 

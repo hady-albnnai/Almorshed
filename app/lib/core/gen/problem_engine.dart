@@ -218,10 +218,10 @@ String piStr(num c) {
   final sign = fr.num_ < BigInt.zero ? kMinus : '';
   final num_ = fr.num_.abs(), den = fr.den;
   if (num_ == BigInt.zero) return '0';
-  if (num_ == den) return '${sign}π';
-  if (den == BigInt.one) return '$sign${num_}π';
-  if (num_ == BigInt.one) return '${sign}π/$den';
-  return '$sign${num_}π/$den';
+  if (num_ == den) return '$signπ';
+  if (den == BigInt.one) return '$sign$num_π';
+  if (num_ == BigInt.one) return '$signπ/$den';
+  return '$sign$num_π/$den';
 }
 
 // ───────────────────────────── الفضاء الاسميّ للتقييم ─────────────────────────────

@@ -515,9 +515,9 @@ class _StatsRow extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _stat(context, '${ArabicNumber.from(lessons)}', 'درسًا مشروحًا'),
+          _stat(context, ArabicNumber.from(lessons), 'درسًا مشروحًا'),
           _divider(line),
-          _stat(context, '${ArabicNumber.from(units)}', 'وحدات'),
+          _stat(context, ArabicNumber.from(units), 'وحدات'),
           _divider(line),
           _stat(context, '${ArabicNumber.from(percent)}٪', 'الإنجاز'),
         ],
