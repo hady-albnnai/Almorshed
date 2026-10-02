@@ -5,7 +5,11 @@ import '../../core/training/batch_builder.dart';
 import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import 'airtube_screen.dart';
+import 'crookes_screen.dart';
 import 'experiment_screen.dart';
+import 'fbil_screen.dart';
+import 'oscilloscope_screen.dart';
+import 'tutia_screen.dart';
 import 'faraday1_lab_screen.dart';
 import 'helmholtz_screen.dart';
 import 'melde_screen.dart';
@@ -183,6 +187,110 @@ class _LabScreenState extends State<LabScreen> {
                     onTap: () async {
                       await Navigator.of(context).push(MaterialPageRoute<void>(
                         builder: (_) => AirtubeScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-fbil'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['fbil'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🧲',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('القوة على سلك يمر به تيار'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · F=BIL · دولاب بارلو'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => FbilScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-oscilloscope'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['oscilloscope'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '📺',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('الأوسيلوسكوب: قراءة U₀ وT'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · ثلاث تجارب قراءة الشبكة'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => OscilloscopeScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-crookes'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['crookes'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '☢️',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('أنبوب كروكس: أشعة مهبطية'),
+                    subtitle: const Text(
+                        'الوحدة ٤ · الشرارة → التألق → الانحراف'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => CrookesScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-tutia'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['tutia'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '⚡',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('صفيحة التوتياء: الفعل الكهرضوئي'),
+                    subtitle: const Text(
+                        'الوحدة ٤ · UV يفريغ الشحنة · الزجاج يحجب'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => TutiaScreen(
                           trainingStore: widget.trainingStore,
                           initialData: data,
                           xpRecorder: widget.xpRecorder,

@@ -264,3 +264,12 @@ git ls-remote origin refs/heads/dev/self-content          # تأكيد الرأ�
 - **تنبيه**: flutter/dart CLI غايبان بالبيئة — الفحص: توازن أقواس آلي 5/5 + مطابقة النمط المرجعي حرفياً + مسارات الاستيراد مضبوطة (features/lab → ../../core/lab). يلزم flutter analyze على جهاز المالك قبل الدمج النهائي.
 - **تصحيح 33b**: بطاقة فاراداي كانت موجودة أصلاً بالريموت (بنمط Key('lab-faraday1') inline) — فأُضيفت imports الثلاثة + بطاقات melde/helmholtz/airtube inline بنفس الأسلوب، وأُزيل ودجت _unifiedCard كان أُدرج خطأً داخل _chapterLabel. القائمة النهائية: faraday1 · melde · helmholtz · airtube · ثم البطاقات العامة.
 - **الباقي ١٧ نموذجاً**: بنفس الدورة — blvrails/oscilloscope/crookes/tutia (نجوم) ثم باقي العائلات.
+
+### الدفعة 33c — إتمام نجوم النقل السبع: fbil + oscilloscope + crookes + tutia
+- **fbil_screen.dart (U2-6/7)**: وضعان بسكرول واحد — سلك بين قطبي حدوة (wy انحراف زنبركي target=F·130، winرؤية الوجهين بقلب I) ودولاب بارلو (tau=I·B·0.06·iD·bD−0.02·ω، فوز بانعكاس الدوران). F=B·I·L·iD·bD، L=8cm. توقع (قلب I) + شرح مقفل عند أول قوة.
+- **oscilloscope_screen.dart (U2-17/18/19)**: ثلاث تجارب (DC 6V / جيبية 6V·50Hz / 4V·100Hz) — شبكة 10×8، V/div وT/div دوّارة {1,2,5}/{5,10,25}، مسار فوسفوري متوهج + نقطة مسح 0.22/s. كويز قراءة (U₀=6V، T=20ms، f=100Hz) — الثلاثة ⇒ 🏆 بمفتاح 'oscilloscope'. 3D: وشيعة خضراء وشعاع ينحرف بين صفيحتين.
+- **crookes_screen.dart (U4-2)**: ضغط لوغاريتمي 760→0.01torr، مراحل ١شرارة/٢توهج وردي/٣يملأ/٤ظلام+حزمة+تألق أخضر، مغناطيس يحرف الحزمة وظل الصليب (shift=34·sin1.4t) — فوز بالمرحلة٤+مغناطيس، مفتاح 'crookes'.
+- **tutia_screen.dart (U4-3)**: effUV=(UV∧لازجاج)، q−=0.030/ث (سالب) أو ×0.18 (موجب)، أوراق تتفتح بحسب q، زجاج يحجب الأشعة بنقاط توقف — فوز بالتفريغ التام، مفتاح 'tutia'.
+- **lab_screen.dart**: البطاقات الثمانية كاملة (faraday1·melde·helmholtz·airtube·fbil·oscilloscope·crookes·tutia) بمفاتيح lab-*. توافق أوسع: بلا records/switch-expressions/destructuring (أمان إصدار dart أقدم).
+- **القبول**: الفيزياء نسخ حرفي من النماذج المعتمدة (flash-fbil/oscilloscope/crookes/tutia) · فحص توازن أقواس آلي 6/6 · يلزم flutter analyze على جهاز المالك.
+- **الباقي ١٣ نموذجاً**: blvrails/induct/mstat/syringe/fcoil/generators/torsion/tube/simple/strings/spring/faraday3d (عائلات الكتاب الباقية) بنفس الدورة.
