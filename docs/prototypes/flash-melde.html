@@ -1,0 +1,258 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>الوتر والرنانة (ملد) — نموذج موحّد v2</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+button:active{transform:scale(.97)}
+.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:120px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700;animation:fxpop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fxpop{0%{transform:scale(.55)}100%{transform:scale(1)}}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:520px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🌊 U3-1 · الوتر المشدود والرنانة <span class="badge">نموذج موحّد v2 — واقعي + 🧊 3D · فيزياء واحدة</span></h1>
+<div class="sub">منضدة حقيقية: هزّاز + بكرة + كفة أثقال مشقوقة — الأنماط عندما L = n·λ/2 · v = √(FT/μ) · اسحب الخلفية بالـ3D لتدوير الكاميرا</div>
+<div class="panel scenewrap"><canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">وتر يهتز بمغزلين عند تواتر معيّن. لو ضاعفنا شدّ الوتر FT أربعة أمثال (مع ثبات f وL وμ) — كم مغزلاً نرى؟</div>
+<button data-k="1">مغزل واحد</button><button data-k="2">مغزلان (لا يتغير)</button><button data-k="3">أربعة مغازل</button><div class="fb" id="predFb"></div></div></div></div>
+<div class="panel"><div class="ctrl">
+<span class="slider">التواتر f <input type="range" id="f" min="10" max="120" step="1" value="60"><b id="fV" style="color:var(--ink)">٦٠Hz</b></span>
+<span class="slider">الأثقال m <input type="range" id="m" min="0.05" max="1" step="0.05" value="0.2"><b id="mV" style="color:var(--ink)">٠٫٢٠kg</b></span>
+<span class="slider">الطول L <input type="range" id="L" min="0.5" max="2" step="0.1" value="1.2"><b id="LV" style="color:var(--ink)">١٫٢m</b></span>
+<span class="slider">μ <input type="range" id="mu" min="0.5" max="5" step="0.5" value="2"><b id="muV" style="color:var(--ink)">٢٫٠g/m</b></span>
+</div><div class="ctrl">
+<button id="viewBtn">🧊 منظور 3D</button>
+<button id="envBtn">ظرف المطال</button><button id="resetBtn">↺ إعادة</button></div></div>
+<div class="panel"><span class="chip" id="chN">المغازل: —</span><span class="chip" id="chLam">λ المقاسة: —</span><span class="chip" id="chV">v = —</span><span class="chip" id="chC">🎯 اجعل n = ٣ مغازل بالضبط</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">v = √(FT / μ) &nbsp;·&nbsp; fn = (n/2L)·√(FT/μ) &nbsp;·&nbsp; L = n·λ/2</div><ul>
+<li>الرنين عندما يكون طول الوتر عدداً صحيحاً من أنصاف الأطوال الموجية: L = n·λ/2.</li>
+<li>مضاعفة FT أربعة أمثال ⇒ v تتضاعف ⇒ λ تتضاعف ⇒ عدد المغازل ينصف عند f ثابت.</li>
+<li>على المغازل سكون تام، وبينها بطون بسعة أعظمية — الطاقة لا تنتقل على طول الوتر.</li>
+<li>بالمنظور 3D: دوّر الكاميرا لترى اتساع البطن في عمق الصورة (الموجة المستقرة لا تنتقل — فقط تتذبذب في مكانها).</li></ul></div></div>
+<div class="note">صوت الهزّاز مولّد ويتزامن مع f ويعلو عند الرنين · حتمية بفيزياء المعتمد · بلا شبكة.</div>
+</div><div id="toast"></div><div id="fatal"></div>
+<script>window.onerror=function(m,src,l){var e=document.getElementById("fatal");if(e){e.style.display="block";e.textContent="خطأ: "+m+" @"+l}return false};</script>
+<script>
+"use strict";
+const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* ═══ الفيزياء — المعتمد ═══ */
+let f=60,m=0.2,L=1.2,mu=2.0,t=0,showEnv=true,started=false,won=false;
+const FT=()=>m*10, vOf=()=>Math.sqrt(FT()/(mu*1e-3)), lamOf=()=>vOf()/f, f1=()=>vOf()/(2*L);
+const rOf=()=>f/f1(), nOf=()=>Math.max(1,Math.round(rOf()));
+const reson=()=>{const r=rOf(),n=nOf();return Math.abs(r-n)<=0.04*n};
+const amp=()=>{const r=rOf(),n=nOf(),d=r-n;return 1/Math.sqrt(1+(d*22)*(d*22))};
+/* صوت الهزّاز */
+let AC=null;function audio(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}
+ if(!AC)return;const fq=isFinite(f*0.25)?clamp(f*0.25,20,600):440;
+ if(!AC._o){AC._o=AC.createOscillator();AC._g=AC.createGain();AC._o.connect(AC._g);AC._g.connect(AC.destination);AC._o.start()}
+ if(!isFinite(fq))return;AC._o.frequency.value=fq;const a=(started?0.02:0)+0.075*amp();AC._g.gain.value=reson()?a:a*0.25}
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;o.type="sine";g.gain.value=.08;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+function toast(s){const el=$("toast");el.textContent=s;el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2400)}
+/* ═══ محرك المنظور 3D ═══ */
+var view3d=false;
+const cam={yaw:-0.5,pitch:0.3,dist:620,fov:620};
+let orbiting=false,_oX=0,_oY=0;
+function project(p){
+  const cy=Math.cos(cam.yaw),sy=Math.sin(cam.yaw);
+  const cp=Math.cos(cam.pitch),sp=Math.sin(cam.pitch);
+  const x=p.x*cy+p.z*sy, z=-p.x*sy+p.z*cy, y=p.y;
+  const y2=y*cp-z*sp, z2=y*sp+z*cp;
+  const dz=z2+cam.dist, s=cam.fov/dz;
+  return{x:480+x*s,y:210-y2*s,s:s,z:dz};
+}
+function line3(c,a,b,col,w){const pa=project(a),pb=project(b);
+  c.strokeStyle=col;c.lineWidth=Math.max(0.4,w*(pa.s/cam.fov)*620*0.7);
+  c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+/* ═══ الإطار ═══ */
+const STEP=1/240;let acc=0,last=performance.now();
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;
+ acc+=dt;while(acc>=STEP){acc-=STEP;t+=STEP}
+ draw();audio();requestAnimationFrame(loop)}
+/* ═══ المشهد الواقعي ═══ */
+function drawRoom(){const c=cx;
+ const wall=c.createLinearGradient(0,0,0,320);wall.addColorStop(0,"#0C1017");wall.addColorStop(1,"#05070B");
+ c.fillStyle=wall;c.fillRect(0,0,W,320);
+ {let _sd=7;const _sr=()=>{_sd=(_sd*16807)%2147483647;return _sd/2147483647};
+ for(let i=0;i<95;i++){const sx=_sr()*W,sy=_sr()*298;
+  c.fillStyle="rgba(226,232,240,"+(0.1+_sr()*0.45)+")";
+  c.beginPath();c.arc(sx,sy,0.5+_sr()*1.1,0,7);c.fill();}}
+ c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,W,20);
+ const wood=c.createLinearGradient(0,321,0,440);wood.addColorStop(0,"#2E2114");wood.addColorStop(1,"#160F08");
+ c.fillStyle=wood;c.fillRect(0,321,W,119);
+ c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,W,2);
+ c.strokeStyle="rgba(255,214,150,0.07)";c.lineWidth=1.1;
+ for(let i=0;i<5;i++){const y=334+i*19;c.beginPath();c.moveTo(0,y);
+  for(let x=0;x<=W;x+=90)c.lineTo(x,y+Math.sin(x/110+i*2.4)*1.8);c.stroke()}}
+function shadow(c,x,y,rx,ry,a){const g=c.createRadialGradient(x,y,2,x,y,rx);
+ g.addColorStop(0,"rgba(30,15,5,"+a+")");g.addColorStop(1,"rgba(30,15,5,0)");
+ c.save();c.translate(x,y);c.scale(1,ry/rx);c.translate(-x,-y);c.fillStyle=g;c.beginPath();c.arc(x,y,rx,0,7);c.fill();c.restore()}
+/* هندسة: نقطتا الوتر */
+const PUL={x:210}, VIB={x:760}; const yStr=205;
+const X0=()=>PUL.x, X1=()=>VIB.x-46;
+const xOf=xi=>X0()+xi*(X1()-X0());
+function drawBench(){const c=cx;
+ /* الهزّاز: صندوق داكن + قضيب معدني */
+ shadow(c,VIB.x-10,334,84,11,0.24);
+ const b=c.createLinearGradient(0,236,0,330);b.addColorStop(0,"#3A3A38");b.addColorStop(1,"#181816");
+ c.fillStyle=b;roundRect(c,VIB.x-40,236,84,96,7);c.fill();
+ c.fillStyle="rgba(255,255,255,0.07)";c.fillRect(VIB.x-36,240,76,5);
+ c.fillStyle="#C9C9C2";c.fillRect(VIB.x-46,yStr-4,52,8);
+ c.fillStyle="#8F8F8A";c.beginPath();c.arc(VIB.x+2,yStr,6,0,7);c.fill();
+ arT("هزّاز",VIB.x+2,352,12,"#C9BFA8");
+ const sc=c.createLinearGradient(0,246,0,326);sc.addColorStop(0,"#2E2E2B");sc.addColorStop(1,"#141412");
+ c.fillStyle=sc;roundRect(c,VIB.x-28,246,60,74,4);c.fill();
+ c.fillStyle="#B3372B";c.beginPath();c.arc(VIB.x-14,262,5.5,0,7);c.fill();
+ c.fillStyle="#1E1E1C";c.beginPath();c.arc(VIB.x+12,262,5.5,0,7);c.fill();
+ arT("f = "+toAr(f)+"Hz",VIB.x-2,306,12,"#D9D2C0");
+ /* البكرة على عمود قصير */
+ shadow(c,PUL.x,334,60,10,0.22);
+ c.fillStyle="#8F8F8A";c.fillRect(PUL.x-4,yStr+8,8,110);
+ const pg=c.createLinearGradient(PUL.x-18,yStr-18,PUL.x+18,yStr+18);
+ pg.addColorStop(0,"#D9D9D4");pg.addColorStop(0.5,"#9A9A94");pg.addColorStop(1,"#6E6E68");
+ c.fillStyle=pg;c.beginPath();c.arc(PUL.x,yStr,18,0,7);c.fill();
+ c.fillStyle="#55554F";c.beginPath();c.arc(PUL.x,yStr,5,0,7);c.fill();
+ /* خيط ربط البكرة بالأثقال نازل من حافة الطاولة */
+ const dw=PUL.x+26;
+ c.strokeStyle="rgba(150,135,105,0.9)";c.lineWidth=2.2;
+ c.beginPath();c.moveTo(PUL.x+16,yStr+10);c.quadraticCurveTo(dw+2,300,dw+2,352);c.stroke();
+ /* حامل الأثقال المشقوقة */
+ const hy=352;
+ c.fillStyle="#9A9A94";c.fillRect(dw-2.5,hy-8,5,42);
+ const masses=Math.round(m/0.05);
+ for(let i=0;i<Math.min(masses,10);i++){
+  const my=hy+30-i*8.2;
+  const mg=c.createLinearGradient(dw-26,0,dw+26,0);
+  mg.addColorStop(0,"#8A8578");mg.addColorStop(0.5,"#C6C0AE");mg.addColorStop(1,"#777266");
+  c.fillStyle=mg;c.beginPath();c.ellipse(dw,my,26,5.5,0,0,7);c.fill();
+  c.fillStyle="rgba(30,25,15,0.35)";c.beginPath();c.ellipse(dw,my+2,26,2.2,0,0,7);c.fill();}
+ if(masses===0){c.fillStyle="#9A9A94";c.beginPath();c.ellipse(dw,hy+32,12,4,0,0,7);c.fill()}
+ arT("FT = "+toAr(FT().toFixed(1))+"N",dw,426,12,"#C9BFA8");
+}
+function drawString2D(){const c=cx;
+ const n=nOf(),A=amp(),res=reson();
+ const om=t*f*2*Math.PI*0.25;
+ const aPx=120;
+ /* الوتر: خط أساس ثم موجته بوهج الرنين */
+ c.strokeStyle="rgba(200,190,160,0.28)";c.lineWidth=1;
+ c.beginPath();c.moveTo(X0(),yStr);c.lineTo(X1(),yStr);c.stroke();
+ c.save();
+ if(res){c.shadowColor="rgba(200,110,40,0.7)";c.shadowBlur=10}
+ c.strokeStyle=res?"#C87A28":"#B0956A";c.lineWidth=2.6;c.lineCap="round";
+ c.beginPath();
+ for(let i=0;i<=240;i++){const xi=i/240*L;const y=yStr+A*aPx*0.5*Math.sin(n*Math.PI*xi/L)*Math.cos(om);
+  i===0?c.moveTo(xOf(0)+0,y):c.lineTo(xOf(xi),y)}
+ c.stroke();c.restore();
+ /* أثقال الوتر عند العقد: نقاط سكون */
+ c.fillStyle="#E8E2D0";
+ for(let k=0;k<=n;k++){const xi=k*L/n;c.beginPath();c.arc(xOf(xi),yStr,3.6,0,7);c.fill()}
+ if(showEnv){for(const s of[1,-1]){c.beginPath();
+  for(let i=0;i<=160;i++){const xi=i/160*L;const y=yStr+s*A*aPx*0.5*Math.abs(Math.sin(n*Math.PI*xi/L));
+   i===0?c.moveTo(xOf(xi),y):c.lineTo(xOf(xi),y)}
+  c.strokeStyle="rgba(210,190,150,0.4)";c.lineWidth=1.2;c.setLineDash([5,5]);c.stroke();c.setLineDash([])}}
+ /* شارة الرنين */
+ if(res){const p=0.5+0.5*Math.sin(performance.now()/180);
+  c.fillStyle="rgba(200,110,40,"+(0.05+0.06*p)+")";c.fillRect(0,0,W,320);
+  arT("رنين! n = "+toAr(n),W/2,60,15,"#F0964A")}
+}
+/* ═══ منظور 3D: الوتر الموجي في العمق ═══ */
+function drawScene3D(){const c=cx;
+ const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,"#0C1017");g.addColorStop(1,"#05070B");
+ c.fillStyle=g;c.fillRect(0,0,W,H);
+ {let _sd=7;const _sr=()=>{_sd=(_sd*16807)%2147483647;return _sd/2147483647};
+ for(let i=0;i<95;i++){const sx=_sr()*W,sy=_sr()*298;
+  c.fillStyle="rgba(226,232,240,"+(0.1+_sr()*0.45)+")";
+  c.beginPath();c.arc(sx,sy,0.5+_sr()*1.1,0,7);c.fill();}}
+ const n=nOf(),A=amp(),res=reson(),om=t*f*2*Math.PI*0.25;
+ const Z=0;
+ for(let x=-500;x<=500;x+=50)line3(c,{x:x,y:-140,z:-260},{x:x,y:-140,z:260},"rgba(205,215,230,"+(x%250===0?0.3:0.13)+")",1);
+ for(let z=-260;z<=260;z+=50)line3(c,{x:-500,y:-140,z:z},{x:500,y:-140,z:z},"rgba(205,215,230,"+(z%250===0?0.3:0.13)+")",1);
+ /* نرسم الوتر كنقاط 3D */
+ const a3=150;
+ for(let i=0;i<=200;i++){
+  const xi=i/200*L;
+  const ph=Math.sin(n*Math.PI*xi/L)*Math.cos(om);
+  const y=40+A*a3*0.5*ph;
+  const z=A*a3*0.35*Math.sin(n*Math.PI*xi/L)*Math.sin(om);
+  const p=project({x:xi*340-170,y:y,z:z});
+  if(res){c.save();c.shadowColor="rgba(200,110,40,0.8)";c.shadowBlur=8}
+  c.fillStyle=res?"#C87A28":"#8A7350";
+  c.beginPath();c.arc(p.x,p.y,res?2.8:2.2,0,7);c.fill();
+  if(res)c.restore();
+ }
+ /* عقد */
+ c.fillStyle="#E8E2D0";
+ for(let k=0;k<=n;k++){const xi=k*L/n;const p=project({x:xi*340-170,y:40,z:0});
+  c.beginPath();c.arc(p.x,p.y,3.6,0,7);c.fill()}
+ if(res)arT("رنين! n = "+toAr(n),W/2,60,15,"#F0964A");
+ /* حلزون الأثقال يظهر ككتلة معلقة */
+ const pw=project({x:-170,y:40-40,z:0});
+ c.strokeStyle="rgba(90,80,60,0.6)";c.lineWidth=2;
+ c.beginPath();c.moveTo(pw.x,pw.y);c.lineTo(pw.x,pw.y+40);c.stroke();
+ c.fillStyle="#C6C0AE";c.beginPath();c.ellipse(pw.x,pw.y+48,20,6,0,0,7);c.fill();
+ arT("اسحب الخلفية لتدوير الكاميرا",W/2,H-14,12.5,"rgba(200,195,180,0.45)");
+}
+/* ═══ الرسم الرئيسي ═══ */
+function draw(){if(!fit())return;
+ if(view3d){drawScene3D();drawReadouts();return}
+ drawRoom();drawBench();drawString2D();drawReadouts();
+ const vg=cx.createRadialGradient(W*0.4,H*0.3,H*0.4,W*0.5,H*0.5,W*0.75);
+ vg.addColorStop(0,"rgba(255,250,235,0.05)");vg.addColorStop(1,"rgba(0,0,0,0.32)");
+ cx.fillStyle=vg;cx.fillRect(0,0,W,H)}
+function drawReadouts(){const c=cx;
+ const res=reson(),n=nOf();
+ c.fillStyle="rgba(13,16,22,0.82)";c.fillRect(20,14,200,58);
+ c.strokeStyle="rgba(200,190,160,0.28)";c.strokeRect(20,14,200,58);
+ arT("v = "+toAr(vOf().toFixed(1))+" m/s",120,34,12.5,"#E8E2D0");
+ arT("λ = "+toAr(lamOf().toFixed(3))+"m · f₁ = "+toAr(f1().toFixed(1))+"Hz",120,56,12.5,"#E8E2D0");
+ $("chN").textContent="المغازل: "+(res?toAr(n):"— (غير رنين)");
+ $("chLam").textContent="λ المقاسة: "+(res?toAr((L/n).toFixed(2))+"m":"—");
+ $("chV").textContent="v = "+toAr(vOf().toFixed(1))+" m/s";
+ if(!started&&res){started=true;$("exp").classList.remove("locked")}
+ if(res&&n===3&&!won){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";
+  toast("🏆 n = ٣ مغازل بالضبط (+١٠)");beep(660,.25)}}
+/* ═══ التحكم ═══ */
+cv.addEventListener("pointerdown",e=>{if(!view3d)return;
+ const r=cv.getBoundingClientRect();
+ const x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.width;
+ orbiting=true;_oX=x;_oY=y;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener("pointermove",e=>{if(!orbiting||!view3d)return;
+ const r=cv.getBoundingClientRect();
+ const x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.width;
+ cam.yaw+=(x-_oX)*0.006;cam.pitch=clamp(cam.pitch+(y-_oY)*0.006,-0.05,1.0);_oX=x;_oY=y});
+addEventListener("pointerup",()=>{orbiting=false});
+cv.addEventListener("wheel",e=>{if(!view3d)return;e.preventDefault();
+ cam.dist=clamp(cam.dist*(1+e.deltaY*0.001),380,900)},{passive:false});
+const bind=(id,vid,fmt,set)=>{$(id).oninput=e=>{set(+e.target.value);$(vid).textContent=fmt(+e.target.value)}};
+bind("f","fV",v=>toAr(v)+"Hz",v=>f=v);bind("m","mV",v=>toAr(v.toFixed(2))+"kg",v=>m=v);
+bind("L","LV",v=>toAr(v.toFixed(1))+"m",v=>L=v);bind("mu","muV",v=>toAr(v.toFixed(1))+"g/m",v=>mu=v);
+$("viewBtn").onclick=()=>{view3d=!view3d;
+ $("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D";
+ $("viewBtn").style.borderColor=view3d?"var(--accent)":""};
+$("envBtn").onclick=()=>showEnv=!showEnv;
+$("resetBtn").onclick=()=>{t=0};
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;
+ const k=b.dataset.k,fb=$("predFb");
+ if(k==="1"){fb.className="fb good";fb.textContent="✔ صحيح — v تتضاعف ⇒ λ تتضاعف ⇒ المغازل تنصف"}
+ else{fb.className="fb bad";fb.textContent="✘ جرّب: ارفع الأثقال إلى ٤ أمثال ولاحظ عدد المغازل";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("🎯 اضبط f أو الأثقال حتى تحصل على ٣ مغازل")},900)});
+requestAnimationFrame(loop);
+</script></body></html>
