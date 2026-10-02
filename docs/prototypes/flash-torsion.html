@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>نواس الفتل المخبري — U1-1..4 نموذج موحّد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button:active{transform:scale(.97)}
+.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:130px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700;animation:fxpop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fxpop{0%{transform:scale(.55)}100%{transform:scale(1)}}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:520px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🌀 U1 · نواس الفتل المخبري <span class="badge">تمهيد + تج١..٣ · نموذج موحّد — واقعي + 🧊3D</span></h1>
+<div class="sub">سلك فتل + قرص + كتلتان نقطيتان — T₀ = 2π√(I/K) · K ∝ 1/l · اسحب الخلفية بالـ3D لتدوير الكاميرا</div>
+<div class="panel scenewrap"><canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">قسنا الدور T₁ ثم أزلنا الكتلتين نحو الخارج (ضاعفنا r). هل يزداد الدور أم يبقى؟</div>
+<button data-k="1">يزداد — العطالة تزداد مع r²</button><button data-k="2">يبقى ثابتاً — الكتلة لم تتغير</button><button data-k="3">ينقص</button><div class="fb" id="predFb"></div></div></div></div>
+<div class="panel"><div class="ctrl">
+<span class="chip">الوضع:</span>
+<button class="modeB" data-m="1" id="mB1">تمهيد: التوازن</button>
+<button class="modeB" data-m="2" id="mB2">تج١: الدور والسعة</button>
+<button class="modeB" data-m="3" id="mB3">تج٢: الكتلتان (r)</button>
+<button class="modeB" data-m="4" id="mB4">تج٣: نصف السلك (l)</button>
+</div><div class="ctrl">
+<span class="slider">طول السلك l <input type="range" id="l" min="0.5" max="1" step="0.05" value="1"><b id="lV">١٫٠٠m</b></span>
+<span class="slider">بعد الكتلتين r <input type="range" id="r" min="0.05" max="0.13" step="0.01" value="0.08"><b id="rV">٠٫٠٨m</b></span>
+<span class="slider">السعة θ₀ <input type="range" id="amp" min="10" max="45" step="5" value="30"><b id="ampV">٣٠°</b></span>
+</div><div class="ctrl">
+<button id="viewBtn">🧊 منظور 3D</button>
+<button id="relBtn">↻ لف وأترك</button><button id="stopBtn">⏹ إيقاف</button><button id="resetBtn">↺ إعادة</button></div></div>
+<div class="panel"><span class="chip" id="chI">I = —</span><span class="chip" id="chT">T₀ نظري = —</span><span class="chip" id="chMeas">المؤقت: —</span><span class="chip" id="chC">🎯 تج١: قس عند سعتين مختلفتين — الفرق &lt; ٢٪</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">T₀ = 2π√(I/K) &nbsp;·&nbsp; I = ½MR² + 2mr² &nbsp;·&nbsp; K ∝ 1/l ⇒ T₂/T₁ = √(l₁/l₂)</div><ul>
+<li>عزم الرجوع τ = −Kθ: دائماً نحو وضع التوازن — عند الإمساك τ_مطبَّق = Kθ (اتزان).</li>
+<li>السعة لا تدخل T₀: إهتزاز حر بسيط هو تماكلي — زمنه مستقل عن المدى (تج١).</li>
+<li>الكتلتان النقطيتان: I يزداد مع r² — بعّدهما يطيل الدور بلا تغيير الكتلة (تج٢: T₂₀&gt;T₁₀).</li>
+<li>قص السلك لنصفه يضاعف K ⇒ T ينقص إلى 1/√2 ≈ ٠٫٧١ من قيمته (تج٣: T₃₀&lt;T₁₀).</li></ul></div></div>
+<div class="note">مؤقت ١٠ نوسات آلي · صوت نقرة مع كل نوسة · حتمية بفيزياء الكتاب · بلا شبكة.</div>
+</div><div id="toast"></div><div id="fatal"></div>
+<script>window.onerror=function(m,src,l){var e=document.getElementById("fatal");if(e){e.style.display="block";e.textContent="خطأ: "+m+" @"+l}return false};</script>
+<script>
+"use strict";
+const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* ═══ الفيزياء — الكتاب ═══ */
+let l=1.0,r=0.08,amp=30*(Math.PI/180),mode=2;
+let th=0,thV=0,rel=false,t=0,thetaStatic=0;
+let timing=null,meas=[],won=false,started=false;
+const M=0.6,R=0.15,m=0.25;
+const IOf=()=>0.5*M*R*R+2*m*r*r;
+const KOf=()=>0.1213/l;
+const TOf=()=>2*Math.PI*Math.sqrt(IOf()/KOf());
+const STEP=1/240;let acc=0,last=performance.now(),prevTh=0;
+/* صوت */
+let AC=null;function initA(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;o.type="sine";g.gain.value=.07;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+function toast(s){const el=$("toast");el.textContent=s;el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2400)}
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;
+ while(acc>=STEP){acc-=STEP;t+=STEP;
+  if(rel){const om=2*Math.PI/TOf(),ga=0.012;const thN=th*Math.exp(-ga*STEP);
+   const thVn=(thN-th)/STEP;thV=thVn;th=thN;
+   /* مؤقت ١٠ نوسات: عبور صاعد للصفير */
+   if(timing&&timing.n<10){if(prevTh<=0&&th>0){timing.n++;beep(660,.05);timing.cross=t;if(timing.n>=10){timing.t10=t;endTiming()}}else if(prevTh<=0&&th>0){}
+   }
+   prevTh=th;
+  } else {th=thetaStatic}
+ }
+ draw();requestAnimationFrame(loop)}
+function endTiming(){const T10=timing.t10-timing.t0;meas.push({T:T10/10,l:l,r:r,amp:ampDeg()});
+ $("chMeas").textContent="10T = "+toAr(T10.toFixed(2))+"s ⇒ T = "+toAr((T10/10).toFixed(3))+"s";
+ $("exp").classList.remove("locked");beep(880,.2);
+ if(meas.length>=2){const a=meas[meas.length-2],b=meas[meas.length-1];
+  if(Math.abs(a.amp-b.amp)>=8&&Math.abs(a.T-b.T)/a.T<0.02&&!won){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 السعة لا تغير الدور — مثبتة قياساً (+١٠)")}}
+ timing=null}
+const ampDeg=()=>Math.round(amp*180/Math.PI);
+function startTiming(){if(!rel){toast("لف وأترك أولاً");return}timing={n:0,t0:null,cross:0,t10:0};toast("المؤقت يعمل — ١٠ نوسات")}
+/* ═══ المحرك 3D ═══ */
+var view3d=false;const cam3={yaw:-0.5,pitch:0.3,dist:620,fov:620};
+let orbiting=false,_oX=0,_oY=0;
+function project3(p){const cy=Math.cos(cam3.yaw),sy=Math.sin(cam3.yaw),cp=Math.cos(cam3.pitch),sp=Math.sin(cam3.pitch);
+ const x=p.x*cy+p.z*sy,z=-p.x*sy+p.z*cy,y=p.y;const y2=y*cp-z*sp,z2=y*sp+z*cp;const dz=z2+cam3.dist,s=cam3.fov/dz;
+ return{x:480+x*s,y:190-y2*s,s:s,z:dz}}
+function line3(c,a,b,col,w){const pa=project3(a),pb=project3(b);c.strokeStyle=col;c.lineWidth=Math.max(.4,w*(pa.s/cam3.fov)*620*.7);c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+function stroke3(c,pts,col,w,cl){c.strokeStyle=col;c.lineWidth=w;c.lineJoin="round";c.beginPath();pts.forEach((p,i)=>{const q=project3(p);i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)});if(cl)c.closePath();c.stroke()}
+function spaceBg3(c){const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,"#0C1017");g.addColorStop(1,"#05070B");c.fillStyle=g;c.fillRect(0,0,W,H);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*W,sy=sr()*H*.72;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}}
+function arT3(c,s,x,y,size,col){c.fillStyle=col;c.font=size+"px Tahoma,Arial";c.textAlign="center";c.direction="rtl";c.fillText(s,x,y);c.direction="ltr"}
+cv.addEventListener("pointerdown",e=>{if(!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;orbiting=true;_oX=x;_oY=y;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener("pointermove",e=>{if(!orbiting||!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;cam3.yaw+=(x-_oX)*.006;cam3.pitch=clamp(cam3.pitch+(y-_oY)*.006,-0.05,1.0);_oX=x;_oY=y});
+addEventListener("pointerup",()=>{orbiting=false});
+cv.addEventListener("wheel",e=>{if(!view3d)return;e.preventDefault();cam3.dist=clamp(cam3.dist*(1+e.deltaY*.001),380,900)},{passive:false});
+/* ═══ المشاهد ═══ */
+const DY=210,DISC_Y=-10,DISC_R=95;
+function drawScene3D(){const c=cx;spaceBg3(c);
+ for(let x=-380;x<=380;x+=76)line3(c,{x:x,y:-150,z:-300},{x:x,y:-150,z:300},"rgba(205,215,230,0.13)",1);
+ for(let z=-300;z<=300;z+=75)line3(c,{x:-380,y:-150,z:z},{x:380,y:-150,z:z},"rgba(205,215,230,0.13)",1);
+ /* حامل + كلمنة + سلك */
+ stroke3(c,[{x:-24,y:DISC_Y+9,z:-24},{x:24,y:DISC_Y+9,z:-24},{x:24,y:DISC_Y+9,z:24},{x:-24,y:DISC_Y+9,z:24}],"rgba(150,150,145,0.5)",2,true);
+ line3(c,{x:0,y:130,z:0},{x:0,y:DISC_Y+7,z:0},"rgba(210,205,190,0.85)",2.4);
+ fillBox(c,26,150,26,"rgba(120,120,115,0.95)",{x:0,y:146,z:0});
+ /* القرص الأفقي يدور بθ */
+ const cs=Math.cos(th),sn=Math.sin(th);
+ const pts=[];for(let i=0;i<=56;i++){const a=i/56*6.283;pts.push({x:Math.cos(a)*DISC_R,y:DISC_Y,z:Math.sin(a)*DISC_R})}
+ c.save();c.shadowColor="rgba(205,160,90,0.6)";c.shadowBlur=8;stroke3(c,pts,"rgba(205,160,90,0.9)",2.5,true);c.restore();
+ for(let rr=DISC_R*0.33;rr<DISC_R;rr+=DISC_R*0.33)stroke3(c,[{x:-rr,y:DISC_Y,z:0},{x:rr,y:DISC_Y,z:0}],"rgba(205,160,90,0.22)",1);
+ /* القطر الدوار + الكتلتان + العلامة */
+ line3(c,{x:-cs*DISC_R,y:DISC_Y,z:sn*DISC_R},{x:cs*DISC_R,y:DISC_Y,z:sn*DISC_R},"rgba(230,225,210,0.55)",1.5);
+ line3(c,{x:0,y:DISC_Y,z:0},{x:cs*DISC_R,y:DISC_Y,z:sn*DISC_R},"rgba(226,90,60,0.95)",3);
+ const rp=r*1000;
+ for(const sgn of[1,-1]){const p=project3({x:cs*rp*sgn,y:DISC_Y+7,z:sn*rp*sgn});
+  c.fillStyle="#C6C0AE";c.fillRect(p.x-7,p.y-6,14,12);c.strokeStyle="rgba(30,25,15,0.5)";c.lineWidth=1;c.strokeRect(p.x-7,p.y-6,14,12)}
+ fillBox(c,150,14,150,"rgba(46,33,20,0.9)",{x:0,y:-150,z:0});
+ const aDeg=(th*180/Math.PI).toFixed(0);
+ arT3(c,"θ = "+toAr(aDeg)+"° · θ₀ = "+toAr(ampDeg())+"°",120,40,12.5,"#E8E2D0");
+ arT3(c,"l = "+toAr(l.toFixed(2))+"m · r = "+toAr((r*100).toFixed(0))+"cm",120,62,11.5,"rgba(232,226,208,0.75)");
+ if(rel&&timing)arT3(c,"نوسة "+toAr(timing.n)+"/١٠",480,46,15,"#F0964A");
+ arT3(c,"اسحب الخلفية لتدوير الكاميرا",480,H-12,12,"rgba(205,198,182,0.5)")}
+function fillBox(c,wx,wy,wz,col,ctr){const x0=ctr.x-wx/2,x1=ctr.x+wx/2,y0=ctr.y-wy/2,y1=ctr.y+wy/2,z0=ctr.z-wz/2,z1=ctr.z+wz/2;
+ const F=[[{x:x0,y:y1,z:z0},{x:x1,y:y1,z:z0},{x:x1,y:y1,z:z1},{x:x0,y:y1,z:z1}]];
+ for(const f of F){c.fillStyle=col;c.beginPath();f.forEach((p,i)=>{const q=project3(p);i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)});c.closePath();c.fill()}}
+function drawRoom(){const c=cx;
+ const wall=c.createLinearGradient(0,0,0,320);wall.addColorStop(0,"#0C1017");wall.addColorStop(1,"#05070B");
+ c.fillStyle=wall;c.fillRect(0,0,W,320);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*960,sy=sr()*298;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}
+ c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,W,20);
+ const wood=c.createLinearGradient(0,321,0,440);wood.addColorStop(0,"#2E2114");wood.addColorStop(1,"#160F08");
+ c.fillStyle=wood;c.fillRect(0,321,W,119);c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,W,2)}
+function draw2D(){const c=cx;drawRoom();
+ const bx=640,dy=296;
+ /* قاعدة وعمود وكلمنة مدرجية */
+ c.fillStyle="#1E1B16";roundRect(c,bx-70,382,140,12,3);c.fill();
+ c.fillStyle="#8F8F8A";c.fillRect(bx-5,140,10,244);
+ const cl=c.createLinearGradient(0,104,0,136);cl.addColorStop(0,"#3A3A38");cl.addColorStop(1,"#1A1A18");
+ c.fillStyle=cl;roundRect(c,bx-26,104,52,34,4);c.fill();
+ c.strokeStyle="rgba(230,228,220,0.35)";c.lineWidth=1;
+ for(let i=0;i<5;i++){c.beginPath();c.moveTo(bx-22+i*11,108);c.lineTo(bx-22+i*11,116);c.stroke()}
+ /* السلك */
+ c.strokeStyle="rgba(210,205,190,0.85)";c.lineWidth=2.2;
+ c.beginPath();c.moveTo(bx,136);c.lineTo(bx,dy-6);c.stroke();
+ /* القرص حافةً + الدوران بالعلامة */
+ const Rpx=140,rotX=Math.cos(th)*Rpx;
+ c.save();c.shadowColor="rgba(205,160,90,0.5)";c.shadowBlur=rel?8:0;
+ const dg=c.createLinearGradient(bx-Rpx,0,bx+Rpx,0);dg.addColorStop(0,"#7A5A32");dg.addColorStop(.5,"#C89A5A");dg.addColorStop(1,"#7A5A32");
+ c.fillStyle=dg;roundRect(c,bx-Rpx,dy-5,2*Rpx,10,5);c.fill();c.restore();
+ c.fillStyle="rgba(226,90,60,0.95)";c.beginPath();c.arc(bx+rotX,dy,4.2,0,7);c.fill();
+ /* الكتلتان النقطيتان على القطر */
+ const rp=r*1000;
+ for(const sgn of[1,-1]){const mx2=bx+sgn*Math.cos(th)*rp;
+  const mg=c.createLinearGradient(mx2-14,0,mx2+14,0);mg.addColorStop(0,"#777266");mg.addColorStop(.5,"#C6C0AE");mg.addColorStop(1,"#777266");
+  c.fillStyle=mg;roundRect(c,mx2-14,dy-9,28,18,3);c.fill();
+  c.strokeStyle="rgba(30,25,15,0.4)";c.strokeRect(mx2-14,dy-9,28,18)}
+ /* سهم السعة أثناء اللف */
+ if(!rel&&thetaStatic!==0){c.strokeStyle="rgba(240,150,74,0.9)";c.lineWidth=2;
+  c.beginPath();c.arc(bx,dy,44,-Math.PI/2,-Math.PI/2+thetaStatic,false);c.stroke();
+  arT("τ = K·θ",bx,dy-56,12,"#F0964A")}
+ if(mode===1&&thetaStatic!==0){arT("عزم مُطبَّق ⇄ عزم رجوعي −Kθ (اتزان)",bx,dy+34,12,"#7FB894")}
+ /* مؤقت رقمي */
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(c,24,20,232,64,10);c.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";c.strokeRect(24,20,232,64);
+ arT("I = "+toAr(IOf().toFixed(4))+"kg·m² · K = "+toAr(KOf().toFixed(3)),140,42,12,"#E8E2D0");
+ arT("T₀ نظري = "+toAr(TOf().toFixed(3))+"s",140,64,12.5,"#F0964A");
+ if(rel&&timing)arT("نوسة "+toAr(timing.n)+"/١٠ …",480,52,15,"#F0964A");
+ if(mode===2)arT("تج١: غيّر السعة فقط — القس مرتين",480,72,12,"rgba(232,226,208,0.6)");
+ if(mode===3)arT("تج٢: بعّد الكتلتين — T₂₀ > T₁₀",480,72,12,"rgba(232,226,208,0.6)");
+ if(mode===4)arT("تج٣: قصّ السلك لنصفه — T₃₀ < T₁₀",480,72,12,"rgba(232,226,208,0.6)")}
+function draw(){if(!fit())return;cx.clearRect(0,0,W,H);
+ if(view3d){drawScene3D();return}draw2D()}
+/* ═══ تحكم ═══ */
+cv.addEventListener("pointerdown",e=>{if(view3d)return;
+ const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width;
+ /* سحب القرص 2D: لف بالماوس */
+ if(Math.abs(x-640)<150){dragging=true;lastX=x;rel=false;initA()}});
+let dragging=false,lastX=0;
+cv.addEventListener("pointermove",e=>{if(!dragging||view3d)return;
+ const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width;
+ thetaStatic=clamp(thetaStatic+(x-lastX)*0.008,-amp,amp);lastX=x});
+addEventListener("pointerup",()=>{dragging=false});
+const bind=(id,vid,fmt,set)=>{$(id).oninput=e=>{set(+e.target.value);$(vid).textContent=fmt(+e.target.value)}};
+bind("l","lV",v=>toAr(v.toFixed(2))+"m",v=>{l=v;soft()});
+bind("r","rV",v=>toAr(v.toFixed(2))+"m",v=>{r=v;soft()});
+bind("amp","ampV",v=>toAr(v)+"°",v=>{amp=v*Math.PI/180;soft()});
+function soft(){rel=false;th=amp;thetaStatic=amp;prevTh=th;timing=null;
+ $("chI").textContent="I = "+toAr(IOf().toFixed(4))+"kg·m²";
+ $("chT").textContent="T₀ نظري = "+toAr(TOf().toFixed(3))+"s"}
+$("relBtn").onclick=()=>{initA();rel=true;prevTh=th;timing=null;beep(440,.08);startTiming()};
+$("stopBtn").onclick=()=>{rel=false;thetaStatic=th;timing=null};
+$("resetBtn").onclick=()=>{soft();meas=[];$("chMeas").textContent="المؤقت: —";};
+$("viewBtn").onclick=()=>{view3d=!view3d;$("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D"};
+document.querySelectorAll(".modeB").forEach(b=>b.onclick=()=>{mode=+b.dataset.m;
+ document.querySelectorAll(".modeB").forEach(x=>x.style.borderColor="");b.style.borderColor="var(--accent)";
+ $("chC").textContent=mode===2?"🎯 تج١: قس عند سعتين مختلفتين — الفرق < ٢٪":
+  mode===3?"🎯 تج٢: قس عند r ثم بعّدهما وأعد القياس":mode===4?"🎯 تج٣: قس ثم قصّ السلك لنصفه وأعد":"🎯 لُف القرص لاحظ عزمي الاتزان ثم اتركه"});
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;
+ const k=b.dataset.k,fb=$("predFb");
+ if(k==="1"){fb.className="fb good";fb.textContent="✔ صحيح — I ∝ r² ⇒ T يزداد. جرّب القياس!"}
+ else{fb.className="fb bad";fb.textContent="✘ ذكّر نفسك: T₀ = 2π√(I/K) و I يشتمل r²";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("قس T قبل وبعد — المؤقت يعمل مع كل إطلاق")},900)});
+soft();requestAnimationFrame(loop);
+</script></body></html>
