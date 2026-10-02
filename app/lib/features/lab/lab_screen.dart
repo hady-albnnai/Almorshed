@@ -156,4 +156,27 @@ String _chapterLabel(String chapterId) {
   final m = RegExp(r'^U(\d+)C(\d+)$').firstMatch(chapterId);
   if (m == null) return chapterId;
   return 'الوحدة ${m.group(1)} · الفصل ${m.group(2)}';
+  Widget _unifiedCard(
+    BuildContext context, {
+    required String keyId,
+    required bool done,
+    required String emoji,
+    required String title,
+    required String subtitle,
+    required Future<void> Function() onTap,
+  }) {
+    return Card(
+      key: Key(keyId),
+      child: ListTile(
+        leading: Text(done ? '✓' : emoji, style: const TextStyle(fontSize: 22)),
+        title: Text(title),
+        subtitle: Text(subtitle),
+        trailing: const Icon(Icons.chevron_left),
+        onTap: () async {
+          await onTap();
+          _load();
+        },
+      ),
+    );
+  }
 }

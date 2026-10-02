@@ -253,3 +253,13 @@ git ls-remote origin refs/heads/dev/self-content          # تأكيد الرأ�
 ### الدفعة 32 — الختام: القائمة ٣٦/٣٦ كلها بنمط موحد (واقعي+🧊3D بفيزياء واحدة)
 - flash-ac.html (U2-20 Ueff دارتا توأم + U2-21 R/L/C) · flash-generators.html (U2-14 مولد بميزان طاقة + U2-15 محرك باندفاع + U2-16 ذاتي بشرارة) · flash-tube.html (U2-4 مهبطي منحرف + U4-1 ألوان 4 غازات).
 - عُلّمت مربعات النجوم العشر المنفذة من البداية. الخلاصة: ٢٤ نموذج HTML يغطي ٣٦ بنداً — فيزياء حتمية، واقعي بالفضاء + 🧊3D، توقّع، تحدٍّ، شرح، أوف-لاين. جاهزة لنقل Flutter.
+
+### الدفعة 33 — نقل Flutter: النمط الموحد يدخل التطبيق (أول ٣ نماذج من ٢٠)
+- **نواة مشتركة** app/lib/core/lab/unified_lab_core.dart: P3/Proj/OrbitCam (نفس project3 المعتمد: دوران yaw→pitch، s=fov/(z+dist)، مركز w/2 وh×0.475) + نجوم حتمية LCG seed=7 + paintSpace/paintWalnutTable/paintGrid3/line3/stroke3/ring3 + ودجات ViewToggle/LabSlider + toAr.
+- **ثلاث شاشات كاملة** (بنمط faraday1_lab_screen: TrainingStore+initialData+XpRecorder، تيك فاكسد-ستيب، لمسية فوز HapticFeedback، تسجيل التحدي بـ labChallengeDays + record('labChallenge')):
+  - melde_screen.dart (U3-1): فيزياء المعتمد حرفياً v=√(FT/μ)، f₁=v/2L، رنين ±٤٪، سعة 1/√(1+(d·22)²)؛ واقعي: هزّاز/بكرة/أثقال مشقوقة/وتر متوهج/ظرف منقط؛ 3D نقاط وتر + عقد + كفة؛ تحدّي n=٣ (+١٠) بمعرف 'melde'.
+  - helmholtz_screen.dart (U2-5): r(cm)=0.45√(U/I) · PX=12؛ واقعي: ملفان بيضاويان + مسار أخضر متوهج blur + إلكترون يدور بطور 1.6؛ 3D طوقان + مدار y-z؛ تحدّي 4.0±0.3 بمعرف 'helmholtz'.
+  - airtube_screen.dart (U3-6): V=343، Ln=(2n−1)λ/4، هدير Σexp(−d²/0.35)؛ مسح 12cm/s، علامات، تحدّي L₂≈3L₁±٥٪ بمعرف 'airtube'.
+- **lab_screen.dart**: بطاقة فاراداي استُعيدت (كانت سقطت من الريموت بمسح بيئي سابق — رقعة دفعة 25 لم تصل) + ٣ بطاقات جديدة + ودجت _unifiedCard الموحد — مفاتيح lab-faraday1/lab-melde/lab-helmholtz/lab-airtube.
+- **تنبيه**: flutter/dart CLI غايبان بالبيئة — الفحص: توازن أقواس آلي 5/5 + مطابقة النمط المرجعي حرفياً + مسارات الاستيراد مضبوطة (features/lab → ../../core/lab). يلزم flutter analyze على جهاز المالك قبل الدمج النهائي.
+- **الباقي ١٧ نموذجاً**: بنفس الدورة — blvrails/oscilloscope/crookes/tutia (نجوم) ثم باقي العائلات.
