@@ -295,3 +295,11 @@ git ls-remote origin refs/heads/dev/self-content          # تأكيد الرأ�
 - genkey.dart غير متتبَّع (محلي عند المالك): `// ignore_for_file: avoid_print` بأول سطر.
 
 - **تتمة 33g**: helmholtz:367 withOpacity → withValues (كانت فاتت قائمة 33e) — صفر withOpacity بالتطبيق كله؛ port/ متزامن.
+
+### الدفعة 34 — الوحدة ١ كاملة: torsion + simple + syringe بنمط فاراداي
+- **torsion_screen.dart (U1-1..4)**: I=½MR²+2mr² (M=0.6,R=0.15,m=0.25) · K=0.1213/l · T₀=2π√(I/K) · ٤ أوضاع (اتزان θ=τ/K · تج١ سعة · تج٢ r · تج٣ l) · مؤقت ١٠ نوسات (عدّ عبور صفر) · تحدّي قياسان بسعتين تفاضلهما ≥8° وفرق دور <٢٪ (مفتاح 'torsion') · قرص نحاسي دوّار بالواقعي و3D قضيب+كتلتين.
+- **simple_screen.dart (U1-5)**: θ¨=−(g/l)sinθ (g=9.81) · إطلاق/إمساك · مؤقت ١٠ نوسات · تحدّي نسبة دورين ٢٫٠±٠٫١ (l ثم ٤l) بمفتاح 'simple' · مسطرة جدارية + قوس سعة + 3D.
+- **syringe_screen.dart (U1-6)**: Am=176mm² · An=πd²/4 · vJet=min(11,F·0.42·An·40/(An·40+(0.05/d²)·14)) · Q=vJet·An/1000 · دفع/سحب/توقف · تدريج ٢٠ml وسائل متحرك ونفاثة قطرات · تحدّي ٥ml خلال ≤٣s بـF≤٢٥N بمفتاح 'syringe' · 3D أسطوانة+مكبس متحرك.
+- **lab_screen.dart**: ١١ بطاقة موحدة — وإزالة 'torsion' من labExperiments القديمة (كانت ستسبب تضارب Key('lab-torsion') وانهياراً).
+- درس بنية: خيارات التوقّع بنمط `Text(const [...][oi])` حصراً — `const [Text(..)..][oi]` أفقد قوساً (اكتُشف وعولج قبل الدفع).
+- **الباقي ١٠ نماذج**: blvrails · fcoil · generators · induct · mstat · ac · strings · spring · tube · (+faraday3d مدموج فعلياً بفاراداي1).
