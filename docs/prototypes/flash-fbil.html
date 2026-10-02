@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>القوة المغناطيسية على سلك — U2-6/7 نموذج موحّد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button:active{transform:scale(.97)}
+.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:130px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700;animation:fxpop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fxpop{0%{transform:scale(.55)}100%{transform:scale(1)}}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:520px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🧲 U2-6/7 · القوة على سلك يمر به تيار <span class="badge">F = BIL + دولاب بارلو · نموذج موحّد — واقعي + 🧊3D</span></h1>
+<div class="sub">سلك بين قطبي مغناطيس وقرص بارلو الدوّار — اتجاه القوة يتبع قاعدة اليد اليمنى · اسحب الخلفية بالـ3D</div>
+<div class="panel scenewrap"><canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">السلك يدفع للأعلى. اقلبنا اتجاه التيار I فقط — ماذا يحدث للقوة؟</div>
+<button data-k="1">تتباعد — تنعكس للأسفل</button><button data-k="2">تبقى للأعلى — الشدة لم تتغير</button><button data-k="3">تصف — يعلق السلك</button><div class="fb" id="predFb"></div></div></div></div>
+<div class="panel"><div class="ctrl">
+<span class="chip">الوضع:</span>
+<button class="modeB" data-m="1" id="mB1">U2-6 · سلك بين قطبين</button>
+<button class="modeB" data-m="2" id="mB2">U2-7 · دولاب بارلو</button>
+</div><div class="ctrl">
+<span class="slider">التيار I <input type="range" id="I" min="0" max="6" step="0.5" value="3"><b id="IV">٣٫٠A</b></span>
+<span class="slider">الحقل B <input type="range" id="B" min="0.2" max="1.2" step="0.1" value="0.8"><b id="BV">٠٫٨T</b></span>
+</div><div class="ctrl">
+<button id="viewBtn">🧊 منظور 3D</button>
+<button id="flipIBtn">⇄ قلب I</button><button id="flipBBtn">⇄ قلب B</button><button id="resetBtn">↺ إعادة</button></div></div>
+<div class="panel"><span class="chip" id="chF">F = BIL = —</span><span class="chip" id="chDir">الاتجاه: —</span><span class="chip" id="chRpm" style="display:none">rpm: —</span><span class="chip" id="chC">🎯 أظهر انعكاس القوة بقلب I وحده (لأعلى ⇄ لأسفل)</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">F = B·I·L &nbsp;·&nbsp; القوة ⊥ B ⊥ I (قاعدة اليد اليمنى)</div><ul>
+<li>قلب I وحده أو B وحده ينقلب اتجاه F — قلبهما معاً يبقيه (جرّب!).</li>
+<li>شدّة القوة خطية: مضاعفة I تضاعف F — السلك الأطول في الحقل يقوى.</li>
+<li>بارلو: نفس القوة على أذرع القرص تعمل عزماً — قلب القطبية ينعكس الدوران. أول محرك كهربائي!</li></ul></div></div>
+<div class="note">قاعدة اليد اليمنى: I بالسبابة، B بالوسطى (من N)، F بالإبهام · حتمية · بلا شبكة.</div>
+</div><div id="toast"></div><div id="fatal"></div>
+<script>window.onerror=function(m,src,l){var e=document.getElementById("fatal");if(e){e.style.display="block";e.textContent="خطأ: "+m+" @"+l}return false};</script>
+<script>
+"use strict";
+const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* ═══ الفيزياء ═══ */
+let mode=1,I=3,B=0.8,iD=1,bD=1,t=0,won=false,started=false;
+const L=0.08;
+const Fof=()=>I*B*L*iD*bD;
+let wy=0,wv=0; /* انحراف السلك */
+let phi=0,om=0; /* بارلو */
+const STEP=1/240;let acc=0,last=performance.now();
+let AC=null;function initA(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;o.type="sine";g.gain.value=.06;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+function toast(s){const el=$("toast");el.textContent=s;el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2400)}
+let sawUp=false,sawDown=false,dirBefore=0,dirAfter=0,won2=false;
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;
+ while(acc>=STEP){acc-=STEP;t+=STEP;
+  const F=Fof();
+  if(mode===1){const target=started?F*130:0;const a=(target-wy)*30-8*wv;wv+=a*STEP;wy+=wv*STEP;
+   if(F>0.05)sawUp=true;if(F<-0.05)sawDown=true;
+   if(sawUp&&sawDown&&!won){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 رأيت الانعكاس بقلب I (+١٠)")}}
+  else{const tau=I*B*0.06*iD*bD-0.02*om;om+=tau*STEP*22;phi+=om*STEP;
+   if(dirBefore===0&&Math.abs(om)>0.5)dirBefore=Math.sign(om);
+   else if(dirBefore!==0&&Math.sign(om)!==dirBefore&&Math.abs(om)>0.5&&!won2){won2=true;dirAfter=Math.sign(om);
+    $("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 انعكس الدوران بقلب القطبية (+١٠)")}}
+ }
+ updChips();draw();requestAnimationFrame(loop)}
+function updChips(){const F=Fof();
+ $("chF").textContent="F = BIL = "+toAr(Math.abs(F).toFixed(3))+"N";
+ if(mode===1){$("chDir").textContent="الاتجاه: "+(Math.abs(F)<0.01?"—":F>0?"لأعلى ↑":"لأسفل ↓")}
+ else{$("chDir").textContent="الاتجاه: "+(Math.abs(om)<0.05?"متوقف":om>0?"عقارب الساعة ↻":"عكس العقارب ↺");
+  $("chRpm").style.display="";$("chRpm").textContent="rpm = "+toAr(Math.abs(om*60/6.283).toFixed(0));}
+ if(F>0.02&&!started){started=true;$("exp").classList.remove("locked")}}
+/* ═══ المحرك 3D ═══ */
+var view3d=false;const cam3={yaw:-0.5,pitch:0.3,dist:640,fov:640};
+let orbiting=false,_oX=0,_oY=0;
+function project3(p){const cy=Math.cos(cam3.yaw),sy=Math.sin(cam3.yaw),cp=Math.cos(cam3.pitch),sp=Math.sin(cam3.pitch);
+ const x=p.x*cy+p.z*sy,z=-p.x*sy+p.z*cy,y=p.y;const y2=y*cp-z*sp,z2=y*sp+z*cp;const dz=z2+cam3.dist,s=cam3.fov/dz;
+ return{x:480+x*s,y:210-y2*s,s:s,z:dz}}
+function line3(c,a,b,col,w){const pa=project3(a),pb=project3(b);c.strokeStyle=col;c.lineWidth=Math.max(.4,w*(pa.s/cam3.fov)*640*.7);c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+function stroke3(c,pts,col,w,cl){c.strokeStyle=col;c.lineWidth=w;c.lineJoin="round";c.beginPath();pts.forEach((p,i)=>{const q=project3(p);i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)});if(cl)c.closePath();c.stroke()}
+function ring3(c,xx,rr,col,w){const pts=[];for(let i=0;i<=40;i++){const a=i/40*6.283;pts.push({x:xx,y:Math.cos(a)*rr,z:Math.sin(a)*rr})}stroke3(c,pts,col,w,true)}
+function spaceBg3(c){const g2=c.createLinearGradient(0,0,0,H);g2.addColorStop(0,"#0C1017");g2.addColorStop(1,"#05070B");c.fillStyle=g2;c.fillRect(0,0,W,H);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*W,sy=sr()*H*.72;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}}
+function arT3(c,s,x,y,size,col){c.fillStyle=col;c.font=size+"px Tahoma,Arial";c.textAlign="center";c.direction="rtl";c.fillText(s,x,y);c.direction="ltr"}
+cv.addEventListener("pointerdown",e=>{if(!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;orbiting=true;_oX=x;_oY=y;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener("pointermove",e=>{if(!orbiting||!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;cam3.yaw+=(x-_oX)*.006;cam3.pitch=clamp(cam3.pitch+(y-_oY)*.006,-0.05,1.0);_oX=x;_oY=y});
+addEventListener("pointerup",()=>{orbiting=false});
+cv.addEventListener("wheel",e=>{if(!view3d)return;e.preventDefault();cam3.dist=clamp(cam3.dist*(1+e.deltaY*.001),380,900)},{passive:false});
+function drawScene3D(){const c=cx;spaceBg3(c);
+ for(let x=-380;x<=380;x+=76)line3(c,{x:x,y:-150,z:-300},{x:x,y:-150,z:300},"rgba(205,215,230,0.13)",1);
+ for(let z=-300;z<=300;z+=75)line3(c,{x:-380,y:-150,z:z},{x:380,y:-150,z:z},"rgba(205,215,230,0.13)",1);
+ if(mode===1){
+  /* قطبا المغناطيس + قوسه */
+  const P=64;
+  stroke3(c,[{x:-120,y:60,z:-P},{x:-120,y:-60,z:-P},{x:-120,y:-60,z:P},{x:-120,y:60,z:P}],"-120"?"rgba(178,58,52,0.95)":null,8);/*N يسار*/
+  stroke3(c,[{x:120,y:60,z:-P},{x:120,y:-60,z:-P},{x:120,y:-60,z:P},{x:120,y:60,z:P}],"rgba(62,111,168,0.95)",8);/*S يمين*/
+  for(const s of[-1,1]){const xx=s*120;
+   stroke3(c,[{x:xx,y:60,z:-P},{x:xx+0.01,y:60,z:-P}],s<0?"rgba(178,58,52,0.95)":"rgba(62,111,168,0.95)",9,true);
+   const q1=project3({x:xx,y:64,z:0});arT3(c,s<0?"N":"S",q1.x,q1.y-14,15,s<0?"#FFD9CE":"#CFE3F7")}
+  /* قوس خلفي */
+  for(let k=0;k<8;k++){const a=(k+0.5)/8*Math.PI;const x0=-120*Math.cos(a),y0=60+150*Math.sin(a);
+   line3(c,{x:x0,y:y0,z:-P},{x:x0,y:y0,z:P},k%2?"rgba(178,58,52,0.7)":"rgba(150,40,30,0.7)",8)}
+  /* السلك الفضي بين القطبين يتحرك بwy */
+  const yw=10-wy*0.5;
+  line3(c,{x:-110,y:yw,z:0},{x:110,y:yw,z:0},"#D9D9D4",6);
+  /* سهم القوة */
+  if(Math.abs(Fof())>0.01){const dF=Math.sign(Fof());
+   line3(c,{x:0,y:yw,z:0},{x:0,y:yw+dF*(30+Math.abs(wy)*0.35),z:0},"rgba(240,150,74,0.95)",5);
+   const ap=project3({x:0,y:yw+dF*(30+Math.abs(wy)*0.35),z:0});
+   c.fillStyle="rgba(240,150,74,0.95)";c.beginPath();c.moveTo(ap.x,ap.y+(dF>0?-9:9));c.lineTo(ap.x-7,ap.y);c.lineTo(ap.x+7,ap.y);c.closePath();c.fill()}
+ }else{
+  /* قرص بارلو يدور */
+  const R=110;const cs=Math.cos(phi),sn=Math.sin(phi);
+  ring3(c,0,R,"rgba(205,160,90,0.9)",4);
+  for(let k=0;k<4;k++){const a=phi+k*Math.PI/2;
+   line3(c,{x:0,y:10,z:0},{x:0,y:10+Math.cos(a)*R,z:Math.sin(a)*R},"rgba(205,160,90,0.55)",3)}
+  line3(c,{x:0,y:10,z:-16},{x:0,y:10,z:16},"rgba(200,200,195,0.9)",6);
+  /* قطبا المغناطيس حول القاع */
+  for(const s of[-1,1]){const xx=s*46;
+   stroke3(c,[{x:xx,y:-140,z:-56},{x:xx,y:-66,z:-56},{x:xx,y:-66,z:56},{x:xx,y:-140,z:56}],s<0?"rgba(178,58,52,0.9)":"rgba(62,111,168,0.9)",7,true);
+   const q1=project3({x:xx,y:-70,z:0});arT3(c,s<0?"N":"S",q1.x,q1.y-10,14,s<0?"#FFD9CE":"#CFE3F7")}
+  /* سهم دوران */
+  if(Math.abs(om)>0.1){const dd=Math.sign(om);c.strokeStyle="rgba(240,150,74,0.9)";c.lineWidth=3;
+   const p0=project3({x:0,y:10,z:0});c.beginPath();
+   c.arc(p0.x,p0.y,R*0.72*p0.s/cam3.fov*640*0.7,dd>0?-1.1:2.0,dd>0?1.4:4.5,dd<0);c.stroke()}
+ }
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(cx,16,12,250,64,10);cx.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";cx.strokeRect(16,12,250,64);
+ arT3(c,"F = "+toAr(Math.abs(Fof()).toFixed(3))+"N · I = "+toAr(I.toFixed(1))+"A · B = "+toAr(B.toFixed(1))+"T",141,34,12,"#E8E2D0");
+ arT3(c,iD*bD>0?"F باتجاه اليد اليمنى (+)":"F معكوس (−) — انعكاس!",141,56,12,"#F0964A");
+ arT3(c,"اسحب الخلفية لتدوير الكاميرا",480,H-12,12,"rgba(205,198,182,0.5)")}
+/* ═══ 2D واقعي ═══ */
+function drawRoom(){const c=cx;
+ const wall=c.createLinearGradient(0,0,0,320);wall.addColorStop(0,"#0C1017");wall.addColorStop(1,"#05070B");
+ c.fillStyle=wall;c.fillRect(0,0,W,320);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*960,sy=sr()*298;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}
+ c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,W,20);
+ const wood=c.createLinearGradient(0,321,0,440);wood.addColorStop(0,"#2E2114");wood.addColorStop(1,"#160F08");
+ c.fillStyle=wood;c.fillRect(0,321,W,119);c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,W,2)}
+function draw2D(){const c=cx;drawRoom();
+ if(mode===1){
+  /* حدوة حذاء مدرسية: قطبان + قوس */
+  const gy=310,NX=360,SX=600;
+  c.fillStyle="rgba(30,15,5,0.5)";c.beginPath();c.ellipse((NX+SX)/2,320,150,12,0,0,7);c.fill();
+  /* قوس الخلفية */
+  c.lineWidth=34;c.strokeStyle="#B3372B";c.lineCap="round";
+  c.beginPath();c.arc(480,180,150,Math.PI*0.98,Math.PI*2.02);c.stroke();
+  /* القطبان */
+  const pn=c.createLinearGradient(NX-17,0,NX+17,0);pn.addColorStop(0,"#8C281D");pn.addColorStop(.5,"#CE4436");pn.addColorStop(1,"#8C281D");
+  c.fillStyle=pn;roundRect(c,NX-17,150,34,170,6);c.fill();
+  const ps=c.createLinearGradient(SX-17,0,SX+17,0);ps.addColorStop(0,"#24497C");ps.addColorStop(.5,"#3E6FA8");ps.addColorStop(1,"#24497C");
+  c.fillStyle=ps;roundRect(c,SX-17,150,34,170,6);c.fill();
+  arT("N",NX,142,16,"#FFD9CE");arT("S",SX,142,16,"#CFE3F7");
+  /* نافذة الحقل */
+  c.fillStyle="rgba(240,150,74,0.06)";c.fillRect(NX+17,150,SX-NX-34,170);
+  /* السلك المعلق بخيوط من حامل */
+  const yw=228-wy;
+  c.fillStyle="#8F8F8A";c.fillRect(700,96,10,224);
+  c.fillStyle="#3A3A38";roundRect(c,680,88,50,14,4);c.fill();
+  c.strokeStyle="rgba(210,205,190,0.8)";c.lineWidth=1.4;
+  c.beginPath();c.moveTo(705,102);c.lineTo(560,yw);c.stroke();
+  c.beginPath();c.moveTo(705,102);c.lineTo(400,yw);c.stroke();
+  c.strokeStyle="#D9D9D4";c.lineWidth=6;c.lineCap="round";
+  c.beginPath();c.moveTo(370,yw);c.lineTo(590,yw);c.stroke();c.lineCap="butt";
+  /* سهم القوة */
+  if(Math.abs(Fof())>0.01){const dF=-Math.sign(Fof());const fl=20+Math.abs(wy)*0.45;
+   c.strokeStyle="rgba(240,150,74,0.95)";c.lineWidth=4.5;
+   c.beginPath();c.moveTo(480,yw+10);c.lineTo(480,yw+10+dF*fl);c.stroke();
+   c.fillStyle="rgba(240,150,74,0.95)";c.beginPath();c.moveTo(480,yw+10+dF*(fl+9));c.lineTo(474,yw+10+dF*fl);c.lineTo(486,yw+10+dF*fl);c.closePath();c.fill();
+   arT("F = "+toAr(Math.abs(Fof()).toFixed(2))+"N",480,yw+10+dF*(fl+24),13,"#F0964A")}
+  arT("I = "+toAr(I.toFixed(1))+"A · B = "+toAr(B.toFixed(1))+"T",480,52,12.5,"#E8E2D0");
+  arT(iD*bD>0?"قلبت I وB معاً — الاتجاه بقى":"انعكاس القوة!",480,72,12,iD*bD>0?"rgba(232,226,208,0.6)":"#F0964A");
+ }else{
+  /* دولاب بارلو */
+  const BX=430,BY=225,R=118;
+  c.fillStyle="rgba(30,15,5,0.5)";c.beginPath();c.ellipse(BX,342,150,11,0,0,7);c.fill();
+  /* حامل */
+  c.fillStyle="#1E1B16";roundRect(c,BX-70,334,140,12,3);c.fill();
+  c.fillStyle="#8F8F8A";c.fillRect(BX-5,282,10,54);
+  /* مغناطيس U يلف قاع القرص */
+  c.lineWidth=26;c.strokeStyle="#B3372B";c.lineCap="round";
+  c.beginPath();c.arc(BX,238,R+34,Math.PI*0.32,Math.PI*0.68);c.stroke();
+  const pn=c.createLinearGradient(BX-R-26,0,BX-R+26,0);pn.addColorStop(0,"#8C281D");pn.addColorStop(1,"#CE4436");
+  c.fillStyle=pn;roundRect(c,BX-R-30,272,30,52,6);c.fill();
+  const ps=c.createLinearGradient(BX+R-26,0,BX+R+26,0);ps.addColorStop(0,"#3E6FA8");ps.addColorStop(1,"#24497C");
+  c.fillStyle=ps;roundRect(c,BX+R,272,30,52,6);c.fill();
+  arT("N",BX-R-15,266,13,"#FFD9CE");arT("S",BX+R+15,266,13,"#CFE3F7");
+  /* القرص بأذرعه الدوارة */
+  c.save();c.shadowColor="rgba(205,160,90,0.55)";c.shadowBlur=10;
+  c.strokeStyle="#C89A5A";c.lineWidth=9;c.beginPath();c.arc(BX,BY,R,0,7);c.stroke();c.restore();
+  c.strokeStyle="rgba(205,160,90,0.4)";c.lineWidth=4;c.beginPath();c.arc(BX,BY,R-16,0,7);c.stroke();
+  for(let k=0;k<4;k++){const a=phi+k*Math.PI/2;
+   c.strokeStyle="rgba(205,160,90,0.6)";c.lineWidth=4.5;
+   c.beginPath();c.moveTo(BX+Math.cos(a)*14,BY+Math.sin(a)*14);c.lineTo(BX+Math.cos(a)*(R-6),BY+Math.sin(a)*(R-6));c.stroke()}
+  c.fillStyle="#8F8F8A";c.beginPath();c.arc(BX,BY,13,0,7);c.fill();
+  c.fillStyle="#3A3A38";c.beginPath();c.arc(BX,BY,5,0,7);c.fill();
+  /* سهم الدوران */
+  if(Math.abs(om)>0.1){const dd=Math.sign(om);
+   c.strokeStyle="rgba(240,150,74,0.9)";c.lineWidth=3.5;
+   c.beginPath();c.arc(BX,BY,R*0.45,dd>0?-1.2:2.2,dd>0?1.0:4.6,dd<0);c.stroke()}
+  arT("بارلو — أول محرك كهربائي",BX,58,12.5,"rgba(232,226,208,0.65)");
+  arT("ω = "+toAr(Math.abs(om*60/6.283).toFixed(0))+"rpm · اتجاه: "+(om>0?"↻":"↺"),BX,78,12.5,"#F0964A");
+ }
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(c,24,20,250,64,10);c.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";c.strokeRect(24,20,250,64);
+ arT("F = BIL = "+toAr(Math.abs(Fof()).toFixed(3))+"N",149,42,12.5,"#E8E2D0");
+ arT("iD="+(iD>0?"+١":"−١")+" · bD="+(bD>0?"+١":"−١")+" · L=٨cm",149,64,11.5,"rgba(232,226,208,0.75)")}
+function draw(){if(!fit())return;cx.clearRect(0,0,W,H);
+ if(view3d){drawScene3D();return}draw2D()}
+/* ═══ تحكم ═══ */
+const bind=(id,vid,fmt,set)=>{$(id).oninput=e=>{set(+e.target.value);$(vid).textContent=fmt(+e.target.value)}};
+bind("I","IV",v=>toAr(v.toFixed(1))+"A",v=>I=v);
+bind("B","BV",v=>toAr(v.toFixed(1))+"T",v=>B=v);
+$("flipIBtn").onclick=()=>{initA();iD=-iD;beep(330,.08)};
+$("flipBBtn").onclick=()=>{initA();bD=-bD;beep(330,.08)};
+$("resetBtn").onclick=()=>{iD=1;bD=1;wy=0;wv=0;phi=0;om=0;sawUp=sawDown=false;won2=false;dirBefore=0;
+ $("chDone").style.display="";$("chDone").classList.remove("ok");won=false};
+document.querySelectorAll(".modeB").forEach(b=>b.onclick=()=>{mode=+b.dataset.m;
+ document.querySelectorAll(".modeB").forEach(x=>x.style.borderColor="");b.style.borderColor="var(--accent)";
+ $("chRpm").style.display=mode===2?"":"none";
+ $("chC").textContent=mode===1?"🎯 أظهر انعكاس القوة بقلب I وحده (لأعلى ⇄ لأسفل)":"🎯 شغّل القرص ثم اقلب القطبية — ينعكس الدوران"});
+$("viewBtn").onclick=()=>{view3d=!view3d;$("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D"};
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;
+ const k=b.dataset.k,fb=$("predFb");
+ if(k==="1"){fb.className="fb good";fb.textContent="✔ صحيح — F ∝ I×B: قلب I يعكس F. اقلب فعلاً وشاهد!"}
+ else{fb.className="fb bad";fb.textContent="✘ F = BIL: الاتجاه يعتمد إشارة I×B — قلب I ينعكسه";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("اقلب I ولاحظ السلك يهبط للجهة الأخرى")},900)});
+requestAnimationFrame(loop);
+</script></body></html>

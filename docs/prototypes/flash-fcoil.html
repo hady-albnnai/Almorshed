@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>السكتان والإطار — U2-8/9 نموذج موحّد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button:active{transform:scale(.97)}
+.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:130px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700;animation:fxpop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fxpop{0%{transform:scale(.55)}100%{transform:scale(1)}}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:520px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>⚡ U2-8/9 · السكتان المتدحرجتان + الإطار المستطيل <span class="badge">نموذج موحّد — واقعي + 🧊3D</span></h1>
+<div class="sub">تيار متعاكس في سكتتين ⇒ قوتان متعاكستان · إطار بمحور فتل ينحرف بزاوية NIAB/K · اسحب الخلفية بالـ3D</div>
+<div class="panel scenewrap"><canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">التيار يعبر السكتتين باتجاهين متعاكسين في حقل B واحد. كيف تتحركان؟</div>
+<button data-k="1">بنفس الاتجاه</button><button data-k="2">باتجاهين متعاكسين — تتباعدان</button><button data-k="3">لا تتحركان</button><div class="fb" id="predFb"></div></div></div></div>
+<div class="panel"><div class="ctrl">
+<span class="chip">الوضع:</span>
+<button class="modeB" data-m="1" id="mB1">U2-8 · السكتان المتدحرجتان</button>
+<button class="modeB" data-m="2" id="mB2">U2-9 · الإطار بسلك فتل</button>
+</div><div class="ctrl">
+<span class="slider">التيار I <input type="range" id="I" min="0" max="8" step="0.5" value="4"><b id="IV">٤٫٠A</b></span>
+<span class="slider">الحقل B <input type="range" id="B" min="0.2" max="1.2" step="0.1" value="0.8"><b id="BV">٠٫٨T</b></span>
+<span class="slider">اللفات N <input type="range" id="N" min="5" max="20" step="1" value="10"><b id="NV">١٠</b></span>
+</div><div class="ctrl">
+<button id="viewBtn">🧊 منظور 3D</button>
+<button id="goBtn">⚡ وصل التيار</button><button id="flipIBtn">⇄ قلب I</button><button id="flipBBtn">⇄ قلب B</button><button id="resetBtn">↺ إعادة</button></div></div>
+<div class="panel"><span class="chip" id="chF">F لكل سكتة = —</span><span class="chip" id="chW">العمل W = —</span><span class="chip" id="chAng" style="display:none">الانحراف: —</span><span class="chip" id="chC">🎯 أظهر الحركتين المتعاكستين ثم عكسهما بقلب B</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">F = B·I·L &nbsp;·&nbsp; W = F·d &nbsp;·&nbsp; الإطار: tan… φ من K·φ = N·I·A·B·cosφ</div><ul>
+<li>التيار في السكتتين متعاكس (دارة واحدة) وB واحد ⇒ القوتان متعاكستان: تتباعدان أو تقرّبان.</li>
+<li>قلب B أو I يعكس الحركة — العمل W=F·d يقاس من المسافة المقطوعة.</li>
+<li>الإطار: عزم القوى يلفه حتى يوزنه عزم الفتل — القياس أساس أجهزة القياس المغناطيسية.</li></ul></div></div>
+<div class="note">السكتان: تدحرج حقيقي (علامات تدور) · الإطار: زاوية اتزان من عزمين · حتمية · بلا شبكة.</div>
+</div><div id="toast"></div><div id="fatal"></div>
+<script>window.onerror=function(m,src,l){var e=document.getElementById("fatal");if(e){e.style.display="block";e.textContent="خطأ: "+m+" @"+l}return false};</script>
+<script>
+"use strict";
+const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* ═══ الفيزياء ═══ */
+let mode=1,I=4,B=0.8,N=10,iD=1,bD=1,on=false,t=0,won=false,started=false;
+const Lsk=0.1; /* طول السكتة الفعال m */
+const Fsk=()=>on?I*B*Lsk*iD*bD:0;
+let x1=0,v1=0,r1=0,x2=0,v2=0,r2=0; /* سكتتان: مواضع/سرعات/دوران تدحرج */
+let wsum=0;
+let phA=0,phV=0; /* الإطار */
+const Kt=0.02,Afr=0.006,Jfr=0.5;
+const phiEq=()=>on?N*I*Afr*B*iD*bD/Kt:0;
+const STEP=1/240;let acc=0,last=performance.now();
+let AC=null;function initA(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function beep(fq,d){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=fq;o.type="sine";g.gain.value=.06;g.gain.exponentialRampToValueAtTime(1e-4,AC.currentTime+d);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+d+.02)}
+function toast(s){const el=$("toast");el.textContent=s;el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2400)}
+let extSeen=0,sepSeen=0;
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;
+ while(acc>=STEP){acc-=STEP;t+=STEP;
+  const F=Fsk();
+  if(mode===1){const a=F*180; /* قوة بكسل مقياس */
+   v1+=a*STEP;x1+=v1*STEP;r1+=v1*STEP/9;
+   v2-=a*STEP;x2-=v2*STEP;r2-=v2*STEP/9;
+   x1=clamp(x1,-150,150);x2=clamp(x2,-150,150);
+   wsum+=Math.abs(F*(Math.abs(v1)+Math.abs(v2))*0.5)*STEP*0.1;
+   if(Math.abs(a)>1){if(a>0)extSeen=1;else sepSeen=1;}
+   if(extSeen&&sepSeen&&!won){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 رأيت الاتجاهين المتعاكسين (+١٠)")}}
+  else{const a=(phiEq()-phA)*22-6*phV;phV+=a*STEP;phA+=phV*STEP;
+   if(Math.abs(phiEq())>0.05&&!started){started=true;$("exp").classList.remove("locked")}}
+ }
+ updChips();draw();requestAnimationFrame(loop)}
+function updChips(){const F=Fsk();
+ $("chF").textContent="F لكل سكتة = "+toAr(Math.abs(F).toFixed(3))+"N"+(mode===1?(F>0?" (تباعد)":" (تقارب)"):"");
+ $("chW").textContent="العمل المبذول W = "+toAr(wsum.toFixed(3))+"J";
+ if(mode===2){$("chAng").style.display="";$("chAng").textContent="الانحراف φ = "+toAr((phA*180/Math.PI).toFixed(1))+"° (اتزان "+toAr((phiEq()*180/Math.PI).toFixed(1))+"°)"}}
+/* ═══ المحرك 3D ═══ */
+var view3d=false;const cam3={yaw:-0.5,pitch:0.3,dist:640,fov:640};
+let orbiting=false,_oX=0,_oY=0;
+function project3(p){const cy=Math.cos(cam3.yaw),sy=Math.sin(cam3.yaw),cp=Math.cos(cam3.pitch),sp=Math.sin(cam3.pitch);
+ const x=p.x*cy+p.z*sy,z=-p.x*sy+p.z*cy,y=p.y;const y2=y*cp-z*sp,z2=y*sp+z*cp;const dz=z2+cam3.dist,s=cam3.fov/dz;
+ return{x:480+x*s,y:210-y2*s,s:s,z:dz}}
+function line3(c,a,b,col,w){const pa=project3(a),pb=project3(b);c.strokeStyle=col;c.lineWidth=Math.max(.4,w*(pa.s/cam3.fov)*640*.7);c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+function stroke3(c,pts,col,w,cl){c.strokeStyle=col;c.lineWidth=w;c.lineJoin="round";c.beginPath();pts.forEach((p,i)=>{const q=project3(p);i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)});if(cl)c.closePath();c.stroke()}
+function ring3(c,xx,rr,col,w){const pts=[];for(let i=0;i<=40;i++){const a=i/40*6.283;pts.push({x:xx,y:Math.cos(a)*rr,z:Math.sin(a)*rr})}stroke3(c,pts,col,w,true)}
+function spaceBg3(c){const g2=c.createLinearGradient(0,0,0,H);g2.addColorStop(0,"#0C1017");g2.addColorStop(1,"#05070B");c.fillStyle=g2;c.fillRect(0,0,W,H);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*W,sy=sr()*H*.72;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}}
+function arT3(c,s,x,y,size,col){c.fillStyle=col;c.font=size+"px Tahoma,Arial";c.textAlign="center";c.direction="rtl";c.fillText(s,x,y);c.direction="ltr"}
+cv.addEventListener("pointerdown",e=>{if(!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;orbiting=true;_oX=x;_oY=y;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener("pointermove",e=>{if(!orbiting||!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;cam3.yaw+=(x-_oX)*.006;cam3.pitch=clamp(cam3.pitch+(y-_oY)*.006,-0.05,1.0);_oX=x;_oY=y});
+addEventListener("pointerup",()=>{orbiting=false});
+cv.addEventListener("wheel",e=>{if(!view3d)return;e.preventDefault();cam3.dist=clamp(cam3.dist*(1+e.deltaY*.001),380,900)},{passive:false});
+function drawScene3D(){const c=cx;spaceBg3(c);
+ for(let x=-380;x<=380;x+=76)line3(c,{x:x,y:-150,z:-300},{x:x,y:-150,z:300},"rgba(205,215,230,0.13)",1);
+ for(let z=-300;z<=300;z+=75)line3(c,{x:-380,y:-150,z:z},{x:380,y:-150,z:z},"rgba(205,215,230,0.13)",1);
+ if(mode===1){
+  /* قضيبان موازيان بالعمق + سكتتان تتدحرجان عرضياً */
+  const zA=-90,zB=90;
+  line3(c,{x:-280,y:-40,z:zA},{x:280,y:-40,z:zA},"rgba(205,160,90,0.95)",5);
+  line3(c,{x:-280,y:-40,z:zB},{x:280,y:-40,z:zB},"rgba(205,160,90,0.95)",5);
+  for(const[xx,rr,sign]of[[x1,26,1],[x2,26,-1]]){
+   line3(c,{x:xx,y:-14,z:zA},{x:xx,y:-14,z:zB},"#D9D9D4",9);
+   /* علامة تدحرج */
+   const a=rr;const zz=34*Math.sin(a)*sign;
+   line3(c,{x:xx+Math.cos(a)*18*sign,y:-14,z:zz*0.6},{x:xx-Math.cos(a)*18*sign,y:-14,z:-zz*0.6},"rgba(90,85,80,0.9)",2.5)}
+  /* F أسهم */
+  const F=Fsk();
+  if(Math.abs(F)>0.01){
+   for(const[xx,sg]of[[x1,1],[x2,-1]]){const dd=Math.sign(F)*sg;
+    line3(c,{x:xx,y:20,z:0},{x:xx+dd*46,y:20,z:0},"rgba(240,150,74,0.95)",4.5);
+    const ap=project3({x:xx+dd*52,y:20,z:0});
+    c.fillStyle="rgba(240,150,74,0.95)";c.beginPath();c.moveTo(ap.x+dd*8,ap.y);c.lineTo(ap.x-dd*2,ap.y-6);c.lineTo(ap.x-dd*2,ap.y+6);c.closePath();c.fill()}}
+  /* B نقاط خارجة */
+  for(let k=0;k<7;k++){const px=-240+k*80;const p=project3({x:px,y:66,z:0});
+   c.fillStyle="rgba(120,160,220,0.65)";c.beginPath();c.arc(p.x,p.y,2.6,0,7);c.fill()}
+  arT3(c,"B خارجة من الشاشة (·) · التيار متعاكس بالسكتتين",480,52,12.5,"rgba(232,226,208,0.75)");
+ }else{
+  /* إطار مستطيل بمحور ينحرف بphA */
+  const rr=70,hl=95,yy=0;
+  const a=phA;
+  const cs=Math.cos(a);
+  /* المحور */
+  line3(c,{x:0,y:150,z:0},{x:0,y:yy,z:0},"rgba(200,200,195,0.9)",5);
+  /* الإطار: جانبان بلون نحاسي يدوران حول المحور z=0 محلياً */
+  const f1=[{x:-rr*cs,y:yy,z:-rr*Math.sin(a)},{x:-rr*cs,y:yy+hl,z:-rr*Math.sin(a)}];
+  const f2=[{x:rr*cs,y:yy,z:rr*Math.sin(a)},{x:rr*cs,y:yy+hl,z:rr*Math.sin(a)}];
+  stroke3(c,[f1[0],f1[1],f2[1],f2[0]],"rgba(205,160,90,0.95)",4,true);
+  line3(c,{x:0,y:yy,z:0},{x:0,y:yy+hl,z:0},"rgba(205,160,90,0.5)",2);
+  /* قطبان منحنيان يحتضنان */
+  for(const s of[-1,1]){const pts=[];for(let k=0;k<=14;k++){const aa=s>0?(k/14)*1.5+0.3:(k/14)*-1.5-0.3;
+    pts.push({x:Math.cos(aa)*150,y:yy+40+Math.sin(aa)*150})}
+   stroke3(c,pts,s>0?"rgba(178,58,52,0.85)":"rgba(62,111,168,0.85)",9)}
+  const pN=project3({x:150*Math.cos(1.0),y:yy+40+150*Math.sin(1.0),z:0});arT3(c,"N",pN.x,pN.y-10,14,"#FFD9CE");
+  const pS=project3({x:-150*Math.cos(1.0),y:yy+40+150*Math.sin(1.0),z:0});arT3(c,"S",pS.x,pS.y-10,14,"#CFE3F7");
+  /* مقياس قوس أعلى */
+  c.strokeStyle="rgba(230,228,220,0.35)";c.lineWidth=2;
+  const p0=project3({x:0,y:150,z:0});
+  c.beginPath();c.arc(p0.x,p0.y,64,-Math.PI/2-1,-Math.PI/2+1);c.stroke();
+  const na=-Math.PI/2+clamp(phA,-1,1);
+  c.strokeStyle="#E86A4A";c.lineWidth=3;c.beginPath();
+  c.moveTo(p0.x,p0.y);c.lineTo(p0.x+Math.cos(na)*58,p0.y+Math.sin(na)*58);c.stroke();
+ }
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(cx,16,12,260,64,10);cx.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";cx.strokeRect(16,12,260,64);
+ arT3(c,"I = "+toAr(I.toFixed(1))+"A · B = "+toAr(B.toFixed(1))+"T"+(mode===2?" · N = "+toAr(N):""),146,34,12,"#E8E2D0");
+ arT3(c,mode===1?"W = "+toAr(wsum.toFixed(3))+"J":"φ اتزان ∝ N·I·A·B",146,56,12,"#F0964A");
+ arT3(c,"اسحب الخلفية لتدوير الكاميرا",480,H-12,12,"rgba(205,198,182,0.5)")}
+/* ═══ 2D واقعي ═══ */
+function drawRoom(){const c=cx;
+ const wall=c.createLinearGradient(0,0,0,320);wall.addColorStop(0,"#0C1017");wall.addColorStop(1,"#05070B");
+ c.fillStyle=wall;c.fillRect(0,0,W,320);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*960,sy=sr()*298;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}
+ c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,W,20);
+ const wood=c.createLinearGradient(0,321,0,440);wood.addColorStop(0,"#2E2114");wood.addColorStop(1,"#160F08");
+ c.fillStyle=wood;c.fillRect(0,321,W,119);c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,W,2)}
+function draw2D(){const c=cx;drawRoom();
+ if(mode===1){
+  const gy=250,RA=200,RB=330;
+  /* القضيبان النحاسيان */
+  const rg=c.createLinearGradient(0,gy-6,0,gy+6);rg.addColorStop(0,"#C89A5A");rg.addColorStop(1,"#7A5A32");
+  c.fillStyle=rg;roundRect(c,140,RA-5,560,10,5);c.fill();
+  c.fillStyle=rg;roundRect(c,140,RB-5,560,10,5);c.fill();
+  /* مساند صغيرة */
+  c.fillStyle="#3A3A38";roundRect(c,150,RA+8,120,8,3);c.fill();roundRect(c,570,RA+8,120,8,3);c.fill();
+  c.fillStyle="#3A3A38";roundRect(c,150,RB+8,120,8,3);c.fill();roundRect(c,570,RB+8,120,8,3);c.fill();
+  /* بطارية يسار تصل القضيبين */
+  c.fillStyle="#2E2E2B";roundRect(c,74,(RA+RB)/2-30,52,60,6);c.fill();
+  c.fillStyle="#B3372B";c.fillRect(74,(RA+RB)/2-30,52,12);
+  arT("＋","100",(RA+RB)/2-16,13,"#FFD9CE");arT("−","100",(RA+RB)/2+24,13,"#CFE3F7");
+  c.strokeStyle="rgba(205,160,90,0.8)";c.lineWidth=3;
+  c.beginPath();c.moveTo(126,(RA+RB)/2-18);c.lineTo(138,RA);c.stroke();
+  c.beginPath();c.moveTo(126,(RA+RB)/2+18);c.lineTo(138,RB);c.stroke();
+  /* السكتتان الفضيتان تتدحرجان */
+  for(const[xx,rw]of[[480+x1,r1],[480+x2,r2]]){
+   const sg=c.createLinearGradient(xx-10,0,xx+10,0);sg.addColorStop(0,"#777266");sg.addColorStop(.5,"#D9D9D4");sg.addColorStop(1,"#777266");
+   c.save();c.shadowColor="rgba(220,220,215,0.5)";c.shadowBlur=6;
+   c.fillStyle=sg;roundRect(c,xx-10,RA-16,20,RB-RA+32,9);c.fill();c.restore();
+   /* علامة تدحرج */
+   c.save();c.translate(xx,(RA+RB)/2);c.rotate(rw);
+   c.fillStyle="rgba(90,85,80,0.85)";c.beginPath();c.arc(0,-8,2.4,0,7);c.fill();c.restore()}
+  /* أسهم القوة */
+  const F=Fsk();
+  if(Math.abs(F)>0.01){
+   for(const[xx,yy,sg]of[[480+x1,(RA+RB)/2-46,1],[480+x2,(RA+RB)/2+46,-1]]){const dd=Math.sign(F)*sg;
+    c.strokeStyle="rgba(240,150,74,0.95)";c.lineWidth=4;
+    c.beginPath();c.moveTo(xx,yy);c.lineTo(xx+dd*40,yy);c.stroke();
+    c.fillStyle="rgba(240,150,74,0.95)";c.beginPath();c.moveTo(xx+dd*49,yy);c.lineTo(xx+dd*40,yy-6);c.lineTo(xx+dd*40,yy+6);c.closePath();c.fill()}}
+  /* B نقاط (خارجة) */
+  for(let k=0;k<6;k++){const px=250+k*100;
+   c.fillStyle="rgba(120,160,220,0.6)";c.beginPath();c.arc(px,120,3,0,7);c.fill()}
+  arT("B خارجة (·)",760,120,12,"rgba(120,160,220,0.8)");
+  arT("التيار: ↓ بالسكتة الأولى · ↑ بالثانية (دارة واحدة)",480,88,12,"rgba(232,226,208,0.65)");
+ }else{
+  /* الإطار بمحور فتل بين قطبين منحنيين */
+  const BX=480,BY=225,a=phA;
+  c.fillStyle="rgba(30,15,5,0.5)";c.beginPath();c.ellipse(BX,342,160,11,0,0,7);c.fill();
+  c.fillStyle="#1E1B16";roundRect(c,BX-70,334,140,12,3);c.fill();
+  /* قطبان منحنيان */
+  c.lineWidth=26;
+  c.strokeStyle="#B3372B";c.beginPath();c.arc(BX-105,BY,120,-0.9,0.9);c.stroke();
+  c.strokeStyle="#3E6FA8";c.beginPath();c.arc(BX+105,BY,120,Math.PI-0.9,Math.PI+0.9);c.stroke();
+  arT("N",BX+8,BY-108,15,"#FFD9CE");arT("S",BX-8,BY-108,15,"#CFE3F7");
+  /* سلك الفتل + المقياس */
+  c.strokeStyle="rgba(210,205,190,0.85)";c.lineWidth=2;
+  c.beginPath();c.moveTo(BX,BY-88);c.lineTo(BX,BY-118);c.stroke();
+  c.strokeStyle="rgba(230,228,220,0.35)";c.lineWidth=2;
+  c.beginPath();c.arc(BX,BY-100,52,-Math.PI/2-0.9,-Math.PI/2+0.9);c.stroke();
+  for(let k=-2;k<=2;k++){const aa=-Math.PI/2+k*0.42;
+   c.beginPath();c.moveTo(BX+Math.cos(aa)*46,BY-100+Math.sin(aa)*46);c.lineTo(BX+Math.cos(aa)*58,BY-100+Math.sin(aa)*58);c.stroke()}
+  const na=-Math.PI/2+clamp(a*2.2,-0.95,0.95);
+  c.strokeStyle="#E86A4A";c.lineWidth=3;c.beginPath();
+  c.moveTo(BX,BY-100);c.lineTo(BX+Math.cos(na)*48,BY-100+Math.sin(na)*48);c.stroke();
+  /* الإطار يدور بالمحور */
+  c.save();c.translate(BX,BY);
+  c.strokeStyle="rgba(200,200,195,0.9)";c.lineWidth=5;
+  c.beginPath();c.moveTo(0,-88);c.lineTo(0,-10);c.stroke();
+  c.rotate(a*0.9);
+  c.save();c.shadowColor="rgba(205,160,90,0.6)";c.shadowBlur=8;
+  c.strokeStyle="#C89A5A";c.lineWidth=5;
+  c.strokeRect(-72,-70,144,140);c.restore();
+  c.strokeStyle="rgba(205,160,90,0.4)";c.lineWidth=2.5;
+  c.beginPath();c.moveTo(0,-70);c.lineTo(0,70);c.stroke();
+  c.restore();
+  arT("K·φ = N·I·A·B·cosφ",BX,72,12.5,"rgba(232,226,208,0.65)");
+  arT("φ = "+toAr((a*180/Math.PI).toFixed(1))+"°",BX,92,13,"#F0964A");
+ }
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(c,24,20,260,64,10);c.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";c.strokeRect(24,20,260,64);
+ arT("F = "+toAr(Math.abs(Fsk()).toFixed(3))+"N"+(mode===2?" · N = "+toAr(N):""),154,42,12.5,"#E8E2D0");
+ arT("W = "+toAr(wsum.toFixed(3))+"J · " +(on?"الدارة موصولة":"الدارة مفتوحة"),154,64,11.5,"rgba(232,226,208,0.75)")}
+function draw(){if(!fit())return;cx.clearRect(0,0,W,H);
+ if(view3d){drawScene3D();return}draw2D()}
+/* ═══ تحكم ═══ */
+const bind=(id,vid,fmt,set)=>{$(id).oninput=e=>{set(+e.target.value);$(vid).textContent=fmt(+e.target.value)}};
+bind("I","IV",v=>toAr(v.toFixed(1))+"A",v=>I=v);
+bind("B","BV",v=>toAr(v.toFixed(1))+"T",v=>B=v);
+bind("N","NV",v=>toAr(v),v=>N=v);
+$("goBtn").onclick=()=>{initA();on=!on;$("goBtn").textContent=on?"✂ فصل التيار":"⚡ وصل التيار";beep(on?520:390,.09);
+ if(on&&!started){started=true;$("exp").classList.remove("locked")}};
+$("flipIBtn").onclick=()=>{initA();iD=-iD;beep(330,.08)};
+$("flipBBtn").onclick=()=>{initA();bD=-bD;beep(330,.08)};
+$("resetBtn").onclick=()=>{x1=x2=v1=v2=r1=r2=0;wsum=0;phA=phV=0;on=false;$("goBtn").textContent="⚡ وصل التيار";
+ extSeen=sepSeen=0;$("chDone").style.display="";$("chDone").classList.remove("ok");won=false;started=false;
+ $("exp").classList.add("locked")};
+document.querySelectorAll(".modeB").forEach(b=>b.onclick=()=>{mode=+b.dataset.m;
+ document.querySelectorAll(".modeB").forEach(x=>x.style.borderColor="");b.style.borderColor="var(--accent)";
+ $("chAng").style.display=mode===2?"":"none";
+ $("chC").textContent=mode===1?"🎯 أظهر الحركتين المتعاكستين ثم عكسهما بقلب B":"🎯 قس الانحراف بـI ثم اعكسه — نفس المقدار"});
+$("viewBtn").onclick=()=>{view3d=!view3d;$("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D"};
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;
+ const k=b.dataset.k,fb=$("predFb");
+ if(k==="2"){fb.className="fb good";fb.textContent="✔ صحيح — I متعاكس ⇒ F متعاكسة: تتباعدان. وصّل وشاهد!"}
+ else{fb.className="fb bad";fb.textContent="✘ تذكّر: F = IL×B لكل سكتة على حدة — I معاكس ⇒ F معاكسة";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("وصّل التيار — السكتان تتباعدان بنفس المقدار")},900)});
+requestAnimationFrame(loop);
+</script></body></html>

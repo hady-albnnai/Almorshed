@@ -1,0 +1,334 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>وشيعتان + قانون لينز — U2-11/12 نموذج موحّد</title><style>
+:root{--ink:#2A211C;--paper:#F3F0E7;--card:#FFFDF7;--accent:#DD6E42;--sageTint:#F0E6D8;--muted:#7A6E64;--line:#DCD8CC;--ok:#538065;--okBg:#E2EFE4;--err:#BB5A45;--errBg:#F6E3DE}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'Segoe UI',Tahoma,Arial,sans-serif;line-height:1.7}
+.wrap{max-width:1000px;margin:0 auto;padding:14px 16px 40px}h1{font-size:22px;margin:4px 0 2px}.sub{color:var(--muted);font-size:14px}
+.badge{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:1px 12px;font-size:12.5px;color:var(--muted);margin-inline-start:6px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0}
+canvas{width:100%;display:block;border-radius:12px;touch-action:none}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+button{font-family:inherit;font-size:14px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:6px 14px;cursor:pointer;transition:all .18s ease}
+button:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+button:active{transform:scale(.97)}
+.slider{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}input[type=range]{accent-color:var(--accent);width:120px}
+.chip{display:inline-block;background:var(--sageTint);border:1px solid var(--line);border-radius:999px;padding:2px 12px;font-size:13px;margin:2px 4px 2px 0}
+.chip.ok{background:var(--okBg);border-color:var(--ok);color:var(--ok);font-weight:700;animation:fxpop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes fxpop{0%{transform:scale(.55)}100%{transform:scale(1)}}
+#toast{position:fixed;bottom:18px;right:50%;transform:translateX(50%);background:var(--ok);color:#fff;border-radius:12px;padding:8px 22px;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none;z-index:9}
+.predict{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:#00000030}
+.predict .card{background:#FFFDF7F2;border:1.5px solid var(--accent);border-radius:16px;padding:18px 22px;max-width:540px;text-align:center;box-shadow:0 8px 30px #0005}
+.predict h3{margin:0 0 8px;color:var(--accent)}.predict button{display:block;width:100%;margin:6px 0;text-align:right}
+.fb{font-size:14px;min-height:22px;margin-top:6px}.fb.good{color:var(--ok);font-weight:700}.fb.bad{color:var(--err);font-weight:700}
+.scenewrap{position:relative}.note{color:var(--muted);font-size:12.5px;text-align:center;margin-top:14px}
+.explain ul{margin:6px 0;padding-inline-start:22px}.explain li{margin:3px 0;font-size:14.5px}.locked{filter:blur(5px);user-select:none;pointer-events:none}
+</style></head><body><div class="wrap">
+<h1>🔁 U2-11/12 · وشيعتان + قانون لينز <span class="badge">نموذج موحّد — واقعي + 🧊3D</span></h1>
+<div class="sub">وشيعة أولى (بطارية/مفتاح) وثانية (مصباح): وميض عند الفتح/الإغلاق فقط بالتيار المستمر · لينز: توقّع جهة التيار المُحرَّض · اسحب الخلفية بالـ3D</div>
+<div class="panel scenewrap"><canvas id="scene" width="960" height="440"></canvas>
+<div class="predict" id="predict"><div class="card"><h3>توقّع أولاً 🔮</h3>
+<div style="font-size:14.5px;margin-bottom:10px">بوشيعتين ثابتتين وبطارية مستمرة (DC): لماذا يومض المصباح لحظة إغلاق المفتاح ثم ينطفئ؟</div>
+<button data-k="1">لأن المصباح يقع مباشرة على البطارية</button><button data-k="2">لأن التيار المتغير فقط يولّد dΦ/dt — وI يستقر فينطفئ التحريض</button><button data-k="3">لأن المفتاح يضخ طاقة</button><div class="fb" id="predFb"></div></div></div></div>
+<div class="panel"><div class="ctrl">
+<span class="chip">الوضع:</span>
+<button class="modeB" data-m="1" id="mB1">U2-11 · وشيعتان</button>
+<button class="modeB" data-m="2" id="mB2">U2-12 · قانون لينز</button>
+</div><div class="ctrl">
+<button id="keyBtn">🔑 إغلاق المفتاح</button>
+<button id="acBtn">~ بدّل إلى تيار متردد</button>
+<button id="coreBtn">🧱 قلب حديدي</button>
+<button id="viewBtn">🧊 منظور 3D</button>
+<button id="resetBtn">↺ إعادة</button></div>
+<div class="ctrl" id="lensRow" style="display:none">
+<span class="chip">السيناريو:</span>
+<button class="scB" data-s="1">N يقترب</button><button class="scB" data-s="2">N يبتعد</button>
+<button class="scB" data-s="3">S يقترب</button><button class="scB" data-s="4">S يبتعد</button>
+<span class="chip">توقّع جهة الجلفانومتر:</span>
+<button id="prR">يمين ➜</button><button id="prL">⬅ يسار</button>
+</div></div>
+<div class="panel"><span class="chip" id="chI">I الأولية = —</span><span class="chip" id="chE">ε الثانوية = —</span><span class="chip" id="chL">المصباح: مطفأ</span><span class="chip" id="chS">القلب: هواء</span><span class="chip" id="chC">🎯 موّه المصباح (لمحة) ببطارية، ثم باستمرار بـAC</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
+<div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">ε₂ = −M·dI₁/dt &nbsp;·&nbsp; لينز: التيار المُحرَّض يعاكس سبب التغيير</div><ul>
+<li>I مستقر ⇒ Φ ثابت ⇒ ε₂=٠ — المصباح يضيء فقط عند تفسخ I (إغلاق/فتح).</li>
+<li>القلب الحديدي يضاعف M ⇒ وميض أقوى — جرّب الزر!</li>
+<li>بـAC يبقى I متغيراً ⇒ المصباح موصول — هكذا يعمل المحوّل.</li>
+<li>لينز: N يقترب ⇒ الوشيعة ترفض تزايد Φ ⇒ تيار يعاكس؛ N يبتعد ⇒ تيار يداعب.</li></ul></div></div>
+<div class="note">التيار المُحرَّض دائماً يعاكس التغيير — قانون لينز · حتمية · بلا شبكة.</div>
+</div><div id="toast"></div><div id="fatal"></div>
+<script>window.onerror=function(m,src,l){var e=document.getElementById("fatal");if(e){e.style.display="block";e.textContent="خطأ: "+m+" @"+l}return false};</script>
+<script>
+"use strict";
+const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
+const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
+const cv=$("scene"),cx=cv.getContext("2d");const W=960,H=440;const _sz=new Map();
+function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
+function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
+/* ═══ الفيزياء ═══ */
+let mode=1,key=false,ac=false,core=false,t=0,won=false,started=false;
+/* I الأولية: صعود أسي عند الإغلاق */
+let I1=0;
+const M0=0.9;
+const Mof=()=>M0*(core?5.5:1);
+let eps2=0,lamp=0;
+/* لينز: سيناريو وحركة مغناطيس */
+let scen=0,mgx=790,mgv=0,pol=1,guess=0,verified=false,rights=0,asked=0;
+let ang=0,angV=0; /* جلفانومتر لينز */
+const phiOf=ux=>Math.pow(0.49/(0.49+ux*ux),1.5);
+const uOf=()=>(mgx-490)/100;
+let phiP=0;
+const STEP=1/240;let acc=0,last=performance.now();
+let AC_=null;function initA(){if(!AC_){try{AC_=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}}
+function beep(fq,d){if(!AC_)return;const o=AC_.createOscillator(),g=AC_.createGain();o.frequency.value=fq;o.type="sine";g.gain.value=.06;g.gain.exponentialRampToValueAtTime(1e-4,AC_.currentTime+d);o.connect(g);g.connect(AC_.destination);o.start();o.stop(AC_.currentTime+d+.02)}
+function toast(s){const el=$("toast");el.textContent=s;el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2400)}
+function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;
+ while(acc>=STEP){acc-=STEP;t+=STEP;
+  if(mode===1){
+   let I2;
+   if(ac){I2=3.4*Math.sin(2*Math.PI*2.2*t)}
+   else{I2=key?3.4*(1-Math.exp(-t*4-  (keyT*0))):0}
+   /* تتبع بصعود أسي عند كل تبديل */
+   const target=key?3.4:0;
+   I1+=(target-I1)*clamp(STEP*(ac?6:4.5),0,1);
+   if(ac)I1=3.4*Math.sin(2*Math.PI*2.2*t);
+   const dIdt=(I1-I1P)/STEP;I1P=I1;
+   eps2=-Mof()*dIdt*0.12;
+   lamp=clamp(Math.abs(eps2)*0.9-0.06,0,1);
+   if(lamp>0.5){lampSeen=true;if(ac)acSeen=true;}
+   if(lampSeen&&acSeen&&!won){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 وميض بالعابر ثم إضاءة مستمرة بـAC (+١٠)")}
+  }else{
+   /* حركة المغناطيس آلية بمجرد اختيار سيناريو */
+   if(scen&&mgv===0&&!moving){mgv=(scen===1||scen===3)?-120:120;pol=(scen<=2)?1:-1;moving=true;phiP=phiOf(uOf())}
+   if(moving){mgx+=mgv*STEP;
+    if(mgx<360){mgx=360;mgv=0;moving=false;doneOnce=true}
+    if(mgx>790){mgx=790;mgv=0;moving=false;doneOnce=true}
+    const u=uOf(),phi=pol>0?phiOf(u):phiOf(u);
+    eps2=-pol*1.4*(phi-phiP)/STEP*0.055;phiP=phi;
+    const tg=clamp(eps2*0.42,-1,1);
+    const a=(tg-ang)*62-32*angV;angV+=a*STEP;ang+=angV*STEP;}
+  }
+ }
+ updChips();draw();requestAnimationFrame(loop)}
+let keyT=0,I1P=0,lampSeen=false,acSeen=false,moving=false,doneOnce=false;
+function updChips(){
+ $("chI").textContent="I الأولية = "+toAr(Math.abs(I1).toFixed(2))+"A"+(ac?" (AC)":" (DC)");
+ $("chE").textContent="ε الثانوية = "+toAr(eps2.toFixed(2))+"V";
+ $("chL").textContent="المصباح: "+(lamp>0.55?"يضيء 💡":lamp>0.12?"وميض":"مطفأ");
+ $("chS").textContent="القلب: "+(core?"حديدي 🧱":"هواء");
+ if(mode===2)$("chC").textContent="🎯 صحّح جهة الإبرة في السيناريوهات الأربعة ("+toAr(rights)+"/٤)";
+ if((lamp>0.1||(mode===2&&Math.abs(ang)>0.1))&&!started){started=true;$("exp").classList.remove("locked")}}
+/* ═══ المحرك 3D ═══ */
+var view3d=false;const cam3={yaw:-0.5,pitch:0.3,dist:660,fov:660};
+let orbiting=false,_oX=0,_oY=0;
+function project3(p){const cy=Math.cos(cam3.yaw),sy=Math.sin(cam3.yaw),cp=Math.cos(cam3.pitch),sp=Math.sin(cam3.pitch);
+ const x=p.x*cy+p.z*sy,z=-p.x*sy+p.z*cy,y=p.y;const y2=y*cp-z*sp,z2=y*sp+z*cp;const dz=z2+cam3.dist,s=cam3.fov/dz;
+ return{x:480+x*s,y:210-y2*s,s:s,z:dz}}
+function line3(c,a,b,col,w){const pa=project3(a),pb=project3(b);c.strokeStyle=col;c.lineWidth=Math.max(.4,w*(pa.s/cam3.fov)*660*.7);c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+function stroke3(c,pts,col,w,cl){c.strokeStyle=col;c.lineWidth=w;c.lineJoin="round";c.beginPath();pts.forEach((p,i)=>{const q=project3(p);i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)});if(cl)c.closePath();c.stroke()}
+function ring3(c,xx,rr,col,w){const pts=[];for(let i=0;i<=40;i++){const a=i/40*6.283;pts.push({x:xx,y:Math.cos(a)*rr,z:Math.sin(a)*rr})}stroke3(c,pts,col,w,true)}
+function spaceBg3(c){const g2=c.createLinearGradient(0,0,0,H);g2.addColorStop(0,"#0C1017");g2.addColorStop(1,"#05070B");c.fillStyle=g2;c.fillRect(0,0,W,H);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*W,sy=sr()*H*.72;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}}
+function arT3(c,s,x,y,size,col){c.fillStyle=col;c.font=size+"px Tahoma,Arial";c.textAlign="center";c.direction="rtl";c.fillText(s,x,y);c.direction="ltr"}
+cv.addEventListener("pointerdown",e=>{if(!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;orbiting=true;_oX=x;_oY=y;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener("pointermove",e=>{if(!orbiting||!view3d)return;const rc=cv.getBoundingClientRect();const x=(e.clientX-rc.left)*W/rc.width,y=(e.clientY-rc.top)*H/rc.height;cam3.yaw+=(x-_oX)*.006;cam3.pitch=clamp(cam3.pitch+(y-_oY)*.006,-0.05,1.0);_oX=x;_oY=y});
+addEventListener("pointerup",()=>{orbiting=false});
+cv.addEventListener("wheel",e=>{if(!view3d)return;e.preventDefault();cam3.dist=clamp(cam3.dist*(1+e.deltaY*.001),380,900)},{passive:false});
+/* وشيعة 3D: حلزون نحاسي حول محور x */
+function coil3(c,xc,R,turns,col,w){for(let k=0;k<turns;k++){const xx=xc+k*9;ring3(c,xx,R,col,w)}}
+function drawScene3D(){const c=cx;spaceBg3(c);
+ for(let x=-380;x<=380;x+=76)line3(c,{x:x,y:-150,z:-300},{x:x,y:-150,z:300},"rgba(205,215,230,0.13)",1);
+ for(let z=-300;z<=300;z+=75)line3(c,{x:-380,y:-150,z:z},{x:380,y:-150,z:z},"rgba(205,215,230,0.13)",1);
+ if(mode===1){
+  /* القلب */
+  if(core){stroke3(c,[{x:120,y:70,z:0},{x:420,y:70,z:0}],"rgba(120,120,118,0.9)",22);
+   stroke3(c,[{x:120,y:-70,z:0},{x:420,y:-70,z:0}],"rgba(120,120,118,0.9)",22)}
+  /* الوشيعة الأولية (يسار) والثانية (يمين) على محور x */
+  coil3(c,170,66,9,"rgba(205,160,90,0.95)",3.2);
+  coil3(c,330,66,9,"rgba(150,190,160,0.95)",3.2);
+  /* مفتاح: خط مائل */
+  const kp=project3({x:80,y:130,z:0});
+  c.strokeStyle=key?"rgba(120,220,160,0.95)":"rgba(226,90,60,0.95)";c.lineWidth=3;
+  c.beginPath();c.moveTo(kp.x-14,kp.y+8);c.lineTo(kp.x+(key?4:-8),kp.y-(key?4:10));c.stroke();
+  /* المصباح: توهج lamp */
+  const lp=project3({x:470,y:-10,z:0});
+  if(lamp>0.05){c.save();c.shadowColor="rgba(255,220,120,0.95)";c.shadowBlur=26*lamp;
+   c.fillStyle="rgba(255,226,140,"+(0.55+0.4*lamp)+")";c.beginPath();c.arc(lp.x,lp.y,10+5*lamp,0,7);c.fill();c.restore()}
+  else{c.fillStyle="rgba(180,180,175,0.9)";c.beginPath();c.arc(lp.x,lp.y,10,0,7);c.fill()}
+  line3(c,{x:470,y:-10,z:0},{x:430,y:-60,z:0},"rgba(180,180,175,0.6)",2);
+  /* تيار AC يظهر كموجة على السلك */
+  if(ac){c.strokeStyle="rgba(120,200,255,0.7)";c.lineWidth=1.8;c.beginPath();
+   for(let k=0;k<=50;k++){const xx=90+k*6.4;const p=project3({x:xx,y:-118+Math.sin(k/50*12.566-t*14)*8,z:0});
+    k?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y)}c.stroke()}
+ }else{
+  /* وشيعة ثابتة في المركز + مغناطيس يتحرك بmgx */
+  coil3(c,180,80,10,"rgba(205,160,90,0.95)",3.4);
+  /* المغناطيس: صندوقان */
+  const mR=26,my=0;
+  const half=42;
+  c.save();
+  const pN=project3({x:mgx+half-13,y:my,z:0}),pS=project3({x:mgx-half+13,y:my,z:0});
+  c.fillStyle=pol>0?"rgba(206,68,54,0.95)":"rgba(62,111,168,0.95)";
+  c.fillRect(pN.x-24,pN.y-16,48,32);
+  c.fillStyle=pol>0?"rgba(62,111,168,0.95)":"rgba(206,68,54,0.95)";
+  c.fillRect(pS.x-24,pS.y-16,48,32);
+  c.restore();
+  arT3(c,pol>0?"N":"S",pN.x,pN.y-22,14,pol>0?"#FFD9CE":"#CFE3F7");
+  arT3(c,pol>0?"S":"N",pS.x,pS.y-22,14,pol>0?"#CFE3F7":"#FFD9CE");
+  /* جلفانومتر دائري */
+  dial3(c,770,110,ang,"الجلفانومتر");
+  /* أسهم تحريض على الوشيعة */
+  if(Math.abs(eps2)>0.15){const dd=Math.sign(eps2);
+   for(let k=0;k<3;k++){const xx=140+k*40;
+    line3(c,{x:xx,y:-100,z:0},{x:xx+dd*22,y:-118,z:0},"rgba(240,150,74,0.9)",3)}}
+ }
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(cx,16,12,260,64,10);cx.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";cx.strokeRect(16,12,260,64);
+ arT3(c,"ε₂ = "+toAr(eps2.toFixed(2))+"V · M = "+toAr(Mof().toFixed(2)),146,34,12,"#E8E2D0");
+ arT3(c,mode===1?"الوميض عند dI/dt فقط":"لينز: Σ يعاكس سبب التغيير",146,56,12,"#F0964A");
+ arT3(c,"اسحب الخلفية لتدوير الكاميرا",480,H-12,12,"rgba(205,198,182,0.5)")}
+function dial3(c,px,py,a,label){c.fillStyle="rgba(13,16,22,0.85)";c.beginPath();c.arc(px,py,52,0,7);c.fill();
+ c.strokeStyle="rgba(230,228,220,0.3)";c.lineWidth=2;c.stroke();
+ const th=-Math.PI/2+clamp(a,-1,1)*0.85;
+ c.strokeStyle="#E86A4A";c.lineWidth=2.5;c.lineCap="round";c.beginPath();
+ c.moveTo(px-Math.cos(th)*9,py-Math.sin(th)*9);c.lineTo(px+Math.cos(th)*43,py+Math.sin(th)*43);c.stroke();
+ c.fillStyle="#1B1B19";c.beginPath();c.arc(px,py,4,0,7);c.fill();
+ if(label)arT3(c,label,px,py+72,11.5,"rgba(230,225,210,0.7)")}
+/* ═══ 2D واقعي ═══ */
+function drawRoom(){const c=cx;
+ const wall=c.createLinearGradient(0,0,0,320);wall.addColorStop(0,"#0C1017");wall.addColorStop(1,"#05070B");
+ c.fillStyle=wall;c.fillRect(0,0,W,320);
+ {let sd=7;const sr=()=>{sd=(sd*16807)%2147483647;return sd/2147483647};for(let i=0;i<95;i++){const sx=sr()*960,sy=sr()*298;c.fillStyle="rgba(226,232,240,"+(.1+sr()*.45)+")";c.beginPath();c.arc(sx,sy,.5+sr()*1.1,0,7);c.fill()}}
+ c.fillStyle="rgba(160,190,255,0.05)";c.fillRect(0,300,W,20);
+ const wood=c.createLinearGradient(0,321,0,440);wood.addColorStop(0,"#2E2114");wood.addColorStop(1,"#160F08");
+ c.fillStyle=wood;c.fillRect(0,321,W,119);c.fillStyle="rgba(255,214,150,0.12)";c.fillRect(0,321,W,2)}
+function coil2D(c,cxx,cy,R,turns,col){c.strokeStyle=col;c.lineWidth=4;
+ for(let k=0;k<turns;k++){const xx=cxx-R+k*(2*R)/(turns-1);
+  c.beginPath();c.ellipse(xx,cy,9,R,0,0,7);c.stroke()}}
+function draw2D(){const c=cx;drawRoom();
+ if(mode===1){
+  const cy=225;
+  /* القلب الحديدي */
+  if(core){c.fillStyle="rgba(120,120,118,0.95)";roundRect(c,180,cy-92,300,184,8);c.fill();
+   c.fillStyle="rgba(150,150,146,0.35)";roundRect(c,186,cy-86,288,80,6);c.fill()}
+  /* الوشيعة الأولى (نحاسية) */
+  coil2D(c,250,cy,86,7,"rgba(205,160,90,0.95)");
+  /* الثانية (خضراء) */
+  coil2D(c,420,cy,86,7,"rgba(150,190,160,0.95)");
+  arT("الأولية N₁",250,cy+120,12,"#E8C98E");
+  arT("الثانية N₂",420,cy+120,12,"#9ED0AC");
+  /* دارة أولية: بطارية + مفتاح */
+  c.strokeStyle="rgba(205,160,90,0.85)";c.lineWidth=3;
+  c.beginPath();c.moveTo(250,cy-88);c.lineTo(250,120);c.lineTo(110,120);c.stroke();
+  c.beginPath();c.moveTo(110,120);c.lineTo(110,330);c.lineTo(250,330);c.lineTo(250,cy+88);c.stroke();
+  c.fillStyle="#2E2E2B";roundRect(c,58,206,44,64,6);c.fill();
+  c.fillStyle="#B3372B";c.fillRect(58,206,44,13);
+  arT("＋","80",222,12,"#FFD9CE");arT("−","80",258,12,"#CFE3F7");
+  /* المفتاح على السلك العلوي */
+  c.strokeStyle=key?"rgba(120,220,160,0.95)":"rgba(226,90,60,0.95)";c.lineWidth=4;c.lineCap="round";
+  c.beginPath();c.moveTo(150,120);c.lineTo(150+(key?10:-10),120-(key?8:18));c.stroke();c.lineCap="butt";
+  c.fillStyle=key?"rgba(120,220,160,1)":"rgba(226,90,60,1)";
+  c.beginPath();c.arc(150,120,4,0,7);c.fill();c.beginPath();c.arc(168,120,4,0,7);c.fill();
+  arT(key?"مُغلق":"مفتوح",159,100,11.5,key?"#7FB894":"#E86A4A");
+  /* دارة ثانوية: مصباح يمين */
+  c.strokeStyle="rgba(150,190,160,0.85)";c.lineWidth=3;
+  c.beginPath();c.moveTo(420,cy-88);c.lineTo(420,120);c.lineTo(610,120);c.stroke();
+  c.beginPath();c.moveTo(610,120);c.lineTo(610,330);c.lineTo(420,330);c.lineTo(420,cy+88);c.stroke();
+  const lx=610,ly=225;
+  if(lamp>0.05){c.save();c.shadowColor="rgba(255,220,120,0.95)";c.shadowBlur=34*lamp;
+   c.fillStyle="rgba(255,226,140,"+(0.6+0.35*lamp)+")";c.beginPath();c.arc(lx,ly,15+7*lamp,0,7);c.fill();c.restore()}
+  else{c.fillStyle="rgba(60,60,56,0.95)";c.beginPath();c.arc(lx,ly,15,0,7);c.fill();
+   c.strokeStyle="rgba(180,180,175,0.8)";c.lineWidth=2;c.beginPath();c.arc(lx,ly,15,0,7);c.stroke()}
+  c.fillStyle="rgba(90,90,86,0.9)";c.fillRect(lx-4,ly+14,8,16);
+  arT(lamp>0.55?"يضيء 💡":lamp>0.12?"وميض!":"مطفأ",lx,ly-30,12,lamp>0.12?"#F0964A":"rgba(232,226,208,0.6)");
+  /* AC موجة صغيرة على السلك الأولي */
+  if(ac){c.strokeStyle="rgba(120,200,255,0.75)";c.lineWidth=2;c.beginPath();
+   for(let k=0;k<=60;k++){const xx=110+k*8;const yy=142+Math.sin(k/60*12.566-t*14)*7;
+    k?c.lineTo(xx,yy):c.moveTo(xx,yy)}c.stroke();
+   arT("~ تيار متردد","300",164,11.5,"rgba(120,200,255,0.85)")}
+  else arT(key?"I يستقر ⇒ Φ ثابت ⇒ لا تحريض":"أغلق المفتاح — لمحة!",480,66,12.5,key?"rgba(232,226,208,0.6)":"#F0964A");
+ }else{
+  /* لينز: وشيعة يسار الوسط + مغناطيس يتحرك أفقياً + جلفانومتر مركز-صفر يمين */
+  const cy=225;
+  /* مسار المغناطيس */
+  c.strokeStyle="rgba(205,215,230,0.18)";c.lineWidth=1.6;c.setLineDash([6,7]);
+  c.beginPath();c.moveTo(360,cy);c.lineTo(860,cy);c.stroke();c.setLineDash([]);
+  /* الوشيعة */
+  coil2D(c,330,cy,88,8,"rgba(205,160,90,0.95)");
+  arT("الوشيعة",330,cy+120,12,"#E8C98E");
+  /* أسهم تحريض */
+  if(Math.abs(eps2)>0.15){const dd=Math.sign(eps2);
+   for(let k=0;k<3;k++){const xx=270+k*60;
+    c.strokeStyle="rgba(240,150,74,0.9)";c.lineWidth=3.5;
+    c.beginPath();c.moveTo(xx,cy-104);c.lineTo(xx+dd*22,cy-124);c.stroke();
+    c.fillStyle="rgba(240,150,74,0.9)";c.beginPath();
+    c.moveTo(xx+dd*28,cy-128);c.lineTo(xx+dd*20,cy-124);c.lineTo(xx+dd*24,cy-116);c.closePath();c.fill()}}
+  /* المغناطيس السبيكة */
+  const bx=mgx;
+  c.save();c.shadowColor="rgba(0,0,0,0.5)";c.shadowBlur=8;
+  c.fillStyle=pol>0?"#CE4436":"#3E6FA8";roundRect(c,bx,cy-24,84,48,4);c.fill();
+  c.fillStyle=pol>0?"#3E6FA8":"#CE4436";roundRect(c,bx-84,cy-24,84,48,4);c.fill();
+  c.restore();
+  c.fillStyle="rgba(255,255,255,0.85)";c.font="bold 15px Tahoma";c.textAlign="center";
+  c.fillText(pol>0?"N":"S",bx+42,cy+6);
+  c.fillText(pol>0?"S":"N",bx-42,cy+6);
+  /* أسلاك للجلفانومتر */
+  c.strokeStyle="rgba(205,160,90,0.7)";c.lineWidth=2.5;
+  c.beginPath();c.moveTo(242,cy+86);c.quadraticCurveTo(560,392,700,300);c.stroke();
+  c.beginPath();c.moveTo(418,cy+86);c.quadraticCurveTo(600,370,720,300);c.stroke();
+  /* جلفانومتر مركز صفر */
+  const gx=760,gy=222,R=78;
+  c.fillStyle="rgba(250,247,238,0.96)";roundRect(c,gx-R-16,gy-R-40,2*R+32,2*R+56,12);c.fill();
+  c.fillStyle="rgba(28,28,26,0.92)";roundRect(c,gx-R-16,gy-R-40,2*R+32,34,10);c.fill();
+  arT("GALVANOMETER",gx,gy-R-18,11,"#EDE8D8");
+  c.fillStyle="#F7F2E2";c.beginPath();c.arc(gx,gy,R,0,7);c.fill();
+  c.strokeStyle="#3A332C";c.lineWidth=2;c.stroke();
+  for(let k=-4;k<=4;k++){const aa=-Math.PI/2+k*0.32;
+   c.beginPath();c.moveTo(gx+Math.cos(aa)*(R-10),gy+Math.sin(aa)*(R-10));
+   c.lineTo(gx+Math.cos(aa)*(R-2),gy+Math.sin(aa)*(R-2));c.stroke();
+   if(k%2===0)arT(toAr(Math.abs(k)*5),gx+Math.cos(aa)*(R-22),gy+Math.sin(aa)*(R-22)+4,10,"#6B6355")}
+  const th=-Math.PI/2+clamp(ang,-1,1)*0.68;
+  c.strokeStyle="#B3372B";c.lineWidth=2.6;c.lineCap="round";
+  c.beginPath();c.moveTo(gx,gy);c.lineTo(gx+Math.cos(th)*(R-12),gy+Math.sin(th)*(R-12));c.stroke();c.lineCap="butt";
+  c.fillStyle="#1B1B19";c.beginPath();c.arc(gx,gy,4,0,7);c.fill();
+  arT(scen?("سيناريو: "+["N يقترب","N يبتعد","S يقترب","S يبتعد"][scen-1]):"اختر سيناريو ثم توقّع الجهة",480,64,12.5,scen?"rgba(232,226,208,0.7)":"#F0964A");
+  if(guess&&moving)arT("توقعك: "+(guess>0?"يمين":"يسار")+" · الإبرة: "+(ang>0.12?"يمين":ang<-0.12?"يسار":"وسط"),480,88,12,Math.sign(ang)===guess?"#7FB894":"#E86A4A");
+ }
+ c.fillStyle="rgba(13,16,22,0.85)";roundRect(c,24,20,260,64,10);c.fill();
+ c.strokeStyle="rgba(205,215,230,0.3)";c.strokeRect(24,20,260,64);
+ arT("ε₂ = "+toAr(eps2.toFixed(2))+"V",154,42,12.5,"#E8E2D0");
+ arT("M = "+toAr(Mof().toFixed(2))+(core?" · قلب حديدي":" · هواء"),154,64,11.5,"rgba(232,226,208,0.75)")}
+function draw(){if(!fit())return;cx.clearRect(0,0,W,H);
+ if(view3d){drawScene3D();return}draw2D()}
+/* ═══ تحكم ═══ */
+$("keyBtn").onclick=()=>{initA();key=!key;keyT=t;$("keyBtn").textContent=key?"✂ فتح المفتاح":"🔑 إغلاق المفتاح";beep(key?520:390,.09)};
+$("acBtn").onclick=()=>{initA();ac=!ac;if(ac)key=true;$("acBtn").textContent=ac?"═ رجوع لبطارية DC":"~ بدّل إلى تيار متردد";
+ $("acBtn").style.borderColor=ac?"var(--accent)":"";beep(440,.08)};
+$("coreBtn").onclick=()=>{core=!core;$("coreBtn").style.borderColor=core?"var(--accent)":"";beep(330,.08)};
+$("resetBtn").onclick=()=>{key=false;ac=false;core=false;I1=0;eps2=0;lamp=0;lampSeen=acSeen=false;
+ scen=0;mgx=790;mgv=0;moving=false;guess=0;rights=0;asked=0;ang=angV=0;won=false;
+ $("keyBtn").textContent="🔑 إغلاق المفتاح";$("acBtn").textContent="~ بدّل إلى تيار متردد";$("coreBtn").style.borderColor="";
+ $("chDone").style.display="";$("chDone").classList.remove("ok");$("exp").classList.add("locked");started=false};
+$("viewBtn").onclick=()=>{view3d=!view3d;$("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D"};
+document.querySelectorAll(".modeB").forEach(b=>b.onclick=()=>{mode=+b.dataset.m;
+ document.querySelectorAll(".modeB").forEach(x=>x.style.borderColor="");b.style.borderColor="var(--accent)";
+ $("lensRow").style.display=mode===2?"flex":"none";
+ $("keyBtn").style.display=mode===1?"":"none";$("acBtn").style.display=mode===1?"":"none";$("coreBtn").style.display=mode===1?"":"none";
+ $("chC").textContent=mode===1?"🎯 موّه المصباح (لمحة) ببطارية، ثم باستمرار بـAC":"🎯 صحّح جهة الإبرة في السيناريوهات الأربعة ("+toAr(rights)+"/٤)"});
+document.querySelectorAll(".scB").forEach(b=>b.onclick=()=>{initA();scen=+b.dataset.s;moving=false;mgv=0;guess=0;
+ document.querySelectorAll(".scB").forEach(x=>x.style.borderColor="");b.style.borderColor="var(--accent)";beep(440,.06);
+ toast("توقّع جهة الإبرة أولاً (يسار/يمين) ثم شاهد")});
+$("prR").onclick=()=>{if(scen&&!moving&&!guess){guess=1;asked++;
+ setTimeout(()=>{const truth=(ang>0.05)?1:(ang<-0.05?-1:0);
+  if(truth===guess){rights++;toast("✔ صحيح! ("+toAr(rights)+"/٤)")}
+  else toast("✘ الحركة تعاكس التغيير — أعد المشهد");
+  if(rights>=4&&!won){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 السيناريوهات الأربعة صحيحة (+١٠)")}},2600)}};
+$("prL").onclick=()=>{if(scen&&!moving&&!guess){guess=-1;asked++;
+ setTimeout(()=>{const truth=(ang>0.05)?1:(ang<-0.05?-1:0);
+  if(truth===guess){rights++;toast("✔ صحيح! ("+toAr(rights)+"/٤)")}
+  else toast("✘ لينز: التيار يعاكس — أعد وحلل");
+  if(rights>=4&&!won){won=true;$("chDone").classList.add("ok");$("chDone").style.display="";toast("🏆 السيناريوهات الأربعة صحيحة (+١٠)")}},2600)}};
+$("predict").addEventListener("click",e=>{const b=e.target.closest("button[data-k]");if(!b)return;
+ const k=b.dataset.k,fb=$("predFb");
+ if(k==="2"){fb.className="fb good";fb.textContent="✔ صحيح — ε = −M·dI/dt: العابر فقط يحرّض. جرّب!"}
+ else{fb.className="fb bad";fb.textContent="✘ لا صلة بالمسار — Φ ثابت لا يحرّض شيئاً";return}
+ setTimeout(()=>{$("predict").style.display="none";toast("أغلق المفتاح وراقب اللمعة، ثم جرب AC")},900)});
+requestAnimationFrame(loop);
+</script></body></html>
