@@ -32,7 +32,7 @@ button:active{transform:scale(.97)}.slider{display:flex;align-items:center;gap:8
 <div class="panel"><div class="ctrl">
 <span class="slider">جهد المسرّعة U <input type="range" id="U" min="100" max="500" step="10" value="250"><b id="UV" style="color:var(--ink)">٢٥٠V</b></span>
 <span class="slider">تيار الملفات I <input type="range" id="I" min="0.5" max="3" step="0.1" value="1.5"><b id="IV" style="color:var(--ink)">١٫٥A</b></span>
-<button id="beamBtn" class="primary">مدفع: شغّال ▶</button><button id="trailBtn">أثر دائم</button><button id="resetBtn">↺ إعادة</button>
+<button id="viewBtn">🧊 منظور 3D</button><button id="beamBtn" class="primary">مدفع: شغّال ▶</button><button id="trailBtn">أثر دائم</button><button id="resetBtn">↺ إعادة</button>
 </div></div>
 <div class="panel"><span class="chip" id="chR">r المقاس: —</span><span class="chip" id="chT">r النظري: —</span><span class="chip" id="chC">🎯 اجعل r = ٤٫٠ cm</span><span class="chip ok" id="chDone" style="display:none">🏆 مُنجَز (+١٠)</span></div>
 <div class="panel explain"><h3>اشرح — ربط الملاحظة بالقانون</h3><div id="exp" class="locked"><div style="direction:ltr;text-align:center;font-family:Georgia,serif;font-style:italic;font-size:19px;margin:8px">½mv² = qU &nbsp;·&nbsp; r = mv/(qB) &nbsp;·&nbsp; القوة عمودية على السرعة دائماً</div><ul>
@@ -63,6 +63,89 @@ const FX=(function(){
 "use strict";const AR="٠١٢٣٤٥٦٧٨٩",toAr=s=>String(s).replace(/[0-9]/g,d=>AR[+d]);
 const $=i=>document.getElementById(i),clamp=(v,a,b)=>v<a?a:(v>b?b:v);
 const cv=$("scene"),cx=cv.getContext("2d");
+/* ═══ ENGINE منظور 3D — فيزياء واحدة ورسّامان (معيار 2026-10-02) ═══ */
+var view3d=false;
+const cam3={yaw:-0.5,pitch:0.3,dist:620,fov:620};
+let orbiting=false,_oX=0,_oY=0;
+function project3(p){
+  const cy=Math.cos(cam3.yaw),sy=Math.sin(cam3.yaw);
+  const cp=Math.cos(cam3.pitch),sp=Math.sin(cam3.pitch);
+  const x=p.x*cy+p.z*sy, z=-p.x*sy+p.z*cy, y=p.y;
+  const y2=y*cp-z*sp, z2=y*sp+z*cp;
+  const dz=z2+cam3.dist, s=cam3.fov/dz;
+  return{x:480+x*s,y:210-y2*s,s:s,z:dz};
+}
+function line3(c,a,b,col,w){const pa=project3(a),pb=project3(b);
+  c.strokeStyle=col;c.lineWidth=Math.max(0.4,w*(pa.s/cam3.fov)*620*0.7);
+  c.beginPath();c.moveTo(pa.x,pa.y);c.lineTo(pb.x,pb.y);c.stroke()}
+function stroke3(c,pts,col,w,close){c.strokeStyle=col;c.lineWidth=w;c.lineJoin="round";
+  c.beginPath();pts.forEach((p,i)=>{const q=project3(p);i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)});
+  if(close)c.closePath();c.stroke()}
+function fillPoly3(c,pts,col){c.fillStyle=col;c.beginPath();
+  pts.forEach((p,i)=>{const q=project3(p);i?c.lineTo(q.x,q.y):c.moveTo(q.x,q.y)});c.closePath();c.fill()}
+function spaceBg3(c){const g=c.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,"#0C1017");g.addColorStop(1,"#05070B");
+  c.fillStyle=g;c.fillRect(0,0,W,H);
+  {let _sd=7;const _sr=()=>{_sd=(_sd*16807)%2147483647;return _sd/2147483647};
+   for(let i=0;i<95;i++){const sx=_sr()*W,sy=_sr()*H*0.72;
+    c.fillStyle="rgba(226,232,240,"+(0.1+_sr()*0.45)+")";
+    c.beginPath();c.arc(sx,sy,0.5+_sr()*1.1,0,7);c.fill()}}}
+function grid3(c){for(let x=-380;x<=380;x+=76)line3(c,{x:x,y:-150,z:-300},{x:x,y:-150,z:300},"rgba(205,215,230,0.13)",1);
+  for(let z=-300;z<=300;z+=75)line3(c,{x:-380,y:-150,z:z},{x:380,y:-150,z:z},"rgba(205,215,230,0.13)",1)}
+function dial3(c,px,py,a,label){c.fillStyle="rgba(13,16,22,0.85)";c.beginPath();c.arc(px,py,54,0,7);c.fill();
+  c.strokeStyle="rgba(230,228,220,0.3)";c.lineWidth=2;c.stroke();
+  for(let i=-2;i<=2;i++){const aa=-Math.PI/2+i*0.5;
+    c.strokeStyle="rgba(230,228,220,0.5)";c.lineWidth=1.5;c.beginPath();
+    c.moveTo(px+Math.cos(aa)*46,py+Math.sin(aa)*46);c.lineTo(px+Math.cos(aa)*52,py+Math.sin(aa)*52);c.stroke()}
+  const th=-Math.PI/2+clamp(a,-1,1)*0.9;
+  c.strokeStyle="#E86A4A";c.lineWidth=2.5;c.lineCap="round";c.beginPath();
+  c.moveTo(px-Math.cos(th)*10,py-Math.sin(th)*10);c.lineTo(px+Math.cos(th)*44,py+Math.sin(th)*44);c.stroke();
+  c.fillStyle="#1B1B19";c.beginPath();c.arc(px,py,4,0,7);c.fill();
+  if(label)arT3(c,label,px,py+74,11.5,"rgba(230,225,210,0.7)")}
+function arT3(c,s,x,y,size,col){c.fillStyle=col;c.font=size+"px Tahoma,Arial";c.textAlign="center";
+  c.direction="rtl";c.fillText(s,x,y);c.direction="ltr"}
+function readBox3(c,w2){c.fillStyle="rgba(13,16,22,0.8)";c.fillRect(16,12,w2,64);
+  c.strokeStyle="rgba(205,215,230,0.3)";c.lineWidth=1;c.strokeRect(16,12,w2,64)}
+function hint3(c){arT3(c,"اسحب الخلفية لتدوير الكاميرا · العجلة للتقريب",480,H-12,12,"rgba(205,198,182,0.5)")}
+cv.addEventListener("pointerdown",e=>{if(!view3d)return;
+  const r=cv.getBoundingClientRect();
+  const x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.height;
+  orbiting=true;_oX=x;_oY=y;try{cv.setPointerCapture(e.pointerId)}catch(_){}});
+cv.addEventListener("pointermove",e=>{if(!orbiting||!view3d)return;
+  const r=cv.getBoundingClientRect();
+  const x=(e.clientX-r.left)*W/r.width,y=(e.clientY-r.top)*H/r.height;
+  cam3.yaw+=(x-_oX)*0.006;cam3.pitch=clamp(cam3.pitch+(y-_oY)*0.006,-0.05,1.0);_oX=x;_oY=y});
+addEventListener("pointerup",()=>{orbiting=false});
+cv.addEventListener("wheel",e=>{if(!view3d)return;e.preventDefault();
+  cam3.dist=clamp(cam3.dist*(1+e.deltaY*0.001),380,900)},{passive:false});
+
+function drawScene3D(){const c=cx;spaceBg3(c);grid3(c);
+ const cyc=30,Rc=130,dx=135,r=rpx();
+ const ringAt=(xx,col,w,glow)=>{const pts=[];for(let i=0;i<=64;i++){const a=i/64*6.283;
+   pts.push({x:xx,y:cyc+Math.cos(a)*Rc,z:Math.sin(a)*Rc})}
+  if(glow){c.save();c.shadowColor=col;c.shadowBlur=10;stroke3(c,pts,col,w,true);c.restore()}
+  else stroke3(c,pts,col,w,true)};
+ ringAt(-dx,"rgba(205,160,90,0.5)",3);ringAt(dx,"rgba(205,160,90,0.5)",3);
+ ringAt(-dx,"rgba(205,160,90,0.95)",1.6);ringAt(dx,"rgba(205,160,90,0.95)",1.6);
+ if(beam){for(let i=-2;i<=2;i++){line3(c,{x:i*90,y:cyc-Rc-46,z:0},{x:i*90,y:cyc-Rc-16,z:0},"rgba(120,160,220,0.42)",1.6);
+   const p0=project3({x:i*90,y:cyc-Rc-20,z:0});
+   c.fillStyle="rgba(120,160,220,0.5)";c.beginPath();c.moveTo(p0.x-4,p0.y-6);c.lineTo(p0.x+4,p0.y-6);c.lineTo(p0.x,p0.y);c.closePath();c.fill()}}
+ fillPoly3(c,[{x:-60,y:cyc-14,z:0},{x:-18,y:cyc-8,z:0},{x:-18,y:cyc+8,z:0},{x:-60,y:cyc+14,z:0}],"rgba(140,140,135,0.95)");
+ if(beam){const pts=[];for(let i=0;i<=72;i++){const a=i/72*6.283;
+   pts.push({x:0,y:cyc+Math.cos(a)*r,z:Math.sin(a)*r})}
+  c.save();c.shadowColor="rgba(120,255,190,0.9)";c.shadowBlur=14;stroke3(c,pts,"rgba(120,255,190,0.85)",2.5,true);c.restore();
+  const a0=ang*6.283;const ep=project3({x:0,y:cyc+Math.cos(a0)*r,z:Math.sin(a0)*r});
+  c.fillStyle="#D6FFE9";c.beginPath();c.arc(ep.x,ep.y,4,0,7);c.fill();
+  const cp3=project3({x:0,y:cyc,z:0});
+  c.strokeStyle="rgba(120,255,190,0.3)";c.lineWidth=1;c.setLineDash([4,5]);
+  c.beginPath();c.moveTo(cp3.x,cp3.y);c.lineTo(ep.x,ep.y);c.stroke();c.setLineDash([])}
+ readBox3(c,230);
+ arT3(c,"r = "+toAr(rcm().toFixed(2))+"cm · U = "+toAr(U)+"V · I = "+toAr(Is.toFixed(1))+"A",130,34,12,"#E8E2D0");
+ arT3(c,"r = 0.45·√(U/I) · التحدي: 4.0±0.3cm",130,56,11.5,won?"#F0964A":"rgba(232,226,208,0.75)");
+ if(won)arT3(c,"🏆 r ضمن 4.0±0.3cm",480,52,15,"#F0964A");
+ hint3(c);
+}
+
 const _ph=FX.persp(cv,0.008);FX.initDust(16,960,440);const W=960,H=440;const _sz=new Map();
 function fit(){const r=cv.getBoundingClientRect(),dpr=devicePixelRatio||1,w=Math.round(r.width*dpr),h=Math.round(r.height*dpr);if(!w||!h)return false;const k=w+"x"+h;if(_sz.get(cv)!==k){_sz.set(cv,k);cv.width=w;cv.height=h}cx.setTransform(w/W,0,0,h/H,0,0);return true}
 /* فيزياء: v=√(2eU/m) للعرض، ونموذج أنبوب المدرسة: r = k·√U/I — نفس نسب القانون
@@ -82,13 +165,14 @@ const GUN={x:150,y:220}; /* فوهة الدخول */
 let entryAng=0; /* زاوية دخول الحزمة: عمودية على المحور ⇒ مركز الدائرة على المحور */
 const STEP=1/240;let acc=0,last=performance.now();const OMEGA=1.6; /* طور العرض (مبطّأ) */
 function loop(now){let dt=Math.min((now-last)/1000,.1);last=now;acc+=dt;while(acc>=STEP){acc-=STEP;t+=STEP;if(beam)ang=(ang+OMEGA*STEP)%1}
- draw();requestAnimationFrame(loop)}
+ draw();$("viewBtn").onclick=()=>{view3d=!view3d;$("viewBtn").textContent=view3d?"🔬 المنظور الواقعي":"🧊 منظور 3D"};
+requestAnimationFrame(loop)}
 function panel(){const g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#12211A");g.addColorStop(1,"#080F0B");cx.fillStyle=g;cx.fillRect(0,0,W,H);
  cx.lineWidth=1;for(let x=0;x<W;x+=11){cx.strokeStyle=x%44<.5?"rgba(238,231,222,.07)":"rgba(238,231,222,.03)";cx.beginPath();cx.moveTo(x,0);cx.lineTo(x,H);cx.stroke()}
  for(let y=0;y<H;y+=11){cx.strokeStyle=y%44<.5?"rgba(238,231,222,.07)":"rgba(238,231,222,.03)";cx.beginPath();cx.moveTo(0,y);cx.lineTo(W,y);cx.stroke()}
  const vg=cx.createRadialGradient(W/2,H/2,H*.3,W/2,H/2,W*.7);vg.addColorStop(0,"rgba(0,0,0,0)");vg.addColorStop(1,"rgba(0,0,0,.4)");cx.fillStyle=vg;cx.fillRect(0,0,W,H)}
 function arT(s,x,y,size,col,align){cx.fillStyle=col;cx.font=size+"px Tahoma,Arial";cx.textAlign=align||"center";cx.direction="rtl";cx.fillText(s,x,y);cx.direction="ltr"}
-function draw(){if(!fit())return;panel();FX.drawDust(cx,W,H);_ph.tick(permanent?0.008:0.05);{cx.save();cx.setTransform(1,0,0,1,0,0);_ph.blit(cx);cx.restore()}
+function draw(){if(!fit())return;if(view3d){drawScene3D();return;}panel();FX.drawDust(cx,W,H);_ph.tick(permanent?0.008:0.05);{cx.save();cx.setTransform(1,0,0,1,0,0);_ph.blit(cx);cx.restore()}
  const R=rpx();
  /* منطقة الحقل بين الملفين */
  const bx0=260,bx1=W-160;
