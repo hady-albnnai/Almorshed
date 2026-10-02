@@ -13,7 +13,10 @@ import 'tutia_screen.dart';
 import 'faraday1_lab_screen.dart';
 import 'helmholtz_screen.dart';
 import 'melde_screen.dart';
+import 'simple_screen.dart';
 import 'spring_lab_screen.dart';
+import 'syringe_screen.dart';
+import 'torsion_screen.dart';
 
 /// F3.5 + المادة ١٤ — فهرس المختبر (قرار ٣٧: عرض بديل لنفس تجارب الدروس):
 /// النابض التوافقي + التجارب الخمس بقالب توقّع/لاحظ/اشرح ومحاكاة حتمية.
@@ -291,6 +294,84 @@ class _LabScreenState extends State<LabScreen> {
                     onTap: () async {
                       await Navigator.of(context).push(MaterialPageRoute<void>(
                         builder: (_) => TutiaScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-torsion'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['torsion'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🌀',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('نواس الفتل المخبري'),
+                    subtitle: const Text(
+                        'الوحدة ١ · T₀=2π√(I/K) · I=½MR²+2mr²'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => TorsionScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-simple'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['simple'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '⏱️',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('النواس البسيط: T ~ √l'),
+                    subtitle: const Text(
+                        'الوحدة ١ · قياس ١٠ نوسات · نسبة ٢٫٠'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => SimpleScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-syringe'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['syringe'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '💉',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('المحقن والإبرة: التدفق'),
+                    subtitle: const Text(
+                        'الوحدة ١ · Q=A·v · تحدي ٥ml/٣s'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => SyringeScreen(
                           trainingStore: widget.trainingStore,
                           initialData: data,
                           xpRecorder: widget.xpRecorder,

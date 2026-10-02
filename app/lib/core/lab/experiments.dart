@@ -600,7 +600,6 @@ class PhotoelectricExperiment extends LabExperiment {
 
 /// السجل: معرّف ⇒ تجربة. المفتاح هو ما يُكتب في `experimentId` بالحزمة.
 const Map<String, LabExperiment> labExperiments = {
-  'torsion': TorsionExperiment(),
   'gravity': GravityPendulumExperiment(),
   'lc': LcCircuitExperiment(),
   'string': StringWaveExperiment(),

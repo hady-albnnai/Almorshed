@@ -303,3 +303,5 @@ git ls-remote origin refs/heads/dev/self-content          # تأكيد الرأ�
 - **lab_screen.dart**: ١١ بطاقة موحدة — وإزالة 'torsion' من labExperiments القديمة (كانت ستسبب تضارب Key('lab-torsion') وانهياراً).
 - درس بنية: خيارات التوقّع بنمط `Text(const [...][oi])` حصراً — `const [Text(..)..][oi]` أفقد قوساً (اكتُشف وعولج قبل الدفع).
 - **الباقي ١٠ نماذج**: blvrails · fcoil · generators · induct · mstat · ac · strings · spring · tube · (+faraday3d مدموج فعلياً بفاراداي1).
+
+- **تصحيح 34b**: رقعة 34 الأولى دُفعت بلا تعديل lab_screen (assert أخفق: مدخل `'torsion': TorsionExperiment()` بالخريطة في **experiments.dart:603** لا بlab_screen) — أُضيفت الآن ٣ البطاقات والاستيرادات، وحُذف المدخل من الملف الصحيح لتفادي تضارب Key('lab-torsion').
