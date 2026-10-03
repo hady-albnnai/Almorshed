@@ -8,7 +8,7 @@ def is_arab(ch):
 #   ar (SANS نوتو سانس عربي) + رمز غير عربي/لاتيني/رقم (تغطية SANS محدودة بالرموز المسموحة أدناه)
 #   la (DejaVu) + عربي (DejaVu لا يحوي عربيًا)
 s = open(sys.argv[1] if len(sys.argv) > 1 else 'render_unit_1_12_review.py', encoding='utf-8').read()
-pat = re.compile(r'"([^"]*)",\s*"(ar|la)\)"')
+pat = re.compile(r'\("([^"\\]+)",\s*"(ar|la)"\)')
 
 # تغطية SANS المؤكدة بفحص charmap: العربية + لاتيني + 0-9 + ':' '.' '·' '(' ')' '−' '=' '/'
 OK_AR = set(':.·()−=/')
