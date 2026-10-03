@@ -22,6 +22,9 @@ import 'mstat_screen.dart';
 import 'simple_screen.dart';
 import 'spring_lab_screen.dart';
 import 'syringe_screen.dart';
+import 'spring_screen.dart';
+import 'strings_screen.dart';
+import 'tube_screen.dart';
 import 'torsion_screen.dart';
 
 /// F3.5 + المادة ١٤ — فهرس المختبر (قرار ٣٧: عرض بديل لنفس تجارب الدروس):
@@ -534,6 +537,84 @@ class _LabScreenState extends State<LabScreen> {
                     onTap: () async {
                       await Navigator.of(context).push(MaterialPageRoute<void>(
                         builder: (_) => AcScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-strings'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['strings'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🎻',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('الوتر والرنانة والنهاية'),
+                    subtitle: const Text(
+                        'الوحدة ٣ · v=√(FT/μ) · f₁=v/2L · انعكاس النبضة'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => StringsScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-spring'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['spring'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🌀',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('النابض الحلزوني — موجات طولية'),
+                    subtitle: const Text(
+                        'الوحدة ٣ · تضاغط/تخاخر · المثبت يقلب الوجه'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => SpringScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-tube'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['tube'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '💡',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('أنبوب الأشعة المهبطية'),
+                    subtitle: const Text(
+                        'الوحدة ٢/٤ · P<٨torr يشعل · المغناطيس ينحرف'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => TubeScreen(
                           trainingStore: widget.trainingStore,
                           initialData: data,
                           xpRecorder: widget.xpRecorder,
