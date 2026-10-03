@@ -12,7 +12,10 @@ import 'oscilloscope_screen.dart';
 import 'tutia_screen.dart';
 import 'faraday1_lab_screen.dart';
 import 'helmholtz_screen.dart';
+import 'blvrails_screen.dart';
+import 'fcoil_screen.dart';
 import 'melde_screen.dart';
+import 'mstat_screen.dart';
 import 'simple_screen.dart';
 import 'spring_lab_screen.dart';
 import 'syringe_screen.dart';
@@ -372,6 +375,84 @@ class _LabScreenState extends State<LabScreen> {
                     onTap: () async {
                       await Navigator.of(context).push(MaterialPageRoute<void>(
                         builder: (_) => SyringeScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-mstat'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['mstat'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🧭',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('مغناطيسية ساكنة: الإبر والبرادة'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · مناحي الاستقرار · B ∝ N·I·μr'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => MstatScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-blvrails'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['blvrails'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🛤️',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('السكتان التحريضية: ε = BLv'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · القراءة أثناء الحركة فقط'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => BlvrailsScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-fcoil'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['fcoil'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '⚡',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('السكتان المتدحرجتان والإطار'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · F=BIL متعاكسة · τ=NIAB·sinφ'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => FcoilScreen(
                           trainingStore: widget.trainingStore,
                           initialData: data,
                           xpRecorder: widget.xpRecorder,

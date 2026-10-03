@@ -305,3 +305,11 @@ git ls-remote origin refs/heads/dev/self-content          # تأكيد الرأ�
 - **الباقي ١٠ نماذج**: blvrails · fcoil · generators · induct · mstat · ac · strings · spring · tube · (+faraday3d مدموج فعلياً بفاراداي1).
 
 - **تصحيح 34b**: رقعة 34 الأولى دُفعت بلا تعديل lab_screen (assert أخفق: مدخل `'torsion': TorsionExperiment()` بالخريطة في **experiments.dart:603** لا بlab_screen) — أُضيفت الآن ٣ البطاقات والاستيرادات، وحُذف المدخل من الملف الصحيح لتفادي تضارب Key('lab-torsion').
+
+### الدفعة 35 — عائلة U2 تكتمل: mstat + blvrails + fcoil
+- **mstat_screen.dart (U2-1/2/3)**: محصلة حقل أرضي + مغناطيس ثنائي القطب needleAng=atan2(by,−bx) بموضع ينزلق بسلاسة (magYT 30↔100) · ٣ أوضاع (علبة إبر 5×4 · ملف N=٢٠ بقلب حديدي ×5.5 ومشابك برادة round(B·1.6) · إبرة ميل lat°) · تحدّي: تقريب ثم إبعاد وعودة الإبر شمالاً (sawDeflect>0.3rad ثم <0.05) بمفتاح 'mstat'.
+- **blvrails_screen.dart (U2-13)**: ε=B·L·v بالقضيب (PXM=300px/m، اندفاع ±350px/s واحتكاك e^(−2.2t)، حواجز بشرر) · عدّاد RK4 حرفي (60εN−30ang−7angV) · ذروات ± · إعادة بطيئة ×٠٫٢٥ من مخزن ٦ث · سحب مباشر للقضيب (canvasW عبر LayoutBuilder) · تحدّي ذروتان متعاكستان ≥٦٠٪ بمفتاح 'blvrails'.
+- **fcoil_screen.dart (U2-8/9)**: وضع ١ F=I·B·0.1·(±) سكتتان تدحرجان (r=v·t/9) وعمل W متراكم · وضع ٢ φₐₜ=N·I·A·B/K (K=0.02,A=0.006) بزنبرك (Δφ·22−6φV) · تحدّي اتجاهين متعاكسين (extSeen+sepSeen) بمفتاح 'fcoil'.
+- lab_screen: **١٤ بطاقة موحدة** (فحص التضارب: لا mstat/blvrails/fcoil بخريطة labExperiments).
+- **قاعدة البيئة المؤكدة**: لقطة الحفظ تستبعد `.git/config` فينهار git بين الجلسات — الروتين: init+fetch+reset من الريموت قبل أي عملية.
+- **الباقي ٦ نماذج**: ac · strings · spring · tube · generators · induct.
