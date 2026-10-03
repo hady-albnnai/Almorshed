@@ -119,7 +119,13 @@ draw_flow(XR, 262, [
 pr = XR
 pr = pill(pr, 330, "الحالة: بانتظار موافقة الأستاذ", 24, BRAND, (45, 212, 167, 100), (45, 212, 167, 16), h=64) - 28
 pr = pill(pr, 330, "القسم: النواس المرن", 24, TXT2, LINE, CARD, h=64) - 28
-pr = pill(pr, 330, "الفقرة ١ من ١٥٦٥", 24, BRAND, LINE, CARD, h=64) - 28
+u11 = [("الوحدة ", "ar"), ("1.1", "la"), (" من ", "ar"), ("73", "la")]
+cw = sum(text_width(t, NASKH, 24) if k == "ar" else text_width(t, DEJAVU, 22) for t, k in u11)
+uw = cw + 56
+alpha_rect(pr - uw, 330, uw, 64, CARD, radius=32)
+d.rounded_rectangle([pr - uw, 330, pr - 1, 393], radius=32, outline=_c4(LINE), width=2)
+draw_flow(pr - 28, 330 + 64 - 16, u11, 24, BRAND, bold=True)
+pr -= uw + 28
 u1segs = [("الوحدة ", "ar"), ("U1", "la"), (" · النواسات", "ar")]
 cw = sum(text_width(t, NASKH, 24) if k == "ar" else text_width(t, DEJAVU, 22) for t, k in u1segs)
 uw = cw + 56
@@ -158,19 +164,18 @@ draw_rtl(img, PL + sw2 - 52, PY + 66, "١٢", 26, GOLD, bold=True)
 
 # شريط التقدم
 d.line([(PX, PY + 112), (PX + PW, PY + 112)], fill=_c4(LINE), width=1)
-draw_rtl(img, PR_, PY + 150, "الفقرة ١", 22, BRAND, bold=True)
-draw_ltr(img, PL, PY + 146, "1/1565", 20, TXT2, path=DEJAVU, bold=True)
+draw_rtl(img, PR_, PY + 150, "الوحدة ١", 22, BRAND, bold=True)
 d.rounded_rectangle([PL, PY + 168, PR_, PY + 178], radius=5, fill=_c4(CARD))
 d.rounded_rectangle([PR_ - 16, PY + 168, PR_, PY + 178], radius=5, fill=_c4(BRAND))
 
 # ============ الكارت 1: الفقرة ============
-C1Y, C1H = PY + 208, 540
+C1Y, C1H = PY + 208, 500
 alpha_rect(PL, C1Y, PR_ - PL, C1H, CARD, radius=32)
 d.rounded_rectangle([PL, C1Y, PR_, C1Y + C1H - 1], radius=32, outline=_c4(LINE), width=2)
 CR = PR_ - 28
 cr = CR
 cr = pill(cr, C1Y + 30, "النواس المرن الغير متخامد", 21, BRAND, (45, 212, 167, 100), (45, 212, 167, 26), h=54) - 16
-pill(cr, C1Y + 30, "فقرة ١", 21, TXT2, LINE, CARD2, h=54)
+pill(cr, C1Y + 30, "وحدة ١", 21, TXT2, LINE, CARD2, h=54)
 draw_rtl(img, CR, C1Y + 150, "تعريفه", 33, TXT, bold=True)
 BODY = (219, 230, 243)
 LH = 64
@@ -189,22 +194,12 @@ seg_line([("هو عبارة عن نابض مرن مهمل الكتلة، حلق�
 seg_line([("ثابت صلابته ", "n"), ("k", "m"), ("، معلق فيه جسم صلب", "n")], by); by += LH
 seg_line([("كتلته ", "n"), ("m", "m"), (" يمكنه أن يهتز إلى جانبي نقطة ثابتة", "n")], by); by += LH
 seg_line([("تدعى ", "n"), ("مركز الاهتزاز", "b"), (" (أو موضع التوازن).", "n")], by); by += LH - 14
-dashed_h(PL + 28, PR_ - 28, by + 18, LINE)
-mx = PR_ - 28
-d.polygon([(mx, by + 34), (mx - 8, by + 42), (mx, by + 50), (mx + 8, by + 42)], fill=_c4(BRAND2))
-t1 = "رمزين معادليين"
-w1 = text_width(t1, NASKH, 21)
-draw_rtl(img, mx - 22, by + 52, t1, 21, BRAND2)
-px0 = mx - 22 - w1 - 40
-d.line([(px0, by + 50), (px0 + 16, by + 34)], fill=_c4(TXT2), width=4)
-d.ellipse([px0 + 12, by + 30, px0 + 20, by + 38], fill=_c4(TXT2))
-draw_rtl(img, px0 - 14, by + 52, "نص الأستاذ كما هو", 21, TXT2)
 
 # ============ الكارت 2: الفقرة التالية ============
 C2Y, C2H = PY + 780, 560
 alpha_rect(PL, C2Y, PR_ - PL, C2H, CARD, radius=32)
 dashed_rect(PL, C2Y, PR_ - PL, C2H, 32, (44, 63, 99))
-draw_rtl(img, CR, C2Y + 44, "الفقرة التالية", 21, TXT2, path=SANS, bold=True)
+draw_rtl(img, CR, C2Y + 44, "الوحدة التالية", 21, TXT2, path=SANS, bold=True)
 draw_rtl(img, CR, C2Y + 96, "قوة الارجاع", 29, TXT, bold=True)
 from PIL import Image as I2
 fig = I2.open("/home/user/Almorshed/rebuild/nawwasat/assets/images/image2.png").convert("RGB")
@@ -217,12 +212,11 @@ ImageDraw.Draw(mask).rounded_rectangle([0, 0, fw - 1, fh - 1], radius=20, fill=2
 img.paste(fig, fx, mask)
 d.rounded_rectangle([fx[0], fx[1], fx[0] + fw - 1, fx[1] + fh - 1], radius=20, outline=_c4(LINE), width=2)
 ny = fx[1] + fh + 26
-pill(CR, ny - 12, "فقرة ٢ · شكل", 20, TXT2, LINE, CARD2, h=48)
+pill(CR, ny - 12, "وحدة ٢ · شكل", 20, TXT2, LINE, CARD2, h=48)
 lockx = PL + 28
 d.rounded_rectangle([lockx, ny - 2, lockx + 18, ny + 14], radius=4, fill=_c4(TXT2))
 d.arc([lockx + 2, ny - 12, lockx + 16, ny + 2], start=180, end=0, fill=_c4(TXT2), width=3)
-lockt = "تفتح بعد اعتماد الفقرة الحالية"
-draw_rtl(img, lockx + 30 + text_width(lockt, NASKH, 19), ny + 16, lockt, 19, TXT2)
+# (قرار ٧٣: لا توضيح آلية الاعتماد للطالب — القفل وحده يكفي)
 
 # ============ أزرار الأسفل ============
 AY = PY + PH - 150
