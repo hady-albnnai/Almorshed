@@ -1,0 +1,96 @@
+--- a/app/lib/features/curriculum/lesson_screen.dart	2026-10-03 23:37:00.693197837 +0000
++++ b/app/lib/features/curriculum/lesson_screen.dart	2026-10-03 23:40:12.892605407 +0000
+@@ -10,6 +10,7 @@
+ import '../../core/tts/speaker.dart';
+ import '../../core/util/arabic_number.dart';
+ import '../lab/experiment_screen.dart';
++import '../lab/lesson_unified_experiments.dart';
+ 
+ /// شاشة القراءة — فقرة واحدة لكل شاشة (قرار نمط القراءة · F3.2):
+ /// «التالي» + «📌 خلاصة الفقرة» + TTS «اسمعني» + فهرس حر قابل للطي + «انتهى الدرس».
+@@ -235,23 +236,39 @@
+                           ),
+                         Text(_paragraph.text, style: txt.bodyLarge),
+                         // المادة ١٤ — التجربة بموضعها من النوطة (قرار ٥٨/٣٧)
++                        // + APP-NAWWASAT-1: الفلاشات الجديدة (spring/torsion/simple/syringe)
+                         if (_paragraph.experimentId != null &&
+-                            labExperiments.containsKey(
+-                                _paragraph.experimentId))
++                            (labExperiments.containsKey(_paragraph.experimentId) ||
++                                lessonUnifiedExperiments
++                                    .containsKey(_paragraph.experimentId)))
+                           _ExperimentCard(
+-                            experiment:
+-                                labExperiments[_paragraph.experimentId]!,
++                            id: _paragraph.experimentId!,
++                            title: labExperiments[_paragraph.experimentId]
++                                    ?.title ??
++                                lessonUnifiedExperiments[_paragraph.experimentId]!
++                                    .title,
+                             onOpen: () {
+                               _stopSpeaking();
++                              final store =
++                                  widget.trainingStore ?? InMemoryTrainingStore();
+                               Navigator.of(context).push(
+                                 MaterialPageRoute<void>(
+-                                  builder: (_) => ExperimentScreen(
+-                                    experiment: labExperiments[
+-                                        _paragraph.experimentId]!,
+-                                    trainingStore: widget.trainingStore ??
+-                                        InMemoryTrainingStore(),
+-                                    xpRecorder: widget.xpRecorder,
+-                                  ),
++                                  builder: (_) {
++                                    final lab =
++                                        labExperiments[_paragraph.experimentId];
++                                    if (lab != null) {
++                                      return ExperimentScreen(
++                                        experiment: lab,
++                                        trainingStore: store,
++                                        xpRecorder: widget.xpRecorder,
++                                      );
++                                    }
++                                    return LessonUnifiedExperimentScreen(
++                                      id: _paragraph.experimentId!,
++                                      trainingStore: store,
++                                      xpRecorder: widget.xpRecorder,
++                                    );
++                                  },
+                                 ),
+                               );
+                             },
+@@ -438,8 +455,14 @@
+ 
+ /// بطاقة «🧪 جرّبها بنفسك» داخل الفقرة — تفتح التجربة التفاعلية بموضعها.
+ class _ExperimentCard extends StatelessWidget {
+-  const _ExperimentCard({required this.experiment, required this.onOpen});
+-  final LabExperiment experiment;
++  const _ExperimentCard({
++    required this.id,
++    required this.title,
++    required this.onOpen,
++  });
++
++  final String id;
++  final String title;
+   final VoidCallback onOpen;
+ 
+   @override
+@@ -447,7 +470,7 @@
+     final txt = Theme.of(context).textTheme;
+     final cs = Theme.of(context).colorScheme;
+     return Card(
+-      key: Key('experiment-${experiment.id}'),
++      key: Key('experiment-$id'),
+       margin: const EdgeInsets.only(top: 14),
+       shape: RoundedRectangleBorder(
+         borderRadius: BorderRadius.circular(14),
+@@ -455,7 +478,7 @@
+       ),
+       child: ListTile(
+         leading: const Text('🧪', style: TextStyle(fontSize: 24)),
+-        title: Text('جرّبها بنفسك: ${experiment.title}',
++        title: Text('جرّبها بنفسك: $title',
+             style: txt.titleSmall),
+         subtitle: const Text(
+             'توقّع ← لاحظ (محاكاة حتمية) ← اشرح · تحدٍّ +١٠'),
