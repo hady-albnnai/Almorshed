@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""مراجعة المادة — الوحدة 1.5: الشكل المختزل + س4 (المنحنى + القيم)"""
+"""مراجعة المادة — الوحدة 1.5: الشكل المختزل + المطال أعظمي/معدوم + س4"""
 import os, sys, math
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from PIL import Image, ImageDraw
@@ -9,7 +9,7 @@ from rtl_text import (draw_rtl, draw_ltr, text_width,
                       NASKH, SANS, DEJAVU, DEJAVU_B, DEJAVU_SI)
 
 W = 2480
-H = 3320
+H = 3390
 cv = ReviewCanvas(W, H)
 d = cv.d
 img = cv.img
@@ -17,12 +17,12 @@ XR = 2400
 
 # ============================ الرأس ============================
 draw_rtl(img, XR, 84, "مراجعة المادة — نوطة النواسات", 24, BRAND2, path=SANS, bold=True)
-cv.draw_flow(XR, 162, [("الوحدة 1.5 — ", "ar"), ("الشكل المختزل + س4", "ar")], 48, TXT, bold=True)
+cv.draw_flow(XR, 162, [("الوحدة 1.5 — ", "ar"), ("الشكل المختزل + المطال أعظمي/معدوم", "ar")], 48, TXT, bold=True)
 pr = XR
 for txt, tc, bc, bg in [
     ("النص حرفي من النوط + تصحيحات R1–R14", BRAND, (45, 212, 167, 100), (45, 212, 167, 16)),
-    ("الجدول F0040–F0042 من النوط — المنحنى مرسوم", TXT2, LINE, CARD),
-    ("شرح + 3 بطاقات + مثال محلول + 4 أسئلة", TXT2, LINE, CARD),
+    ("فلاشات النوط: F0039–F0047 (جدول θ/cos + الخط البياني)", TXT2, LINE, CARD),
+    ("شرح ② + 3 بطاقات + 4 أسئلة", TXT2, LINE, CARD),
 ]:
     tw = text_width(txt, NASKH, 22, True)
     w = tw + 48
@@ -33,147 +33,138 @@ for txt, tc, bc, bg in [
 
 # ============================ الصف الأول ============================
 SY, PW, PH = 330, 760, 1350
-XR1 = XR - PW
-XL1 = XR - 2 * PW - 30
+X1, X2, X3 = XR - PW, XR - 2 * PW - 30, XR - 3 * PW - 60
 SY2 = 1860
 SUB = "الوحدة 1.5 · النواس المرن"
 
-# ---------- S1: الشرح (الاستنتاج + أعظمى/معدوم) ----------
-pl, pr = cv.phone(XR1, SY, PW, PH, "الاهتزازات التوافقية البسيطة", SUB)
+# ---------- S1: الشرح ① (استنتاج الشكل المختزل) ----------
+pl, pr = cv.phone(X1, SY, PW, PH, "الاهتزازات التوافقية البسيطة", SUB)
 cr = pr - 24
-cr = cv.pill_r(cr, SY + 100, "الشكل المختزل", 19, BRAND, (45, 212, 167, 100), (45, 212, 167, 26)) - 12
+cr = cv.pill_r(cr, SY + 100, "تابع المطال", 19, BRAND, (45, 212, 167, 100), (45, 212, 167, 26)) - 12
 cv.pill_r(cr, SY + 100, "وحدة ٥", 19, TXT2, LINE, CARD2)
-yy = SY + 180
-cv.draw_flow(cr, yy, [("س4) انطلاقا من تابع المطال بالشكل العام — ", "ar")], 18, TXT)
-cv.draw_flow(cr, yy + 30, [("بفرض مبدأ الزمن عندما كان الجسم في المطال الأعظمي الموجب:", "ar")], 18, BRAND, bold=True)
-yy += 80
+yy = SY + 190
+draw_rtl(img, cr, yy, "س4) انطلاقا من تابع المطال بالشكل العام:", 19, TXT); yy += 34
+draw_rtl(img, cr, yy, "استنتج تابع المطال بالشكل المختزل", 19, BRAND, bold=True); yy += 50
 steps = [
-    [("نعوض ", "ar"), ("t = 0:   Xmax = Xmax·cosφ", "la")],
-    [("إذن:  ", "ar"), ("cosφ = 1  ⟹  φ = 0 rad", "la")],
+    [("الشكل العام:  ", "ar"), ("x = Xmax·cos(ω₀t + φ)", "la")],
+    [("بفرض ", "ar"), ("t = 0", "la"), (" عند المطال الأعظمي الموجب:  ", "ar"), ("x = +Xmax", "la")],
+    [("نعوّض:  ", "ar"), ("Xmax = Xmax·cosφ  ⟹  cosφ = 1", "la")],
+    [("إذن:  ", "ar"), ("φ = 0 rad", "la")],
 ]
 for i, segs in enumerate(steps):
     cv.number_badge(cr - 36, yy - 26, i + 1, BRAND)
     cv.draw_flow(cr - 52, yy, segs, 19, TXT)
     yy += 52
+yy += 10
 big = "x = Xmax·cos(ω₀t)"
-bw = text_width(big, DEJAVU_SI, 30) + 64
+bw = text_width(big, DEJAVU_SI, 34) + 64
 pxc = (pl + pr) // 2
-cv.alpha_rect(pxc - bw // 2, yy + 6, bw, 66, (56, 189, 248, 22), radius=14)
-d.rounded_rectangle([pxc - bw // 2, yy + 6, pxc + bw // 2 - 1, yy + 71], radius=14, outline=(56, 189, 248, 90), width=2)
-draw_ltr(img, pxc - bw // 2 + 32, yy + 48, big, 30, MATHC, path=DEJAVU_SI, slant=0.22)
-yy += 90
-draw_rtl(img, cr, yy, "الشكل المختزل — ينطبق عندما ينطلق الجسم من المطال الأعظمي الموجب", 18, TXT2)
-yy += 56
-d.line([(pl, yy), (pr, yy)], fill=_c4(LINE), width=2)
-yy += 44
-cv.number_badge(cr - 36, yy - 26, "a", BRAND2)
-cv.draw_flow(cr - 52, yy, [("أعظمى: ", "ar"), ("في الوضعين الجانبيين ", "ar"), ("x = ±Xmax", "la")], 18, TXT); yy += 48
-cv.number_badge(cr - 36, yy - 26, "b", BRAND2)
-cv.draw_flow(cr - 52, yy, [("معدومة: ", "ar"), ("في مركز الاهتزاز ", "ar"), ("x = 0", "la")], 18, TXT); yy += 60
-cv.a_rounded(pl + 16, yy, pr - 16, yy + 84, 12, fill=CARD2, outline=LINE)
-cv.draw_flow(cr - 12, yy + 34, [("خلال كل دور: المطال يصفر مرتين ", "ar"), ("3T₀/4)", "la"), ("،", "ar"), ("(t = T₀/4", "la")], 17, TXT2)
-cv.draw_flow(cr - 12, yy + 62, [("ويعبر أقصى القيمة مرتين ", "ar"), ("T₀/2)", "la"), ("،", "ar"), ("(t = 0", "la")], 17, TXT2)
+cv.alpha_rect(pxc - bw // 2, yy, bw, 70, (45, 212, 167, 30), radius=14)
+d.rounded_rectangle([pxc - bw // 2, yy, pxc + bw // 2 - 1, yy + 69], radius=14, outline=(45, 212, 167, 140), width=2)
+draw_ltr(img, pxc - bw // 2 + 32, yy + 50, big, 34, BRAND, path=DEJAVU_SI, slant=0.22)
+yy += 96
+cv.draw_flow(cr, yy, [("الشكل المختزل — ", "ar"), ("(يبدأ الجسم من الوضع الجانبي الموجب)", "ar")], 18, TXT2)
+cv.bottom_bar(X1, SY + PH - 108, PW)
 
-# ---------- S2: المنحنى x–t + المعادلة ----------
-pl, pr = cv.phone(XL1, SY, PW, PH, "الاهتزازات التوافقية البسيطة", SUB)
+# ---------- S2: الشرح ② (أعظمي/معدوم + الخط البياني) ----------
+pl, pr = cv.phone(X2, SY, PW, PH, "الاهتزازات التوافقية البسيطة", SUB)
 cr = pr - 24
-cv.pill_r(cr, SY + 100, "الخط البياني خلال دور واحد", 19, BRAND, (45, 212, 167, 100), (45, 212, 167, 26))
-# منطقة الرسم
-gx0, gx1 = pl + 90, pr - 60
-gy_mid = SY + 400
-amp = 150
-d.line([(gx0 - 20, gy_mid), (gx1 + 30, gy_mid)], fill=_c4(TXT2), width=3)
-d.polygon([(gx1 + 44, gy_mid), (gx1 + 26, gy_mid - 9), (gx1 + 26, gy_mid + 9)], fill=_c4(TXT2))
-d.line([(gx0 - 20, gy_mid + amp + 40), (gx0 - 20, gy_mid - amp - 40)], fill=_c4(TXT2), width=3)
-d.polygon([(gx0 - 20, gy_mid - amp - 52), (gx0 - 29, gy_mid - amp - 34), (gx0 - 11, gy_mid - amp - 34)], fill=_c4(TXT2))
-# الشبكة العمودية + التسميات
-marks = [(0.0, "0"), (0.25, "T₀/4"), (0.5, "T₀/2"), (0.75, "3T₀/4"), (1.0, "T₀")]
-for frac, lab in marks:
-    xx = gx0 + int((gx1 - gx0) * frac)
-    d.line([(xx, gy_mid - amp - 20), (xx, gy_mid + amp + 20)], fill=_c4(LINE), width=2)
-    lw_ = text_width(lab, DEJAVU, 20)
-    draw_ltr(img, xx - lw_ // 2, gy_mid + amp + 52, lab, 20, TXT2, path=DEJAVU)
-# تسميات المحور الرأسي
-for yyv, lab in [(gy_mid - amp, "Xmax"), (gy_mid, "0"), (gy_mid + amp, "-Xmax")]:
-    draw_ltr(img, gx0 - 90, yyv - 12, lab, 20, TXT2, path=DEJAVU)
-    d.line([(gx0 - 20, yyv), (gx0, yyv)], fill=_c4(TXT2), width=2)
-# المنحنى: x = Xmax·cos(2π t/T0)
+cv.pill_r(cr, SY + 100, "أعظمي / معدوم + الخط البياني", 19, BRAND, (45, 212, 167, 100), (45, 212, 167, 26))
+yy = SY + 172
+cv.draw_flow(cr, yy, [("المطال أعظمي: ", "ar"), ("في الوضعين الجانبيين  ", "ar"), ("x = ±Xmax", "la")], 19, TXT); yy += 38
+cv.draw_flow(cr, yy, [("المطال معدوم: ", "ar"), ("في مركز الاهتزاز  ", "ar"), ("x = 0", "la")], 19, TXT); yy += 56
+# الإطار
+gx0, gx1 = pl + 70, pr - 40
+gy0, gy1 = yy, yy + 380
+cv.a_rounded(gx0, gy0, gx1, gy1, 14, fill=(8, 14, 26), outline=(44, 63, 99))
+# المحاور
+cx_axis = gx0 + 60
+cy_mid = (gy0 + gy1) // 2
+amp = 130
+d.line([(cx_axis, gy0 + 24), (cx_axis, gy1 - 24)], fill=_c4(TXT2), width=3)          # محور x
+d.line([(cx_axis - 20, cy_mid), (gx1 - 24, cy_mid)], fill=_c4(TXT2), width=3)      # محور t
+d.polygon([(cx_axis, gy0 + 16), (cx_axis - 7, gy0 + 30), (cx_axis + 7, gy0 + 30)], fill=_c4(TXT2))
+d.polygon([(gx1 - 16, cy_mid), (gx1 - 30, cy_mid - 7), (gx1 - 30, cy_mid + 7)], fill=_c4(TXT2))
+# منحنى cos خلال دور
+t0x, t1x = cx_axis + 30, gx1 - 60
 pts = []
-N = 240
-for i in range(N + 1):
-    t = i / N
-    xx = gx0 + (gx1 - gx0) * t
-    yy_ = gy_mid - amp * math.cos(2 * math.pi * t)
-    pts.append((xx, yy_))
-d.line(pts, fill=_c4(BRAND2), width=6, joint="curve")
-# نقاط رئيسية
-for frac, val in [(0.0, -1), (0.25, 0), (0.5, 1), (0.75, 0), (1.0, -1)]:
-    xx = gx0 + int((gx1 - gx0) * frac)
-    yy_ = gy_mid + amp * val
-    d.ellipse([xx - 9, yy_ - 9, xx + 9, yy_ + 9], fill=_c4(GOLD), outline=_c4(BG2), width=3)
-yy = SY + 700
-cv.a_rounded(pl + 16, yy, pr - 16, yy + 120, 12, fill=CARD2, outline=LINE)
-cv.draw_flow(cr - 12, yy + 36, [("من الجدول: ", "ar"), ("cos(0)=1 · cos(π/2)=0 · cos(π)=−1 · cos(3π/2)=0 · cos(2π)=1", "la")], 16, TXT2)
-cv.draw_flow(cr - 12, yy + 78, [
-    ("إذن: عند ", "ar"), ("t = 0", "la"), (" المطال ", "ar"), ("Xmax", "la"),
-    (" · عند ", "ar"), ("T₀/4", "la"), (" صفر · عند ", "ar"), ("T₀/2", "la"),
-    (" سالب ", "ar"), ("Xmax", "la"), (" · عند ", "ar"), ("3T₀/4", "la"),
-    (" صفر · عند ", "ar"), ("T₀", "la"), (" يعود ", "ar"), ("Xmax", "la"),
-], 17, TXT)
-yy += 160
-big2 = "x = Xmax·cos( (2π/T₀)·t )"
-bw2 = text_width(big2, DEJAVU_SI, 30) + 64
+for i in range(121):
+    tt = i / 120.0
+    tx = t0x + (t1x - t0x) * tt
+    ty = cy_mid - amp * math.cos(2 * math.pi * tt)
+    pts.append((tx, ty))
+d.line(pts, fill=_c4(BRAND), width=5, joint="curve")
+# دوالب t
+for f, lab in [(0.25, "T₀/4"), (0.5, "T₀/2"), (0.75, "3T₀/4"), (1.0, "T₀")]:
+    tx = t0x + (t1x - t0x) * f
+    d.line([(tx, cy_mid - 6), (tx, cy_mid + 6)], fill=_c4(TXT2), width=3)
+    lw = text_width(lab, DEJAVU, 16)
+    draw_ltr(img, int(tx - lw // 2), cy_mid + 26, lab, 16, TXT2, path=DEJAVU)
+# تسميات المحور الرأسي
+draw_ltr(img, cx_axis - 92, cy_mid - amp - 6, "Xmax", 16, TXT2, path=DEJAVU)
+draw_ltr(img, cx_axis - 104, cy_mid + amp - 14, "-Xmax", 16, TXT2, path=DEJAVU)
+draw_ltr(img, t0x - 24, cy_mid - 26, "x", 18, BRAND2, path=DEJAVU_SI, slant=0.22)
+draw_ltr(img, gx1 - 40, cy_mid + 10, "t", 18, BRAND2, path=DEJAVU_SI, slant=0.22)
+# نقطة T₀/2 (أدنى)
+txh = t0x + (t1x - t0x) * 0.5
+d.ellipse([txh - 7, cy_mid + amp - 7, txh + 7, cy_mid + amp + 7], fill=_c4(GOLD))
+yy = gy1 + 44
+big = "x = Xmax·cos((2π/T₀)·t)"
+bw = text_width(big, DEJAVU_SI, 26) + 40
 pxc = (pl + pr) // 2
-cv.alpha_rect(pxc - bw2 // 2, yy, bw2, 66, (56, 189, 248, 22), radius=14)
-d.rounded_rectangle([pxc - bw2 // 2, yy, pxc + bw2 // 2 - 1, yy + 65], radius=14, outline=(56, 189, 248, 90), width=2)
-draw_ltr(img, pxc - bw2 // 2 + 32, yy + 46, big2, 30, MATHC, path=DEJAVU_SI, slant=0.22)
+cv.alpha_rect(pxc - bw // 2, yy, bw, 54, (56, 189, 248, 22), radius=12)
+d.rounded_rectangle([pxc - bw // 2, yy, pxc + bw // 2 - 1, yy + 53], radius=12, outline=(56, 189, 248, 90), width=2)
+draw_ltr(img, pxc - bw // 2 + 20, yy + 38, big, 26, MATHC, path=DEJAVU_SI, slant=0.22)
+yy += 76
+cv.draw_flow(cr, yy, [("أما من الجدول أو بيانياً أو حسابياً:", "ar")], 18, TXT2); yy += 40
+cv.draw_flow(cr, yy, [("t = T₀/2  ⟹  x = Xmax·cos(π) = -Xmax", "la")], 19, TXT); yy += 40
+cv.draw_flow(cr, yy, [("t = 5T₀/4  ⟹  x = Xmax·cos(5π/2) = Xmax·cos(2π + π/2) = 0", "la")], 19, TXT)
+
+# ---------- S3: البطاقات (3) ----------
+pl, pr = cv.phone(X3, SY, PW, PH, "بطاقات المراجعة", SUB)
+cards = [
+    ([("الشكل المختزل لتابع المطال", "ar")], 300, [
+        [("x = Xmax·cos(ω₀t)", "la")],
+        [("يُستنتج عندما يبدأ الجسم من المطال الأعظمي الموجب (φ = 0 rad).", "ar")],
+    ]),
+    ([("متى يكون المطال أعظمي؟", "ar")], 300, [
+        [("في الوضعين الجانبيين:  ", "ar"), ("x = ±Xmax", "la")],
+    ]),
+    ([("متى ينعدم المطال؟", "ar")], 300, [
+        [("في مركز الاهتزاز:  ", "ar"), ("x = 0", "la")],
+        [("عند t = T₀/4 و 3T₀/4 من كل دور.", "ar")],
+    ]),
+]
+by = SY + 100
+for i, (front, ch, lines) in enumerate(cards):
+    cv.card(pl, by, pr - pl, ch, 22, CARD, border=LINE)
+    cv.number_badge(pl + 20, by + 20, i + 1, BRAND)
+    cv.draw_flow(pr - 24, by + 50, front, 24, TXT, bold=True)
+    d.line([(pl + 24, by + 78), (pr - 24, by + 78)], fill=_c4(LINE), width=2)
+    yy = by + 130
+    for segs in lines:
+        cv.draw_flow(pr - 24, yy, segs, 20, TXT2)
+        yy += 40
+    by += ch + 24
+draw_rtl(img, pr, SY + PH - 90, "3 بطاقات — المصطلح + التعريف", 18, TXT2, path=SANS)
 
 # ============================ الصف الثاني ============================
-# ---------- S3: المثال المحلول ----------
-pl, pr = cv.phone(XR1, SY2, PW, PH, "مثال محلول", SUB)
-cr = pr - 24
-cv.pill_r(cr, SY2 + 100, "من نوط الأستاذ", 19, BRAND, (45, 212, 167, 100), (45, 212, 167, 26))
-yy = SY2 + 180
-cv.a_rounded(pl + 16, yy, pr - 16, yy + 130, 14, fill=CARD2, outline=LINE)
-cv.draw_flow(cr, yy + 40, [("للتابع: ", "ar"), ("x = Xmax·cos( (2π/T₀)·t )", "la")], 19, TXT)
-cv.draw_flow(cr, yy + 88, [("أوجد قيمة المطال عند ", "ar"), ("t = T₀/2", "la"), (" وعند ", "ar"), ("t = 5T₀/4", "la")], 19, TXT)
-yy += 180
-steps = [
-    [("نعوض ", "ar"), ("t = T₀/2:  ", "la"), ("x = Xmax·cos(π)", "la")],
-    [("cos(π) = −1:  ", "la"), ("x = −Xmax", "la")],
-    [("نعوض ", "ar"), ("t = 5T₀/4:  ", "la"), ("x = Xmax·cos(5π/2)", "la")],
-    [("5π/2 = 2π + π/2:  ", "la"), ("cos(5π/2) = 0 ⟹ x = 0", "la")],
-]
-for i, segs in enumerate(steps):
-    cv.number_badge(cr - 36, yy - 26, i + 1, BRAND)
-    cv.draw_flow(cr - 52, yy, segs, 19, TXT)
-    yy += 52
-yy += 14
-ans = "x(T₀/2) = −Xmax   ·   x(5T₀/4) = 0"
-bw3 = text_width(ans, DEJAVU_SI, 28) + 64
-pxc = (pl + pr) // 2
-cv.alpha_rect(pxc - bw3 // 2, yy, bw3, 66, (45, 212, 167, 30), radius=14)
-d.rounded_rectangle([pxc - bw3 // 2, yy, pxc + bw3 // 2 - 1, yy + 65], radius=14, outline=(45, 212, 167, 140), width=2)
-draw_ltr(img, pxc - bw3 // 2 + 32, yy + 46, ans, 28, BRAND, path=DEJAVU_SI, slant=0.22)
-
 # ---------- S4: الاختبار الذاتي (4) ----------
-pl, pr = cv.phone(XL1, SY2, PW, PH, "الاختبار الذاتي", SUB)
+pl, pr = cv.phone(X2, SY2, PW, PH, "الاختبار الذاتي", SUB)
 qs = [
-    ([ [("ينطلق الجسم من المطال الأعظمي الموجب —", "ar")],
-       [("الطور الابتدائي ", "ar"), ("φ:", "la")] ],
-     [[("0 rad", "la"), ("والتابع ", "ar"), ("x = Xmax·cos(ω₀t)", "la")], [("π rad", "la")],
-      [("π/2 rad", "la")], [("3π/2 rad", "la")]]),
-    ([ [("خلال دور واحد — متى ينعدم", "ar")],
-       [("المطال؟", "ar")] ],
-     [[("عند ", "ar"), ("t = T₀/4", "la"), ("و ", "ar"), ("t = 3T₀/4", "la"), (" (في المركز)", "ar")],
-      [("عند ", "ar"), ("t = 0", "la"), ("و ", "ar"), ("t = T₀", "la")], [("عند ", "ar"), ("t = T₀/2", "la"), (" فقط", "ar")],
-      [("لا ينعدم أبداً", "ar")]]),
-    ([ [("نواس سعة اهتزازه ", "ar"), ("Xmax = 10 cm", "la"), (" —", "ar")],
-       [("المطال عند ", "ar"), ("t = T₀/2", "la"), ("؟", "ar")] ],
-     [[("−10 cm", "la")], [("10 cm", "la")], [("0", "la")], [("5 cm", "la")]]),
-    ([ [("لتابع المطال ", "ar"), ("x = Xmax·cos(ω₀t)", "la"), (" —", "ar")],
-       [("قيمة المطال عند ", "ar"), ("t = 5T₀/4", "la"), (":", "la")] ],
-     [[("x = 0", "la")], [("x = Xmax", "la")], [("x = −Xmax", "la")], [("x = Xmax/2", "la")]]),
+    ([ [("بفرض مبدأ الزمن عند المطال الأعظمي الموجب —", "ar")],
+       [("الطور الابتدائي φ يساوي:", "ar")] ],
+     [[("0 rad", "la")], [("π/2", "la")], [("π", "la")], [("π/4", "la")]]),
+    ([ [("في التابع المختزل — المطال يكون أعظمي", "ar")],
+       [("عندما:", "ar")] ],
+     [[("cos(ω₀t) = ±1", "la"), (" — في الوضعين الجانبيين", "ar")],
+      [("cos(ω₀t) = 0", "la"), (" — في المركز", "ar")],
+      [("الجسم في مركز الاهتزاز", "ar")],
+      [("ω₀t = π/2", "la"), (" فقط", "ar")]]),
+    ([ [("قيمة المطال في اللحظة ", "ar"), ("t = T₀/2", "la"), (" هي:", "ar")] ],
+     [[("-Xmax", "la")], [("+Xmax", "la")], [("0", "la")], [("Xmax/2", "la")]]),
+    ([ [("قيمة المطال في اللحظة ", "ar"), ("t = 5T₀/4", "la"), (" تساوي:", "ar")] ],
+     [[("0", "la")], [("Xmax", "la")], [("-Xmax", "la")], [("Xmax/2", "la")]]),
 ]
 by = SY2 + 96
 letters = ["أ", "ب", "ج", "د"]
@@ -208,19 +199,16 @@ draw_rtl(img, pr - 24, SY2 + PH - 68, "سؤال جديد", 20, BRAND, bold=True)
 
 # ============================ التسميات ============================
 row1 = [
-    ([("الشرح — الاستنتاج + أعظمى/معدوم", "ar")], XR1),
-    ([("المنحنى ", "ar"), ("x–t", "la"), (" خلال دور واحد", "ar")], XL1),
+    ([("الشرح 1 — استنتاج الشكل المختزل", "ar")], X1),
+    ([("الشرح 2 — أعظمي/معدوم + الخط البياني", "ar")], X2),
+    ([("بطاقات المراجعة (3)", "ar")], X3),
 ]
 for segs, x in row1:
     w = cv.flow_width(segs, 23, True)
     cv.draw_flow(x + PW // 2 + w // 2, SY + PH + 56, segs, 23, TXT, bold=True)
-row2 = [
-    ([("المثال المحلول (س4 — القيم)", "ar")], XR1),
-    ([("الاختبار الذاتي (4 قوالب)", "ar")], XL1),
-]
-for segs, x in row2:
-    w = cv.flow_width(segs, 23, True)
-    cv.draw_flow(x + PW // 2 + w // 2, SY2 + PH + 56, segs, 23, TXT, bold=True)
+segs = [("الاختبار الذاتي (4 قوالب)", "ar")]
+w = cv.flow_width(segs, 23, True)
+cv.draw_flow(X2 + PW // 2 + w // 2, SY2 + PH + 56, segs, 23, TXT, bold=True)
 cv.draw_flow(XR, SY2 + PH + 130, [
     ("المراجعة: الأستاذ فداء البني · الوحدة 1.5 من 73 · ", "ar"), ("2026-10-03", "la"),
 ], 20, TXT2)
