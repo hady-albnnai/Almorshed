@@ -19,16 +19,16 @@ XR = 2400
 draw_rtl(img, XR, 84, "مراجعة المادة — نوطة النواسات", 24, BRAND2, path=SANS, bold=True)
 cv.draw_flow(XR, 162, [("الوحدة 1.12", "ar"), (" — ", "la"), ("مسألة ", "ar"), ("(2/18):", "la"), (" الرسم ", "ar"), ("Ep–x", "la"), (" وقراءة الثوابت", "ar")], 48, TXT, bold=True)
 pr = XR
-for txt, tc, bc, bg in [
-    ("النص حرفي من النوط + تصحيحات R1–R14", BRAND, (45, 212, 167, 100), (45, 212, 167, 16)),
-    ("فلاشات النوط: F0091–F0092 (رسم Ep–x)", TXT2, LINE, CARD),
-    ("3 خطوات + 4 بطاقات + 4 أسئلة", TXT2, LINE, CARD),
+for segs, tc, bc, bg in [
+    ([("النص حرفي من النوط ", "ar"), ("+ ", "la"), ("تصحيحات ", "ar"), ("R1–R14", "la")], BRAND, (45, 212, 167, 100), (45, 212, 167, 16)),
+    ([("فلاشات النوط: ", "ar"), ("F0091–F0092 ", "la"), ("رسم ", "ar"), ("Ep–x", "la")], TXT2, LINE, CARD),
+    ([("3 خطوات ", "ar"), ("+ ", "la"), ("4 بطاقات ", "ar"), ("+ ", "la"), ("4 أسئلة", "ar")], TXT2, LINE, CARD),
 ]:
-    tw = text_width(txt, NASKH, 22, True)
+    tw = cv.flow_width(segs, 22, True)
     w = tw + 48
     cv.alpha_rect(pr - w, 214, w, 54, bg, radius=27)
     d.rounded_rectangle([pr - w, 214, pr - 1, 267], radius=27, outline=_c4(bc), width=2)
-    draw_rtl(img, pr - 24, 214 + 39, txt, 22, tc, bold=True)
+    cv.draw_flow(pr - 24, 214 + 39, segs, 22, tc, bold=True)
     pr -= w + 20
 
 # ============================ الصف الأول ============================
