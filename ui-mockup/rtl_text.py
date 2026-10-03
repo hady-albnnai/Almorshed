@@ -1,28 +1,40 @@
 # مكوّن رسم نصي: uharfbuzz (تشكيل) + freetype-py (رسم) + PIL
 # العربي: buffer بالترتيب البصري (يسار→يمين) → نعكسه ونرسم من اليمين
 # العريض: وزن متغيّر حقيقي (wght) على الطرفين (hb + FT)
+#
+# قاعدة التغطية (إلزامية لكل الوحدات — Noto Naskh ثابت non-hinted):
+#   "ar" (Naskh): يحوي العربية + الأرقام 0-9 + ":" و "." فقط.
+#   أي حرف لاتيني (a-z) أو رمز ( = + - ( ) / ± ½ ² ω π …) لا يرسم في Naskh (يظهر ▯).
+#   → كل رمز غير عربي/رقم يجب أن يكون في مقطع "la" (DejaVu).
+#   "la" (DejaVu): لا يحوي العربية إطلاقًا → لا تضع عربيًا داخل مقطع "la".
+#   للتحقق قبل أي تقديم: python3 ui-mockup/scan_segs.py <ملف_الوحدة>.py
+import os
 import uharfbuzz as hb
 import freetype
 from PIL import Image
 
-NASKH = "/tmp/fonts/NotoNaskhArabic.ttf"      # wght 400-700
-SANS = "/tmp/fonts/NotoSansArabic.ttf"        # (wght, wdth)
+_FDIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts")
+NASKH = os.path.join(_FDIR, "NotoNaskhArabic-Regular.ttf")  # ثابت (نسخة notofonts)
+NASKH_B = os.path.join(_FDIR, "NotoNaskhArabic-Bold.ttf")
+SANS = os.path.join(_FDIR, "NotoSansArabic.ttf")            # متغيّر (wght, wdth)
 DEJAVU = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
 DEJAVU_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 DEJAVU_SI = "/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf"
 
-# إحداثيات التصميم للعريض لكل خط
-_BOLD_COORDS = {NASKH: [700.0], SANS: [700.0, 100.0]}
+# للعريض: إحداثيات تصميم (خطوط متغيرة) أو ملف عريض (خطوط ثابتة)
+_BOLD_COORDS = {SANS: [700.0, 100.0]}
+_BOLD_FILE = {NASKH: NASKH_B}
 
 _fonts = {}
 def _get(path, size, bold=False):
     key = (path, size, bold)
     if key not in _fonts:
-        f = hb.Font(hb.Face(open(path, "rb").read()))
+        fpath = _BOLD_FILE.get(path, path) if bold else path
+        f = hb.Font(hb.Face(open(fpath, "rb").read()))
         f.scale = (size * 64, size * 64)
         if bold and path in _BOLD_COORDS:
             f.set_var_coords_design(_BOLD_COORDS[path])
-        ft = freetype.Face(path)
+        ft = freetype.Face(fpath)
         ft.set_pixel_sizes(0, size)
         if bold and path in _BOLD_COORDS:
             ft.set_var_design_coords(_BOLD_COORDS[path])
@@ -38,7 +50,7 @@ def text_width(text, path, size, bold=False):
 def _norm(fill):
     return fill if len(fill) == 4 else fill + (255,)
 
-def _render(ft, img, pen, y_baseline, gid, fill, slant=0.0):
+def _render(ft, img, pen, y_baseline, gid, fill, slant=0.0, ox=0, oy=0):
     ft.load_glyph(gid, freetype.FT_LOAD_RENDER)
     bm = ft.glyph.bitmap
     if bm.width == 0 or bm.rows == 0:
@@ -55,7 +67,7 @@ def _render(ft, img, pen, y_baseline, gid, fill, slant=0.0):
         big.alpha_composite(layer, (pad, 0))
         big = big.transform((w + pad * 2, h), Image.AFFINE, (1, slant, -slant * h / 2, 0, 1, 0), resample=Image.BICUBIC)
         layer = big.crop((pad, 0, pad + w, h))
-    img.alpha_composite(layer, (pen - ft.glyph.bitmap_left, y_baseline - ft.glyph.bitmap_top))
+    img.alpha_composite(layer, (pen - ft.glyph.bitmap_left + ox, y_baseline - ft.glyph.bitmap_top + oy))
 
 def draw_rtl(img, x_right, y_baseline, text, size, fill, path=NASKH, bold=False, slant=0.0):
     f, ft = _get(path, size, bold)
@@ -64,10 +76,12 @@ def draw_rtl(img, x_right, y_baseline, text, size, fill, path=NASKH, bold=False,
     hb.shape(f, buf)
     gs = [g.codepoint for g in buf.glyph_infos][::-1]
     pos = [p.x_advance for p in buf.glyph_positions][::-1]
+    xo = [p.x_offset for p in buf.glyph_positions][::-1]
+    yo = [p.y_offset for p in buf.glyph_positions][::-1]
     pen = x_right
     for i, gid in enumerate(gs):
         pen -= pos[i] >> 6
-        _render(ft, img, pen, y_baseline, gid, fill, slant)
+        _render(ft, img, pen + (xo[i] >> 6), y_baseline, gid, fill, slant, oy=-(yo[i] >> 6))
     return pen
 
 def draw_ltr(img, x_left, y_baseline, text, size, fill, path=DEJAVU, bold=False, slant=0.0):
@@ -77,9 +91,11 @@ def draw_ltr(img, x_left, y_baseline, text, size, fill, path=DEJAVU, bold=False,
     hb.shape(f, buf)
     gs = [g.codepoint for g in buf.glyph_infos]
     pos = [p.x_advance for p in buf.glyph_positions]
+    xo = [p.x_offset for p in buf.glyph_positions]
+    yo = [p.y_offset for p in buf.glyph_positions]
     pen = x_left
     for i, gid in enumerate(gs):
-        _render(ft, img, pen, y_baseline, gid, fill, slant)
+        _render(ft, img, pen + (xo[i] >> 6), y_baseline, gid, fill, slant, oy=-(yo[i] >> 6))
         pen += pos[i] >> 6
     return pen
 
