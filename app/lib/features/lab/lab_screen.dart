@@ -6,12 +6,15 @@ import '../../core/training/training_store.dart';
 import '../../core/xp/streak_service.dart';
 import 'airtube_screen.dart';
 import 'crookes_screen.dart';
+import 'ac_screen.dart';
 import 'experiment_screen.dart';
 import 'fbil_screen.dart';
 import 'oscilloscope_screen.dart';
 import 'tutia_screen.dart';
 import 'faraday1_lab_screen.dart';
+import 'generators_screen.dart';
 import 'helmholtz_screen.dart';
+import 'induct_screen.dart';
 import 'blvrails_screen.dart';
 import 'fcoil_screen.dart';
 import 'melde_screen.dart';
@@ -453,6 +456,84 @@ class _LabScreenState extends State<LabScreen> {
                     onTap: () async {
                       await Navigator.of(context).push(MaterialPageRoute<void>(
                         builder: (_) => FcoilScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-induct'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['induct'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🔁',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('وشيعتان + قانون لينز'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · ε₂=−M·dI₁/dt · جهة التيار المُحرَّض'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => InductScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-generators'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['generators'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '⚙️',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('المولد والمحرك والذاتي'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · ميزان الطاقة · ε المعاكسة · شرارة الفتح'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => GeneratorsScreen(
+                          trainingStore: widget.trainingStore,
+                          initialData: data,
+                          xpRecorder: widget.xpRecorder,
+                        ),
+                      ));
+                      _load();
+                    },
+                  ),
+                ),
+                Card(
+                  key: const Key('lab-ac'),
+                  child: ListTile(
+                    leading: Text(
+                      data.labChallengeDays['ac'] ==
+                              dateKeyOf(DateTime.now())
+                          ? '✓'
+                          : '🔌',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    title: const Text('القيمة الفعّالة + R/L/C'),
+                    subtitle: const Text(
+                        'الوحدة ٢ · Ueff=U₀/√٢ · C يمنع DC · L تعارض AC'),
+                    trailing: const Icon(Icons.chevron_left),
+                    onTap: () async {
+                      await Navigator.of(context).push(MaterialPageRoute<void>(
+                        builder: (_) => AcScreen(
                           trainingStore: widget.trainingStore,
                           initialData: data,
                           xpRecorder: widget.xpRecorder,
