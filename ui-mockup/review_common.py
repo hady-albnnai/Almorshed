@@ -180,3 +180,110 @@ class ReviewCanvas:
         self.img.resize((small_w, int(self.img.size[1] * small_w / self.img.size[0])), Image.LANCZOS).save(
             f"{base}-{small_w}.png", optimize=True)
         print("saved", self.img.size, "->", path)
+
+
+# ============================================================
+# API مريح على مستوى الموديول (شاشات المراجعة 2026-10)
+# "ar" يرسم بخط SANS (نوتو سانس عربي — يحوي لاتيني + · ( ) − = /)
+# "la" يرسم بـ DejaVu (الرموز اليونانية و الأسهم و الفوقية)
+# ============================================================
+CARD_BG     = CARD
+CARD_BG2    = CARD2
+CARD_BORDER = LINE
+TEAL        = BRAND
+TEAL_BG     = (10, 42, 36)
+CYAN        = BRAND2
+DIM         = TXT2
+LIGHT       = TXT
+WHITE       = (255, 255, 255)
+
+_IMG = None
+
+def make_bg(w, h):
+    """ينشئ الخلفية ويحددها كصورة العمل الحالية"""
+    global _IMG
+    _IMG = Image.new("RGBA", (w, h), BG + (255,))
+    return _IMG
+
+def _rc():
+    rc = ReviewCanvas.__new__(ReviewCanvas)
+    rc.img = _IMG
+    rc.d = ImageDraw.Draw(_IMG)
+    return rc
+
+def load_la(size, bold=False):
+    from PIL import ImageFont
+    return ImageFont.truetype(DEJAVU_B if bold else DEJAVU, size)
+
+def load_ar(size, bold=False):
+    from PIL import ImageFont
+    return ImageFont.truetype(NASKH_B if bold else NASKH, size)
+
+def has_arabic(t):
+    return any(0x0600 <= ord(c) <= 0x06FF or 0xFB50 <= ord(c) <= 0xFDFF or 0xFE70 <= ord(c) <= 0xFEFF
+               for c in t)
+
+def _is_ar_char(c):
+    o = ord(c)
+    return (0x0600 <= o <= 0x06FF or 0xFB50 <= o <= 0xFDFF or 0xFE70 <= o <= 0xFEFF
+            or 0x0750 <= o <= 0x077F or 0x08A0 <= o <= 0x08FF)
+
+def _split_runs(text):
+    """يكسر نص ar إلى مقاطع فرعية: عربي (يرسم RTL) / غير عربي (يرسم LTR).
+    ضروري لأن HB يقلب الجراء المدمجة (أرقام/رموز) داخل نص RTL فتظهر مقلوبة (1.14 → 41.1)."""
+    runs = []
+    for ch in text:
+        if ch == " ":
+            runs.append([" ", "ar"])
+        elif _is_ar_char(ch):
+            if runs and runs[-1][1] == "ar" and runs[-1][0] != " ":
+                runs[-1][0] += ch
+            else:
+                runs.append([ch, "ar"])
+        else:
+            if runs and runs[-1][1] == "la":
+                runs[-1][0] += ch
+            else:
+                runs.append([ch, "la"])
+    return runs
+
+def _run_width(t, kind, size, bold):
+    return text_width(t, NASKH, size, bold) if kind == "ar" else text_width(t, DEJAVU, int(size * 0.9), bold)
+
+def draw_flow(x_right, y_baseline, segs, size, fill, bold=False):
+    """segs: [(text, 'ar'|'la')] — يقرأ من اليمين إلى اليسار على صورة العمل"""
+    # Pillow 12: إحداثيات التركيب يجب أن تكون int
+    x_right, y_baseline = int(x_right), int(y_baseline)
+    pen = x_right
+    for text, kind in segs:
+        runs = _split_runs(text) if kind == "ar" else [(text, "la")]
+        for t, k in runs:
+            w = _run_width(t, k, size, bold)
+            if k == "ar":
+                draw_rtl(_IMG, int(pen), int(y_baseline), t, size, fill, path=NASKH, bold=bold)
+            else:
+                ls = int(size * 0.9)
+                draw_ltr(_IMG, int(pen - w), int(y_baseline) - 2, t, ls, fill, path=DEJAVU, bold=bold)
+            pen -= w
+    return pen
+
+def flow_width(segs, size, bold=False):
+    total = 0
+    for text, kind in segs:
+        runs = _split_runs(text) if kind == "ar" else [(text, "la")]
+        total += sum(_run_width(t, k, size, bold) for t, k in runs)
+    return total
+
+def draw_header(x, y, w, h, title_segs, sub_segs, tsize=25, ssize=16):
+    rc = _rc()
+    rc.card(x, y, w, h, 56, BG2, border=(29, 42, 69), shadow=False)
+    pl, pr = x + 24, x + w - 24
+    rc.d.line([(x, y + 78), (x + w, y + 78)], fill=LINE, width=2)
+    rc.d.rounded_rectangle([pr - 54, y + 14, pr, y + 66], radius=15, fill=CARD, outline=LINE, width=2)
+    rc.arrow_l(pr - 40, y + 40, 20, TXT, wdt=5)
+    draw_flow(pr - 74, y + 46, title_segs, tsize, TXT, bold=True)
+    draw_flow(pr - 74, y + 70, sub_segs, ssize, TXT2)
+    return pl, pr
+
+def draw_footer(x, y, w, h):
+    _rc().bottom_bar(x, y + h - 100, w)

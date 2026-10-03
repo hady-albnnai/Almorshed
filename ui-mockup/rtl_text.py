@@ -67,7 +67,8 @@ def _render(ft, img, pen, y_baseline, gid, fill, slant=0.0, ox=0, oy=0):
         big.alpha_composite(layer, (pad, 0))
         big = big.transform((w + pad * 2, h), Image.AFFINE, (1, slant, -slant * h / 2, 0, 1, 0), resample=Image.BICUBIC)
         layer = big.crop((pad, 0, pad + w, h))
-    img.alpha_composite(layer, (pen - ft.glyph.bitmap_left + ox, y_baseline - ft.glyph.bitmap_top + oy))
+    # Pillow 12: dest يجب أن يكون int (float → أخطاء تركيب/حجم)
+    img.alpha_composite(layer, (int(pen - ft.glyph.bitmap_left + ox), int(y_baseline - ft.glyph.bitmap_top + oy)))
 
 def draw_rtl(img, x_right, y_baseline, text, size, fill, path=NASKH, bold=False, slant=0.0):
     f, ft = _get(path, size, bold)
