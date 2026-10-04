@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """APP-NAWWASAT-1 — دمج نوطة النواسات الكاملة في حزمة التطبيق (pack.json).
 
-يدمج `content/generated/nawwasat-learning-units.json` (33 وحدة — نص الأستاذ
+يدمج `tools/nawwasat-learning-units.json` (أو المسار المعطى سطر الأوامر) (33 وحدة — نص الأستاذ
 كما هو + بطاقات + أمثلة + قوالب أسئلة) في `app/assets/content/pack.json`:
 
   1) حقل جديد `learningUnits` — طبقة التعلم الكاملة (docs/35 مرحلة C).
@@ -23,7 +23,13 @@ import sys
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repo root
 PACK = os.path.join(BASE, 'app', 'assets', 'content', 'pack.json')
-UNITS = os.path.join(BASE, 'content', 'generated', 'nawwasat-learning-units.json')
+# ملف الوحدات: الأولوية لمسار سطر الأوامر (argv[1]) ثم tools/ ثم content/generated/
+_cand = [sys.argv[1]] if len(sys.argv) > 1 else []
+_cand += [os.path.join(BASE, 'tools', 'nawwasat-learning-units.json'),
+          os.path.join(BASE, 'content', 'generated', 'nawwasat-learning-units.json')]
+UNITS = next((c for c in _cand if os.path.exists(c)), _cand[0])
+if not os.path.exists(UNITS):
+    sys.exit(f'ملف الوحدات غير موجود — جرّب: python tools\\merge_nawwasat_pack.py <مسار nawwasat-learning-units.json>')
 
 CARD_ID_BASE = 9100     # 9100..9299 — بطاقات النواسات
 Q_ID_BASE = 9300        # 9300..9999 — أسئلة النواسات
