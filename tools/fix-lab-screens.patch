@@ -1,0 +1,91 @@
+--- a/app/lib/features/lab/blvrails_screen.dart	2026-10-04 00:09:41.047506462 +0000
++++ b/app/lib/features/lab/blvrails_screen.dart	2026-10-04 00:09:46.319533106 +0000
+@@ -291,7 +291,7 @@
+     c.drawCircle(Offset(rodX, 265 * k), 6,
+         Paint()..color = const Color(0xFFB8BEC4));
+     // عدّاد مركزي (قوس ±60°) بإبرة shownAng
+-    final mx = w / 2, my = 60.0;
++    final mx = size.width / 2, my = 60.0;
+     c.drawArc(Rect.fromCircle(center: Offset(mx, my), radius: 40),
+         math.pi / 6, 2 * math.pi / 3, false,
+         Paint()
+@@ -311,13 +311,13 @@
+     _arabic(
+         c,
+         'B = ${toAr(bt.toStringAsFixed(1))}T ${bsign > 0 ? '(إلى الداخل ×)' : '(نحو الخارج ·)'} · L = ${toAr(dm.toStringAsFixed(2))}m · v = ${toAr((rv / pxm).abs().toStringAsFixed(2))}m/s',
+-        Offset(w / 2, 26),
++        Offset(size.width / 2, 26),
+         12.5,
+         const Color(0xFF8AAAC3));
+     _arabic(
+         c,
+         'ذروة + : ${toAr(peakP.toStringAsFixed(2))} · ذروة − : ${toAr(peakN.toStringAsFixed(2))}${replaying ? ' · إعادة بطيئة ×٠٫٢٥' : ''}',
+-        Offset(w / 2, size.height - 16),
++        Offset(size.width / 2, size.height - 16),
+         13,
+         replaying ? const Color(0xFFF0964A) : const Color.fromRGBO(156, 195, 223, 0.85));
+   }
+--- a/app/lib/features/lab/induct_screen.dart	2026-10-04 00:09:41.047506462 +0000
++++ b/app/lib/features/lab/induct_screen.dart	2026-10-04 00:09:46.319533106 +0000
+@@ -123,7 +123,7 @@
+             moving = false;
+             _verify();
+           }
+-          final phi = phiOf(uOf());
++          final phi = phiOf(uOf);
+           eps2 = -pol * 1.4 * (phi - phiP) / st * 0.055;
+           phiP = phi;
+           final tg = (eps2 * 0.42).clamp(-1.0, 1.0);
+@@ -203,7 +203,7 @@
+       mgv = (scen == 1 || scen == 3) ? -120.0 : 120.0;
+       pol = scen <= 2 ? 1 : -1;
+       moving = true;
+-      phiP = phiOf(uOf());
++      phiP = phiOf(uOf);
+     });
+   }
+ 
+--- a/app/lib/features/lab/spring_screen.dart	2026-10-04 00:09:41.047506462 +0000
++++ b/app/lib/features/lab/spring_screen.dart	2026-10-04 00:09:46.319533106 +0000
+@@ -49,7 +49,8 @@
+   /// شكل النبضة cos² بعرض w
+   double ga(double u, double w) {
+     u = u.abs();
+-    return u > w ? 0 : math.cos(u / w * math.pi / 2) ** 2;
++    final q = math.cos(u / w * math.pi / 2);
++    return q * q;
+   }
+ 
+   double dispAt(double x) {
+@@ -225,7 +226,7 @@
+     _arabic(
+         c,
+         'الحالة: ${cont ? 'تردد مستمر ∿' : pulses.isNotEmpty ? 'نبضة تسافر…' : 'ساكن'} · النهاية: ${freeEnd ? 'حرة (حلقة)' : 'مثبتة (جدار)'}',
+-        Offset(w / 2, size.height - 16),
++        Offset(size.width / 2, size.height - 16),
+         13,
+         const Color.fromRGBO(156, 195, 223, 0.85));
+   }
+--- a/app/lib/features/lab/strings_screen.dart	2026-10-04 00:09:41.047506462 +0000
++++ b/app/lib/features/lab/strings_screen.dart	2026-10-04 00:09:46.319533106 +0000
+@@ -59,7 +59,8 @@
+   double ps(double u) {
+     final w = 34.0;
+     u = u.abs();
+-    return u > w ? 0 : math.cos(u / w * math.pi / 2) ** 2;
++    final q = math.cos(u / w * math.pi / 2);
++    return q * q;
+   }
+ 
+   double disp(double xi) {
+--- a/app/lib/features/lab/tube_screen.dart	2026-10-04 00:09:41.047506462 +0000
++++ b/app/lib/features/lab/tube_screen.dart	2026-10-04 00:09:46.323533126 +0000
+@@ -145,7 +145,7 @@
+     // زجاج الأنبوب
+     final tube = RRect.fromRectAndRadius(
+         Rect.fromLTWH(tx0, cy - r, tx1 - tx0, r * 2),
+-        const Radius.circular(r));
++        Radius.circular(r));
+     c.drawRRect(tube, Paint()..color = const Color(0x14303A48));
+     c.drawRRect(
+         tube,

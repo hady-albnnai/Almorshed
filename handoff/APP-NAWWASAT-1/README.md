@@ -33,6 +33,10 @@ git checkout dev/self-content
 git pull
 git fetch origin arena/01a0f912-almorshed
 
+REM ⓪ إصلاح 7 أخطاء قديمة في شاشات مخبر (توقف البناء) — blvrails/induct/spring/strings/tube
+git show origin/arena/01a0f912-almorshed:tools/fix-lab-screens.patch > tools\fix-lab-screens.patch
+git apply tools\fix-lab-screens.patch
+
 REM ① ملفات الحزمة من فرعنا
 git show origin/arena/01a0f912-almorshed:handoff/APP-NAWWASAT-1/app/lib/features/lab/lesson_unified_experiments.dart > app\lib\features\lab\lesson_unified_experiments.dart
 git show origin/arena/01a0f912-almorshed:tools/lesson_screen.patch > tools\lesson_screen.patch
@@ -50,12 +54,13 @@ flutter analyze
 flutter test
 
 REM ⑤ حجز ودفع
-git add app\lib\features\lab\lesson_unified_experiments.dart app\lib\features\curriculum\lesson_screen.dart tools\lesson_screen.patch tools\nawwasat-learning-units.json tools\merge_nawwasat_pack.py app\assets\content\pack.json
+git add tools\fix-lab-screens.patch app\lib\features\lab\blvrails_screen.dart app\lib\features\lab\induct_screen.dart app\lib\features\lab\spring_screen.dart app\lib\features\lab\strings_screen.dart app\lib\features\lab\tube_screen.dart app\lib\features\lab\lesson_unified_experiments.dart app\lib\features\curriculum\lesson_screen.dart tools\lesson_screen.patch tools\nawwasat-learning-units.json tools\merge_nawwasat_pack.py app\assets\content\pack.json
 git commit -m "APP-NAWWASAT-1: نوطة النواسات الكاملة (33 وحدة) في الحزمة + الفلاشات الجديدة (spring/torsion/simple/syringe) في الدروس بمواقعها"
 git push origin dev/self-content
 ```
 
 ## ملاحظات
+- **⓪ أخطاء قديمة (9 مواقع خطأ) في شاشات مخبر قديمة** (blvrails/induct/spring/strings/tube) — موجودة على dev من قبل حزمة، كانت توقف البناء. الإصلاحات: `w`→`size.width` (blvrails×3، spring×1)، `uOf()`→`uOf` (getter، induct×2)، `** 2`→`q*q` (ليس Dart، spring+strings)، `const Radius.circular(r)`→بدون const (tube).
 - **لا شيء يُحذف**: الدمج إضافي فقط (حقل `learningUnits` + نطاقات معرّفات 9100+).
 - **الأسئلة الجديدة `approved:false`** — محجوبة عن التدريب/المبارزات حتى اعتماد
   الأستاذ (قرار ٢٤). التفعيل = قلب `approved` بعد المراجعة.
